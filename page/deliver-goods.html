@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont.css" />
+		<script src="../js/mui.js"></script>
+		<style type="text/css">
+			.small-text {
+				vertical-align: 13%;
+			}
+			
+			li.mui-table-view-cell.del-padding {
+				padding-right: 1em;
+				padding-left: 1em;
+			}
+			.block-btn {
+				padding: 0.6em 50%;
+				border-radius: 0.6em;
+			}
+			.info-plain {
+				padding: 0.6em 2em;
+				background: #FAFAFA;
+			}
+			#gplain {
+				width: 50%;
+			}
+			.item-box {
+				float: left;
+				width: 25%;
+				text-align: center;
+				padding: 1em;
+				margin-left: -0.3em;
+			}
+			.item-cell {
+				height: 4em;
+				width: 4em;
+				line-height: 4em;
+				border: 1px solid #ccc;
+				position: relative;
+			}
+			.item-cell span {
+				font-size: 1.7em;
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+			}
+			.img-item {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			.item-cell i {
+				position: absolute;
+				top: -9px;
+				right: -9px;
+				border-radius: 50%;
+				background: red;
+				font-size: 1em;
+				font-weight: bold;
+				color: #fff;
+				opacity: 0.9;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<button id="btn-draft" class="mui-btn mui-btn-mini mui-btn-outlined mui-pull-right">草稿</button>
+			<h1 class="mui-title">我要发货</h1>
+		</header>
+
+		<div class="mui-content">
+			<div class="mui-h6 info-plain">物品描述</div>
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label for="gname">物品名称</label>
+					<input type="text" name="goodsname" class="mui-input-clear" id="gname" value="" placeholder="请输入..." />
+				</div>
+				<div class="mui-input-row">
+					<label for="gname">物品重量</label>
+					<input type="text" name="goodsweight" class="mui-input-clear" id="gweight" value="" placeholder="请输入..." />
+				</div>
+				<div class="mui-input-row">
+					<label for="gname">物品价值</label>
+					<input type="text" name="goodsvalue" class="mui-input-clear" id="gvalue" value="" placeholder="请输入..." />
+				</div>
+				<div class="mui-input-row">
+					<label for="gname">物品说明</label>
+					<div class="mui-btn mui-icon iconfont icon-you mui-btn-grey mui-pull-right" id="write-plain"></div>
+					<input type="text" readonly="true" name="goodsplain" class="mui-input-clear" id="gplain" value="" placeholder="物品说明.." />
+				</div>
+				<div class="mui-table-view-divider mui-h6">其他</div>
+				
+				<div class="mui-content-padded">
+					物品照相:<span class="small-text mui-h6">（可选）</span>
+				</div>
+				<div id="take-photo" class="mui-clearfix">
+					<div class="item-box">
+						<div class="item-cell">
+							<span class="iconfont icon-xiangji icon-photo"></span>
+							<!--<div class="img-item">
+								<img src="../img/1.jpg" alt="goods photo" width="100%"/>
+							</div>
+							<i id="clear-img" class="mui-icon mui-icon-closeempty"></i>-->
+						</div>
+					</div>
+					<div class="item-box">
+						<div class="item-cell">
+							<span class="iconfont icon-xiangji icon-photo"></span>
+						</div>
+					</div>
+					<div class="item-box">
+						<div class="item-cell">
+							<span class="iconfont icon-xiangji icon-photo"></span>
+						</div>
+					</div> 
+					<div class="item-box">
+						<div class="item-cell">
+							<span class="iconfont icon-xiangji icon-photo"></span>
+						</div>
+					</div>
+				</div>
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-divider"></li>
+					<div class="mui-table-view-cell">
+						<div class="mui-button-row">
+							<button class="mui-btn mui-btn-outlined block-btn">下一步</button>
+						</div>
+					</div>
+				</ul>
+			</form>
+		</div>
+		<script src="../js/deliver-goods.js"></script>
+	</body>
+
+</html>

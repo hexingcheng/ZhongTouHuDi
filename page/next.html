@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <style>
+    	#next-good-form label{
+    		font-size: 14px;
+    		color: #010101;
+    	}
+    </style>
+</head>
+<body> 
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">我要发货</h1>
+		<a class="mui-btn mui-pull-right" id="draft">草稿</a>
+	</header>
+	<div class="mui-content">
+		<form class="mui-input-group" id="next-good-form">
+				<div class="mui-input-row">
+					<label>愿付酬劳：</label>
+					<input type="text" placeholder="$">
+				</div>
+				<div class="mui-input-row">
+					<label>取货时间：</label>
+					<input type="text" placeholder="time">
+				</div>
+				<div class="mui-input-row">
+					<label>取货地址：</label>
+					<input type="text" placeholder="time">
+				</div>
+				<div class="mui-input-row">
+					<label>期望时间：</label>
+					<input type="text" placeholder="time">
+				</div>
+				<div class="mui-input-row">
+					<label>收件地址：</label>
+					<input type="text" placeholder="time">
+				</div>
+				<div class="mui-input-row">
+					<label>寄件人：</label>
+					<input type="text" placeholder="person">
+				</div>
+				<div class="mui-input-row">
+					<label>联系方式：</label>
+					<input type="text" placeholder="person">
+				</div>
+				<div class="mui-input-row">
+					<label>收件人：</label>
+					<input type="text" placeholder="conmersuol">
+				</div>
+				<div class="mui-input-row">
+					<label>联系方式：</label>
+					<input type="text" placeholder="time">
+				</div>
+				<div class="mui-input-row">
+					<label>购买额外保险：</label>
+					<input type="text" placeholder="time">
+				</div>
+				<div class="mui-input-row mui-checkbox mui-left">
+					<label>同意并接受<a>《服务平台使用规则》</a></label>
+					<input name="checkbox1" type="checkbox" checked>
+				</div>
+				<div class="mui-text-center">
+					<div class="mui-bbtn mui-btn" style="margin: 30px;">立即发布</div>
+				</div>
+			</form>
+	</div>
+    <script type="text/javascript" src="../js/jquery.min.js" ></script>
+	<script>
+		mui.plusReady(function() {
+			setTimeout(function() {
+				var  menu = mui.preload({
+					id: 'order',
+					url: './order.html'
+				})
+			}, 200);
+		
+//		获取上页传输的数据
+			var getdata = {};
+			var c = plus.webview.currentWebview();
+			getdata.gName = c.gName;
+			getdata.gValue = c.gValue;
+			getdata.gWeight = c.gWeight;
+			getdata.info = c.info;
+			getdata.pic = c.pic;
+		});
+		$('#draft').on('tap',function(){
+			 	plus.webview.getWebviewById('draft').show('slide-in-right',150)
+		})
+		$('.mui-bbtn').on('tap',function(){
+			plus.webview.getWebviewById('order').show('slide-in-right',150)
+		})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/test.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style>
+			.mui-content{
+				padding-bottom: 44px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-person mui-pull-left" id="per-info" style="color: #000000;"></a>
+			<h1 class="mui-title">Project</h1>
+			<a class="mui-icon mui-icon-chat mui-pull-right" id="chat-info" style="color: #000000;"></a>
+		</header>
+		<div class="mui-content">
+			<div class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<!--支持循环，需要重复图片节点-->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="./img/pic4.png" />
+						</a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="./img/pic1.png" />
+						</a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="./img/pic2.png" />
+						</a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="./img/pic3.png" />
+						</a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="./img/pic4.png" />
+						</a>
+					</div>
+					<!--支持循环，需要重复图片节点-->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="./img/pic1.png" />
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--设置部分-->
+			<div class="setting clearfix">
+				<div class="mui-pull-left">Life Services</div>
+				<div class="setting-right">click to add/removeservices<span class="mui-icon mui-icon-gear"></span>
+				</div>
+			</div>
+			<!--功能模块-->
+			<ul class="mui-table-view mui-grid-view">
+				<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div>
+						<img class="mui-media-object" src="./img/pic1.png" id="hlep-son">
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div href="#">
+						<img class="mui-media-object" src="./img/pic2.png" id="i-will">
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div href="#">
+						<img class="mui-media-object" src="./img/pic3.png" id="get-info">
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div href="#">
+						<img class="mui-media-object" src="./img/pic4.png" id="add-menu">
+					</div>
+				</li>
+			</ul>
+			<ul class="mui-table-view mui-grid-view">
+				<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div>
+						<img class="mui-media-object" src="./img/pic1.png" id="hlep-son">
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div href="#">
+						<img class="mui-media-object" src="./img/pic2.png" id="i-will">
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div href="#">
+						<img class="mui-media-object" src="./img/pic3.png" id="get-info">
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-6">
+					<div href="#">
+						<img class="mui-media-object" src="./img/pic4.png" id="add-menu">
+					</div>
+				</li>
+			</ul>
+			<!--功能模块结束-->
+			<!--帮我送-->
+		</div>
+		</div>
+		<div class="mui-text-center mui-bar-footer mui-bar" style="background-color: #ffffff;">
+			<div class="help-me"></div>
+		</div>
+		<script type="text/javascript" src="js/utils.js" ></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/indexchange.js"></script>
+	<script>
+					$(function() {
+				var gallery = mui('.mui-slider');
+				gallery.slider({
+					interval: 1500
+				});
+			}) 
+			 mui.plusReady(function() {
+				var will = null;
+				var index = null;
+				$('#hlep-son').on('tap', function(e) {
+//					setstorage('token','string');
+					iflogin(function(){
+						will.show('slide-in-right',150)
+					})
+					e.preventDefault()
+				})
+				 
+				$('#i-will').on('tap', function() {
+					iflogin(function(){
+						index.show('slide-in-right', 150)
+					})
+				})
+				$('#get-info').on('tap', function() {
+					plus.webview.getWebviewById('get').show('slide-in-right', 150)
+				})
+				$('#add-menu').on('tap', function() {
+					alert("add")
+				})
+					setTimeout(function() {
+						will = mui.preload({
+							id: 'i-will',
+							url: './page/i-will.html'
+						});
+						index = mui.preload({
+							id: 'index',
+							url: './index.html'
+						});
+					}, 200);
+					var c = plus.webview.getLaunchWebview()
+					c.setStyle({
+						'scrollIndicator':'none'
+					})
+			})
+	</script>
+	</body>
+
+</html>

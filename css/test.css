@@ -1,0 +1,43 @@
+html{
+	font-size: 16px;;
+}
+.clearfix{
+	zoom: 1;
+}
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.setting div{
+	height: 3rem;
+	line-height: 3rem;
+	padding: 0 0.625rem;
+}
+.setting{
+	position: relative;
+	border-bottom: 1px solid #000;
+}
+.setting-right{
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 0.75rem;
+}
+.footer{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+.seticon{
+	float: right;
+}
+.help-me{
+	text-align: center;
+	color: #ffffff;
+	margin: 0 auto;
+	width: 6rem;
+	height: 100%;
+	background-size: 100% 100%;
+	background: url(../img/raw_1435068033.png) no-repeat center top;
+}

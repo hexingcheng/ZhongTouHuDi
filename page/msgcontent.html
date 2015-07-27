@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a  id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1  id="title" class="mui-title">我的消息</h1>
+			<a class="mui-icon mui-icon-trash mui-pull-right delet"></a>
+		</header>
+		<!--<div class="mui-content"></div>-->
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+			gestureConfig:{
+				doubletap:true
+			},
+			subpages:[{
+				url:'systemmsg.html',
+				id:'systemmsg',
+				styles:{
+					top: '45px',
+					bottom: '0px',
+				}
+			}]
+		});
+		//处理双击头部返回顶部
+		var contentWebview = null;
+		document.querySelector('header').addEventListener('doubletap',function () {
+			if(contentWebview==null){
+				contentWebview = plus.webview.getWebviewById('systemmsg');
+			}
+			if(mui.os.ios){
+				contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+			}else{
+				contentWebview.evalJS('mui.scrollTo(0, 100)');
+			}
+		});
+		$('.delet').on('tap',function(){
+			var sysmsg = plus.webview.getWebviewById('systemmsg');
+			mui.fire(sysmsg,'addcheckbox');
+		})
+		</script>
+	</body>
+
+</html>

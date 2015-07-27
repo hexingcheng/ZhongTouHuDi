@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.addlmar {
+				margin-left: 30px;
+			}
+			.user {
+				border-radius: 50%;
+			}
+		</style>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-hidden">cared
+				<div id="M_Toggle" class="mui-switch mui-active">
+					<div class="mui-switch-handle"></div>
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<a href="myinfo.html" class="mui-navigate-right">
+					<img class="mui-media-object mui-pull-left user" src="../img/user.png" />
+					<div class="mui-media-body addlmar">
+						<p class='mui-ellipsis'>小王</p>
+						<p class='mui-ellipsis'>18883846369</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<a href="learn.html" class="mui-navigate-right" id="applay">
+					<span class="mui-icon mui-icon-chat mui-pull-left"></span>
+					<div class="mui-media-body addlmar">
+						<p class='mui-ellipsis'>申请自由快递人</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<a href="#3" class="mui-navigate-right">
+					<span class="mui-icon mui-icon-gear mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class='mui-ellipsis'>我的钱包</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<a href="#4" class="mui-navigate-right">
+					<span class="mui-icon mui-icon-list mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class='mui-ellipsis'>我的发单</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<a href="#5" class="mui-navigate-right">
+					<span class="mui-icon mui-icon-paperplane mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class='mui-ellipsis'>我的接单</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<a href="#6" class="mui-navigate-right">
+					<span class="mui-icon mui-icon-plusempty mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class='mui-ellipsis'>常用地址管理</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<a href="#7" class="mui-navigate-right">
+					<span class="mui-icon mui-icon-reload mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class='mui-ellipsis'>申请自由快递人</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<a href="#8" class="mui-navigate-right">
+					<span class="mui-icon mui-icon-home mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class='mui-ellipsis'>申请自由快递人</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<script src="../js/jquery.min.js"></script>
+		<script>
+			mui('.mui-table-view-cell').on('tap', 'a', function() {
+				var id = this.getAttribute('href');
+				var href = this.href;
+				var webview_style = {
+					popGesture: "close"
+				};
+				mui.openWindow({
+					id: id,
+					url: href,
+					styles: webview_style,
+					show: {
+						aniShow: "slide-in-right"
+					},
+					waiting: {
+						autoShow: false
+					}
+				})
+			})
+			 mui.plusReady(function() {
+				perload();
+			})
+			 function perload(){
+			 	mui.preload({
+					id: 'learn.html',
+					url: 'learn.html'
+				});
+					mui.preload({
+					id: 'info.html',
+					url: 'myinfo.html'
+				});
+//					mui.preload({
+//					id: 'idx',
+//					url: '../index.html'
+//				});
+			 }
+		</script>
+	</body>
+
+</html>
