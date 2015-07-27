@@ -5,12 +5,24 @@ var pageDraft = null;
 mui.plusReady(function() {
 	setTimeout(function() {
 		pageDraft = mui.preload({
-			url: "deliver-goods-draft.html",
+			url: "../page/draft.html",
 			id: "deliver-goods-draft"
 		})
 	}, 200)
 })
-mui.ready(function() {
+mui.back = function(){
+	mui.confirm('是否存为草稿','提示',['是','否'],function(e){
+		if(e.index==0){
+			//发送ajax,存为草稿;
+			
+			plus.webview.getLaunchWebview().show('slide-in-left',150);			
+		}else{
+			//放弃存为草稿直接返回
+			plus.webview.getLaunchWebview().show('slide-in-left',150);
+		}
+	})
+}
+mui.plusReady(function() {
 	// 草稿
 	document.getElementById("btn-draft").addEventListener("tap", function() {
 		pageDraft.show("slide-in-right", 150)
@@ -74,12 +86,12 @@ mui.ready(function() {
 		var camera = plus.camera.getCamera();
 		var res = camera.supportedImageResolutions[0];
 		var fmt = camera.supportedImageFormats[0];
-		
+
 		// 获取摄像头进行拍照
 		camera.captureImage(function(path) {
 
 			// 获取原始文件大小				测试原始文件大小
-	/*		plus.io.requestFileSystem(plus.io.PRIVATE_WWW, function(fs){
+			/*		plus.io.requestFileSystem(plus.io.PRIVATE_WWW, function(fs){
 				fs.root.getFile(path, {create: true}, function(fileEntry){
 					fileEntry.file(function(file){
 						// 数据只能在该函数内部显示
@@ -88,8 +100,8 @@ mui.ready(function() {
 					})
 				})
 			})*/
-			
-			
+
+
 			// 移动端图片压缩处理
 			plus.io.resolveLocalFileSystemURL(path, function(entry) {
 				var local = entry.toLocalURL();
@@ -97,14 +109,14 @@ mui.ready(function() {
 				//	oimg.src = local;
 				// 图片压缩处理
 				dealImage(local, {
-					width: 17 * 4, 
+					width: 17 * 4,
 					quality: 0.5
 				}, function(base) {
 					/**
 					 * 	在此处可以将base传入后台，让后台进行数据的储存为相片
 					 */
 					var img = '<div class="img-item">' +
-						'<img src="' + base + '" alt="goods photo" title="'+ local +'" width="100%"/>' +
+						'<img src="' + base + '" alt="goods photo" title="' + local + '" width="100%"/>' +
 						'</div><i id="clear-img" class="mui-icon mui-icon-closeempty"></i>';
 					_this.innerHTML = img;
 
@@ -121,45 +133,92 @@ mui.ready(function() {
 			format: fmt
 		})
 	})
-	
+
 	// 删除图片选择
-	mui("#take-photo").on("tap", "#clear-img", function(){
+	mui("#take-photo").on("tap", "#clear-img", function() {
 		var icon = '<span class="iconfont icon-xiangji icon-photo"></span>';
 		this.parentNode.innerHTML = icon;
 	});
 
 	// 绑定预览图片
-	mui("#take-photo").on("tap", ".img-item", function(){
+	mui("#take-photo").on("tap", ".img-item", function() {
 		mui.alert("预览图片");
 	});
-	
-/*	// 回调name值
-	function callbackName(name){
-		console.log(name)
-	}*/
-	
+
+	/*	// 回调name值
+		function callbackName(name){
+			console.log(name)
+		}*/
+
 	// 发送数据
-	function sendData(url, base){
-		mui.plusReady(function(){
+	function sendData(url, base) {
+		mui.plusReady(function() {
 			mui.ajax(url, {
-			type : "post",
-			data : {
-				imgName : Math.floor(Math.random()*100000) + ".jpg",
-				imgData : base,			// base字符串
-				dataLength : base.length	// base字符串长度
-			},
-			success : function(data){
-				console.log(data.ret);
-				console.log(data.res.path)
-			},
-			error : function(xhr, type){
-				console.log("错误信息显示："+type);
-			}
-		})
+				type: "post",
+				data: {
+					imgName: Math.floor(Math.random() * 100000) + ".jpg",
+					imgData: base, // base字符串
+					dataLength: base.length // base字符串长度
+				},
+				success: function(data) {
+					console.log(data.ret);
+					console.log(data.res.path)
+				},
+				error: function(xhr, type) {
+					console.log("错误信息显示：" + type);
+				}
+			})
 		})
 	}
+
+	var oderdata = {
+		gName: "巧克力",
+		gValue: 100,
+		gWeight: 50,
+		info: "选填",
+		insType: "简单保险",
+		pics: "",
+		money: 5,
+		getTime: "2015-7-26",
+		finTime: "2015-7-30",
+		senderAddress: "重庆邮电大学",
+		receiverAddress: "重庆工商大学",
+		sender: "13458295127",
+		senderPhone: "18883848005",
+		sendJd: 30,
+		sendWd: 120,
+		receiver: "小何",
+		receiverPhone: "18883846369",
+		receiveJd: 30,
+		receiveWd: 120,
+		status: 1
+	}
 	
-	
-	
-	
+	function getlatlot(){
+		var obj = {};
+		plus.geolocation.getCurrentPosition(function(pos){
+			var lat = pos.coords.latitude;
+			var lot = pos.coords.longitude;
+		},function(e){
+			mui.toast('获取位置信息失败')
+		},{provider:"baidu"})
+		return obj;
+	}
+	document.getElementById('next-button').addEventListener('tap', function() {
+		mui.plusReady(function() {
+			mui.ajax(BASEURL + 'order/resOrderByGood', {
+				data: oderdata,
+				type: 'post',
+				timeout: 10000,
+				error: function(xhr, type, errorThrown) {
+					console.log(type);
+				},
+				success: function(data) {
+					console.log(data.ret)
+				}
+			})
+		})
+	})
+
+
 })

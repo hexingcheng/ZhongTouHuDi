@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.draft-goods {
+				padding: 10px;
+				position: relative;
+			}
+			.draft-goods:after {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 10px;
+				height: 1px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+			}
+			.draft-write {
+				position: absolute;
+				top: 20px;
+				right: 10px;
+			}
+			.save-time,
+			.name {
+				padding: 10px 0;
+			}
+			.goods-name,
+			.save-goods-time {
+				font-size: 13px;
+				;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">草稿</h1>
+			<a class="mui-action-back mui-icon mui-icon-trash mui-pull-right"></a>
+		</header>
+		<div class="mui-content" id="content">
+		</div>
+		<script src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/template.js"></script>
+		<script type="text/html" id="drafts">
+			{{each drafts}}
+			<div class="draft-goods">
+				<div class="name">物品名称：<span class="goods-name">{{$value.gName}}</span></div>
+				<div class="save-time">保存时间：<span class="save-goods-time">{{$value.sTime}}</span></div>
+				<div class="draft-write editer"><a>编辑</a></div>
+			</div>
+			{{/each}}
+		</script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			var data = {
+				"drafts": [{
+					"gName": "鲜花",
+					"sTime": "2015-7-17"
+				}, {
+					"gName": "巧克力",
+					"sTime": "2015-7-15"
+				}, {
+					"gName": "蓝色妖姬",
+					"sTime": "2015-7-13"
+				},{
+					"gName": "妹子",
+					"sTime": "2015-7-12"
+				}, ]
+			}
+			addcontent();
+			function addcontent() {
+				var html = template('drafts', data);
+				document.getElementById('content').innerHTML = html;
+				mui('.draft-goods').on('tap','div',function(){
+					alert(1)
+				})
+			}
+		</script>
+	</body>
+
+</html>

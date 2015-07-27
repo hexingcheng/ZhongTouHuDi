@@ -85,51 +85,70 @@
 				</a>
 			</li>
 			<li class="mui-table-view-cell mui-media">
-				<a href="#8" class="mui-navigate-right">
+				<a class="mui-navigate-right" id="close">
 					<span class="mui-icon mui-icon-home mui-pull-left"></span>
 					<div class="mui-media-body  addlmar">
-						<p class='mui-ellipsis'>申请自由快递人</p>
+						<p class='mui-ellipsis'>退出</p>
 					</div>
 				</a>
 			</li>
 		</ul>
+		<script type="text/javascript" src="../js/utils.js"></script>
 		<script src="../js/jquery.min.js"></script>
 		<script>
-			mui('.mui-table-view-cell').on('tap', 'a', function() {
-				var id = this.getAttribute('href');
-				var href = this.href;
-				var webview_style = {
-					popGesture: "close"
-				};
-				mui.openWindow({
-					id: id,
-					url: href,
-					styles: webview_style,
-					show: {
-						aniShow: "slide-in-right"
-					},
-					waiting: {
-						autoShow: false
-					}
+			 //			mui('.mui-table-view-cell').on('tap', 'a', function() {
+			 //				var id = this.getAttribute('href');
+			 //				var href = this.href;
+			 //				var webview_style = {
+			 //					popGesture: "close"
+			 //				};
+			 //				mui.openWindow({
+			 //					id: id,
+			 //					url: href,
+			 //					styles: webview_style,
+			 //					show: {
+			 //						aniShow: "slide-in-right"
+			 //					},
+			 //					waiting: {
+			 //						autoShow: false
+			 //					}
+			 //				})
+			 //			})
+			mui.plusReady(function() {
+				perload();
+				document.getElementById('close').addEventListener('tap', function(e) {
+					iflogin(function() {
+						plus.storage.removeItem('token');
+						plus.webview.getWebviewById('index-menu.html').hide();
+						plus.webview.getLaunchWebview().setStyle({
+							left: "0",
+							mask: 'none'
+						})
+						mui.ajax(BASEURL + 'auth/out', {
+							type: "get",
+							success: function(data) {
+								console.log('success')
+								plus.storage.removeItem('token')
+							},
+							error: function(xhr, type) {
+								console.log(type);
+							}
+						})
+					})
+					return false;
 				})
 			})
-			 mui.plusReady(function() {
-				perload();
-			})
-			 function perload(){
-			 	mui.preload({
+
+			function perload() {
+				mui.preload({
 					id: 'learn.html',
 					url: 'learn.html'
 				});
-					mui.preload({
+				mui.preload({
 					id: 'info.html',
 					url: 'myinfo.html'
 				});
-//					mui.preload({
-//					id: 'idx',
-//					url: '../index.html'
-//				});
-			 }
+			}
 		</script>
 	</body>
 

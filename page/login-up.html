@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -70,9 +71,9 @@
 									</div>
 									<div class="mui-input-row special-line">
 										<!--<span class="get-code-input special-line">-->
-										<input type="text" name="valcode" id="signup-valcode" value="" placeholder="valcode"/>
-									<!--</span>-->
-										<a href="" id="get-code" class="mui-pull-right get-code clear-updown-line">get code</a>
+										<input type="text" name="valcode" id="signup-valcode" value="" placeholder="valcode" />
+										<!--</span>-->
+										<span href="" id="get-code" class="mui-pull-right get-code clear-updown-line">get code</span>
 									</div>
 									<div class="mui-input-row re-clear clear-top-line">
 										<input type="password" name="password" id="signup-pwd" value="" placeholder="password" />
@@ -97,150 +98,200 @@
 
 			<!-- content结束标签 -->
 		</div>
-
+		<script src="../js/utils.js"></script>
 		<script>
 			mui.init();
-		      	
-		      	mui.ready(function(){
-		      		var signin = document.getElementById("signin-btn");
-		      		var signup = document.getElementById("signup-btn");
-		      		var cname = "mui-active";
-		      		
-		      		// 手机号码验证正则
-		      		var reph = /^[0-9]{6,12}$/;
-		      		var repw = /^[\\.a-zA-Z0-9_]{6}$/;
-		      		
-		      		// 提交按钮获取选项卡的设置
-		      		document.getElementById("submit-button").addEventListener("tap", function(){
-		      			if( signin.className.indexOf(cname) > -1 ){
-		      				checkLogin();
-		      			} else if (signup.className.indexOf(cname) > -1){
-		      				// 注册的电话号码
-		      				var opnum = document.getElementById("signup-phone-number"),
-		      					pnum = opnum.value.trim();
-		      				// 注册的密码
-		      				var opwd = document.getElementById("signup-pwd"),
-		      					pwd = opwd.value.trim();
-		      				// 确定密码
-		      				var ocompwd = document.getElementById("signup-com-pwd"),
-		      					compwd = ocompwd.value.trim();
-		      				// 手机验证码
-		      				var ocode = document.getElementById("signup-valcode"),
-		      					code = ocode.value.trim();
-		      				// 确定规则
-		      				var check = document.getElementById("signup-agree");
-		      				
-		      				var flag = true;	// 判断是否验证是否成功
-		      				var info = [];		// 存放数据
-		      				 
-		//    				mui.alert(pnum +" "+ pwd +" "+ compwd +" "+ code)
-		//    				mui.alert(check.checked)
-		      				if(pnum && pwd && compwd && code){
-		      					if(check.checked){
-			      					// 手机号码验证
-			      					if(reph.test(pnum)){
-			      						info.push("phoneNumber="+pnum)
-			      					} else {
-			      						mui.toast("请确定输入手机号");
-			      						flag = false;
-			      					}
-			      					
-			      					// 密码验证失败
-			      					if(repw.test(pwd) && pwd == compwd){
-			      						info.push("password="+compwd);
-			      					} else {
-			      						mui.toast("密码验证失败")
-			      						flag = false;
-			      					}
-			      					
-			      					// 手机验证码验证
-			      					if(/^[0-9]{6,6}$/.test(code)){
-			      						info.push("valcode="+code);
-			      					} else {
-			      						mui.toast("手机验证码错误");
-			      						flag = false;
-			      					}
-			      					
-			      					// 传送后台数据
-			      					if(flag){
-			      						var cominfo = info.join("&");
-			      						mui.alert(cominfo);
-			      					} 
-			      					
-			      				} else {
-			      					mui.toast("请审查选择相关规则")
-			      				}
-		      				} else {
-		      					mui.toast("请填写完资料信息");
-		      				}
-		      				
-		      				
-		      			}
-		      		}, false)
-		      		
-		      		document.getElementById("get-code").addEventListener("click", function(){
-		      			// 注册的电话号码
-		  				var opnum = document.getElementById("signup-phone-number"),
-		  					pnum = opnum.value.trim();
-		  				if(reph.test(pnum)){
-		  					var data = {
-		  						type : 1,
-		  						phone : pnum
-		  					}
-		  					// ajax发送请求验证信息   【xxx】ip地址及端口号				========================    后台交互数据
-		  					/*mui.ajax("http://[xxx]/api/auth/reg", {
-		  						dataType : "json",
-		  						type : "post",
-		  						success : function(data){
-		  							var obj = eval(data);
-		  							if(obj.ret == -1){
-		  								mui.toast(obj.token);		//  给予提示信息反馈
-		  								mui.trigger(document.getElementById("signin-btn"), "tap");		// 该用户已经注册，模拟事件跳转到登录界面
-		  							}
-		  						}
-		  					})*/
-		  					
-		  				} else {
-		  					mui.toast("请正确输入您的手机号码")
-		  				}
-		  				
-		      		}, false)
-		      		
-		      		// 登录验证
-		      		function checkLogin(){
-		      			var onum = document.getElementById("signin-phone-number");
-		  				var phonenum = onum.value.trim();
-		  				var opwd = document.getElementById("signin-pwd");
-		  				var pwd = opwd.value.trim();
-		  				var str = [];
-		  				var flag = true;
-		  				if (pwd && phonenum){
-		  					if(reph.test(phonenum)){
-		      					str.push("phoneNumber="+phonenum);
-		      				} else {
-		      					flag = false;
-		      					mui.toast("请确定手机号码输入");
-		      				}
-		      				if(repw.test(pwd)){
-		      					str.push("password="+pwd);
-		      				}else{
-		      					flag = false;
-		      					mui.toast("请确定密码输入格式正确");
-		      					opwd.value = "";
-		      				}
-		  				} else {
-		  					mui.toast("请填入登录信息")
-		  				}
-		  				
-		  				// 判断输入是否正确
-		  				if(flag){
-		  					var info = str.join("&");
-		  					onum.value = "";
-		  					opwd.value = "";
-		  					mui.alert(info); // ====   ===   ======    这里与后台交换数据 直接就是传送 info 就行了
-		  				}
-		      		}
-		      	})
+			mui.plusReady(function() {
+				var signin = document.getElementById("signin-btn");
+				var signup = document.getElementById("signup-btn");
+				var cname = "mui-active";
+				// 手机号码验证正则
+				var reph = /^[0-9]{6,12}$/;
+				var repw = /^[\\.a-zA-Z0-9_]{6}$/;
+				// 提交按钮获取选项卡的设置
+				document.getElementById("submit-button").addEventListener("tap", function() {
+						if (signin.className.indexOf(cname) > -1) {
+							checkLogin();
+						} else if (signup.className.indexOf(cname) > -1) {
+							signUp();
+						}
+						return false;
+					}, false)
+					// 根据手机号，获取验证码
+				document.getElementById("get-code").addEventListener("tap", function(e) {
+						var opnum = document.getElementById("signup-phone-number"),
+							pnum = opnum.value.trim();
+						if (reph.test(pnum)) {
+							var codedata = {
+									phone: pnum
+								}
+								// ajax发送请求验证信息   【xxx】ip地址及端口号				========================    后台交互数据
+							mui.plusReady(function(){
+								mui.ajax(BASEURL + "auth/regDynCode", {
+									data: codedata,
+									type: "post",
+									success: function(data) {
+										if (data.ret == 1) { //获得验证码成功
+											console.log(data.code)
+											document.getElementById('signup-valcode').value = data.code;
+										} else if (data.ret == -1) {
+											mui.toast("注册账户已存在！")
+										}
+									},
+									error: function(xhr, type, errorThrown) {
+										console.log(type);
+										errorhandle(type);
+									}
+								})
+							})
+						} else {
+							mui.toast("请正确输入您的手机号码")
+						}
+						e.preventDefault();
+					}, false)
+					// 登录验证
+
+				function checkLogin() {
+						var onum = document.getElementById("signin-phone-number");
+						var phonenum = onum.value.trim();
+						var opwd = document.getElementById("signin-pwd");
+						var pwd = opwd.value.trim();
+						var flag = true;
+						if (pwd && phonenum) {
+							if (!reph.test(phonenum)) {
+								flag = false;
+								mui.toast("请确定手机号码输入");
+							}
+							if (!repw.test(pwd)) {
+								flag = false;
+								mui.toast("请确定密码输入格式正确");
+								opwd.value = "";
+							}
+						} else {
+							mui.toast("请填入登录信息")
+						}
+						// 判断输入是否正确
+						if (flag) {
+							var data = {
+									phone: phonenum,
+									pwd: pwd,
+									type: 1
+								}
+								//		  					var obj = getuserbasicinfo();
+							data.mac = plus.device.imei;
+							data.imsi = plus.device.imsi;
+							data.systemName = plus.device.vendor
+							data.systemVersion = plus.device.model;
+							onum.value = "";
+							opwd.value = "";
+							// 登录时发送的ajax请求
+							mui.ajax(BASEURL + "auth/login", { // 后台交互数据			登录
+								type: "post",
+								data: data,
+								success: function(obj) { // 成功的时候，根据不同的状态回应不同的相应信息给客户端
+									if (obj.ret == 0) {
+										mui.toast("输入异常");
+									} else if (obj.ret = 1) {
+										//注册成功
+										mui.toast(obj.token);
+										setstorage('token', obj.token)
+										successcb()
+									} else if (obj.ret == -1) {
+										mui.toast("手机号或密码错误")
+									} else if (obj.ret == -2) {
+										mui.toast("账户已冻结")
+									} else if (obj.ret == -3) {
+										mui.toast("验证次数太多稍后再试")
+									}
+								},
+								error: function(xhr, type, errorThrown) {
+									console.log(type);
+									errorhandle(type)
+								}
+							})
+						}
+					}
+					// 注册验证
+
+				function signUp() {
+					// 注册的电话号码
+					var opnum = document.getElementById("signup-phone-number"),
+						pnum = opnum.value.trim();
+					// 注册的密码
+					var opwd = document.getElementById("signup-pwd"),
+						pwd = opwd.value.trim();
+					// 确定密码
+					var ocompwd = document.getElementById("signup-com-pwd"),
+						compwd = ocompwd.value.trim();
+					// 手机验证码
+					var ocode = document.getElementById("signup-valcode"),
+						code = ocode.value.trim();
+					// 确定规则
+					var check = document.getElementById("signup-agree");
+					var flag = true; // 判断是否验证是否成功
+					if (pnum && pwd && compwd && code) {
+						if (check.checked) {
+							// 手机号码验证
+							if (!reph.test(pnum)) {
+								mui.toast("请确定输入手机号");
+								flag = false;
+							}
+							// 密码验证失败
+							if (!repw.test(pwd) && !(pwd == compwd)) {
+								mui.toast("密码验证失败")
+								flag = false;
+							}
+							// 手机验证码验证
+							if (!(/^[0-9]{6,6}$/.test(code))) {
+								mui.toast("手机验证码错误");
+								flag = false;
+							}
+							// 传送后台数据
+							if (flag) {
+								var getcode = document.getElementById('signup-valcode').value
+								var data = {
+									type: 1,
+									phone: pnum,
+									code: getcode,
+									pwd: pwd,
+									repwd: compwd
+								}
+								data.mac = plus.device.imei;
+								data.imsi = plus.device.imsi;
+								data.systemName = plus.device.vendor
+								data.systemVersion = plus.device.model;
+								mui.ajax(BASEURL + "auth/reg", {
+									type: "post",
+									data:data,
+									success: function(obj) {
+										if (obj.token) {
+											setstorage('token', obj.token);
+											successcb();
+										}
+										if (obj.ret == -1) {
+											mui.toast("账户已经注册")
+										} else if (obj.ret == -2) {
+											mui.toast("验证码不正确")
+										}
+									},
+									error: function(xhr, type, errorThrown) {
+										console.log(type)
+										errorhandle(type)
+									}
+								})
+							}
+						} else {
+							mui.toast("请审查选择相关规则")
+						}
+					} else {
+						mui.toast("请填写完资料信息");
+					}
+				}
+			})
+
+			function successcb() {
+				plus.webview.getLaunchWebview().show()
+			}
 		</script>
 	</body>
 

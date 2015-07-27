@@ -1,4 +1,5 @@
-var BASEURL = "http://172.31.56.19:8080/api/"
+var BASEURL = "http://202.202.43.107:8080/api/"
+
 function getcamera(successcb, errorcb, option) {
 	var cmr = plus.camera.getCamera();
 	cmr.captureImage(successcb, errorcb)
@@ -13,7 +14,7 @@ function getstorage(key) {
 }
 
 function iflogin(cb) {
-	setstorage('token','string')
+	
 	if (getstorage('token')) {
 		cb();
 	} else {
@@ -33,10 +34,9 @@ function iflogin(cb) {
 
 	}
 }
-
-function openWindow(url,param) {
+function openWindow(url, param) {
 		var snum, id;
-		param = param||{};
+		param = param || {};
 		var pnum = url.indexOf('.html');
 		if (url.indexOf('page') != -1) {
 			snum = url.indexOf('e/') + 1;
@@ -48,31 +48,67 @@ function openWindow(url,param) {
 			mui.openWindow({
 				id: id,
 				url: url,
-				extras:param,
+				extras: param,
 				waiting: {
 					autoShow: true,
-					title: '正在加载...', 
+					title: '正在加载...',
 					options: {
-						background:'#d1d1d1'
+						background: '#d1d1d1'
 					}
 				}
 			})
-		}else{
+		} else {
 			alert(0)
 		}
 	}
 	// for test
-function setsysstorage(val){
-	var ago = getstorage('systemmsg')||"";
-	val = ago+val;
-	setstorage('systemmsg',val)
+
+function setsysstorage(val) {
+	var ago = getstorage('systemmsg') || "";
+	val = ago + val;
+	setstorage('systemmsg', val)
 }
+
 function getAllwebview() {
 	var a = plus.webview.all();
 	for (var i in a) {
 		console.log(a[i].getURL())
 	}
 }
-function handleData(data,cb){
+
+function handleData(data, cb) {
 	console.log(data.ret);
+}
+function errorhandle(type) {
+	if (type == 'timeout') {
+		mui.toast("请求超时，请检查您的网络！");
+	} else if (type == 'error') {
+		mui.toast('发生错误！')
+	} else if (type = 'abort') {
+		mui.toast('网络禁止访问！')
+	}
+	return;
+}
+
+function getuserbasicinfo() {
+	var obj = {};
+	mui.plusReady(function() {
+		plus.geolocation.getCurrentPosition(function(pos) {
+			obj.lot = pos.coords.longitude;
+			obj.let = pos.coords.latitude;
+		}, function(e) {
+			mui.toast('获取位置信息失败')
+		}, {
+			provider: 'baidu'
+		});
+		obj.uuid = plus.device.uuid;
+		obj.imsi = plus.device.imsi;
+		obj.systemName = plus.device.vendor;
+		obj.systemVersion = plus.device.model;
+	})
+	return obj;
+}
+
+function successcb(){
+	plus.webview.getLaunchWebview().show()
 }
