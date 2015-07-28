@@ -27,6 +27,7 @@ function openMenu() {
 	if (!showMenu) {
 		mask.show();
 		isInTransition = true;
+		alert(1)
 		menu.show('none', 0);
 		main.setStyle({
 			left: '70%',
