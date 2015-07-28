@@ -10,19 +10,29 @@ mui.plusReady(function() {
 		})
 	}, 200)
 })
-mui.back = function(){
-	mui.confirm('是否存为草稿','提示',['是','否'],function(e){
-		if(e.index==0){
-			//发送ajax,存为草稿;
-			
-			plus.webview.getLaunchWebview().show('slide-in-left',150);			
-		}else{
-			//放弃存为草稿直接返回
-			plus.webview.getLaunchWebview().show('slide-in-left',150);
-		}
-	})
+mui.back = function() {
+	if (true) {
+		mui.confirm('是否存为草稿', '提示', ['是', '否'], function(e) {
+			if (e.index == 0) {
+				//发送ajax,存为草稿;
+				plus.webview.getLaunchWebview().show('slide-in-left', 150);
+			} else {
+				//放弃存为草稿直接返回
+				plus.webview.getLaunchWebview().show('slide-in-left', 150);
+			}
+		})
+	}else{
+		plus.webview.getLaunchWebview().show('slide-in-left', 150);		
+	}
 }
 mui.plusReady(function() {
+	
+	//预加载
+	
+	mui.preload({
+		url:'../page/next.html',
+		id: 'next'
+	})
 	// 草稿
 	document.getElementById("btn-draft").addEventListener("tap", function() {
 		pageDraft.show("slide-in-right", 150)
@@ -86,7 +96,6 @@ mui.plusReady(function() {
 		var camera = plus.camera.getCamera();
 		var res = camera.supportedImageResolutions[0];
 		var fmt = camera.supportedImageFormats[0];
-
 		// 获取摄像头进行拍照
 		camera.captureImage(function(path) {
 
@@ -100,9 +109,10 @@ mui.plusReady(function() {
 					})
 				})
 			})*/
-
-
-			// 移动端图片压缩处理
+			//				that.picsrc = plus.io.convertLocalFileSystemURL(path);
+			$(_this).data('picsrc', plus.io.convertLocalFileSystemURL(path))
+				//				that.setAttribute('picsrc',plus.io.convertLocalFileSystemURL(path))	
+				// 移动端图片压缩处理
 			plus.io.resolveLocalFileSystemURL(path, function(entry) {
 				var local = entry.toLocalURL();
 				//	var oimg = document.getElementById("origin");
@@ -122,7 +132,7 @@ mui.plusReady(function() {
 
 					// 在此过程中还要包base64数据 传到后台                   ====================================
 					console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
-					sendData("http://172.31.56.19:8080/api/common/file/imgUp", base);
+					sendData(BASEURL + "/common/file/imgUp", base);
 				})
 			})
 
@@ -142,7 +152,13 @@ mui.plusReady(function() {
 
 	// 绑定预览图片
 	mui("#take-photo").on("tap", ".img-item", function() {
-		mui.alert("预览图片");
+		var src = $(this).parent().data('picsrc');
+		var param = {
+			psrc: src
+		}
+		openWindow('../page/showpic.html', param);
+		var showpic = plus.webview.getWebviewById('showpic');
+		mui.fire(showpic, 'geturl');
 	});
 
 	/*	// 回调name值
@@ -161,15 +177,34 @@ mui.plusReady(function() {
 					dataLength: base.length // base字符串长度
 				},
 				success: function(data) {
-					console.log(data.ret);
-					console.log(data.res.path)
+					//					console.log(data.ret);
+					//					console.log(data.res.path)
+					if (data.ret == 1) {
+						//得到图片服务器上绝对路径，保存
+							alert('上传成功')
+					} else if (data.ret == 2) {
+						mui.toast('图片格式不正确');
+					} else if (data.ret == 3) {
+						mui.toast('图片过大');
+					}
 				},
 				error: function(xhr, type) {
 					console.log("错误信息显示：" + type);
+					errorhandle(type);
 				}
 			})
 		})
 	}
+
+
+
+	//  获取表单数据
+//	var formdatas = {
+//		gName: $('#gname').val(),
+//		gValue: parseInt($('').val()),
+//		gWeight: parseInt($('').val()),
+//		info: $('').val()
+//	}
 
 	var oderdata = {
 		gName: "巧克力",
@@ -177,14 +212,14 @@ mui.plusReady(function() {
 		gWeight: 50,
 		info: "选填",
 		insType: "简单保险",
-		pics: "",
+		pics: " ",
 		money: 5,
 		getTime: "2015-7-26",
 		finTime: "2015-7-30",
 		senderAddress: "重庆邮电大学",
 		receiverAddress: "重庆工商大学",
-		sender: "13458295127",
-		senderPhone: "18883848005",
+		sender: "99966663333",
+		senderPhone: "18883843333",
 		sendJd: 30,
 		sendWd: 120,
 		receiver: "小何",
@@ -193,32 +228,33 @@ mui.plusReady(function() {
 		receiveWd: 120,
 		status: 1
 	}
-	
-	function getlatlot(){
+	function getlatlot() {
 		var obj = {};
-		plus.geolocation.getCurrentPosition(function(pos){
+		plus.geolocation.getCurrentPosition(function(pos) {
 			var lat = pos.coords.latitude;
 			var lot = pos.coords.longitude;
-		},function(e){
+		}, function(e) {
 			mui.toast('获取位置信息失败')
-		},{provider:"baidu"})
+		}, {
+			provider: "baidu"
+		})
 		return obj;
 	}
 	document.getElementById('next-button').addEventListener('tap', function() {
-		mui.plusReady(function() {
-			mui.ajax(BASEURL + 'order/resOrderByGood', {
-				data: oderdata,
-				type: 'post',
-				timeout: 10000,
-				error: function(xhr, type, errorThrown) {
-					console.log(type);
-				},
-				success: function(data) {
-					console.log(data.ret)
-				}
-			})
-		})
+//		mui.plusReady(function() {
+//			mui.ajax(BASEURL + 'order/resOrderByGood', {
+//				data: oderdata,
+//				type: 'post',
+//				success: function(data) {
+//					console.log(data.ret);
+//				},
+//				error: function(xhr, type, errorThrown) {
+//					console.log(type);
+//				}
+//			})
+//		})
+//		openWindow('../page/next.html');
+		plus.webview.getWebviewById('next').show('slide-in-right',150);
+		 return false
 	})
-
-
 })

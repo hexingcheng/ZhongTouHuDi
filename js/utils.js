@@ -1,4 +1,5 @@
 var BASEURL = "http://202.202.43.107:8080/api/"
+	//var BASEURL = "http://172.31.56.19:8080/api/"
 
 function getcamera(successcb, errorcb, option) {
 	var cmr = plus.camera.getCamera();
@@ -14,7 +15,6 @@ function getstorage(key) {
 }
 
 function iflogin(cb) {
-	
 	if (getstorage('token')) {
 		cb();
 	} else {
@@ -34,6 +34,46 @@ function iflogin(cb) {
 
 	}
 }
+
+function ifloginCommon(cb) {
+	if (getstorage('token')) {
+		cb();
+	} else {
+		mui.confirm("你还没登陆", "登陆提示", ["登陆", "注册"], function(eve) {
+			if (eve.index == 0) {
+				var i = plus.webview.getLaunchWebview();
+				var m = plus.webview.getWebviewById('index-menu');				
+				i.setStyle({
+					left: '0',
+					mask: 'none'
+				})
+				m.setStyle({
+					left:'0'
+				})
+				mui.openWindow({
+					url: './login-up.html'
+				})
+			} else if (eve.index == 1) {
+				var i = plus.webview.getLaunchWebview();
+				var m = plus.webview.getWebviewById('index-menu');				
+				i.setStyle({
+					left: '0',
+					mask: 'none'
+				})
+				m.setStyle({
+					left:'0'
+				})
+				mui.openWindow({
+					url: './login-up.html'
+				})
+			} else {
+				return;
+			}
+		})
+
+	}
+}
+
 function openWindow(url, param) {
 		var snum, id;
 		param = param || {};
@@ -79,6 +119,7 @@ function getAllwebview() {
 function handleData(data, cb) {
 	console.log(data.ret);
 }
+
 function errorhandle(type) {
 	if (type == 'timeout') {
 		mui.toast("请求超时，请检查您的网络！");
@@ -109,6 +150,6 @@ function getuserbasicinfo() {
 	return obj;
 }
 
-function successcb(){
+function successcb() {
 	plus.webview.getLaunchWebview().show()
 }

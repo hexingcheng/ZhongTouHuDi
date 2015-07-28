@@ -2,11 +2,22 @@
 
 //全局变量
 
-
+mui.init({
+	swipeBack: false,
+	gestureConfig: {
+		tap: true, //默认为true
+		doubletap: true, //默认为false
+		longtap: true, //默认为false
+		swipe: true, //默认为true
+		drag: true, //默认为true
+		hold: false, //默认为false，不监听
+		release: false //默认为false，不监听
+	}
+})
 var isInTransition = false;
 var showMenu = false;
-var menu, main;
-
+var menu, main, will;
+var mask = mui.createMask(closeMenu);
 //打開側滑菜單
 
 function openMenu() {
@@ -14,26 +25,29 @@ function openMenu() {
 		return;
 	}
 	if (!showMenu) {
+		mask.show();
 		isInTransition = true;
-		menu.show('none', 0, function() {
-			main.setStyle({
-				mask: 'rgba(0,0,0,0.4)',
-				left: '70%',
-				transition: {
-					duration: 150
-				}
-			});
-			mui.later(function() {
-				isInTransition = false;
-				//移除menu的mask
-			}, 160);
+		menu.show('none', 0);
+		main.setStyle({
+			left: '70%',
+			transition: {
+				duration: 250
+			}
 		});
+		isInTransition = false;
 		showMenu = true;
 	}
 }
 
 //关闭侧滑菜单
-
+//重写memu方法
+mui.menu = function() {
+	if (showMenu) {
+		_closeMenu();
+	} else {
+		openMenu();
+	}
+}
 
 function closeMenu() {
 		if (isInTransition) {
@@ -42,40 +56,66 @@ function closeMenu() {
 		if (showMenu) {
 			//关闭遮罩；
 			isInTransition = true;
-			main.setStyle({
-				mask: 'none',
+			menu.setStyle({
 				left: '0',
 				transition: {
 					duration: 200
 				}
+			})
+			main.setStyle({
+				left: '0',
+				transition: {
+					duration: 250
+				}
 			});
+
 			//等窗体动画结束后，隐藏菜单webview，节省资源；
 			setTimeout(function() {
 				menu.hide();
-			}, 200); 
-			
+				mask.close();
+			}, 250);
 			showMenu = false;
 			isInTransition = false;
 		}
 	}
 	//plusReady事件完成后执行操作
 mui.plusReady(function() {
+	var gallery = mui('.mui-slider');
+	gallery.slider({
+		interval: 1500
+	});
+	console.log(plus.webview.getWebviewById(plus.runtime.appid).getURL());
 	main = plus.webview.currentWebview();
 	plus.screen.lockOrientation("portrait-primary");
-	main.addEventListener('maskClick', closeMenu);
 
 	//	预加载侧滑菜单
 
 	setTimeout(function() {
 		menu = mui.preload({
-			id: 'index-menu.html',
+			id: 'index-menu',
 			url: './page/index-menu.html',
 			styles: {
 				left: '0',
-				width: '70%'
+				width: '70%',
+				zindex:-1
 			}
 		});
+		will = mui.preload({
+			id: 'i-will',
+			url: './page/deliver-goods.html'
+		});
 	}, 300)
+	var c = plus.webview.getLaunchWebview()
+	c.setStyle({
+		'scrollIndicator': 'none'
+	})
+	$('#hlep-son').on('tap', function(e) {
+		iflogin(function() {
+			will.show('slide-in-right', 150);
+		})
+		e.preventDefault()
+	})
+
 })
 
 
@@ -94,3 +134,38 @@ $('#per-info').on('tap', function(e) {
 $('#chat-info').on('tap', function() {
 	openWindow('./page/msgcontent.html');
 })
+
+
+//处理手势事件
+
+window.addEventListener('dragright', function(e) {
+	e.detail.gesture.preventDefault();
+});
+window.addEventListener('dragleft', function(e) {
+	e.detail.gesture.preventDefault();
+});
+window.addEventListener("swipeleft", closeMenu);
+window.addEventListener("swiperight", openMenu);
+window.addEventListener("menu:swipeleft", closeMenu);
+var first = null;
+//返回键处理
+mui.back = function() {
+	if (showMenu) {
+		closeMenu();
+		return;
+	} else {
+		//首次按键，提示‘再按一次退出应用’
+		if (!first) {
+			first = new Date().getTime();
+			mui.toast('再按一次退出应用');
+			setTimeout(function() {
+				first = null;
+			}, 1000);
+		} else {
+			if (new Date().getTime() - first < 1000) {
+				plus.runtime.quit();
+			}
+		}
+	}
+};
+//菜单，返回按钮重写

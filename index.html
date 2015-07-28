@@ -12,11 +12,12 @@
 			mui.init();
 		</script>
 		<style>
-			.mui-content{
+			.mui-content {
 				padding-bottom: 44px;
 			}
 		</style>
 	</head>
+
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-icon mui-icon-person mui-pull-left" id="per-info" style="color: #000000;"></a>
@@ -89,28 +90,6 @@
 					</div>
 				</li>
 			</ul>
-			<ul class="mui-table-view mui-grid-view">
-				<li class="mui-table-view-cell mui-media mui-col-xs-6">
-					<div>
-						<img class="mui-media-object" src="./img/pic1.png" id="hlep-son">
-					</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-6">
-					<div href="#">
-						<img class="mui-media-object" src="./img/pic2.png" id="i-will">
-					</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-6">
-					<div href="#">
-						<img class="mui-media-object" src="./img/pic3.png" id="get-info">
-					</div>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-6">
-					<div href="#">
-						<img class="mui-media-object" src="./img/pic4.png" id="add-menu">
-					</div>
-				</li>
-			</ul>
 			<!--功能模块结束-->
 			<!--帮我送-->
 		</div>
@@ -118,54 +97,9 @@
 		<div class="mui-text-center mui-bar-footer mui-bar" style="background-color: #ffffff;">
 			<div class="help-me"></div>
 		</div>
-		<script type="text/javascript" src="js/utils.js" ></script>
+		<script type="text/javascript" src="js/utils.js"></script>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/indexchange.js"></script>
-	<script>
-					$(function() {
-				var gallery = mui('.mui-slider');
-				gallery.slider({
-					interval: 1500
-				});
-			}) 
-			 mui.plusReady(function() {
-				var will = null;
-				var index = null;
-				$('#hlep-son').on('tap', function(e) {
-//					setstorage('token','string');
-					iflogin(function(){
-						will.show('slide-in-right',150)
-					})
-					e.preventDefault()
-				})
-				 
-				$('#i-will').on('tap', function() {
-					iflogin(function(){
-						index.show('slide-in-right', 150)
-					})
-				})
-				$('#get-info').on('tap', function() {
-					plus.webview.getWebviewById('get').show('slide-in-right', 150)
-				})
-				$('#add-menu').on('tap', function() {
-					alert("add")
-				})
-					setTimeout(function() {
-						will = mui.preload({
-							id: 'i-will',
-							url: './page/deliver-goods.html'
-						});
-						index = mui.preload({
-							id: 'index',
-							url: './index.html'
-						});
-					}, 200);
-					var c = plus.webview.getLaunchWebview()
-					c.setStyle({
-						'scrollIndicator':'none'
-					})
-			})
-	</script>
 	</body>
 
 </html>
