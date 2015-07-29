@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style>
+			html,
+			body,
+			.mui-content {
+				background-color: #FFFFFF;
+			}
+			.mui-input-group label {
+				width: auto;
+			}
+			.mui-input-row .change-wid {
+				width: 50%;
+				float: left;
+			}
+			.pic-tips {
+				padding: 20px 15px;
+			}
+			.mybtn {
+				margin: 30px;		
+				width: 75%;
+				background-color: rgb(242, 202, 68);
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">更换绑定手机</h1>
+		</header>
+		<div class="mui-content mui-text-center">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>真实姓名：</label>
+					<input type="text" placeholder="请输入" class="change-wid">
+				</div>
+				<div class="mui-input-row">
+					<label>身份证号：</label>
+					<input type="text" placeholder="请输入" class="change-wid">
+				</div>
+			</form>
+			<div class="personal-info-pic">
+				<p class="pic-tips">
+					手持证件靠近镜头，正面拍摄胸部以上，对焦使证件上面字体和照片清晰可见。
+				</p>
+				<ul class="mui-table-view mui-grid-view mui-grid-6">
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<span class="mui-icon mui-icon-camera"></span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img src="../img/raw_1435154362.png" />
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<span class="mui-icon mui-icon-camera"></span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img src="../img/raw_1435154402.png" />
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<span class="mui-icon mui-icon-camera"></span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img src="../img/raw_1435154483.png" />
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="mui-btn mybtn">提交审核</div>
+		</div>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		$('.mui-btn').on('tap',function(){
+			mui.openWindow({
+				id:"change-tel-success",
+				url:"change-tel-success.html"
+			})
+			setTimeout(function(){
+				plus.webview.currentWebview().hide()
+			},200)
+		})
+	</script>
+</html>

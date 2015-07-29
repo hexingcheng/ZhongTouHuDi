@@ -29,7 +29,34 @@ window.addEventListener("swipeleft", function() {
 window.addEventListener("swiperight", function() {
 	offCanvasWrapper.offCanvas('show');
 });
-//处理返回键
+
+mui.plusReady(function() {
+		main = plus.webview.currentWebview().opener();
+		document.getElementById('close').addEventListener('tap', function(e) {
+				ifloginCommon(function() {
+					mui.ajax(BASEURL + 'auth/out', {
+						type: "get",
+						success: function(data) {
+							console.log('success')
+							plus.storage.removeItem('token')
+						},
+						error: function(xhr, type) {
+							console.log(type);
+							errorhandle(type)
+						}
+					})
+				})
+				return false;
+			})
+			//处理点击事件，跳转页面
+		mui('.mui-table-view-cell').on('tap', 'a', function() {
+			if (this.id && this.id != 'close') {
+				var url = this.getAttribute('data-src');
+				openWindow(url);
+			}
+		})
+	})
+	//处理返回键
 
 
 var first = null;
@@ -54,19 +81,19 @@ mui.back = function() {
 
 //处理菜单键
 mui.menu = function() {
-	if($('#offCanvasContentScroll').offset().left > 0){
+	if ($('#offCanvasContentScroll').offset().left > 0) {
 		offCanvasWrapper.offCanvas('close');
-	}else{
+	} else {
 		offCanvasWrapper.offCanvas('show');
 	}
 }
 
 //处理主页tap事件
-document.getElementById('chat-info').addEventListener('tap',function(){
+document.getElementById('chat-info').addEventListener('tap', function() {
 	openWindow('./page/msgcontent.html');
 })
-document.getElementById('hlep-son').addEventListener('tap',function(){
-	iflogin(function(){
-		openWindow('./page/i-will.html')
+document.getElementById('hlep-son').addEventListener('tap', function() {
+	iflogin(function() {
+		openWindow('./page/i-will.html');
 	})
 })

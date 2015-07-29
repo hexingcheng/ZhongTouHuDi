@@ -27,13 +27,9 @@ function ifloginCommon(cb) {
 		cb();
 	} else {
 		var i = plus.webview.getLaunchWebview();
-		var m = plus.webview.getWebviewById('index-menu');
 		i.setStyle({
 			left: '0',
 			mask: 'none'
-		})
-		m.setStyle({
-			left: '0'
 		})
 		openWindow('./login-up.html')
 	}

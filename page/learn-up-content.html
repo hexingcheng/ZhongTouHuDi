@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style>
+		html,body,.mui-content{
+			background-color: #FFFFFF;
+		}
+			.handle {
+				padding: 20px 25px;
+			}
+			.handle span {
+				color: red;
+			}
+			.addpad {
+				height: 50px;
+				line-height: 50px;
+			}
+			.userpic {
+				width: 50px;
+				height: 50px;
+			}
+			.icon {
+				height: 50px;
+				line-height: 50px;
+				font-size: 50px;
+			}
+			.color-change {
+				color: #d1d1d1;
+				font-size: 14px;
+				margin-left: 30px;
+			}
+			.mui-table-view-cell .change-size {
+				border: 0;
+				height: auto;
+				margin: 0;
+				padding: 0;
+				font-size: 15px;
+			}
+			.mui-input-group:before,
+			.mui-input-group:after {
+				background-color: #ffffff;
+			}
+			.mui-input-group label {
+				font-size: 14px;
+			}
+			.pic-tips{
+				padding: 20px 15px;
+			}
+			.mui-btn-block{
+				width: 70%;
+				margin: 30px auto 30px;
+				padding: 5px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<div class="handle">
+				<p><span href="" class="learn-online">①在线学习>></span><span href="" class="learn-up">②提交审核资料</span></p>
+			</div>
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell  mui-media">
+					<a href="#">
+						<span class="mui-pull-left addpad">免冠半身照:</span>
+						<span class="mui-icon mui-icon-camera mui-pull-right icon "></span>
+						<img class="userpic mui-pull-right mui-hidden" src="../img/user.png" />
+					</a>
+				</li>
+				<li class="mui-table-view-divider"></li>
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>国籍:</label>
+						<select class="">
+							<option value="item-1">中国</option>
+							<option value="item-2">美国</option>
+							<option value="item-3">加拿大</option>
+							<option value="item-4">法国</option>
+							<option value="item-5">土耳其</option>
+						</select>
+					</div>
+					<div class="mui-input-row">
+						<label>所在地区:</label>
+						<select class="">
+							<option value="item-1">成都</option>
+							<option value="item-2">重庆</option>
+							<option value="item-3">北京</option>
+							<option value="item-4">上海</option>
+							<option value="item-5">杭州</option>
+						</select>
+					</div>
+					<div class="mui-input-row">
+						<label>可接件区域:</label>
+						<select class="">
+							<option value="item-1">南充</option>
+							<option value="item-2">绵阳</option>
+							<option value="item-3">泸州</option>
+							<option value="item-4">巴中</option>
+							<option value="item-5">攀枝花</option>
+						</select>
+					</div>
+					<div class="mui-input-row">
+						<label>真实姓名:</label>
+						<input type="text" class="mui-input-clear" placeholder="请输入真实姓名">
+					</div>
+					<div class="mui-input-row">
+						<label>身份证号码:</label>
+						<input type="text" class="mui-input-clear" placeholder="请输入身份证号码">
+					</div>
+					<div class="mui-input-row">
+						<label>紧急联络人:</label>
+						<input type="text" class="mui-input-clear" placeholder="请输入紧急联络人姓名">
+					</div>
+					<div class="mui-input-row">
+						<label>联络人手机:</label>
+						<input type="text" class="mui-input-clear" placeholder="请输入联络人手机">
+					</div>
+				</form>
+			</ul>
+			<div class="personal-info-pic">
+				<p class="pic-tips">
+					手持证件靠近镜头，正面拍摄胸部以上，对焦使证件上面字体和照片清晰可见。
+				</p>
+				<ul class="mui-table-view mui-grid-view mui-grid-6">
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<span class="mui-icon mui-icon-camera"></span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img src="../img/raw_1435154362.png" />
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<span class="mui-icon mui-icon-camera"></span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img src="../img/raw_1435154402.png"/>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<span class="mui-icon mui-icon-camera"></span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img src="../img/raw_1435154483.png"/>
+						</a>
+					</li>
+				</ul>
+				<div class="mui-input-row mui-checkbox mui-left">
+					<label>同意并接受<a>《服务平台使用规则》</a></label>
+					<input name="checkbox1" type="checkbox" checked>
+				</div>
+				<div class="mui-btn mui-btn-block" id="up-applay">立即提交</div>
+			</div>
+		</div>
+		<script src="../js/jquery.min.js"></script>
+		<script>
+			$('#up-applay').on('tap',function(){
+				mui.alert('您的认证信息填写不全，请填下完整信息，再进行下一步', '提示');
+			})	
+		</script>
+	</body>
+</html>
