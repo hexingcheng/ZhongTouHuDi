@@ -31,7 +31,7 @@ function ifloginCommon(cb) {
 			left: '0',
 			mask: 'none'
 		})
-		openWindow('./login-up.html')
+		openWindow('./page/login-up.html')
 	}
 }
 

@@ -31,27 +31,14 @@ window.addEventListener("swiperight", function() {
 });
 
 mui.plusReady(function() {
-//		main = plus.webview.currentWebview().opener();
-//		document.getElementById('close').addEventListener('tap', function(e) {
-//				ifloginCommon(function() {
-//					mui.ajax(BASEURL + 'auth/out', {
-//						type: "get",
-//						success: function(data) {
-//							console.log('success')
-//							plus.storage.removeItem('token')
-//						},
-//						error: function(xhr, type) {
-//							console.log(type);
-//							errorhandle(type)
-//						}
-//					})
-//				})
-//				return false;
-//			})
-			//处理点击事件，跳转页面
+		var gallery = mui('.mui-slider');
+		gallery.slider({
+			interval: 1500
+		});
+		//处理点击事件，跳转页面
 		mui('.mui-table-view-cell').on('tap', 'a', function() {
-				var url = this.getAttribute('data-src');
-				openWindow(url);
+			var url = this.getAttribute('data-src');
+			openWindow(url);
 		})
 	})
 	//处理返回键
