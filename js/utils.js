@@ -18,20 +18,7 @@ function iflogin(cb) {
 	if (getstorage('token')) {
 		cb();
 	} else {
-		mui.confirm("你还没登陆", "登陆提示", ["登陆", "注册"], function(eve) {
-			if (eve.index == 0) {
-				mui.openWindow({
-					url: './page/login-up.html'
-				})
-			} else if (eve.index == 1) {
-				mui.openWindow({
-					url: './page/login-up.html'
-				})
-			} else {
-				return;
-			}
-		})
-
+		openWindow('./page/login-up.html')
 	}
 }
 
@@ -39,43 +26,23 @@ function ifloginCommon(cb) {
 	if (getstorage('token')) {
 		cb();
 	} else {
-		mui.confirm("你还没登陆", "登陆提示", ["登陆", "注册"], function(eve) {
-			if (eve.index == 0) {
-				var i = plus.webview.getLaunchWebview();
-				var m = plus.webview.getWebviewById('index-menu');				
-				i.setStyle({
-					left: '0',
-					mask: 'none'
-				})
-				m.setStyle({
-					left:'0'
-				})
-				mui.openWindow({
-					url: './login-up.html'
-				})
-			} else if (eve.index == 1) {
-				var i = plus.webview.getLaunchWebview();
-				var m = plus.webview.getWebviewById('index-menu');				
-				i.setStyle({
-					left: '0',
-					mask: 'none'
-				})
-				m.setStyle({
-					left:'0'
-				})
-				mui.openWindow({
-					url: './login-up.html'
-				})
-			} else {
-				return;
-			}
+		var i = plus.webview.getLaunchWebview();
+		var m = plus.webview.getWebviewById('index-menu');
+		i.setStyle({
+			left: '0',
+			mask: 'none'
 		})
-
+		m.setStyle({
+			left: '0'
+		})
+		openWindow('./login-up.html')
 	}
 }
 
-function openWindow(url, param) {
+function openWindow(url, param, ani, time) {
 		var snum, id;
+		var animationType = ani || 'slide-in-right';
+		var animationTime = time || 150;
 		param = param || {};
 		var pnum = url.indexOf('.html');
 		if (url.indexOf('page') != -1) {
@@ -89,6 +56,10 @@ function openWindow(url, param) {
 				id: id,
 				url: url,
 				extras: param,
+				show: {
+					aniShow: animationType,
+					duration: animationTime
+				},
 				waiting: {
 					autoShow: true,
 					title: '正在加载...',

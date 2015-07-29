@@ -14,6 +14,7 @@ mui.init({
 		release: false //默认为false，不监听
 	}
 })
+
 var isInTransition = false;
 var showMenu = false;
 var menu, main, will;
@@ -21,13 +22,16 @@ var mask = mui.createMask(closeMenu);
 //打開側滑菜單
 
 function openMenu() {
+	var mz = plus.webview.getWebviewById('index-menu').getStyle().zindex+1;
+	plus.webview.getLaunchWebview().setStyle({
+		zindex:mz
+	})
 	if (isInTransition) {
 		return;
 	}
 	if (!showMenu) {
 		mask.show();
 		isInTransition = true;
-		alert(1)
 		menu.show('none', 0);
 		main.setStyle({
 			left: '70%',
@@ -60,7 +64,7 @@ function closeMenu() {
 			menu.setStyle({
 				left: '0',
 				transition: {
-					duration: 200
+					duration: 300
 				}
 			})
 			main.setStyle({
@@ -78,7 +82,7 @@ function closeMenu() {
 			showMenu = false;
 			isInTransition = false;
 		}
-	}
+	} 
 	//plusReady事件完成后执行操作
 mui.plusReady(function() {
 	var gallery = mui('.mui-slider');
@@ -150,6 +154,7 @@ window.addEventListener("swiperight", openMenu);
 window.addEventListener("menu:swipeleft", closeMenu);
 var first = null;
 //返回键处理
+
 mui.back = function() {
 	if (showMenu) {
 		closeMenu();

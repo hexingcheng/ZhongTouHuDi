@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/test.css" />
+		<style>
+			html,
+			body,
+			.mui-content {
+				background-color: #FFFFFF;
+			}
+			.addlmar {
+				margin-left: 30px;
+			}
+			.user {
+				border-radius: 50%;
+			}
+			#offCanvasSide{
+				height: 100%;
+				background-color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--侧滑菜单部分-->
+			<aside id="offCanvasSide" class="mui-off-canvas-left" style="background-color: #FFFFFF;">
+				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" id="p-info" data-src="./myinfo.html">
+									<img class="mui-media-object mui-pull-left user" src="./img/user.png" />
+									<div class="mui-media-body addlmar">
+										<p class=''>小王</p>
+										<p class=''>18883846369</p>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" id="applay" data-src="">
+									<span class="mui-icon mui-icon-chat mui-pull-left"></span>
+									<div class="mui-media-body addlmar">
+										<p class=''>申请自由快递人</p>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-divider"></li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" id="walte" data-src="">
+									<span class="mui-icon mui-icon-gear mui-pull-left"></span>
+									<div class="mui-media-body  addlmar">
+										<p class=''>我的钱包</p>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-divider"></li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" id="my-order" data-src="">
+									<span class="mui-icon mui-icon-list mui-pull-left"></span>
+									<div class="mui-media-body  addlmar">
+										<p class=''>我的发单</p>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" id="i-get" data-src="">
+									<span class="mui-icon mui-icon-paperplane mui-pull-left"></span>
+									<div class="mui-media-body  addlmar">
+										<p class=''>我的接单</p>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-divider"></li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" id="help-me" data-src="">
+									<span class="mui-icon mui-icon-plusempty mui-pull-left"></span>
+									<div class="mui-media-body  addlmar">
+										<p class=''>使用帮助</p>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-divider"></li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" id="close" data-src="">
+									<span class="mui-icon mui-icon-home mui-pull-left"></span>
+									<div class="mui-media-body  addlmar">
+										<p class=''>设置</p>
+									</div>
+								</a>
+							</li>
+						</ul>
+						
+					</div>
+				</div>
+			</aside>
+			<!--主界面-->
+			<div class="mui-inner-wrap">
+				<header class="mui-bar mui-bar-nav">
+					<a class="mui-icon mui-icon-person mui-pull-left" href="#offCanvasSide" tyle="color: #000000;"></a>
+					<h1 class="mui-title">Project</h1>
+					<a class="mui-icon mui-icon-chat mui-pull-right" id="chat-info" style="color: #000000;"></a>
+				</header>
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-slider">
+							<div class="mui-slider-group mui-slider-loop">
+								<!--支持循环，需要重复图片节点-->
+								<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="#">
+										<img src="./img/pic4.png" />
+									</a>
+								</div>
+								<div class="mui-slider-item">
+									<a href="#">
+										<img src="./img/pic1.png" />
+									</a>
+								</div>
+								<div class="mui-slider-item">
+									<a href="#">
+										<img src="./img/pic2.png" />
+									</a>
+								</div>
+								<div class="mui-slider-item">
+									<a href="#">
+										<img src="./img/pic3.png" />
+									</a>
+								</div>
+								<div class="mui-slider-item">
+									<a href="#">
+										<img src="./img/pic4.png" />
+									</a>
+								</div>
+								<!--支持循环，需要重复图片节点-->
+								<div class="mui-slider-item mui-slider-item-duplicate">
+									<a href="#">
+										<img src="./img/pic1.png" />
+									</a>
+								</div>
+							</div>
+						</div>
+						<!--设置部分-->
+						<div class="setting clearfix">
+							<div class="mui-pull-left">Life Services</div>
+							<div class="setting-right">click to add/removeservices<span class="mui-icon mui-icon-gear"></span>
+							</div>
+						</div>
+						<!--功能模块-->
+						<ul class="mui-table-view mui-grid-view">
+							<li class="mui-table-view-cell mui-media mui-col-xs-6">
+								<div>
+									<img class="mui-media-object" src="./img/pic1.png" id="hlep-son">
+								</div>
+							</li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-6">
+								<div href="#">
+									<img class="mui-media-object" src="./img/pic2.png" id="i-will">
+								</div>
+							</li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-6">
+								<div href="#">
+									<img class="mui-media-object" src="./img/pic3.png" id="get-info">
+								</div>
+							</li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-6">
+								<div href="#">
+									<img class="mui-media-object" src="./img/pic4.png" id="add-menu">
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="mui-text-center mui-bar-footer mui-bar" style="background-color: #ffffff;">
+					<div class="help-me"></div>
+				</div>
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/utils.js"></script>
+	<script type="text/javascript" src="js/new_index.js" ></script>
+</html>

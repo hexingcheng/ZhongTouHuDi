@@ -127,7 +127,6 @@
 				mui('.mui-table-view-cell').on('tap', 'a', function() {
 					if(this.id&&this.id!='close'){
 						var url = this.getAttribute('data-src');
-						plus.webview.getWebviewById('index-menu').setStyle({zindex:-1})
 						openWindow(url);
 					}
 				})

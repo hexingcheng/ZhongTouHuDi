@@ -130,10 +130,16 @@
 				$('.back').on('tap',function(){
 					var i = plus.webview.getLaunchWebview();
 					var m = plus.webview.getWebviewById('index-menu');
+					var c = plus.webview.currentWebview();
+					//提高菜单层层级
 					m.setStyle({
 						zindex:1
 					})
-					i.show()
+					i.setStyle({
+						zindex:2
+					})
+					m.hide('slide-out-left')
+					i.show('slide-in-right');
 					return false;
 				})
 			})
