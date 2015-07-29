@@ -52,26 +52,20 @@
 			</li>
 			<li class="mui-table-view-divider"></li>
 			<li class="mui-table-view-cell">
-				<a id="about-us" href="" class="mui-navigate-right">
+				<a id="about-us" class="mui-navigate-right">
 					关于我们
 				</a>
 			</li>
 		</ul>
 	</div>
-	
+	<script src="../js/utils.js"></script>
 	<script>
       	mui.init();
       	
-      	mui.ready(function(){
-      		document.getElementById("about-us").addEventListener("click", function(){
-      			aboutUs.show("slide-in-right", 200);
-      		}, false);
-      		document.getElementById("about-us").addEventListener("tap", function(){
-      			mui.openWindow({
-      				url : "about-us.html",
-      				id : "about-us"
-      			})
-      		},false)
+      	mui.plusReady(function(){
+      		document.getElementById('about-us').addEventListener('tap',function(){
+      			openWindow('./about-us.html')
+      		})
       	})
       
     </script>
