@@ -165,6 +165,7 @@ mui.plusReady(function() {
 			console.log(name)
 		}*/
 
+
 	// 发送数据
 	function sendData(url, base) {
 		var pics
@@ -176,6 +177,7 @@ mui.plusReady(function() {
 				dataLength: base.length // base字符串长度
 			},
 			success: function(data) {
+				
 				pics+=data.res.path+",";
 				pic = pics.substring(0,pics.length-1);
 			},
@@ -186,7 +188,9 @@ mui.plusReady(function() {
 		})
 	}
 
-
+mui.back = function(){
+	plus.webview.currentWebview().close()
+}
 
 	//  获取表单数据
 	//	var formdatas = {
