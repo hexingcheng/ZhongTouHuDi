@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style>
+    .title{
+    	color: #fff;
+    	font-weight: normal;
+    	font-size: 20px;
+    	text-align: center;
+    	padding: 20px 0;
+    	margin-bottom: 20px;
+    }
+    input[type=text]{
+    	border-radius: 0;
+    	border-bottom: 0;
+    	margin-bottom: 0;
+    }
+    form .add-bot-bor{
+    	border-bottom: 1px solid rgba(0,0,0,.2);
+    	width: 70%;
+    }
+    form .getcode{
+    	border-radius: 0;
+    	border-left: 0;
+    	border-right: 0;
+    	width: 30%;
+    	margin-left: -5px;
+    	height: 40px;
+    }
+    .mui-content{
+    	height: 100%;
+    }
+    .mui-bar{
+    	box-shadow: 0 0 0 #FFFFFF;
+    }
+    .next{
+    	margin: 0 20px;
+    	cursor: pointer;
+    	height: 44px;
+    	line-height: 44px;
+    	text-align: center;
+    	background-color: #D1D1D1;
+    }
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+		<h2 class="title"> Find My Password</h2>
+		<form action="" method="post">
+			<input type="text" placeholder="phone number"/>
+			<input type="text" placeholder="valcode" class="add-bot-bor"/>
+			<input type="button" value="get code" class="getcode"/>
+		</form>
+	</div>
+	<div class="mui-bar-footer mui-bar">
+			<div class="next">next</div>
+	</div>
+</body>
+</html>

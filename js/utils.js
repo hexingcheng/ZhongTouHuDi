@@ -37,7 +37,7 @@ function ifloginCommon(cb) {
 
 function openWindow(url, param, ani, time) {
 		var snum, id;
-		var animationType = ani || 'slide-in-right';
+		var animationType =  ani || 'slide-in-right';
 		var animationTime = time || 150;
 		param = param || {};
 		var pnum = url.indexOf('.html');
@@ -46,7 +46,7 @@ function openWindow(url, param, ani, time) {
 		} else {
 			snum = url.indexOf('/');
 		}
-		id = url.substring(snum + 1, pnum);
+		id = url.substring(snum + 1, pnum)
 		if (window.plus) {
 			mui.openWindow({
 				id: id,
@@ -79,7 +79,7 @@ function setsysstorage(val) {
 function getAllwebview() {
 	var a = plus.webview.all();
 	for (var i in a) {
-		console.log(a[i].getURL())
+		console.log(a[i].getURL()+':'+a[i].id)
 	}
 }
 

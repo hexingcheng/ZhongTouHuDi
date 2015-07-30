@@ -40,7 +40,7 @@ input[type="password"]{
 }
 
 #signin .first-input-row input {
-	border-bottom: 1px solid #ddd;
+	border-bottom: 2px solid #ddd;
 }
 
 
@@ -56,20 +56,19 @@ padding-left: 1em;
 	margin-bottom: -1px;
 }
 #signup .first-clear input{
-	border-bottom: 1.5px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
 #signup .re-clear input{
-	border-bottom: 1px solid #ddd;
+	border-bottom: 2px solid #ddd;
 }
 
 #signup .get-code {
-	width: 35%;
-	margin-left: -5px;
+	width: 28%;
 border-left: 1px solid #ddd;
 height: 100%;
 text-align: center;
 line-height: 2.2em;
-/*border-bottom: 1px solid #ddd;*/
+margin-top: -1px;
 }
 .get-code-input {
 	width: 70%;
@@ -106,23 +105,7 @@ line-height: 3em;
 	height: 3em;
 	line-height: 3em;
 }
-.mui-input-group .mui-input-row:after{
-	background: #fff;
-}
 
-	.special-line{
-				background-color: #FFFFFF;
-				height: 0;
-			}
-			#signup-valcode{
-				width: 65%;
-			}
-			#addbottom:after{
-				content: "";
-				display: block;
-				height: 2px;
-				background-color: #D1D1D1;
-			}
-#get-code{
-	color: #0062CC;
-}
+
+
+

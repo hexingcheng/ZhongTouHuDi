@@ -1,0 +1,316 @@
+       /*nomal*/
+       .bor_5{
+       	border-radius: .5em;
+       }
+       .font_8{
+       	font-size: .8em;
+       }
+       .border{
+       	     border: 1px solid silver;
+       }
+       .width_4{
+       	width:25%;
+       }
+       .bg_or{
+       	background-color: orange;
+       }
+       .border_r{
+        border-right: 1px solid silver;
+       }
+       .text-center{
+       	
+       }
+       .bor_buttom{
+       	border-bottom: 1px solid silver;
+       }
+       .line2_5{
+       	line-height: 2.5;
+       }
+       .color{
+       	color: silver;
+       }
+       .bor_top{
+       	border-top: 1px solid silver;
+       }
+       .bor_b{
+       	border-bottom: 1px solid silver;
+       }
+      .add_footer{
+      	width: 100%;
+      	padding:0 2em;
+      	line-height: 1.5em;
+      	height: 4em;
+      	overflow: hidden;
+      	margin-top: -2px;
+      
+      }
+       /*//index*/
+       .footer{
+    		clear: both;
+    		height: 3em;
+    		line-height: 3em;
+    		width: 100%;
+    		background-color: white;
+    		position: fixed;
+    		bottom: 0;
+    	
+    	}
+    	.tou{
+    		height: 3em;
+    		width: 5em;
+    		line-height: 3.7em;
+    		margin: 0 auto;
+    	}
+    	.tou_{
+    		width: 100%;
+    		height: 3em;
+    	}
+    	.foo{
+    		position: absolute;
+    		margin-left: -3.9em;
+    		color: rgb(239, 239, 244);
+    	}
+       
+       .mymenu{
+    		width:100%;
+    		height: 20em;	
+    	}
+    	
+    	.success{
+    		width: 8em; 
+    		height: 8em ;
+    		line-height: 10em;
+    		border-radius:4em;
+    		border:1px solid silver;
+    		margin: 30% auto 20% auto;
+    	} 
+    	
+    	.call{
+    		width: 75%;
+    		height: 3em;
+    		margin: 15% auto 2em auto;
+    	
+    		
+    	}
+    	.call_r{
+    		width:7em;
+    		height: 3em;
+    		line-height: 3em;
+    		border: 1px solid silver;
+    		border-radius: 0.5em;
+    		text-align: center;
+    		font-size: .8em;
+    	
+    	}
+    	/*send_orders*/
+    	.sed_ph_div{
+    		width: 3em;
+    		height: 3em;
+    		line-height: 3em;
+    		text-align: center;
+    		border: 1px solid silver;
+    		float: left;
+    		margin:1em .8em;
+    	}
+    	._bg{
+    		background-color: white;
+    	}
+    	._bor_ra{
+    		border-radius: .5em;
+    	}
+    	.none_box{
+    		box-shadow: none;
+    	}
+    	
+    	/* meto_2*/
+    	.meto_con{
+    		width: 90%;
+    		height: 20.2em;
+    		border: 1px solid silver;
+    		border-radius: 0.5em;
+    		margin: 0.5em auto;
+    	}
+    	
+    	.send{
+    		width: 2em;
+    		height: 2em;
+    		line-height: 2em;
+    		color: red;
+    		float: left;
+    		border-radius: 1em;
+    		margin: 0.5em 0 0 0;
+    		text-align: center;
+    		border: 1px solid red;
+    	}
+    	.sen_info{
+    		width:93%;
+    		height: 3em;
+    		line-height: 3em;
+    		margin:0 0.5em 0 0.5em;
+    		border-bottom:1px solid silver ;
+    	}
+    	.button_r{
+    		width: 50%;
+    		height: 3em;
+    		line-height: 3em;
+    		text-align: center;
+    		border-top: 1px solid silver;
+    		margin-top: 2em;
+    		
+    	}
+    	/*content*/
+    	.cont_group{
+    		width: 7.4em;
+    		height: 5.8em;
+    		border: 1px solid silver;
+    		text-align: center;
+    		line-height: 6em;
+    		font-size: 1.3em;
+    	}
+    	/*.tan_{
+    		position: absolute;
+    		width: 15em;
+    		height: 10em;
+    		top: 45%;
+    		left: 50%;
+    		margin-left: -7.5em;
+    		padding: 0.5em 0;
+    		border: 1px solid silver;
+    		border-radius: 0.8em;
+    		position: fixed;
+    		display: none;
+    		background-color: white;
+    	}*/
+    	.mone{
+    		width: 80%;
+    		height: 2em;
+    		margin: 0.5em auto;
+    		padding-right: 1em;
+    	}
+    	.jie_send{
+    		width: 100%;
+    		height: 3em;
+    	}
+    	/*//抢单*/
+    	.call_q{
+    		width: 75%;
+    		height: 3em;
+    		margin: 17% auto 3em auto;
+    	}
+    	.tan_{
+    		position: absolute;
+    		width: 15em;
+    		height: 10em;
+    		top: 45%;
+    		left: 50%;
+    		margin-left: -7.5em;
+    		padding: 0.5em 0;
+    		border: 1px solid silver;
+    		border-radius: 0.8em;
+    		position: fixed;
+    		display: none;
+    		background-color: white;
+    	}
+    	.my_pop{
+    		width: 3em ;
+    		height:3em;
+    		line-height: 3em;
+    		text-align: center;
+    		margin-top: 2em;
+    		border: 1px solid silver;
+    	}
+    	/*orders*/
+    	.order_se{
+    		width: 48%;
+    		height: 3.5em;
+    		
+    	}
+    	.order_ph{
+    		width: 3em;
+    		height: 2em;
+    		line-height: 2em;
+    		text-align: center;
+    	}
+    	.order_photo{
+    		width: 3em; 
+    		height: 3em ;
+    		margin-right:14%;
+    		float: left;
+    		background-color: silver;
+    	}
+    	.order_photo img{
+    		width: 4em;
+    		height: 4em;
+    		
+    	}
+    	/*cancle_reason*/
+    	.cancle_re_button{
+    		width: 80%;
+    		height: 2em; 
+    		line-height: 2em;
+    		margin: 3em auto;
+    		text-align: center;
+    		 border: 1px solid silver;
+    		 border-radius: 0.5em;
+    		 background-color: white;
+    	}
+    	/*orders   my_orders*/
+    	.tab_header{
+	    	width: 100%;
+	    	height: 3em;
+	    	line-height: 3em;
+	    	overflow: hidden;
+	    	border-bottom: 1px solid silver;
+      }
+      .tab_header div{
+      	text-align: center;
+      }
+  .tab_he_div{
+    	height: 3em;
+    	line-height: 3em;
+    	width: 33.3%;
+    	float: left;
+    	text-align: center;
+    }
+    	.tab{
+    		width: 100%;
+    		height: auto;
+    		overflow: hidden;
+    		padding: 0.5em;
+    	}
+    	.tab-content{
+    		width: 100%;
+    		height: auto;
+    		overflow: hidden;
+    		margin-bottom: .7em;
+    	}
+    	.tab_content_{
+    		width: 100%;
+    		height: 8em;
+    		
+    	}
+      /*info*/
+     .inf_pdiv{
+    		
+    	}
+    	.inf_ph{
+    		
+    		width: 4em;
+    		height: 4em;
+    		margin: 1.2em 0 .5em 0;
+    		overflow: hidden;
+    		border-radius: 2em;
+    	}
+    	.inf_ph_{
+    		width: ;
+    	}
+    	.in_ph_con{
+    		width: 85%;
+    		height:3em ;
+    		
+    		margin: 2em 0 0 6em;
+    		line-height: 1.5em;
+    	}
+    	.in_fontsize{
+    		font-size: .8em;
+    	}

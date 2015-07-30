@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/font-awesome.css"/>
+    <link rel="stylesheet" href="../css/main.css" />
+    <script type="text/javascript" src="../js/main.js"> </script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	  <a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+	  <a class="mui-icon mui-icon-reply mui-pull-right"></a>
+	  <h1 class="mui-title">订单详情</h1>
+</header>
+//主体内容
+<div class="mui-content" style="padding-top: 1em;" >
+	<ul class="mui-table-view" >
+		
+		<li class="mui-table-view-cell" style="border-top: 1px solid silver; margin: 0; line-height: 0.5em; padding-bottom: 0.5em;">
+            <span style="line-height: 3em;">配送金额</span> 
+			<span class="mui-pull-right" style="color:red;font-size: 1.5em;"><i class="fa fa-usd "></i> <span> 52</span></span></br>
+			<span class="mui-pull-right" style="font-size: 0.7em; color: silver;">(订单完成后，将直接打到你的账户余额)</span>
+	</li>
+	</ul>
+	
+	<ul class="mui-table-view" style="margin-bottom: 0.5em;" >
+	<li class="mui-table-view-cell"style="margin: 0;" >
+		<div class="order_se mui-pull-left" style="border-right: 1px solid silver;">
+			<ul class="mui-table-view-cell" style="padding:0;line-height: 1.5em;">
+				<li class="mui-table-view-cell" style="line-height: 1.9em;padding: 0;">
+					<span style="font-size: 0.8em;">预约取件时间</span></br>
+					<span style="line-height: 0.5em;">2015-06-28</span>  <span>05:02</span>
+	             </li>
+		   </ul>	
+		</div>
+		<div class="order_se mui-pull-right" >
+			<ul class="mui-table-view-cell" style="padding:0;line-height: 1.5em; ">
+				<li class="mui-table-view-cell" style="line-height: 1.9em;padding: 0;">
+					<span style="font-size: 0.8em;">期望到达时间</span></br>
+					<span style="line-height: 0.5em;">2015-06-28</span>  <span>05:02</span>
+	             </li>
+		   </ul>	
+		</div>
+	</li>
+	</ul>
+	
+	<ul class="mui-table-view" style="margin-bottom: 0.5em;" >
+	 <li class="mui-table-view-cell" >
+	 	<span style="line-height: 2em;"> <b>重要说明:</b></span>
+	 	<span style="color: silver;" > 不可倒置 易碎 12点之前必须送达  不可倒置 易碎 12点之前必须送达</span>
+	 </li>
+	 </ul>
+	 
+	 <ul class="mui-table-view" style="margin-bottom: 0.5em;" >
+		 <li class="mui-table-view-cell" style="line-height: 3em;" >
+		 <span > <b>发货人:</b></span>
+		 <span style="color: silver;">张三</span>
+		 <span class="mui-pull-right">
+		 	<div class="order_ph mui-pull-right" ><i class="fa fa-phone"></i></div>
+		 	<div class="order_ph mui-pull-right" style="border-right: 1px solid silver;"><i class="fa fa-comment-o"></i></div>
+		 </span>
+		 </li>
+		 <li class="mui-table-view-cell" style="line-height: 1.5em;">
+		     <span><b>发货地：</b></span>
+		     <span style="color: silver;">重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦 重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦</span>
+		 </li>
+	 </ul>
+	 <ul class="mui-table-view" style="margin-bottom: 0.5em;" >
+	     <li class="mui-table-view-cell" style="line-height: 3em;" >
+			 <span > <b>收货人:</b></span>
+			 <span style="color: silver;">李四</span>
+			 <span class="mui-pull-right">
+			 	<div class="order_ph mui-pull-right" ><i class="fa fa-phone"></i></div>
+			 	<div class="order_ph mui-pull-right" style="border-right: 1px solid silver;"><i class="fa fa-comment-o"></i></div>
+			 </span>
+		</li>
+		 <li class="mui-table-view-cell" style="line-height: 1.5em;">
+		     <span><b>发货地：</b></span>
+		     <span style="color: silver;">重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦 重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦</span>
+		 </li>
+	</ul>
+	 <ul class="mui-table-view" style="margin-bottom: 0.5em;" >
+	 	<li class="mui-table-view-cell" style="line-height: 3em;" >
+	 		<span>物品信息</span>
+	     </li>
+	     <li class="mui-table-view-cell" style="line-height: 3em;text-align: center;" >
+	 		<span class="mui-pull-left">名称: <span style="color: silver;">鲜花 </span></span>    <span>重量：<span style="color: silver;">1kg</span></span>    <span class="mui-pull-right">价值：<span style="color: silver;">100元</span></span>
+	     </li>
+	      <li class="mui-table-view-cell" style="line-height: 3em;" >
+	      	<span >照片：</span></br>
+	      	<div class="order_photo"><img src="../images/details.jpeg"/></div>
+	      	<div class="order_photo"><img src="../images/details2.jpeg"/></div>
+	      	<div class="order_photo"><img src="../images/details_3.jpeg"/></div>
+	      	
+	      </li>
+	 </ul>
+	<!--弹出框-->
+     <!--<div id="orders" class="tan_" style="padding: 1em 0 0 0;">
+    	<span style="margin-left:25%;"><b>消息已发送</b></span></br></br>
+    	<div style="width:90%; height:2.5em; margin: 0 auto;">
+    	<span style="font-size: 0.8em;">验证消息已发送到收件人手中，请提醒收件人注意查收！</span>
+    	</div>
+    	<div style="width: 100%; height: 3.5em; position: absolute; bottom: 0;">
+    	 <div class="button_r mui-pull-left" id="order_cancle" style="border-right: 1px solid silver; margin: 0.5em 0 0 0 ;"><span>取消</span></div>
+		  <div class="button_r mui-pull-right" id="order_send" style="margin: 0.5em 0 0 0;">发送</div>
+		</div>
+    </div>-->
+</div>
+<div class="mui-bar-footer" style="padding: 0;">
+	<div id="order_send_#" style="width: 50%;background-color: #bbbbbb; height: 3em;line-height: 3em; text-align: center;border-right: 1px solid silver;" class="mui-pull-left"> 发送验证码</div>
+	<div id="#" style="width: 50%;background-color: rgb(196, 190, 196); height: 3em;line-height: 3em; text-align: center;" class="mui-pull-right"> 填写验证码</div>
+</div>
+</div>
+
+</body>
+
+</html>

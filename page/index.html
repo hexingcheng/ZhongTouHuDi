@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+		    subpages:[{
+		      url:'meto_2.html',
+		      id:'meto_2.html',
+		      styles:{
+		        top:'45px',//mui标题栏默认高度为45px；
+		        bottom:'45px'//默认为0px，可不定义；
+		      }
+		    }]
+		});
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<a class="mui-icon mui-icon-reply mui-pull-right"></a>
+			<h1 class="mui-title">接单</h1>
+			<span class="mui-pull-right" id="screening" style="margin-top: 0.5em;" id="screening">筛选</span>
+		</header>
+	</body>
+	<script type="text/javascript">
+		document.getElementById('screening').addEventListener('tap', function() {
+	  //打开关于页面
+	  mui.openWindow({
+	    url: 'screening.html', 
+	    id:'screening'
+	  });
+	});
+	</script>
+
+</html>

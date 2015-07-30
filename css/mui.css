@@ -1,6 +1,6 @@
 /*!
  * =====================================================
- * Mui v2.0.0 (https://github.com/dcloudio/mui)
+ * Mui v1.9.0 (https://github.com/dcloudio/mui)
  * =====================================================
  */
 
@@ -3388,10 +3388,6 @@ select:focus
 {
     display: none;
 }
-.mui-popover.mui-popover-action.mui-popover-bottom
-{
-    position: fixed;
-}
 .mui-popover.mui-popover-action.mui-active
 {
     -webkit-transform: translate3d(0, 0, 0);
@@ -4434,11 +4430,6 @@ select:focus
 .mui-icon-chat:before
 {
     content: '\e263';
-}
-
-.mui-icon-qq:before
-{
-    content: '\e264';
 }
 
 .mui-icon-videocam:before

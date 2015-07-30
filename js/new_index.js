@@ -24,10 +24,18 @@ window.addEventListener('dragleft', function(e) {
 	e.detail.gesture.preventDefault();
 });
 window.addEventListener("swipeleft", function() {
-	offCanvasWrapper.offCanvas('close');
+	if($('#offCanvasContentScroll').offset().left > 0){
+		offCanvasWrapper.offCanvas('close');
+	}else{
+		return;
+	}
 });
 window.addEventListener("swiperight", function() {
-	offCanvasWrapper.offCanvas('show');
+	if($('#offCanvasContentScroll').offset().left == 0){
+		offCanvasWrapper.offCanvas('show');
+	}else{
+		return;
+	}
 });
 
 mui.plusReady(function() {
@@ -43,7 +51,11 @@ mui.plusReady(function() {
 	})
 	//处理返回键
 
-
+window.addEventListener('closeMenu',function(){
+	if($('#offCanvasContentScroll').offset().left > 0){
+			offCanvasWrapper.offCanvas('close');
+	}
+})
 var first = null;
 mui.back = function() {
 	if ($('#offCanvasContentScroll').offset().left > 0) {
@@ -79,6 +91,34 @@ document.getElementById('chat-info').addEventListener('tap', function() {
 })
 document.getElementById('hlep-son').addEventListener('tap', function() {
 	iflogin(function() {
-		openWindow('./page/i-will.html');
+		openWindow('./page/deliver-goods.html');
 	})
+})
+document.getElementById('i-will').addEventListener('tap', function() {
+	iflogin(function() {
+		openWindow('./page/index.html');
+	})
+})
+document.getElementById('help').addEventListener('tap', function() {
+	iflogin(function() {
+		mui.openWindow({
+			url: './page/deliver-goods.html',
+			id: 'idx',
+			show: {
+				autoShow: true,
+				aniShow: 'slide-in-bottom',
+				duration: 200
+			},
+			waiting: {
+				autoShow: true, 
+				title: '正在加载...', 
+				options: {
+					background:'#d1d1d1'
+				}
+			}
+		})
+	})
+})
+document.getElementById('add-menu').addEventListener('tap', function() {
+	alert('add')
 })

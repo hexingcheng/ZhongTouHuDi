@@ -74,7 +74,9 @@
 							success: function(data) {
 								console.log('success')
 								plus.storage.removeItem('token');
-								plus.webview.getLaunchWebview().show();
+								var i = plus.webview.getLaunchWebview();
+								i.show();
+								mui.fire(i,'closeMenu');
 							},
 							error: function(xhr, type) {
 								console.log(type);
@@ -87,5 +89,4 @@
 			})
 		</script>
 	</body>
-
 </html>

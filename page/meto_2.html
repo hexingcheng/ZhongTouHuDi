@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/main.js">
+		</script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="../css/main.css" />
+	</head>
+
+	<body>
+		<!--接单的主体内容-->
+
+		<div class="mui-content">
+			<div id="getorder">
+					<!--显示的订单-->
+			</div>
+			<!--弹出框-->
+			<div id="popover" class="tan_ ">
+				<h3 style="margin-left: 1em;">请输入加价金额</h3>
+				<div class="mui-input-row">
+					<div class="mone">
+						<input type="text" id="input" placeholder="3" style="margin: 0 1em 0 1em;">
+					</div>
+					<span style="margin-left: 1em;">总价：</span> <span style="color: red;"><i class="fa fa-usd"></i> 55</span>
+				</div>
+				<div class="button_r mui-pull-left" id="_cancle" style="border-right: 1px solid silver; margin: 0.2em 0 0 0 ;"><span>取消</span></div>
+				<div class="button_r mui-pull-right" id="send_info" style="margin: 0.2em 0 0 0;">发送</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/template.js"></script>
+	<script type='text/html' id="getoder">
+		{{each order}}
+		<div class="meto_con">
+			<div class="sen_info mui-pull-right">
+				<div class="send" style="text-align: center;"><font style="font-size: .7em;">发货</font></div>
+				<span style="margin-left: 2%">期望到达的时间：{{$value.time}}</span>
+				<span style="color: red;" class="mui-pull-right">
+				<i class="fa fa-usd "></i>
+				{{$value.pay}}
+				</span>
+			</div>
+			<div class="sen_info mui-pull-right" style="border-bottom: 0;">
+				<i class="fa fa-briefcase"></i> <span>{{$value.gName}}</span>
+			</div>
+			<div class="sen_info mui-pull-right" style="border-bottom: 0;">
+				<span>起：{{$value.start}}</span>
+			</div>
+			<div class="sen_info mui-pull-right" style="border-bottom: 0;">
+				<span>终：{{$value.end}}</span>
+			</div>
+			<div class="sen_info mui-pull-right" style="width: 95%; border-top: 1px solid silver;border-bottom: 0;line-height: 2em; padding-left: 1.5em;color: red;">
+				<span>重要说明：{{$value.info}}</span>
+			</div>
+			<div class="button_r mui-pull-right qi" id="qiangdan"><span>抢单</span></div>
+			<div class="button_r mui-pull-left qi add_" style="border-right: 1px solid silver;"><span>加价</span></div>
+		</div>
+		{{/each}}
+	</script>
+	<script type="text/javascript" charset="utf-8">
+		 //		document.getElementById('qiangdan').addEventListener('tap', function() {
+		 //			//打开关于页面
+		 //			mui.openWindow({
+		 //				url: 'qiangdan.html',
+		 //				id: 'qingdan.html'
+		 //			});
+		 //		});
+		var data = {
+			"order": [{
+				"time": "2015-07-29",
+				"gName":"巧克力",
+				"pay": "50",
+				"start": "重庆邮电大学",
+				"end": "重庆工商大学",
+				"info": "不可压"
+			},{
+				"time": "2015-07-29",
+				"gName":"巧克力",
+				"pay": "50",
+				"start": "重庆邮电大学",
+				"end": "重庆工商大学",
+				"info": "不可压"
+			}]
+		}
+		mui.plusReady(function(){
+			mui.ajax(BASEURL+'deliver/goodList',{
+				
+			})
+		})
+		function adddata(e){
+			alert(1);
+		}
+		var html = template('getoder',data);
+		document.getElementById('getorder').innerHTML = html;
+	</script>
+
+</html>

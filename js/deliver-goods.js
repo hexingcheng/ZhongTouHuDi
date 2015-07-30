@@ -168,7 +168,6 @@ mui.plusReady(function() {
 
 	// 发送数据
 	function sendData(url, base) {
-		mui.plusReady(function() {
 			mui.ajax(url, {
 				type: "post",
 				data: {
@@ -193,7 +192,6 @@ mui.plusReady(function() {
 					errorhandle(type);
 				}
 			})
-		})
 	}
 
 

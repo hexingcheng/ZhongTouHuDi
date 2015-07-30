@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.js"></script>
+    <link href="../css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../fonts/iconfont.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+    	.mui-input-row .left-btn {
+    		padding: 0.8em 0em;
+			width: 10%;
+    	}
+    	.input-box {
+    		width: 60%;
+			float: left;
+    	}
+    	.mui-input-row label {
+    		width: 30%;
+    	}
+    	#way-to {
+    		vertical-align: 8%;
+			padding-left: 0.6em;
+    	}
+    	#add-explain {
+    		border: 1px solid #ddd;
+    		padding: 0.5em;
+    		border-radius: 0.5em;
+    	}
+    	.submit-btn {
+    		padding: 0.5em 30%;
+    	}
+    	.mui-input-row .start,
+    	.mui-input-row .end {
+    		width: 20%;
+			padding-right: 0;
+    	}
+    	.mui-input-row .start ~ .input-box,
+    	.mui-input-row .end ~ .input-box {
+    		width: 70%;
+    	}
+    	#arrival-point-input,
+    	#start-point-input {
+    		color: #333;
+    	}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">发行程</h1>
+	</header>
+	<div class="mui-content">
+		<form class="mui-input-group">
+			<div class="mui-input-row">
+				<label class="start">出发地:</label>
+				<button id="start-point" type="button" class="mui-btn mui-btn-link mui-icon iconfont icon-you left-btn"></button>
+				<div class="input-box">
+					<input id="start-point-input" type="text" class="mui-input-clear mui-h5" placeholder="enter starting point..." readonly="readonly" />
+				</div>
+			</div>
+			<div class="mui-input-row">
+				<label class="end">目的地:</label>
+				<button id="destination" type="button" class="mui-btn mui-btn-link mui-icon iconfont icon-you left-btn"></button>
+				<div class="input-box">
+					<input id="arrival-point-input" type="text" class="mui-input-clear mui-h5" placeholder="enter destination..." readonly="readonly" />
+				</div>
+			</div> 
+			<div class="mui-table-view-divider"></div>
+			<div class="mui-table-view-cell">
+				途径地:
+				<span class="mui-ellipsis mui-h5" id="way-to">北京-上海-广东</span>
+			</div>
+			<div class="mui-input-row">
+				<label>出发时间:</label>
+				<button id="start-time" type="button" class="mui-btn mui-btn-link mui-icon iconfont icon-you left-btn"></button>
+				<div class="input-box">
+					<input id="start-time-input" type="text" class="mui-input-clear" placeholder="enter starting time..." readonly="readonly" />
+				</div>
+			</div>
+			<div class="mui-input-row">
+				<label>到达时间:</label>
+				<button id="arrival-time" type="button" class="mui-btn mui-btn-link mui-icon iconfont icon-you left-btn"></button>
+				<div class="input-box">
+					<input id="arrival-time-input" type="text" class="mui-input-clear" placeholder="enter arrival time..." readonly="readonly" />
+				</div>
+			</div>
+			<div class="mui-table-view-cell">
+				<div style="padding-bottom: 0.4em;">补充说明:</div>
+				<textarea id="add-explain" name="add-plain" rows="4" placeholder="enter additional information to explain..."></textarea>
+			</div>
+			<div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-grey submit-btn">提交</button>
+			</div>
+		</form>
+	</div>
+	
+	<script>
+		mui.init({
+			swipeBack : true
+		})
+		var selectpoint = null;
+		mui.plusReady(function(){
+			/*var cpage = plus.webview.currentWebview();
+		var city = cpage.city;
+		alert(city)*/
+			selectpoint = mui.preload({
+				url : "send-the-trip-start.html",
+				id : "send-the-trip-start"
+			})
+			
+		})
+	
+		mui.ready(function(){
+			var starttime = document.getElementById("start-time"),
+			 	starttimeinput = document.getElementById("start-time-input");
+			var arrivaltime = document.getElementById("arrival-time"),
+				arrivaltimeinput = document.getElementById("arrival-time-input");
+			// day格式化
+			function fromatDay(day){
+				var datestr = day == 0 ? "星期天" : 
+							day == 1 ? "星期一" : 
+							day == 2 ? "星期二" : 
+							day == 3 ? "星期三" : 
+							day == 4 ? "星期四" : 
+							day == 5 ? "星期五" : 
+							day == 6 ? "星期六" : null;
+				return datestr;
+			} 
+			
+			// 日期选择
+			var startdate = null, 
+				arrivaldate = null;
+			starttime.addEventListener("tap", function(){
+				var mindate = new Date();
+				mindate.setFullYear(2015, 0, 1);
+				var maxdate = new Date();
+				maxdate.setFullYear(2050, 11, 30);
+				plus.nativeUI.pickDate( function(e) {
+					var d=e.date;
+					startdate = d;
+					starttimeinput.value = d.getFullYear()+"/"+(d.getMonth()+1)+"/"+ d.getDate() +" "+ fromatDay(d.getDay());
+				},function(e){
+					starttimeinput.value = "";
+					startdate = null;
+				},{title:"请选择出发日期", minDate:mindate, maxDate : maxdate});
+			});
+			
+			// 到达时间日期的选择
+			arrivaltime.addEventListener("tap", function(){
+				if(startdate){
+					var mindate = new Date();
+					mindate.setFullYear(startdate.getFullYear(), startdate.getMonth(), startdate.getDate());
+					var maxdate = new Date();
+					maxdate.setFullYear(2050, 11, 30);
+					plus.nativeUI.pickDate( function(e) {
+						var d=e.date;
+						arrivaltimeinput.value = d.getFullYear()+"/"+(d.getMonth()+1)+"/"+ d.getDate() +" "+ fromatDay(d.getDay());
+					},function(e){
+						arrivaltimeinput.value = "";
+					},{title:"请选择到达日期", minDate:mindate, maxDate : maxdate});
+				}else{
+					mui.toast("请先选择出发时间");
+				}
+				
+			})
+			
+			// 出发地
+			document.getElementById("start-point").addEventListener("tap", function(){
+				selectpoint.show("slide-in-right", 150);
+			}, false);
+
+			// 添加自定义事件
+			window.addEventListener("cityinfo", function(event){
+				var city = event.detail.city,
+					subcity = event.detail.subcity;
+				if(city && subcity){
+					document.getElementById("start-point-input").value = city + subcity;
+				}
+			});
+
+		})
+	</script>
+</body>
+</html>
