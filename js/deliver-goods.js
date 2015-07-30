@@ -1,39 +1,38 @@
+var pic = "";
 mui.init({
 	swipeBack: true
 });
 var pageDraft = null;
-mui.plusReady(function() {
-	setTimeout(function() {
-		pageDraft = mui.preload({
-			url: "../page/draft.html",
-			id: "deliver-goods-draft"
-		})
-	}, 200)
-})
 mui.back = function() {
-	if (true) {
+	var name = $('#gname').val();
+	var weight = $('#gweight').val();
+	var value = parseInt($('#gvalue').val());
+	//	var info = $('#info').val();
+	if (name && weight && value && pic) {
 		mui.confirm('是否存为草稿', '提示', ['是', '否'], function(e) {
 			if (e.index == 0) {
 				//发送ajax,存为草稿;
 				plus.webview.getLaunchWebview().show('slide-in-left', 150);
 			} else {
 				//放弃存为草稿直接返回
-				plus.webview.getLaunchWebview().show('slide-in-left', 150);
+				return;
 			}
 		})
-	}else{
-		plus.webview.getLaunchWebview().show('slide-in-left', 150);		
+	} else {
+		plus.webview.getLaunchWebview().show('slide-in-left', 150);
 	}
 }
+var nextpage = null;
 mui.plusReady(function() {
-	
+
 	//预加载
-	
-	mui.preload({
-		url:'../page/next.html',
-		id: 'next'
-	})
-	// 草稿
+	setTimeout(function() {
+			pageDraft = mui.preload({
+				url: "../page/draft.html",
+				id: "deliver-goods-draft"
+			})
+		}, 200)
+		// 草稿
 	document.getElementById("btn-draft").addEventListener("tap", function() {
 		pageDraft.show("slide-in-right", 150)
 	});
@@ -168,41 +167,34 @@ mui.plusReady(function() {
 
 	// 发送数据
 	function sendData(url, base) {
-			mui.ajax(url, {
-				type: "post",
-				data: {
-					imgName: Math.floor(Math.random() * 100000) + ".jpg",
-					imgData: base, // base字符串
-					dataLength: base.length // base字符串长度
-				},
-				success: function(data) {
-					//					console.log(data.ret);
-					//					console.log(data.res.path)
-					if (data.ret == 1) {
-						//得到图片服务器上绝对路径，保存
-							alert('上传成功')
-					} else if (data.ret == 2) {
-						mui.toast('图片格式不正确');
-					} else if (data.ret == 3) {
-						mui.toast('图片过大');
-					}
-				},
-				error: function(xhr, type) {
-					console.log("错误信息显示：" + type);
-					errorhandle(type);
-				}
-			})
+		var pics
+		mui.ajax(url, {
+			type: "post",
+			data: {
+				imgName: Math.floor(Math.random() * 100000) + ".jpg",
+				imgData: base, // base字符串
+				dataLength: base.length // base字符串长度
+			},
+			success: function(data) {
+				pics+=data.res.path+",";
+				pic = pics.substring(0,pics.length-1);
+			},
+			error: function(xhr, type) {
+				console.log("错误信息显示：" + type);
+				errorhandle(type);
+			}
+		})
 	}
 
 
 
 	//  获取表单数据
-//	var formdatas = {
-//		gName: $('#gname').val(),
-//		gValue: parseInt($('').val()),
-//		gWeight: parseInt($('').val()),
-//		info: $('').val()
-//	}
+	//	var formdatas = {
+	//		gName: $('#gname').val(),
+	//		gValue: parseInt($('').val()),
+	//		gWeight: parseInt($('').val()),
+	//		info: $('').val()
+	//	}
 
 	var oderdata = {
 		gName: "巧克力",
@@ -226,6 +218,7 @@ mui.plusReady(function() {
 		receiveWd: 120,
 		status: 1
 	}
+
 	function getlatlot() {
 		var obj = {};
 		plus.geolocation.getCurrentPosition(function(pos) {
@@ -239,20 +232,22 @@ mui.plusReady(function() {
 		return obj;
 	}
 	document.getElementById('next-button').addEventListener('tap', function() {
-//		mui.plusReady(function() {
-//			mui.ajax(BASEURL + 'order/resOrderByGood', {
-//				data: oderdata,
-//				type: 'post',
-//				success: function(data) {
-//					console.log(data.ret);
-//				},
-//				error: function(xhr, type, errorThrown) {
-//					console.log(type);
-//				}
-//			})
-//		})
-//		openWindow('../page/next.html');
-		plus.webview.getWebviewById('next').show('slide-in-right',150);
-		 return false
+		var name = $('#gname').val();
+		var weight = $('#gweight').val();
+		var value = parseInt($('#gvalue').val());
+		//	var info = $('#info').val();
+		if(name&&weight&&value&&pic){
+			var param = {
+				gName:name,
+				gWeight:weight,
+				gValue:value,
+				pics:pic
+			}
+			alert(param.pics)
+			openWindow('../page/next.html',param);
+		}else{
+			mui.alert('请填写相关必要信息在进行下一步！')
+			return;
+		}
 	})
 })
