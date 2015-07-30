@@ -29,9 +29,12 @@
 				height: 50px;
 			}
 			.icon {
-				height: 50px;
-				line-height: 50px;
-				font-size: 50px;
+				font-size: 35px;
+				display: inline-block;
+				text-align: center;
+				width: 100%;
+				height: 100%;
+				line-height: 1.5;
 			}
 			.color-change {
 				color: #d1d1d1;
@@ -60,6 +63,30 @@
 				margin: 30px auto 30px;
 				padding: 5px 0;
 			}
+			#take-photo {
+				width: 3em;
+				height: 3em;
+				background: #ccc;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+			.take-photo {
+				width: 50%;
+				margin: 0 auto;
+			}
+			.take-icon {
+				padding: 0.5em;
+				font-size: 2em;
+				background: #ccc;
+				border-radius: 50%;
+				overflow: hidden;
+				cursor: pointer;
+			}
+			div.taken-img {
+				width: 10em;
+				height: 8.7em;
+				overflow: hidden;
+			}
 		</style>
 	</head>
 	<body>
@@ -71,8 +98,10 @@
 				<li class="mui-table-view-cell  mui-media">
 					<a href="#">
 						<span class="mui-pull-left addpad">免冠半身照:</span>
-						<span class="mui-icon mui-icon-camera mui-pull-right icon "></span>
-						<img class="userpic mui-pull-right mui-hidden" src="../img/user.png" />
+						<div id="take-photo" class="mui-pull-right">
+							<span class="mui-icon mui-icon-camera mui-pull-right icon head-img"></span>
+							<!--<img class="userpic mui-pull-right" src="../img/user.png" />-->
+						</div>
 					</a>
 				</li>
 				<li class="mui-table-view-divider"></li>
@@ -129,35 +158,39 @@
 				<p class="pic-tips">
 					手持证件靠近镜头，正面拍摄胸部以上，对焦使证件上面字体和照片清晰可见。
 				</p>
-				<ul class="mui-table-view mui-grid-view mui-grid-6">
+				<ul id="take-photos" class="mui-table-view mui-grid-view mui-grid-6">
 					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<a href="#">
-							<span class="mui-icon mui-icon-camera"></span>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<a href="#">
+						<div class="take-photo">
+							<span class="mui-icon mui-icon-camera take-icon"></span>
+						</div>
+						<!--<div class="taken-img">
 							<img src="../img/raw_1435154362.png" />
-						</a>
+						</div>-->
 					</li>
 					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<a href="#">
-							<span class="mui-icon mui-icon-camera"></span>
-						</a>
+						<div>
+							<img src="../img/raw_1435154362.png" />
+						</div>
 					</li>
 					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<a href="#">
+						<div class="take-photo">
+							<span class="mui-icon mui-icon-camera take-icon"></span>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<div>
 							<img src="../img/raw_1435154402.png"/>
+						</div>
 					</li>
 					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<a href="#">
-							<span class="mui-icon mui-icon-camera"></span>
-						</a>
+						<div class="take-photo">
+							<span class="mui-icon mui-icon-camera take-icon"></span>
+						</div>
 					</li>
 					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<a href="#">
+						<div>
 							<img src="../img/raw_1435154483.png"/>
-						</a>
+						</div>
 					</li>
 				</ul>
 				<div class="mui-input-row mui-checkbox mui-left">
@@ -168,10 +201,54 @@
 			</div>
 		</div>
 		<script src="../js/jquery.min.js"></script>
+		<script src="../js/comment.js"></script>
 		<script>
 			$('#up-applay').on('tap',function(){
 				mui.alert('您的认证信息填写不全，请填下完整信息，再进行下一步', '提示');
-			})	
+			})
+			mui.ready(function(){
+				mui("#take-photos").on("tap", ".take-photo", function(){
+					var _parent = this.parentNode;
+					delPhotoMsg({
+								width: 17 * 10, 
+								quality: 0.5
+							}, function(obj){
+								_parent.innerHTML = '<div class="taken-img"><img src="'+ obj.now.base64Char +'" /></div>';
+								sendData("异步发送图片地址", obj);		// 调用函数发送信息
+							})
+				})
+			// 免冠半身照
+			mui("#take-photo").on("click", ".head-img", function(){
+				var _parent = this.parentNode;
+				delPhotoMsg({
+								width: 17 * 3, 
+								quality: 0.5
+							}, function(obj){
+								_parent.innerHTML = '<img class="userpic mui-pull-right" src="'+ obj.now.base64Char +'" />';
+								sendData("异步发送图片地址", obj);		// 调用函数发送信息
+							})
+			})
+			
+		})
+			
+			// 发送数据函数
+			function sendData(url, fileobj){
+				console.log(url+"   " +fileobj.fileName + "  "+fileobj.now.base64Length)
+				/*mui.ajax(url, {
+					data : {
+						// 接口连接发送数据
+					},
+					dataType : "json",
+					type : "POST",
+					success : function(data){
+						console.log(data)
+					},
+					error : function(xhr, type){
+						console.log(type)
+					}
+				})*/
+				
+			}
 		</script>
 	</body>
 </html>
