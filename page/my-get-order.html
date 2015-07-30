@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/font-awesome.css" />
+		<link rel="stylesheet" href="../css/main.css" />
+		<style>
+			.ordercontent {
+				border: 1px solid #D1D1D1;
+				border-radius: 5px;
+				position: relative;
+				margin: 10px;
+				padding: 5px;
+			}
+			.sendg {
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				width: 35px;
+				height: 35px;
+				border: 2px solid red;
+				top: 5px;
+				left: 5px;
+				border-radius: 50%;
+				font-size: 12px;
+				text-align: center;
+				line-height: 35px;
+				color: red;
+			}
+			.ifshow {
+				color: orange;
+				font-size: 12px;
+				line-height: 50px;
+			}
+			.gName {
+				font-size: 14px;
+			}
+			.icons {
+				line-height: 40px;
+				font-size: 20px;
+			}
+			.h3 {
+				border-bottom: 1px solid #D1D1D1;
+				height: 40px;
+				line-height: 40px;
+			}
+			.address {
+				border-bottom: 1px solid #D1D1D1;
+			}
+			.gettime {
+				line-height: 40px;
+			}
+			.mui-scroll-wrapper {
+				margin-top: 85px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">我的发单</h1>
+			<span class="mui-btn mui-pull-right">草稿</span>
+		</header>
+		<div class="mui-content">
+			<div style="">
+				<div id="segmentedControl" class="mui-segmented-control">
+					<a class="mui-control-item mui-active" href="#item1">接单中</a>
+					<a class="mui-control-item" href="#item2">运送中</a>
+					<a class="mui-control-item" href="#item3">已完成</a>
+				</div>
+			</div>
+			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div id="item1" class="mui-control-content mui-active"></div>
+					<div id="item2" class="mui-control-content"></div>
+					<div id="item3" class="mui-control-content"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/template.js"></script>
+	<script type="text/javascript" src="../js/utils.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/html" id="mygetorder">
+		{{each mygetorder}}
+		<div class="ordercontent" title="{{$value.id}}">
+			<div class="sendg">接件</div>
+			<div class="gcontent">
+				<h3 class="mui-text-center h3">
+							<span class="mui-icon mui-icon-email icons"></span>
+							<span class="gName">{{$value.gName}}</span>
+							<a class="mui-pull-right ifshow">{{$value.status}}</a>
+						</h3>
+				<div class="address">
+					<p>起:<span>{{$value.start}}</span></p>
+					<p>终:<span>{{$value.end}}</span></p>
+				</div>
+				<div class="ordertime">
+					<p class="gettime">订单<span>发布</span>时间:<span>{{$value.time}}</span><span class="mui-pull-right">{{$value.money}}</span></p>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+	</script>
+	<script>
+		mui.init();
+		 //document.getElementById('my_ing').addEventListener('tap', function() {
+		 ////打开关于页面
+		 //mui.openWindow({
+		 //  url: 'my_order_details.html', 
+		 //  id:'my_ing'
+		 //});
+		 //});
+		mui.plusReady(function() {
+			mui('#offCanvasSideScroll').scroll()
+			var data1 = {
+				"mygetorder": [{
+					"id": "986834832",
+					"status": "不显示",
+					"gName": "宝贝",
+					"start": "重庆邮电大学",
+					"end": "重庆工商大学",
+					"time": "2015-06-28",
+					"ditailtime": "22:30",
+					"money": "50"
+				}, {
+					"id": "528287646",
+					"status": "不显示",
+					"gName": "宝贝",
+					"start": "重庆邮电大学",
+					"end": "重庆工商大学",
+					"time": "2015-06-28",
+					"ditailtime": "22:30",
+					"money": "50"
+				}, {
+					"id": "945291663",
+					"status": "不显示",
+					"gName": "宝贝",
+					"start": "重庆邮电大学",
+					"end": "重庆工商大学",
+					"time": "2015-06-28",
+					"ditailtime": "22:30",
+					"money": "50"
+				}, {
+					"id": "274534469",
+					"status": "不显示",
+					"gName": "宝贝",
+					"start": "重庆邮电大学",
+					"end": "重庆工商大学",
+					"time": "2015-06-28",
+					"ditailtime": "22:30",
+					"money": "50"
+				}]
+			}
+			var data2 = {
+				"mygetorder": [{
+					"id": "986834832",
+					"status": "不显示",
+					"gName": "玫瑰",
+					"start": "重庆邮电大学",
+					"end": "重庆工商大学",
+					"time": "2015-06-28",
+					"ditailtime": "22:30",
+					"money": "50"
+				}]
+			}
+			var data3 = {
+				"mygetorder": [{
+					"id": "986834832",
+					"status": "不显示",
+					"gName": "玫瑰",
+					"start": "重庆邮电大学",
+					"end": "重庆工商大学",
+					"time": "2015-06-28",
+					"ditailtime": "22:30",
+					"money": "50"
+				},{
+					"id": "986834832",
+					"status": "不显示",
+					"gName": "玫瑰",
+					"start": "重庆邮电大学",
+					"end": "重庆工商大学",
+					"time": "2015-06-28",
+					"ditailtime": "22:30",
+					"money": "50"
+				}]
+			}
+			var html1 = template('mygetorder', data1);
+			var html2 = template('mygetorder', data2);
+			var html3 = template('mygetorder', data3);
+			document.getElementById('item1').innerHTML = html1
+			document.getElementById('item2').innerHTML = html2
+			document.getElementById('item3').innerHTML = html3
+			mui('.mui-control-content').on('tap','.ordercontent',function(){
+				var id = this.title;
+				var param = {
+					"orderid":id
+				}
+				openWindow('./order_details.html',param)
+			})
+		})
+	</script>
+
+</html>
