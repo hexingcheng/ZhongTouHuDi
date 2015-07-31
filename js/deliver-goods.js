@@ -223,7 +223,13 @@ function setpic(){
 				}
 			})
 		} else {
-			mui.alert('请填写相关必要信息在进行下一步！');
+			mui.confirm('请填写相关必要信息在进行下一步！','提示',['确认','放弃填写'],function(e){
+				if(e.index==1){
+					plus.webview.getLaunchWebview().show();
+				}else{
+					return;
+				}
+			});
 			return;
 		}
 	})

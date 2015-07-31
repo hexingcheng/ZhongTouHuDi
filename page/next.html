@@ -7,6 +7,8 @@
 		<title></title>
 		<script src="../js/mui.min.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mui.listpicker.css" />
+		<link rel="stylesheet" href="../css/mui.poppicker.css" />
 		<style>
 			#next-good-form label {
 				font-size: 14px;
@@ -74,6 +76,8 @@
 		</div>
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/utils.js"></script>
+		<script type="text/javascript" src="../js/mui.listpicker.js" ></script>
+		<script type="text/javascript" src="../js/mui.poppicker.js" ></script>
 		<script>
 			 //		mui.plusReady(function() {
 			 //			setTimeout(function() {
@@ -93,6 +97,7 @@
 			 //		});
 			var lot, lat;
 			mui.plusReady(function() {
+				alert(1)
 				plus.geolocation.getCurrentPosition(function(pos) {
 					lot = pos.coords.longitude;
 					lat = pos.coords.latitude;
@@ -165,11 +170,44 @@
 					return true;
 				}
 				$('#gettime').on('tap', function() {
-					var that = this;
-					plus.ui.pickDate(function(d) {
-						$(that).val(d.date.getFullYear() + "-" + (d.date.getMonth() + 1) + "-" + d.date.getDate())
-					}, function(e) {
-						alert('选取时间失败！')
+//					var that = this;
+//					plus.ui.pickDate(function(d) {
+//						$(that).val(d.date.getFullYear() + "-" + (d.date.getMonth() + 1) + "-" + d.date.getDate())
+//					}, function(e) {
+//						alert('选取时间失败！')
+//					})
+					var timepicker = new mui.PopPicker();
+					var datas = [{
+						"text":"六月",
+						"children":[{
+							"text":"一日",
+							"childern":[{
+								"text":"一时"
+							},{
+								"text":"二时"
+							}]
+						}]
+					},{
+						"text":"七月",
+						"children":[{
+							"text":"一日",
+							"childern":[{
+								"text":"一时"
+							},{
+								"text":"二时"
+							}]
+						}]
+					}]
+					
+					function getpickdata(){
+						var date = new Date();
+						var data = [];
+						var obj1 = {};
+						obj1.value = date.getDay();
+					}
+					timepicker.setData(datas)
+					timepicker.show(function(items){
+						alert((items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text)
 					})
 				})
 				$('#respecttime').on('tap', function() {
@@ -183,5 +221,4 @@
 			})
 		</script>
 	</body>
-
 </html>
