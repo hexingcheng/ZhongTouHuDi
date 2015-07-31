@@ -25,9 +25,9 @@
 				padding: 0.6em 2em;
 				background: #FAFAFA;
 			}
-			#gplain {
+			/*#gplain {
 				width: 50%;
-			}
+			}*/
 			.item-box {
 				float: left;
 				width: 25%;
@@ -90,10 +90,9 @@
 					<label for="gname">物品价值</label>
 					<input type="text" name="goodsvalue" class="mui-input-clear" id="gvalue" value="" placeholder="请输入..." />
 				</div>
-				<div class="mui-input-row">
+				<div class="mui-input-row" id="gplain" >
 					<label for="gname">物品说明</label>
-					<div class="mui-btn mui-icon iconfont icon-you mui-btn-grey mui-pull-right" id="write-plain"></div>
-					<input type="text" readonly="true" name="goodsplain" class="mui-input-clear" id="gplain" value="" placeholder="物品说明.." />
+					<input type="text"  id="gettext" placeholder="物品说明.." />
 				</div>
 				<div class="mui-table-view-divider mui-h6">其他</div>
 				

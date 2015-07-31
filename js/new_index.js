@@ -31,7 +31,7 @@ window.addEventListener("swipeleft", function() {
 	}
 });
 window.addEventListener("swiperight", function() {
-	if($('#offCanvasContentScroll').offset().left == 0){
+	if($('#offCanvasContentScroll').offset().left < 200 ){
 		offCanvasWrapper.offCanvas('show');
 	}else{
 		return;

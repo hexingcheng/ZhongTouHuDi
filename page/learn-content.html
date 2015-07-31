@@ -79,15 +79,10 @@
 		</div>
 		<script src="../js/jquery.min.js"></script>
 		<script>
-		var up;
 			mui.plusReady(function() {
-				up = mui.preload({
-					id: 'learn-up.html',
-					url: './learn-up.html'
-				});
-			})
-			$('.learn-up').on('tap',function(){
-				up.show('slide-in-right',150)
+				$('.learn-up').on('tap', function() {
+					openWindow('./learn-up.html')
+				})
 			})
 		</script>
 	</body>

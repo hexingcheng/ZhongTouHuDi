@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			#btn {
+				width: 80%;
+				margin: 0 auto;
+				background-color: orange;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">重要说明</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-row" style="margin: 10px 5px;">
+				<label>重要信息：</label>
+				<textarea rows="6" placeholder="请输入重要信息" id="impor-text"></textarea>
+			</div>
+			<button class="mui-btn mui-btn-block" id="btn">确认</button>
+		</div>
+		<script type="text/javascript" src="../js/utils.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				document.getElementById('btn').addEventListener('tap', function() {
+					var value = document.getElementById('impor-text').value;
+					if (!value) {
+						mui.confirm('您还未输入任何重要信息，确认返回？', '提示', ['确认', '继续'], function(e) {
+							if (e.index == 0) {
+								openWindow('./deliver-goods.html');
+							} else {
+								return;
+							}
+						})
+					} else {
+						var param = {};
+						param.info = value;
+						openWindow('./deliver-goods.html', param);
+						var d = plus.webview.getWebviewById('deliver-goods');
+						mui.fire(d,'getinfo');
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
