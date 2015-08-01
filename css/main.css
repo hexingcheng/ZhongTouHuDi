@@ -23,8 +23,11 @@
        .bor_buttom{
        	border-bottom: 1px solid silver;
        }
-       .line2_5{
-       	line-height: 2.5;
+       .line2{
+       	line-height: 2em;
+       }
+       .line3{
+       	line-height: 3em;
        }
        .color{
        	color: silver;
@@ -125,10 +128,11 @@
     	/* meto_2*/
     	.meto_con{
     		width: 90%;
-    		height: 20.2em;
+    		
     		border: 1px solid silver;
     		border-radius: 0.5em;
     		margin: 0.5em auto;
+    		overflow: hidden;
     	}
     	
     	.send{
@@ -144,10 +148,7 @@
     	}
     	.sen_info{
     		width:93%;
-    		height: 3em;
-    		line-height: 3em;
-    		margin:0 0.5em 0 0.5em;
-    		border-bottom:1px solid silver ;
+    		padding:0 .5em 0 0;
     	}
     	.button_r{
     		width: 50%;
