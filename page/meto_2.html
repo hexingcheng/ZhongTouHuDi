@@ -39,28 +39,28 @@
 	<script type='text/html' id="getoder">
 		{{each order}}
 		<div class="meto_con">
-			<div class="sen_info mui-pull-right">
+			<div class="sen_info mui-pull-right bor_buttom line3">
 				<div class="send" style="text-align: center;"><font style="font-size: .7em;">发货</font></div>
-				<span style="margin-left: 2%">期望到达的时间：{{$value.time}}</span>
+				<span style="margin-left: 3%">期望到达的时间：{{$value.time}}</span>
 				<span style="color: red;" class="mui-pull-right">
 				<i class="fa fa-usd "></i>
 				{{$value.pay}}
 				</span>
 			</div>
-			<div class="sen_info mui-pull-right" style="border-bottom: 0;">
+			<div class="sen_info mui-pull-right line2" >
 				<i class="fa fa-briefcase"></i> <span>{{$value.gName}}</span>
 			</div>
-			<div class="sen_info mui-pull-right" style="border-bottom: 0;">
+			<div class="sen_info mui-pull-right line2" >
 				<span>起：{{$value.start}}</span>
 			</div>
-			<div class="sen_info mui-pull-right" style="border-bottom: 0;">
+			<div class="sen_info mui-pull-right line2 bor_buttom" >
 				<span>终：{{$value.end}}</span>
 			</div>
-			<div class="sen_info mui-pull-right" style="width: 95%; border-top: 1px solid silver;border-bottom: 0;line-height: 2em; padding-left: 1.5em;color: red;">
-				<span>重要说明：{{$value.info}}</span>
+			<div class="sen_info mui-pull-right line2" >
+				<span style="color:red">重要说明：{{$value.info}}</span>
 			</div>
 			<div class="button_r mui-pull-right qi" id="qiangdan"><span>抢单</span></div>
-			<div class="button_r mui-pull-left qi add_" style="border-right: 1px solid silver;"><span>加价</span></div>
+			<div class="button_r mui-pull-left qi add_ border_r" ><span>加价</span></div>
 		</div>
 		{{/each}}
 	</script>
