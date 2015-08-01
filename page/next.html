@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<script src="../js/mui.min.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../css/mui.listpicker.css" />
 		<link rel="stylesheet" href="../css/mui.poppicker.css" />
 		<style>
 			#next-good-form label {
-				font-size: 14px;
+				font-size: 12px;
 				color: #010101;
 			}
 		</style>
 	</head>
-
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -74,30 +71,14 @@
 				</div>
 			</form>
 		</div>
+		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/utils.js"></script>
-		<script type="text/javascript" src="../js/mui.listpicker.js" ></script>
-		<script type="text/javascript" src="../js/mui.poppicker.js" ></script>
+		<script type="text/javascript" src="../js/mui.listpicker.js"></script>
+		<script type="text/javascript" src="../js/mui.poppicker.js"></script>
 		<script>
-			 //		mui.plusReady(function() {
-			 //			setTimeout(function() {
-			 //				var  menu = mui.preload({
-			 //					id: 'order',
-			 //					url: './order.html'
-			 //				})
-			 //			}, 200);	
-			 //		获取上页传输的数据
-			 //			var getdata = {};
-			 //			var c = plus.webview.currentWebview();
-			 //			getdata.gName = c.gName;
-			 //			getdata.gValue = c.gValue;
-			 //			getdata.gWeight = c.gWeight;
-			 //			getdata.info = c.info;
-			 //			getdata.pic = c.pic;
-			 //		});
 			var lot, lat;
 			mui.plusReady(function() {
-				alert(1)
 				plus.geolocation.getCurrentPosition(function(pos) {
 					lot = pos.coords.longitude;
 					lat = pos.coords.latitude;
@@ -107,7 +88,6 @@
 					})
 					var getdata = {}
 					$('#draft').on('tap', function() {
-						//			 	plus.webview.getWebviewById('draft').show('slide-in-right',150);
 						openWindow('./draft.html');
 					})
 					$('.mui-bbtn').on('tap', function() {
@@ -129,36 +109,37 @@
 						getdata.receiverPhone = $('#tel').val();
 						getdata.receiverJd = 10;
 						getdata.receiverWd = 10;
-						getdata.status = 1;
-						//			plus.webview.getWebviewById('order').show('slide-in-right',150);
-						//					openWindow('./order.html');
+						getdata.status = 0;
 						showobj(getdata);
-						if (getdata.money&&getdata.getTime&&getdata.senderAddress&&getdata.receiverAddress&&getdata.sender&&getdata.senderPhone) {
+						if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 							mui.ajax(BASEURL + 'order/resOrderByGood', {
 								data: getdata,
 								type: 'post',
 								success: function(data) {
-									plus.webview.currentWebview().close();
-									console.log(data.ret)
+//									plus.webview.currentWebview().close();
+									if(data.ret==1){
+										mui.toast('发单成功，继续完成支付')
+										openWindow('./order.html')
+									}
 								},
 								error: function(xhr, type) {
 									console.log(type)
 								}
 							})
 						} else {
-							mui.confirm('您需要完全填写相关重要信息','提示',['放弃','继续'],function(e){
-								if(e.index = 0){
+							mui.confirm('您需要完全填写相关重要信息', '提示', ['放弃', '继续'], function(e) {
+								if (e.index = 0) {
 									plus.webview.getLaunchWebview().show();
 									plus.webview.currentWebview().close();
-								}else{
+								} else {
 									return;
 								}
 							})
 						}
 					})
-					document.getElementById('sendaddr').addEventListener('tap', function() {
+				document.getElementById('sendaddr').addEventListener('tap', function() {
 						openWindow('./map.html')
-					})
+				})
 				}, function(e) {
 					console.log('获取经纬度失败');
 				}, {
@@ -170,55 +151,53 @@
 					return true;
 				}
 				$('#gettime').on('tap', function() {
-//					var that = this;
-//					plus.ui.pickDate(function(d) {
-//						$(that).val(d.date.getFullYear() + "-" + (d.date.getMonth() + 1) + "-" + d.date.getDate())
-//					}, function(e) {
-//						alert('选取时间失败！')
-//					})
-					var timepicker = new mui.PopPicker();
-					var datas = [{
-						"text":"六月",
-						"children":[{
-							"text":"一日",
-							"childern":[{
-								"text":"一时"
-							},{
-								"text":"二时"
-							}]
-						}]
-					},{
-						"text":"七月",
-						"children":[{
-							"text":"一日",
-							"childern":[{
-								"text":"一时"
-							},{
-								"text":"二时"
-							}]
-						}]
-					}]
-					
-					function getpickdata(){
-						var date = new Date();
-						var data = [];
-						var obj1 = {};
-						obj1.value = date.getDay();
-					}
-					timepicker.setData(datas)
-					timepicker.show(function(items){
-						alert((items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text)
+					var timepicker = new mui.PopPicker({
+						layer: 3
+					});
+					timepicker.setData(getpickdata());
+					timepicker.show(function(items) {
+						$('#gettime').val((items[0] || {}).value + " " + (items[1] || {}).value + ":" + (items[2] || {}).value);
 					})
 				})
 				$('#respecttime').on('tap', function() {
-					var that = this;
-					plus.ui.pickDate(function(d) {
-						$(that).val(d.date.getFullYear() + "-" + (d.date.getMonth() + 1) + "-" + d.date.getDate())
-					}, function(e) {
-						alert('选择时间失败')
+					var timepicker = new mui.PopPicker({
+						layer: 3
+					});
+					timepicker.setData(getpickdata());
+					timepicker.show(function(items) {
+						$('#respecttime').val((items[0] || {}).value + " " + (items[1] || {}).value + ":" + (items[2] || {}).value)
 					})
 				})
+
+				function getpickdata() {
+					var textArr = ['今天', '明天', '后天'];
+					var d = new Date();
+					var data = [];
+					for (var i = 0; i < 3; i++) {
+						var obj = {};
+						data[i] = obj;
+						var temp = d.getDate() + i;
+						obj["value"] = "" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + temp;
+						obj["text"] = textArr[i];
+						obj["children"] = [];
+						for (var j = 0; j < 24; j++) {
+							var obj1 = {};
+							obj["children"][j] = obj1;
+							obj1["value"] = j;
+							obj1["text"] = j + "时";
+							obj1["children"] = [];
+							for (var k = 0; k < 60; k++) {
+								var obj2 = {};
+								obj1["children"][k] = obj2;
+								obj2["value"] = k;
+								obj2["text"] = k + '分'
+							}
+						}
+					}
+					return data;
+				}
 			})
 		</script>
 	</body>
+
 </html>

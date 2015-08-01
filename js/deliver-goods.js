@@ -175,6 +175,10 @@ mui.plusReady(function() {
 				setpic();
 			},
 			error: function(xhr, type) {
+				
+//				此处应移除图片
+
+
 				console.log("错误信息显示：" + type);
 				errorhandle(type);
 			}
