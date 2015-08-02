@@ -43,14 +43,15 @@
 							}
 						})
 					} else {
-						var param = {};
-						param.info = value;
-						openWindow('./deliver-goods.html', param);
-						var d = plus.webview.getWebviewById('deliver-goods');
-						mui.fire(d,'getinfo');
+						var c = plus.webview.currentWebview();
+						var dl = plus.webview.getWebviewById('deliver-goods');
+						mui.fire(dl,'getinfo',{"info":value});
+						c.close();
+						dl.show('slide-in-left')
 					}
 				})
 			})
 		</script>
 	</body>
+
 </html>

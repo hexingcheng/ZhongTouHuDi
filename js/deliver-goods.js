@@ -1,6 +1,9 @@
 var pic = '';
 mui.init({
-	swipeBack: true
+	swipeBack: true,
+	keyEventBind: {
+		backbutton: false  //关闭back按键监听
+	}
 });
 var pageDraft = null;
 mui.back = function() {
@@ -72,6 +75,7 @@ mui.plusReady(function() {
 			anh.nodeValue = h;
 			canvas.setAttributeNode(anw);
 			canvas.setAttributeNode(anh);
+
 
 			ctx.drawImage(that, 0, 0, w, h);
 			// 图像质量
@@ -175,6 +179,10 @@ mui.plusReady(function() {
 				setpic();
 			},
 			error: function(xhr, type) {
+				
+//				此处应移除图片
+
+
 				console.log("错误信息显示：" + type);
 				errorhandle(type);
 			}
@@ -223,7 +231,13 @@ function setpic(){
 				}
 			})
 		} else {
-			mui.alert('请填写相关必要信息在进行下一步！');
+			mui.confirm('请填写相关必要信息在进行下一步！','提示',['确认','放弃填写'],function(e){
+				if(e.index==1){
+					plus.webview.getLaunchWebview().show();
+				}else{
+					return;
+				}
+			});
 			return;
 		}
 	})
@@ -232,9 +246,7 @@ function setpic(){
 		e.preventDefault();
 		return false;
 	})
-	window.addEventListener('getinfo', function() {
-		var c = plus.webview.currentWebview();
-		alert(c.info)
-		$('#gettextform').val(c.info);
+	window.addEventListener('getinfo', function(eve) {
+		$('#gettext').val(eve.detail.info);
 	})
 })
