@@ -65,15 +65,16 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
-			<h1 class="mui-title">我的发单</h1>
+			<h1 class="mui-title">我的接单</h1>
 			<span class="mui-btn mui-pull-right">草稿</span>
 		</header>
 		<div class="mui-content">
 			<div style="">
 				<div id="segmentedControl" class="mui-segmented-control">
-					<a class="mui-control-item mui-active" href="#item1">接单中</a>
-					<a class="mui-control-item" href="#item2">运送中</a>
-					<a class="mui-control-item" href="#item3">已完成</a>
+					<a class="mui-control-item mui-active" data-status="1" href="#item1">接单中</a>
+					<a class="mui-control-item" data-status="2" href="#item2">运送中</a>
+					<a class="mui-control-item" data-status="3" href="#item3">已完成</a>
+					<a class="mui-control-item" data-status="4" href="#item4">已取消</a>
 				</div>
 			</div>
 			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
@@ -81,6 +82,7 @@
 					<div id="item1" class="mui-control-content mui-active"></div>
 					<div id="item2" class="mui-control-content"></div>
 					<div id="item3" class="mui-control-content"></div>
+					<div id="item4" class="mui-control-content"></div>
 				</div>
 			</div>
 		</div>
@@ -111,45 +113,11 @@
 	</script>
 	<script>
 		mui.init();
-		 //document.getElementById('my_ing').addEventListener('tap', function() {
-		 ////打开关于页面
-		 //mui.openWindow({
-		 //  url: 'my_order_details.html', 
-		 //  id:'my_ing'
-		 //});
-		 //});
-		mui.plusReady(function() {
+		mui.ready(function() {
 			mui('#offCanvasSideScroll').scroll()
 			var data1 = {
 				"mygetorder": [{
 					"id": "986834832",
-					"status": "不显示",
-					"gName": "宝贝",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				}, {
-					"id": "528287646",
-					"status": "不显示",
-					"gName": "宝贝",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				}, {
-					"id": "945291663",
-					"status": "不显示",
-					"gName": "宝贝",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				}, {
-					"id": "274534469",
 					"status": "不显示",
 					"gName": "宝贝",
 					"start": "重庆邮电大学",
@@ -181,23 +149,59 @@
 					"time": "2015-06-28",
 					"ditailtime": "22:30",
 					"money": "50"
-				},{
-					"id": "986834832",
-					"status": "不显示",
-					"gName": "玫瑰",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
+				}]
+			}
+			var data4 = {
+				"mygetorder": [{
+					"id": "1111111",
+					"status": "取消",
+					"gName": "玫瑰你妹",
+					"start": "重庆邮电大学ss",
+					"end": "重庆工商大学ss",
 					"time": "2015-06-28",
 					"ditailtime": "22:30",
 					"money": "50"
 				}]
 			}
+			
 			var html1 = template('mygetorder', data1);
 			var html2 = template('mygetorder', data2);
 			var html3 = template('mygetorder', data3);
+			var html4 = template('mygetorder', data4);
 			document.getElementById('item1').innerHTML = html1
 			document.getElementById('item2').innerHTML = html2
 			document.getElementById('item3').innerHTML = html3
+			document.getElementById('item4').innerHTML = html4
+			
+			// 选项卡切换时判断需要传什么数据给后台
+			mui("#segmentedControl").on("tap", ".mui-control-item", function(){
+				var sendobj = {
+					page : 1,
+					pageSize : 5,
+					type : "rece",
+					status : this.getAttribute("data-status")
+				}
+//				alert(JSON.stringify(sendobj))
+				mui.ajax("http://202.202.43.107:8080/api/order/myGoodList", {
+					data : sendobj,
+					type : "post",
+					success : function(data){
+						console.log(JSON.stringify(data));
+						/*if(data.ret == 1){
+							// ============================================后台获取数据
+						} else if (data.ret == 2){
+							mui.toast("接单需要递送人身份");
+						} else {
+							console.log("未知错误");
+						}*/
+					},
+					error : function(xhr, type){
+						console.log(type);
+					}
+				})
+				
+			})
+			
 			mui('.mui-control-content').on('tap','.ordercontent',function(){
 				var id = this.title;
 				var param = {
@@ -206,6 +210,7 @@
 				openWindow('./order_details.html',param)
 			})
 		})
+		
 	</script>
 
 </html>

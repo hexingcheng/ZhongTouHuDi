@@ -105,52 +105,52 @@
 					</a>
 				</li>
 				<li class="mui-table-view-divider"></li>
-				<form class="mui-input-group">
+				<form class="mui-input-group" id="form-commit">
 					<div class="mui-input-row">
 						<label>国籍:</label>
-						<select class="">
-							<option value="item-1">中国</option>
-							<option value="item-2">美国</option>
-							<option value="item-3">加拿大</option>
-							<option value="item-4">法国</option>
-							<option value="item-5">土耳其</option>
+						<select name="country" class="" id="country">
+							<option value="中国">中国</option>
+							<option value="美国">美国</option>
+							<option value="加拿大">加拿大</option>
+							<option value="法国">法国</option>
+							<option value="土耳其">土耳其</option>
 						</select>
 					</div>
-					<div class="mui-input-row">
+					<div class="mui-input-row" >
 						<label>所在地区:</label>
-						<select class="">
-							<option value="item-1">成都</option>
-							<option value="item-2">重庆</option>
-							<option value="item-3">北京</option>
-							<option value="item-4">上海</option>
-							<option value="item-5">杭州</option>
+						<select name="privence" id="privence" class="">
+							<option value="成都">成都</option>
+							<option value="重庆">重庆</option>
+							<option value="北京">北京</option>
+							<option value="上海">上海</option>
+							<option value="杭州">杭州</option>
 						</select>
 					</div>
 					<div class="mui-input-row">
 						<label>可接件区域:</label>
-						<select class="">
-							<option value="item-1">南充</option>
-							<option value="item-2">绵阳</option>
-							<option value="item-3">泸州</option>
-							<option value="item-4">巴中</option>
-							<option value="item-5">攀枝花</option>
+						<select class="" name="city" id="city">
+							<option value="南充">南充</option>
+							<option value="绵阳">绵阳</option>
+							<option value="泸州">泸州</option>
+							<option value="巴中">巴中</option>
+							<option value="攀枝花">攀枝花</option>
 						</select>
 					</div>
 					<div class="mui-input-row">
 						<label>真实姓名:</label>
-						<input type="text" class="mui-input-clear" placeholder="请输入真实姓名">
+						<input type="text" name="name" class="mui-input-clear" placeholder="请输入真实姓名">
 					</div>
 					<div class="mui-input-row">
 						<label>身份证号码:</label>
-						<input type="text" class="mui-input-clear" placeholder="请输入身份证号码">
+						<input type="text" name="idnumber" class="mui-input-clear" placeholder="请输入身份证号码">
 					</div>
 					<div class="mui-input-row">
 						<label>紧急联络人:</label>
-						<input type="text" class="mui-input-clear" placeholder="请输入紧急联络人姓名">
+						<input type="text" name="contact" class="mui-input-clear" placeholder="请输入紧急联络人姓名">
 					</div>
 					<div class="mui-input-row">
 						<label>联络人手机:</label>
-						<input type="text" class="mui-input-clear" placeholder="请输入联络人手机">
+						<input type="text" name="contactnumber" class="mui-input-clear" placeholder="请输入联络人手机">
 					</div>
 				</form>
 			</ul>
@@ -195,7 +195,7 @@
 				</ul>
 				<div class="mui-input-row mui-checkbox mui-left">
 					<label>同意并接受<a>《服务平台使用规则》</a></label>
-					<input name="checkbox1" type="checkbox" checked>
+					<input name="checkbox" type="checkbox" checked>
 				</div>
 				<div class="mui-btn mui-btn-block" id="up-applay">立即提交</div>
 			</div>
@@ -229,26 +229,80 @@
 							})
 			})
 			
+			// 提交申请快递人
+			document.getElementById("up-applay").addEventListener("click", function(){
+				// 提交数据
+				var err = validate();
+				if(!err){
+					console.log("表单验证成功")
+				} else {
+					console.log(err)
+				}
+			},false)
+			
 		})
 			
-			// 发送数据函数
-			function sendData(url, fileobj){
-				console.log(url+"   " +fileobj.fileName + "  "+fileobj.now.base64Length)
-				/*mui.ajax(url, {
-					data : {
-						// 接口连接发送数据
-					},
-					dataType : "json",
-					type : "POST",
-					success : function(data){
-						console.log(data)
-					},
-					error : function(xhr, type){
-						console.log(type)
-					}
-				})*/
-				
+		// 发送数据函数
+		function sendData(url, fileobj){
+			console.log(url+"   " +fileobj.fileName + "  "+fileobj.now.base64Length)
+			/*mui.ajax(url, {
+				data : {
+					// 接口连接发送数据
+				},
+				dataType : "json",
+				type : "POST",
+				success : function(data){
+					console.log(data)
+				},
+				error : function(xhr, type){
+					console.log(type)
+				}
+			})*/
+			
+		}
+		
+		function validate(){
+			var err = null;
+			var repe = /^.{2,24}$/;			// 姓名匹配正则表达式
+			var reph = /^[0-9]{6,12}$/;		// 电话号码验证表达式
+			var rein = /^[0-9]{10,24}$/;	// 身份证验证正则表达式
+			// 服务平台使用规则
+			if(!$("[name='checkbox']").is(":checked")){
+				err = "请同意服务平台使用规则";
 			}
+			// 验证是否拍照身份证验证
+			var oimg = $(".take-photo");
+			if(oimg.find("img").length != 3){
+				err = "请完善拍照身份证验证";
+			}
+			// 紧急联系人号码
+			var connum = $.trim($("[name='contactnumber']").val());
+			if(!reph.test(connum)){
+				err = "请输入紧急联系人的号码";
+			}
+			// 紧急联系人
+			var contact = $.trim($("[name='contact']").val());
+			if(!repe.test(contact)){
+				err = "请输入紧急联系人";
+			}
+			// 身份证验证
+			var idnum = $.trim($("[name='idnumber']").val());
+			if(!rein.test(idnum)){
+				err = "请输入正确的身份证号";
+			}
+			// 真实姓名验证
+			var name = $.trim($("[name='name']").val());
+			if(!repe.test(name)){
+				err = "请输入您的真实姓名";
+			}
+			// 半身照验证
+			if($("#take-photo").find("img").length == 0){
+				err = "请拍照半身照验证";
+			}
+			
+			return err;
+		}
+			
 		</script>
 	</body>
 </html>
