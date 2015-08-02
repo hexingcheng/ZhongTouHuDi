@@ -124,3 +124,9 @@ function showobj(obj){
 function successcb() {
 	plus.webview.getLaunchWebview().show()
 }
+
+//表单前端验证
+
+function formRegTest(){
+	
+}

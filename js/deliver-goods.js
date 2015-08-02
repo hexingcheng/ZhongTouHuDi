@@ -1,6 +1,9 @@
 var pic = '';
 mui.init({
-	swipeBack: true
+	swipeBack: true,
+	keyEventBind: {
+		backbutton: false  //关闭back按键监听
+	}
 });
 var pageDraft = null;
 mui.back = function() {
@@ -72,6 +75,7 @@ mui.plusReady(function() {
 			anh.nodeValue = h;
 			canvas.setAttributeNode(anw);
 			canvas.setAttributeNode(anh);
+
 
 			ctx.drawImage(that, 0, 0, w, h);
 			// 图像质量
@@ -242,9 +246,7 @@ function setpic(){
 		e.preventDefault();
 		return false;
 	})
-	window.addEventListener('getinfo', function() {
-		var c = plus.webview.currentWebview();
-		alert(c.info)
-		$('#gettextform').val(c.info);
+	window.addEventListener('getinfo', function(eve) {
+		$('#gettext').val(eve.detail.info);
 	})
 })

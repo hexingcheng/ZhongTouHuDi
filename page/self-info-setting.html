@@ -68,7 +68,6 @@
 					openWindow('./about-us.html')
 				})
 				document.getElementById('close').addEventListener('tap', function(e) {
-					alert(1)
 					ifloginCommon(function() {
 						mui.ajax(BASEURL + 'auth/out', {
 							type: "get",

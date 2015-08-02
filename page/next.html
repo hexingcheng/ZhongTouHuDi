@@ -109,7 +109,7 @@
 						getdata.receiverPhone = $('#tel').val();
 						getdata.receiverJd = 10;
 						getdata.receiverWd = 10;
-						getdata.status = 0;
+						getdata.status = 1;
 						showobj(getdata);
 						if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 							mui.ajax(BASEURL + 'order/resOrderByGood', {
@@ -120,7 +120,16 @@
 									if(data.ret==1){
 										mui.toast('发单成功，继续完成支付')
 										openWindow('./order.html')
+									}else if(data.ret==-101){
+										mui.confirm('您还未登陆，请登录！','提示',['确定','取消'],function(e){
+											if(e.index==0){
+												openWindow('../login-up.html');
+											}else{
+												return;
+											}
+										})
 									}
+									showobj(data)
 								},
 								error: function(xhr, type) {
 									console.log(type)
@@ -199,5 +208,4 @@
 			})
 		</script>
 	</body>
-
 </html>
