@@ -8,6 +8,9 @@
 		<link rel="stylesheet" href="../css/mui.listpicker.css" />
 		<link rel="stylesheet" href="../css/mui.poppicker.css" />
 		<style>
+			html,body,.mui-content{
+				background-color: #FFFFFF;
+			}
 			#next-good-form label {
 				font-size: 12px;
 				color: #010101;
@@ -110,7 +113,6 @@
 						getdata.receiverJd = 10;
 						getdata.receiverWd = 10;
 						getdata.status = 1;
-						showobj(getdata);
 						if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 							mui.ajax(BASEURL + 'order/resOrderByGood', {
 								data: getdata,
@@ -129,7 +131,6 @@
 											}
 										})
 									}
-									showobj(data)
 								},
 								error: function(xhr, type) {
 									console.log(type)
