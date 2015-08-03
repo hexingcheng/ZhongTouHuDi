@@ -26,7 +26,7 @@
 		
 		<li class="mui-table-view-cell" style="border-top: 1px solid silver; margin: 0; line-height: 0.5em; padding-bottom: 0.5em;">
             <span style="line-height: 3em;">配送金额</span> 
-			<span class="mui-pull-right" style="color:red;font-size: 1.5em;"><i class="fa fa-usd "></i> <span> 52</span></span></br>
+			<span class="mui-pull-right" style="color:red;font-size: 1.5em;"><i class="fa fa-usd "></i> <span id="detail-money"> 52</span></span></br>
 			<span class="mui-pull-right" style="font-size: 0.7em; color: silver;">(订单完成后，将直接打到你的账户余额)</span>
 	</li>
 	</ul>
@@ -37,7 +37,7 @@
 			<ul class="mui-table-view-cell" style="padding:0;line-height: 1.5em;">
 				<li class="mui-table-view-cell" style="line-height: 1.9em;padding: 0;">
 					<span style="font-size: 0.8em;">预约取件时间</span></br>
-					<span style="line-height: 0.5em;">2015-06-28</span>  <span>05:02</span>
+					<span id="detail-take-date" style="line-height: 0.5em;">2015-06-28 05:02</span>
 	             </li>
 		   </ul>	
 		</div>
@@ -45,7 +45,7 @@
 			<ul class="mui-table-view-cell" style="padding:0;line-height: 1.5em; ">
 				<li class="mui-table-view-cell" style="line-height: 1.9em;padding: 0;">
 					<span style="font-size: 0.8em;">期望到达时间</span></br>
-					<span style="line-height: 0.5em;">2015-06-28</span>  <span>05:02</span>
+					<span id="deltail-arrival-date" style="line-height: 0.5em;">2015-06-28 05:02</span>
 	             </li>
 		   </ul>	
 		</div>
@@ -55,14 +55,14 @@
 	<ul class="mui-table-view" style="margin-bottom: 0.5em;" >
 	 <li class="mui-table-view-cell" >
 	 	<span style="line-height: 2em;"> <b>重要说明:</b></span>
-	 	<span style="color: silver;" > 不可倒置 易碎 12点之前必须送达  不可倒置 易碎 12点之前必须送达</span>
+	 	<span id="detail-info" style="color: silver;" > 不可倒置 易碎 12点之前必须送达  不可倒置 易碎 12点之前必须送达</span>
 	 </li>
 	 </ul>
 	 
 	 <ul class="mui-table-view" style="margin-bottom: 0.5em;" >
 		 <li class="mui-table-view-cell" style="line-height: 3em;" >
 		 <span > <b>发货人:</b></span>
-		 <span style="color: silver;">张三</span>
+		 <span id="detail-sender" style="color: silver;">张三</span>
 		 <span class="mui-pull-right">
 		 	<div class="order_ph mui-pull-right" ><i class="fa fa-phone"></i></div>
 		 	<div class="order_ph mui-pull-right" style="border-right: 1px solid silver;"><i class="fa fa-comment-o"></i></div>
@@ -70,21 +70,21 @@
 		 </li>
 		 <li class="mui-table-view-cell" style="line-height: 1.5em;">
 		     <span><b>发货地：</b></span>
-		     <span style="color: silver;">重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦 重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦</span>
+		     <span id="detail-senderAddress" style="color: silver;">重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦 重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦</span>
 		 </li>
 	 </ul>
 	 <ul class="mui-table-view" style="margin-bottom: 0.5em;" >
 	     <li class="mui-table-view-cell" style="line-height: 3em;" >
-			 <span > <b>收货人:</b></span>
-			 <span style="color: silver;">李四</span>
+			 <span ><b>收货人:</b></span>
+			 <span id="detail-receiver" style="color: silver;">李四</span>
 			 <span class="mui-pull-right">
 			 	<div class="order_ph mui-pull-right" ><i class="fa fa-phone"></i></div>
 			 	<div class="order_ph mui-pull-right" style="border-right: 1px solid silver;"><i class="fa fa-comment-o"></i></div>
 			 </span>
 		</li>
 		 <li class="mui-table-view-cell" style="line-height: 1.5em;">
-		     <span><b>发货地：</b></span>
-		     <span style="color: silver;">重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦 重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦</span>
+		     <span><b>收货地：</b></span>
+		     <span id="detail-receiverAddress" style="color: silver;">重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦 重庆南岸区黄桷垭堡上园1号重庆邮电大学信科大厦</span>
 		 </li>
 	</ul>
 	 <ul class="mui-table-view" style="margin-bottom: 0.5em;" >
@@ -92,14 +92,16 @@
 	 		<span>物品信息</span>
 	     </li>
 	     <li class="mui-table-view-cell" style="line-height: 3em;text-align: center;" >
-	 		<span class="mui-pull-left">名称: <span style="color: silver;">鲜花 </span></span>    <span>重量：<span style="color: silver;">1kg</span></span>    <span class="mui-pull-right">价值：<span style="color: silver;">100元</span></span>
+	 		<span class="mui-pull-left">名称: <span id="detail-gName" style="color: silver;">鲜花 </span></span>    
+	 		<span>重量：<span id="detail-gWeight" style="color: silver;">1kg</span></span>    \
+	 		<span class="mui-pull-right">价值：<span id="detail-gValue" style="color: silver;">100元</span>
+	 		</span>
 	     </li>
-	      <li class="mui-table-view-cell" style="line-height: 3em;" >
+	      <li id="detail-img" class="mui-table-view-cell" style="line-height: 3em;" >
 	      	<span >照片：</span></br>
-	      	<div class="order_photo"><img src="../images/details.jpeg"/></div>
-	      	<div class="order_photo"><img src="../images/details2.jpeg"/></div>
-	      	<div class="order_photo"><img src="../images/details_3.jpeg"/></div>
-	      	
+	      	<div class="order_photo"><img src="../img/pic1.png"/></div>
+	      	<div class="order_photo"><img src="../img/pic2.png"/></div>
+	      	<div class="order_photo"><img src="../img/pic3.png"/></div> 
 	      </li>
 	 </ul>
 	<!--弹出框-->
@@ -120,6 +122,48 @@
 </div>
 </div>
 
+	<script>
+		// 发送的地址值
+		var url = "http://202.202.43.107:8080/api/order/goodShow";
+		mui.plusReady(function(){
+			var cw = plus.webview.currentWebview();
+			var id = cw.orderId + "";
+//			alert(typeof id)
+			sendData(url, id)
+		})
+		
+		// 发送数据
+		function sendData(url, data){
+			var dmoney = document.getElementById("detail-money");		// 配送金额
+			var dtakedate = document.getElementById("detail-take-date");	// 取件时间
+			var darrivaldate = document.getElementById("deltail-arrival-date");		// 到达时间
+			var dinfo = document.getElementById("detail-info");		// 重要说明
+			var dsender = document.getElementById("detail-sender");		// 发送人
+			var dsenderadd = document.getElementById("detail-senderAddress"); 	// 发货地
+			var dreceiver = document.getElementById("detail-receiver"); 	// 收货人
+			var dreciveradd = document.getElementById("detail-receiverAddress"); 	// 收货地
+			var dgname = document.getElementById("detail-gName");		// 货物名称
+			var dgweight = document.getElementById("detail-gWeight")  // 货物重量
+			var dgvalue = document.getElementById("detail-gValue"); 	// 物品价值
+			var dimg = document.getElementById("detail-img").getElementsByTagName("img");	// 物品照片
+//			console.log(url +"   "+ data)
+			mui.ajax(url, {
+				data : {
+					orderId : "04086F8C3963412484CE62A219CD8E31",	// 模拟ID
+					type : "comm"
+				},
+				type : "post",
+				success : function(data){
+//					if(data.ret == 1){
+//						console.log(data.res);
+//					}
+					console.log(JSON.stringify(data))
+				},
+				error : function(xhr, type){
+					console.log("type : " + type)
+				}
+			})
+		}
+	</script>
 </body>
-
 </html>

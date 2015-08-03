@@ -71,10 +71,10 @@
 		<div class="mui-content">
 			<div style="">
 				<div id="segmentedControl" class="mui-segmented-control">
-					<a class="mui-control-item mui-active" href="#item1">接单中</a>
-					<a class="mui-control-item" href="#item2">运送中</a>
-					<a class="mui-control-item" href="#item3">已完成</a>
-					<a class="mui-control-item" href="#item4">已取消</a>
+					<a data-status="1" class="mui-control-item mui-active" href="#item1">接单中</a>
+					<a data-status="2" class="mui-control-item" href="#item2">运送中</a>
+					<a data-status="3" class="mui-control-item" href="#item3">已完成</a>
+					<a data-status="4" class="mui-control-item" href="#item4">已取消</a>
 				</div>
 			</div>
 			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
@@ -92,17 +92,17 @@
 	<script type="text/javascript" src="../js/main.js"></script>
 	<script type="text/html" id="mygetorder">
 		{{each mygetorder}}
-		<div class="ordercontent" title="{{$value.id}}">
+		<div class="ordercontent" title="{{$value.orderId}}">
 			<div class="sendg">寄件</div>
 			<div class="gcontent">
 				<h3 class="mui-text-center h3">
 							<span class="mui-icon mui-icon-email icons"></span>
 							<span class="gName">{{$value.gName}}</span>
-							<a class="mui-pull-right ifshow">{{$value.status}}</a>
+							<a class="mui-pull-right ifshow">{{$value.status == 1 ? "接单中" : $value.status == 2 ? "运送中" : $value.status == 3 ? "已完成" : "已取消"}}</a>
 						</h3>
 				<div class="address">
-					<p>起:<span>{{$value.start}}</span></p>
-					<p>终:<span>{{$value.end}}</span></p>
+					<p>起:<span>{{$value.sendAddr}}</span></p>
+					<p>终:<span>{{$value.receiveAddr}}</span></p>
 				</div>
 				<div class="ordertime">
 					<p class="gettime">订单<span>发布</span>时间:<span>{{$value.time}}</span><span class="mui-pull-right">{{$value.money}}</span></p>
@@ -122,107 +122,40 @@
 		 //});
 		mui.ready(function() {
 			mui('#offCanvasSideScroll').scroll()
-			var data1 = {
-				"mygetorder": [{
-					"id": "986834832",
-					"status": "不显示",
-					"gName": "宝贝",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				}, {
-					"id": "528287646",
-					"status": "不显示",
-					"gName": "宝贝",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				}, {
-					"id": "945291663",
-					"status": "不显示",
-					"gName": "宝贝",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				}, {
-					"id": "274534469",
-					"status": "不显示",
-					"gName": "宝贝",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				}]
+		
+			// 获取后台发单数据显示
+			var url = "http://202.202.43.107:8080/api/order/myGoodList";
+			mui("#segmentedControl").on("tap", ".mui-control-item", function(){
+				var status = this.getAttribute("data-status");
+				sendData(url, status)
+			})
+			
+			// 接单中触发
+			sendData(url, 1);
+			
+			// 发送数据请求
+			function sendData(url, sta){
+				var sendobj = {
+					page : 1,
+					pageSize : 5,
+					type : "send",
+					status : sta+""
+				}
+//				alert(JSON.stringify(sendobj))
+				mui.ajax(url, {
+					data : sendobj,
+					type : "post",
+					success : function(data){
+//						alert(JSON.stringify(data.res))
+						var data = {
+							"mygetorder" : data.res
+						}
+						document.getElementById("item"+sta).innerHTML = template("mygetorder", data);	// 数据渲染
+					}
+				})
 			}
-			var data2 = {
-				"mygetorder": [{
-					"id": "986834832",
-					"status": "不显示",
-					"gName": "玫瑰",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				}]
-			}
-			var data3 = {
-				"mygetorder": [{
-					"id": "986834832",
-					"status": "不显示",
-					"gName": "玫瑰",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				},{
-					"id": "986834832",
-					"status": "不显示",
-					"gName": "玫瑰",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				}]
-			}
-			var data4 = {
-				"mygetorder": [{
-					"id": "986834832",
-					"status": "不显示",
-					"gName": "李鑫其",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				},{
-					"id": "986834832",
-					"status": "不显示",
-					"gName": "玫瑰",
-					"start": "重庆邮电大学",
-					"end": "重庆工商大学",
-					"time": "2015-06-28",
-					"ditailtime": "22:30",
-					"money": "50"
-				}]
-			}
-			var html1 = template('mygetorder', data1);
-			var html2 = template('mygetorder', data2);
-			var html3 = template('mygetorder', data3);
-			var html4 = template('mygetorder', data4);
-			document.getElementById('item1').innerHTML = html1
-			document.getElementById('item2').innerHTML = html2
-			document.getElementById('item3').innerHTML = html3
-			document.getElementById('item4').innerHTML = html4
+			
+			// 发单详情内容显示
 			mui('.mui-control-content').on('tap','.ordercontent',function(){
 				var id = this.title;
 				var param = {
