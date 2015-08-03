@@ -96,7 +96,7 @@ document.getElementById('hlep-son').addEventListener('tap', function() {
 })
 document.getElementById('i-will').addEventListener('tap', function() {
 	iflogin(function() {
-		openWindow('./page/index.html');
+		openWindow('./page/meto_2.html');
 	})
 })
 document.getElementById('help').addEventListener('tap', function() {
