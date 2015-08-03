@@ -186,14 +186,16 @@
 					data : sendobj,
 					type : "post",
 					success : function(data){
-						console.log(JSON.stringify(data));
-						/*if(data.ret == 1){
-							// ============================================后台获取数据
+						if(data.ret == 1){
+							// 请求成功
+							console.log(data.res);
+//							console.log(data.res);
+							
 						} else if (data.ret == 2){
 							mui.toast("接单需要递送人身份");
 						} else {
 							console.log("未知错误");
-						}*/
+						}
 					},
 					error : function(xhr, type){
 						console.log(type);

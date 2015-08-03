@@ -160,7 +160,7 @@
 				</p>
 				<ul id="take-photos" class="mui-table-view mui-grid-view mui-grid-6">
 					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<div class="take-photo">
+						<div data-index="cardPic1" class="take-photo">
 							<span class="mui-icon mui-icon-camera take-icon"></span>
 						</div>
 						<!--<div class="taken-img">
@@ -173,7 +173,7 @@
 						</div>
 					</li>
 					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<div class="take-photo">
+						<div data-index="cardPic1" class="take-photo">
 							<span class="mui-icon mui-icon-camera take-icon"></span>
 						</div>
 					</li>
@@ -183,7 +183,7 @@
 						</div>
 					</li>
 					<li class="mui-table-view-cell mui-media mui-col-xs-6">
-						<div class="take-photo">
+						<div data-index="cardPic1" class="take-photo">
 							<span class="mui-icon mui-icon-camera take-icon"></span>
 						</div>
 					</li>
@@ -203,64 +203,78 @@
 		<script src="../js/jquery.min.js"></script>
 		<script src="../js/comment.js"></script>
 		<script>
-			$('#up-applay').on('tap',function(){
-				mui.alert('您的认证信息填写不全，请填下完整信息，再进行下一步', '提示');
-			})
+			// 表单提交地址
+			var formUrl = "http://202.202.43.107:8080/api/account/applyDeliver";
+			// 图片提交地址
+			var imgUrl = "http://202.202.43.107:8080/api/common/file/imgUp";
+			
 			mui.ready(function(){
+				// 身份证验证图片发送
 				mui("#take-photos").on("tap", ".take-photo", function(){
+					var index = this.getAttribute("data-index")
 					var _parent = this.parentNode;
 					delPhotoMsg({
 								width: 17 * 10, 
 								quality: 0.5
 							}, function(obj){
 								_parent.innerHTML = '<div class="taken-img"><img src="'+ obj.now.base64Char +'" /></div>';
-								sendData("异步发送图片地址", obj);		// 调用函数发送信息
+								sendImgData(imgUrl, obj, index);		// 调用函数发送信息
 							})
 				})
-			// 免冠半身照
-			mui("#take-photo").on("click", ".head-img", function(){
-				var _parent = this.parentNode;
-				delPhotoMsg({
-								width: 17 * 3, 
-								quality: 0.5
-							}, function(obj){
-								_parent.innerHTML = '<img class="userpic mui-pull-right" src="'+ obj.now.base64Char +'" />';
-								sendData("异步发送图片地址", obj);		// 调用函数发送信息
-							})
-			})
+				
+				// 免冠半身照图片发送
+				mui("#take-photo").on("tap", ".head-img", function(){
+					var _parent = this.parentNode;
+					delPhotoMsg({
+									width: 17 * 3, 
+									quality: 0.5
+								}, function(obj){
+									_parent.innerHTML = '<img class="userpic mui-pull-right" src="'+ obj.now.base64Char +'" />';
+									sendData("异步发送图片地址", obj);		// 调用函数发送信息
+								})
+				})
+			
 			
 			// 提交申请快递人
-			document.getElementById("up-applay").addEventListener("click", function(){
+			document.getElementById("up-applay").addEventListener("tap", function(){
 				// 提交数据
 				var err = validate();
 				if(!err){
-					console.log("表单验证成功")
+					var serilize = $("#form-commit").serialize();
+					console.log(serilize)
 				} else {
-					console.log(err)
+					mui.toast(err);
 				}
 			},false)
-			
 		})
+		var da = {}
+		// 验证后发送数据
+		function sendData(){
 			
+		}
+
 		// 发送数据函数
-		function sendData(url, fileobj){
+		function sendImgData(url, fileobj, index){
 			console.log(url+"   " +fileobj.fileName + "  "+fileobj.now.base64Length)
-			/*mui.ajax(url, {
+			mui.ajax(url, {
 				data : {
-					// 接口连接发送数据
+					imgName : fileobj.fileName,
+					imgData : fileobj.now.base64Char,
+					imgLength : fileobj.now.base64Length
 				},
-				dataType : "json",
 				type : "POST",
 				success : function(data){
-					console.log(data)
+//					da[index] = data.res.fid;
+					console.log(data.res.fid)
+					console.log(da)			
 				},
 				error : function(xhr, type){
 					console.log(type)
 				}
-			})*/
-			
+			})
 		}
 		
+		// 验证表单
 		function validate(){
 			var err = null;
 			var repe = /^.{2,24}$/;			// 姓名匹配正则表达式
@@ -270,11 +284,7 @@
 			if(!$("[name='checkbox']").is(":checked")){
 				err = "请同意服务平台使用规则";
 			}
-			// 验证是否拍照身份证验证
-			var oimg = $(".take-photo");
-			if(oimg.find("img").length != 3){
-				err = "请完善拍照身份证验证";
-			}
+			
 			// 紧急联系人号码
 			var connum = $.trim($("[name='contactnumber']").val());
 			if(!reph.test(connum)){
@@ -295,14 +305,23 @@
 			if(!repe.test(name)){
 				err = "请输入您的真实姓名";
 			}
-			// 半身照验证
+			return err;
+		}
+		
+		
+		
+		/*
+		 	// 半身照验证
 			if($("#take-photo").find("img").length == 0){
 				err = "请拍照半身照验证";
 			}
-			
-			return err;
-		}
-			
+			// 验证是否拍照身份证验证
+			var oimg = $(".take-photo");
+			if(oimg.find("img").length != 3){
+				err = "请完善拍照身份证验证";
+			}
+		 * */
+		
 		</script>
 	</body>
 </html>
