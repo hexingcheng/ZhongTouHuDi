@@ -188,7 +188,7 @@
 					success : function(data){
 						if(data.ret == 1){
 							// 请求成功
-							console.log(data.res);
+							console.log(data.res);		// 数据获取为null ===== 回应的
 //							console.log(data.res);
 							
 						} else if (data.ret == 2){
@@ -207,7 +207,8 @@
 			mui('.mui-control-content').on('tap','.ordercontent',function(){
 				var id = this.title;
 				var param = {
-					"orderid":id
+//					"orderId":id
+					"orderId" : 1
 				}
 				openWindow('./order_details.html',param)
 			})
