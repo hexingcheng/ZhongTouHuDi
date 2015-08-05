@@ -43,7 +43,7 @@
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-9">
 				<span>
-					<input class="mui-input-clear" type="text" name="amount" id="amount" value="" placeholder="amount" />
+					<input class="mui-input-clear" type="text" name="amount" id="amount"  placeholder="amount" />
 				</span>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
@@ -62,10 +62,22 @@
 		</ul>
 	</div>
 	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button class="mui-btn button-next">Next Step</button>
+		<button id="next-step" class="mui-btn button-next">Next Step</button>
 	</footer>
+	<script src="../../js/utils.js"></script>
 	<script type="text/javascript" charset="utf-8">
       	mui.init();
+      	mui.plusReady(function(){
+	      	document.getElementById("next-step").addEventListener("tap", function(){
+	      		var val = document.getElementById("amount").value.trim();
+	      		if(val){
+		      		openWindow("my-withdraw-next.html");
+		      	} else {
+		      		mui.toast("请输入需要取现数量")
+		      	}
+	      	},false);
+      	})
+      	
     </script>
 </body>
 </html>

@@ -90,13 +90,22 @@
       	});
       	mui.ready(function(){
       		// 发送给ajax获取余额信息显示
-      		
+      		mui.ajax("http://202.202.43.107:8080/api/wallet/info", {
+      			type : "post",
+      			success : function(data){
+      				console.log(JSON.stringify(data))
+      			},
+      			error : function(xhr, type){
+      				console.log(type)
+      			}
+      		})
       		// 点击链接请求
       		mui("#show-info").on("click", "a", function(eve){
       			eve.preventDefault();
       			var href = this.href;
       			openWindow(href)
       		})
+//    		15123013920 
       	})
     </script>
 </body>
