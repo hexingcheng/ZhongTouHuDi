@@ -1,40 +1,174 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="../js/mui.min.js"></script>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    
-</head>
-<body>
-	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">选择收件人地址</h1>
-	</header>
-	<div class="mui-content">
-		<div class="input">
-			<input  type="text" placeholder="请输入收件人地址"/>
+
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbxX3v0OCgYabsgQcUjrQlF4rGhlL7-2Y&v=3.exp&language=zh-CN&signed_in=true&libraries=places"></script>
+		<style>
+			html,
+			body,
+			.mui-content{
+				height: 100%;
+				width: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			#map-canvas {
+				position: absolute;
+				top: 44px;
+				bottom: 44px;
+				width: 100%;
+			}
+			.controls {
+				margin-top: 16px;
+				border: 1px solid transparent;
+				border-radius: 2px 0 0 2px;
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				height: 32px;
+				outline: none;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+			}
+			#pac-input {
+				background-color: #fff;
+				font-family: Roboto;
+				font-size: 15px;
+				font-weight: 300;
+				padding: 0 11px 0 13px;
+				text-overflow: ellipsis;
+				width: 100%;
+			}
+			#pac-input:focus {
+				border-color: #4d90fe;
+			}
+			.pac-container {
+				font-family: Roboto;
+			}
+			#type-selector {
+				color: #fff;
+				background-color: #4d90fe;
+				padding: 5px 11px 0px 11px;
+			}
+			#type-selector label {
+				font-family: Roboto;
+				font-size: 13px;
+				font-weight: 300;
+			}
+			.mapsure{
+				line-height: 44px;
+				text-align: center;
+			}
+		</style>
+		<title>Places search box</title>
+		<script type="text/javascript">
+			document.addEventListener("plusready", onPlusReady, false);
+
+			function onPlusReady() {
+				plus.geolocation.getCurrentPosition(function(p) {
+					var lat = p.coords.latitude;
+					var lng = p.coords.longitude;
+					initialize(lat, lng);
+				}, function(e) {
+					alert("Geolocation error: " + e.message);
+				}, {
+					provider: "baidu"
+				});
+			}
+
+			function initialize(lat, lng) {
+				console.log(lat)
+				console.log(lng)
+				var markers = [];
+				var myLatLng=new google.maps.LatLng(lat,lng);
+			     var mapOptions={
+			     	zoom:15,
+			     	center:myLatLng,
+			     	disableDefaultUI:true,
+			     	mapTypeId: google.maps.MapTypeId.ROADMAP
+			     };
+				var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+				var marker = new google.maps.Marker({
+					map: map,
+					position: myLatLng,
+					draggable: true
+				})
+//				var defaultBounds = new google.maps.LatLngBounds(
+//					new google.maps.LatLng(lat, lng),
+//					new google.maps.LatLng(lat, lng + 0.002)
+//				);
+//				map.fitBounds(defaultBounds);
+				var input = (document.getElementById('pac-input'));
+				map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+				var searchBox = new google.maps.places.SearchBox((input));
+				google.maps.event.addListener(searchBox, 'places_changed', function() {
+					var places = searchBox.getPlaces();
+					if (places.length == 0) {
+						return;
+					}
+					for (var i = 0, marker; marker = markers[i]; i++) {
+						marker.setMap(null);
+					}
+					markers = [];
+					var bounds = new google.maps.LatLngBounds();
+					for (var i = 0, place; place = places[i]; i++) {
+						var marker = new google.maps.Marker({
+							map: map,
+							//      icon: image,
+							title: place.name,
+							draggable: true,
+							position: place.geometry.location
+						});
+						markers.push(marker);
+						bounds.extend(place.geometry.location);
+					}
+					google.maps.event.addListener(marker, 'dragend', function(e) {
+						alert(marker.getPosition() + "已将你的位置上传至服务器，所有定位以最后一次为准！");
+					});
+					map.fitBounds(bounds);
+					map.setZoom(8);
+				});
+
+				google.maps.event.addListener(map, 'bounds_changed', function() {
+					var bounds = map.getBounds();
+					searchBox.setBounds(bounds);
+				});
+				google.maps.event.addListener(marker, 'dragend', function(e) {
+					alert(marker.getPosition() + "已将你的位置上传至服务器，所有定位以最后一次为准！");
+				});
+			}
+			google.maps.event.addDomListener(onPlusReady, 'load', initialize);
+		</script>
+		<style>
+			#target {
+				width: 345px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">地址选择</h1>
+		</header>
+		<div class="mui-content">
+			<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+			<div id="map-canvas"></div>
 		</div>
-		<div id="map">
-			
+		<div class="mui-text-center mui-bar-footer mui-bar" style="background-color: #ffffff;">
+			<div class="mapsure" id="mapsure">确定</div>
 		</div>
-	</div>
-	<script type="text/javascript" charset="utf-8">
-      	mui.init();
-      	mui.plusReady(function(){
-      		var lat,lot;
-      		plus.geolocation.getCurrentPosition(function(pos){
-      			var lot = pos.coords.longitude;
-      			var lat = pos.coords.latitude;
-      			if(lat&&lot){
-      				
-      			}else{
-      				console.log('获取本地位置信息失败')
-      			}
-      		},function(e){},{provider:"baidu"})
-      	})
-    </script>
-</body>
+		<script>
+			document.getElementById('mapsure').addEventListener('tap',function(){
+				var n = plus.webview.getWebviewById('next');
+				var c = plus.webview.currentWebview();
+				var ad = document.getElementById('pac-input').value;
+				mui.fire(n,'getAddr',{addr:ad});
+				c.close();
+				n.show();
+			})
+		</script>
+	</body>
 </html>

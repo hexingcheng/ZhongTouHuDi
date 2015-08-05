@@ -2,29 +2,10 @@ var pic = '';
 mui.init({
 	swipeBack: true,
 	keyEventBind: {
-		backbutton: false  //关闭back按键监听
+		backbutton: false //关闭back按键监听
 	}
 });
 var pageDraft = null;
-mui.back = function() {
-	var name = $('#gname').val();
-	var weight = $('#gweight').val();
-	var value = parseInt($('#gvalue').val());
-	//	var info = $('#info').val();
-	if (name && weight && value && pic) {
-		mui.confirm('是否存为草稿', '提示', ['是', '否'], function(e) {
-			if (e.index == 0) {
-				//发送ajax,存为草稿;
-				plus.webview.getLaunchWebview().show('slide-in-left', 150);
-			} else {
-				//放弃存为草稿直接返回
-				return;
-			}
-		})
-	} else {
-		plus.webview.getLaunchWebview().show('slide-in-left', 150);
-	}
-}
 var nextpage = null;
 mui.plusReady(function() {
 
@@ -131,7 +112,7 @@ mui.plusReady(function() {
 
 					// 在此过程中还要包base64数据 传到后台                   ====================================
 					console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
-					sendData(BASEURL + "/common/file/imgUp", base,_this);
+					sendData(BASEURL + "/common/file/imgUp", base, _this);
 				})
 			})
 
@@ -163,7 +144,7 @@ mui.plusReady(function() {
 
 
 	// 发送数据
-	function sendData(url, base,context) {
+	function sendData(url, base, context) {
 		var pics
 		mui.ajax(url, {
 			type: "post",
@@ -175,28 +156,26 @@ mui.plusReady(function() {
 			success: function(data) {
 				showobj(data.res)
 				console.log(data.ret);
-				$('.img-item',context).data('picid',data.res.fid);
+				$('.img-item', context).data('picid', data.res.fid);
 				setpic();
 			},
 			error: function(xhr, type) {
-				
-//				此处应移除图片
-
-
+				//				此处应移除图片
 				console.log("错误信息显示：" + type);
 				errorhandle(type);
 			}
 		})
 	}
-function setpic(){
-	var $img = $('.img-item');
-	var len = $img.length;
-	var pics = [];
-	for(var i = 0;i<len;i++){
-		pics[i] = $($img[i]).data('picid');
+
+	function setpic() {
+		var $img = $('.img-item');
+		var len = $img.length;
+		var pics = [];
+		for (var i = 0; i < len; i++) {
+			pics[i] = $($img[i]).data('picid');
+		}
+		pic = pics.join(',');
 	}
-	pic = pics.join(',');
-}
 	mui.back = function() {
 		plus.webview.currentWebview().close()
 	}
@@ -204,18 +183,18 @@ function setpic(){
 		var name = $('#gname').val();
 		var weight = $('#gweight').val();
 		var value = parseInt($('#gvalue').val());
-		//	var info = $('#info').val();
-		if (name && weight && value && pic) {
+		var info = $('#info').val();
+		if (name && weight && value) {
 			var param = {
 				gName: name,
 				gWeight: weight,
 				gValue: value,
-				pics: pic
+				pics: pic,
+				info: info
 			}
 			mui.openWindow({
 				url: '../page/next.html',
 				id: 'next',
-
 				extras: param,
 				createNew: true,
 				show: {
@@ -231,16 +210,24 @@ function setpic(){
 				}
 			})
 		} else {
-			mui.confirm('请填写相关必要信息在进行下一步！','提示',['确认','放弃填写'],function(e){
-				if(e.index==1){
-					plus.webview.getLaunchWebview().show();
-				}else{
-					return;
-				}
-			});
+			handlenotall();
 			return;
 		}
 	})
+	function handlenotall() {
+		var inputs = $('input', '#group');
+		var len = inputs.length;
+		alert(len)
+		for (var i = 0; i < len; i++) {
+			var value = inputs[i].value;
+			if (value == "") {
+				var v = $(inputs[i]).prev().text();
+				var l = $(inputs[i]).prev().text().length;
+				var s = v.substr(0, l - 2)
+				mui.toast(v + "信息未填")
+			}
+		}
+	}
 	document.getElementById('gplain').addEventListener('tap', function(e) {
 		openWindow('./important.html');
 		e.preventDefault();
@@ -248,5 +235,27 @@ function setpic(){
 	})
 	window.addEventListener('getinfo', function(eve) {
 		$('#gettext').val(eve.detail.info);
+	})
+	$('#gweight').blur(function() {
+		var value = this.value;
+		var rep = /^\d+$/;
+		if (rep.test(value)) {
+			return;
+		} else {
+			this.value = "";
+			this.focus();
+			mui.toast('只能输入数字')
+		}
+	})
+	$('#gvalue').blur(function() {
+		var value = this.value;
+		var rep = /^\d+$/;
+		if (rep.test(value)) {
+			return;
+		} else {
+			this.value = "";
+			this.focus();
+			mui.toast('只能输入数字')
+		}
 	})
 })
