@@ -35,7 +35,7 @@
 				right: 20px;
 				top: 10px;
 				height: 35px;
-				width: 35px;
+				width: 60px;
 				line-height: 35px;
 				text-align: center;
 				color: red;
@@ -126,7 +126,6 @@
 					type:'post',
 					data:getorderdata,
 					success:function(data){
-						console.log(data.res[1].gName)
 						var orderdata = {
 							"order":data.res
 						}
@@ -148,13 +147,14 @@
 			mui('.order-content').on('tap','.ocontent',function(){
 				var orderid = $('.oid',$(this)).attr('value');
 				var param = {
-					"orderId":orderid
+					"orderId":orderid,
+					"type":"comm"
 				}
 				mui.openWindow({
-				    url:"./order_details.html",
-				    id:"order-details",
+				    url:"./orderditails.html",
+				    id:"orderditails",
 				    extras:param,
-				    createNew:true,
+				    createNew:false,
 				    waiting:{
 				      autoShow:true,
 				      title:'正在加载...',
