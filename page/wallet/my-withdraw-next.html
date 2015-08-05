@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../css/wallet-coment.css"/>
+    <script src="../../js/mui.min.js"></script>
+    <style type="text/css">
+    	.first-item {position: relative;}
+    	.left-icon {width: 3.5em;height: 3em;background: transparent url(../../img/wallet-logo.png) no-repeat 0 center;}
+    	.pay-pal {color: #002e86;font-size: 1.2em;padding: 0.2em 0;}
+    	.right-con {padding-left: 1em;}
+    	.mui-table-view-cell .mui-icon {font-size: 2em;font-weight: bold;color: #5f5d5d;}
+    	.mui-table-view-cell label {padding: 0.5em 1em 0 0;}
+    	.input-box {margin: 0.4em 0 0 0;width: 80%;}
+    	.input-box input {width: 100%;border: none;background: transparent;}
+    	.mui-btn.button-ok {background-color: #23a0cf;color: #fff;padding: 10px 20%;}
+    	.mui-btn.button-last-step {background-color: #ff8474;color: #fff;padding: 10px 16%;}
+    </style>
+</head>
+<body class="bg-color">
+	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">Withdraw</h1>
+	</header>
+	<div class="mui-content">
+		<ul class="mui-table-view bg-color">
+			<li class="mui-table-view-cell first-item">
+				<span class="left-icon mui-pull-left"></span>
+				<div class="right-con mui-pull-left">
+					<div class="mui-ellipsis pay-pal">PayPal</div>
+					<div class="mui-ellipsis mui-h5">
+						please input your withdraw account
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="table-diviver"></div>
+		<ul class="mui-table-view bg-color">
+			<li class="mui-table-view-cell">
+				<label class="mui-pull-left" for=""><i class="mui-icon mui-icon-person"></i></label>
+				<div class="input-box mui-pull-left">
+					<input type="text" name="name" id="name" value="" placeholder="Name" />
+				</div>
+			</li>
+			<li class="mui-table-view-cell">
+				<label class="mui-pull-left" for=""><i class="mui-icon mui-icon-email"></i></label>
+				<div class="input-box mui-pull-left">
+					<input type="text" name="toacount" id="to-acount" value="" placeholder="To acount" />
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+		<button class="mui-btn button-ok">OK</button>
+		<button class="mui-btn button-last-step">last step</button>
+	</footer>	
+	
+	<script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
