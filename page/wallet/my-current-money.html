@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../../css/mui.min.css"/>
+		<link rel="stylesheet" href="../../css/wallet-coment.css"/>
+		<script src="../../js/mui.min.js"></script>
+		<style type="text/css">
+			#show-info .select-item {padding: 0;text-align: left;}
+			.mui-table-view-chevron .mui-table-view-cell {padding-right: 1em;}
+			.mui-table-view-cell:after {height: 0;}
+		</style>
+	</head>
+	<body class="bg-color">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">My current money</h1>
+		</header>
+		<div class="mui-content">
+			<ul id="show-info" class="mui-table-view mui-grid-9 mui-grid-view">
+				<li class="mui-table-view-cell mui-media mui-col-xs-12">
+					<div class="mui-text-center mui-h1 style-money current-money">
+						286.07
+					</div>
+					<p class="mui-text-center mui-h6">
+						current money
+					</p>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-12 border-top">
+					<a href="my-recharge.html" class="mui-navigate-right select-item">
+						Recharge
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-12 border-top">
+					<a href="my-withdraw.html" class="mui-navigate-right select-item">Withdraw</a>
+				</li>
+			</ul>
+			<!-- 分割线 -->
+			<div class="table-diviver"></div>
+			<!-- 内容说明段 -->
+			<div class="bg-color content-padded">pament records</div>
+			<ul class="mui-table-view mui-table-view-chevron bg-color">
+				<!-- 后期使用模板进行数据渲染 -->
+				<li class="mui-table-view-cell mui-media border-bottom">
+					<div class="mui-pull-right mui-h3 style-coupon fixed-money">
+						-16.0
+					</div>
+					<div class="mui-media-body">
+						<div class="mui-ellipsis">Express reward</div>
+						<p class="mui-ellipsis">18:22 28 Mar 2015</p>
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<div class="mui-pull-right mui-h3 style-point fixed-money">
+						+20.0
+					</div>
+					<div class="mui-media-body">
+						<div class="mui-ellipsis">Car share</div>
+						<p class="mui-ellipsis">18:22 28 Mar 2015</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script src="../../js/utils.js"></script>
+		<script>
+			mui.init()
+			mui("#show-info").on("tap", "a", function(eve){
+				eve.preventDefault()
+				var href = this.href;
+				openWindow(href);
+			})
+		</script>
+	</body>
+</html>

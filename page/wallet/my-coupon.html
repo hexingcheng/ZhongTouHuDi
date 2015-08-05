@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../../js/mui.min.js"></script>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../css/wallet-coment.css"/>
+    <style type="text/css">
+    	.mui-btn.button-ok {background-color: #23a0cf;color: #fff;padding: 10px 20%;}
+    	.mui-btn.button-cancel {background-color: #ff8474;color: #fff;padding: 10px 16%;}
+    	.input-box {height: 3em;padding: 0.3em;border-bottom: 1px solid #ccc;}
+    	#input-code {background-color: #fff;float: left;width: 70%;background-color: #fbf8f8;}
+    	#submit-btn {margin-left: 0.3em;height: 39px;padding: 0 7%;background-color: #c4ebdd;color: #01a76e;font-weight: bold;}
+    	.coupon-caption {font-size: 1.7em;height: 1.2em;line-height: 1.1em;color: #8d8d8d;}
+    	.use-service {color: #b3b3b3;font-size: 16px;}
+    	.money-style {font-size: 19px;font-weight: bold;}
+    	.money-num {font-size: 40px;font-weight: bold;}
+    	.date-color {color: #fab78f;font-size: 14px;}
+    	.mui-table-view-cell.mui-col-xs-3.right-show {height: 99px;line-height: 100px;color: #ff5440;padding: 0;}
+    	.content-divide {height: 10px;}
+    </style>
+</head>
+<body class="bg-color">
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">Coupon</h1>
+	</header>
+	
+	<div class="mui-content">
+		<div class="input-box bg-color mui-clearfix">
+			<input type="text" name="inputcode" id="input-code" value="" placeholder="input code" />
+			<button id="submit-btn" type="button" class="mui-btn">submit</button>
+		</div>
+		<ul style="background: #fff;" class="mui-table-view mui-grid-9 mui-grid-view bg-color">
+			<li class="mui-table-view-cell mui-col-xs-9">
+				<div class="mui-ellipsis mui-text-left coupon-caption">
+					Coupon
+				</div>
+				<p class="mui-h5 mui-ellipsis mui-text-left use-service">Use it in any service</p>
+				<p class="mui-h6 mui-ellipsis mui-text-left date-color">21 Mar 2016</p>
+			</li>
+			<li class="mui-table-view-cell mui-col-xs-3 right-show">
+				<span class="money-style">$</span>
+				<span class="money-num">10</span>
+			</li>
+			
+			<div class="content-divide bg-color"></div>
+			
+			<li class="mui-table-view-cell mui-col-xs-9">
+				<div class="mui-ellipsis mui-text-left coupon-caption">
+					Coupon
+				</div>
+				<p class="mui-h5 mui-ellipsis mui-text-left use-service">Use it in any service</p>
+				<p class="mui-h6 mui-ellipsis mui-text-left date-color">21 Mar 2016</p>
+			</li>
+			<li class="mui-table-view-cell mui-col-xs-3 right-show">
+				<span class="money-style">$</span>
+				<span class="money-num">10</span>
+			</li>
+		</ul>
+	</div>
+	
+	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+		<button class="mui-btn button-ok">OK</button>
+		<button class="mui-btn button-cancel">cancel</button>
+	</footer>
+	
+	<script>
+      	mui.init();
+    </script>
+</body>
+</html>

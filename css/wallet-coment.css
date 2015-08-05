@@ -1,0 +1,30 @@
+.bg-color{
+	background-color: #f2f2f2;
+}
+.table-diviver {
+	background: #dee5e2;
+	height: 14px;
+}
+.border-bottom {
+	border-bottom: 1px solid #e8e8e8;
+}
+.fixed-money {
+	width: 3.5em;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+}
+.mui-content>.mui-table-view:first-child {margin-top: 0;}
+header.mui-bar.mui-bar-nav {background-color: #44ab6e;}
+.mui-action-back {color: #fff;}
+.mui-title {color: #fff}
+.style-money {color: #ff7c1f;}
+.style-point {color: #19b95b;}
+.style-coupon {color: #ff391f;}
+.current-money {padding: 12px 0 7px 0;}
+.text-color {color: #ccc;}
+.content-padded {
+	padding: 0.5em 1em;
+	color: #9f9f9f;
+	border-bottom: 1px solid #e8e8e8;
+}
