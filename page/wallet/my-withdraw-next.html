@@ -56,12 +56,18 @@
 	</div>
 	
 	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button class="mui-btn button-ok">OK</button>
-		<button class="mui-btn button-last-step">last step</button>
+		<button id="ok-btn" class="mui-btn button-ok">OK</button>
+		<button id="last-step-btn" class="mui-btn button-last-step">last step</button>
 	</footer>	
-	
+	<script src="../../js/utils.js"></script>
 	<script type="text/javascript" charset="utf-8">
       	mui.init();
+      	document.getElementById("ok-btn").addEventListener("tap", function(){
+      		openWindow("my-withdraw-result.html");
+      	}, false);
+      	document.getElementById("last-step-btn").addEventListener("tap", function(){
+      		openWindow("my-withdraw-result.html");
+      	}, false);
     </script>
 </body>
 </html>
