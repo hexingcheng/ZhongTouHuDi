@@ -5,20 +5,11 @@ mui.init({
 		backbutton: false //关闭back按键监听
 	}
 });
-var pageDraft = null;
-var nextpage = null;
 mui.plusReady(function() {
 
-	//预加载
-	setTimeout(function() {
-			pageDraft = mui.preload({
-				url: "../page/draft.html",
-				id: "deliver-goods-draft"
-			})
-		}, 200)
 		// 草稿
 	document.getElementById("btn-draft").addEventListener("tap", function() {
-		pageDraft.show("slide-in-right", 150)
+		openWindow('../page/draft.html');
 	});
 
 	// 添加说明
@@ -177,7 +168,7 @@ mui.plusReady(function() {
 		pic = pics.join(',');
 	}
 	mui.back = function() {
-		plus.webview.currentWebview().close()
+		plus.webview.currentWebview().close();
 	}
 	document.getElementById('next-button').addEventListener('tap', function() {
 		var name = $('#gname').val();
@@ -217,7 +208,6 @@ mui.plusReady(function() {
 	function handlenotall() {
 		var inputs = $('input', '#group');
 		var len = inputs.length;
-		alert(len)
 		for (var i = 0; i < len; i++) {
 			var value = inputs[i].value;
 			if (value == "") {
@@ -243,7 +233,6 @@ mui.plusReady(function() {
 			return;
 		} else {
 			this.value = "";
-			this.focus();
 			mui.toast('只能输入数字')
 		}
 	})
@@ -254,7 +243,6 @@ mui.plusReady(function() {
 			return;
 		} else {
 			this.value = "";
-			this.focus();
 			mui.toast('只能输入数字')
 		}
 	})

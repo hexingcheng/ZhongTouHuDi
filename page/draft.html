@@ -55,24 +55,49 @@
 			{{each drafts}}
 			<div class="draft-goods">
 				<div class="name">物品名称：<span class="goods-name">{{$value.gName}}</span></div>
-				<div class="save-time">保存时间：<span class="save-goods-time">{{$value.sTime}}</span></div>
+				<div class="save-time">保存时间：<span class="save-goods-time">{{$value.time}}</span></div>
 				<div class="draft-write editer"><a>编辑</a></div>
+				<input type="hidden" value="{{$value.orderId}}"/>
 			</div>
 			{{/each}}
 		</script>
+		<script type="text/javascript" src="../js/utils.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
-//content();
-//			function addcontent() {
-//				var html = template('drafts', data);
-//				document.getElementById('content').innerHTML = html;
-//				mui('.draft-goods').on('tap','div',function(){
-//					alert(1)
-//				})
-//			}
+			 //content();
+			 //			function addcontent() {
+			 //				var html = template('drafts', data);
+			 //				document.getElementById('content').innerHTML = html;
+			 //				mui('.draft-goods').on('tap','div',function(){
+			 //					alert(1)
+			 //				})
+			 //			}
+			mui.plusReady(function() {
+				mui.ajax(BASEURL + 'order/draftList', {
+					type: 'post',
+					data: {
+						page: 1,
+						pageSize: 10
+					},
+					success: function(data) {
+						var draftdata = {
+							"drafts": data.res
+						}
+						var html = template('drafts', draftdata);
+						document.getElementById('content').innerHTML = html;
+						edit();
+					},
+					error: function(type) {
+						console.log(type)
+					}
+				})
 
-			mui.plusReady(function(){
-				
+				function edit() {
+					$('.draft-goods').on('tap', function() {
+						var id = $('input',$(this)).get(0).value;
+						alert(id)
+					})
+				}
 			})
 		</script>
 	</body>
