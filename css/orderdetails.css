@@ -202,3 +202,11 @@ html,body,.mui-content{
 	line-height: 44px;
 	background-color: rgb(242, 163, 17);
 }
+.showpic{
+	padding: 10px 0;
+}
+.showpic img{
+	height: 60px;
+	width: 60px;
+	margin-right: 10px;
+}

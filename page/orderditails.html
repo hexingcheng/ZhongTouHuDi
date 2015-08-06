@@ -107,14 +107,18 @@
 						<div class="giveadv">评价订单</div>-->
 					</div>
 				</div>
+				<!--<div class="yijia">
+					<div class="y-title">请输入加价金额</div>
+					
+				</div>-->
 			</div>
 		</div>
-		<div class="mui-bar-footer mui-bar" style="background-color: #ffffff;">
+		<div class="mui-bar-footer mui-bar">
 			<div class="fl charg">议价</div>
 			<div class="fr getorder">抢单</div>
-			<!--<div class="cancel">取消订单</div>
-			<div class="fl charg">修改订单</div>
-			<div class="fr getorder">重新发送</div>-->
+			<div class="cancel mui-hidden">取消订单</div>
+			<div class="fl charg mui-hidden">修改订单</div>
+			<div class="fr getorder mui-hidden">重新发送</div>
 		</div>
 	<script src="../js/mui.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.min.js" ></script>
@@ -165,7 +169,6 @@
 				"orderId":c.orderId,
 				"type":c.type
 			}
-			console.log(orderdata.orderId)
 			handletemplat(orderdata);
 		})
 		function handletemplat(obj){
@@ -175,15 +178,40 @@
 				success:function(data){
 					if(data.ret == 1){
 						$('.showwait').remove();
-						console.log(data.res.pics)
 						var html = template("detials", data.res)
-						$('.detials-content').html(html)
+						alert(1)
+													showobj(data.res)
+						$('.detials-content').html(html);
+						orderhandle();
+						if(data.res.pics){
+							var pics = data.res.pics.split(',');
+							renderpic(pics);
+						}else{
+							$('.showpic').text('此订单无图片')
+						}
 					}
 				},
 				error:function(xhr,type,errorThrown){
 					console.log(type)
 				}
 			});
+		}
+		function orderhandle(){
+			$('.charg').on('tap',function(){
+				
+			})
+			$('.getorder').on('tap',function(){
+				
+			})
+		}
+		function renderpic(picarr){
+			var n = BASEURL.indexOf('/api/');
+			var per = BASEURL.substring(0,n);
+			var len = picarr.length;
+			for(var i = 0; i<len;i++){
+				var url = per+picarr[i];
+				$('<img src='+url+'>').appendTo('.showpic')
+			}
 		}
 	</script>
 </body>

@@ -93,17 +93,19 @@
 					c.setStyle({
 						scrollIndicator: 'none'
 					})
-					var getdata = {}
+					
 					$('#draft').on('tap', function() {
 						openWindow('./draft.html');
 					})
 					$('.mui-bbtn').on('tap', function() {
+						alert(1)
+						var getdata = {}
 						getdata.gName = c.gName;
 						getdata.gValue = c.gValue;
 						getdata.gWeight = c.gWeight;
 						getdata.pics = c.pics;
 						getdata.info = c.info;
-						getdata.money = $('#pay').val();
+						getdata.money = parseInt($('#pay').val());
 						getdata.getTime = $('#gettime').val();
 						getdata.finTime = $('#respecttime').val();
 						getdata.senderAddress = $('#getaddr').val();
@@ -119,6 +121,7 @@
 						getdata.receiverWd = 10;
 						getdata.insType = $('#comer').val();
 						getdata.status = 1;
+						showobj(getdata)
 						if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 							mui.ajax(BASEURL + 'order/resOrderByGood', {
 								data: getdata,
@@ -126,7 +129,7 @@
 								success: function(data) {
 									if (data.ret == 1) {
 										mui.toast('发单成功，继续完成支付')
-										openWindow('./order.html')
+										plus.webview.getLaunchWebview().show('slide-in-left')
 									} else if (data.ret == -101) {
 										mui.confirm('您还未登陆，请登录！', '提示', ['确定', '取消'], function(e) {
 											if (e.index == 0) {
@@ -213,7 +216,6 @@
 				}
 				mui.back = function() {
 					var c = plus.webview.currentWebview()
-					alert(c.gName)
 					var getdata = {};
 					getdata.gName = c.gName;
 					getdata.gValue = c.gValue;
@@ -237,12 +239,15 @@
 					getdata.status = 0;
 					if (getdata.gName && getdata.gValue && getdata.insType && getdata.money && getdata.getTime && getdata.finTime && getdata.senderAddress && getdata.receiverAddress && getdata.receiverAddress && getdata.senderPhone && getdata.sendJd && getdata.sendWd && getdata.receiver && getdata.receiverPhone && getdata.receiverJd && getdata.receiverWd) {
 						mui.confirm('您已经填写了相关必要信息，是否保存返回？', '提示', ['确定', '取消'], function(e) {
-							if (e.index = 0) {
+							if (e.index == 0) {
+								alert(1)
 								mui.ajax(BASEURL + 'order/resOrderByGood', {
 									type: 'post',
 									data: getdata,
 									success: function(data){
-										console.log(data.ret)
+										console.log(data.ret);
+										plus.webview.getWebviewById('deliver-goods').close();
+										plus.webview.currentWebview().close();
 										plus.webview.getLaunchWebview().show('slide-in-left');
 										mui.toast('保存草稿成功！')
 									}
@@ -252,6 +257,8 @@
 							}
 						})
 					}else{
+						plus.webview.getWebviewById('deliver-goods').close();
+						plus.webview.currentWebview().close();
 						plus.webview.getLaunchWebview().show('slide-in-left');
 					}
 				}
@@ -262,7 +269,6 @@
 						return;
 					} else {
 						this.value = "";
-						this.focus();
 						mui.toast('只能输入数字')
 					}
 				})
@@ -273,7 +279,6 @@
 						return;
 					} else {
 						this.value = "";
-						this.focus();
 						mui.toast('只能输入手机号码')
 					}
 				})
@@ -284,7 +289,6 @@
 						return;
 					} else {
 						this.value = "";
-						this.focus();
 						mui.toast('只能输入手机号码')
 					}
 				})

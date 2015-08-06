@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			html,
+			body,
+			.mui-content {
+				background-color: #FFFFFF;
+			}
+			.mui-bar {
+				background-color: #3ba767;
+			}
+			.mui-bar h1,
+			.mui-bar a {
+				color: #FFFFFF;
+			}
+			.draft {
+				color: #FFFFFF;
+			}
+			@font-face {
+				font-family: "iconfont";
+				src: url('../../icon/iconfont.eot');
+				/* IE9*/
+				
+				src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+				/* IE6-IE8 */
+				
+				url('../../icon/iconfont.woff') format('woff'),
+				/* chrome、firefox */
+				
+				url('../../icon/iconfont.ttf') format('truetype'),
+				/* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+				
+				url('../../icon/iconfont.svg#iconfont') format('svg');
+				/* iOS 4.1- */
+			}
+			.iconfont {
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			.icon-wenjian:before {
+				content: "\e600";
+			}
+			.mui-scroll-wrapper {
+				margin-top: 44px;
+				margin-bottom: 44px;
+			}
+			.fl {
+				float: left;
+			}
+			.fr {
+				float: right;
+			}
+			.clear {
+				zoom: 1;
+			}
+			.clear:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			.wid10 {
+				width: 10%;
+			}
+			.wid30 {
+				width: 30%;
+			}
+			.wid60 {
+				width: 60%;
+			}
+			.wid80 {
+				width: 80%;
+			}
+			.wid90 {
+				width: 90%;
+			}
+			.hei80 {
+				height: 80px;
+			}
+			.linehei {
+				line-height: 80px;
+			}
+			.paddl10 {
+				padding-left: 10px;
+			}
+			.color5f {
+				color: #5f5d5d;
+			}
+			.iptwrap {
+				height: 40px;
+				margin: 20px 0;
+			}
+			.iptwrap input {
+				border: 0;
+				background-color: #F7F5F5;
+				color: #219B52;
+				height: 30px margin: 5px 0;
+			}
+			.tet {
+				text-align: center;
+				line-height: 80px;
+				color: #a1a1a1;
+			}
+			.gap {
+				height: 10px;
+				background-color: #F2F2F2;
+			}
+			.time input {
+				border: 0;
+			}
+			.addborb,
+			.times,
+			.address,
+			.host,
+			.phone ,.receiver{
+				border-bottom: 1px solid #e8e8e8;
+			}
+			#footer {
+				height: 60px;
+				background-color: #FFFFFF;
+				padding: 10px 20px;
+			}
+			.next-step {
+				text-align: center;
+				background-color: #3ba767;
+				width: 100%;
+				height: 100%;
+				line-height: 40px;
+				color: #ceefe4;
+			}
+			.insurea{
+				color: #5F5D5D;
+			}
+			.insure{
+				padding-bottom: 10px;
+			}
+			.order-content{
+				padding-bottom: 50px;
+			}
+			.lmar{
+				margin-left: -10px;
+			}
+			#radio:before{
+				color: #3ba767;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">create order</h1>
+			<span class="mui-icon iconfont icon-wenjian mui-pull-right draft"></span>
+		</header>
+		<footer class="mui-bar mui-bar-footer" id="footer">
+			<div class="next-step" id="next">Next Step</div>
+		</footer>
+		<div class="mui-content">
+			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="order-content">
+						<div class="reword clear">
+							<div class="fl wid30 hei80 paddl10 color5f linehei">Reword</div>
+							<div class="fl wid60 hei80">
+								<div class="iptwrap mui-input-row">
+									<input type="number" class="ipt mui-input-clear" />
+								</div>
+							</div>
+							<div class="fr wid10 hei80 tet">
+								$
+							</div>
+						</div>
+						<div class="gap"></div>
+						<div class="times">
+							<div class="clear">
+								<div class="fl wid10 hei80 linehei mui-text-right">
+									<span class="mui-icon mui-icon-flag"></span>
+								</div>
+								<div class="fl wid80 hei80 linehei addborb">
+									<div class="mui-input-row time">
+										<input type="text" class="mui-input-clear" placeholder="Pickup Time" />
+									</div>
+								</div>
+								<div class="fr wid10 hei80 linehei tet addborb">
+									<span class="mui-icon mui-icon-arrowright"></span>
+								</div>
+							</div>
+							<div class="arrtime clear">
+								<div class="fl wid10 hei80 linehei mui-text-right">
+									<span class="mui-icon mui-icon-locked"></span>
+								</div>
+								<div class="fl wid80 hei80 linehei">
+									<div class="mui-input-row time">
+										<input type="text" class="mui-input-clear" placeholder="Arrival Time" />
+									</div>
+								</div>
+								<div class="fr wid10 hei80 linehei tet">
+									<span class="mui-icon mui-icon-arrowright"></span>
+								</div>
+							</div>
+						</div>
+						<div class="gap"></div>
+						<div class="address">
+							<div class="clear">
+								<div class="fl wid10 hei80 linehei mui-text-right">
+									<span class="mui-icon mui-icon-location"></span>
+								</div>
+								<div class="fl wid80 hei80 linehei addborb">
+									<div class="mui-input-row time">
+										<input type="text" class="mui-input-clear" placeholder="Pickup Address" />
+									</div>
+								</div>
+								<div class="fr wid10 hei80 linehei tet addborb">
+									<span class="mui-icon mui-icon-bars"></span>
+								</div>
+							</div>
+							<div class="arrtime clear">
+								<div class="fl wid10 hei80 linehei mui-text-right">
+									<span class="mui-icon mui-icon-map"></span>
+								</div>
+								<div class="fl wid80 hei80 linehei">
+									<div class="mui-input-row time">
+										<input type="text" class="mui-input-clear" placeholder="Arrival Time" />
+									</div>
+								</div>
+								<div class="fr wid10 hei80 linehei tet">
+									<span class="mui-icon mui-icon-bars"></span>
+								</div>
+							</div>
+						</div>
+						<div class="gap"></div>
+						<div class="host clear">
+							<div class="fl wid10 hei80 linehei mui-text-right">
+								<span class="mui-icon mui-icon-person"></span>
+							</div>
+							<div class="fl wid80 hei80 linehei">
+								<div class="mui-input-row time">
+									<input type="text" class="mui-input-clear" placeholder="Host" />
+								</div>
+							</div>
+							<div class="fr wid10 hei80 linehei tet">
+								<span class="mui-icon mui-icon-contact"></span>
+							</div>
+						</div>
+						<div class="phone clear">
+							<div class="fl wid10 hei80 linehei mui-text-right">
+								<span class="mui-icon mui-icon-phone"></span>
+							</div>
+							<div class="fl wid90 hei80 linehei">
+								<div class="mui-input-row time">
+									<input type="text" class="mui-input-clear" placeholder="Phone" />
+								</div>
+							</div>
+						</div>
+						<div class="gap"></div>
+						<div class="receiver clear">
+							<div class="fl wid10 hei80 linehei mui-text-right">
+								<span class="mui-icon mui-icon-personadd"></span>
+							</div>
+							<div class="fl wid80 hei80 linehei">
+								<div class="mui-input-row time">
+									<input type="text" class="mui-input-clear" placeholder="receiver" />
+								</div>
+							</div>
+							<div class="fr wid10 hei80 linehei tet">
+								<span class="mui-icon mui-icon-contact"></span>
+							</div>
+						</div>
+						<div class="phone clear">
+							<div class="fl wid10 hei80 linehei mui-text-right">
+								<span class="mui-icon mui-icon-phone"></span>
+							</div>
+							<div class="fl wid90 hei80 linehei">
+								<div class="mui-input-row time">
+									<input type="text" class="mui-input-clear" placeholder="Phone" />
+								</div>
+							</div>
+						</div>
+						<div class="insure">
+							<form class="mui-input-group">
+								<div class="mui-input-row mui-checkbox mui-left">
+									<label class="insurea lmar">Buy safety insurance $5</label>
+									<input name="radio1" type="checkbox" class="lmar" id="radio">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<script type="text/javascript" src="../../js/jquery.min.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				mui('#offCanvasSideScroll').scroll();
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				})
+			})
+		</script>
+	</body>
+
+</html>
