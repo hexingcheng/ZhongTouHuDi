@@ -11,19 +11,11 @@
 		<style>
 			html,
 			body,
-			.mui-content {
-				background-color: #FFFFFF;
-			}
-			.addlmar {
-				margin-left: 30px;
-			}
-			.user {
-				border-radius: 50%;
-			}
-			#offCanvasSide{
-				height: 100%;
-				background-color: #FFFFFF;
-			}
+			.mui-content {background-color: #FFFFFF;}
+			.addlmar {margin-left: 30px;}
+			.user {border-radius: 50%;}
+			#offCanvasSide{height: 100%;background-color: #FFFFFF;}
+			
 		</style>
 	</head>
 	<body>
@@ -101,9 +93,16 @@
 			<!--主界面-->
 			<div class="mui-inner-wrap">
 				<header class="mui-bar mui-bar-nav">
-					<a class="mui-icon mui-icon-person mui-pull-left" href="#offCanvasSide" tyle="color: #000000;"></a>
-					<h1 class="mui-title">Project</h1>
-					<a class="mui-icon mui-icon-chat mui-pull-right" id="chat-info" style="color: #000000;"></a>
+					<a class="mui-pull-left slider-menu" href="#offCanvasSide">
+						<div class="headimg-box">
+							<img src="img/user.png" width="90%"/>
+						</div>
+					</a>
+					<h1 class="mui-title title-box">
+						<div class="mui-ellipsis mui-text-left index-title">Product Name</div>
+						<p class="mui-h5 mui-ellipsis mui-text-left subindex-title">make your life better</p>
+					</h1>
+					<a class="mui-icon mui-icon-chat mui-pull-right" id="chat-info" style="color: #fd8b01;padding-top: 0.7em;"></a>
 				</header>
 				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
 					<div class="mui-scroll">
@@ -146,36 +145,40 @@
 						<!--设置部分-->
 						<div class="setting clearfix">
 							<div class="mui-pull-left">Life Services</div>
-							<div class="setting-right">click to add/removeservices<span class="mui-icon mui-icon-gear"></span>
+							<div class="setting-right">
+								<span class="mui-h6">click to add/removeservices</span>
+								<span class="mui-icon mui-icon-gear-filled add-remove"></span>
 							</div>
 						</div>
 						<!--功能模块-->
 						<ul class="mui-table-view mui-grid-view">
 							<li class="mui-table-view-cell mui-media mui-col-xs-6">
 								<div>
-									<img class="mui-media-object" src="./img/pic1.png" id="hlep-son">
+									<img class="mui-media-object" src="img/create-order.png" id="hlep-son">
 								</div>
 							</li>
 							<li class="mui-table-view-cell mui-media mui-col-xs-6">
 								<div href="#">
-									<img class="mui-media-object" src="./img/pic2.png" id="i-will">
+									<img class="mui-media-object" src="img/search-order.png" id="i-will">
 								</div>
 							</li>
 							<li class="mui-table-view-cell mui-media mui-col-xs-6">
 								<div href="#">
-									<img class="mui-media-object" src="./img/pic3.png" id="get-info">
+									<img class="mui-media-object" src="img/trip-plan.png" id="get-info">
 								</div>
 							</li>
 							<li class="mui-table-view-cell mui-media mui-col-xs-6">
 								<div href="#">
-									<img class="mui-media-object" src="./img/pic4.png" id="add-menu">
+									<img class="mui-media-object" src="img/my-order.png" id="add-menu">
 								</div>
 							</li>
 						</ul>
 					</div>
 				</div>
-				<div class="mui-text-center mui-bar-footer mui-bar" style="background-color: #ffffff;">
-					<div class="help-me" id="help"></div>
+				<div class="mui-text-center mui-bar-footer mui-bar">
+					<div class="help-me" id="help">
+						<img src="img/menu-btn.png" width="100%" height="50"/>
+					</div>
 				</div>
 				<div class="mui-off-canvas-backdrop"></div>
 			</div>

@@ -4,7 +4,7 @@ var offCanvasWrapper = mui('#offCanvasWrapper');
 var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
 var offCanvasSide = document.getElementById("offCanvasSide");
 var classList = offCanvasWrapper[0].classList;
-classList.remove('mui-slide-in');
+classList.add('mui-slide-in');
 offCanvasWrapper.offCanvas().refresh();
 offCanvasSide.classList.remove('mui-transitioning');
 offCanvasSide.setAttribute('style', '');
