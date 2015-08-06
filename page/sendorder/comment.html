@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body,
+			.mui-content {
+				background-color: #FFFFFF
+			}
+			.mui-bar {
+				background-color: #3ba767;
+			}
+			.mui-bar a,
+			.mui-bar h1 {
+				color: #FFFFFF
+			}
+			.mui-scroll-wrapper {
+				margin-top: 44px;
+			}
+			.gap {
+				margin-top: -5px;
+				height: 10px;
+				background-color: #F2F2F2;
+			}
+			textarea {
+				margin-bottom: 0;
+			}
+			.texta {
+				position: relative;
+			}
+			.tips {
+				position: absolute;
+				bottom: 10px;
+				right: 0;
+				padding-right: 10px;
+				color: #bec0c2;
+			}
+			.description ,.remark{
+				padding: 10px;
+			}
+			.title {
+				color: #5f5d5d;
+				font-weight: normal;
+				font-size: 17px;
+			}
+			.can-choose {
+				padding: 10px 10px 30px 0;
+			}
+			.can-choose span {
+				border-radius: 5px;
+				border: 1px solid #fc9b29;
+				margin-bottom: 10px;
+				display: inline-block;
+				padding: 10px;
+				background-color: #fff3e5;
+				color: #fc9b29;
+			}
+			.remark-con{
+				color: #818384;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">Comment</h1>
+		</header>
+		<div class="mui-content">
+			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="texta">
+						<div class="mui-input-row">
+							<textarea rows="7" placeholder="Example"></textarea>
+						</div>
+						<div class="tips">can accommodate 100 words</div>
+					</div>
+					<div class="gap"></div>
+					<div class="description">
+						<h3 class="title">Type Description</h3>
+						<div class="can-choose">
+							<span class="choose">valuables</span>
+							<span class="choose">don't un pack</span>
+							<span class="choose">put carful</span>
+							<span class="choose">no water</span>
+							<span class="choose">can't press</span>
+							<span class="choose">trian</span>
+						</div>
+					</div>
+					<div class="gap"></div>
+					<div class="remark">
+						<h3 class="title">Remark</h3>
+						<div class="remark-con">must arrve in two days,there are fragile things inside</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../js/jquery.min.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				var off = true;
+				$('.choose').on('tap',function(){
+					if(off){
+						$(this).css({
+							'color':'#fce7e4',
+							'background-color':'#fc9b29'
+						})
+						off = false;
+					}else{
+						$(this).css({
+							'color':'#fc9b29',
+							'background-color':'#fff3e5'
+						});
+						off = true;
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

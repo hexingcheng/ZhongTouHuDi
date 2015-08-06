@@ -93,17 +93,19 @@
 					c.setStyle({
 						scrollIndicator: 'none'
 					})
-					var getdata = {}
+					
 					$('#draft').on('tap', function() {
 						openWindow('./draft.html');
 					})
 					$('.mui-bbtn').on('tap', function() {
+						alert(1)
+						var getdata = {}
 						getdata.gName = c.gName;
 						getdata.gValue = c.gValue;
 						getdata.gWeight = c.gWeight;
 						getdata.pics = c.pics;
 						getdata.info = c.info;
-						getdata.money = $('#pay').val();
+						getdata.money = parseInt($('#pay').val());
 						getdata.getTime = $('#gettime').val();
 						getdata.finTime = $('#respecttime').val();
 						getdata.senderAddress = $('#getaddr').val();
@@ -119,6 +121,7 @@
 						getdata.receiverWd = 10;
 						getdata.insType = $('#comer').val();
 						getdata.status = 1;
+						showobj(getdata)
 						if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 							mui.ajax(BASEURL + 'order/resOrderByGood', {
 								data: getdata,
@@ -126,7 +129,7 @@
 								success: function(data) {
 									if (data.ret == 1) {
 										mui.toast('发单成功，继续完成支付')
-										openWindow('./order.html')
+										plus.webview.getLaunchWebview().show('slide-in-left')
 									} else if (data.ret == -101) {
 										mui.confirm('您还未登陆，请登录！', '提示', ['确定', '取消'], function(e) {
 											if (e.index == 0) {

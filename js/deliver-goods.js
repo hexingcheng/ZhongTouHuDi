@@ -172,9 +172,9 @@ mui.plusReady(function() {
 	}
 	document.getElementById('next-button').addEventListener('tap', function() {
 		var name = $('#gname').val();
-		var weight = $('#gweight').val();
+		var weight = parseInt($('#gweight').val());
 		var value = parseInt($('#gvalue').val());
-		var info = $('#info').val();
+		var info = $('#gettext').val();
 		if (name && weight && value) {
 			var param = {
 				gName: name,

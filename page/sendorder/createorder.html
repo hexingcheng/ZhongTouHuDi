@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+			html,
+			body,
+			.mui-content {
+				background-color: #FFFFFF;
+			}
+			.mui-bar {
+				background-color: #3ba767;
+			}
+			.mui-bar h1,
+			.mui-bar a {
+				color: #FFFFFF;
+			}
+			.draft {
+				color: #FFFFFF;
+			}
+			@font-face {
+				font-family: "iconfont";
+				src: url('../../icon/iconfont.eot');
+				/* IE9*/
+				
+				src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+				/* IE6-IE8 */
+				
+				url('../../icon/iconfont.woff') format('woff'),
+				/* chrome、firefox */
+				
+				url('../../icon/iconfont.ttf') format('truetype'),
+				/* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+				
+				url('../../icon/iconfont.svg#iconfont') format('svg');
+				/* iOS 4.1- */
+			}
+			.iconfont {
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			.icon-wenjian:before {
+				content: "\e600";
+			}
+			.mui-scroll-wrapper{
+				margin-top: 44px;
+			}
+			.fl{
+				float: left;
+			}
+			.fr{
+				float: right;
+			}
+			.clear{
+				zoom: 1;
+			}
+			.clear:after{
+				content: "";				
+				display: block;
+				clear: both;
+			}
+			.wid30{
+				width: 30%;
+			}
+			.wid70{
+				width: 70%;
+			}
+			.paddl10{
+				padding-left: 10px;
+			}
+			.paddr10{
+				padding-right: 10px;
+			}
+			.hei110{
+				height: 80px;
+			}
+			.linehei110{
+				line-height: 80px;
+			}
+			.linehei68{
+				line-height: 30px;
+			}
+			.iptwrap{
+				padding: 0;
+				margin: 20px 0;
+				height: 40px;
+				border-radius: 10px;
+			}
+			.iptwrap input{
+				border: 0;
+				background-color: #F7F5F5;
+				color: #219B52;
+				margin: 0;
+				height: 30px
+				margin: 5px 0;
+				
+			}
+			.colorgray{
+				color: #5f5d5d;
+			}
+			.colorg{
+				color: #bec0c2;
+			}
+			.gap{
+				height: 10px;
+				background-color: #F2F2F2;
+			}
+			#border-none{
+				background-color: #FFFFFF;
+			}
+			.wid20{
+				width: 20%;
+			}
+			.wid50{
+				width: 50%;
+			}
+			.gWeight,.gValue{
+				border-bottom: 1px solid #E8E8E8;
+			}
+			.fr{
+				color: #a1a1a1;
+			}
+			.addborder{
+				border-left: 1px solid #e8e8e8;
+			}
+			.wid40{
+				width: 40%;
+			}
+			.goods-pic span{
+				border: 1px solid #e6e1e1;
+				padding: 15px;
+				background-color: #fdfcfc;
+			}
+			#footer{
+				height: 60px;
+				background-color: #FFFFFF;
+				padding: 10px 20px;
+			}
+			.next-step{
+				text-align: center;
+				background-color: #3ba767;
+				width: 100%;
+				height: 100%;
+				line-height: 40px;
+				color: #ceefe4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">create order</h1>
+			<span class="mui-icon iconfont icon-wenjian mui-pull-right draft"></span>
+		</header>
+		<footer class="mui-bar mui-bar-footer" id="footer">
+			<div class="next-step" id="next">Next Step</div>
+		</footer>
+		<div class="mui-content">
+			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="order-content">
+						<div class="gName clear hei110">
+							<div class="wid30 paddl10 fl hei110 linehei110 colorg">
+								<span class="mui-icon mui-icon-person colorgray"></span>
+								Name
+							</div>
+							<div class="wid70 paddr10 fl hei110">
+								<div class="iptwrap mui-input-row">
+									<input type="text" class="linehei68 mui-input-clear"/>
+								</div>
+							</div>
+						</div>
+						<div class="gap"></div>
+						<div class="gWeight clear">
+							<div class="wid30 paddl10 fl hei110 linehei110 colorg">
+								<span class="mui-icon mui-icon-person colorgray"></span>
+								Weight
+							</div>
+							<div class="wid50 paddr10 fl hei110">
+								<div class="iptwrap mui-input-row">
+									<input type="number" class="linehei68 mui-input-clear" id="border-none"/>
+								</div>
+							</div>
+							<div class="fr hei110 linehei110 wid20 addborder paddl10" id="change-w">Kg
+								<span class="mui-icon mui-icon-loop"></span>
+							</div>
+						</div>
+						<div class="gValue clear">
+							<div class="wid30 paddl10 fl hei110 linehei110 colorg">
+								<span class="mui-icon mui-icon-person colorgray"></span>
+								Weight
+							</div>
+							<div class="wid50 paddr10 fl hei110">
+								<div class="iptwrap mui-input-row">
+									<input type="number" class="linehei68 mui-input-clear" id="border-none"/>
+								</div>
+							</div>
+							<div class="fr hei110 linehei110 wid20 paddl10">$
+								<!--<span class="mui-icon mui-icon-loop"></span>-->
+							</div>
+						</div>
+						<div class="info clear" id="info">
+							<div class="wid40 paddl10 fl hei110 linehei110 colorg">
+								<span class="mui-icon mui-icon-person colorgray"></span>
+								Comment
+							</div>
+							<div class="wid40 paddr10 fl hei110">
+								<div class="iptwrap mui-input-row">
+									<input type="number" class="linehei68 mui-input-clear" id="border-none"/>
+								</div>
+							</div>
+							<div class="fr hei110 linehei110 wid20 paddl10">
+								<span class="mui-icon mui-icon-arrowright"></span>
+							</div>
+						</div>
+						<div class="gap"></div>
+						<div class="goods-pic">
+							<ul class="mui-table-view mui-grid-view">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3">
+									<a>
+										<span class="mui-icon mui-icon-plusempty"></span>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3">
+									<a>
+										<span class="mui-icon mui-icon-plusempty"></span>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3">
+									<a>
+										<span class="mui-icon mui-icon-plusempty"></span>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3">
+									<a>
+										<span class="mui-icon mui-icon-plusempty"></span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<scrip
+	<script type="text/javascript" src="../../js/utils.js" ></script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		mui.plusReady(function(){
+			mui('#offCanvasSideScroll').scroll();
+			plus.webview.currentWebview().setStyle({
+				scrollIndicator:"none"
+			})
+			document.getElementById('info').addEventListener('tap',function(){
+				openWindow('./comment.html');
+			})
+			document.getElementById('next').addEventListener('tap',function(){
+				openWindow('./create-next.html')
+			})
+			document.getElementById('change-w').addEventListener('tap',function(){
+				
+			})
+		})
+	</script>
+</html>
