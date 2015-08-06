@@ -57,6 +57,7 @@
 			}
 			.mui-scroll-wrapper{
 				margin-top: 44px;
+				margin-bottom: 60px;
 			}
 			.fl{
 				float: left;
@@ -195,7 +196,8 @@
 									<input type="number" class="linehei68 mui-input-clear" id="border-none"/>
 								</div>
 							</div>
-							<div class="fr hei110 linehei110 wid20 addborder paddl10" id="change-w">Kg
+							<div class="fr hei110 linehei110 wid20 addborder mui-text-center" id="change-w">
+								<span class="kg-g">Kg</span>
 								<span class="mui-icon mui-icon-loop"></span>
 							</div>
 						</div>
@@ -209,7 +211,7 @@
 									<input type="number" class="linehei68 mui-input-clear" id="border-none"/>
 								</div>
 							</div>
-							<div class="fr hei110 linehei110 wid20 paddl10">$
+							<div class="fr hei110 linehei110 wid20 mui-text-center">$
 								<!--<span class="mui-icon mui-icon-loop"></span>-->
 							</div>
 						</div>
@@ -223,7 +225,7 @@
 									<input type="number" class="linehei68 mui-input-clear" id="border-none"/>
 								</div>
 							</div>
-							<div class="fr hei110 linehei110 wid20 paddl10">
+							<div class="fr hei110 linehei110 wid20 mui-text-center">
 								<span class="mui-icon mui-icon-arrowright"></span>
 							</div>
 						</div>
@@ -257,8 +259,8 @@
 			</div>
 		</div>
 	</body>
-	<scrip
 	<script type="text/javascript" src="../../js/utils.js" ></script>
+	<script type="text/javascript" src="../../js/jquery.min.js" ></script>
 	<script type="text/javascript" charset="utf-8">
 		mui.init();
 		mui.plusReady(function(){
@@ -273,7 +275,11 @@
 				openWindow('./create-next.html')
 			})
 			document.getElementById('change-w').addEventListener('tap',function(){
-				
+				if($('.kg-g').text()=='Kg'){
+					$('.kg-g').text('g')
+				}else{
+					$('.kg-g').text('Kg')
+				}
 			})
 		})
 	</script>

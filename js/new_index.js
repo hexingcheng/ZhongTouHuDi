@@ -39,6 +39,9 @@ window.addEventListener("swiperight", function() {
 mui.plusReady(function() {
 		mui('#offCanvasSideScroll').scroll();
 		mui('#offCanvasContentScroll').scroll();
+		plus.webview.getLaunchWebview().setStyle({
+			scrollIndicator:'none'
+		})
 		var gallery = mui('.mui-slider');
 		gallery.slider({
 			interval: 1500
@@ -102,7 +105,7 @@ document.getElementById('chat-info').addEventListener('tap', function() {
 })
 document.getElementById('hlep-son').addEventListener('tap', function() {
 	iflogin(function() {
-		openWindow('./page/deliver-goods.html');
+		openWindow('./page/sendorder/createorder.html');
 	})
 })
 document.getElementById('i-will').addEventListener('tap', function() {
@@ -113,8 +116,8 @@ document.getElementById('i-will').addEventListener('tap', function() {
 document.getElementById('help').addEventListener('tap', function() {
 	iflogin(function() {
 		mui.openWindow({
-			url: './page/deliver-goods.html',
-			id: 'idx',
+			url: './page/sendorder/createorder.html',
+			id: 'createorder',
 			show: {
 				autoShow: true,
 				aniShow: 'slide-in-bottom',
