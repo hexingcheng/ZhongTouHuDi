@@ -62,12 +62,32 @@
 	<script src="../../js/utils.js"></script>
 	<script type="text/javascript" charset="utf-8">
       	mui.init();
-      	document.getElementById("ok-btn").addEventListener("tap", function(){
-      		openWindow("my-withdraw-result.html");
-      	}, false);
-      	document.getElementById("last-step-btn").addEventListener("tap", function(){
-      		openWindow("my-withdraw-result.html");
-      	}, false);
+      	mui.plusReady(function(){
+      		// 获取首页webview
+      		var main = plus.webview.getLaunchWebview();
+	      	// 获取已经打开的页面，在处理好应用之后需要进行关闭
+	      	var close = ["wallet/my-wallet", "my-current-money", "my-withdraw"];
+	      	// 获取当前文件需要webview窗口
+      		var thispage = plus.webview.currentWebview();
+      		// 添加Ok事件，返回主页
+	      	document.getElementById("ok-btn").addEventListener("tap", function(){
+	      		for(var i = 0; i < close.length; i++){
+	      			var cupage = plus.webview.getWebviewById(close[i]);
+	      			if(cupage){
+	      				plus.webview.close(cupage, "none", 0);
+	      			}
+	      		}
+		   	    main.show("slide-in-left", 150)
+	   	      	setTimeout(function(){
+		      		plus.webview.close(thispage, "none", 0);
+	   	      	}, 160)
+	      	}, false);
+	      	
+	      	// last step 事件的添加
+	      	document.getElementById("last-step-btn").addEventListener("tap", function(){
+	      		openWindow("my-withdraw-result.html");
+	      	}, false);
+      	})
     </script>
 </body>
 </html>

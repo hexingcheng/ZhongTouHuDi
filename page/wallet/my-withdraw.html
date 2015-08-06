@@ -36,14 +36,14 @@
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
 				<span class="left-title">Your available cash</span>
-				<span class="right-content style-money available-cash">$746.0</span>
+				<span class="right-content style-money available-cash">$<span id="available-cash">0.00</span></span>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-3">
 				<span class="amount-label">amount</span>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-9">
 				<span>
-					<input class="mui-input-clear" type="text" name="amount" id="amount"  placeholder="amount" />
+					<input class="mui-input-clear" type="number" name="amount" id="amount"  placeholder="amount" />
 				</span>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
@@ -68,15 +68,47 @@
 	<script type="text/javascript" charset="utf-8">
       	mui.init();
       	mui.plusReady(function(){
+      		// 解析数据从本地中
+      		var recode = JSON.parse(plus.storage.getItem("recode"));
+      		document.getElementById("available-cash").innerHTML = recode.money;
+      		var url = BASEURL + "wallet/withdraw";
+      		// 取现跳转到下一步
 	      	document.getElementById("next-step").addEventListener("tap", function(){
 	      		var val = document.getElementById("amount").value.trim();
-	      		if(val){
-		      		openWindow("my-withdraw-next.html");
+      			var reg = /^([0-9]*.?[0-9]*)$/.exec(val)
+	      		if(reg){
+	      			var current = parseFloat(recode.money)
+					var divide = parseFloat(reg[0]);
+					if(current >= divide){
+						recode.money = current - divide;
+						plus.storage.setItem("recode", JSON.stringify(recode));
+						
+						postmsg(url, {"money": divide, type : "paypal"})		// 调用传递参数发送数据
+						
+						document.getElementById("amount").value = "";	// 清空数据
+						
+			      		openWindow("./my-withdraw-next.html");		// 跳转到成功界面
+					}else {
+						mui.toast("余额不足")
+					}
 		      	} else {
 		      		mui.toast("请输入需要取现数量")
 		      	}
 	      	},false);
       	})
+      	
+      	function postmsg (url, datas){
+      		mui.ajax(url, {
+      			data : datas,
+      			type : "post",
+      			success : function(result){
+      				alert(JSON.stringify(result))
+      			},
+      			error : function(xhr, type){
+      				console.log(type)
+      			}
+      		})
+      	}
       	
     </script>
 </body>

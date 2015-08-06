@@ -20,9 +20,7 @@
 		<div class="mui-content">
 			<ul id="show-info" class="mui-table-view mui-grid-9 mui-grid-view">
 				<li class="mui-table-view-cell mui-media mui-col-xs-12">
-					<div class="mui-text-center mui-h1 style-money current-money">
-						286.07
-					</div>
+					<div id="current-money" class="mui-text-center mui-h1 style-money current-money">0.00</div>
 					<p class="mui-text-center mui-h6">
 						current money
 					</p>
@@ -40,9 +38,9 @@
 			<div class="table-diviver"></div>
 			<!-- 内容说明段 -->
 			<div class="bg-color content-padded">pament records</div>
-			<ul class="mui-table-view mui-table-view-chevron bg-color">
+			<ul id="show-recodes" class="mui-table-view mui-table-view-chevron bg-color">
 				<!-- 后期使用模板进行数据渲染 -->
-				<li class="mui-table-view-cell mui-media border-bottom">
+				<!--<li class="mui-table-view-cell mui-media border-bottom">
 					<div class="mui-pull-right mui-h3 style-coupon fixed-money">
 						-16.0
 					</div>
@@ -59,16 +57,52 @@
 						<div class="mui-ellipsis">Car share</div>
 						<p class="mui-ellipsis">18:22 28 Mar 2015</p>
 					</div>
-				</li>
+				</li>-->
 			</ul>
 		</div>
+		<script id="recodes" type="text/html">
+			{{each list}}
+				{{if $value.type == 1}}
+					<li class="mui-table-view-cell mui-media">
+						{{if $value.value > 0}}
+							<div class="mui-pull-right mui-h3 style-point fixed-money">
+								 {{ "+" + $value.value}}
+							</div>
+						{{ else }}
+							<div class="mui-pull-right mui-h3 style-coupon fixed-money">
+								{{"-" + $value.value}}
+							</div>
+						{{/if}}
+						<div class="mui-media-body">
+							<div class="mui-ellipsis">资金</div>
+							<p class="mui-ellipsis">{{$value.time}}</p>
+						</div>
+					</li>
+				{{/if}}
+			{{/each}}
+		</script>
+		<script src="../../js/template.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script>
 			mui.init()
-			mui("#show-info").on("tap", "a", function(eve){
-				eve.preventDefault()
-				var href = this.href;
-				openWindow(href);
+			mui.plusReady(function(){
+				var money = document.getElementById("current-money");
+				var recode = JSON.parse(plus.storage.getItem("recode"));
+				money.innerHTML = recode.money;
+				var obj = {
+					"list" : JSON.parse(recode.list)
+				}
+//				alert(recode.list)
+				var html = template("recodes", obj);
+//				alert(html)
+				document.getElementById("show-recodes").innerHTML = html;
+				s
+				// 添加取现与充值的功能模块
+				mui("#show-info").on("tap", "a", function(eve){
+					eve.preventDefault()
+					var href = this.href;
+					openWindow(href);
+				})
 			})
 		</script>
 	</body>

@@ -32,18 +32,18 @@
 		<ul class="mui-table-view mui-grid-9 mui-grid-view">
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
 				<span class="left-title">Account</span>
-				<span class="right-content">18584654947</span>
+				<span id="account" class="right-content">18584654947</span>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
 				<span class="left-title">Remain cash</span>
-				<span class="right-content style-money available-cash">$20.00</span>
+				<span class="right-content style-money available-cash">$<span id="remain-cash">0.00</span></span>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-3">
 				<span class="amount-label">recharge</span>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-9">
 				<span>
-					<input class="mui-input-clear" type="text" name="amount" id="amount" value="" placeholder="amount" />
+					<input class="mui-input-clear" type="number" name="amount" id="amount" value="" placeholder="amount" />
 				</span>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
@@ -62,10 +62,54 @@
 		</ul>
 	</div>
 	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button class="mui-btn button-next">recharge</button>
+		<button id="recharge" class="mui-btn button-next">recharge</button>
 	</footer>
-	<script type="text/javascript" charset="utf-8">
+	<script src="../../js/utils.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+	<script>
       	mui.init();
+      	mui.plusReady(function(){
+      		var cash = document.getElementById("remain-cash");
+      		var recode = JSON.parse(plus.storage.getItem("recode"));
+//    		var url = "http://202.202.43.107:8080/api/wallet/recharge";		// 充值路径
+      		var url = BASEURL + "wallet/recharge";		// 充值路径
+      		cash.innerHTML = recode.money;
+      		// 获取需要充值的金额
+      		document.getElementById("recharge").addEventListener("tap", function(){
+      			var value = document.getElementById("amount").value.trim();
+      			var reg = /^([0-9]*.?[0-9]*)$/.exec(value)
+      			if(reg){
+					var current = parseFloat(recode.money)
+					var divide = parseFloat(reg[0]);
+					var total = current + divide;
+					recode.money = total;			// 充值金额算去总额
+					plus.storage.setItem("recode", JSON.stringify(recode));		// 重新存储storage值
+					document.getElementById("amount").value = "";
+//					alert(divide)
+//					postmsg(url, {money : divide});		// 发送数据
+
+					openWindow("./my-withdraw-result.html");
+      			} else {
+      				mui.toast("输入金额格式错误")
+      			}
+      		}, false)
+      	})
+      	
+      	/*function postmsg(url, datas){
+      		$.ajax({
+      			type:"post",
+      			data : {
+      				"money" : 1
+      			},
+      			url: url,
+				success : function(data){
+					alert(data)
+				},
+				error : function(err){
+					console.log(err)
+				}
+      		});
+      	}*/
     </script>
 </body>
 </html>

@@ -24,30 +24,24 @@
 	<div class="mui-content">
 		<ul id="show-info" class="mui-table-view mui-grid-9 mui-grid-view">
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
-				<a href="my-current-money.html">
-					<div class="mui-text-center mui-h1 style-money current-money">
-						286.07
-					</div>
+				<a href="javascript:void(0)" data-src="./my-current-money.html">
+					<div id="current-money" class="mui-text-center mui-h1 style-money current-money">0.00</div>
 					<p class="mui-text-center mui-h6">
 						current money
 					</p>
 				</a>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-6 border-top">
-				<a href="my-point.html">
-					<div class="mui-text-center mui-h2 style-point">
-						348
-					</div>
+				<a href="javascript:void(0)" data-src="./my-point.html">
+					<div id="gold-point" class="mui-text-center mui-h2 style-point">0</div>
 					<p class="mui-text-center mui-h6">
 						gold point
 					</p>
 				</a>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-6 border-left border-top">
-				<a href="my-coupon.html">
-					<div class="mui-text-center mui-h2 style-coupon">
-						2
-					</div>
+				<a href="javascript:void(0)" data-src="./my-coupon.html">
+					<div id="coupon" class="mui-text-center mui-h2 style-coupon">0</div>
 					<p class="mui-text-center mui-h6">
 						coupon
 					</p>
@@ -59,9 +53,9 @@
 			<li class="mui-table-view-cell mui-collapse">
 				<a href="javascript:void(0)" style="color: #8e8e8e;border-bottom: 1px solid #e8e8e8;" class="mui-navigate-right mui-h5">payment records</a>
 				<!-- 模拟展开数据显示 -->
-				<ul class="mui-table-view mui-table-view-chevron bg-color">
+				<ul id="show-recodes" class="mui-table-view mui-table-view-chevron bg-color">
 					<!-- 后期使用模板进行数据渲染 -->
-					<li class="mui-table-view-cell mui-media border-bottom">
+					<!--<li class="mui-table-view-cell mui-media border-bottom">
 						<div class="mui-pull-right mui-h3 style-coupon fixed-money">
 							-16.0
 						</div>
@@ -78,34 +72,84 @@
 							<div class="mui-ellipsis">Car share</div>
 							<p class="mui-ellipsis">18:22 28 Mar 2015</p>
 						</div>
-					</li>
+					</li>-->
 				</ul>
 			</li>
 		</ul>
 	</div>
+	<script id="recode" type="text/html">
+		{{each list}}
+			<li class="mui-table-view-cell mui-media border-bottom">
+				{{if $value.value > 0}}
+					<div class="mui-pull-right mui-h3 style-point fixed-money">
+						{{"+" + $value.value}}
+					</div>
+				{{ else }}
+					<div class="mui-pull-right mui-h3 style-coupon fixed-money">
+						{{"-" + $value.value}}
+					</div>
+				{{/if}}
+				<div class="mui-media-body">
+					<div class="mui-ellipsis">
+						{{$value.type == 1 ? "资金" : $value.type == 2 ? "积分" : "优惠卷"}}
+					</div>
+					<p class="mui-ellipsis">{{$value.time}}</p>
+				</div>
+			</li>
+		{{/each}}
+	</script>
+	<script src="../../js/template.js"></script>
 	<script src="../../js/utils.js"></script>
 	<script type="text/javascript" charset="utf-8">
       	mui.init({
       		swipeBack　: true
       	});
       	mui.ready(function(){
-      		// 发送给ajax获取余额信息显示
-      		mui.ajax("http://202.202.43.107:8080/api/wallet/info", {
+      		
+      		var money = document.getElementById("current-money");
+  			var point = document.getElementById("gold-point");
+  			var coupon = document.getElementById("coupon");
+  			var showlist = document.getElementById("show-recodes");
+  			var url = "http://202.202.43.107:8080/api/wallet/info";
+  			var listobj = null;
+  			// 发送给ajax获取余额信息显示
+  			console.log("nihao")
+      		mui.ajax(url, {
       			type : "post",
       			success : function(data){
-      				console.log(JSON.stringify(data))
+      				if(data.ret == 0){
+      					money.innerHTML = data.res.money;
+      					point.innerHTML = data.res.point;
+      					coupon.innerHTML = data.res.coupon;
+      					var obj = {
+      						list : data.res.logList
+      					}
+      					var html = template("recode", obj);
+      					showlist.innerHTML = html;
+      					// 获取当前数据储存在storage中，避免再次进行ajax请求发送
+      					listobj = JSON.stringify(data.res.logList);
+      				}
       			},
       			error : function(xhr, type){
       				console.log(type)
       			}
       		})
+      		
       		// 点击链接请求
-      		mui("#show-info").on("click", "a", function(eve){
+      		mui("#show-info").on("tap", "a", function(eve){
       			eve.preventDefault();
-      			var href = this.href;
+      			var href = this.getAttribute("data-src");
+      			var obj = {
+      				money : money.innerHTML,
+      				point : point.innerHTML,
+      				coupon : coupon.innerHTML,
+      				list : listobj
+      			}
+      			plus.storage.setItem("recode", JSON.stringify(obj));
       			openWindow(href)
       		})
-//    		15123013920 
+      		
+//    		15123013920  123456 
       	})
     </script>
 </body>
