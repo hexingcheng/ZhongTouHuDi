@@ -64,6 +64,19 @@
 			.remark-con{
 				color: #818384;
 			}
+			#footer{
+				height: 60px;
+				background-color: #FFFFFF;
+				padding: 10px 20px;
+			}
+			.next-step{
+				text-align: center;
+				background-color: #3ba767;
+				width: 100%;
+				height: 100%;
+				line-height: 40px;
+				color: #ceefe4;
+			}
 		</style>
 	</head>
 
@@ -72,12 +85,15 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">Comment</h1>
 		</header>
+		<footer class="mui-bar mui-bar-footer" id="footer">
+			<div class="next-step" id="ok">OK</div>
+		</footer>
 		<div class="mui-content">
 			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<div class="texta">
 						<div class="mui-input-row">
-							<textarea rows="7" placeholder="Example"></textarea>
+							<textarea rows="7" placeholder="Example" id="impor-text"></textarea>
 						</div>
 						<div class="tips">can accommodate 100 words</div>
 					</div>
@@ -119,6 +135,25 @@
 							'background-color':'#fff3e5'
 						});
 						off = true;
+					}
+				})
+				$('#ok').on('tap',function(){
+					var value = document.getElementById('impor-text').value;
+					if (!value) {
+						mui.confirm('您还未输入任何重要信息，确认返回？', '提示', ['确认', '继续'], function(e) {
+							if (e.index == 0) {
+								plus.webview.currentWebview().close();
+								openWindow('./createorder.html');
+							} else {
+								return;
+							}
+						})
+					} else {
+						var c = plus.webview.currentWebview();
+						var dl = plus.webview.getWebviewById('sendorder/createorder');
+						mui.fire(dl,'getinfo',{"info":value});
+						c.close();
+						dl.show('slide-in-left')
 					}
 				})
 			})

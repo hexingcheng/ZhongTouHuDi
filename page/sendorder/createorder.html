@@ -4,14 +4,20 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<title></title>
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<style>
-		*{
-			padding: 0;
-			margin: 0;
-		}
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			html,
+			body {
+				height: 100%;
+				width: 100%;
+			}
 			html,
 			body,
 			.mui-content {
@@ -55,108 +61,157 @@
 			.icon-wenjian:before {
 				content: "\e600";
 			}
-			.mui-scroll-wrapper{
+			.mui-scroll-wrapper {
 				margin-top: 44px;
 				margin-bottom: 60px;
 			}
-			.fl{
+			.fl {
 				float: left;
 			}
-			.fr{
+			.fr {
 				float: right;
 			}
-			.clear{
+			.clear {
 				zoom: 1;
 			}
-			.clear:after{
-				content: "";				
+			.clear:after {
+				content: "";
 				display: block;
 				clear: both;
 			}
-			.wid30{
+			.wid30 {
 				width: 30%;
 			}
-			.wid70{
+			.wid70 {
 				width: 70%;
 			}
-			.paddl10{
+			.paddl10 {
 				padding-left: 10px;
 			}
-			.paddr10{
+			.paddr10 {
 				padding-right: 10px;
 			}
-			.hei110{
-				height: 80px;
+			.hei110 {
+				height: 60px;
 			}
-			.linehei110{
-				line-height: 80px;
+			.linehei110 {
+				line-height: 60px;
 			}
-			.linehei68{
+			.linehei68 {
 				line-height: 30px;
 			}
-			.iptwrap{
+			.iptwrap {
 				padding: 0;
-				margin: 20px 0;
-				height: 40px;
+				margin: 15px 0;
+				height: 30px;
 				border-radius: 10px;
 			}
-			.iptwrap input{
+			.iptwrap input {
 				border: 0;
 				background-color: #F7F5F5;
 				color: #219B52;
 				margin: 0;
 				height: 30px
-				margin: 5px 0;
-				
 			}
-			.colorgray{
+			.colorgray {
 				color: #5f5d5d;
 			}
-			.colorg{
+			.colorg {
 				color: #bec0c2;
 			}
-			.gap{
+			.gap {
 				height: 10px;
 				background-color: #F2F2F2;
 			}
-			#border-none{
+			#border-none {
 				background-color: #FFFFFF;
 			}
-			.wid20{
+			.wid20 {
 				width: 20%;
 			}
-			.wid50{
+			.wid50 {
 				width: 50%;
 			}
-			.gWeight,.gValue{
+			.gWeight,
+			.gValue {
 				border-bottom: 1px solid #E8E8E8;
 			}
-			.fr{
+			.fr {
 				color: #a1a1a1;
 			}
-			.addborder{
+			.addborder {
 				border-left: 1px solid #e8e8e8;
 			}
-			.wid40{
+			.wid40 {
 				width: 40%;
 			}
-			.goods-pic span{
+			.goods-pic,
+			.addclass {
 				border: 1px solid #e6e1e1;
 				padding: 15px;
 				background-color: #fdfcfc;
 			}
-			#footer{
+			#footer {
 				height: 60px;
 				background-color: #FFFFFF;
 				padding: 10px 20px;
 			}
-			.next-step{
+			.next-step {
 				text-align: center;
 				background-color: #3ba767;
 				width: 100%;
 				height: 100%;
 				line-height: 40px;
 				color: #ceefe4;
+			}
+			input[type=number] {
+				padding: 0 15px;
+			}
+			.mui-input-row .mui-input-clear~.mui-icon-clear {
+				top: 5px;
+			}
+			.hidden {
+				width: 0;
+				height: 0;
+			}
+			.pos {
+				position: absolute;
+				right: -8px;
+				color: #3ba767;
+			}
+			.persee {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				z-index: 1000;
+				top: 0;
+				left: 0;
+				background-color: #000000;
+			}
+			.persee-con {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				z-index: 1000;
+				top: 0;
+				left: 0;
+			}
+			.handle {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+			}
+			.handle span {
+				color: #FFFFFF;
+			}
+			.num {
+				position: absolute;
+				bottom: 10px;
+				left: 45%;
+				color: #FFFFFF;
+			}
+			.hidden {
+				display: none;
 			}
 		</style>
 	</head>
@@ -176,53 +231,47 @@
 					<div class="order-content">
 						<div class="gName clear hei110">
 							<div class="wid30 paddl10 fl hei110 linehei110 colorg">
-								<span class="mui-icon mui-icon-person colorgray"></span>
-								Name
+								<span class="mui-icon mui-icon-person colorgray"></span> Name
 							</div>
 							<div class="wid70 paddr10 fl hei110">
 								<div class="iptwrap mui-input-row">
-									<input type="text" class="linehei68 mui-input-clear"/>
+									<input type="text" class="linehei68 mui-input-clear" id="gname" />
 								</div>
 							</div>
 						</div>
 						<div class="gap"></div>
 						<div class="gWeight clear">
 							<div class="wid30 paddl10 fl hei110 linehei110 colorg">
-								<span class="mui-icon mui-icon-person colorgray"></span>
-								Weight
+								<span class="mui-icon mui-icon-person colorgray"></span> Weight
 							</div>
 							<div class="wid50 paddr10 fl hei110">
 								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="border-none"/>
+									<input type="number" class="linehei68 mui-input-clear" id="gweight" />
 								</div>
 							</div>
-							<div class="fr hei110 linehei110 wid20 addborder mui-text-center" id="change-w">
+							<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
 								<span class="kg-g">Kg</span>
-								<span class="mui-icon mui-icon-loop"></span>
 							</div>
 						</div>
 						<div class="gValue clear">
 							<div class="wid30 paddl10 fl hei110 linehei110 colorg">
-								<span class="mui-icon mui-icon-person colorgray"></span>
-								Weight
+								<span class="mui-icon mui-icon-person colorgray"></span> Value
 							</div>
 							<div class="wid50 paddr10 fl hei110">
 								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="border-none"/>
+									<input type="number" class="linehei68 mui-input-clear" id="gvalue" />
 								</div>
 							</div>
 							<div class="fr hei110 linehei110 wid20 mui-text-center">$
-								<!--<span class="mui-icon mui-icon-loop"></span>-->
 							</div>
 						</div>
 						<div class="info clear" id="info">
 							<div class="wid40 paddl10 fl hei110 linehei110 colorg">
-								<span class="mui-icon mui-icon-person colorgray"></span>
-								Comment
+								<span class="mui-icon mui-icon-person colorgray"></span> Comment
 							</div>
 							<div class="wid40 paddr10 fl hei110">
 								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="border-none"/>
+									<input type="text" class="linehei68 mui-input-clear" id="gettext" />
 								</div>
 							</div>
 							<div class="fr hei110 linehei110 wid20 mui-text-center">
@@ -231,25 +280,25 @@
 						</div>
 						<div class="gap"></div>
 						<div class="goods-pic">
-							<ul class="mui-table-view mui-grid-view">
+							<ul class="mui-table-view mui-grid-view" id="take-photo">
 								<li class="mui-table-view-cell mui-media mui-col-xs-3">
 									<a>
-										<span class="mui-icon mui-icon-plusempty"></span>
+										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
 								<li class="mui-table-view-cell mui-media mui-col-xs-3">
 									<a>
-										<span class="mui-icon mui-icon-plusempty"></span>
+										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
 								<li class="mui-table-view-cell mui-media mui-col-xs-3">
 									<a>
-										<span class="mui-icon mui-icon-plusempty"></span>
+										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
 								<li class="mui-table-view-cell mui-media mui-col-xs-3">
 									<a>
-										<span class="mui-icon mui-icon-plusempty"></span>
+										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
 							</ul>
@@ -259,28 +308,181 @@
 			</div>
 		</div>
 	</body>
-	<script type="text/javascript" src="../../js/utils.js" ></script>
-	<script type="text/javascript" src="../../js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../js/utils.js"></script>
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
 		mui.init();
-		mui.plusReady(function(){
+		mui.plusReady(function() {
 			mui('#offCanvasSideScroll').scroll();
 			plus.webview.currentWebview().setStyle({
-				scrollIndicator:"none"
+				scrollIndicator: "none"
 			})
-			document.getElementById('info').addEventListener('tap',function(){
+			document.getElementById('info').addEventListener('tap', function() {
 				openWindow('./comment.html');
 			})
-			document.getElementById('next').addEventListener('tap',function(){
-				openWindow('./create-next.html')
-			})
-			document.getElementById('change-w').addEventListener('tap',function(){
-				if($('.kg-g').text()=='Kg'){
-					$('.kg-g').text('g')
-				}else{
-					$('.kg-g').text('Kg')
+			document.getElementById('next').addEventListener('tap', function() {
+				var name = $('#gname').val();
+				var weight = parseInt($('#gweight').val());
+				var value = parseInt($('#gvalue').val());
+				var info = $('#gettext').val();
+				var param = {
+					gName: name,
+					gWeight: weight,
+					gValue: value,
+					pics: setpicid(),
+					info: info
 				}
+				openWindow('./create-next.html',param)
 			})
+			window.addEventListener('getinfo', function(eve) {
+				$('#gettext').val(eve.detail.info);
+			})
+			var iw;
+			mui('#take-photo').on('tap', '.addclass', function() {
+				var _this = this;
+				iw = $(this).outerWidth()
+				var btnArray = [{
+					title: "拍照"
+				}, {
+					title: "相册"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "选择照片",
+					cancel: "取消",
+					buttons: btnArray
+				}, function(e) {
+					var index = e.index;
+					if (index == 1) {
+						bycamera(_this);
+					} else if (index == 2) {
+						bygallery(_this);
+					} else if (index == 0) {
+						return;
+					}
+				});
+			})
+
+			function bycamera(context) {
+				var camera = plus.camera.getCamera();
+				var res = camera.supportedImageResolutions[0];
+				var fmt = camera.supportedImageFormats[0];
+				var _this = context;
+				camera.captureImage(function(path) {
+					dealpic(path, _this);
+				})
+			}
+
+			function dealpic(path, context) {
+				plus.io.resolveLocalFileSystemURL(path, function(entry) {
+					var local = entry.toLocalURL();
+					dealImage(local, {
+						width: 17 * 4,
+						quality: 0.5
+					}, function(base) {
+						$(context).removeClass('mui-icon-plusempty mui-icon addclass').addClass('mui-spinner')
+						console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
+						sendData(BASEURL + "/common/file/imgUp", base, context, local);
+					})
+				})
+			}
+
+			function bygallery(context) {
+				plus.gallery.pick(function(path) {
+					dealpic(path, context);
+				}, function(e) {
+					mui.toast('选择图片失败' + e)
+				}, {
+					filter: 'image',
+					multiple: false
+				})
+			}
+
+			function sendData(url, base, context, path) {
+				var pics
+				mui.ajax(url, {
+					type: "post",
+					data: {
+						imgName: Math.floor(Math.random() * 100000) + ".jpg",
+						imgData: base, // base字符串
+						dataLength: base.length // base字符串长度
+					},
+					success: function(data) {
+						console.log(data.ret);
+						var img = $('<span class="wids"><img title=' + path + ' src=' + base + ' alt=' + data.res.fid + '></span>');
+						$(context).parent().append(img);
+						$('img', '.wids').css({
+							width: iw,
+							height: iw
+						})
+						$(context).remove();
+						setpicid()
+					},
+					error: function(xhr, type) {
+						console.log("错误信息显示：" + type);
+						errorhandle(type);
+					}
+				})
+			}
+
+			function setpicid() {
+				var pics = [];
+				var num = $('.wids').length;
+				for (var i = 0; i < num; i++) {
+					pics[i] = $('img', $($('.wids')[i])).attr('alt');
+				}
+				return pics.join(',');
+			}
+			repic()
+
+			function repic() {
+				mui('.mui-table-view-cell').on('tap', '.wids', function() {
+					var param = {};
+					var haspic = $('.wids');
+					var len = haspic.length;
+					param.len = len;
+					for (var i = 0; i < len; i++) {
+						var path = $(haspic[i].children[0]).prop('title');
+						param[i] = path;
+					}
+					openWindow('./presee.html', param)
+					return false;
+				})
+			}
+
+			function dealImage(path, obj, callback) {
+				var img = new Image();
+				img.src = path;
+				img.onload = function() {
+					var that = this;
+					// 默认按比例压缩
+					var w = that.width,
+						h = that.height,
+						scale = w / h;
+					w = obj.width || w;
+					h = obj.height || (w / scale);
+					var quality = 0.7; // 默认图片质量为0.7
+					//生成canvas
+					var canvas = document.createElement('canvas');
+					var ctx = canvas.getContext('2d');
+					// 创建属性节点
+					var anw = document.createAttribute("width");
+					anw.nodeValue = w;
+					var anh = document.createAttribute("height");
+					anh.nodeValue = h;
+					canvas.setAttributeNode(anw);
+					canvas.setAttributeNode(anh);
+					ctx.drawImage(that, 0, 0, w, h);
+					// 图像质量
+					if (obj.quality && obj.quality <= 1 && obj.quality > 0) {
+						quality = obj.quality;
+					}
+					// quality值越小，所绘制出的图像越模糊
+					var base64 = canvas.toDataURL('image/jpeg', quality);
+					// 回调函数返回base64的值
+					callback(base64);
+				}
+			}
 		})
 	</script>
+
 </html>

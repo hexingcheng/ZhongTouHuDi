@@ -7,6 +7,8 @@
 		<title></title>
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/mui.listpicker.css" />
+		<link rel="stylesheet" href="../../css/mui.dtpicker.css" />
 		<style>
 			* {
 				margin: 0;
@@ -89,10 +91,10 @@
 				width: 90%;
 			}
 			.hei80 {
-				height: 80px;
+				height: 60px;
 			}
 			.linehei {
-				line-height: 80px;
+				line-height: 60px;
 			}
 			.paddl10 {
 				padding-left: 10px;
@@ -101,18 +103,18 @@
 				color: #5f5d5d;
 			}
 			.iptwrap {
-				height: 40px;
-				margin: 20px 0;
+				height: 30px;
+				margin: 15px 0;
 			}
 			.iptwrap input {
 				border: 0;
 				background-color: #F7F5F5;
 				color: #219B52;
-				height: 30px margin: 5px 0;
+				height: 30px;
 			}
 			.tet {
 				text-align: center;
-				line-height: 80px;
+				line-height: 60px;
 				color: #a1a1a1;
 			}
 			.gap {
@@ -126,7 +128,8 @@
 			.times,
 			.address,
 			.host,
-			.phone ,.receiver{
+			.phone,
+			.receiver {
 				border-bottom: 1px solid #e8e8e8;
 			}
 			#footer {
@@ -142,20 +145,24 @@
 				line-height: 40px;
 				color: #ceefe4;
 			}
-			.insurea{
+			.insurea {
 				color: #5F5D5D;
 			}
-			.insure{
+			.insure {
 				padding-bottom: 10px;
 			}
-			.order-content{
+			.order-content {
 				padding-bottom: 50px;
 			}
-			.lmar{
+			.lmar {
 				margin-left: -10px;
 			}
-			#radio:before{
+			#radio:before {
 				color: #3ba767;
+			}
+			.mui-input-row .mui-input-clear~.mui-icon-clear,
+			.mui-input-row .mui-input-speech~.mui-icon-speech {
+				top: 18px;
 			}
 		</style>
 	</head>
@@ -167,7 +174,7 @@
 			<span class="mui-icon iconfont icon-wenjian mui-pull-right draft"></span>
 		</header>
 		<footer class="mui-bar mui-bar-footer" id="footer">
-			<div class="next-step" id="next">Next Step</div>
+			<div class="next-step mui-bbtn" id="next">Next Step</div>
 		</footer>
 		<div class="mui-content">
 			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
@@ -177,7 +184,7 @@
 							<div class="fl wid30 hei80 paddl10 color5f linehei">Reword</div>
 							<div class="fl wid60 hei80">
 								<div class="iptwrap mui-input-row">
-									<input type="number" class="ipt mui-input-clear" />
+									<input type="number" class="ipt mui-input-clear" id="pay" />
 								</div>
 							</div>
 							<div class="fr wid10 hei80 tet">
@@ -186,13 +193,13 @@
 						</div>
 						<div class="gap"></div>
 						<div class="times">
-							<div class="clear">
+							<div class="clear pict">
 								<div class="fl wid10 hei80 linehei mui-text-right">
 									<span class="mui-icon mui-icon-flag"></span>
 								</div>
 								<div class="fl wid80 hei80 linehei addborb">
 									<div class="mui-input-row time">
-										<input type="text" class="mui-input-clear" placeholder="Pickup Time" />
+										<input type="text" class="mui-input-clear" placeholder="Pickup Time" id="gettime" />
 									</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet addborb">
@@ -205,7 +212,7 @@
 								</div>
 								<div class="fl wid80 hei80 linehei">
 									<div class="mui-input-row time">
-										<input type="text" class="mui-input-clear" placeholder="Arrival Time" />
+										<input type="text" class="mui-input-clear" placeholder="Arrival Time" id="respecttime" />
 									</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet">
@@ -215,13 +222,13 @@
 						</div>
 						<div class="gap"></div>
 						<div class="address">
-							<div class="clear">
+							<div class="clear" id="pict">
 								<div class="fl wid10 hei80 linehei mui-text-right">
 									<span class="mui-icon mui-icon-location"></span>
 								</div>
 								<div class="fl wid80 hei80 linehei addborb">
 									<div class="mui-input-row time">
-										<input type="text" class="mui-input-clear" placeholder="Pickup Address" />
+										<input type="text" class="mui-input-clear" placeholder="Pickup Address" id="getaddr" />
 									</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet addborb">
@@ -234,7 +241,7 @@
 								</div>
 								<div class="fl wid80 hei80 linehei">
 									<div class="mui-input-row time">
-										<input type="text" class="mui-input-clear" placeholder="Arrival Time" />
+										<input type="text" class="mui-input-clear" placeholder="Arrival Time" id="" />
 									</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet">
@@ -249,7 +256,7 @@
 							</div>
 							<div class="fl wid80 hei80 linehei">
 								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="Host" />
+									<input type="text" class="mui-input-clear" placeholder="Host" id="sender" />
 								</div>
 							</div>
 							<div class="fr wid10 hei80 linehei tet">
@@ -262,7 +269,7 @@
 							</div>
 							<div class="fl wid90 hei80 linehei">
 								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="Phone" />
+									<input type="tel" class="mui-input-clear" placeholder="Phone" id="contact" />
 								</div>
 							</div>
 						</div>
@@ -273,7 +280,7 @@
 							</div>
 							<div class="fl wid80 hei80 linehei">
 								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="receiver" />
+									<input type="text" class="mui-input-clear" placeholder="receiver" id="" />
 								</div>
 							</div>
 							<div class="fr wid10 hei80 linehei tet">
@@ -294,7 +301,7 @@
 							<form class="mui-input-group">
 								<div class="mui-input-row mui-checkbox mui-left">
 									<label class="insurea lmar">Buy safety insurance $5</label>
-									<input name="radio1" type="checkbox" class="lmar" id="radio">
+									<input name="radio1" type="checkbox" class="lmar" id="radio" value="5" id="comer">;
 								</div>
 							</form>
 						</div>
@@ -303,13 +310,101 @@
 			</div>
 		</div>
 		</div>
-		<script type="text/javascript" src="../../js/jquery.min.js" ></script>
+		<script type="text/javascript" src="../../js/mui.listpicker.js"></script>
+		<script type="text/javascript" src="../../js/mui.dtpicker.js"></script>
+		<script type="text/javascript" src="../../js/utils.js"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui.plusReady(function() {
+				var c = plus.webview.currentWebview();
 				mui('#offCanvasSideScroll').scroll();
-				plus.webview.currentWebview().setStyle({
+				c.setStyle({
 					scrollIndicator: 'none'
+				})
+				plus.geolocation.getCurrentPosition(function(pos) {
+					lot = pos.coords.longitude;
+					lat = pos.coords.latitude;
+					var c = plus.webview.currentWebview();
+					$('.mui-bbtn').on('tap', function() {
+						var getdata = {}
+						getdata.gName = c.gName;
+						getdata.gValue = c.gValue;
+						getdata.gWeight = c.gWeight;
+						getdata.pics = c.pics;
+						getdata.info = c.info;
+						getdata.money = parseInt($('#pay').val());
+						getdata.getTime = $('#gettime').val();
+						getdata.finTime = $('#respecttime').val();
+						getdata.senderAddress = $('#getaddr').val();
+						//getdata.receiverAddress = $('#sendaddr').val();
+						getdata.receiverAddress = '北京';
+						getdata.sender = $('#sender').val();
+						getdata.senderPhone = $('#contact').val();
+						getdata.sendJd = lot;
+						getdata.sendWd = lat;
+						getdata.receiver = $('#receiver').val();
+						getdata.receiverPhone = $('#tel').val();
+						getdata.receiverJd = 10;
+						getdata.receiverWd = 10;
+						getdata.insType = $('#comer').val();
+						getdata.status = 1;
+						showobj(getdata)
+						if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
+							mui.ajax(BASEURL + 'order/resOrderByGood', {
+								data: getdata,
+								type: 'post',
+								success: function(data) {
+									if (data.ret == 1) {
+										mui.toast('发单成功，继续完成支付')
+										plus.webview.getLaunchWebview().show('slide-in-left')
+									} else if (data.ret == -101) {
+										mui.confirm('您还未登陆，请登录！', '提示', ['确定', '取消'], function(e) {
+											if (e.index == 0) {
+												openWindow('../login-up.html');
+											} else {
+												return;
+											}
+										})
+									}
+								},
+								error: function(xhr, type) {
+									console.log(type)
+								}
+							})
+						} else {
+							mui.toast('信息为填完全')
+						}
+					})
+				}, function(e) {
+					console.log('获取经纬度失败');
+				}, {
+					provider: "baidu"
+				});
+				$('.pict,.arrtime').on('tap', function() {
+					var _this = $(this);
+					var options = {
+						"type": "hour",
+						"beginYear": 2015,
+						"endYear": 2015,
+						"customData": {
+							"h": [{
+								"text": "上午",
+								"value": "上午"
+							}, {
+								"text": "下午",
+								"value": "下午"
+							}, {
+								"text": "晚上",
+								"value": "晚上"
+							}]
+						},
+						"labels": ["年", "月", "日", "时段", "分"]
+					}
+					var time = new mui.DtPicker(options);
+					time.show(function(rs){
+						$('input',_this).val(rs.text)
+					})
 				})
 			})
 		</script>
