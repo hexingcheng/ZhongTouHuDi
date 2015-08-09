@@ -69,7 +69,6 @@
 			.map{
 				width: 100%;
 				height: 100%;
-				background-color: red;
 			}
 			#footer {
 				height: 60px;
@@ -78,19 +77,21 @@
 			}
 			.ok{
 				float: left;
-				width: 45%;
-				margin-right: 5%;
+				width: 48%;
+				margin-right: 2%;
 				text-align: center;
 				line-height: 40px;
 				background-color: #23A0CF;
+				color: #e8fff3;
 			}
 			.cancel{
 				text-align: center;
 				line-height: 40px;
 				float: left;
-				width: 45%;
-				margin-left: 5%;
+				width: 48%;
+				margin-left: 2%;
 				background-color: #ff8474;
+				color: #fce7e4;
 			}
 		</style>
 	</head>
@@ -112,7 +113,7 @@
 					<div class="fl wid15 hei60 mui-text-center"><span class="mui-icon mui-icon-search linehei40"></span></div>
 					<div class="fl wid85 hei60 addbor">
 						<div class="mui-input-row">
-							<input placeholder="pick address" class="mui-input-clear" type="text">
+							<input placeholder="choose address" class="mui-input-clear" type="text" id="chooseaddr">
 						</div>	
 					</div>
 				</div>
@@ -127,10 +128,20 @@
 			</div>
 		</div>
 		<div class="map">
-		
+			
 		</div>
 	</div>
 	<script type="text/javascript" charset="utf-8">
 			mui.init();
+			mui.plusReady(function(){
+				var google = document.createElement('script');
+				var service = document.createElement('script');
+				google.src = '';
+				service.src = '';
+				var c = plus.webview.currentWebview();
+				c.onloaded = function(){
+					alert(1)
+				}
+			})
 	</script>
 </html>

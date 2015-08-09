@@ -111,6 +111,7 @@
 				background-color: #F7F5F5;
 				color: #219B52;
 				height: 30px;
+				padding: 0;
 			}
 			.tet {
 				text-align: center;
@@ -235,13 +236,13 @@
 									<span class="mui-icon mui-icon-bars"></span>
 								</div>
 							</div>
-							<div class="arrtime clear">
+							<div class="clear">
 								<div class="fl wid10 hei80 linehei mui-text-right">
 									<span class="mui-icon mui-icon-map"></span>
 								</div>
 								<div class="fl wid80 hei80 linehei">
 									<div class="mui-input-row time">
-										<input type="text" class="mui-input-clear" placeholder="Arrival Time" id="" />
+										<input type="text" class="mui-input-clear" placeholder="Arrival Time" id="sendaddr" />
 									</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet">
@@ -301,7 +302,7 @@
 							<form class="mui-input-group">
 								<div class="mui-input-row mui-checkbox mui-left">
 									<label class="insurea lmar">Buy safety insurance $5</label>
-									<input name="radio1" type="checkbox" class="lmar" id="radio" value="5" id="comer">;
+									<input name="radio1" type="checkbox" class="lmar" value="5" id="comer">;
 								</div>
 							</form>
 						</div>
@@ -315,6 +316,7 @@
 		<script type="text/javascript" src="../../js/utils.js"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
+		
 			mui.init();
 			mui.plusReady(function() {
 				var c = plus.webview.currentWebview();
@@ -337,7 +339,8 @@
 						getdata.money = parseInt($('#pay').val());
 						getdata.getTime = $('#gettime').val();
 						getdata.finTime = $('#respecttime').val();
-						getdata.senderAddress = $('#getaddr').val();
+//						getdata.senderAddress = $('#getaddr').val();
+						getdata.senderAddress = '重庆';
 						//getdata.receiverAddress = $('#sendaddr').val();
 						getdata.receiverAddress = '北京';
 						getdata.sender = $('#sender').val();
