@@ -4,7 +4,7 @@ var offCanvasWrapper = mui('#offCanvasWrapper');
 var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
 var offCanvasSide = document.getElementById("offCanvasSide");
 var classList = offCanvasWrapper[0].classList;
-classList.add('mui-slide-in');
+classList.remove('mui-slide-in');
 offCanvasWrapper.offCanvas().refresh();
 offCanvasSide.classList.remove('mui-transitioning');
 offCanvasSide.setAttribute('style', '');
@@ -70,6 +70,7 @@ window.addEventListener('closeMenu', function() {
 	if ($('#offCanvasContentScroll').offset().left > 0) {
 		offCanvasWrapper.offCanvas('close');
 	}
+//	$('#offCanvasSide').hide()
 })
 var first = null;
 mui.back = function() {

@@ -7,7 +7,6 @@
 		<title></title>
 		<script src="../js/mui.js"></script>
 		<link href="../css/mui.css" rel="stylesheet" />
-
 	</head>
 
 	<body>
@@ -75,8 +74,10 @@
 								console.log('success')
 								plus.storage.removeItem('token');
 								var i = plus.webview.getLaunchWebview();
-								i.show();
 								mui.fire(i,'closeMenu');
+								setTimeout(function(){
+									i.show('slide-in-left');
+								},100)
 							},
 							error: function(xhr, type) {
 								console.log(type);

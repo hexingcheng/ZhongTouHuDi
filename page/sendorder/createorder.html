@@ -332,7 +332,7 @@
 					pics: setpicid(),
 					info: info
 				}
-				openWindow('./create-next.html',param)
+				openWindow('./create-next.html', param)
 			})
 			window.addEventListener('getinfo', function(eve) {
 				$('#gettext').val(eve.detail.info);
@@ -361,6 +361,39 @@
 					}
 				});
 			})
+			$('.draft').on('tap',function(){
+				openWindow('../draft.html')
+			})
+			mui.back = function() {
+				if ($('#gname').val()) {
+					var getdata = {};
+					getdata.gName = $('#gname').val();
+					getdata.gWeight = $('#gweight').val() || 0;
+					getdata.gValue = $('#gvalue').val() || 0;
+					getdata.info = $('#gettest').val() || "";
+					getdata.pics = setpicid()
+					getdata.status = 0;
+					mui.confirm('是否保存已填写信息？', '提示', ['确定', '取消'], function(e) {
+						if (e.index == 0) {
+							mui.ajax(BASEURL + 'order/resOrderByGood', {
+								type: 'post',
+								data: getdata,
+								success: function(data) {
+									console.log(data.ret);
+									openWindow('../draft.html')
+									mui.toast('保存草稿成功！')
+								}
+							});
+						} else {
+							plus.webview.currentWebview().close();
+							plus.webview.getLaunchWebview().show('slide-in-left');
+						}
+					})
+				} else {
+					plus.webview.currentWebview().close();
+					plus.webview.getLaunchWebview().show('slide-in-left')
+				}
+			}
 
 			function bycamera(context) {
 				var camera = plus.camera.getCamera();
