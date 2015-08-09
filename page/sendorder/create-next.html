@@ -280,7 +280,7 @@
 							</div>
 							<div class="fl wid80 hei80 linehei">
 								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="receiver" id="" />
+									<input type="text" class="mui-input-clear" placeholder="receiver" id="receiver" />
 								</div>
 							</div>
 							<div class="fr wid10 hei80 linehei tet">
@@ -293,7 +293,7 @@
 							</div>
 							<div class="fl wid90 hei80 linehei">
 								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="Phone" />
+									<input type="text" class="mui-input-clear" placeholder="Phone" id="tel"/>
 								</div>
 							</div>
 						</div>
@@ -327,6 +327,7 @@
 					lat = pos.coords.latitude;
 					var c = plus.webview.currentWebview();
 					$('.mui-bbtn').on('tap', function() {
+						alert(parseInt($('#comer').val()))
 						var getdata = {}
 						getdata.gName = c.gName;
 						getdata.gValue = c.gValue;
@@ -347,7 +348,7 @@
 						getdata.receiverPhone = $('#tel').val();
 						getdata.receiverJd = 10;
 						getdata.receiverWd = 10;
-						getdata.insType = $('#comer').val();
+						getdata.insType = parseInt($('#comer').val());
 						getdata.status = 1;
 						showobj(getdata)
 						if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
@@ -373,7 +374,7 @@
 								}
 							})
 						} else {
-							mui.toast('信息为填完全')
+							mui.toast('信息未填完全')
 						}
 					})
 				}, function(e) {
@@ -405,6 +406,9 @@
 					time.show(function(rs){
 						$('input',_this).val(rs.text)
 					})
+				})
+				$('#getaddr').on('tap',function(){
+					openWindow('./pickaddr.html')
 				})
 			})
 		</script>

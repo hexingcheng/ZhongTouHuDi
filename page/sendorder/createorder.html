@@ -515,6 +515,11 @@
 					callback(base64);
 				}
 			}
+			window.addEventListener('getdraftdata',function(eve){
+				var datas = eve.detail.formdatas;
+				console.log('hehehe')
+				showobj(datas);
+			})
 		})
 	</script>
 
