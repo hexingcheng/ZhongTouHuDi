@@ -8,7 +8,41 @@
     <link rel="stylesheet" href="get-order-comment.css"/>
     <script src="../../js/mui.min.js"></script>
     <style>
-    	
+    	.mui-grid-view.mui-grid-9 {background-color: #fff;}
+    	.mui-scroll-wrapper {top: 44px; bottom: 3.2em;}
+    	.title-color {color: #bec0c2;}
+    	.name {width: 25%;}
+    	.table-diviver {width: 100%;height: 7px;background-color: #ededeb;}
+    	.goods-name {width: 75%;}
+    	.value-color {color: #dc3e26;}
+    	.value-size {font-size: 1.2 em;padding-left: 0.2em;}
+    	.title-padded { padding: 0.5em 0;}
+    	.title-bottom-padded {padding-bottom: 0.3em;}
+    	.title-weight {padding: 0.5em 0.6em;}
+    	.content-length {display: inline-block;width: 75%;}
+    	.title-width {display: inline-block;width: 25%;}
+    	.desc-after {border-bottom: 1px solid #e8e8e8; }
+    	.desc-after:after {height: 0;}
+    	.img-box {width: 4em;height: 4em;overflow: hidden;position: absolute;border: 1px solid #ccc;padding: 1px;}
+    	.porel {position: relative;width: 100%;height: 4em;}
+    	.img-box:nth-child(1) {left: 25%;}
+    	.img-box:nth-child(2) {left: 50%;}
+    	.img-box:nth-child(3) {left: 75%;}
+    	/* 弹出层 */
+    	#order-mask {position: absolute;background: rgba(0,0,0,.5);top: 0;right: 0;bottom: 0;left: 0;
+    					z-index: 1000;display: none;}
+		#order-popup {position: absolute;width: 300px;height: 12em;z-index: 1001;background: #fff;left: 50%;top: 50%;
+						margin-left: -150px;margin-top: -6em;display: none;}
+		.popup-porel {position: relative;width: 100%;height: 100%;}
+		.popup-title {padding: 0.8em 0 0 0.7em;}
+		.sub-title {padding: 0.7em 0 0.7em 1.2em;}
+		.button-row {position: absolute;bottom: 0;width: 100%;height: 2.5em;}
+		.popup-body {padding: 0.5em 0 0em 1.2em;}
+		.plus, .equal {padding: 0.5em 1em 0em 1em;}
+		.button-row button {border: none;width: 50%;height: 100%;padding: 0;border-radius: none;}
+		.button-row button:nth-child(1) {background-color: #c4e8da;color: #029c5d;}
+		.button-row button:nth-child(2) {background-color: #f6ccc2;color: #da2a02;}
+		.font-color { color: #da2a02;}
     </style>
 </head>
 <body>
@@ -18,15 +52,139 @@
 	</header>
 	
 	<div class="mui-content">
-		
+		<div id="scroll-wrapper" class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<li class="mui-table-view-cell mui-col-xs-12">
+						<span class="mui-pull-left title-color mui-text-left name">Name</span>
+						<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">Flower</span>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
+						<span class="mui-pull-right">
+							<div class="goods-value-box">
+								<span class="value-color">$</span><span class="value-color value-size">20.00</span>
+								<p class="title-color">not paid</p>
+							</div>
+						</span>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
+						<span class="mui-pull-right title-weight">10kg</span>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<div class="title-color title-bottom-padded">Get Time</div>
+						<div>18:22 28 Mar</div>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<div class="title-color title-bottom-padded">Deadline</div>
+						<div>28:22 29 Mar</div>
+					</li>
+				</ul>
+				
+				<div class="table-diviver"></div>
+				
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">From</span>
+						<span class="mui-ellipsis content-length">Gulf of St. Lawlence #241</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">TO</span>
+						<span class="mui-ellipsis content-length">804 Clyde Avenue Ottawa ON kiz 5A2</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">Value</span>
+						<span class="mui-ellipsis content-length">Justin Beber</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">Desc</span>
+						<span class="mui-ellipsis content-length">Clyde Avenue OttawaClyde Avenue</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<div class="porel">
+							<span class="img-box">
+								<img src="../../img/details_3.jpeg" width="100%"/>
+							</span>
+							<span class="img-box">
+								<img src="../../img/details_3.jpeg" width="100%"/>
+							</span>
+							<span class="img-box">
+								<img src="../../img/details_3.jpeg" width="100%"/>
+							</span>
+							<span class="img-box">
+								<img src="../../img/details_3.jpeg" width="100%"/>
+							</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	
 	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button class="mui-btn button-first">markup</button>
-		<button class="mui-btn button-next">collect</button>
+		<button id="markup" class="mui-btn button-first">markup</button>
+		<button id="collect" class="mui-btn button-next">collect</button>
 	</footer>
+
+	<!-- 遮罩层 -->
+	<div id="order-mask"></div>
+	<!-- 显示层 -->
+	<div id="order-popup">
+		<div class="popup-porel">
+			<div class="popup-title mui-h3">
+				Are you sure?
+			</div>
+			<div class="sub-title mui-h5">
+				This is your adjusted price
+			</div>
+			<div class="popup-body mui-clearfix">
+				<span class="mui-pull-left font-color">
+					<span>$</span><span id="current-price">20.0</span>
+					<div class="mui-h5 mui-text-center">origin</div>
+				</span>
+				<span class="plus mui-pull-left">+</span>
+				<span class="mui-pull-left font-color">
+					<span style="font-size: 1.4em;">$</span>
+					<span style="font-size: 1.4em;" id="current-price">20.0</span>
+					<div class="mui-h5 mui-text-center">markup</div>
+				</span>
+				<span class="equal mui-pull-left">=</span>
+				<span class="mui-pull-left font-color">
+					<span>$</span><span id="current-price">25.0</span>
+					<div class="mui-h5 mui-text-center">rel</div>
+				</span>
+			</div>
+			<div class="button-row">
+				<button id="ok" type="button">OK</button><button type="button" id="cancel">cancel</button>
+			</div>
+		</div>
+	</div>
+	<script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	<script>
       	mui.init();
+      	mui.ready(function(){
+      		mui("#scroll-wrapper").scroll();
+      	
+	      	var mask = document.getElementById("order-mask");
+	      	var panel = document.getElementById("order-popup");
+	      	// 显示markup弹出层
+	      	document.getElementById("markup").addEventListener("tap", function(){
+	      		mask.style.display = "block";
+	      		panel.style.display = "block";
+	      	},false)
+	      	// 隐藏显示层
+	      	document.getElementById("cancel").addEventListener("tap", function(){
+	      		mask.style.display = "none";
+	      		panel.style.display = "none";
+	      	}, false)
+	      	mask.addEventListener("tap", function(){
+	      		mask.style.display = "none";
+	      		panel.style.display = "none";
+	      	}, false)
+      	})
+      	
+      	
     </script>
 </body>
 </html>

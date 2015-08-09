@@ -27,7 +27,7 @@
 	<header class="mui-bar mui-bar-nav">
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<h1 class="mui-title">Order</h1>
-		<a class="mui-icon mui-icon-bars mui-pull-right"></a>
+		<a id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></a>
 	</header>
 	
 	<div class="mui-content">
@@ -38,105 +38,12 @@
 			<a class="mui-control-item" href="#item4">weight</a>
 		</div>
 		
-		<div class="mui-scroll-wrapper">
-			<div class="mui-scroll">
+		<div id="scroll-wrapper" class="mui-scroll-wrapper">
+			<div id="link-detail" class="mui-scroll">
 				<div id="item1" class="mui-control-content mui-active">
 					<ul class="mui-table-view">
 						<li class="mui-table-view-cell">
-							<a href="#">
-								<div class="goods-name-bar">
-									<span class="goods-name mui-pull-left mui-ellipsis">A tractor from Monica</span>
-									<span class="mui-pull-right mui-h5 goods-date">2015-06-20 18:07</span>
-								</div>
-								<div class="goods-content">
-									<div class="goods-direction mui-pull-left">
-										<div class="goods-bar goods-from-bar mui-ellipsis">
-											<span class="goods-from font-color">From</span>
-											<span class="goods-msg">Gulf of St. Lawlence #231</span>
-										</div>
-										<div class="goods-bar goods-to-bar mui-ellipsis">
-											<span class="goods-to font-color">To</span>
-											<span class="goods-msg">864 Clyde Avenue </span>
-										</div>
-										<div class="goods-bar goods-comment-bar mui-ellipsis">
-											<span class="goods-comment font-color">Comment</span>
-											<span class="goods-msg">Please do not take it away</span>
-										</div>
-									</div>
-									<div class="goods-rewards-bar mui-pull-right mui-text-center">
-										<div class="goods-rewards">Reward</div>
-										<div class="goods-value">20.00</div>
-									</div>
-								</div>
-							</a>
-						</li>
-					</ul>
-					
-					<ul class="mui-table-view">
-						<li class="mui-table-view-cell">
-							<a href="#">
-								<div class="goods-name-bar">
-									<span class="goods-name mui-pull-left mui-ellipsis">A tractor from Monica</span>
-									<span class="mui-pull-right mui-h5 goods-date">2015-06-20 18:07</span>
-								</div>
-								<div class="goods-content">
-									<div class="goods-direction mui-pull-left">
-										<div class="goods-bar goods-from-bar mui-ellipsis">
-											<span class="goods-from font-color">From</span>
-											<span class="goods-msg">Gulf of St. Lawlence #231</span>
-										</div>
-										<div class="goods-bar goods-to-bar mui-ellipsis">
-											<span class="goods-to font-color">To</span>
-											<span class="goods-msg">864 Clyde Avenue </span>
-										</div>
-										<div class="goods-bar goods-comment-bar mui-ellipsis">
-											<span class="goods-comment font-color">Comment</span>
-											<span class="goods-msg">Please do not take it away</span>
-										</div>
-									</div>
-									<div class="goods-rewards-bar mui-pull-right mui-text-center">
-										<div class="goods-rewards">Reward</div>
-										<div class="goods-value">20.00</div>
-									</div>
-								</div>
-							</a>
-						</li>
-					</ul>
-					
-					<ul class="mui-table-view">
-						<li class="mui-table-view-cell">
-							<a href="#">
-								<div class="goods-name-bar">
-									<span class="goods-name mui-pull-left mui-ellipsis">A tractor from Monica</span>
-									<span class="mui-pull-right mui-h5 goods-date">2015-06-20 18:07</span>
-								</div>
-								<div class="goods-content">
-									<div class="goods-direction mui-pull-left">
-										<div class="goods-bar goods-from-bar mui-ellipsis">
-											<span class="goods-from font-color">From</span>
-											<span class="goods-msg">Gulf of St. Lawlence #231</span>
-										</div>
-										<div class="goods-bar goods-to-bar mui-ellipsis">
-											<span class="goods-to font-color">To</span>
-											<span class="goods-msg">864 Clyde Avenue </span>
-										</div>
-										<div class="goods-bar goods-comment-bar mui-ellipsis">
-											<span class="goods-comment font-color">Comment</span>
-											<span class="goods-msg">Please do not take it away</span>
-										</div>
-									</div>
-									<div class="goods-rewards-bar mui-pull-right mui-text-center">
-										<div class="goods-rewards">Reward</div>
-										<div class="goods-value">20.00</div>
-									</div>
-								</div>
-							</a>
-						</li>
-					</ul>
-					
-					<ul class="mui-table-view">
-						<li class="mui-table-view-cell">
-							<a href="#">
+							<a href="./get-detail.html" class="detail-page">
 								<div class="goods-name-bar">
 									<span class="goods-name mui-pull-left mui-ellipsis">A tractor from Monica</span>
 									<span class="mui-pull-right mui-h5 goods-date">2015-06-20 18:07</span>
@@ -172,9 +79,21 @@
 			</div>
 		</div>
 	</div>
-	
+	<script src="../../js/utils.js"></script>
 	<script>
       	mui.init();
+      	mui.plusReady(function(){
+      		mui("#scroll-wrapper").scroll();
+      		
+      		mui("#link-detail").on("tap", ".detail-page", function(){
+      			var href = this.href;
+      			openWindow(href);
+      		})
+      		
+      		document.getElementById("filter-page").addEventListener("tap", function(){
+      			openWindow("./get-filter.html")
+      		}, false)
+      	})
     </script>
 </body>
 </html>

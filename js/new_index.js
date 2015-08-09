@@ -110,7 +110,7 @@ document.getElementById('hlep-son').addEventListener('tap', function() {
 })
 document.getElementById('i-will').addEventListener('tap', function() {
 	iflogin(function() {
-		openWindow('./page/meto_2.html');
+		openWindow('./page/getorder/get-order.html');
 	})
 })
 document.getElementById('help').addEventListener('tap', function() {
