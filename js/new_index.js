@@ -100,7 +100,7 @@ mui.menu = function() {
 			offCanvasWrapper.offCanvas('show');
 		}
 	}
-	//处理主页tap事件
+//处理主页tap事件
 document.getElementById('chat-info').addEventListener('tap', function() {
 	openWindow('./page/msgcontent.html');
 })
