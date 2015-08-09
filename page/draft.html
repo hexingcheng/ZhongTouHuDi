@@ -8,70 +8,164 @@
 		<script src="../js/mui.min.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<style>
-			.draft-goods {
-				padding: 10px;
-				position: relative;
+			.mui-bar {
+				background-color: #3BA767;
 			}
-			.draft-goods:after {
+			.mui-bar h1,
+			.mui-bar a {
+				color: #FFFFFF;
+			}
+			.draft-content {
+				border-left: 3px solid #23a0cf;
+				padding: 15px;
+				overflow: hidden;
+				margin-bottom: 10px;
+				height: 80px;
+			}
+			.d-con {
+				height: 50px;
+				float: left;
+				width: 70%;
+			}
+			.d-han {
+				height: 50px;
+				float: right;
+				width: 30%;
+			}
+			.d-con p,
+			.d-han p {
+				margin: 0;
+				height: 25px;
+				line-height: 25px;
+				overflow: hidden;
+				width: 100%;
+			}
+			.firs {
+				color: #BEC0C2;
+				text-align: left;
+				float: left;
+				width: 40%;
+			}
+			.secs {
+				color: #5f5d5d;
+				text-align: left;
+				float: left;
+				width: 60%;
+			}
+			.edit,
+			.remove {
+				float: right;
+				height: 40px;
+				margin: 5px 0;
+				line-height: 40px;
+				width: 100%;
+				max-width: 80px;
+				text-align: center;
+			}
+			.edit {
+				background-color: #d4f1e6;
+				color: #008e57;
+			}
+			.remove {
+				color: #ff8474;
+				background-color: #ffeae8;
+			}
+			html,
+			body,
+			.mask {
+				width: 100%;
+				height: 100%;
+			}
+			.mask {
 				position: absolute;
-				right: 0;
-				bottom: 0;
-				left: 10px;
-				height: 1px;
-				content: '';
-				-webkit-transform: scaleY(.5);
-				transform: scaleY(.5);
-				background-color: #c8c7cc;
+				top: 0;
+				left: 0;
+				background-color: #000000;
+				opacity: 0.4;
 			}
-			.draft-write {
+			.dialog {
+				background-color: #FFFFFF;
 				position: absolute;
-				top: 20px;
-				right: 10px;
+				top: 60px;
+				left: 0;
+				width: 270px;
+				overflow: hidden;
+				word-break: break-all;
 			}
-			.save-time,
-			.name {
-				padding: 10px 0;
+			.info {
+				color: #000000;
+				padding: 10px 20px;
 			}
-			.goods-name,
-			.save-goods-time {
-				font-size: 13px;
-				;
+			.ok {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #c4e8da;
+				text-align: center;
+				color: #029c5d;
+			}
+			.wron {
+				padding: 0 20px;
+			}
+			.cancel {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #f6ccc2;
+				text-align: center;
+				color: #da2a02;
 			}
 		</style>
-
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">草稿</h1>
-			<a class="mui-action-back mui-icon mui-icon-trash mui-pull-right"></a>
+			<a class="mui-icon mui-icon-trash mui-pull-right" id="delete"></a>
 		</header>
 		<div class="mui-content" id="content">
+		</div>
+		<div class="mask mui-hidden"></div>
+		<div class="dialog mui-hidden">
+			<div class="info">
+				Do you want to remove this order?
+			</div>
+			<p class="wron">once you remove this order it can't be recover'</p>
+			<div class="ok">ok</div>
+			<div class="cancel">cancel</div>
 		</div>
 		<script src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/template.js"></script>
 		<script type="text/html" id="drafts">
 			{{each drafts}}
-			<div class="draft-goods">
-				<div class="name">物品名称：<span class="goods-name">{{$value.gName}}</span></div>
-				<div class="save-time">保存时间：<span class="save-goods-time">{{$value.time}}</span></div>
-				<div class="draft-write editer"><a>编辑</a></div>
-				<input type="hidden" value="{{$value.orderId}}"/>
+			<div class="draft-content">
+				<div class="d-con">
+					<p>
+						<span class="firs">Name</span>
+						<span class="secs">{{$value.gName}}</span>
+					</p>
+					<p>
+						<span class="firs">Update Time</span>
+						<span class="secs">{{$value.time}}</span>
+					</p>
+				</div>
+				<div class="d-han">
+					<div class="edit">Edit
+						<input type="hidden" value="{{$value.orderId}}" />
+					</div>
+					<div class="remove mui-hidden">remove
+						<input type="hidden" value="{{$value.orderId}}" />
+					</div>
+				</div>
 			</div>
 			{{/each}}
 		</script>
 		<script type="text/javascript" src="../js/utils.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
-			 //content();
-			 //			function addcontent() {
-			 //				var html = template('drafts', data);
-			 //				document.getElementById('content').innerHTML = html;
-			 //				mui('.draft-goods').on('tap','div',function(){
-			 //					alert(1)
-			 //				})
-			 //			}
 			mui.plusReady(function() {
 				mui.ajax(BASEURL + 'order/draftList', {
 					type: 'post',
@@ -93,9 +187,58 @@
 				})
 
 				function edit() {
-					$('.draft-goods').on('tap', function() {
-						var id = $('input',$(this)).get(0).value;
-						alert(id)
+					$('.edit').on('tap', function() {
+						var id = $('input', $(this)).get(0).value;
+						mui.ajax(BASEURL+'order/goodShow',{
+							
+						})
+					})
+					$('#delete').on('tap', function() {
+						if (!$('.edit').hasClass('mui-hidden')) {
+							$('.edit').addClass('mui-hidden');
+							$('.remove').removeClass('mui-hidden')
+						} else {
+							$('.edit').removeClass('mui-hidden');
+							$('.remove').addClass('mui-hidden')
+						}
+					})
+					$('.remove').on('tap', function() {
+						var _this = this;
+						$('.mask').removeClass('mui-hidden');
+						$('.dialog').removeClass('mui-hidden');
+						var l = ($(window).width() - 300) / 2
+						var t = ($(window).height() - $('.dialog').height()) / 2
+						$('.dialog').css({
+							'left': l,
+							'top': t
+						})
+						$('.ok').on('tap', function() {
+							$('.mask').addClass('mui-hidden');
+							$('.dialog').addClass('mui-hidden');
+							plus.nativeUI.showWaiting( "删除中..." );
+							var id = $('input', $(_this)).get(0).value;
+							var deletedata = {};
+							deletedata.orderId = id;
+							mui.ajax(BASEURL + 'order/delete', {
+								type: 'post',
+								data: deletedata,
+								success: function(data) {
+									console.log(data.ret);
+									if (data.ret == 1) {
+										plus.nativeUI.closeWaiting()
+										mui.toast('删除成功');
+										$(_this).parent().parent().remove();
+									}
+								},
+								error: function(type) {
+									console.log(type)
+								}
+							})
+						})
+						$('.cancel').on('tap',function(){
+							$('.mask').addClass('mui-hidden');
+							$('.dialog').addClass('mui-hidden');
+						})
 					})
 				}
 			})

@@ -5,8 +5,21 @@
        .font_8{
        	font-size: .8em;
        }
+       .font1_5{
+       	font-size: 1.5em;
+       }
        .border{
        	     border: 1px solid silver;
+       }
+       .pull_right{
+       	float: right;
+       }
+       
+       .mar_top3{
+       	margin-top: 4em;
+       }
+       .bg_w{
+       	background-color: white;
        }
        .width_4{
        	width:25%;
@@ -22,6 +35,12 @@
        }
        .bor_buttom{
        	border-bottom: 1px solid silver;
+       }
+       .line1{
+       	line-height: 1em;
+       }
+       .line2_5{
+       	line-height: 2.5em;
        }
        .line2{
        	line-height: 2em;
@@ -47,6 +66,59 @@
       	margin-top: -2px;
       
       }
+      
+        /*me*/
+       	.img{
+    		background-image: url(../img/details.jpeg); 
+    		background-repeat: no-repeat;
+    		width: 100%;
+    	}
+
+    	.me_main{
+    		width: 100%;
+    		height: 10em;
+    		overflow: hidden;
+    	}
+    
+    	.me-info{
+    		width: 6em;
+    		height: 6em;
+    		border: 2px solid silver;
+    		border-radius: 3em;
+    		position: absolute;
+    		left: 50%;
+    		top: -3em;
+    		margin-left: -3em;
+    		overflow: hidden;
+    		
+    	}
+    	.me-info img{
+    		width: 6em;
+    		height: 6em;
+    	}
+       .me_same{
+       	width: 8em;
+       	display: block;
+       	float: left;
+       }
+       .me_circle{
+       	width: 1.6em;
+       	height: 1.6em;
+       	line-height: 1.6em;
+       	text-align: center;
+       	background-color: white;
+       	position: absolute;
+       	left:55%;
+       	top: 1em;
+       	border-radius: .8em;
+       }
+       .me_main-info{
+       	width:100%;
+       	height: 3.5em;
+       	position: relative;
+       	margin:-em 0 0 0;
+       	background-color: white;
+       }
        /*//index*/
        .footer{
     		clear: both;
@@ -118,8 +190,14 @@
     	._bg{
     		background-color: white;
     	}
+    	.transparent{
+    		background-color: transparent;
+    	}
     	._bor_ra{
     		border-radius: .5em;
+    	}
+    	.color_w{
+    		color: white;
     	}
     	.none_box{
     		box-shadow: none;

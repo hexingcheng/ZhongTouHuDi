@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../../js/mui.min.js"></script>
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../css/font-awesome.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style>
+      .me-cen-con{
+      	width: 100%;
+      	height: 20em;
+      	overflow-y: scroll; 
+      	background-color: #efeff4;
+      }
+      .me-cen-img{
+      	width: 4em;
+      	height: 4em;
+      	margin-right: 1em;
+      	overflow: hidden;
+      	border-radius: 2em;
+      	line-height: 2em;
+      	float: left;
+      	
+      }
+      .me-cen-img img{
+      	width: 4em;
+      	height: 4em;
+      }
+    
+    </style>
+</head>
+<body class="bg_w">
+	<div class="me_main _bg img">
+		 <header class="mui-bar mui-bar-nav mui-action-back" style="background-color: transparent;box-shadow: none;" >
+		 	<a class="mui-icon mui-icon-left-nav color_w" ></a>
+		 	<h1 class="mui-title"><span class="color_w">me</span></h1>
+		 	<span class="mui-pull-right line3"><i class="fa fa-pencil-square-o color_w "></i></span>
+		 </header>
+	</div>
+	<!--文本内容-->
+	<div class="mui-content " >
+		 <div class="me_main-info">
+		 	<div class="me-info ">
+		 		<img  id="headPic" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" />
+		 	</div>
+	 	</div>
+		<ul class="mui-table-view ">
+			<li class="mui-table-view-cell">
+			<a class="mui-navigate-right" href="nicname.html"><span class="me_same">nickName</span> <span class="color" id="nickName">sdas</span></a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right"><span class="me_same">phone</span> <span class="color" id="phone">sdas</span></a>
+            </li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right" href="me_center.html"> <span class="me_same">credibility </span>  
+			   <i class="fa fa-trophy" style="color: #F4F10D;"></i><span class="color"> Admiral</span></a>	</li>
+		</ul>
+		
+		<!--内容-->
+		<div class="me-cen-con mui-scroll" id="content_c"></div>
+	</div>
+	
+	 <script type="text/html" id="content">
+	       {{each result}}
+	   	  <ul class="mui-table-view">
+				<li class="mui-table-view-cell line2">
+					<div class="me-cen-img border"><img src={{$value.src}} alt=""> </div>
+					<span>{{$value.nickName}}</span> 
+					<span class="mui-pull-right color"><i class="fa fa-trophy" style="color: #F4F10D;"></i> 
+					Admiral </span> </br>
+				     <span class="color"> &nbsp; &nbsp;&nbsp;{{$value.status}}</span> </br>
+				     <span class="mui-pull-right color font_8 line1">{{$value.time}}</span>
+				</li>
+			</ul>
+			{{/each}}
+	   </script>
+</body>
+
+	<script type="text/javascript" src="../../js/utils.js"></script>
+    <script src="../../js/template.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	  <script>
+	  	  var data={
+	  	  	    "result":[{
+	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",
+	  	  	    	"nickName":"sun4343lee",
+	  	  	    	"status":"good job!",
+	  	  	    	"time":"2015-6-20 18:07"
+	  	  	    },
+	  	  	    {
+	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",
+	  	  	    	"nickName":"sun4343lee",
+	  	  	    	"status":"good job!",
+	  	  	    	"time":"2015-6-20 18:07"
+	  	  	    },
+	  	  	     {
+	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",
+	  	  	    	"nickName":"sun4343lee",
+	  	  	    	"status":"good job!",
+	  	  	    	"time":"2015-6-20 18:07"
+	  	  	    }, {
+	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",
+	  	  	    	"nickName":"sun4343lee",
+	  	  	    	"status":"good job!",
+	  	  	    	"time":"2015-6-20 18:07"
+	  	  	    },{
+	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",
+	  	  	    	"nickName":"sun4343lee",
+	  	  	    	"status":"good job!",
+	  	  	    	"time":"2015-6-20 18:07"
+	  	  	    },{
+	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",
+	  	  	    	"nickName":"sun4343lee",
+	  	  	    	"status":"good job!",
+	  	  	    	"time":"2015-6-20 18:07"
+	  	  	    },{
+	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",
+	  	  	    	"nickName":"sun4343lee",
+	  	  	    	"status":"good job!",
+	  	  	    	"time":"2015-6-20 18:07"
+	  	  	    },{
+	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",
+	  	  	    	"nickName":"sun4343lee",
+	  	  	    	"status":"good job!",
+	  	  	    	"time":"2015-6-20 18:07"
+	  	  	    },{
+	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",
+	  	  	    	"nickName":"sun4343lee",
+	  	  	    	"status":"good job!",
+	  	  	    	"time":"2015-6-20 18:07"
+	  	  	    }
+	  	  	    
+	  	  	    ]
+	  	  } 
+	  	   var html=template('content',data);
+	  	   document.getElementById('content_c').innerHTML=html;
+	  </script>
+		<script>
+//			mui.plusReady(function() {
+//				mui('.mui-table-view-cell').on('tap', 'a', function() {
+//					var id = this.getAttribute('href');
+//					var urls = this.href;
+//					if (id) {
+//						mui.openWindow({
+//							url: urls,
+//							id: id,
+//							waiting: {
+//								autoShow: true,
+//								title: '正在加载...',
+//								options: {
+//									width: '100px',
+//									height: '100px',
+//									background: '#d1d1d1'
+//								}
+//							}
+//						})
+//					}
+//				})
+//				$('.photo_').on('tap', function() {
+//					getcamera(function(path) {
+//						var URL = plus.io.convertLocalFileSystemURL(path).toString();
+//						$('.photo').attr('src',URL);
+//					}, function() {
+//						 var cmr=plus.camera.getCamera(1);
+//						 alert(1);
+//					})
+//				})
+//				$('.back').on('tap',function(){
+//					plus.webview.getLaunchWebview().show()
+//				})
+//			})
+//		</script>
+	</body>
+<script>
+
+mui.plusReady(function(){
+	 var nickName=document.getElementById('nickName');
+	 var phone=document.getElementById('phone');
+	 var headPic=document.getElementById('headPic');
+  	  mui.ajax(BASEURL+"/account/info",{
+  	  	 type:"post",
+  	  	 success:function(data){
+  	  	 	if(data.ret==1){
+//		             alert(JSON.stringify(data));
+		            if(data.res.nickName ){
+		            	nickName.innerHTML=data.res.nickName;
+		            }else{
+		            	nickName.innerHTML="你还没有昵称";
+		            }
+					phone.innerHTML=data.res.phone;
+					headPic.setAttribute('src',data.res.headPic);
+			}else{
+				mui.toast("请先登录！");
+			}
+  	  	 },error:function(xhr, type){
+  	  	 	console.log(type);
+  	  	 }   
+  	  });
+  	  
+  })
+</script>
+</html>
