@@ -21,13 +21,16 @@
 		.goods-direction {display: inline-block;width: 70%;}
 		.goods-rewards-bar {display: inline-block;width: 25%;border-left: 1px solid #e8e8e8;padding: 0 0 20px 10px;}
 		.goods-rewards {padding: 0.6em 0;}
+		
+		.waiting-box {position: absolute;background: #fff url(../../img/loading46.gif) no-repeat center center;
+					width: 100%;height: 20em;}
     </style>
 </head>
-<body>
+<body style="background: #fff;">
 	<header class="mui-bar mui-bar-nav">
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<h1 class="mui-title">Order</h1>
-		<a id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></a>
+		<i id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></i>
 	</header>
 	
 	<div class="mui-content">
@@ -41,7 +44,11 @@
 		<div id="scroll-wrapper" class="mui-scroll-wrapper">
 			<div id="link-detail" class="mui-scroll">
 				<div id="item1" class="mui-control-content mui-active">
-					<ul class="mui-table-view">
+					<div style="position: relative;">
+						<div class="waiting-box"></div>
+					</div>
+					
+					<!--<ul class="mui-table-view">
 						<li class="mui-table-view-cell">
 							<a href="./get-detail.html" class="detail-page">
 								<div class="goods-name-bar">
@@ -70,7 +77,7 @@
 								</div>
 							</a>
 						</li>
-					</ul>
+					</ul>-->
 					
 				</div>
 				<div id="item2" class="mui-control-content"></div>
@@ -80,16 +87,95 @@
 		</div>
 	</div>
 	<script src="../../js/utils.js"></script>
+	<script src="../../js/template.js"></script>
+	<script type="text/html" id="template">
+		{{each list}}
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell">
+				<a href="./get-detail.html" class="detail-message" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}">
+					<div class="goods-name-bar">
+						<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
+						<span class="mui-pull-right mui-h5 goods-date">{{$value.finTime}}</span>
+					</div>
+					<div class="goods-content">
+						<div class="goods-direction mui-pull-left">
+							<div class="goods-bar goods-from-bar mui-ellipsis">
+								<span class="goods-from font-color">From</span>
+								<span id="send-addr" class="goods-msg">{{$value.sendAddr}}</span>
+							</div>
+							<div class="goods-bar goods-to-bar mui-ellipsis">
+								<span class="goods-to font-color">To</span>
+								<span id="receive-addr" class="goods-msg">{{$value.receiveAddr}}</span>
+							</div>
+							<div class="goods-bar goods-comment-bar mui-ellipsis">
+								<span class="goods-comment font-color">Comment</span>
+								<span id="goods-info" class="goods-msg">{{$value.info}}</span>
+							</div>
+						</div>
+						<div class="goods-rewards-bar mui-pull-right mui-text-center">
+							<div class="goods-rewards">Reward</div>
+							<div class="goods-value">{{$value.money}}</div>
+						</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+		{{/each}}
+	</script>
+	<!--<script src="../../js/jquery.min.js"></script>-->
 	<script>
       	mui.init();
       	mui.plusReady(function(){
       		mui("#scroll-wrapper").scroll();
       		
-      		mui("#link-detail").on("tap", ".detail-page", function(){
-      			var href = this.href;
-      			openWindow(href);
-      		})
+      		// ajax 获取模板数据
+      		plus.geolocation.getCurrentPosition(function(pos) {
+				var lot = pos.coords.longitude;
+				var lat = pos.coords.latitude;
+				var getorderdata = {
+					"page":1,
+					"pageSize":10,
+					"curAddr":"重庆",
+					"curJd":lot,
+					"curWd":lat,
+				};
+				mui.ajax(BASEURL + 'deliver/goodList', {
+					type:'post',
+					data:getorderdata,
+					success:function(data){
+//						console.log(JSON.stringify(data));
+						var orderdata = {
+							"list":data.res
+						}
+						var html = template("template", orderdata);
+						document.getElementById("item1").innerHTML = html;
+						
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type)
+					}
+				})
+			}, function(e) {
+				console.log(e)
+			}, {
+				provider: "baidu"
+			})
       		
+      		// 详情页面跳转
+			mui('#link-detail').on('tap','.detail-message', function(){
+
+				var order = {
+					orderid : this.getAttribute("data-orderid"),		// 获取编号
+					status : this.getAttribute("data-status")		// 运送状态
+				}
+				// 数据储存在本地storage中
+				plus.storage.setItem("order", JSON.stringify(order));
+				
+				var href = this.href;
+				openWindow(href);		// 打开详情页面信息显示
+			})
+      		
+      		// 筛选查找
       		document.getElementById("filter-page").addEventListener("tap", function(){
       			openWindow("./get-filter.html")
       		}, false)
