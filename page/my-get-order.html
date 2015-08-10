@@ -177,15 +177,16 @@
 			mui("#segmentedControl").on("tap", ".mui-control-item", function(){
 				var sendobj = {
 					page : 1,
-					pageSize : 5,
+					pageSize : 10,
 					type : "rece",
 					status : this.getAttribute("data-status")
 				}
 //				alert(JSON.stringify(sendobj))
-				mui.ajax("http://202.202.43.107:8080/api/order/myGoodList", {
+				mui.ajax(BASEURL+"order/myGoodList", {
 					data : sendobj,
 					type : "post",
 					success : function(data){
+						console.log(data.ret)
 						if(data.ret == 1){
 							// 请求成功
 							console.log(data.res);		// 数据获取为null ===== 回应的

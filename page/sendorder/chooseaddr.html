@@ -1,31 +1,118 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="../../js/mui.min.js"></script>
-    <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <style>
-    	.mui-bar {
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.mui-bar {
 				background-color: #3ba767;
 			}
 			.mui-bar h1,
 			.mui-bar a {
 				color: #FFFFFF;
 			}
-    </style>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-</head>
-<body>
-	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">Trip plan</h1>
-	</header>
-	<div class="mui-content">
-		
-	</div>
-</body>
+			html,
+			body,
+			.mui-content,
+			.hand-map {
+				background-color: #FFFFFF;
+				width: 100%;
+			}
+			.hand-map {
+				position: absolute;
+				top: 44px;
+				padding: 5px;
+			}
+			.hand-detial {
+				border: 1px solid #e3e3e3;
+			}
+			.fl {
+				float: left;
+			}
+			.fr {
+				float: right;
+			}
+			.clear {
+				zoom: 1;
+			}
+			.clear:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			.wid15 {
+				width: 15%;
+			}
+			.wid85 {
+				width: 85%;
+			}
+			.sear .mui-input-clear,
+			.smap .mui-input-clear {
+				margin: 0;
+				padding: 0;
+				height: 39px;
+				border: 0;
+				width: 100%;
+			}
+			.hei60 {
+				height: 40px;
+			}
+			.addbor {
+				border-bottom: 1px solid #e3e3e3;
+			}
+			.linehei40 {
+				line-height: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">Trip plan</h1>
+		</header>
+		<div class="mui-content">
+			<div class="hand-map">
+				<div class="hand-detial">
+					<div class="clear sear">
+						<div class="fl wid15 hei60 mui-text-center"><span class="mui-icon mui-icon-location linehei40"></span></div>
+						<div class="fl wid85 hei60 addbor">
+							<div class="mui-input-row">
+								<input placeholder="choose address" class="mui-input-clear" type="text" id="chooseaddr">
+							</div>
+						</div>
+					</div>
+					<div class="clear smap">
+						<div class="fl wid15 hei60 mui-text-center"><span class="mui-icon mui-icon-search linehei40"></span></div>
+						<div class="fl wid85 hei60">
+							<div class="mui-input-row">
+								<input placeholder="detail address" class="mui-input-clear" type="text">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../js/utils.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				plus.geolocation.getCurrentPosition(function(pos) {
+					showobj(pos.coords)
+					document.getElementById('chooseaddr').value = pos.address.province+pos.address.district+pos.address.street;
+					var lat = pos.coords.latitude;
+					var lng = pos.coords.longitude
+				}, function(e) {
+					console.log(e)
+				}, {
+					provider: 'baidu'
+				})
+			})
+		</script>
+	</body>
+
 </html>

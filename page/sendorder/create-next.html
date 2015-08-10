@@ -360,7 +360,9 @@
 								type: 'post',
 								success: function(data) {
 									if (data.ret == 1) {
-										mui.toast('发单成功，继续完成支付')
+										mui.toast('发单成功，继续完成支付');
+										plus.webview.getWebviewById('sendorder/createorder').close()
+										plus.webview.getWebviewById('create-next').close();
 										plus.webview.getLaunchWebview().show('slide-in-left')
 									} else if (data.ret == -101) {
 										mui.confirm('您还未登陆，请登录！', '提示', ['确定', '取消'], function(e) {
