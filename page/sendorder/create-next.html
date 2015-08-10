@@ -111,6 +111,7 @@
 				background-color: #F7F5F5;
 				color: #219B52;
 				height: 30px;
+				padding: 0;
 			}
 			.tet {
 				text-align: center;
@@ -235,13 +236,13 @@
 									<span class="mui-icon mui-icon-bars"></span>
 								</div>
 							</div>
-							<div class="arrtime clear">
+							<div class="clear">
 								<div class="fl wid10 hei80 linehei mui-text-right">
 									<span class="mui-icon mui-icon-map"></span>
 								</div>
 								<div class="fl wid80 hei80 linehei">
 									<div class="mui-input-row time">
-										<input type="text" class="mui-input-clear" placeholder="Arrival Time" id="" />
+										<input type="text" class="mui-input-clear" placeholder="Arrival Time" id="sendaddr" />
 									</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet">
@@ -280,7 +281,7 @@
 							</div>
 							<div class="fl wid80 hei80 linehei">
 								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="receiver" id="" />
+									<input type="text" class="mui-input-clear" placeholder="receiver" id="receiver" />
 								</div>
 							</div>
 							<div class="fr wid10 hei80 linehei tet">
@@ -293,7 +294,7 @@
 							</div>
 							<div class="fl wid90 hei80 linehei">
 								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="Phone" />
+									<input type="text" class="mui-input-clear" placeholder="Phone" id="tel"/>
 								</div>
 							</div>
 						</div>
@@ -301,7 +302,7 @@
 							<form class="mui-input-group">
 								<div class="mui-input-row mui-checkbox mui-left">
 									<label class="insurea lmar">Buy safety insurance $5</label>
-									<input name="radio1" type="checkbox" class="lmar" id="radio" value="5" id="comer">;
+									<input name="radio1" type="checkbox" class="lmar" value="5" id="comer">;
 								</div>
 							</form>
 						</div>
@@ -315,6 +316,7 @@
 		<script type="text/javascript" src="../../js/utils.js"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
+		
 			mui.init();
 			mui.plusReady(function() {
 				var c = plus.webview.currentWebview();
@@ -327,6 +329,7 @@
 					lat = pos.coords.latitude;
 					var c = plus.webview.currentWebview();
 					$('.mui-bbtn').on('tap', function() {
+						alert(parseInt($('#comer').val()))
 						var getdata = {}
 						getdata.gName = c.gName;
 						getdata.gValue = c.gValue;
@@ -336,7 +339,8 @@
 						getdata.money = parseInt($('#pay').val());
 						getdata.getTime = $('#gettime').val();
 						getdata.finTime = $('#respecttime').val();
-						getdata.senderAddress = $('#getaddr').val();
+//						getdata.senderAddress = $('#getaddr').val();
+						getdata.senderAddress = '重庆';
 						//getdata.receiverAddress = $('#sendaddr').val();
 						getdata.receiverAddress = '北京';
 						getdata.sender = $('#sender').val();
@@ -347,7 +351,7 @@
 						getdata.receiverPhone = $('#tel').val();
 						getdata.receiverJd = 10;
 						getdata.receiverWd = 10;
-						getdata.insType = $('#comer').val();
+						getdata.insType = parseInt($('#comer').val());
 						getdata.status = 1;
 						showobj(getdata)
 						if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
@@ -373,7 +377,7 @@
 								}
 							})
 						} else {
-							mui.toast('信息为填完全')
+							mui.toast('信息未填完全')
 						}
 					})
 				}, function(e) {
@@ -405,6 +409,9 @@
 					time.show(function(rs){
 						$('input',_this).val(rs.text)
 					})
+				})
+				$('#getaddr').on('tap',function(){
+					openWindow('./pickaddr.html')
 				})
 			})
 		</script>
