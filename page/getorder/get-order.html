@@ -174,7 +174,21 @@
 				var href = this.href;
 				openWindow(href);		// 打开详情页面信息显示
 			})
-      		
+			// 返回函数
+      		mui.back = function(){
+      			var index = plus.webview.getLaunchWebview();
+      			index.show("slide-in-left", 300)
+//    			var pages = ["get-filter", "get-result", "get-detail"];
+      			setTimeout(function(){
+//    				for(var i = 0; i < pages.length; i++){
+//	      				var page = plus.getWebviewById(pages[i]);
+//	      				if(page){
+//	      					plus.webview.close(page, "fade-out", 200);
+//	      				}
+//    				}
+      				plus.webview.currentWebview().close("none",0);
+      			}, 300)
+      		}
       		// 筛选查找
       		document.getElementById("filter-page").addEventListener("tap", function(){
       			openWindow("./get-filter.html")
