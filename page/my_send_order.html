@@ -98,7 +98,7 @@
 				<h3 class="mui-text-center h3">
 							<span class="mui-icon mui-icon-email icons"></span>
 							<span class="gName">{{$value.gName}}</span>
-							<a class="mui-pull-right ifshow">{{$value.status == 1 ? "接单中" : $value.status == 2 ? "运送中" : $value.status == 3 ? "已完成" : "已取消"}}</a>
+							<a class="mui-pull-right ifshow">{{$value.statusDetail == 11 ? "议价中" : $value.statusDetail == 12 ? "代付款" : $value.statusDetail == 13 ? "接单中" : $value.statusDetail == 21 ? "未取货": $value.statusDetail == 22 ? "已取货" : $value.statusDetail == 31 ? "待评价": $value.statusDetail == 32 ? "已评价":""}}</a>
 						</h3>
 				<div class="address">
 					<p>起:<span>{{$value.sendAddr}}</span></p>
@@ -124,7 +124,7 @@
 			mui('#offCanvasSideScroll').scroll()
 		
 			// 获取后台发单数据显示
-			var url = "http://202.202.43.107:8080/api/order/myGoodList";
+			var url = BASEURL+"order/myGoodList";
 			mui("#segmentedControl").on("tap", ".mui-control-item", function(){
 				var status = this.getAttribute("data-status");
 				sendData(url, status)
@@ -146,6 +146,7 @@
 					data : sendobj,
 					type : "post",
 					success : function(data){
+						showobj(data.res)
 //						alert(JSON.stringify(data.res))
 						var data = {
 							"mygetorder" : data.res
