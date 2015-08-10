@@ -6,44 +6,9 @@
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="get-order-comment.css"/>
+    <link rel="stylesheet" href="get-detail.css"/>
     <script src="../../js/mui.min.js"></script>
-    <style>
-    	.mui-grid-view.mui-grid-9 {background-color: #fff;}
-    	.mui-scroll-wrapper {top: 44px; bottom: 3.2em;}
-    	.title-color {color: #bec0c2;}
-    	.name {width: 25%;}
-    	.table-diviver {width: 100%;height: 7px;background-color: #ededeb;}
-    	.goods-name {width: 75%;}
-    	.value-color {color: #dc3e26;}
-    	.value-size {font-size: 1.2 em;padding-left: 0.2em;}
-    	.title-padded { padding: 0.5em 0;}
-    	.title-bottom-padded {padding-bottom: 0.3em;}
-    	.title-weight {padding: 0.5em 0.6em;}
-    	.content-length {display: inline-block;width: 75%;}
-    	.title-width {display: inline-block;width: 25%;}
-    	.desc-after {border-bottom: 1px solid #e8e8e8; }
-    	.desc-after:after {height: 0;}
-    	.img-box {width: 4em;height: 4em;overflow: hidden;position: absolute;border: 1px solid #ccc;padding: 1px;}
-    	.porel {position: relative;width: 100%;height: 4em;}
-    	.img-box:nth-child(1) {left: 25%;}
-    	.img-box:nth-child(2) {left: 50%;}
-    	.img-box:nth-child(3) {left: 75%;}
-    	/* 弹出层 */
-    	#order-mask {position: absolute;background: rgba(0,0,0,.5);top: 0;right: 0;bottom: 0;left: 0;
-    					z-index: 1000;display: none;}
-		#order-popup {position: absolute;width: 300px;height: 12em;z-index: 1001;background: #fff;left: 50%;top: 50%;
-						margin-left: -150px;margin-top: -6em;display: none;}
-		.popup-porel {position: relative;width: 100%;height: 100%;}
-		.popup-title {padding: 0.8em 0 0 0.7em;}
-		.sub-title {padding: 0.7em 0 0.7em 1.2em;}
-		.button-row {position: absolute;bottom: 0;width: 100%;height: 2.5em;}
-		.popup-body {padding: 0.5em 0 0em 1.2em;}
-		.plus, .equal {padding: 0.5em 1em 0em 1em;}
-		.button-row button {border: none;width: 50%;height: 100%;padding: 0;border-radius: none;}
-		.button-row button:nth-child(1) {background-color: #c4e8da;color: #029c5d;}
-		.button-row button:nth-child(2) {background-color: #f6ccc2;color: #da2a02;}
-		.font-color { color: #da2a02;}
-    </style>
+    
 </head>
 <body>
 	<header class="mui-bar mui-bar-nav">
@@ -57,28 +22,28 @@
 				<ul class="mui-table-view mui-grid-view mui-grid-9">
 					<li class="mui-table-view-cell mui-col-xs-12">
 						<span class="mui-pull-left title-color mui-text-left name">Name</span>
-						<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">Flower</span>
+						<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">--</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
 						<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
 						<span class="mui-pull-right">
 							<div class="goods-value-box">
-								<span class="value-color">$</span><span class="value-color value-size">20.00</span>
+								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
 								<p class="title-color">not paid</p>
 							</div>
 						</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
 						<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
-						<span class="mui-pull-right title-weight">10kg</span>
+						<span id="goods-weight" class="mui-pull-right title-weight">0kg</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
 						<div class="title-color title-bottom-padded">Get Time</div>
-						<div>18:22 28 Mar</div>
+						<div id="get-time">--:--</div>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
 						<div class="title-color title-bottom-padded">Deadline</div>
-						<div>28:22 29 Mar</div>
+						<div id="deadline">--:--</div>
 					</li>
 				</ul>
 				
@@ -87,34 +52,37 @@
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell desc-after">
 						<span class="title-color mui-pull-left title-width">From</span>
-						<span class="mui-ellipsis content-length">Gulf of St. Lawlence #241</span>
+						<span id="sendaddr" class="mui-ellipsis content-length">--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
 						<span class="title-color mui-pull-left title-width">TO</span>
-						<span class="mui-ellipsis content-length">804 Clyde Avenue Ottawa ON kiz 5A2</span>
+						<span id="receiveaddr" class="mui-ellipsis content-length">--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
 						<span class="title-color mui-pull-left title-width">Value</span>
-						<span class="mui-ellipsis content-length">Justin Beber</span>
+						<span id="gvalue" class="mui-ellipsis content-length">--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
 						<span class="title-color mui-pull-left title-width">Desc</span>
-						<span class="mui-ellipsis content-length">Clyde Avenue OttawaClyde Avenue</span>
+						<span id="info" class="mui-ellipsis content-length">--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
 						<div class="porel">
 							<span class="img-box">
-								<img src="../../img/details_3.jpeg" width="100%"/>
+								<span class="mui-icon mui-icon-plusempty"></span>
 							</span>
 							<span class="img-box">
-								<img src="../../img/details_3.jpeg" width="100%"/>
+								<span class="mui-icon mui-icon-plusempty"></span>
 							</span>
 							<span class="img-box">
-								<img src="../../img/details_3.jpeg" width="100%"/>
+								<span class="mui-icon mui-icon-plusempty"></span>
 							</span>
 							<span class="img-box">
-								<img src="../../img/details_3.jpeg" width="100%"/>
+								<span class="mui-icon mui-icon-plusempty"></span>
 							</span>
+							<!--<span class="img-box">
+								<img src="../../img/2147de349744915c611f470c84c67f94.jpg" width="100%"/>
+							</span>-->
 						</div>
 					</li>
 				</ul>
@@ -140,18 +108,18 @@
 			</div>
 			<div class="popup-body mui-clearfix">
 				<span class="mui-pull-left font-color">
-					<span>$</span><span id="current-price">20.0</span>
+					<span>$</span><span id="current-price">20.00</span>
 					<div class="mui-h5 mui-text-center">origin</div>
 				</span>
 				<span class="plus mui-pull-left">+</span>
 				<span class="mui-pull-left font-color">
 					<span style="font-size: 1.4em;">$</span>
-					<span style="font-size: 1.4em;" id="current-price">20.0</span>
+					<span id="plus-price">1.00</span>
 					<div class="mui-h5 mui-text-center">markup</div>
 				</span>
 				<span class="equal mui-pull-left">=</span>
 				<span class="mui-pull-left font-color">
-					<span>$</span><span id="current-price">25.0</span>
+					<span>$</span><span id="total-price">0.00</span>
 					<div class="mui-h5 mui-text-center">rel</div>
 				</span>
 			</div>
@@ -160,16 +128,33 @@
 			</div>
 		</div>
 	</div>
-	<script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<!-- 加载中的蒙层 -->
+	<div id="loading-mask"></div>
+	<div id="loading-box">
+		<img src="../../img/loading45.gif" alt="loading"/>
+	</div>
+	
+	<script src="../../js/jquery.min.js" ></script>
+	<script src="../../js/utils.js"></script>
 	<script>
       	mui.init();
-      	mui.ready(function(){
+      	mui.plusReady(function(){
       		mui("#scroll-wrapper").scroll();
-      	
+      		
+      		var mp;
+      		
 	      	var mask = document.getElementById("order-mask");
 	      	var panel = document.getElementById("order-popup");
 	      	// 显示markup弹出层
 	      	document.getElementById("markup").addEventListener("tap", function(){
+	      		var cshow = document.getElementById("current-price"); 	// 弹出层显示当前价格
+	      		var cp = document.getElementById("goods-value").innerHTML;		// 页面显示当前价格
+	      		cshow.innerHTML = cp;
+	      		var cprice = parseFloat(cp);
+	      		mp = parseFloat(document.getElementById("plus-price").innerHTML);		// 获取需要加价的金额
+	      		var total = document.getElementById("total-price");
+	      		total.innerHTML = cprice + mp;		// 显示总金额
+	      		
 	      		mask.style.display = "block";
 	      		panel.style.display = "block";
 	      	},false)
@@ -178,13 +163,111 @@
 	      		mask.style.display = "none";
 	      		panel.style.display = "none";
 	      	}, false)
+	      	
 	      	mask.addEventListener("tap", function(){
 	      		mask.style.display = "none";
 	      		panel.style.display = "none";
 	      	}, false)
+	      	
+	      	var order = JSON.parse(plus.storage.getItem("order"));
+	      	
+	      	// 议价
+	      	var getoderpage = plus.webview.getWebviewById("getorder/get-order");
+	      	document.getElementById("ok").addEventListener("tap", function(){
+	      		plus.nativeUI.showWaiting("议价中...", {
+	      			background : "#ccc"
+	      		});
+	      		mui.ajax(BASEURL + "deliver/bargain", {
+	      			data : {
+	      				orderId : order.orderid,
+	      				money : mp
+	      			},
+	      			type : "post",
+	      			success : function(data){
+	      				if(data.ret == 1){
+	      					plus.nativeUI.closeWaiting();
+	      					mui.alert("议价成功", "议价");
+	      					if(getoderpage){
+	      						getoderpage.show("slide-in-left", 300);
+	      						setTimeout(function(){
+	      							plus.webview.currentWebview().close("fade-out", 200);
+	      						}, 320)
+	      					} else {
+	      						plus.webview.getLaunchWebview().show("slide-in-left", 300);
+	      						setTimeout(function(){
+	      							plus.webview.currentWebview().close("fade-out", 200);
+	      						}, 320)
+	      					}
+	      					mask.style.display = "none";
+	      					panel.style.display = "none";
+	      				} else if (data.ret == 2){
+	      					plus.nativeUI.closeWaiting();
+	      					mui.alert("已加价，不可重复加价", "议价");
+	      					mask.style.display = "none";
+	      					panel.style.display = "none";
+	      				}
+	      			},
+	      			error : function(err){
+	      				console.log(err);
+	      			}
+	      		})
+//	      		alert("nihao")
+	      	}, false);
+	      	
+	      	
+	      	mui.ajax(BASEURL + "order/goodShow", {
+	      		data : {
+	      			orderId : order.orderid,
+	      			type : "comm"
+	      		},
+	      		type : "post",
+	      		success : function(data){
+//	      			console.log(JSON.stringify(data));
+	      			if(data.ret == 1){
+	      				$(".goods-name").html(data.res.gName);		// 货物名称
+		      			$("#goods-value").html(data.res.money);		// 价值
+		      			$("#goods-weight").html(data.res.gWeight+ "kg");	// 重量
+		      			$("#get-time").html(data.res.getTime);		// 获取时间
+		      			$("#deadline").html(data.res.finTime);		// 期望时间
+		      			$("#sendaddr").html(data.res.sendAddr);		// 发送地
+		      			$("#receiveaddr").html(data.res.receiveAddr)	// 接收地
+		      			$("#gvalue").html(data.res.gValue);		// value
+		      			$("#info").html(data.res.info);		// 信息描述
+		      			var pic = data.res.pics;
+		      			
+		      			var n = BASEURL.indexOf('/api/');
+		      			
+						var per = BASEURL.substring(0,n);
+						var len = pic.length;
+						for(var i = 0; i<len;i++){
+							var url = per + pic[i].path;
+							var html = '<img src=' + url +' width="100%">';
+							document.querySelectorAll(".img-box")[i].innerHTML = html;
+						}
+						// 300毫秒之后清除等待框
+		      			setTimeout(function(){
+		      				var lmask = document.getElementById("loading-mask");
+		      				var lbox = document.getElementById("loading-box");
+		      				var mcl = lmask.classList;
+		      				var bcl = lbox.classList;
+		      				mcl.add("fade-out");
+		      				bcl.add("fade-out");
+		      				// 过渡动画结束的时候执行该事件
+		      				lmask.addEventListener("webkitTransitionEnd", function(){
+			      				document.getElementById("loading-mask").style.display = "none";
+			      				document.getElementById("loading-box").style.display = "none";
+			      				mcl.remove("fade-out");
+		      					bcl.remove("fade-out");
+		      				}, false)
+		      			}, 300)
+	      			}
+	      		},
+	      		error : function(xhr, type){
+	      			console.log(type);
+	      		}
+	      	})
       	})
-      	
-      	
+
     </script>
 </body>
 </html>
