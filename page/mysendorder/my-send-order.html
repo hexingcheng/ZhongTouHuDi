@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="my-send-order.css"/>
+		<script src="../../js/mui.min.js"></script>
+	</head>
+
+	<body style="background: #fff;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">Order</h1>
+			<i id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></i>
+		</header>
+
+		<div class="mui-content">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#item1" data-status="1">publish</a>
+				<a class="mui-control-item" href="#item2" data-status="2">transporting</a>
+				<a class="mui-control-item" href="#item3" data-status="3">success</a>
+				<a class="mui-control-item" href="#item4" data-status="4">abandonded</a>
+			</div>
+			<div id="scroll-wrapper" class="mui-scroll-wrapper">
+				<div id="link-detail" class="mui-scroll">
+					<div id="item1" class="mui-control-content mui-active">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+					<div id="item2" class="mui-control-content">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+					<div id="item3" class="mui-control-content">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+					<div id="item4" class="mui-control-content">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/html" id="template">
+			{{each list}}
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					{{if $value.status == 1}}
+						<a id="go-detail" href="./get-detail.html" class="detail-page published" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}">
+					{{else if $value.status == 2}}
+						<a id="go-detail" href="./get-detail.html" class="detail-page transporting" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}">
+					{{else if $value.status == 3}}
+						<a id="go-detail" href="./get-detail.html" class="detail-page successed" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}">
+					{{else}}
+						<a id="go-detail" href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}">
+					{{/if}}
+						<div class="goods-name-bar">
+							<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
+						</div>
+						<div class="goods-content">
+							<div class="goods-direction mui-pull-left">
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">Weight</span>
+									<span class="goods-msg">{{$value.gWeight}}</span>
+								</div>
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">From</span>
+									<span class="goods-msg">{{$value.sendAddr}}</span>
+								</div>
+								<div class="goods-bar goods-to-bar mui-ellipsis">
+									<span class="goods-to font-color">To</span>
+									<span class="goods-msg">{{$value.receiveAddr}}</span>
+								</div>
+								<div class="goods-bar goods-comment-bar mui-ellipsis">
+									<span class="goods-comment font-color">Deadline</span>
+									<span class="goods-msg red">{{$value.time}}</span>
+								</div>
+							</div>
+							<div class="goods-rewards-bar mui-pull-right mui-text-center">
+								{{if $value.status == 1}}
+									<div class="statusDetail">{{$value.statusDetail == 11 ? "议价中" : $value.statusDetail == 12 ? "待付款" : "接单中"}}</div>
+								{{else if $value.status == 2}}
+									<div class="statusDetail">{{$value.statusDetail == 21 ? "未取货" : "已取货"}}</div>
+								{{else if $value.status == 3}}
+									<div class="statusDetail">{{$value.statusDetail == 31 ? "待评价" : "已评价"}}</div>
+								{{else}}
+									<div class="statusDetail">已取消</div>
+								{{/if}}
+								<div class="goods-rewards">Reward</div>
+								<div class="goods-value">{{$value.money}}</div>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			{{/each}}
+		</script>
+		<script src="../../js/template.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				mui("#scroll-wrapper").scroll();
+				// 默认发送第一次
+				sendmsg({
+							"page": 1,
+							"pageSize": 10,
+							"type": "send",
+							"status": 1
+						})
+				
+				// 委托显示详情界面
+				mui("#segmentedControl").on("tap", "a", function(){
+					var datas = {
+						"page": 1,
+						"pageSize": 10,
+						"type": "send",
+						"status": this.getAttribute("data-status")
+					};
+//					console.log(JSON.stringify(datas));
+					sendmsg(datas);			// 调用函数进行数据渲染
+				})
+				
+				// 详情页面显示跳转代理事件
+				mui("#link-detail").on("tap", "#go-detail", function(){
+					var status = this.getAttribute("data-status");
+					
+					// 储存订单号
+					plus.storage.setItem("my-send-order", this.getAttribute("data-orderid")); 
+					if(status === "1"){
+						openWindow("./mysendorder-detail-inform.html");
+					} else if(status === "2"){
+						openWindow("./mysendorder-detail-transporting.html");
+					} else if(status === "3"){
+						openWindow("./mysendorder-detail-finish.html");
+					} else if (status === "4"){
+						openWindow("./mysendorder-detail-cancel.html");
+					}
+				})
+				
+				// 返回首页
+				mui.back = function(){
+					var index = plus.webview.getLaunchWebview();
+					var cpage = plus.webview.currentWebview();
+					index.show("slide-in-left", 300, function(){
+						cpage.close("none", 0)
+					})
+				}
+			})
+			
+			// 发送数据状态显示详情界面信息
+			function sendmsg(datas){
+				mui.ajax(BASEURL + 'order/myGoodList', {
+					type: 'post',
+					timeout : 5000,
+					data: datas,
+					success: function(data) {
+//						console.log(JSON.stringify(data));
+						var orderdata = {
+							"list": data.res
+						}
+						// 模板渲染
+						var html = template("template", orderdata);
+						document.getElementById('item'+datas.status).innerHTML = html;
+					},
+					error: function(xhr, type, errorThrown) {
+						console.log(type)
+					}
+				})
+			}
+		</script>
+	</body>
+
+</html>
