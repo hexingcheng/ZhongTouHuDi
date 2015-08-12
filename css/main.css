@@ -1,3 +1,4 @@
+
        /*nomal*/
        .bor_5{
        	border-radius: .5em;
@@ -8,18 +9,26 @@
        .font1_5{
        	font-size: 1.5em;
        }
+       .mar_top{
+       	margin-top: 0;
+       }
        .border{
        	     border: 1px solid silver;
        }
        .pull_right{
        	float: right;
        }
-       
+       .me_center_bg{
+       	background-color:#3FA86A ;
+       }
        .mar_top3{
        	margin-top: 4em;
        }
        .bg_w{
        	background-color: white;
+       }
+       .width_4e{
+       	  width: 4em;
        }
        .width_4{
        	width:25%;
@@ -68,36 +77,75 @@
       }
       
         /*me*/
-       	.img{
-    		background-image: url(../img/details.jpeg); 
-    		background-repeat: no-repeat;
-    		width: 100%;
-    	}
-
-    	.me_main{
+        .me-contain img{
+        	width: 100%;
+        	height: 14em;
+        }
+        .me_country{
+   			width: 1.6em;
+   			height: 1.6em;
+   			float: right;
+   			border:1px solid silver;
+      	}
+      	.me_country img{
+      		width: 1.6em;
+      		height:1.6em;
+      	}
+      	.me_change{
+   			width: 1.7em;
+   			height: 1.7em;
+   			line-height: 1.7em;
+   			position: absolute;
+   			right: 0;
+   			text-align:center;
+   			top: -1.7em;
+   			background-color:#80878A ;
+   		}
+   		.me_color{
+   			color: #818181;
+   		}
+   		.me_Clearance{
+   			width: 100%;
+   			height: .3em;
+   			opacity: 0.2;
+   			box-shadow: .1em 0 .1em #DCDBDB;
+   		}
+   		.line2_2{
+   			line-height: 2.2em;
+   		}
+   		
+      	.none_box:after{
+      		box-shadow: none;
+      	}
+       .me_main{
     		width: 100%;
     		height: 10em;
     		overflow: hidden;
     	}
-    
+        .me_main img{
+        	width: 100%;
+        	height: 14em;
+        }
     	.me-info{
     		width: 6em;
     		height: 6em;
     		border: 2px solid silver;
     		border-radius: 3em;
-    		position: absolute;
-    		left: 50%;
-    		top: -3em;
+			position: absolute;
+    	    left:50%;
     		margin-left: -3em;
+    		margin-top: -3em;
     		overflow: hidden;
     		
     	}
     	.me-info img{
-    		width: 6em;
-    		height: 6em;
+    		width: 5.9em;
+    		height: 5.9em;
+    		border-radius: 3em;
+    		position: inherit;
     	}
        .me_same{
-       	width: 8em;
+       	width: 6em;
        	display: block;
        	float: left;
        }

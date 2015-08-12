@@ -5,9 +5,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="get-order-comment.css" />
-		<script src="../js/mui.min.js"></script>
+		<script src="../../js/mui.min.js"></script>
 		<style>
 			.mui-bar {
 				background-color: #3ba767;
@@ -112,7 +112,7 @@
 				</div>
 			</div>
 		</div>
-		<script src="../js/template.js"></script>
+		<script src="../../js/template.js"></script>
 		<script type="text/html" id="template">
 			{{each list}}
 			<ul class="mui-table-view" data-id="{{$value.orderId}}">
@@ -141,7 +141,7 @@
 								</div>
 							</div>
 							<div class="goods-rewards-bar mui-pull-right mui-text-center">
-								<div>{{$value.statusDetail}}</div>
+								<div>{{$value.statusDetail == 11? "议价中":$value.statusDetail==12 ? "待付款" : $value.statusDetail==13 ? "接单中" : $value.statusDetail==21 ? "未取货" : $value.statusDetail==22 ? "已取货" : $value.statusDetail==31 ? "待评价":"已评价"}}</div>
 								<div class="goods-rewards">Reward</div>
 								<div class="goods-value">{{$value.money}}</div>
 							</div>
@@ -152,7 +152,7 @@
 			{{/each}}
 		</script>
 		<!--<script src="../../js/jquery.min.js"></script>-->
-		<script src="../js/utils.js"></script>
+		<script src="../../js/utils.js"></script>
 		<script>
 			mui.init();
 			mui.plusReady(function() {
@@ -185,16 +185,15 @@
 							console.log(type);
 						}
 					})
-					mui('#link-detail').on('tap', '.mui-table-view', function() {
-						var orderid = this.getAttribute('data-id');
-						var datas = {
-							orderId : orderid,
-							type : 'rece'
-						};
-						openWindow('./getorder/get-detail.html',datas)
-						return false;
-					})
 				}
+				mui('#link-detail').on('tap', '.mui-table-view', function() {
+					var orderid = this.getAttribute('data-id');
+					var datas = {
+						orderId: orderid,
+						type: 'rece'
+					};
+					openWindow('./mygetorderdtl.html', datas);
+				})
 			})
 		</script>
 	</body>

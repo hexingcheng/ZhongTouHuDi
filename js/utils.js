@@ -18,7 +18,7 @@ function iflogin(cb) {
 	if (getstorage('token')) {
 		cb();
 	} else {
-		openWindow('./page/login-up.html')
+		openWindow('./page/logupin/login.html')
 	}
 }
 
@@ -31,7 +31,7 @@ function ifloginCommon(cb) {
 			left: '0',
 			mask: 'none'
 		})
-		openWindow('./page/login-up.html')
+		openWindow('./page/logupin/login.html')
 	}
 }
 
