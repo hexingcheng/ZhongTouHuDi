@@ -37,23 +37,23 @@
 					<!-- 第一列显示信息start -->
 					<li id="deliverer-img" class="mui-table-view-cell mui-ellipsis mui-col-xs-3">
 						<div class="headimg-box">
-							<img src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%"/>
+							<img id="head-img" alt="头像" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%"/>
 						</div>
 					</li>
 					<li id="deliverer-msg" class="mui-table-view-cell mui-col-xs-5">
-						<div class="deliverer-name mui-text-left mui-ellipsis">Justin Bieber</div>
+						<div id="nickName" class="deliverer-name mui-text-left mui-ellipsis">匿名</div>
 						<div class="deliverer-honor mui-text-left">
 							<span style="color: #faf713;" class="mui-icon mui-icon-starhalf"></span>
-							Adminral
+							<span id="ptitle">平民等级</span>
 						</div>
 					</li>
 					<li id="deliverer-num" class="mui-table-view-cell mui-col-xs-2">
 						<div class="send-title">send</div>
-						<div class="send-num">37</div>
+						<div id="orderCount" class="send-num">0</div>
 					</li>
 					<li id="deliverer-contact" class="mui-table-view-cell mui-col-xs-2">
 						<div ><span class="mui-icon mui-icon-chatbubble-filled"></span></div>
-						<div><span class="mui-icon mui-icon-phone-filled"></span></div>
+						<div><span id="phone" data-phone="" class="mui-icon mui-icon-phone-filled"></span></div>
 					</li>
 					<!-- 第一列信息显示end -->
 					
@@ -164,7 +164,7 @@
 					success : function(data){
 						
 						if(data.ret == 1){
-							alert("确认成功");
+							alert("评价成功");
 						} else {
 							alert("不能重复评论");
 						}
@@ -195,12 +195,30 @@
 		      			$("#goods-weight").html(data.res.gWeight+ "kg");	// 重量
 		      			$("#get-time").html(data.res.getTime);		// 获取时间
 		      			$("#deadline").html(data.res.finTime);		// 期望时间
-		      			$("#host").html("host");			// host
-		      			$("#sendaddr").html(data.res.sendAddr);		// 发送地
+		      			$("#host").html(data.res.sender);			// 发送者
+						$("#sendaddr").html(data.res.sendAddr);		// 发送地
 		      			$("#receiveaddr").html(data.res.receiveAddr)	// 接收地
 		      			$("#gvalue").html(data.res.gValue);		// value
 		      			$("#info").html(data.res.info);		// 信息描述
 		      			var pic = data.res.pics;
+		      			
+		      			// sender 递送人信息显示
+		      			if(data.res.headPic){		// 头像显示
+		      				$("#head-img").attr("src", data.res.headPic);
+		      			}
+		      			if(data.res.nickName){		// 昵称
+		      				$("#nickName").html(data.res.nickName);
+		      			}
+		      			if(data.res.ptitle){		// 等级
+		      				$("#ptitle").html(data.res.ptitle);
+		      			}
+		      			if(data.res.orderCount){		// 接单数量
+		      				$("#orderCount").html(data.res.orderCount);
+		      			}
+		      			if(data.res.phone){		// 电话号码
+		      				$("#pnone").attr("data-phone", data.res.phone);
+		      			}
+		      			
 		      			
 		      			var n = BASEURL.indexOf('/api/');
 		      			

@@ -37,23 +37,23 @@
 					<!-- 第一列显示信息start -->
 					<li id="deliverer-img" class="mui-table-view-cell mui-ellipsis mui-col-xs-3">
 						<div class="headimg-box">
-							<img src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%"/>
+							<img id="head-img" alt="头像" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%"/>
 						</div>
 					</li>
 					<li id="deliverer-msg" class="mui-table-view-cell mui-col-xs-5">
-						<div class="deliverer-name mui-text-left mui-ellipsis">Justin Bieber</div>
+						<div id="nickName" class="deliverer-name mui-text-left mui-ellipsis">匿名</div>
 						<div class="deliverer-honor mui-text-left">
 							<span style="color: #faf713;" class="mui-icon mui-icon-starhalf"></span>
-							Adminral
+							<span id="ptitle">平民等级</span>
 						</div>
 					</li>
 					<li id="deliverer-num" class="mui-table-view-cell mui-col-xs-2">
 						<div class="send-title">send</div>
-						<div class="send-num">37</div>
+						<div id="orderCount" class="send-num">0</div>
 					</li>
 					<li id="deliverer-contact" class="mui-table-view-cell mui-col-xs-2">
 						<div ><span class="mui-icon mui-icon-chatbubble-filled"></span></div>
-						<div><span class="mui-icon mui-icon-phone-filled"></span></div>
+						<div><span id="phone" data-phone="" class="mui-icon mui-icon-phone-filled"></span></div>
 					</li>
 					<!-- 第一列信息显示end -->
 					
@@ -132,7 +132,14 @@
 	</div>
 	
 	<footer id="footer-cancel" style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="cancel-order" class="mui-btn mui-btn-block">cancel</button>
+		<!-- 已付款 status=3 -->
+		<div class="status-3">
+			<button id="cancel-order" class="mui-btn mui-btn-block">cancel</button>
+		</div>
+		<div style="display: none;" class="status-2">
+			<button id="cancel" class="mui-btn button-first">cancel</button>
+			<button id="button-pay" class="mui-btn button-next">pay</button>
+		</div>
 	</footer>
 
 	<!-- 加载中的蒙层 -->
@@ -151,37 +158,49 @@
 			var orderid = plus.storage.getItem("my-send-order");
 			sendmsg(orderid);
 			
-			/*// 取消订单
+			// 取消订单 status=3
 			$("#cancel-order").on("tap", function(){
-				mui.ajax(BASEURL + "order/cancel", {
-					data : {
-						orderId : orderid,
-						descp : "订单取消原因"
-					},
-					type : "post",
-					success : function(data){
-						if(data.ret == 1){
-							mui.toast("取消成功");
-							mui.openWindow({
-								url : "./my_send_order.html",
-								id : "my-send-order",
-								createNew : true,
-								waiting: {
-									autoShow: true,
-									title: '正在加载...',
-									options: {
-										background: '#d1d1d1'
-									}
-								}
-							})
-						}
-					}
-				})
-			})*/
+				cancelorder(orderid);
+			})
+			// 取消订单 status=2
+			$("#cancel").on("tap", function(){
+				cancelorder(orderid);
+			})
 			
+			// 付款按钮
+			$("#button-pay").on("tap", function(){
+				mui.ajax()
+			})
 			
 		})
 		
+		// 取消订单函数调用
+		function cancelorder(orderid){
+			mui.ajax(BASEURL + "order/cancel", {
+				data : {
+					orderId : orderid,
+					descp : "订单取消原因"
+				},
+				type : "post",
+				success : function(data){
+					if(data.ret == 1){
+						mui.toast("取消成功");
+						mui.openWindow({
+							url : "./my_send_order.html",
+							id : "my-send-order",
+							createNew : true,
+							waiting: {
+								autoShow: true,
+								title: '正在加载...',
+								options: {
+									background: '#d1d1d1'
+								}
+							}
+						})
+					}
+				}
+			})
+		}
 		
 		// 通过订单号获取数据
 		function sendmsg(orderid){
@@ -201,7 +220,7 @@
 		      			$("#goods-weight").html(data.res.gWeight+ "kg");	// 重量
 		      			$("#get-time").html(data.res.getTime);		// 获取时间
 		      			$("#deadline").html(data.res.finTime);		// 期望时间
-		      			$("#host").html("host");			// host
+		      			$("#host").html(data.res.sender);			// 发送者
 		      			$("#sendaddr").html(data.res.sendAddr);		// 发送地
 		      			$("#receiveaddr").html(data.res.receiveAddr)	// 接收地
 		      			$("#gvalue").html(data.res.gValue);		// value
@@ -221,10 +240,33 @@
 						}
 						
 						// 验证是否需要取消按钮
-						if(data.res.status == 4){
+						if(data.res.status == 4) {
 							$("#footer-cancel").css("display", "none")
+							$(".mui-scroll-wrapper").css("bottom", 0)
+						} else if(data.res.status == 3){
+							$(".status-3").css("display", "block");
+							$(".status-2").css("display", "none");
+						} else if(data.res.status == 2){
+							$(".status-3").css("display", "none");
+							$(".status-2").css("display", "block");
 						}
 						
+						// sender 递送人信息显示
+		      			if(data.res.headPic){		// 头像显示
+		      				$("#head-img").attr("src", data.res.headPic);
+		      			}
+		      			if(data.res.nickName){		// 昵称
+		      				$("#nickName").html(data.res.nickName);
+		      			}
+		      			if(data.res.ptitle){		// 等级
+		      				$("#ptitle").html(data.res.ptitle);
+		      			}
+		      			if(data.res.orderCount){		// 接单数量
+		      				$("#orderCount").html(data.res.orderCount);
+		      			}
+		      			if(data.res.phone){		// 电话号码
+		      				$("#pnone").attr("data-phone", data.res.phone);
+		      			}
 						
 						/*// 300毫秒之后清除等待框
 		      			setTimeout(function(){
@@ -245,6 +287,7 @@
 	      			}
 	      		},
 	      		error : function(xhr, type){
+	      			console.log(xhr.status)
 	      			console.log(type);
 	      		}
 	     	})    
