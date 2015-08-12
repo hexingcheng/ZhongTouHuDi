@@ -163,6 +163,9 @@
 						} else {
 							alert("不能重复评论");
 						}
+					},
+					error : function(xhr, type){
+						console.log(type)
 					}
 				})
 			}, false);
