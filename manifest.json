@@ -56,9 +56,7 @@
          "Invocation": {
             "description": "使用Native.js能力"
         },
-        "Messaging": {
-            "description": "访问通讯能力"
-        },
+        
         "Orientation": {
             "description": "访问方向感应器"
         },
@@ -101,7 +99,7 @@
         },
         "NativeObj":{
         	"description": "原生对象"
-        },"Share":{}
+        }
 	},
 	"plus": {
 		"splashscreen": {

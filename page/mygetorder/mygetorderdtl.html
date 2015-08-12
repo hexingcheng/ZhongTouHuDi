@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="get-order-comment.css" />
+		<link rel="stylesheet" href="get-detail.css" />
+		<style>
+			html,
+			body,
+			.mui-content {
+				background-color: #FFFFFF;
+			}
+			.marktips {
+				text-align: center;
+				color: #35a462;
+				line-height: 40px;
+			}
+			.cancel {
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				background-color: #ffa619;
+				color: #fff3e5;
+			}
+			html,
+			body,
+			.mask {
+				width: 100%;
+				height: 100%;
+			}
+			.mask {
+				position: absolute;
+				top: 0;
+				left: 0;
+				background-color: #000000;
+				opacity: 0.4;
+			}
+			.dialog {
+				background-color: #FFFFFF;
+				position: absolute;
+				top: 60px;
+				left: 0;
+				width: 270px;
+				overflow: hidden;
+				word-break: break-all;
+			}
+			.info {
+				color: #000000;
+				padding: 10px 20px;
+			}
+			.ok {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #c4e8da;
+				text-align: center;
+				color: #029c5d;
+			}
+			.wron {
+				padding: 0 20px;
+			}
+			.cancels {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #f6ccc2;
+				text-align: center;
+				color: #da2a02;
+			}
+		</style>
+		<script src="../../js/mui.min.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">Detail</h1>
+		</header>
+		<footer style="padding:10px; height: 60px;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+			<div class="cancel">cancel</div>
+		</footer>
+		<div class="mask mui-hidden"></div>
+		<div class="dialog mui-hidden">
+			<div class="info">
+				Do you want to remove this order?
+			</div>
+			<p class="wron">once you remove this order it can't be recover'</p>
+			<div class="ok">ok</div>
+			<div class="cancels">cancel</div>
+		</div>
+		<div class="mui-content">
+			<div id="scroll-wrapper" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="marktips mui-hidden">you have mark up $
+						<span class="addmoney">--</span>
+					</div>
+					<ul class="mui-table-view mui-grid-view mui-grid-9">
+						<li class="mui-table-view-cell mui-col-xs-12">
+							<span class="mui-pull-left title-color mui-text-left name">Name</span>
+							<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">--</span>
+						</li>
+						<li class="mui-table-view-cell mui-col-xs-6">
+							<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
+							<span class="mui-pull-right">
+							<div class="goods-value-box">
+								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
+							<p class="title-color">not paid</p>
+				</div>
+				</span>
+				</li>
+				<li class="mui-table-view-cell mui-col-xs-6">
+					<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
+					<span id="goods-weight" class="mui-pull-right title-weight">0kg</span>
+				</li>
+				<li class="mui-table-view-cell mui-col-xs-6">
+					<div class="title-color title-bottom-padded">Get Time</div>
+					<div id="get-time">--:--</div>
+				</li>
+				<li class="mui-table-view-cell mui-col-xs-6">
+					<div class="title-color title-bottom-padded">Deadline</div>
+					<div id="deadline">--:--</div>
+				</li>
+				</ul>
+
+				<div class="table-diviver"></div>
+
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">From</span>
+						<span id="sendaddr" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">TO</span>
+						<span id="receiveaddr" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">Value</span>
+						<span id="gvalue" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">Desc</span>
+						<span id="info" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<div class="porel" id="porel">
+							<!--<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>-->
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		</div>
+
+		<!-- 遮罩层 -->
+		<div id="order-mask"></div>
+		<!-- 显示层 -->
+		<div id="order-popup">
+			<div class="popup-porel">
+				<div class="popup-title mui-h3">
+					Are you sure?
+				</div>
+				<div class="sub-title mui-h5">
+					This is your adjusted price
+				</div>
+				<div class="popup-body mui-clearfix">
+					<span class="mui-pull-left font-color">
+					<span>$</span><span id="current-price">20.00</span>
+					<div class="mui-h5 mui-text-center">origin</div>
+					</span>
+					<span class="plus mui-pull-left">+</span>
+					<span class="mui-pull-left font-color">
+					<span style="font-size: 1.4em;">$</span>
+					<span id="plus-price">1.00</span>
+					<div class="mui-h5 mui-text-center">markup</div>
+					</span>
+					<span class="equal mui-pull-left">=</span>
+					<span class="mui-pull-left font-color">
+					<span>$</span><span id="total-price">0.00</span>
+					<div class="mui-h5 mui-text-center">rel</div>
+					</span>
+				</div>
+				<div class="button-row">
+					<button id="ok" type="button">OK</button>
+					<button type="button" id="cancel">cancel</button>
+				</div>
+			</div>
+		</div>
+		<!-- 加载中的蒙层 -->
+		<!--<div id="loading-mask"></div>
+	<div id="loading-box">
+		<img src="../../img/loading45.gif" alt="loading"/>
+	</div>-->
+
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script>
+			//    	mui.init();
+			 //    	mui.plusReady(function(){
+			 //    		mui("#scroll-wrapper").scroll();
+			 //    		
+			 //    		var mp;
+			 //    		
+			 //	      	var mask = document.getElementById("order-mask");
+			 //	      	var panel = document.getElementById("order-popup");
+			 //	      	// 显示markup弹出层
+			 //	      	document.getElementById("markup").addEventListener("tap", function(){
+			 //	      		var cshow = document.getElementById("current-price"); 	// 弹出层显示当前价格
+			 //	      		var cp = document.getElementById("goods-value").innerHTML;		// 页面显示当前价格
+			 //	      		cshow.innerHTML = cp;
+			 //	      		var cprice = parseFloat(cp);
+			 //	      		mp = parseFloat(document.getElementById("plus-price").innerHTML);		// 获取需要加价的金额
+			 //	      		var total = document.getElementById("total-price");
+			 //	      		total.innerHTML = cprice + mp;		// 显示总金额
+			 //	      		
+			 //	      		mask.style.display = "block";
+			 //	      		panel.style.display = "block";
+			 //	      	},false)
+			 //	      	// 隐藏显示层
+			 //	      	document.getElementById("cancel").addEventListener("tap", function(){
+			 //	      		mask.style.display = "none";
+			 //	      		panel.style.display = "none";
+			 //	      	}, false)
+			 //	      	
+			 //	      	mask.addEventListener("tap", function(){
+			 //	      		mask.style.display = "none";
+			 //	      		panel.style.display = "none";
+			 //	      	}, false)
+			 //	      	
+			 //	      	var order = JSON.parse(plus.storage.getItem("order"));
+			 //	      	
+			 //	      	// 议价弹出层
+			 //	      	var getoderpage = plus.webview.getWebviewById("getorder/get-order");
+			 //	      	document.getElementById("ok").addEventListener("tap", function(){
+			 //	      		plus.nativeUI.showWaiting("议价中...", {
+			 //	      			background : "#ddd"
+			 //	      		});
+			 //	      		mui.ajax(BASEURL + "deliver/bargain", {
+			 //	      			data : {
+			 //	      				orderId : order.orderid,
+			 //	      				money : mp
+			 //	      			},
+			 //	      			type : "post",
+			 //	      			success : function(data){
+			 //	      				if(data.ret == 1){
+			 //	      					plus.nativeUI.closeWaiting();
+			 //	      					mui.alert("议价成功", "议价");
+			 //	      					if(getoderpage){
+			 //	      						getoderpage.show("slide-in-left", 300);
+			 //	      						setTimeout(function(){
+			 //	      							plus.webview.currentWebview().close("fade-out", 200);
+			 //	      						}, 320)
+			 //	      					} else {
+			 //	      						plus.webview.getLaunchWebview().show("slide-in-left", 300);
+			 //	      						setTimeout(function(){
+			 //	      							plus.webview.currentWebview().close("fade-out", 200);
+			 //	      						}, 320)
+			 //	      					}
+			 //	      					mask.style.display = "none";
+			 //	      					panel.style.display = "none";
+			 //	      				} else if (data.ret == 2){
+			 //	      					plus.nativeUI.closeWaiting();
+			 //	      					mui.alert("已加价，不可重复加价", "议价");
+			 //	      					mask.style.display = "none";
+			 //	      					panel.style.display = "none";
+			 //	      				}
+			 //	      			},
+			 //	      			error : function(err){
+			 //	      				plus.nativeUI.closeWaiting();
+			 //	      				console.log(err);
+			 //	      			}
+			 //	      		})
+			 ////	      		alert("nihao")
+			 //	      	}, false);
+			 //	      	
+			 //	      	
+			 //	      	// collect 按钮抢单
+			 //	      	document.getElementById("collect").addEventListener("tap", function(){
+			 //	      		plus.nativeUI.showWaiting("接单中...", {
+			 //	      			background : "#ddd"
+			 //	      		});
+			 //	      		mui.ajax(BASEURL + "deliver/receive", {
+			 //	      			data : {
+			 //	      				orderId : order.orderid
+			 //	      			},
+			 //	      			type : "post",
+			 //	      			success : function(data){
+			 //	      				plus.nativeUI.closeWaiting();
+			 //	      				if(data.ret == 1){
+			 //	      					openWindow("./get-result.html");
+			 //	      				} else if(data.ret == 2){
+			 //	      					mui.alert("此单已不存在", "提示");
+			 //	      				} else if (data.ret == 3){
+			 //	      					mui.alert("其他人已接单", "提示");
+			 //	      				} else if (data.ret == 4){
+			 //	      					mui.alert("需要递送人身份", "提示");
+			 //	      				}
+			 //	      			},
+			 //	      			error : function(err){
+			 //	      				plus.nativeUI.closeWaiting();
+			 //	      				console.log(err);
+			 //	      			}
+			 //	      		})
+			 //	      	}, false)
+			 //	      	
+			 //	      	
+			 //	      	// 页面加载时，获取数据
+			 //	      	mui.ajax(BASEURL + "order/goodShow", {
+			 //	      		data : {
+			 //	      			orderId : order.orderid,
+			 //	      			type : "comm"
+			 //	      		},
+			 //	      		type : "post",
+			 //	      		success : function(data){
+			 ////	      			console.log(JSON.stringify(data));
+			 //	      			if(data.ret == 1){
+			 //	      				$(".goods-name").html(data.res.gName);		// 货物名称
+			 //		      			$("#goods-value").html(data.res.money);		// 价值
+			 //		      			$("#goods-weight").html(data.res.gWeight+ "kg");	// 重量
+			 //		      			$("#get-time").html(data.res.getTime);		// 获取时间
+			 //		      			$("#deadline").html(data.res.finTime);		// 期望时间
+			 //		      			$("#sendaddr").html(data.res.sendAddr);		// 发送地
+			 //		      			$("#receiveaddr").html(data.res.receiveAddr)	// 接收地
+			 //		      			$("#gvalue").html(data.res.gValue);		// value
+			 //		      			$("#info").html(data.res.info);		// 信息描述
+			 //		      			var pic = data.res.pics;
+			 //		      			
+			 //		      			var n = BASEURL.indexOf('/api/');
+			 //		      			
+			 //						var per = BASEURL.substring(0,n);
+			 //						var len = pic.length;
+			 //						if(len > 0){
+			 //							for(var i = 0; i<len;i++){
+			 //								var url = per + pic[i].path;
+			 //								var html = '<img src=' + url +' width="100%">';
+			 //								document.querySelectorAll(".img-box")[i].innerHTML = html;
+			 //							}
+			 //						}
+			 //						
+			 //						// 300毫秒之后清除等待框
+			 //		      			setTimeout(function(){
+			 //		      				var lmask = document.getElementById("loading-mask");
+			 //		      				var lbox = document.getElementById("loading-box");
+			 //		      				var mcl = lmask.classList;
+			 //		      				var bcl = lbox.classList;
+			 //		      				mcl.add("fade-out");
+			 //		      				bcl.add("fade-out");
+			 //		      				// 过渡动画结束的时候执行该事件
+			 //		      				lmask.addEventListener("webkitTransitionEnd", function(){
+			 //			      				document.getElementById("loading-mask").style.display = "none";
+			 //			      				document.getElementById("loading-box").style.display = "none";
+			 //			      				mcl.remove("fade-out");
+			 //		      					bcl.remove("fade-out");
+			 //		      				}, false)
+			 //		      			}, 300)
+			 //	      			}
+			 //	      		},
+			 //	      		error : function(xhr, type){
+			 //	      			console.log(type);
+			 //	      		}
+			 //	      	})
+			 //    	})
+			mui.plusReady(function() {
+				mui("#scroll-wrapper").scroll();
+				var c = plus.webview.currentWebview();
+				var datas = {};
+				datas.orderId = c.orderId;
+				datas.type = c.type;
+				mui.ajax(BASEURL + 'order/goodShow', {
+					type: 'post',
+					data: datas,
+					success: function(data) {
+						alert(data.ret)
+						showobj(data.res)
+						renderdata(data);
+						if (data.res.status == 1 && data.res.bargain == 1) {
+							$('.marktips').removeClass('mui-hidden');
+							$('.addmoney').text(data.res.bargainMoney + ".0");
+						} else if (data.res.status == 3) {
+							$('.cancel').text('order done');
+						}
+					},
+					error: function(xhr, type) {
+						alert(type)
+					}
+				})
+				$('.cancel').on('tap',function(){
+					if($(this).text()=='cancel'){
+						mui.ajax(BASEURL+'order/bargainCancel',{
+							type:'post',
+							data:{
+								orderId:c.orderId
+							},
+							success:function(data){
+								if(data.ret==1){
+									c.close();
+									openWindow('./my-get-order.html')
+									mui.toast('取消议价成功');
+								}else if(data.ret==2){
+									mui.toast('非法操作')
+								}
+							},
+							error:function(xhr,type){
+								console.log(type)
+							}
+						})
+					}else if($(this).text()=='order done'){
+						$('.mask').removeClass('mui-hidden');
+						$('.dialog').removeClass('mui-hidden');
+						var l = ($(window).width() - 270) / 2;
+						var t = ($(window).height() - $('.dialog').height()) / 2;
+						$('.dialog').css({
+							'left': l,
+							'top': t
+						})
+						$('.ok').on('tap',function(){
+							mui.ajax(BASEURL+'order/pickUp',{
+								type:'post',
+								data:{
+									orderId:c.orderId
+								},
+								success:function(data){
+									console.log(data.ret)
+								},
+								error:function(xhr,type){
+									console.log(type)
+								}
+							})
+						})
+					}
+				})
+				function renderdata(data) {
+					$(".goods-name").html(data.res.gName); // 货物名称
+					$("#goods-value").html(data.res.money); // 价值
+					$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
+					$("#get-time").html(data.res.getTime); // 获取时间
+					$("#deadline").html(data.res.finTime); // 期望时间
+					$("#sendaddr").html(data.res.sendAddr); // 发送地
+					$("#receiveaddr").html(data.res.receiveAddr) // 接收地
+					$("#gvalue").html(data.res.gValue); // value
+					$("#info").html(data.res.info); // 信息描述
+					if(data.res.pics){
+						var picurl = data.res.pics.path.split(',');
+						var n = BASEURL.indexOf('/a');
+						var perurls = BASEURL.substring(0,n);
+						for(var i = 0;i<picurl.length;i++){
+							var imgurl = picurls+picurl[i];
+							var img = document.createElement('img');
+							img.src = imgurl;
+							document.getElementById('porel').appendChild('img');
+						}
+					}else{
+						alert('没有图片')
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

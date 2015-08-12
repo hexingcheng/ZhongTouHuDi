@@ -133,7 +133,6 @@ document.getElementById('help').addEventListener('tap', function() {
 			}
 		})
 	})
-	
 })
 document.getElementById('add-menu').addEventListener('tap', function() {
 	alert('add')

@@ -423,7 +423,8 @@
 				plus.gallery.pick(function(path) {
 					dealpic(path, context);
 				}, function(e) {
-					mui.toast('选择图片失败' + e)
+//					mui.toast('选择图片失败' + e)
+					showobj(e)
 				}, {
 					filter: 'image',
 					multiple: false
