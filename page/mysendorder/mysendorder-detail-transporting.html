@@ -66,7 +66,7 @@
 						<span class="mui-pull-right">
 							<div class="goods-value-box">
 								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
-								<p class="title-color">not paid</p>
+								<p class="title-color">paided</p>
 							</div>
 						</span>
 					</li>
@@ -88,7 +88,7 @@
 				
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width">Host</span>
+						<span id="host" class="title-color mui-pull-left title-width">Host</span>
 						<span id="host" class="mui-ellipsis content-length">--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
@@ -131,7 +131,7 @@
 		</div>
 	</div>
 	
-	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+	<footer id="footer-cancel" style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 		<button id="cancel-order" class="mui-btn mui-btn-block">cancel</button>
 	</footer>
 
@@ -201,6 +201,7 @@
 		      			$("#goods-weight").html(data.res.gWeight+ "kg");	// 重量
 		      			$("#get-time").html(data.res.getTime);		// 获取时间
 		      			$("#deadline").html(data.res.finTime);		// 期望时间
+		      			$("#host").html("host");			// host
 		      			$("#sendaddr").html(data.res.sendAddr);		// 发送地
 		      			$("#receiveaddr").html(data.res.receiveAddr)	// 接收地
 		      			$("#gvalue").html(data.res.gValue);		// value
@@ -217,6 +218,11 @@
 								var html = '<img src=' + url +' width="100%">';
 								document.querySelectorAll(".img-box")[i].innerHTML = html;
 							}
+						}
+						
+						// 验证是否需要取消按钮
+						if(data.res.status == 4){
+							$("#footer-cancel").css("display", "none")
 						}
 						
 						

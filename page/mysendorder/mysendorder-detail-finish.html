@@ -66,7 +66,7 @@
 						<span class="mui-pull-right">
 							<div class="goods-value-box">
 								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
-								<p class="title-color">not paid</p>
+								<p class="title-color">paided</p>
 							</div>
 						</span>
 					</li>
@@ -131,7 +131,7 @@
 		</div>
 	</div>
 	
-	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+	<footer id="footer-cancel" style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 		<button id="comment-order" class="mui-btn mui-btn-block">comment</button>
 	</footer>
 
@@ -148,6 +148,10 @@
 		mui.plusReady(function(){
 			mui("#scroll-wrapper").scroll();
 			var orderid = plus.storage.getItem("my-send-order");
+			
+			// 显示详情页面信息
+			sendmsg(orderid);
+			
 			// 订单评价
 			document.getElementById("comment-order").addEventListener("tap", function(){
 				mui.ajax(BASEURL + "order/evaluate", {
@@ -158,6 +162,7 @@
 					},
 					type : "post",
 					success : function(data){
+						
 						if(data.ret == 1){
 							alert("确认成功");
 						} else {
@@ -170,6 +175,75 @@
 				})
 			}, false);
 		})
+		
+		
+		// 通过订单号获取数据
+		function sendmsg(orderid){
+				// 页面加载时，获取数据
+	      	mui.ajax(BASEURL + "order/goodShow", {
+	      		data : {
+	      			orderId : orderid,
+	      			type : "send"
+	      		},
+	      		type : "post",
+	      		success : function(data){
+	      			console.log(JSON.stringify(data));
+	      			
+	      			if(data.ret == 1){
+	      				$(".goods-name").html(data.res.gName);		// 货物名称
+		      			$("#goods-value").html(data.res.money);		// 价值
+		      			$("#goods-weight").html(data.res.gWeight+ "kg");	// 重量
+		      			$("#get-time").html(data.res.getTime);		// 获取时间
+		      			$("#deadline").html(data.res.finTime);		// 期望时间
+		      			$("#host").html("host");			// host
+		      			$("#sendaddr").html(data.res.sendAddr);		// 发送地
+		      			$("#receiveaddr").html(data.res.receiveAddr)	// 接收地
+		      			$("#gvalue").html(data.res.gValue);		// value
+		      			$("#info").html(data.res.info);		// 信息描述
+		      			var pic = data.res.pics;
+		      			
+		      			var n = BASEURL.indexOf('/api/');
+		      			
+						var per = BASEURL.substring(0,n);
+						var len = pic.length;
+						if(len > 0){
+							for(var i = 0; i<len;i++){
+								var url = per + pic[i].path;
+								var html = '<img src=' + url +' width="100%">';
+								document.querySelectorAll(".img-box")[i].innerHTML = html;
+							}
+						}
+						
+						// 验证是否需要取消按钮
+						if(data.res.status == 6){
+							$("#footer-cancel").css("display", "none")
+						}
+						
+						
+						/*// 300毫秒之后清除等待框
+		      			setTimeout(function(){
+		      				var lmask = document.getElementById("loading-mask");
+		      				var lbox = document.getElementById("loading-box");
+		      				var mcl = lmask.classList;
+		      				var bcl = lbox.classList;
+		      				mcl.add("fade-out");
+		      				bcl.add("fade-out");
+		      				// 过渡动画结束的时候执行该事件
+		      				lmask.addEventListener("webkitTransitionEnd", function(){
+			      				document.getElementById("loading-mask").style.display = "none";
+			      				document.getElementById("loading-box").style.display = "none";
+			      				mcl.remove("fade-out");
+		      					bcl.remove("fade-out");
+		      				}, false)
+		      			}, 300)*/
+	      			}
+	      		},
+	      		error : function(xhr, type){
+	      			console.log(type);
+	      		}
+	     	})    
+	    }
+		
 	</script>
 </body>
 </html>

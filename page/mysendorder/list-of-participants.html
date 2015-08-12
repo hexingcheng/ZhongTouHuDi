@@ -18,6 +18,7 @@
     	.order-reward {width: 14%;padding: 3px 0 0 0;}
     	.order-reward .reward-money {color: #d92400;}
     	.button-box {width: 24%;padding: 10px 0 0 0;}
+    	.mui-scroll-wrapper {top: 44px;}
     </style>
 </head>
 <body style="background: #fff;">
@@ -26,7 +27,44 @@
 		<h1 class="mui-title">list of participants</h1>
 	</header>
 	<div class="mui-content">
-		<ul class="mui-table-view">
+		<div id="scroll-wrapper" class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul id="choose-sender" class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<div class="img-row mui-pull-left">
+							<div class="headimg-box">
+								<img src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%"/>
+							</div>
+						</div>
+						<div class="name-box mui-pull-left mui-text-center">
+							<div class="deliverer-name mui-text-left mui-ellipsis">Justin Bieber</div>
+							<div class="deliverer-honor mui-text-left">
+								<span style="color: #faf713;" class="mui-icon mui-icon-starhalf"></span>
+								<span class="mui-h5">Adminral</span>
+							</div>
+						</div>
+						<div class="order-send mui-pull-left mui-text-center">
+							<p>send</p>
+							<div class="send-num">37</div>
+						</div>
+						<div class="order-reward mui-pull-left mui-text-center">
+							<p>reward</p>
+							<div class="reward-money">15.0</div>
+						</div>
+						<div class="button-box mui-pull-left mui-text-center">
+							<button class="mui-btn-green mui-btn choose-item" type="button">choose</button>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script src="../../js/template.js"></script>
+	<script src="../../js/utils.js"></script>
+	<script type="text/html">
+		<!-- 选择按钮上，添加一个属性节点data-senderid -->
+		{{each list}}
 			<li class="mui-table-view-cell">
 				<div class="img-row mui-pull-left">
 					<div class="headimg-box">
@@ -52,19 +90,37 @@
 					<button class="mui-btn-green mui-btn" type="button">choose</button>
 				</div>
 			</li>
-			
-		</ul>
-	</div>
-	<script src="../../js/template.js"></script>
-	<script src="../../js/utils.js"></script>
+		{{/each}}
+	</script>
 	<script>
       	mui.init();
       	mui.plusReady(function(){
+      		mui("#scroll-wrapper").scroll();
       		
+      		var orderid = plus.storage.getItem("my-send-order");
+      		sendmsg({
+      			page : 1,
+      			pageSize : 10,
+      			orderId : orderid
+      		})
+      		
+      		// 添加选择该递送人
+      		mui("#choose-sender").on("tap", ".choose-item", function(){
+      			console.log(this.getAttribute("data-senderid"));
+      		})
       	})
       	
       	function sendmsg(datas){
-      		
+      		mui.ajax(BASEURL + "order/bargainList", {
+      			data : datas,
+      			type : "post",
+      			success : function(data){
+      				console.log(JSON.stringify(data));
+      			},
+      			error : function(xhr, type){
+      				console.log(type);
+      			}
+      		})
       	}
       	
     </script>
