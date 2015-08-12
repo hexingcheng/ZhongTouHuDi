@@ -456,15 +456,16 @@
 					$("#gvalue").html(data.res.gValue); // value
 					$("#info").html(data.res.info); // 信息描述
 					if(data.res.pics){
-						var picurl = data.res.pics.path.split(',');
-						var n = BASEURL.indexOf('/a');
-						var perurls = BASEURL.substring(0,n);
-						for(var i = 0;i<picurl.length;i++){
-							var imgurl = picurls+picurl[i];
-							var img = document.createElement('img');
-							img.src = imgurl;
-							document.getElementById('porel').appendChild('img');
-						}
+						showobj(data.res.pics)
+//						var picurl = data.res.pics.path.split(',');
+//						var n = BASEURL.indexOf('/a');
+//						var perurls = BASEURL.substring(0,n);
+//						for(var i = 0;i<picurl.length;i++){
+//							var imgurl = picurls+picurl[i];
+//							var img = document.createElement('img');
+//							img.src = imgurl;
+//							document.getElementById('porel').appendChild('img');
+//						}
 					}else{
 						alert('没有图片');
 					}
