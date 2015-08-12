@@ -5,10 +5,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="get-order-comment.css"/>
-    <link rel="stylesheet" href="get-detail.css"/>
+    <link rel="stylesheet" href="mysendorder-comment.css"/>
+    <link rel="stylesheet" href="mysendorder-detail.css"/>
     <script src="../../js/mui.min.js"></script>
-    
+    <style type="text/css">
+    	.headimg-box {width: 4em;height: 4em;border-radius: 50%;overflow: hidden;margin: 0 auto;}
+    	#deliverer-img {padding: 11px 0;}
+    	#deliverer-msg {padding: 13px 0 22px 10px;color: #333;}
+    	.deliverer-name {font-size: 1.1em;padding: 5px 0;}
+    	.deliverer-honor {color: #8c8c8c;}
+    	#deliverer-num {padding: 0 0 22px 0;}
+    	.send-title {padding: 15px 0 10px 0;color: #8c8c8c;}
+    	.send-num {font-size: 1.2em;color: #7f7f7f;}
+    	.mui-icon.mui-icon-chatbubble-filled {color: #ffc11b;}
+    	.mui-icon.mui-icon-phone-filled {color: #00b94e;}
+    	#deliverer-contact {padding: 0;}
+    	#deliverer-contact div {padding: 10px 0;}
+    	#deliverer-contact div:nth-child(1) {border-bottom: 1px solid #eee;}
+    </style>
 </head>
 <body style="background: #fff;">
 	<header class="mui-bar mui-bar-nav">
@@ -20,6 +34,29 @@
 		<div id="scroll-wrapper" class="mui-scroll-wrapper">
 			<div class="mui-scroll">
 				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<!-- 第一列显示信息start -->
+					<li id="deliverer-img" class="mui-table-view-cell mui-ellipsis mui-col-xs-3">
+						<div class="headimg-box">
+							<img src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%"/>
+						</div>
+					</li>
+					<li id="deliverer-msg" class="mui-table-view-cell mui-col-xs-5">
+						<div class="deliverer-name mui-text-left mui-ellipsis">Justin Bieber</div>
+						<div class="deliverer-honor mui-text-left">
+							<span style="color: #faf713;" class="mui-icon mui-icon-starhalf"></span>
+							Adminral
+						</div>
+					</li>
+					<li id="deliverer-num" class="mui-table-view-cell mui-col-xs-2">
+						<div class="send-title">send</div>
+						<div class="send-num">37</div>
+					</li>
+					<li id="deliverer-contact" class="mui-table-view-cell mui-col-xs-2">
+						<div ><span class="mui-icon mui-icon-chatbubble-filled"></span></div>
+						<div><span class="mui-icon mui-icon-phone-filled"></span></div>
+					</li>
+					<!-- 第一列信息显示end -->
+					
 					<li class="mui-table-view-cell mui-col-xs-12">
 						<span class="mui-pull-left title-color mui-text-left name">Name</span>
 						<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">--</span>
@@ -50,6 +87,10 @@
 				<div class="table-diviver"></div>
 				
 				<ul class="mui-table-view">
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">Host</span>
+						<span id="host" class="mui-ellipsis content-length">--</span>
+					</li>
 					<li class="mui-table-view-cell desc-after">
 						<span class="title-color mui-pull-left title-width">From</span>
 						<span id="sendaddr" class="mui-ellipsis content-length">--</span>
@@ -91,170 +132,69 @@
 	</div>
 	
 	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="markup" class="mui-btn button-first">markup</button>
-		<button id="collect" class="mui-btn button-next">collect</button>
+		<button id="cancel-order" class="mui-btn mui-btn-block">cancel</button>
 	</footer>
 
-	<!-- 遮罩层 -->
-	<div id="order-mask"></div>
-	<!-- 显示层 -->
-	<div id="order-popup">
-		<div class="popup-porel">
-			<div class="popup-title mui-h3">
-				Are you sure?
-			</div>
-			<div class="sub-title mui-h5">
-				This is your adjusted price
-			</div>
-			<div class="popup-body mui-clearfix">
-				<span class="mui-pull-left font-color">
-					<span>$</span><span id="current-price">20.00</span>
-					<div class="mui-h5 mui-text-center">origin</div>
-				</span>
-				<span class="plus mui-pull-left">+</span>
-				<span class="mui-pull-left font-color">
-					<span style="font-size: 1.4em;">$</span>
-					<span id="plus-price">1.00</span>
-					<div class="mui-h5 mui-text-center">markup</div>
-				</span>
-				<span class="equal mui-pull-left">=</span>
-				<span class="mui-pull-left font-color">
-					<span>$</span><span id="total-price">0.00</span>
-					<div class="mui-h5 mui-text-center">rel</div>
-				</span>
-			</div>
-			<div class="button-row">
-				<button id="ok" type="button">OK</button><button type="button" id="cancel">cancel</button>
-			</div>
-		</div>
-	</div>
 	<!-- 加载中的蒙层 -->
-	<div id="loading-mask"></div>
+	<!--<div id="loading-mask"></div>
 	<div id="loading-box">
 		<img src="../../img/loading45.gif" alt="loading"/>
-	</div>
-	
+	</div>-->
 	<script src="../../js/jquery.min.js" ></script>
 	<script src="../../js/utils.js"></script>
-	<script>
-      	mui.init();
-      	mui.plusReady(function(){
-      		mui("#scroll-wrapper").scroll();
-      		
-      		var mp;
-      		
-	      	var mask = document.getElementById("order-mask");
-	      	var panel = document.getElementById("order-popup");
-	      	// 显示markup弹出层
-	      	document.getElementById("markup").addEventListener("tap", function(){
-	      		var cshow = document.getElementById("current-price"); 	// 弹出层显示当前价格
-	      		var cp = document.getElementById("goods-value").innerHTML;		// 页面显示当前价格
-	      		cshow.innerHTML = cp;
-	      		var cprice = parseFloat(cp);
-	      		mp = parseFloat(document.getElementById("plus-price").innerHTML);		// 获取需要加价的金额
-	      		var total = document.getElementById("total-price");
-	      		total.innerHTML = cprice + mp;		// 显示总金额
-	      		
-	      		mask.style.display = "block";
-	      		panel.style.display = "block";
-	      	},false)
-	      	// 隐藏显示层
-	      	document.getElementById("cancel").addEventListener("tap", function(){
-	      		mask.style.display = "none";
-	      		panel.style.display = "none";
-	      	}, false)
-	      	
-	      	mask.addEventListener("tap", function(){
-	      		mask.style.display = "none";
-	      		panel.style.display = "none";
-	      	}, false)
-	      	
-	      	var order = JSON.parse(plus.storage.getItem("order"));
-	      	
-	      	// 议价弹出层
-	      	var getoderpage = plus.webview.getWebviewById("getorder/get-order");
-	      	document.getElementById("ok").addEventListener("tap", function(){
-	      		plus.nativeUI.showWaiting("议价中...", {
-	      			background : "#ddd"
-	      		});
-	      		mui.ajax(BASEURL + "deliver/bargain", {
-	      			data : {
-	      				orderId : order.orderid,
-	      				money : mp
-	      			},
-	      			type : "post",
-	      			success : function(data){
-	      				if(data.ret == 1){
-	      					plus.nativeUI.closeWaiting();
-	      					mui.alert("议价成功", "议价");
-	      					if(getoderpage){
-	      						getoderpage.show("slide-in-left", 300);
-	      						setTimeout(function(){
-	      							plus.webview.currentWebview().close("fade-out", 200);
-	      						}, 320)
-	      					} else {
-	      						plus.webview.getLaunchWebview().show("slide-in-left", 300);
-	      						setTimeout(function(){
-	      							plus.webview.currentWebview().close("fade-out", 200);
-	      						}, 320)
-	      					}
-	      					mask.style.display = "none";
-	      					panel.style.display = "none";
-	      				} else if (data.ret == 2){
-	      					plus.nativeUI.closeWaiting();
-	      					mui.alert("已加价，不可重复加价", "议价");
-	      					mask.style.display = "none";
-	      					panel.style.display = "none";
-	      				}
-	      			},
-	      			error : function(err){
-	      				plus.nativeUI.closeWaiting();
-	      				console.log(err);
-	      			}
-	      		})
-//	      		alert("nihao")
-	      	}, false);
-	      	
-	      	
-	      	// collect 按钮抢单
-	      	document.getElementById("collect").addEventListener("tap", function(){
-	      		plus.nativeUI.showWaiting("接单中...", {
-	      			background : "#ddd"
-	      		});
-	      		mui.ajax(BASEURL + "deliver/receive", {
-	      			data : {
-	      				orderId : order.orderid
-	      			},
-	      			type : "post",
-	      			success : function(data){
-	      				plus.nativeUI.closeWaiting();
-	      				if(data.ret == 1){
-	      					openWindow("./get-result.html");
-	      				} else if(data.ret == 2){
-	      					mui.alert("此单已不存在", "提示");
-	      				} else if (data.ret == 3){
-	      					mui.alert("其他人已接单", "提示");
-	      				} else if (data.ret == 4){
-	      					mui.alert("需要递送人身份", "提示");
-	      				}
-	      			},
-	      			error : function(err){
-	      				plus.nativeUI.closeWaiting();
-	      				console.log(err);
-	      			}
-	      		})
-	      	}, false)
-	      	
-	      	
-	      	// 页面加载时，获取数据
+	
+	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function(){
+			mui("#scroll-wrapper").scroll();
+			
+			var orderid = plus.storage.getItem("my-send-order");
+			sendmsg(orderid);
+			
+			/*// 取消订单
+			$("#cancel-order").on("tap", function(){
+				mui.ajax(BASEURL + "order/cancel", {
+					data : {
+						orderId : orderid,
+						descp : "订单取消原因"
+					},
+					type : "post",
+					success : function(data){
+						if(data.ret == 1){
+							mui.toast("取消成功");
+							mui.openWindow({
+								url : "./my_send_order.html",
+								id : "my-send-order",
+								createNew : true,
+								waiting: {
+									autoShow: true,
+									title: '正在加载...',
+									options: {
+										background: '#d1d1d1'
+									}
+								}
+							})
+						}
+					}
+				})
+			})*/
+			
+			
+		})
+		
+		
+		// 通过订单号获取数据
+		function sendmsg(orderid){
+				// 页面加载时，获取数据
 	      	mui.ajax(BASEURL + "order/goodShow", {
 	      		data : {
-	      			orderId : order.orderid,
-	      			type : "comm"
+	      			orderId : orderid,
+	      			type : "send"
 	      		},
 	      		type : "post",
 	      		success : function(data){
-//	      			console.log(JSON.stringify(data));
+	      			console.log(JSON.stringify(data));
+	      			
 	      			if(data.ret == 1){
 	      				$(".goods-name").html(data.res.gName);		// 货物名称
 		      			$("#goods-value").html(data.res.money);		// 价值
@@ -279,7 +219,8 @@
 							}
 						}
 						
-						// 300毫秒之后清除等待框
+						
+						/*// 300毫秒之后清除等待框
 		      			setTimeout(function(){
 		      				var lmask = document.getElementById("loading-mask");
 		      				var lbox = document.getElementById("loading-box");
@@ -294,17 +235,15 @@
 			      				mcl.remove("fade-out");
 		      					bcl.remove("fade-out");
 		      				}, false)
-		      			}, 300)
+		      			}, 300)*/
 	      			}
 	      		},
 	      		error : function(xhr, type){
 	      			console.log(type);
 	      		}
-	      	})
-	      	
-	      	
-      	})
-
-    </script>
+	     	})    
+	    }
+		
+	</script>
 </body>
 </html>

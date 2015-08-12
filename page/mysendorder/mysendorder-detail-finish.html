@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="mysendorder-comment.css"/>
+    <link rel="stylesheet" href="mysendorder-detail.css"/>
+    <script src="../../js/mui.min.js"></script>
+    <style type="text/css">
+    	.headimg-box {width: 4em;height: 4em;border-radius: 50%;overflow: hidden;margin: 0 auto;}
+    	#deliverer-img {padding: 11px 0;}
+    	#deliverer-msg {padding: 13px 0 22px 10px;color: #333;}
+    	.deliverer-name {font-size: 1.1em;padding: 5px 0;}
+    	.deliverer-honor {color: #8c8c8c;}
+    	#deliverer-num {padding: 0 0 22px 0;}
+    	.send-title {padding: 15px 0 10px 0;color: #8c8c8c;}
+    	.send-num {font-size: 1.2em;color: #7f7f7f;}
+    	.mui-icon.mui-icon-chatbubble-filled {color: #ffc11b;}
+    	.mui-icon.mui-icon-phone-filled {color: #00b94e;}
+    	#deliverer-contact {padding: 0;}
+    	#deliverer-contact div {padding: 10px 0;}
+    	#deliverer-contact div:nth-child(1) {border-bottom: 1px solid #eee;}
+    </style>
+</head>
+<body style="background: #fff;">
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">Detail</h1>
+	</header>
+	
+	<div class="mui-content">
+		<div id="scroll-wrapper" class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<!-- 第一列显示信息start -->
+					<li id="deliverer-img" class="mui-table-view-cell mui-ellipsis mui-col-xs-3">
+						<div class="headimg-box">
+							<img src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%"/>
+						</div>
+					</li>
+					<li id="deliverer-msg" class="mui-table-view-cell mui-col-xs-5">
+						<div class="deliverer-name mui-text-left mui-ellipsis">Justin Bieber</div>
+						<div class="deliverer-honor mui-text-left">
+							<span style="color: #faf713;" class="mui-icon mui-icon-starhalf"></span>
+							Adminral
+						</div>
+					</li>
+					<li id="deliverer-num" class="mui-table-view-cell mui-col-xs-2">
+						<div class="send-title">send</div>
+						<div class="send-num">37</div>
+					</li>
+					<li id="deliverer-contact" class="mui-table-view-cell mui-col-xs-2">
+						<div ><span class="mui-icon mui-icon-chatbubble-filled"></span></div>
+						<div><span class="mui-icon mui-icon-phone-filled"></span></div>
+					</li>
+					<!-- 第一列信息显示end -->
+					
+					<li class="mui-table-view-cell mui-col-xs-12">
+						<span class="mui-pull-left title-color mui-text-left name">Name</span>
+						<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">--</span>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
+						<span class="mui-pull-right">
+							<div class="goods-value-box">
+								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
+								<p class="title-color">not paid</p>
+							</div>
+						</span>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
+						<span id="goods-weight" class="mui-pull-right title-weight">0kg</span>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<div class="title-color title-bottom-padded">Get Time</div>
+						<div id="get-time">--:--</div>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<div class="title-color title-bottom-padded">Deadline</div>
+						<div id="deadline">--:--</div>
+					</li>
+				</ul>
+				
+				<div class="table-diviver"></div>
+				
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">Host</span>
+						<span id="host" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">From</span>
+						<span id="sendaddr" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">TO</span>
+						<span id="receiveaddr" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">Value</span>
+						<span id="gvalue" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">Desc</span>
+						<span id="info" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<div class="porel">
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<!--<span class="img-box">
+								<img src="../../img/2147de349744915c611f470c84c67f94.jpg" width="100%"/>
+							</span>-->
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+		<button id="comment-order" class="mui-btn mui-btn-block">comment</button>
+	</footer>
+
+	<!-- 加载中的蒙层 -->
+	<!--<div id="loading-mask"></div>
+	<div id="loading-box">
+		<img src="../../img/loading45.gif" alt="loading"/>
+	</div>-->
+	<script src="../../js/jquery.min.js" ></script>
+	<script src="../../js/utils.js"></script>
+	
+	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function(){
+			mui("#scroll-wrapper").scroll();
+			var orderid = plus.storage.getItem("my-send-order");
+			// 订单评价
+			document.getElementById("comment-order").addEventListener("tap", function(){
+				mui.ajax(BASEURL + "order/evaluate", {
+					data : {
+						orderId : orderid,
+						score : "5",
+						info : "评价信息"
+					},
+					type : "post",
+					success : function(data){
+						if(data.ret == 1){
+							alert("确认成功");
+						} else {
+							alert("不能重复评论");
+						}
+					},
+					error : function(xhr, type){
+						console.log(type)
+					}
+				})
+			}, false);
+		})
+	</script>
+</body>
+</html>

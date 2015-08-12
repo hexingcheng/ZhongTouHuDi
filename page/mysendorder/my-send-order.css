@@ -1,0 +1,91 @@
+.mui-bar {
+	background-color: #3ba767;
+}
+.mui-bar h1,
+.mui-bar a,
+.mui-bar i {
+	color: #FFFFFF;
+}
+.mui-scroll-wrapper {
+	top: 85px;
+}
+.mui-segmented-control {
+	border-radius: 0;
+	border: none;
+	border-bottom: 1px solid #d1d1d1;
+	box-shadow: 0 1px 2px #d1d1d1;
+}
+.mui-segmented-control .mui-control-item.mui-active {
+	color: #36a462;
+	background-color: #fff;
+}
+.mui-segmented-control .mui-control-item {
+	border-color: #d1d1d1;
+	color: #8c8c8c;
+	background-color: #f2f2f2;
+}
+.font-color {
+	color: #bec0c2;
+	width: 35%;
+	display: inline-block;
+}
+.goods-value {
+	color: #d92400;
+	font-size: 1.2em;
+}
+.goods-name-bar {
+	overflow: hidden;
+	padding-bottom: 0.3em;
+}
+.goods-name {
+	width: 60%;
+}
+.goods-bar {
+	padding: 0.2em 0;
+}
+.goods-direction {
+	display: inline-block;
+	width: 70%;
+}
+.goods-rewards-bar {
+	display: inline-block;
+	width: 25%;
+	border-left: 1px solid #e8e8e8;
+	padding: 2px 0 25px 11px;
+}
+.goods-rewards {
+	padding: 0.6em 0;
+}
+.waiting-box {
+	position: absolute;
+	background: #fff url(../../img/loading46.gif) no-repeat center center;
+	width: 100%;
+	height: 20em;
+}
+.red {
+	color: #ff8474;
+}
+.published {
+	border-left: 4px solid #ffa619;
+}
+.published .statusDetail {
+	color: #ffa619;
+}
+.successed {
+	border-left: 4px solid #00a04f;
+}
+.successed .statusDetail {
+	color: #00a04f;
+}
+.transporting {
+	border-left: 4px solid #7c956d;
+}
+.transporting .statusDetail {
+	color: #7c956d;
+}
+.abandonded {
+	border-left: 4px solid #247b83;
+}
+.abandonded .statusDetail {
+	color: #247b83;
+}
