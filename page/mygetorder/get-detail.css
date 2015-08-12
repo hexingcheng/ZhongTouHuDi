@@ -88,7 +88,7 @@
 	bottom: 0;
 	left: 0;
 	z-index: 1000;
-	display: none;
+	/*display: none;*/
 }
 #order-popup {
 	position: absolute;
@@ -147,7 +147,7 @@
 #loading-mask {
 	position: absolute;
 	z-index: 998;
-	background: rgba(0, 0, 0, .7);
+	background: rgba(0, 0, 0, .4);
 	top: 0;
 	left: 0;
 	right: 0;
