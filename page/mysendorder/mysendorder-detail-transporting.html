@@ -88,7 +88,7 @@
 				
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell desc-after">
-						<span id="host" class="title-color mui-pull-left title-width">Host</span>
+						<span class="title-color mui-pull-left title-width">Host</span>
 						<span id="host" class="mui-ellipsis content-length">--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
@@ -133,7 +133,7 @@
 	
 	<footer id="footer-cancel" style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 		<!-- 已付款 status=3 -->
-		<div class="status-3">
+		<div style="display: none;" class="status-3">
 			<button id="cancel-order" class="mui-btn mui-btn-block">cancel</button>
 		</div>
 		<div style="display: none;" class="status-2">
@@ -169,7 +169,39 @@
 			
 			// 付款按钮
 			$("#button-pay").on("tap", function(){
-				mui.ajax()
+				mui.ajax(BASEURL + "pay /orderPay", {
+					data : {
+						orderId : orderid,
+						type : 2,
+						money : parseFloat($("#goods-value").html()) + 1		// 付款金额
+					},
+					type : "post",
+					success : function(data){
+						if(data.ret == 1){
+							mui.toast("付款成功");
+							mui.openWindow({
+								url : "./my-send-order.html",
+								id : "my-send-order",
+								createNew : true,
+								waiting: {
+									autoShow: true,
+									title: '正在加载...',
+									options: {
+										background: '#d1d1d1'
+									}
+								}
+							})
+							plus.storage.removeItem("my-send-order")
+						} else if (data.ret == 2){
+							mui.toast("优惠券不可用");
+						} else if (data.ret == 3){
+							mui.toast("余额不足");
+						}
+					},
+					error : function(xhr, type){
+						console.log(xhr.status);			// 支付接口 404
+					}
+				})
 			})
 			
 		})
@@ -186,7 +218,7 @@
 					if(data.ret == 1){
 						mui.toast("取消成功");
 						mui.openWindow({
-							url : "./my_send_order.html",
+							url : "./my-send-order.html",
 							id : "my-send-order",
 							createNew : true,
 							waiting: {
@@ -197,6 +229,7 @@
 								}
 							}
 						})
+						plus.storage.removeItem("my-send-order")
 					}
 				}
 			})
