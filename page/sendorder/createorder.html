@@ -386,15 +386,27 @@
 							});
 						} else {
 							plus.webview.currentWebview().close();
+							closewebview();
 							plus.webview.getLaunchWebview().show('slide-in-left');
 						}
 					})
 				} else {
 					plus.webview.currentWebview().close();
+					closewebview()
 					plus.webview.getLaunchWebview().show('slide-in-left')
 				}
 			}
-
+			function closewebview(){
+				if(plus.webview.getWebviewById('create-next')){
+					plus.webview.getWebviewById('create-next').close();
+				}
+				if(plus.webview.getWebviewById('pickaddr')){
+					plus.webview.getWebviewById('pickaddr').close()
+				}
+				if(plus.webview.getWebviewById('chooseaddr')){
+					plus.webview.getWebviewById('chooseaddr').close();
+				}
+			}
 			function bycamera(context) {
 				var camera = plus.camera.getCamera();
 				var res = camera.supportedImageResolutions[0];
