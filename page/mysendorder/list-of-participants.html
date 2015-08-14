@@ -67,7 +67,7 @@
 		{{each list}}
 			<li class="mui-table-view-cell">
 				<div class="img-row mui-pull-left">
-					<div class="headimg-box">
+					<div class="headimg-box" data-uid="{{$value.uid}}">
 						{{if $value.headPic == ""}}
 							<img alt="headpicture" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%"/>
 						{{else}}
@@ -130,7 +130,6 @@
       				success : function(data){
       					if(data.ret == 1){
       						mui.toast("选择递送人成功");
-      						
       						mui.openWindow({
       							url : "./my-send-order.html",
       							id : "my-send-order",
@@ -158,6 +157,16 @@
       				}
       			})
       		})
+      		
+      		// 查看用户信息
+      		mui("#choose-sender").on("tap", ".headimg-box", function(){
+      			var ud = this.getAttribute("data-uid");
+      			openWindow("../person/myinfo.html", {
+      				uid : ud
+      			})
+      		})
+      		
+      		
       	})
       	
       	function sendmsg(datas){
@@ -165,7 +174,7 @@
       			data : datas,
       			type : "post",
       			success : function(data){
-//    				console.log(JSON.stringify(data));
+      				console.log(JSON.stringify(data));
 					var obj = {
 						list : data.res
 					}
