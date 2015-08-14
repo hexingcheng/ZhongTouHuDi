@@ -140,6 +140,8 @@
 				setTimeout(function(){
 					cpage.close("none", 0)
 				}, 300)
+				plus.storage.removeItem("my-send-order")
+				
 			})
 			
 			// 重新发布
@@ -150,8 +152,7 @@
 					},
 					type : "post",
 					success : function(data){
-						alert(data.ret);					// 404错误，不能找到路由路径
-						/*if(data.ret == 1){
+						if(data.ret == 1){
 							mui.toast("发布成功")
 							mui.openWindow({
 								url : "./my-send-order.html",
@@ -168,7 +169,7 @@
 							setTimeout(function(){
 								cpage.close("none", 0)
 							}, 200)
-						}*/
+						}
 					},
 					error : function(xhr, type){
 						console.log(xhr.status);
@@ -200,6 +201,7 @@
 		      			$("#goods-weight").html(data.res.gWeight+ "kg");	// 重量
 		      			$("#get-time").html(data.res.getTime);		// 获取时间
 		      			$("#deadline").html(data.res.finTime);		// 期望时间
+		      			$("#host").html(data.res.sender);			// 发送者
 		      			$("#sendaddr").html(data.res.sendAddr);		// 发送地
 		      			$("#receiveaddr").html(data.res.receiveAddr)	// 接收地
 		      			$("#gvalue").html(data.res.gValue);		// value
