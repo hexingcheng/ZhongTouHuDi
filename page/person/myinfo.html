@@ -39,7 +39,7 @@
       	height: 4em;
       }
      .add-content .comment{
-    	box-shadow: 0 .4em 2px black;
+    	box-shadow: 0 .1em 2px black;
     	background-color: silver;
     }
     </style>
@@ -47,7 +47,7 @@
 <body class="bg_w"> 
 	<div class="me-contain" >
 		<div class="me_main"> 
-			<img id="bg_pic" alt="" />
+			<img src="../../img/2147de349744915c611f470c84c67f94.jpg" id="bg_pic" alt="" />
 			  <header class="mui-bar mui-bar-nav mui-action-back none_box " style="background-color:#3FA86A " >
 			 	<a class="mui-icon mui-icon-left-nav color_w" ></a>
 			 	<h1 class="mui-title"><span class="color_w">personal</span></h1> 
@@ -55,7 +55,7 @@
 			 </header>
 		</div>
 	<!--文本内容-->
-		 <div class="me_main-info">
+		 <div class="me_main-info">  
 		 	<div class="me-info">
 		 		<img  id="headPic" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" />
 		 	</div>
@@ -84,7 +84,7 @@
 	<!--空白部分--> 
 	<div class="add-content" style="height: 25.4em;width: 100%;">
 		 <!--顶部-->    
-	 	    <div class="me_Clearance line1 comment" style="position: relative;top: 94%;"><span>comment</span></div>
+	 	    <div class="me_Clearance  comment" style="position: relative;top: 94%;height: 1.3em;"><span>comment</span></div>
 	</div>
 	<div class="mui-content " >
 		<!--内容-->
@@ -114,6 +114,12 @@
     <script src="../../js/template.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	  <script>
+	  	mui.plusReady(function(){
+	  		var cpage = plus.webview.currentWebview();
+		  	var uid = cpage.uid;
+		  	alert(uid);
+	  	})
+	  
 	  	  var data={
 	  	  	    "result":[{
 	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",
@@ -192,7 +198,6 @@ mui.plusReady(function(){
   	  	 type:"post",
   	  	 success:function(data){
   	  	 	if(data.ret==1){
-	             alert(JSON.stringify(data));
 	                nickName.innerHTML=data.res.firstName+" "+data.res.familyName;
 					phone.innerHTML=data.res.phone;
 					email.innerHTML=data.res.email;

@@ -136,10 +136,10 @@
 	</footer>
 
 	<!-- 加载中的蒙层 -->
-	<!--<div id="loading-mask"></div>
+	<div id="loading-mask"></div>
 	<div id="loading-box">
 		<img src="../../img/loading45.gif" alt="loading"/>
-	</div>-->
+	</div>
 	<script src="../../js/jquery.min.js" ></script>
 	<script src="../../js/utils.js"></script>
 	
@@ -203,20 +203,20 @@
 		      			var pic = data.res.pics;
 		      			
 		      			// sender 递送人信息显示
-		      			if(data.res.headPic){		// 头像显示
-		      				$("#head-img").attr("src", data.res.headPic);
+		      			if(data.res.deliver.headPic){		// 头像显示
+		      				$("#head-img").attr("src", data.res.deliver.headPic);
 		      			}
-		      			if(data.res.nickName){		// 昵称
-		      				$("#nickName").html(data.res.nickName);
+		      			if(data.res.deliver.nickName){		// 昵称
+		      				$("#nickName").html(data.res.deliver.nickName);
 		      			}
-		      			if(data.res.ptitle){		// 等级
-		      				$("#ptitle").html(data.res.ptitle);
+		      			if(data.res.deliver.ptitle){		// 等级
+		      				$("#ptitle").html(data.res.deliver.ptitle);
 		      			}
-		      			if(data.res.orderCount){		// 接单数量
-		      				$("#orderCount").html(data.res.orderCount);
+		      			if(data.res.deliver.orderCount){		// 接单数量
+		      				$("#orderCount").html(data.res.deliver.orderCount);
 		      			}
-		      			if(data.res.phone){		// 电话号码
-		      				$("#pnone").attr("data-phone", data.res.phone);
+		      			if(data.res.deliver.phone){		// 电话号码
+		      				$("#pnone").attr("data-phone", data.res.deliver.phone);
 		      			}
 		      			
 		      			
@@ -238,7 +238,7 @@
 						}
 						
 						
-						/*// 300毫秒之后清除等待框
+						// 300毫秒之后清除等待框
 		      			setTimeout(function(){
 		      				var lmask = document.getElementById("loading-mask");
 		      				var lbox = document.getElementById("loading-box");
@@ -253,7 +253,7 @@
 			      				mcl.remove("fade-out");
 		      					bcl.remove("fade-out");
 		      				}, false)
-		      			}, 300)*/
+		      			}, 300)
 	      			}
 	      		},
 	      		error : function(xhr, type){
