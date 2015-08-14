@@ -114,6 +114,12 @@
     <script src="../../js/template.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	  <script>
+	  	mui.plusReady(function(){
+	  		var cpage = plus.webview.currentWebview();
+		  	var uid = cpage.uid;
+		  	alert(uid);
+	  	})
+	  
 	  	  var data={
 	  	  	    "result":[{
 	  	  	    	"src":"../../img/2147de349744915c611f470c84c67f94.jpg",

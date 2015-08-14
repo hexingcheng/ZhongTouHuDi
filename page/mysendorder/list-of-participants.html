@@ -116,6 +116,7 @@
       			pageSize : 10,
       			orderId : orderid
       		})
+      		plus.nativeUI.closeWaiting();
       		
       		// 添加选择该递送人
       		var cpage = plus.webview.currentWebview();
@@ -161,6 +162,7 @@
       		// 查看用户信息
       		mui("#choose-sender").on("tap", ".headimg-box", function(){
       			var ud = this.getAttribute("data-uid");
+      			console.log(ud);
       			openWindow("../person/myinfo.html", {
       				uid : ud
       			})
