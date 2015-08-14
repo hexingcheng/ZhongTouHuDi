@@ -386,11 +386,17 @@
 							});
 						} else {
 							plus.webview.currentWebview().close();
+							plus.webview.getWebviewById('create-next').close();
+							plus.webview.getWebviewById('pickaddr').close();
+							plus.webview.getWebviewById('chooseaddr').close()
 							plus.webview.getLaunchWebview().show('slide-in-left');
 						}
 					})
 				} else {
 					plus.webview.currentWebview().close();
+//					plus.webview.getWebviewById('create-next').close();
+//					plus.webview.getWebviewById('pickaddr').close();
+//					plus.webview.getWebviewById('chooseaddr').close();
 					plus.webview.getLaunchWebview().show('slide-in-left')
 				}
 			}

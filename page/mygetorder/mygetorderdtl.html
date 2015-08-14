@@ -108,7 +108,7 @@
 						<li class="mui-table-view-cell mui-col-xs-6">
 							<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
 							<span class="mui-pull-right">
-							<div class="goods-value-box">
+				<div class="goods-value-box">
 								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
 							<p class="title-color">not paid</p>
 				</div>
@@ -155,13 +155,12 @@
 			</div>
 		</div>
 		</div>
-
 		<!-- 遮罩层 -->
 		<!-- 加载中的蒙层 -->
-	<div id="loading-mask"></div>
-	<div id="loading-box">
-		<img src="../../img/loading45.gif" alt="loading"/>
-	</div>
+		<div id="loading-mask"></div>
+		<div id="loading-box">
+			<img src="../../img/loading45.gif" alt="loading" />
+		</div>
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script>
@@ -192,27 +191,27 @@
 						console.log(type)
 					}
 				})
-				$('.cancel').on('tap',function(){
-					if($(this).text()=='cancel'){
-						mui.ajax(BASEURL+'order/bargainCancel',{
-							type:'post',
-							data:{
-								orderId:c.orderId
+				$('.cancel').on('tap', function() {
+					if ($(this).text() == 'cancel') {
+						mui.ajax(BASEURL + 'order/bargainCancel', {
+							type: 'post',
+							data: {
+								orderId: c.orderId
 							},
-							success:function(data){
-								if(data.ret==1){
+							success: function(data) {
+								if (data.ret == 1) {
 									c.close();
 									openWindow('./my-get-order.html');
 									mui.toast('取消议价成功');
-								}else if(data.ret==2){
+								} else if (data.ret == 2) {
 									mui.toast('非法操作')
 								}
 							},
-							error:function(xhr,type){
+							error: function(xhr, type) {
 								console.log(type)
 							}
 						})
-					}else if($(this).text()=='order done'){
+					} else if ($(this).text() == 'order done') {
 						$('.mask').removeClass('mui-hidden');
 						$('.dialog').removeClass('mui-hidden');
 						var l = ($(window).width() - 270) / 2;
@@ -221,22 +220,23 @@
 							'left': l,
 							'top': t
 						})
-						$('.ok').on('tap',function(){
-							mui.ajax(BASEURL+'order/pickUp',{
-								type:'post',
-								data:{
-									orderId:c.orderId
+						$('.ok').on('tap', function() {
+							mui.ajax(BASEURL + 'order/pickUp', {
+								type: 'post',
+								data: {
+									orderId: c.orderId
 								},
-								success:function(data){
+								success: function(data) {
 									console.log(data.ret)
 								},
-								error:function(xhr,type){
+								error: function(xhr, type) {
 									console.log(type)
 								}
 							})
 						})
 					}
 				})
+
 				function renderdata(data) {
 					$(".goods-name").html(data.res.gName); // 货物名称
 					$("#goods-value").html(data.res.money); // 价值
@@ -247,20 +247,20 @@
 					$("#receiveaddr").html(data.res.receiveAddr) // 接收地
 					$("#gvalue").html(data.res.gValue); // value
 					$("#info").html(data.res.info); // 信息描述
-					if(data.res.pics){
+					if (data.res.pics) {
 						var pic = data.res.pics;
 						var len = pic.length;
-						for(var i = 0;i<len;i++){
+						for (var i = 0; i < len; i++) {
 							var picurl = pic[i].path;
 							var n = BASEURL.indexOf('/a');
-							var perurls = BASEURL.substring(0,n);
-							var imgurl = perurls+picurl;
+							var perurls = BASEURL.substring(0, n);
+							var imgurl = perurls + picurl;
 							var img = document.createElement('img');
 							img.src = imgurl;
 							document.getElementById('porel').appendChild(img);
 						}
-					}else{
-						document.getElementById('porel').innerHTML='并没有图片~';
+					} else {
+						document.getElementById('porel').innerHTML = '并没有图片~';
 					}
 				}
 			})

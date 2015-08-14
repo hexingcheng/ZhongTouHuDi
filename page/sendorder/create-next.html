@@ -165,6 +165,13 @@
 			.mui-input-row .mui-input-speech~.mui-icon-speech {
 				top: 18px;
 			}
+			#closeicon .mui-icon-clear {
+				top: 5px;
+			}
+			#gettime,#respecttime,#getaddr,#sendaddr{
+				padding-left: 15px;
+				color: #bec0c2;
+			}
 		</style>
 	</head>
 
@@ -184,7 +191,7 @@
 						<div class="reword clear">
 							<div class="fl wid30 hei80 paddl10 color5f linehei">Reword</div>
 							<div class="fl wid60 hei80">
-								<div class="iptwrap mui-input-row">
+								<div class="iptwrap mui-input-row" id="closeicon">
 									<input type="number" class="ipt mui-input-clear" id="pay" />
 								</div>
 							</div>
@@ -199,9 +206,7 @@
 									<span class="mui-icon mui-icon-flag"></span>
 								</div>
 								<div class="fl wid80 hei80 linehei addborb">
-									<div class="mui-input-row time">
-										<input type="text" class="mui-input-clear" placeholder="Pickup Time" id="gettime" />
-									</div>
+									<div id="gettime" class="gettimes" data-time="">Pickup Time</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet addborb">
 									<span class="mui-icon mui-icon-arrowright"></span>
@@ -212,9 +217,7 @@
 									<span class="mui-icon mui-icon-locked"></span>
 								</div>
 								<div class="fl wid80 hei80 linehei">
-									<div class="mui-input-row time">
-										<input type="text" class="mui-input-clear" placeholder="Arrival Time" id="respecttime" />
-									</div>
+									<div id="respecttime" class="gettimes" data-time="">Arrival Time</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet">
 									<span class="mui-icon mui-icon-arrowright"></span>
@@ -228,9 +231,7 @@
 									<span class="mui-icon mui-icon-location"></span>
 								</div>
 								<div class="fl wid80 hei80 linehei addborb">
-									<div class="mui-input-row time">
-										<input type="text" class="mui-input-clear" placeholder="Pickup Address" id="getaddr" />
-									</div>
+									<div id="getaddr" data-addr="" data-Jd="" data-Wd="">Pickup Address</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet addborb">
 									<span class="mui-icon mui-icon-bars"></span>
@@ -241,9 +242,7 @@
 									<span class="mui-icon mui-icon-map"></span>
 								</div>
 								<div class="fl wid80 hei80 linehei">
-									<div class="mui-input-row time">
-										<input type="text" class="mui-input-clear" placeholder="Arrival Time" id="sendaddr" />
-									</div>
+									<div id="sendaddr" data-addr="" data-Jd="" data-Wd="">Receive address</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet">
 									<span class="mui-icon mui-icon-bars"></span>
@@ -294,7 +293,7 @@
 							</div>
 							<div class="fl wid90 hei80 linehei">
 								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="Phone" id="tel"/>
+									<input type="text" class="mui-input-clear" placeholder="Phone" id="tel" />
 								</div>
 							</div>
 						</div>
@@ -316,7 +315,6 @@
 		<script type="text/javascript" src="../../js/utils.js"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
-		
 			mui.init();
 			mui.plusReady(function() {
 				var c = plus.webview.currentWebview();
@@ -327,7 +325,12 @@
 				plus.geolocation.getCurrentPosition(function(pos) {
 					lot = pos.coords.longitude;
 					lat = pos.coords.latitude;
+					$('#getaddr').attr('data-Jd',lot)
+					$('#getaddr').attr('data-Wd',lat)
+					$('#sendaddr').attr('data-Jd',lot)
+					$('#sendaddr').attr('data-Wd',lat)
 					var c = plus.webview.currentWebview();
+					var onOff = true;
 					$('.mui-bbtn').on('tap', function() {
 						var getdata = {}
 						getdata.gName = c.gName;
@@ -336,47 +339,49 @@
 						getdata.pics = c.pics;
 						getdata.info = c.info;
 						getdata.money = parseInt($('#pay').val());
-						getdata.getTime = $('#gettime').val();
-						getdata.finTime = $('#respecttime').val();
-//						getdata.senderAddress = $('#getaddr').val();
-						getdata.senderAddress = '重庆';
-						//getdata.receiverAddress = $('#sendaddr').val();
-						getdata.receiverAddress = '北京';
+						getdata.getTime = $('#gettime').attr('data-time');
+						getdata.finTime = $('#respecttime').attr('data-time');
+						getdata.senderAddress = $('#getaddr').attr('data-addr');
+						getdata.receiverAddress = $('#sendaddr').attr('data-addr');
 						getdata.sender = $('#sender').val();
 						getdata.senderPhone = $('#contact').val();
-						getdata.sendJd = lot;
-						getdata.sendWd = lat;
+						getdata.sendJd = $('#getaddr').attr('data-Jd');
+						getdata.sendWd = $('#getaddr').attr('data-Wd');
 						getdata.receiver = $('#receiver').val();
 						getdata.receiverPhone = $('#tel').val();
-						getdata.receiverJd = 10;
-						getdata.receiverWd = 10;
+						getdata.receiverJd =  $('#sendaddr').attr('data-Jd');
+						getdata.receiverWd =  $('#sendaddr').attr('data-Wd');
 						getdata.insType = parseInt($('#comer').val());
 						getdata.status = 1;
 						showobj(getdata)
 						if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
-							mui.ajax(BASEURL + 'order/resOrderByGood', {
-								data: getdata,
-								type: 'post',
-								success: function(data) {
-									if (data.ret == 1) {
-										mui.toast('发单成功，继续完成支付');
-										plus.webview.getWebviewById('sendorder/createorder').close()
-										plus.webview.getWebviewById('create-next').close();
-										plus.webview.getLaunchWebview().show('slide-in-left')
-									} else if (data.ret == -101) {
-										mui.confirm('您还未登陆，请登录！', '提示', ['确定', '取消'], function(e) {
-											if (e.index == 0) {
-												openWindow('../login-up.html');
-											} else {
-												return;
-											}
-										})
+							if (onOff) {
+								onOff = false
+								mui.ajax(BASEURL + 'order/resOrderByGood', {
+									data: getdata,
+									type: 'post',
+									success: function(data) {
+										if (data.ret == 1) {
+											mui.toast('发单成功，继续完成支付');
+											plus.webview.getWebviewById('sendorder/createorder').close()
+											plus.webview.getWebviewById('create-next').close();
+											plus.webview.getLaunchWebview().show('slide-in-left')
+										} else if (data.ret == -101) {
+											mui.confirm('您还未登陆，请登录！', '提示', ['确定', '取消'], function(e) {
+												if (e.index == 0) {
+													openWindow('../login-up.html');
+												} else {
+													return;
+												}
+											})
+										}
+									},
+									error: function(xhr, type) {
+										onOff = true;
+										console.log(type)
 									}
-								},
-								error: function(xhr, type) {
-									console.log(type)
-								}
-							})
+								})
+							}
 						} else {
 							mui.toast('信息未填完全')
 						}
@@ -407,13 +412,34 @@
 						"labels": ["年", "月", "日", "时段", "分"]
 					}
 					var time = new mui.DtPicker(options);
-					time.show(function(rs){
-						$('input',_this).val(rs.text)
+					time.show(function(rs) {
+						$('.gettimes', _this).attr('data-time',rs.text);
+						$('.gettimes', _this).text(rs.text).css('color',"#000")
 					})
 				})
-				$('#getaddr').on('tap',function(){
+				$('#getaddr,#sendaddr').on('tap', function() {
+					setstorage('getaddr',$(this).text())
 					openWindow('./pickaddr.html')
 				})
+				window.addEventListener('getaddrs',function(eve){
+					var addr = eve.detail.addrs;
+					var mylocation = eve.detail.mylocation;
+					if(getstorage('getaddr')=='Pickup Address'){
+						$('#getaddr').attr('data-Jd',mylocation.K)
+						$('#getaddr').attr('data-Wd',mylocation.G)
+						$('#getaddr').attr('data-addr',addr)
+						$('#getaddr').text(addr).css('color',"#000")
+					}else{
+						$('#sendaddr').attr('data-Jd',mylocation.K);
+						$('#sendaddr').attr('data-Wd',mylocation.G);
+						$('#sendaddr').attr('data-addr',addr)
+						$('#sendaddr').text(addr).css('color',"#000")
+					}
+				})
+				mui.back = function(){
+					var sdod = plus.webview.getWebviewById('sendorder/createorder');
+					sdod.show('slide-in-left',300)
+				}
 			})
 		</script>
 	</body>
