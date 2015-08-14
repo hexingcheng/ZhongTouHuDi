@@ -162,10 +162,11 @@
 					timeout : 5000,
 					data: datas,
 					success: function(data) {
-//						console.log(JSON.stringify(data));
+						console.log(JSON.stringify(data));
 						var orderdata = {
 							"list": data.res
 						}
+//						alert(data.res.gWeight);
 						// 模板渲染
 						var html = template("template", orderdata);
 						document.getElementById('item'+datas.status).innerHTML = html;

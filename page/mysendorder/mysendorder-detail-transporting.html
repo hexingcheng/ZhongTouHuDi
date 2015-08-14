@@ -143,10 +143,10 @@
 	</footer>
 
 	<!-- 加载中的蒙层 -->
-	<!--<div id="loading-mask"></div>
+	<div id="loading-mask"></div>
 	<div id="loading-box">
 		<img src="../../img/loading45.gif" alt="loading"/>
-	</div>-->
+	</div>
 	<script src="../../js/jquery.min.js" ></script>
 	<script src="../../js/utils.js"></script>
 	
@@ -167,42 +167,9 @@
 				cancelorder(orderid);
 			})
 			
-			// 付款按钮
-			$("#button-pay").on("tap", function(){
-				mui.ajax(BASEURL + "pay /orderPay", {
-					data : {
-						orderId : orderid,
-						type : 2,
-						money : parseFloat($("#goods-value").html()) + 1		// 付款金额
-					},
-					type : "post",
-					success : function(data){
-						if(data.ret == 1){
-							mui.toast("付款成功");
-							mui.openWindow({
-								url : "./my-send-order.html",
-								id : "my-send-order",
-								createNew : true,
-								waiting: {
-									autoShow: true,
-									title: '正在加载...',
-									options: {
-										background: '#d1d1d1'
-									}
-								}
-							})
-							plus.storage.removeItem("my-send-order")
-						} else if (data.ret == 2){
-							mui.toast("优惠券不可用");
-						} else if (data.ret == 3){
-							mui.toast("余额不足");
-						}
-					},
-					error : function(xhr, type){
-						console.log(xhr.status);			// 支付接口 404
-					}
-				})
-			})
+			document.getElementById("button-pay").addEventListener("tap", function(){
+				openWindow("../pay/pay.html");
+			}, false)
 			
 		})
 		
@@ -285,23 +252,23 @@
 						}
 						
 						// sender 递送人信息显示
-		      			if(data.res.headPic){		// 头像显示
-		      				$("#head-img").attr("src", data.res.headPic);
+		      			if(data.res.deliver.headPic){		// 头像显示
+		      				$("#head-img").attr("src", data.res.deliver.headPic);
 		      			}
-		      			if(data.res.nickName){		// 昵称
-		      				$("#nickName").html(data.res.nickName);
+		      			if(data.res.deliver.nickName){		// 昵称
+		      				$("#nickName").html(data.res.deliver.nickName);
 		      			}
-		      			if(data.res.ptitle){		// 等级
-		      				$("#ptitle").html(data.res.ptitle);
+		      			if(data.res.deliver.ptitle){		// 等级
+		      				$("#ptitle").html(data.res.deliver.ptitle);
 		      			}
-		      			if(data.res.orderCount){		// 接单数量
-		      				$("#orderCount").html(data.res.orderCount);
+		      			if(data.res.deliver.orderCount){		// 接单数量
+		      				$("#orderCount").html(data.res.deliver.orderCount);
 		      			}
-		      			if(data.res.phone){		// 电话号码
-		      				$("#pnone").attr("data-phone", data.res.phone);
+		      			if(data.res.deliver.phone){		// 电话号码
+		      				$("#pnone").attr("data-phone", data.res.deliver.phone);
 		      			}
 						
-						/*// 300毫秒之后清除等待框
+						// 300毫秒之后清除等待框
 		      			setTimeout(function(){
 		      				var lmask = document.getElementById("loading-mask");
 		      				var lbox = document.getElementById("loading-box");
@@ -316,7 +283,7 @@
 			      				mcl.remove("fade-out");
 		      					bcl.remove("fade-out");
 		      				}, false)
-		      			}, 300)*/
+		      			}, 300)
 	      			}
 	      		},
 	      		error : function(xhr, type){
