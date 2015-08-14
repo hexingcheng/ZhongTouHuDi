@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -13,6 +12,22 @@
 			mui.init();
 		</script>
 		<style type="text/css">
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		.tips{
+			width: 100%;
+			position: absolute;
+			left: 0;
+			z-index: 11;
+			height: 100%;
+			background-color: rgba(0,0,0,0.2);
+			color: #FFFFFF;
+			padding-top: 50%;
+			font-size: 30px;
+			text-align: center;
+		}
 		</style>
 	</head>
 
@@ -21,6 +36,10 @@
 			<a class="mui-icon mui-icon-left-nav color_w mui-action-back"></a>
 			<h1 class="mui-title color_w">Welcome</h1>
 		</header>
+		<footer class="mui-bar mui-bar-footer  none_box">
+			<div class="log_button color_w" id="submit-button">Logon</div>
+		</footer>
+		<div class="tips mui-hidden">登录中...</div>
 		<div class="mui-content bg">
 			<!--log框-->
 			<div class="w_log ">
@@ -28,7 +47,7 @@
 					<img src="../../img/log.png" />
 					<span style="color: #06495A;"> <b>Along</b></span>
 				</div>
-			</div>
+			</div>               
 			<!--输入框-->
 			<div class="log_contain bg_w">
 				<div class="log_input ">
@@ -48,11 +67,9 @@
 				<span class="mui-pull-right me_color"> <a href="productName.html">log in</a></span>
 				</span>
 			</div>
-			<footer class="mui-bar mui-bar-footer  none_box">
-				<div class="log_button color_w" id="submit-button">Logon</div>
-			</footer>
 		</div>
 		<script src="../../js/utils.js"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js" ></script>
 		<script type="text/javascript">
 			mui.plusReady(function() {
 				var reph = /^[0-9]{6,12}$/;
@@ -79,6 +96,7 @@
 					}
 					// 判断输入是否正确
 					if (flag) {
+						$('.tips').removeClass('mui-hidden')
 						var data = {
 								phone: phonenum,
 								pwd: pwd,
@@ -96,6 +114,7 @@
 							type: "post",
 							data: data,
 							success: function(obj) { // 成功的时候，根据不同的状态回应不同的相应信息给客户端
+								$('.tips').addClass('mui-hidden')
 								if (obj.ret == 0) {
 									mui.toast("输入异常");
 								} else if (obj.ret = 1) {
