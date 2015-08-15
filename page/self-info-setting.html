@@ -94,6 +94,8 @@
 								console.log('success')
 								plus.storage.removeItem('token');
 								var i = plus.webview.getLaunchWebview();
+								mui.fire(i,'removehref')
+								var i = plus.webview.getLaunchWebview();
 								mui.fire(i,'closeMenu');
 								setTimeout(function(){
 									i.show('slide-in-left');
