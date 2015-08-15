@@ -168,7 +168,10 @@
 			#closeicon .mui-icon-clear {
 				top: 5px;
 			}
-			#gettime,#respecttime,#getaddr,#sendaddr{
+			#gettime,
+			#respecttime,
+			#getaddr,
+			#sendaddr {
 				padding-left: 15px;
 				color: #bec0c2;
 			}
@@ -231,7 +234,7 @@
 									<span class="mui-icon mui-icon-location"></span>
 								</div>
 								<div class="fl wid80 hei80 linehei addborb">
-									<div id="getaddr" data-addr="" data-Jd="" data-Wd="">Pickup Address</div>
+									<div id="getaddr" data-addr="重庆" data-Jd="106.60111939165672" data-Wd="29.53408157290842">Pickup Address</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet addborb">
 									<span class="mui-icon mui-icon-bars"></span>
@@ -242,7 +245,7 @@
 									<span class="mui-icon mui-icon-map"></span>
 								</div>
 								<div class="fl wid80 hei80 linehei">
-									<div id="sendaddr" data-addr="" data-Jd="" data-Wd="">Receive address</div>
+									<div id="sendaddr" data-addr="北京" data-Jd="10" data-Wd="10">Receive address</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet">
 									<span class="mui-icon mui-icon-bars"></span>
@@ -317,80 +320,104 @@
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui.plusReady(function() {
+				var getdata = {};
+				getdata.gName = "";
+				getdata.gValue = "";
+				getdata.gWeight = "";
+				getdata.pics = "";
+				getdata.info = "";
+				getdata.money = "";
+				getdata.getTime = "";
+				getdata.finTime = "";
+				getdata.senderAddress = "";
+				getdata.receiverAddress = "";
+				getdata.sender = "";
+				getdata.senderPhone = "";
+				getdata.sendJd = "";
+				getdata.sendWd = "";
+				getdata.receiver = "";
+				getdata.receiverPhone = "";
+				getdata.receiverJd = "";
+				getdata.receiverWd = "";
+				getdata.insType = "";
+				getdata.status = "";
 				var c = plus.webview.currentWebview();
 				mui('#offCanvasSideScroll').scroll();
 				c.setStyle({
 					scrollIndicator: 'none'
 				})
-				plus.geolocation.getCurrentPosition(function(pos) {
-					lot = pos.coords.longitude;
-					lat = pos.coords.latitude;
-					$('#getaddr').attr('data-Jd',lot)
-					$('#getaddr').attr('data-Wd',lat)
-					$('#sendaddr').attr('data-Jd',lot)
-					$('#sendaddr').attr('data-Wd',lat)
-					var c = plus.webview.currentWebview();
-					var onOff = true;
-					$('.mui-bbtn').on('tap', function() {
-						var getdata = {}
-						getdata.gName = c.gName;
-						getdata.gValue = c.gValue;
-						getdata.gWeight = c.gWeight;
-						getdata.pics = c.pics;
-						getdata.info = c.info;
-						getdata.money = parseInt($('#pay').val());
-						getdata.getTime = $('#gettime').attr('data-time');
-						getdata.finTime = $('#respecttime').attr('data-time');
-						getdata.senderAddress = $('#getaddr').attr('data-addr');
-						getdata.receiverAddress = $('#sendaddr').attr('data-addr');
-						getdata.sender = $('#sender').val();
-						getdata.senderPhone = $('#contact').val();
-						getdata.sendJd = $('#getaddr').attr('data-Jd');
-						getdata.sendWd = $('#getaddr').attr('data-Wd');
-						getdata.receiver = $('#receiver').val();
-						getdata.receiverPhone = $('#tel').val();
-						getdata.receiverJd =  $('#sendaddr').attr('data-Jd');
-						getdata.receiverWd =  $('#sendaddr').attr('data-Wd');
-						getdata.insType = parseInt($('#comer').val());
-						getdata.status = 1;
-						showobj(getdata)
-						if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
-							if (onOff) {
-								onOff = false
-								mui.ajax(BASEURL + 'order/resOrderByGood', {
-									data: getdata,
-									type: 'post',
-									success: function(data) {
-										if (data.ret == 1) {
-											mui.toast('发单成功，继续完成支付');
-											plus.webview.getWebviewById('sendorder/createorder').close()
-											plus.webview.getWebviewById('create-next').close();
-											plus.webview.getLaunchWebview().show('slide-in-left')
-										} else if (data.ret == -101) {
-											mui.confirm('您还未登陆，请登录！', '提示', ['确定', '取消'], function(e) {
-												if (e.index == 0) {
-													openWindow('../login-up.html');
-												} else {
-													return;
-												}
-											})
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(pos) {
+						lot = pos.coords.longitude;
+						lat = pos.coords.latitude;
+						$('#getaddr').attr('data-Jd', lot)
+						$('#getaddr').attr('data-Wd', lat)
+						$('#sendaddr').attr('data-Jd', lot)
+						$('#sendaddr').attr('data-Wd', lat)
+						var c = plus.webview.currentWebview();
+						var onOff = true;
+						$('.mui-bbtn').on('tap', function() {
+							getdata.gName = c.gName;
+							getdata.gValue = c.gValue;
+							getdata.gWeight = c.gWeight;
+							getdata.pics = c.pics;
+							getdata.info = c.info;
+							getdata.money = parseInt($('#pay').val());
+							getdata.getTime = $('#gettime').attr('data-time');
+							getdata.finTime = $('#respecttime').attr('data-time');
+							getdata.senderAddress = $('#getaddr').attr('data-addr');
+							getdata.receiverAddress = $('#sendaddr').attr('data-addr');
+							getdata.sender = $('#sender').val();
+							getdata.senderPhone = $('#contact').val();
+							getdata.sendJd = $('#getaddr').attr('data-Jd');
+							getdata.sendWd = $('#getaddr').attr('data-Wd');
+							getdata.receiver = $('#receiver').val();
+							getdata.receiverPhone = $('#tel').val();
+							getdata.receiverJd = $('#sendaddr').attr('data-Jd');
+							getdata.receiverWd = $('#sendaddr').attr('data-Wd');
+							getdata.insType = parseInt($('#comer').val());
+							getdata.status = 1;
+							showobj(getdata)
+							if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
+								if (onOff) {
+									onOff = false
+									mui.ajax(BASEURL + 'order/resOrderByGood', {
+										data: getdata,
+										type: 'post',
+										success: function(data) {
+											if (data.ret == 1) {
+												mui.toast('发单成功，继续完成支付');
+												plus.webview.getWebviewById('sendorder/createorder').close()
+												plus.webview.getWebviewById('create-next').close();
+												plus.webview.getLaunchWebview().show('slide-in-left')
+											} else if (data.ret == -101) {
+												mui.confirm('您还未登陆，请登录！', '提示', ['确定', '取消'], function(e) {
+													if (e.index == 0) {
+														openWindow('../login-up.html');
+													} else {
+														return;
+													}
+												})
+											}
+										},
+										error: function(xhr, type) {
+											onOff = true;
+											console.log(type)
 										}
-									},
-									error: function(xhr, type) {
-										onOff = true;
-										console.log(type)
-									}
-								})
+									})
+								}
+							} else {
+								mui.toast('信息未填完全')
 							}
-						} else {
-							mui.toast('信息未填完全')
-						}
+						})
+					}, function() {
+						mui.toast('获取位置信息失败')
+					}, {
+						enableHighAcuracy: true
 					})
-				}, function(e) {
-					console.log('获取经纬度失败');
-				}, {
-					provider: "baidu"
-				});
+				} else {
+					mui.toast('获取位置信息失败')
+				}
 				$('.pict,.arrtime').on('tap', function() {
 					var _this = $(this);
 					var options = {
@@ -413,32 +440,58 @@
 					}
 					var time = new mui.DtPicker(options);
 					time.show(function(rs) {
-						$('.gettimes', _this).attr('data-time',rs.text);
-						$('.gettimes', _this).text(rs.text).css('color',"#000")
+						$('.gettimes', _this).attr('data-time', rs.text);
+						$('.gettimes', _this).text(rs.text).css('color', "#000")
 					})
 				})
 				$('#getaddr,#sendaddr').on('tap', function() {
-					setstorage('getaddr',$(this).text())
+					setstorage('getaddr', $(this).text())
 					openWindow('./pickaddr.html')
 				})
-				window.addEventListener('getaddrs',function(eve){
+				window.addEventListener('getaddrs', function(eve) {
 					var addr = eve.detail.addrs;
 					var mylocation = eve.detail.mylocation;
-					if(getstorage('getaddr')=='Pickup Address'){
-						$('#getaddr').attr('data-Jd',mylocation.K)
-						$('#getaddr').attr('data-Wd',mylocation.G)
-						$('#getaddr').attr('data-addr',addr)
-						$('#getaddr').text(addr).css('color',"#000")
-					}else{
-						$('#sendaddr').attr('data-Jd',mylocation.K);
-						$('#sendaddr').attr('data-Wd',mylocation.G);
-						$('#sendaddr').attr('data-addr',addr)
-						$('#sendaddr').text(addr).css('color',"#000")
+					if (getstorage('getaddr') == 'Pickup Address') {
+						$('#getaddr').attr('data-Jd', mylocation.K)
+						$('#getaddr').attr('data-Wd', mylocation.G)
+						$('#getaddr').attr('data-addr', addr)
+						$('#getaddr').text(addr).css('color', "#000")
+					} else {
+						$('#sendaddr').attr('data-Jd', mylocation.K);
+						$('#sendaddr').attr('data-Wd', mylocation.G);
+						$('#sendaddr').attr('data-addr', addr)
+						$('#sendaddr').text(addr).css('color', "#000")
 					}
 				})
-				mui.back = function(){
+				mui.back = function() {
+					draftdata();
 					var sdod = plus.webview.getWebviewById('sendorder/createorder');
-					sdod.show('slide-in-left',300)
+					sdod.show('slide-in-left', 300);
+				}
+
+				function draftdata() {
+					getdata.gName = c.gName;
+					getdata.gValue = c.gValue;
+					getdata.gWeight = c.gWeight;
+					getdata.pics = c.pics;
+					getdata.info = c.info;
+					getdata.money = parseInt($('#pay').val());
+					getdata.getTime = $('#gettime').attr('data-time');
+					getdata.finTime = $('#respecttime').attr('data-time');
+					getdata.senderAddress = $('#getaddr').attr('data-addr');
+					getdata.receiverAddress = $('#sendaddr').attr('data-addr');
+					getdata.sender = $('#sender').val();
+					getdata.senderPhone = $('#contact').val();
+					getdata.sendJd = $('#getaddr').attr('data-Jd');
+					getdata.sendWd = $('#getaddr').attr('data-Wd');
+					getdata.receiver = $('#receiver').val();
+					getdata.receiverPhone = $('#tel').val();
+					getdata.receiverJd = $('#sendaddr').attr('data-Jd');
+					getdata.receiverWd = $('#sendaddr').attr('data-Wd');
+					getdata.insType = parseInt($('#comer').val());
+					getdata.status = 0;
+					var create = plus.webview.getWebviewById('sendorder/createorder.html');
+					mui.fire(create,'getdraft',getdata)
 				}
 			})
 		</script>

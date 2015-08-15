@@ -313,6 +313,12 @@
 	<script type="text/javascript" charset="utf-8">
 		mui.init();
 		mui.plusReady(function() {
+			var getdata = {};
+				getdata.gName="";
+				getdata.gWeight= "";
+				getdata.gValue= "";
+				getdata.pics= "";
+				getdata.info= "";
 			mui('#offCanvasSideScroll').scroll();
 			plus.webview.currentWebview().setStyle({
 				scrollIndicator: "none"
@@ -361,12 +367,11 @@
 					}
 				});
 			})
-			$('.draft').on('tap',function(){
+			$('.draft').on('tap', function() {
 				openWindow('../draft.html')
 			})
 			mui.back = function() {
 				if ($('#gname').val()) {
-					var getdata = {};
 					getdata.gName = $('#gname').val();
 					getdata.gWeight = $('#gweight').val() || 0;
 					getdata.gValue = $('#gvalue').val() || 0;
@@ -396,17 +401,19 @@
 					plus.webview.getLaunchWebview().show('slide-in-left')
 				}
 			}
-			function closewebview(){
-				if(plus.webview.getWebviewById('create-next')){
+
+			function closewebview() {
+				if (plus.webview.getWebviewById('create-next')) {
 					plus.webview.getWebviewById('create-next').close();
 				}
-				if(plus.webview.getWebviewById('pickaddr')){
+				if (plus.webview.getWebviewById('pickaddr')) {
 					plus.webview.getWebviewById('pickaddr').close()
 				}
-				if(plus.webview.getWebviewById('chooseaddr')){
+				if (plus.webview.getWebviewById('chooseaddr')) {
 					plus.webview.getWebviewById('chooseaddr').close();
 				}
 			}
+
 			function bycamera(context) {
 				var camera = plus.camera.getCamera();
 				var res = camera.supportedImageResolutions[0];
@@ -426,7 +433,7 @@
 					}, function(base) {
 						$(context).removeClass('mui-icon-plusempty mui-icon addclass').addClass('mui-spinner')
 						console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
-						sendData(BASEURL + "/common/file/imgUp", base, context, local);
+						sendData(BASEURL + "common/file/imgUp", base, context, local);
 					})
 				})
 			}
@@ -435,7 +442,7 @@
 				plus.gallery.pick(function(path) {
 					dealpic(path, context);
 				}, function(e) {
-//					mui.toast('选择图片失败' + e)
+					//					mui.toast('选择图片失败' + e)
 					showobj(e)
 				}, {
 					filter: 'image',
@@ -528,10 +535,13 @@
 					callback(base64);
 				}
 			}
-			window.addEventListener('getdraftdata',function(eve){
+			window.addEventListener('getdraftdata', function(eve) {
 				var datas = eve.detail.formdatas;
 				console.log('hehehe')
 				showobj(datas);
+			})
+			window.addEventListener('getdraft',function(eve){
+				var data = eve.detail;
 			})
 		})
 	</script>

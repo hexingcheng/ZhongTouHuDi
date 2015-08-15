@@ -40,28 +40,28 @@
 			<li class="mui-table-view-cell">
 				<div class="mui-content-padded">Destination</div>
 				<div class="input-box">
-					<input class="mui-input-clear" type="text" name="departure" id="departure" value="" />
+					<input class="mui-input-clear" type="text" name="departure" id="destination" value="" />
 				</div>
 			</li>
 			<li class="mui-table-view-cell">
 				<div class="mui-content-padded">Remain <span class="mui-h5"> (more than)</span></div>
 				<div class="mui-button-row">
-					<button>10 hour</button>
-					<button>24 hour</button>
-					<button>2 day</button>
-					<button>5 day</button>
+					<button data-time="10">10 hour</button>
+					<button data-time="24">24 hour</button>
+					<button data-time="48">2 day</button>
+					<button data-time='120'>5 day</button>
 				</div>
 			</li>
 			<li class="mui-table-view-cell">
-				<div class="mui-content-padded">Destination</div>
+				<div class="mui-content-padded">Reword</div>
 				<div class="rang-slider-bar">
-					<input class="range-reward" type="hidden" value="20,50" />
+					<input class="range-reward" type="hidden" value="0,50" id="reword"/>
 				</div>
 			</li>
 			<li class="mui-table-view-cell">
 				<div class="mui-content-padded">Weight</div>
 				<div class="rang-slider-bar">
-					<input class="range-weight" type="hidden" value="20,50" />
+					<input class="range-weight" type="hidden" value="0,100" id="weight"/>
 				</div>
 			</li>
 		</ul>
@@ -74,6 +74,9 @@
 	<script>
       	mui.init();
       	jQuery(function(){
+      		var time = "";
+      		var reword = "";
+      		var weight = "";
   			$('.range-reward').jRange({
 				from: 0,
 				to: 50,
@@ -82,7 +85,10 @@
 				format: '%s',
 				width: $(".rang-slider-bar").width(),
 				showLabels: true,
-				isRange : true
+				isRange : true,
+				onstatechange:function(){
+					reword = $('#reword').val();
+				}
 			});
 			$('.range-weight').jRange({
 				from: 0,
@@ -92,21 +98,35 @@
 				format: '%s',
 				width: $(".rang-slider-bar").width(),
 				showLabels: true,
-				isRange : true
+				isRange : true,
+				onstatechange:function(){
+					weight = $('#weight').val();
+				}
 			});
 			$(".mui-button-row").on("tap", "button", function(){
+				time = $(this).attr('data-time')
 				$(".mui-button-row").find("button").removeClass("active-color");
 				$(this).addClass("active-color");
 			})
 			
 			// 取消按钮
 			document.getElementById("cancel").addEventListener("tap", function(){
-				mui.back();
+//				mui.back();
 			}, false)
 			
 			// ok 按钮
 			document.getElementById("ok-btn").addEventListener("tap", function(){
-				openWindow("./get-result.html")
+				var filterdata = {};
+				filterdata.sendAddr = $('#departure').val();
+				filterdata.receiveAddr = $('#destination').val();
+				filterdata.finTime = time;
+				filterdata.prices = reword;
+				filterdata.weights = weight;
+				showobj(filterdata)
+				var order = plus.webview.getWebviewById('getorder/get-order');
+				order.show('slide-in-left',200);
+				plus.webview.currentWebview().close();
+				mui.fire(order,'getfilter',filterdata)
 			},false)
       	})
     </script>

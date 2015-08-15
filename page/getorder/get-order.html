@@ -77,10 +77,10 @@
 
 		<div class="mui-content">
 			<div id="segmentedControl" class="mui-segmented-control">
-				<a class="mui-control-item mui-active" href="#item1">Latest</a>
-				<a class="mui-control-item" href="#item2">Distance</a>
-				<a class="mui-control-item" href="#item3">reward</a>
-				<a class="mui-control-item" href="#item4">weight</a>
+				<a class="mui-control-item mui-active" href="#item1" data-sort="time" data-item="item1">Latest</a>
+				<a class="mui-control-item" href="#item2" data-sort="dist" data-item="item2">Distance</a>
+				<a class="mui-control-item" href="#item3" data-sort="price" data-item="item3">reward</a>
+				<a class="mui-control-item" href="#item4" data-sort="weight" data-item="item4">weight</a>
 			</div>
 			<div id="scroll-wrapper" class="mui-scroll-wrapper">
 				<div id="link-detail" class="mui-scroll">
@@ -167,25 +167,36 @@
 			</ul>
 			{{/each}}
 		</script>
-		<!--<script src="../../js/jquery.min.js"></script>-->
+		<script src="../../js/jquery.min.js"></script>
 		<script>
 			mui.init();
 			mui.plusReady(function() {
+				var getorderdata = {
+					"page": 1,
+					"pageSize": 10,
+					"curAddr": "重庆",
+					"curJd": "",
+					"curWd": "",
+					"sendAddr": "",
+					"receiveAddr": "",
+					"finTime": "",
+					"prices": ",",
+					"weights": ",",
+					"sortType": "time",
+					"sortVal": "asc"
+				};
 				mui("#scroll-wrapper").scroll({
 					bounce: false,
 					indicators: true
 				});
 				// ajax 获取模板数据
-				plus.geolocation.getCurrentPosition(function(pos) {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(pos) {
 						var lot = pos.coords.longitude;
 						var lat = pos.coords.latitude;
-						var getorderdata = {
-							"page": 1,
-							"pageSize": 10,
-							"curAddr": "重庆",
-							"curJd": lot,
-							"curWd": lat,
-						};
+						getorderdata.curJd = lot;
+						getorderdata.curWd = lat;
+						showobj(getorderdata)
 						mui.ajax(BASEURL + 'deliver/goodList', {
 							type: 'post',
 							data: getorderdata,
@@ -201,12 +212,36 @@
 								console.log(type)
 							}
 						})
+						mui('#segmentedControl').on('tap', '.mui-control-item', function() {
+							var type = this.getAttribute('data-sort');
+							var item = this.getAttribute('data-item');
+							getorderdata.sortType = type;
+							showobj(getorderdata);
+							mui.ajax(BASEURL + 'deliver/goodList', {
+								type: 'post',
+								data: getorderdata,
+								success: function(data) {
+									//						console.log(JSON.stringify(data));
+									var orderdata = {
+										"list": data.res
+									}
+									var html = template("template", orderdata);
+									document.getElementById(item).innerHTML = html;
+								},
+								error: function(xhr, type, errorThrown) {
+									console.log(type)
+								}
+							})
+						})
 					}, function(e) {
-						console.log(e)
+						mui.toast('获取位置信息失败')
 					}, {
-						provider: "baidu"
+						enableHighAcuracy: true
 					})
-					// 详情页面跳转
+				} else {
+					mui.toast('获取位置信息失败')
+				}
+				// 详情页面跳转
 				mui('#link-detail').on('tap', '.detail-message', function() {
 						var order = {
 								orderid: this.getAttribute("data-orderid"), // 获取编号
@@ -236,6 +271,32 @@
 				document.getElementById("filter-page").addEventListener("tap", function() {
 					openWindow("./get-filter.html")
 				}, false)
+				window.addEventListener('getfilter', function(eve) {
+					$('a','#segmentedControl').removeClass('mui-active').eq(0).addClass('mui-active')
+					plus.nativeUI.showWaiting( "搜索中...",{background:"#d1d1d1"})
+					var filter = eve.detail
+					getorderdata.sendAddr = filter.sendAddr;
+					getorderdata.receiveAddr = filter.receiveAddr;
+					getorderdata.prices = filter.prices;
+					getorderdata.weights = filter.weights;
+					getorderdata.finTime = filter.finTime;
+					mui.ajax(BASEURL + 'deliver/goodList', {
+						type: 'post',
+						data: getorderdata,
+						success: function(data) {
+							//						console.log(JSON.stringify(data));
+							plus.nativeUI.closeWaiting();
+							var orderdata = {
+								"list": data.res
+							}
+							var html = template("template", orderdata);
+							document.getElementById("item1").innerHTML = html;
+						},
+						error: function(xhr, type, errorThrown) {
+							console.log(type)
+						}
+					})
+				})
 			})
 		</script>
 	</body>
