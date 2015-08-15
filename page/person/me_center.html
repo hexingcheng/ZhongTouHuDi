@@ -1,384 +1,471 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="../../js/mui.min.js"></script>
-    <script src="../../js/jquery.min.js"></script>
-  	<link rel="stylesheet" href="../../css/cy_log_up.css" />
-    <link rel="stylesheet" href="../../css/main.css" />
-    <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../css/font-awesome.css" />
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-   <style type="text/css">
-    .popover{
-   		width: 100%;
-   		height: 100%;
-   		overflow: hidden;
-   		position: absolute;
-   		background-color:#F2A291;
-   		opacity: .3;
-   		z-index: 1;
-   	}
-      .mui-table-view .info_input{
-       	width:70% ;
-       	height: 1.7em;
-       	border: 0;
-       	line-height: 1.5em;
-       	padding: 0; 
-       	margin: 0;
-       }
-       .pop_selinfo{
-       	width: 14em;
-       	padding: 0 .4em;
-       	height: 4em;
-       	border: 3px solid #3FA86A;
-       	border-radius: .3em;
-       	background-color: white;
-       	position: absolute;
-       	overflow: hidden;
-       	display: none;
-        top: 10em;
-       	left: 50%;
-       	margin-left: -7em;
-       	z-index: 100;
-       }
-       .pop_selinfo .info_input{
-       	width:70% ;
-       	height: 1.7em;
-       	line-height: 1.5em;
-       	border: 1px solid #3FA86A;
-       	padding: 0;
-       	margin-top: 1em;
-       }
-       .pop_sub{
-       	width: 20%;
-       	border-radius: .3em;
-       	text-align: center;
-       	background-color:#3FA86A ;
-       	color: white;
-       	height: 1.7em;
-       	line-height: 1.7em;
-       	margin-top: 1em;
-       	float: right;
-       }
-       .no_border{
-       	border: 0;
-       }
-       .edit{
-       	margin-top: .6em;
-       	overflow: hidden;
-       }
-       /*.edit{
-       	border: 1px solid silver;
-       	overflow: hidden;
-       }*/
-       .edit_save{
-       	display: none;
-       }
-       .toast{
-       	display: none;
-       }
-   </style>
-</head>
-<body class="bg_w" >
-	<div class="" id="mask"><!--蒙版--></div>
-	<div class="me_main">
-		<img src="../../img/2147de349744915c611f470c84c67f94.jpg" id="bg_pic" alt="" />
-		 <header class="mui-bar mui-bar-nav  none_box "  style="background-color:#3FA86A ">
-		 	<a class="mui-icon mui-icon-left-nav color_w mui-action-back" ></a>
-		 	<h1 class="mui-title"><span class="color_w">me</span></h1> 
-		 	<div class="mui-pull-right edit" id="edit-btn_div">
-			 	<div class=" edit-btn" id="edit-btn"><span  style="font-size: 1.3em;"><i class="fa fa-pencil-square-o color_w "></i></span></div> 
-			 	<div class="edit_save" id="edit_save"><span style="font-size: 1.3em;"><i class="fa fa-file-text-o"></i></span></div>
-		 	</div>
-		 </header>
-	</div>
-	
-	<!--文本内容-->
-	<div class="mui-content bg_w" style="position: relative;">
-		  <!--弹框（编辑个人信息）-->
-	 	<div class=" pop_selinfo" id="popover">
-	 		<input type="text" class="info_input me_color" id="check_pwd" placeholder="请输入密码" />
-	 		<div class="pop_sub border " id="check">验证</div>
-	 	</div>    
-		 <div class="me_main-info">
-		 	<div class="me-info ">
-		 		<img class="photo" id="headPic" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" />
-		 	</div>
-		 	<div  class="me_circle photo_" ><i class="fa fa-camera  color"></i></div>
-		 	<div class="me_change line2" id="change_bg"><i class="fa fa-pencil color_w"></i></i></div>
-	 	</div>
-	    
-	 	<!--中間縫隙-->
-	 	<div class="me_Clearance"></div>
-		<ul class="mui-table-view ">
-			<li class="mui-table-view-cell line2" >
-			<span class="me_same me_color">familyName</span> 
-			<input type="text" class="info_input me_color input" id="familyName" disabled="disabled" placeholder="你还没有姓@"/>
-			</li>
-			<li class="mui-table-view-cell me_color line2">
-				<span class="me_same">first name</span>
-				<input type="text" class="info_input me_color input" id="firsetName" disabled="disabled" placeholder="你还没有名@"/>	
-			</li>
-		</ul>
-		
-		<!--中間縫隙-->
-	 	<div class="me_Clearance"></div>
-		 <ul class="mui-table-view">
-		 	<li class="mui-table-view-cell">
-		 		<span class="me_same me_color">phone</span>
-		 		<input type="text" class="info_input me_color" id="phone" placeholder="phone" disabled="disabled"/>
-		 	</li>
-		 	<li class="mui-table-view-cell">
-	 			<span class="me_same me_color" >password</span>
-	 			<input type="password" class="info_input me_color input" id="pwd" disabled="disabled" placeholder="******"/>
-	 		</li>
-		 </ul>
-		 <!--中間縫隙-->  
-	 	<div class="me_Clearance"></div>
-	 	<ul class="mui-table-view">
-	 		<li class="mui-table-view-cell">
-		 		<span class="me_same me_color">E-mail</span>
-		 		<input type="text" class="info_input me_color input" id="email" disabled="disabled" placeholder="E-meil"/>
-		 	</li>
-		 	<li class="mui-table-view-cell">
-		 		<span class="me_same me_color">nationality</span>
-		 		<input type="text" class="info_input me_color input" id="nation" disabled="disabled" placeholder="nationality"/>
-		 	</li>  
-	 	</ul>
-	 	 <!--中間縫隙-->
-	 	<div class="me_Clearance"></div>  
-	 	<ul class="mui-table-view">
-	 		<li class="mui-table-view-cell">
-		 		<a href="myinfo.html"><span class="me_same me_color">credibility</span>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<link rel="stylesheet" href="../../css/cy_log_up.css" />
+		<link rel="stylesheet" href="../../css/main.css" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/font-awesome.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style type="text/css">
+			.popover{
+			   		width: 100%;
+			   		height: 100%;
+			   		overflow: hidden;
+			   		position: absolute;
+			   		background-color:#F2A291;
+			   		opacity: .3;
+			   		z-index: 1;
+			   	}
+			      .mui-table-view .info_input{
+			       	width:60% ;
+			       	height: 1.7em;
+			       	border: 0;
+			       	line-height: 1.5em;
+			       	padding: 0; 
+			       	margin: 0;
+			       }
+			       .pop_selinfo{
+			       	width: 14em;
+			       	padding: 0 .4em;
+			       	height: 4em;
+			       	border: 3px solid #3FA86A;
+			       	border-radius: .3em;
+			       	background-color: white;
+			       	position: absolute;
+			       	overflow: hidden;
+			       	display: none;
+			        top: 10em;
+			       	left: 50%;
+			       	margin-left: -7em;
+			       	z-index: 100;
+			       }
+			       .pop_selinfo .info_input{
+			       	width:70% ;
+			       	height: 1.7em;
+			       	line-height: 1.5em;
+			       	border: 1px solid #3FA86A;
+			       	padding: 0;
+			       	margin-top: 1em;
+			       }
+			       .pop_sub{
+			       	width: 20%;
+			       	border-radius: .3em;
+			       	text-align: center;
+			       	background-color:#3FA86A ;
+			       	color: white;
+			       	height: 1.7em;
+			       	line-height: 1.7em;
+			       	margin-top: 1em;
+			       	float: right;
+			       }
+			       .no_border{
+			       	border: 0;
+			       }
+			       .edit{
+			       	margin-top: .6em;
+			       	overflow: hidden;
+			       }
+			       /*.edit{
+			       	border: 1px solid silver;
+			       	overflow: hidden;
+			       }*/
+			       .edit_save{
+			       	display: none;
+			       }
+			       .toast{
+			       	display: none;
+			       }
+		</style>
+	</head>
+
+	<body class="bg_w">
+		<div class="" id="mask">
+			<!--蒙版-->
+		</div>
+		<div class="me_main">
+			<img src="../../img/2147de349744915c611f470c84c67f94.jpg" id="bg_pic" alt="" />
+			<header class="mui-bar mui-bar-nav  none_box " style="background-color:#3FA86A ">
+				<a class="mui-icon mui-icon-left-nav color_w mui-action-back"></a>
+				<h1 class="mui-title"><span class="color_w">me</span></h1>
+				<div class="mui-pull-right edit" id="edit-btn_div">
+					<div class=" edit-btn" id="edit-btn"><span style="font-size: 1.3em;"><i class="fa fa-pencil-square-o color_w "></i></span></div>
+					<div class="edit_save" id="edit_save"><span style="font-size: 1.3em;"><i class="fa fa-file-text-o color_w"></i></span></div>
+				</div>
+			</header>
+		</div>
+
+		<!--文本内容-->
+		<div class="mui-content bg_w" style="position: relative;">
+			<!--弹框（编辑个人信息）-->
+			<div class=" pop_selinfo" id="popover">
+				<input type="text" class="info_input me_color" id="check_pwd" placeholder="请输入密码" />
+				<div class="pop_sub border " id="check">验证</div>
+			</div>
+			<div class="me_main-info">
+				<div class="me-info ">
+					<img class="photo" id="headPic" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" />
+				</div>
+				<div class="me_circle photo_"><i class="fa fa-camera  color"></i></div>
+				<div class="me_change line2" id="change_bg"><i class="fa fa-pencil color_w"></i></i>
+				</div>
+			</div>
+
+			<!--中間縫隙-->
+			<div class="me_Clearance"></div>
+			<ul class="mui-table-view ">
+				<li class="mui-table-view-cell line2">
+					<span class="me_same me_color">familyName</span>
+					<input type="text" class="info_input me_color input" id="familyName" disabled="disabled" placeholder="你还没有姓@" />
+				</li>
+				<li class="mui-table-view-cell me_color line2">
+					<span class="me_same">first name</span>
+					<input type="text" class="info_input me_color input" id="firsetName" disabled="disabled" placeholder="你还没有名@" />
+				</li>
+			</ul>
+
+			<!--中間縫隙-->
+			<div class="me_Clearance"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<span class="me_same me_color">phone</span>
+					<input type="text" class="info_input me_color" id="phone" placeholder="phone" disabled="disabled" />
+				</li>
+				<li class="mui-table-view-cell">
+					<span class="me_same me_color">password</span>
+					<input type="password" class="info_input me_color input" id="pwd" disabled="disabled" placeholder="******" />
+				</li>
+
+			</ul>
+			<!--中間縫隙-->
+			<div class="me_Clearance"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<span class="me_same me_color">E-mail</span>
+					<input type="text" class="info_input me_color input" id="email" disabled="disabled" placeholder="E-meil" />
+				</li>
+				<li class="mui-table-view-cell">
+					<span class="me_same me_color">nationality</span>
+					<input type="text" class="info_input me_color input" id="nation" disabled="disabled" placeholder="nationality" />
+				</li>
+			</ul>
+			<!--中間縫隙-->
+			<div class="me_Clearance"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="myinfo.html"><span class="me_same me_color">credibility</span>
 		 		<span class="color"><i class="fa fa-trophy" style="color: #FAF713;"></i> Admiral</span>
 		 	</a></li>
-	 	</ul>
-	</div>
-	
-</body>  
-    <script>
-    mui.plusReady(function(){
-    	//背景图片
-    	function getbg_pic(){
-    		var foo=plus.storage.getItem('bg_pic');
-    		if(foo){
-    			$('#bg_pic').attr('src',foo);
-    		}else{
-    			$('#bg_pic').attr('src',"../../img/2147de349744915c611f470c84c67f94.jpg");
-    		}
-    	}
-    	getbg_pic();//调用背景图片
-    	
-      $('#edit-btn').on('tap',function(){
-       $('#popover').css('display','block');
-       $('#mask').addClass('popover');
-      }) 
-      //验证成功
-      function check_success(){
-      	$('#popover').css('display','none');
-        $('#mask').removeClass('popover');
-      	$('.edit-btn').css('display','none');
-      	$('.edit_save').css('display','block');
-      	$('.input').removeAttr('disabled').css({'border':'1px solid silver'});
-      
-      }
-      //蒙板事件
-      	$('#mask').on('tap',function(){
-      		alert(1);
-      		$('#popover').css('display','none');
-      	    $('#mask').removeClass('popover');
-      	})
+			</ul>
+		</div>
 
-      //验证失败
-      function fail(){
-      	$('#popover').css('display','none');
-      	$('#mask').removeClass('popover');  
-      }
-      //点击信息编辑按钮
-      var token;
-       $('#check').on('tap',function(){
-       	$('#check').css('background-color','silver');
-      //密码验证
-         var pwd=$('#check_pwd').val();
-          	var data = {
-          		pwd:pwd
-          	   }
-          mui.ajax(BASEURL+"account/updateSet",{
-          	data:data,
-      	    type:"post",
-      	   success:function(data){
-      	   	if(data.ret==1){ 
-      	   	mui.toast('密码正确！');
-      	   	 token=data.res["token "];
-      	   	  alert(pwd);
-      	   	 $('#pwd').val(pwd);
-      	   	 check_success();
-      	   	}else if(data.ret==2){ 
-      	   		fail();
-      	   	  mui.toast("密码错误！");
-      	   	}
-      	   },error:function(xhr,type,errorThrown){
-      	   	  mui.toast(type);
-      	   	  alert("cuowu");
-      	   }
-          })
-     }) 
-      
-    //保存
-     function save_check(pw,em){
-     	var repw = /^[\\.a-zA-Z0-9_]{6}$/;
-        var email=/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
-     	var flag=true;
-        if(true){
-        	  //密码检测
-        	    if(pw!=''){
-        	    	if(!repw.test(pw)){
-        	    		mui.toast('密码格式不正确！');
-        	    		$('#pwd').val('');
-        	    		flag=false;
-        	    	}   
-        	    }
-        	  //email检测
-        	  if(em!=''){
-        	  	   if(!email.test(em)){
-        	  	   	  mui.toast('邮件格式有问题！');
-        	  	   	  $('#email').val('');
-        	  	   	  flag=false;
-        	  	   }
-        	  }
-     	}
-        return flag;
-     }
-     
-     $('#edit_save').on('tap',function(){
-     	var fi=$('#firsetName').val().trim();
-     	var fa=$('#familyName').val().trim();
-     	var em=$('#email').val().trim();
-     	var na=$('#nation').val().trim();
-     	var ph=$('#phone').val().trim();
-     	var pw=$('#pwd').val().trim();
-     	var to=token;
-       
-     	var b=save_check(pw,em); 
-     	if(b){
-     		data={
-     			firstName:fi,
-     			familyName:fa,
-     			email:em,
-     			nation:na,
-     			phone:ph,
-     			pwd:pw,
-     			token:to 
-     		}
-     		mui.ajax(BASEURL+"account/updateSave",{
-     			type:"post",
-     			data:data,
-     			success:function(data){
-     				if(data.ret==1){
-     					mui.toast('保存成功！');
-     					openWindow('me_center.html');
-     				}else if(data.ret==2){
-     					mui.toast('保存失败！');
-     				}else{
-     					alert(JSON.stringify(data)+"cycyycyccy");
-     				}
-     			},
-     			error:function(xhr,type){
-     				alert(type);
-     			}  
-     		})
-     	}else{
-     		mui.toast("请修改后再保存！");
-     	}
-     
-     })
-  })   
-          
-    </script>
+	</body>
+	<script>
+		mui.plusReady(function(){
+		    	//背景图片
+		    	$('#change_bg').on('tap',function(){
+		    		alert(1);
+		    		plus.gallery.pick(function(path){
+		    			plus.storage.setItem('bg_pic',path);
+		    			$('#bg_pic').attr('src',path);
+		    		},function(e){
+		    			console.log('取消！');
+		    		},{filter:"img"});
+		    	}) 
+		    	function getbg_pic(){
+		    		var foo=plus.storage.getItem('bg_pic');
+		    		if(foo){
+		    			$('#bg_pic').attr('src',foo);
+		    		}else{
+		    			$('#bg_pic').attr('src',"../../img/2147de349744915c611f470c84c67f94.jpg");
+		    		}
+		    	}
+		    	getbg_pic();//调用背景图片
+		    	
+		      $('#edit-btn').on('tap',function(){
+		       $('#popover').css('display','block');
+		       $('#mask').addClass('popover');
+		      }) 
+		      //验证成功
+		      function check_success(){
+		      	$('#popover').css('display','none');
+		        $('#mask').removeClass('popover');
+		      	$('.edit-btn').css('display','none');
+		      	$('.edit_save').css('display','block');
+		      	$('.input').removeAttr('disabled').css({'border':'1px solid silver'});
+		      
+		      }
+		      //蒙板事件
+		      	$('#mask').on('tap',function(){
+		      		$('#popover').css('display','none');
+		      	    $('#mask').removeClass('popover');
+		      	})
+		
+		      //验证失败
+		      function fail(){
+		      	$('#popover').css('display','none');
+		      	$('#mask').removeClass('popover');  
+		      }
+		      //点击信息编辑按钮
+		      var token;
+		       $('#check').on('tap',function(){
+		       	$('#check').css('background-color','silver');
+		      //密码验证
+		         var pwd=$('#check_pwd').val();
+		          	var data = {
+		          		pwd:pwd
+		          	   }
+		          mui.ajax(BASEURL+"account/updateSet",{
+		          	data:data,
+		      	    type:"post",
+		      	   success:function(data){
+		      	   	if(data.ret==1){ 
+		      	   	mui.toast('密码正确！');
+		      	   	 token=data.res["token"];
+		      	   	 $('#pwd').val(pwd);
+		      	   	 check_success();
+		      	   	}else if(data.ret==2){ 
+		      	   		fail();
+		      	   	  mui.toast("密码错误！");
+		      	   	}
+		      	   },error:function(xhr,type,errorThrown){
+		      	   	  mui.toast(type);
+		      	   	  alert("cuowu");
+		      	   }
+		          })
+		     }) 
+		      
+		    //保存
+		     function save_check(pw,em){
+		     	var repw = /^[\\.a-zA-Z0-9_]{6}$/;
+		        var email=/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+		     	var flag=true;
+		        if(true){
+		        	  //密码检测
+		        	    if(pw!=''){
+		        	    	if(!repw.test(pw)){
+		        	    		mui.toast('密码格式不正确！');
+		        	    		$('#pwd').val('');
+		        	    		flag=false;
+		        	    	}   
+		        	    }
+		        	  //email检测
+		        	  if(em!=''){
+		        	  	   if(!email.test(em)){
+		        	  	   	  mui.toast('邮件格式有问题！');
+		        	  	   	  $('#email').val('');
+		        	  	   	  flag=false;
+		        	  	   }
+		        	  }
+		     	}
+		        return flag;
+		     }
+		     
+		     $('#edit_save').on('tap',function(){
+		     	var fi=$('#firsetName').val().trim();
+		     	var fa=$('#familyName').val().trim();
+		     	var em=$('#email').val().trim();
+		     	var na=$('#nation').val().trim();
+		     	var ph=$('#phone').val().trim();
+		     	var pw=$('#pwd').val().trim();
+		     	var to=token;
+		     	var b=save_check(pw,em); 
+		     	if(b){
+		     		data={
+		     			firstName:fi,
+		     			familyName:fa,
+		     			email:em,
+		     			nation:na,
+		     			phone:ph,
+		     			pwd:pw,
+		     			token:to 
+		     		}
+		     		showobj(data)
+		     		mui.ajax(BASEURL+"account/updateSave",{
+		     			type:"post",
+		     			data:data,
+		     			success:function(data){
+		     				if(data.ret==1){
+		     					mui.toast('保存成功！');
+		     					openWindow('me_center.html');
+		     				}else if(data.ret==2){
+		     					mui.toast('保存失败！');
+		     				}else{
+		     					alert(JSON.stringify(data)
+		     					
+		     					);
+		     				}
+		     			},
+		     			error:function(xhr,type){
+		     				alert('shibaio')
+		     				console.log(xhr.status)
+		     			}  
+		     		})
+		     	}else{
+		     		mui.toast("请修改后再保存！");
+		     	}
+		     
+		     })
+		  })
+	</script>
 	<script type="text/javascript" src="../../js/utils.js"></script>
-		<script type="text/javascript" src="../../js/jquery.min.js"></script>
-		<script>
-			mui.plusReady(function() {
+	<script src="../../js/comment.js"></script>
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script>
+		mui.plusReady(function() {
+			    	var iw;
+			$('.photo_').on('tap', function() {
+				var _this = this;
+				iw = $(this).outerWidth()
+				var btnArray = [{
+					title: "拍照"
+				}, {
+					title: "相册"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "选择照片",
+					cancel: "取消",
+					buttons: btnArray
+				}, function(e) {
+					var index = e.index;
+					if (index == 1) {
+						bycamera(_this);
+					} else if (index == 2) {
+						bygallery(_this);
+					} else if (index == 0) {
+						return;
+					}
+				});
+			})
+			function bycamera(context) {
+				var camera = plus.camera.getCamera();
+				var res = camera.supportedImageResolutions[0];
+				var fmt = camera.supportedImageFormats[0];
+				var _this = context;
+				camera.captureImage(function(path) {
+					dealpic(path, _this);
+
+				})
+			}
 			
-				mui('.mui-table-view-cell').on('tap', 'a', function() {
-					var id = this.getAttribute('href');
-					var urls = this.href;
-					if (id) {
-						mui.openWindow({
-							url: urls,
-							id: id,
-							waiting: {
-								autoShow: true,
-								title: '正在加载...',
-								options: {
-									width: '100px',
-									height: '100px',
-									background: '#d1d1d1'
+			function dealpic(path, context) {
+				plus.io.resolveLocalFileSystemURL(path, function(entry) {
+					var local = entry.toLocalURL();
+					plus.storage.setItem('head_pic',local);
+					$('#headPic').attr('src',local);
+					dealImage(local, {
+						width: 17 * 4,
+						quality: 0.5
+					}, function(base) {
+						console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
+						mui.ajax(BASEURL + "common/file/imgUp",{
+							type:'post',
+							data: {
+								imgName: Math.floor(Math.random() * 100000) + ".jpg",
+								imgData: base, // base字符串
+								dataLength: base.length // base字符串长度
+							},
+							success:function(data){
+								console.log(data.ret);
+								if(data.ret==1){
+									setHeadPic(data.res.fid)
 								}
+							},
+							error:function(xhr,type){
+								console.log(type)
 							}
 						})
-					}
-				})
-				$('.photo_').on('tap', function() {
-					getcamera(function(path) {
-						var URL = plus.io.convertLocalFileSystemURL(path).toString();
-						$('.photo').attr('src',URL);
-					}, function() {
-						 var cmr=plus.camera.getCamera(1);
+						
 					})
 				})
-				$('.back').on('tap',function(){
-					plus.webview.getLaunchWebview().show()
-				})
-				//获取背景照片
-				function pick(){
-					plus.gallery.pick(function(path){
-						$('#bg_pic').attr("src",path);
-						var src=path;
-						plus.storage.setItem('bg_pic',src);
-					},function(e){
-						console.log("取消照片！");
-					},{filter:"image"});
-				}
-				$('#change_bg').on('tap',function(){
-					alert("请选择背景图片");
-					 pick();
-				})
-			})
-			
-		
-		
-			
-		</script>
-	</body>
-<script>
-mui.plusReady(function(){
-  	  mui.ajax(BASEURL+"account/info",{
-  	  	 type:"post",
-  	  	 success:function(data){
-  	  	 	if(data.ret==1){
-				$('#firsetName').val(data.res.firstName);
-				$('#familyName').val(data.res.familyName);
-				$('#phone').val(data.res.phone);
-				alert(JSON.stringify(data));
-				$('#pwd').val(data.res.pwd);
-				$('#email').val(data.res.email);
-				$('#nation').val(data.res.nation);
-				$('#title').val(data.res.title);
-			    $('#headPic').attr('src',data.res.headPic);
-			}else{
-				mui.toast("请先登录！");
 			}
-  	  	 },error:function(xhr, type){
-  	  	 	console.log(type);
-  	  	 }   
-  	  });
-  	  
-  })
-</script>
+			function setHeadPic(id){
+				mui.ajax(BASEURL+'account/setHeadPic',{
+					type:'post',
+					data:{
+						fid:id
+					},
+					success:function(data){
+						console.log(data.ret)
+					},
+					error:function(xhr,type){
+						console.log(type)
+					}
+				})
+			}
+			function sendData(url, base, path) {
+				var pics
+				mui.ajax(url, {
+					type: "post",
+					data: {
+						fid:path
+					},
+					success: function(data) {
+						console.log(data.ret);
+						alert("图片发送成功！")
+					},
+					error: function(xhr, type) {
+						console.log(xhr.status)
+					}
+				})
+			}
+			function bygallery(context) {
+				plus.gallery.pick(function(path) {
+					$('#headPic').attr('src',path);
+					dealpic(path, context);
+					plus.storage.setItem('head_pic_',path);
+				}, function(e) {
+//					mui.toast('选择图片失败' + e)
+					showobj(e)
+				}, {
+					filter: 'image',
+					multiple: false
+				})
+			}
+		});
+	</script>
+	</body>
+	<script>
+		mui.plusReady(function(){
+		  	  mui.ajax(BASEURL+"account/info",{
+		  	  	 type:"post",
+		  	  	 success:function(data){
+                    if(data.ret==1){
+						$('#firsetName').val(data.res.firstName);
+						$('#familyName').val(data.res.familyName);
+						$('#phone').val(data.res.phone);
+						$('#pwd').val(data.res.pwd);
+						$('#email').val(data.res.email);
+						$('#nation').val(data.res.nation);
+						$('#title').val(data.res.title);
+						var n = BASEURL.indexOf('/a');
+						var imgurl = BASEURL.substring(0,n);
+						var pic = imgurl+data.res.headPic;
+						    plus.storage.setItem('head_pic_',pic);
+						var storage_headPic=plus.storage.getItem('head_pic')
+						if(storage_headPic){
+							$('#headPic').attr('src',storage_headPic);
+						}else if(pic){
+								$('#headPic').attr('src',pic);
+						}
+						
+					    
+					}else{
+						mui.toast("请先登录！");
+					}
+		  	  	 },error:function(xhr, type){
+		  	  	 	console.log(type);
+		  	  	 }   
+		  	  });
+		  	  
+		  })
+	</script>
+
 </html>

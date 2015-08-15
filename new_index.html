@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/test.css" />
 		<style>
@@ -13,10 +14,21 @@
 			body,
 			.mui-content {background-color: #FFFFFF;}
 			.addlmar {margin-left: 30px;}
-			.user {border-radius: 50%;}
+			
 			#offCanvasSide{height: 100%;background-color: #FFFFFF;}
+			.bhead_pic{
+				width: 2em;
+				height: 2em;
+				border-radius: 1em;
+				margin-right: .5em;
+				overflow: hidden;
+			}
+			.bhead_pic img{
+			    height: 2em;
+			    width: 2em;
+				}
 		</style>
-	</head>
+	</head>  
 
 	<body>
 		<!--heheda-->
@@ -27,8 +39,10 @@
 					<div class="mui-scroll">
 						<ul class="mui-table-view">
 							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" id="p-info" data-src="./page/person/me_center.html">
-									<img class="mui-media-object mui-pull-left user" src="./img/user.png" />
+								<a class="mui-navigate-right headPic" id="p-info" data-src="./page/person/me_center.html">
+									<div class="mui-pull-left bhead_pic">
+									   <img class="mui-media-object  user headPic" src="./img/user.png" id="info_pic"/>
+									</div>
 									<div class="mui-media-body addlmar">
 										<p class=''>小王</p>
 										<p class=''>18883846369</p>
@@ -91,12 +105,12 @@
 					</div>
 				</div>
 			</aside>
-			<!--主界面-->
+			<!--主界面-->  
 			<div class="mui-inner-wrap">
-				<header class="mui-bar mui-bar-nav">
+				<header class="mui-bar mui-bar-nav" >
 					<a class="mui-pull-left slider-menu" href="#offCanvasSide">
 						<div class="headimg-box">
-							<img src="img/user.png" width="90%" />
+							<img src="img/user.png" class="headPic" width="90%" style="height: 4em;" id="index_pic" />
 						</div>
 					</a>
 					<h1 class="mui-title title-box">
@@ -189,8 +203,7 @@
 			</div>
 		</div>
 	</body>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+	
 	<script type="text/javascript" src="js/utils.js"></script>
 	<script type="text/javascript" src="js/new_index.js"></script>
-
 </html>

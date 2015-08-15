@@ -45,10 +45,14 @@ html{
 	background: #e4e7ec;
 }
 .headimg-box {
-	width: 4em;
-	height: 100%;
-	border-radius: 50%;
-	overflow: hidden;
+	width: 3.6em;
+	height: 3.6em;  
+	border-radius: 1.8em;
+	overflow: hidden; 
+}
+.headimg-box img{
+	width: 3.6em;
+	height: 3.6em;
 }
 .slider-menu {
 	display: inline-block;
