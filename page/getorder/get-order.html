@@ -9,9 +9,6 @@
 		<link rel="stylesheet" href="get-order-comment.css" />
 		<script src="../../js/mui.min.js"></script>
 		<style>
-			.mui-scroll-wrapper {
-				top: 85px;
-			}
 			.mui-segmented-control {
 				border-radius: 0;
 				border: none;
@@ -65,6 +62,89 @@
 				width: 100%;
 				height: 20em;
 			}
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+			}
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				
+				margin: 0;
+			}
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+			.mui-segmented-control{
+				box-shadow: 0 0 0 #FFFFFF;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{color: #36a462;}
+			html,body,.mui-content,#slider#sliderSegmentedControl,.mui-scroll{
+				width: 100%;
+			}
+			.mui-segmented-control .mui-scroll-wrapper .mui-control-item{
+				padding: 0;
+				width: 25%;
+			}
 		</style>
 	</head>
 
@@ -76,13 +156,16 @@
 		</header>
 
 		<div class="mui-content">
-			<div id="segmentedControl" class="mui-segmented-control">
-				<a class="mui-control-item mui-active" href="#item1" data-sort="time" data-item="item1">Latest</a>
-				<a class="mui-control-item" href="#item2" data-sort="dist" data-item="item2">Distance</a>
-				<a class="mui-control-item" href="#item3" data-sort="price" data-item="item3">reward</a>
-				<a class="mui-control-item" href="#item4" data-sort="weight" data-item="item4">weight</a>
-			</div>
-			<div id="scroll-wrapper" class="mui-scroll-wrapper">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="mui-control-item mui-active" href="#item1" data-sort="time" data-item="item1">Latest</a>
+						<a class="mui-control-item" href="#item2" data-sort="dist" data-item="item2">Distance</a>
+						<a class="mui-control-item" href="#item3" data-sort="price" data-item="item3">reward</a>
+						<a class="mui-control-item" href="#item4" data-sort="weight" data-item="item4">weight</a>
+					</div>
+				</div>
+				<!--<div id="scroll-wrapper" class="mui-scroll-wrapper">
 				<div id="link-detail" class="mui-scroll">
 					<div id="item1" class="mui-control-content mui-active">
 						<div style="position: relative;">
@@ -105,31 +188,35 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!--<div id="item1" class="mui-control-content mui-active">
-				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
-					</div>
-				</div>
-			</div>
-			<div id="item2" class="mui-control-content">
-				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
-					</div>
-				</div>
-			</div>
-			<div id="item3" class="mui-control-content">
-				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
-					</div>
-				</div>
-			</div>
-			<div id="item4" class="mui-control-content">
-				<div class="mui-scroll-wrapper">
-					<div class="mui-scroll">
-					</div>
-				</div>
 			</div>-->
+				<div class="mui-slider-group">
+					<div id="item1" class="mui-slider-item mui-control-content mui-active">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+
+							</div>
+						</div>
+					</div>
+					<div id="item2" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+							</div>
+						</div>
+					</div>
+					<div id="item3" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+							</div>
+						</div>
+					</div>
+					<div id="item4" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<script src="../../js/utils.js"></script>
 		<script src="../../js/template.js"></script>
@@ -168,9 +255,15 @@
 			{{/each}}
 		</script>
 		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/mui.pullToRefresh.js"></script>
+		<script src="../../js/mui.pullToRefresh.material.js"></script>
 		<script>
 			mui.init();
 			mui.plusReady(function() {
+				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+				var c = plus.webview.currentWebview().setStyle({
+					scrollIndicator: "none"
+				})
 				var getorderdata = {
 					"page": 1,
 					"pageSize": 10,
@@ -185,9 +278,28 @@
 					"sortType": "time",
 					"sortVal": "asc"
 				};
-				mui("#scroll-wrapper").scroll({
+				mui(".mui-scroll-wrapper").scroll({
 					bounce: false,
-					indicators: true
+					indicators: true,
+					deceleration: deceleration
+				});
+				mui.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+						mui(pullRefreshEl).pullToRefresh({
+							down: {
+								callback: function() {
+									
+									
+								}
+							},
+							up: {
+								callback: function() {
+									
+								}
+							}
+						});
+					});
 				});
 				// ajax 获取模板数据
 				if (navigator.geolocation) {
@@ -205,8 +317,11 @@
 								var orderdata = {
 									"list": data.res
 								}
+								var $wrap = $('<div class="wrap"></div>')
 								var html = template("template", orderdata);
-								document.getElementById("item1").innerHTML = html;
+								$wrap.html(html);
+								//								document.getElementById("item1").innerHTML = html;
+								$('.mui-scroll', '#item1').append($wrap)
 							},
 							error: function(xhr, type, errorThrown) {
 								console.log(type)
@@ -221,7 +336,7 @@
 								type: 'post',
 								data: getorderdata,
 								success: function(data) {
-									//						console.log(JSON.stringify(data));
+									//console.log(JSON.stringify(data));
 									var orderdata = {
 										"list": data.res
 									}
@@ -272,8 +387,10 @@
 					openWindow("./get-filter.html")
 				}, false)
 				window.addEventListener('getfilter', function(eve) {
-					$('a','#segmentedControl').removeClass('mui-active').eq(0).addClass('mui-active')
-					plus.nativeUI.showWaiting( "搜索中...",{background:"#d1d1d1"})
+					$('a', '#segmentedControl').removeClass('mui-active').eq(0).addClass('mui-active')
+					plus.nativeUI.showWaiting("搜索中...", {
+						background: "#d1d1d1"
+					})
 					var filter = eve.detail
 					getorderdata.sendAddr = filter.sendAddr;
 					getorderdata.receiveAddr = filter.receiveAddr;
