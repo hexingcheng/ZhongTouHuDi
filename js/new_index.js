@@ -37,6 +37,22 @@ window.addEventListener("swiperight", function() {
 });
 
 mui.plusReady(function() {
+	    //得到本地头像
+		$('.headPic').on('tap',function(){
+			getHeadPic();
+		})
+		function getHeadPic(){
+			var src_=plus.storage.getItem('head_pic_');
+			var src=plus.storage.getItem('head_pic');
+	    		if(src){
+	    		  $('#index_pic').attr('src',src);
+	    		  $('#info_pic').attr('src',src);
+	    		}else{
+	    			 $('#index_pic').attr('src',src_);
+	    		  $('#info_pic').attr('src',src_);
+	    		}
+		}
+		  getHeadPic();
 		mui('#offCanvasSideScroll').scroll();
 		mui('#offCanvasContentScroll').scroll();
 		plus.webview.getLaunchWebview().setStyle({
@@ -137,3 +153,4 @@ document.getElementById('help').addEventListener('tap', function() {
 document.getElementById('add-menu').addEventListener('tap', function() {
 	alert('add')
 })
+

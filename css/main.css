@@ -98,7 +98,8 @@
    			right: 0;
    			text-align:center;
    			top: -1.7em;
-   			background-color:#80878A ;
+   			border:1px solid silver;
+   			border-radius: .8em;
    		}
    		.me_color{
    			color: #818181;
