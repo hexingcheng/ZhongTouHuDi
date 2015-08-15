@@ -40,7 +40,9 @@
 				opacity: 0.4;
 				z-index: 9999;
 			}
-			.dialog {
+			.dialog,
+			.confirm,
+			.inputcode {
 				background-color: #FFFFFF;
 				position: absolute;
 				top: 0;
@@ -54,7 +56,9 @@
 				color: #000000;
 				padding: 10px 20px;
 			}
-			.ok {
+			.ok,
+			.back,
+			.cancelinput {
 				float: left;
 				height: 40px;
 				width: 50%;
@@ -66,7 +70,9 @@
 			.wron {
 				padding: 0 20px;
 			}
-			.cancels {
+			.cancels,
+			.checks,
+			.checkr {
 				float: left;
 				height: 40px;
 				width: 50%;
@@ -74,6 +80,27 @@
 				background-color: #f6ccc2;
 				text-align: center;
 				color: #da2a02;
+			}
+			.check,
+			.write {
+				color: #FFFFFF;
+				height: 40px;
+				width: 48%;
+				line-height: 40px;
+				text-align: center;
+				float: left;
+			}
+			.check {
+				background-color: yellow;
+				margin-right: 2%;
+			}
+			.write {
+				background-color: green;
+				margin-left: 2%;
+			}
+			.load {
+				width: 100px;
+				height: 100px;
 			}
 		</style>
 		<script src="../../js/mui.min.js"></script>
@@ -86,13 +113,15 @@
 		</header>
 		<footer style="padding:10px; height: 60px;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 			<div class="cancel">cancel</div>
+			<div class="check mui-hidden">send check code</div>
+			<div class="write mui-hidden">write code</div>
 		</footer>
 		<div class="mask mui-hidden"></div>
 		<div class="dialog mui-hidden">
 			<div class="info">
-				Make order ?
+				Make order complete?
 			</div>
-			<p class="wron">once you remove this order it can't be recover'</p>
+			<p class="wron">this action will complete order.</p>
 			<div class="ok">ok</div>
 			<div class="cancels">cancel</div>
 		</div>
@@ -161,7 +190,24 @@
 		<!-- 加载中的蒙层 -->
 		<div id="loading-mask"></div>
 		<div id="loading-box">
-			<img src="../../img/loading45.gif" alt="loading" />
+			<img src="../../img/loading45.gif" alt="loading" class="load" />
+		</div>
+		<div class="confirm mui-hidden">
+			<div class="info">
+				code send success
+			</div>
+			<div class="back">back</div>
+			<div class="checks">check</div>
+		</div>
+		<div class="inputcode mui-hidden">
+			<div class="info">
+				input your code from receiver
+			</div>
+			<p class="wron">
+				<input type="text" id="vacode" />
+			</p>
+			<div class="cancelinput">cancel</div>
+			<div class="checkr">check</div>
 		</div>
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
@@ -185,13 +231,68 @@
 						if (data.res.status == 1 && data.res.bargain == 1) {
 							$('.marktips').removeClass('mui-hidden');
 							$('.addmoney').text(data.res.bargainMoney + ".0");
-						} else if (data.res.status == 3) {
+						}
+						if (data.res.status == 2) {
+							$('.cancel').removeClass('mui-hidden');
+							$('.check').addClass('mui-hidden');
+							$('.write').addClass('mui-hidden');
+						}
+						if (data.res.status == 3) {
+							$('.cancel').show();
+							$('.check').addClass('mui-hidden');
+							$('.write').addClass('mui-hidden');
 							$('.cancel').text('order done');
 						}
+						if (data.res.status == 4) {
+							$('.cancel').addClass('mui-hidden');
+							$('.check').removeClass('mui-hidden');
+							$('.write').removeClass('mui-hidden');
+						}
+						if (data.res.status == 5) {}
+						if (data.res.status == 6) {}
 					},
 					error: function(xhr, type) {
 						console.log(type)
 					}
+				})
+				$('.cancelinput').on('tap', function() {
+					$('.mask').addClass('mui-hidden');
+					$('.inputcode').addClass('mui-hidden');
+				})
+				$('.write').on('tap', function() {
+					$('.mask').removeClass('mui-hidden');
+					$('.inputcode').removeClass('mui-hidden');
+					var l = ($(window).width() - 270) / 2;
+					var t = ($(window).height() - $('.inputcode').height()) / 2;
+					$('.inputcode').css({
+						'left': l,
+						'top': t
+					});
+				})
+				$('.checkr').on('tap', function() {
+					alert(1)
+					var code = $('#vacode').val();
+					mui.ajax(BASEURL + 'confirmCode', {
+						type: 'post',
+						data: {
+							orderId: c.orderId,
+							signCode: code
+						},
+						success: function(data) {
+							if (data.ret == 1) {
+								mui.toast('验证成功');
+								$('.mask').addClass('mui-hidden');
+								$('.inputcode').addClass('mui-hidden');
+							}
+							if (data.ret == 2) {
+								$('.mask').addClass('mui-hidden');
+								$('.inputcode').addClass('mui-hidden');
+							}
+						},
+						error: function(xhr, type) {
+							console.log(type)
+						}
+					})
 				})
 				$('.cancel').on('tap', function() {
 					if ($(this).text() == 'cancel') {
@@ -223,12 +324,18 @@
 							'top': t
 						})
 						$('.ok').on('tap', function() {
+							$('.mask').addClass('mui-hidden');
+							$('.dialog').addClass('mui-hidden');
+							plus.nativeUI.showWaiting("确认中", {
+								background: '#d1d1d1'
+							})
 							mui.ajax(BASEURL + 'order/pickUp', {
 								type: 'post',
 								data: {
 									orderId: c.orderId
 								},
 								success: function(data) {
+									plus.nativeUI.closeWaiting();
 									console.log(data.ret)
 								},
 								error: function(xhr, type) {
@@ -238,8 +345,49 @@
 						})
 					}
 				})
+				$('.check').on('tap', function() {
+					plus.nativeUI.showWaiting('发送中', {
+						background: '#d1d1d1'
+					});
+					mui.ajax(BASEURL + 'order/sendCode', {
+						type: 'post',
+						data: {
+							orderId: c.orderId
+						},
+						success: function(data) {
+							if (data.ret == 1) {
+								plus.nativeUI.closeWaiting();
+								$('.confirm').removeClass('mui-hidden');
+								$('.mask').removeClass('mui-hidden');
+								var l = ($(window).width() - 270) / 2;
+								var t = ($(window).height() - $('.confirm').height()) / 2;
+								$('.confirm').css({
+									'left': l,
+									'top': t
+								});
+							}
+						},
+						error: function() {}
+					})
+				})
+				$('.back').on('tap', function() {
+					$('.check').text('resend check code');
+					$('.mask').addClass('mui-hidden');
+					$('.confirm').addClass('mui-hidden');
+				})
+				$('.checks').on('tap', function() {
+					$('.confirm').addClass('mui-hidden');
+					$('.inputcode').removeClass('mui-hidden');
+					var l = ($(window).width() - 270) / 2;
+					var t = ($(window).height() - $('.inputcode').height()) / 2;
+					$('.inputcode').css({
+						'left': l,
+						'top': t
+					});
+				})
 
 				function renderdata(data) {
+					showobj(data.res)
 					$(".goods-name").html(data.res.gName); // 货物名称
 					$("#goods-value").html(data.res.money); // 价值
 					$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
