@@ -104,6 +104,8 @@
 		</script>
 		<script src="../../js/template.js"></script>
 		<script src="../../js/utils.js"></script>
+		<script src="../../js/mui.pullToRefresh.js"></script>
+		<script src="../../js/mui.pullToRefresh.material.js"></script>
 		<script>
 			mui.init();
 			mui.plusReady(function() {
@@ -144,6 +146,21 @@
 						openWindow("./mysendorder-detail-cancel.html");
 					}
 				})
+//				谁让我一不小心成为你生命中重要又美好的一部分呢
+//				我站在窗前，你也站在那儿
+//				我看过的书，你也看过的话
+//				这样也算在一起的话
+//				就当我们在一起吧
+//				会很想念你
+//				我耐你
+//				
+//				有些街道可以一走再走，有些话却不能一说再说
+//				
+//				错开了青梅竹马
+//				避开了情窦初开
+//				到如今，活着的意义也只是与云蝶两鬓斑白
+//				
+//				一钱半夏，一钱蒹葭。可解得我三分相思五分梦里繁华
 				
 				// 返回首页
 				mui.back = function(){
@@ -153,6 +170,25 @@
 						cpage.close("none", 0)
 					})
 				}
+				
+				// 实现上拉刷新与下拉刷新功能
+				mui.each(document.querySelectorAll("#link-detail .mui-control-content"), function(index, element){
+					mui(element).pullToRefresh({
+						// 上拉的时候
+						down : {
+							callback : function(){
+								
+							}
+						},
+						// 上拉的时候
+						up : {
+							callback : function(){
+								
+							}
+						}
+					})
+				})
+				
 			})
 			
 			// 发送数据状态显示详情界面信息
@@ -176,6 +212,8 @@
 					}
 				})
 			}
+			
+			
 		</script>
 	</body>
 
