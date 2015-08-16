@@ -119,7 +119,7 @@
 									mui.toast("输入异常");
 								} else if (obj.ret = 1) {
 									//注册成功
-									mui.toast(obj.token);
+									getacountinfo()
 									setstorage('token', obj.token);
 									plus.webview.currentWebview().close();
 									plus.webview.getLaunchWebview().show('slide-in-left');
@@ -137,6 +137,21 @@
 							}
 						})
 					}
+				}
+				function getacountinfo(){
+					mui.ajax(BASEURL+'account/info',{
+						type:'post',
+						success:function(data){
+							if(data.ret==1){
+								mui.toast('获取初始账户信息成功');
+								var i = plus.webview.getLaunchWebview();
+								mui.fire(i,'setaccount',data.res);
+							}
+						},
+						error:function(xhr,type){
+							console.log(type)
+						}
+					})
 				}
 				var submits = document.getElementById('submit-button')
 				submits.addEventListener('tap', function() {

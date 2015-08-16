@@ -78,6 +78,15 @@ window.addEventListener('closeMenu', function() {
 	}
 	//	$('#offCanvasSide').hide()
 })
+window.addEventListener('setaccount',function(eve){
+	$('.myname').text(eve.detail.firstName+" "+eve.detail.familyName);
+	$('.mytitle').text(eve.detail.nation);
+	var n = BASEURL.indexOf('/a');
+	var pic = BASEURL.substring(0,n);
+	if(eve.detail.headPic){
+		$('.pho').attr('src',pic+eve.detail.headPic)
+	}
+})
 var first = null;
 mui.back = function() {
 	if ($('#offCanvasContentScroll').offset().left > 0) {
@@ -120,26 +129,23 @@ document.getElementById('i-will').addEventListener('tap', function() {
 		openWindow('./page/getorder/get-order.html');
 	})
 })
-document.getElementById('help').addEventListener('tap', function() {
-	iflogin(function() {
-		mui.openWindow({
-			url: './page/sendorder/createorder.html',
-			id: 'createorder',
-			show: {
-				autoShow: true,
-				aniShow: 'slide-in-bottom',
-				duration: 200
-			},
-			waiting: {
-				autoShow: true,
-				title: '正在加载...',
-				options: {
-					background: '#d1d1d1'
-				}
-			}
-		})
-	})
-})
-document.getElementById('add-menu').addEventListener('tap', function() {
-	alert('add')
-})
+//document.getElementById('help').addEventListener('tap', function() {
+//	iflogin(function() {
+//		mui.openWindow({
+//			url: './page/sendorder/createorder.html',
+//			id: 'createorder',
+//			show: {
+//				autoShow: true,
+//				aniShow: 'slide-in-bottom',
+//				duration: 200
+//			},
+//			waiting: {
+//				autoShow: true,
+//				title: '正在加载...',
+//				options: {
+//					background: '#d1d1d1'
+//				}
+//			}
+//		})
+//	})
+//})
