@@ -6,58 +6,164 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="css/test.css" />
 		<style>
 			html,
 			body,
-			.mui-content {background-color: #FFFFFF;}
-			.addlmar {margin-left: 30px;}
-			.user {border-radius: 50%;}
-			#offCanvasSide{height: 100%;background-color: #FFFFFF;}
+			.mui-content {
+				background-color: #d9dadb;
+			}
+			.mui-bar {
+				background-color: #46ac6f;
+			}
+			.mui-bar a,
+			.mui-bar h1 {
+				color: #FFFFFF;
+			}
+			.mui-slider-title {
+				background-color: #103f4b;
+				opacity: 0.6;
+			}
+			.mui-slider-indicator .mui-indicator {
+				width: 10px;
+				height: 10px;
+				margin: 10px 5px;
+			}
+			.mui-slider-indicator {
+				bottom: -5px;
+			}
+			.func {
+				box-sizing: border-box;
+				margin-bottom: 0.5%;
+				width: 33%;
+				height: 100px;
+				float: left;
+				background-color: #ffffff;
+			}
+			.rlb {
+				margin-left: 0.5%;
+				margin-right: 0.5%;
+			}
+			.mui-content-padded {
+				margin: 30px 10px;
+				overflow: hidden;
+			}
+			.func img {
+				width: 40%;
+				height: 40%;
+				margin: 20% 30% 40% 30%;
+			}
+			.imgwrap {
+				position: relative;
+			}
+			.picintro {
+				position: absolute;
+				width: 100%;
+				line-height: 20px;
+				text-align: center;
+				color: #06495a;
+				bottom: 20%;
+				font-size: 20px;
+			}
+			.addra {
+				width: 100%;
+				overflow: hidden;
+				border-radius: 10px;
+			}
+			.bortop {
+				position: absolute;
+				width: 100%;
+				height: 3px;
+				top: 0;
+				left: 0;
+				background-color: #3fc776;
+				display: none;
+			}
+			#offCanvasSide {
+				height: 100%;
+				background-color: #03242c;
+			}
+			.per-infos {
+				width: 100%;
+				padding-top: 30px;
+				padding-bottom: 20px;
+			}
+			.picwrap {
+				width: 80px;
+				height: 80px;
+				border: 2px solid #FFFFFF;
+				border-radius: 50%;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			.picwrap img {
+				width: 80px;
+				height: 80px;
+			}
+			.myname,
+			.mytitle {
+				margin: 0;
+				padding: 0;
+				line-height: 20px;
+				color: #FFFFFF;
+				text-align: center;
+			}
+			#caidan,
+			#caidan li {
+				background-color: #03242c;
+			}
+			#caidan p {
+				color: #FFFFFF;
+			}
+			#caidan span {
+				color: #FFFFFF;
+			}
+			.mui-table-view:before{
+				top: -1px;
+				background-color: #063d4b;
+			}
+			.mui-table-view-cell:after {
+				left: 0;
+				background-color: #063d4b;
+			}
+			.mui-table-view:after {
+				background-color: #063d4b;
+			}
+			.addlmar {
+				margin-left: 30px;
+			}
 		</style>
 	</head>
 
 	<body>
-		<!--heheda-->
 		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
-			<!--侧滑菜单部分-->
-			<aside id="offCanvasSide" class="mui-off-canvas-left" style="background-color: #FFFFFF;">
+			<aside id="offCanvasSide" class="mui-off-canvas-left">
 				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
 					<div class="mui-scroll">
-						<ul class="mui-table-view">
-							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" id="p-info" data-src="./page/person/me_center.html">
-									<img class="mui-media-object mui-pull-left user" src="./img/user.png" />
-									<div class="mui-media-body addlmar">
-										<p class=''>小王</p>
-										<p class=''>18883846369</p>
-									</div>
-								</a>
-							</li>
-							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" id="applay" data-src="./page/learn.html">
-									<span class="mui-icon mui-icon-chat mui-pull-left"></span>
-									<div class="mui-media-body addlmar">
-										<p class=''>申请自由快递人</p>
-									</div>
-								</a>
-							</li>
-							<li class="mui-table-view-divider"></li>
+						<div class="per-infos">
+							<div class="infowrap">
+								<div class="picwrap">
+									<img src="img/user.png" class="pho"/>
+								</div>
+								<p class="myname">Hammond Danil</p>
+								<p class="mytitle">Admiral</p>
+							</div>
+						</div>
+						<ul class="mui-table-view" id="caidan">
 							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right" id="walte" data-src="./page/wallet/my-wallet.html">
 									<span class="mui-icon mui-icon-gear mui-pull-left"></span>
 									<div class="mui-media-body  addlmar">
-										<p class=''>我的钱包</p>
+										<p class=''>my wallet</p>
 									</div>
 								</a>
 							</li>
-							<li class="mui-table-view-divider"></li>
 							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right" id="my-order" data-src="./page/mysendorder/my-send-order.html">
 									<span class="mui-icon mui-icon-list mui-pull-left"></span>
 									<div class="mui-media-body  addlmar">
-										<p class=''>我的发单</p>
+										<p class=''>my billing order</p>
 									</div>
 								</a>
 							</li>
@@ -65,25 +171,39 @@
 								<a class="mui-navigate-right" id="i-get" data-src="./page/mygetorder/my-get-order.html">
 									<span class="mui-icon mui-icon-paperplane mui-pull-left"></span>
 									<div class="mui-media-body  addlmar">
-										<p class=''>我的接单</p>
+										<p class=''>my receving order</p>
 									</div>
 								</a>
 							</li>
-							<li class="mui-table-view-divider"></li>
 							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right" id="help-me" data-src="">
 									<span class="mui-icon mui-icon-plusempty mui-pull-left"></span>
 									<div class="mui-media-body  addlmar">
-										<p class=''>使用帮助</p>
+										<p class=''>deliver application</p>
 									</div>
 								</a>
 							</li>
-							<li class="mui-table-view-divider"></li>
 							<li class="mui-table-view-cell mui-media">
 								<a class="mui-navigate-right" id="close" data-src="page/self-info-setting.html">
 									<span class="mui-icon mui-icon-home mui-pull-left"></span>
 									<div class="mui-media-body  addlmar">
-										<p class=''>设置</p>
+										<p class=''>oparating instruction</p>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" id="close" data-src="page/self-info-setting.html">
+									<span class="mui-icon mui-icon-personadd mui-pull-left"></span>
+									<div class="mui-media-body  addlmar">
+										<p class=''>contact Customer Server</p>
+									</div>
+								</a>
+							</li>
+							<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" id="close" data-src="page/self-info-setting.html">
+									<span class="mui-icon mui-icon-home mui-pull-left"></span>
+									<div class="mui-media-body  addlmar">
+										<p class=''>setting up</p>
 									</div>
 								</a>
 							</li>
@@ -91,106 +211,127 @@
 					</div>
 				</div>
 			</aside>
-			<!--主界面-->
 			<div class="mui-inner-wrap">
 				<header class="mui-bar mui-bar-nav">
-					<a class="mui-pull-left slider-menu" href="#offCanvasSide">
-						<div class="headimg-box">
-							<img src="img/user.png" width="90%" />
-						</div>
-					</a>
-					<h1 class="mui-title title-box">
-						<div class="mui-ellipsis mui-text-left index-title">Product Name</div>
-						<p class="mui-h5 mui-ellipsis mui-text-left subindex-title">make your life better</p>
-					</h1>
-					<a class="mui-icon mui-icon-chat mui-pull-right" id="chat-info" style="color: #fd8b01;padding-top: 0.7em;"></a>
-
+					<a class="mui-icon mui-icon-list mui-pull-left" id="menu" href=""></a>
+					<h1 class="mui-title">Along</h1>
+					<a class="mui-icon mui-icon-chatbubble mui-pull-right"id="chat-info"></a>
 				</header>
-				<div class="mui-text-center mui-bar-footer mui-bar">
-					<div class="help-me" id="help">
-						<img src="img/menu-btn.png" width="100%" height="50" />
-					</div>
-				</div>
 				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
 					<div class="mui-scroll">
-						<div class="mui-slider">
-							<div class="mui-slider-group mui-slider-loop">
-								<!--支持循环，需要重复图片节点-->
-								<div class="mui-slider-item mui-slider-item-duplicate">
-									<a href="#">
-										<img src="./img/pic4.png" />
-									</a>
+						<div class="mui-content">
+							<div class="slide">
+								<div id="slider" class="mui-slider">
+									<div class="mui-slider-group mui-slider-loop">
+										<div class="mui-slider-item mui-slider-item-duplicate">
+											<a href="#">
+												<img src="img/yuantiao.jpg">
+											</a>
+											<p class="mui-slider-title">
+												<span class="mui-icon mui-icon-chatbubble"></span>
+												<span>2015-8-15..</span>
+											</p>
+										</div>
+										<div class="mui-slider-item">
+											<a href="#">
+												<img src="img/shuijiao.jpg">
+											</a>
+											<p class="mui-slider-title">
+											</p>
+										</div>
+										<div class="mui-slider-item">
+											<a href="#">
+												<img src="img/cbd.jpg">
+											</a>
+											<p class="mui-slider-title">
+											</p>
+										</div>
+										<div class="mui-slider-item">
+											<a href="#">
+												<img src="img/yuantiao.jpg">
+											</a>
+											<p class="mui-slider-title">
+											</p>
+										</div>
+										<div class="mui-slider-item mui-slider-item-duplicate">
+											<a href="#">
+												<img src="img/shuijiao.jpg">
+											</a>
+											<p class="mui-slider-title">
+											</p>
+										</div>
+									</div>
+									<div class="mui-slider-indicator mui-text-right">
+										<div class="mui-indicator mui-active"></div>
+										<div class="mui-indicator"></div>
+										<div class="mui-indicator"></div>
+										<div class="mui-indicator"></div>
+									</div>
 								</div>
-								<div class="mui-slider-item">
-									<a href="#">
-										<img src="./img/pic1.png" />
-									</a>
-								</div>
-								<div class="mui-slider-item">
-									<a href="#">
-										<img src="./img/pic2.png" />
-									</a>
-								</div>
-								<div class="mui-slider-item">
-									<a href="#">
-										<img src="./img/pic3.png" />
-									</a>
-								</div>
-								<div class="mui-slider-item">
-									<a href="#">
-										<img src="./img/pic4.png" />
-									</a>
-								</div>
-								<!--支持循环，需要重复图片节点-->
-								<div class="mui-slider-item mui-slider-item-duplicate">
-									<a href="#">
-										<img src="./img/pic1.png" />
-									</a>
+							</div>
+							<div class="functions">
+								<div class="mui-content-padded">
+									<div class="addra">
+										<div class="func" id="hlep-son">
+											<div class="imgwrap">
+												<div class="bortop"></div>
+												<img src="img/send.png" />
+												<div class="picintro">send</div>
+											</div>
+										</div>
+										<div class="func rlb" id="i-will">
+											<div class="imgwrap">
+												<div class="bortop"></div>
+												<img src="img/deliver.png" />
+												<div class="picintro">deliver</div>
+											</div>
+											<div></div>
+										</div>
+										<div class="func">
+											<div class="imgwrap">
+												<div class="bortop"></div>
+												<img src="img/plan.png" />
+												<div class="picintro">trip plan</div>
+											</div>
+										</div>
+										<div class="func">
+											<div class="imgwrap">
+												<div class="bortop"></div>
+												<img src="img/order.png" />
+												<div class="picintro">order</div>
+											</div>
+										</div>
+										<div class="func rlb">
+											<div class="imgwrap">
+												<div class="bortop"></div>
+												<img src="img/wallet.png" />
+												<div class="picintro">wallet</div>
+											</div>
+										</div>
+										<div class="func">
+											<div class="imgwrap">
+												<div class="bortop"></div>
+												<img src="img/help.png" />
+												<div class="picintro">help</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<!--设置部分-->
-						<div class="setting clearfix">
-							<div class="mui-pull-left">Life Services</div>
-							<div class="setting-right">
-								<span class="mui-h6">click to add/removeservices</span>
-								<span class="mui-icon mui-icon-gear-filled add-remove"></span>
-							</div>
-						</div>
-						<!--功能模块-->
-						<ul class="mui-table-view mui-grid-view">
-							<li class="mui-table-view-cell mui-media mui-col-xs-6">
-								<div>
-									<img class="mui-media-object" src="./img/create-order.png" id="hlep-son">
-								</div>
-							</li>
-							<li class="mui-table-view-cell mui-media mui-col-xs-6">
-								<div>
-									<img class="mui-media-object" src="./img/search-order.png" id="i-will">
-								</div>
-							</li>
-							<li class="mui-table-view-cell mui-media mui-col-xs-6">
-								<div>
-									<img class="mui-media-object" src="./img/trip-plan.png" id="get-info">
-								</div>
-							</li>
-							<li class="mui-table-view-cell mui-media mui-col-xs-6">
-								<div>
-									<img class="mui-media-object" src="./img/my-order.png" id="add-menu">
-								</div>
-								<!--<a href="/youraction" data-paypal-button="true">
-									<img src="//www.paypalobjects.com/en_US/i/btn/btn_xpressCheckout.gif" alt="Check out with PayPal" />
-								</a>-->
-							</li>
-						</ul>
 					</div>
 				</div>
 				<div class="mui-off-canvas-backdrop"></div>
 			</div>
 		</div>
+		<script type="text/javascript" src="js/utils.js"></script>
+		<script type="text/javascript" src="js/new_index.js"></script>
+		<script>
+			$('.func').height($('.func').width()).on('tap', function() {
+				$('.bortop').hide()
+				$('.bortop', $(this)).show();
+			})
+		</script>
 	</body>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/utils.js"></script>
-	<script type="text/javascript" src="js/new_index.js"></script>
 
 </html>

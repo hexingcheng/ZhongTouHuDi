@@ -1,4 +1,11 @@
-mui.init();
+mui.init({
+	preloadPages:[
+    {
+      url:'./page/logupin/login.html',
+      id:'login'
+    }
+  ]
+});
 //处理菜单与侧滑部分、
 var offCanvasWrapper = mui('#offCanvasWrapper');
 var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
@@ -40,7 +47,7 @@ mui.plusReady(function() {
 		mui('#offCanvasSideScroll').scroll();
 		mui('#offCanvasContentScroll').scroll();
 		plus.webview.getLaunchWebview().setStyle({
-			scrollIndicator:'none'
+			scrollIndicator: 'none'
 		})
 		var gallery = mui('.mui-slider');
 		gallery.slider({
@@ -51,26 +58,34 @@ mui.plusReady(function() {
 			var url = this.getAttribute('data-src');
 			openWindow(url);
 		})
-//		document.getElementById('menu').addEventListener('tap', function() {
-//			if (getstorage('token')) {
-//				this.href = "#offCanvasSide"
-//			} else {
-//				console.log(1)
-//				mui.openWindow({
-//					url:'./page/login-up.html',
-//					id:'login-up'
-//				})
-//			}
-//			return false;
-//		})
+		document.getElementById('menu').addEventListener('tap', function() {
+			if (getstorage('token')) {
+				this.href = "#offCanvasSide";
+				offCanvasWrapper.offCanvas('show');
+			} else {
+				plus.webview.getWebviewById('login').show('slide-in-right');
+			}
+
+		})
 	})
 	//处理返回键
-
+window.addEventListener('removehref',function(){
+	document.getElementById('menu').href = "";
+})
 window.addEventListener('closeMenu', function() {
 	if ($('#offCanvasContentScroll').offset().left > 0) {
 		offCanvasWrapper.offCanvas('close');
 	}
-//	$('#offCanvasSide').hide()
+	//	$('#offCanvasSide').hide()
+})
+window.addEventListener('setaccount',function(eve){
+	$('.myname').text(eve.detail.firstName+" "+eve.detail.familyName);
+	$('.mytitle').text(eve.detail.nation);
+	var n = BASEURL.indexOf('/a');
+	var pic = BASEURL.substring(0,n);
+	if(eve.detail.headPic){
+		$('.pho').attr('src',pic+eve.detail.headPic)
+	}
 })
 var first = null;
 mui.back = function() {
@@ -100,7 +115,7 @@ mui.menu = function() {
 			offCanvasWrapper.offCanvas('show');
 		}
 	}
-//处理主页tap事件
+	//处理主页tap事件
 document.getElementById('chat-info').addEventListener('tap', function() {
 	openWindow('./page/msgcontent.html');
 })
@@ -114,26 +129,23 @@ document.getElementById('i-will').addEventListener('tap', function() {
 		openWindow('./page/getorder/get-order.html');
 	})
 })
-document.getElementById('help').addEventListener('tap', function() {
-	iflogin(function() {
-		mui.openWindow({
-			url: './page/sendorder/createorder.html',
-			id: 'createorder',
-			show: {
-				autoShow: true,
-				aniShow: 'slide-in-bottom',
-				duration: 200
-			},
-			waiting: {
-				autoShow: true,
-				title: '正在加载...',
-				options: {
-					background: '#d1d1d1'
-				}
-			}
-		})
-	})
-})
-document.getElementById('add-menu').addEventListener('tap', function() {
-	alert('add')
-})
+//document.getElementById('help').addEventListener('tap', function() {
+//	iflogin(function() {
+//		mui.openWindow({
+//			url: './page/sendorder/createorder.html',
+//			id: 'createorder',
+//			show: {
+//				autoShow: true,
+//				aniShow: 'slide-in-bottom',
+//				duration: 200
+//			},
+//			waiting: {
+//				autoShow: true,
+//				title: '正在加载...',
+//				options: {
+//					background: '#d1d1d1'
+//				}
+//			}
+//		})
+//	})
+//})
