@@ -4,6 +4,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="get-order-comment.css" />
@@ -134,64 +136,48 @@
 			.mui-slider-indicator.mui-segmented-control {
 				background-color: #efeff4;
 			}
-			.mui-segmented-control{
+			.mui-segmented-control {
 				box-shadow: 0 0 0 #FFFFFF;
 			}
-			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{color: #36a462;}
-			html,body,.mui-content,#slider#sliderSegmentedControl,.mui-scroll{
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				color: #36a462;
+			}
+			#sliderSegmentedControl .mui-scroll {
 				width: 100%;
 			}
-			.mui-segmented-control .mui-scroll-wrapper .mui-control-item{
+			#sliderSegmentedControl .mui-control-item {
 				padding: 0;
+				text-align: center;
 				width: 25%;
+			}
+			.mui-slider-group .mui-scroll-wrapper {
+				margin-top: -44px;
+			}
+			.wrap {
+				z-index: -1;
 			}
 		</style>
 	</head>
 
-	<body style="background: #fff;">
+	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">Order</h1>
 			<i id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></i>
 		</header>
-
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div class="mui-scroll">
-						<a class="mui-control-item mui-active" href="#item1" data-sort="time" data-item="item1">Latest</a>
-						<a class="mui-control-item" href="#item2" data-sort="dist" data-item="item2">Distance</a>
-						<a class="mui-control-item" href="#item3" data-sort="price" data-item="item3">reward</a>
-						<a class="mui-control-item" href="#item4" data-sort="weight" data-item="item4">weight</a>
+						<a class="mui-control-item mui-active" href="#item1" data-sort="time" data-item="#item1">Latest</a>
+						<a class="mui-control-item" href="#item2" data-sort="dist" data-item="#item2">Distance</a>
+						<a class="mui-control-item" href="#item3" data-sort="price" data-item="#item3">reward</a>
+						<a class="mui-control-item" href="#item4" data-sort="weight" data-item="#item4">weight</a>
 					</div>
 				</div>
-				<!--<div id="scroll-wrapper" class="mui-scroll-wrapper">
-				<div id="link-detail" class="mui-scroll">
-					<div id="item1" class="mui-control-content mui-active">
-						<div style="position: relative;">
-							<div class="waiting-box"></div>
-						</div>
-					</div>
-					<div id="item2" class="mui-control-content">
-						<div style="position: relative;">
-							<div class="waiting-box"></div>
-						</div>
-					</div>
-					<div id="item3" class="mui-control-content">
-						<div style="position: relative;">
-							<div class="waiting-box"></div>
-						</div>
-					</div>
-					<div id="item4" class="mui-control-content">
-						<div style="position: relative;">
-							<div class="waiting-box"></div>
-						</div>
-					</div>
-				</div>
-			</div>-->
 				<div class="mui-slider-group">
 					<div id="item1" class="mui-slider-item mui-control-content mui-active">
-						<div class="mui-scroll-wrapper">
+						<div class="mui-scroll-wrapper" id="scroll1">
 							<div class="mui-scroll">
 
 							</div>
@@ -222,7 +208,7 @@
 		<script src="../../js/template.js"></script>
 		<script type="text/html" id="template">
 			{{each list}}
-			<ul class="mui-table-view">
+			<ul class="mui-table-view" style="margin-bottom: 10px;">
 				<li class="mui-table-view-cell">
 					<a href="./get-detail.html" class="detail-message" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}">
 						<div class="goods-name-bar">
@@ -289,12 +275,52 @@
 						mui(pullRefreshEl).pullToRefresh({
 							down: {
 								callback: function() {
-									
+									var _this = this;
+									mui.ajax(BASEURL + 'deliver/goodList', {
+										type: 'post',
+										data: getorderdata,
+										success: function(data) {
+											_this.endPullDownToRefresh();
+											var orderdata = {
+												"list": data.res
+											}
+											var $wrap = $('<div class="wrap"></div>')
+											var html = template("template", orderdata);
+											$wrap.html(html);
+											$('.mui-scroll', '#item1').append($wrap)
+										},
+										error: function(xhr, type, errorThrown) {
+											console.log(type)
+										}
+									})
 								}
 							},
 							up: {
 								callback: function() {
 									
+									var _this = this;
+									plus.nativeUI.showWaiting('加载中', {
+										background: '#d1d1d1'
+									})
+									getorderdata.page++;
+									mui.ajax(BASEURL + 'deliver/goodList', {
+										type: 'post',
+										data: getorderdata,
+										success: function(data) {
+											_this.endPullUpToRefresh();
+											plus.nativeUI.closeWaiting()
+											var orderdata = {
+												"list": data.res
+											}
+											var $wrap = $('<div class="wrap"></div>');
+											var html = template("template", orderdata);
+											$wrap.html(html);
+											$('.mui-scroll', '#item1').append($wrap)
+										},
+										error: function(xhr, type, errorThrown) {
+											console.log(type);
+										}
+									})
 								}
 							}
 						});
@@ -307,26 +333,23 @@
 						var lat = pos.coords.latitude;
 						getorderdata.curJd = lot;
 						getorderdata.curWd = lat;
-						showobj(getorderdata)
 						mui.ajax(BASEURL + 'deliver/goodList', {
 							type: 'post',
 							data: getorderdata,
 							success: function(data) {
-								//						console.log(JSON.stringify(data));
 								var orderdata = {
 									"list": data.res
 								}
 								var $wrap = $('<div class="wrap"></div>')
 								var html = template("template", orderdata);
 								$wrap.html(html);
-								//								document.getElementById("item1").innerHTML = html;
 								$('.mui-scroll', '#item1').append($wrap)
 							},
 							error: function(xhr, type, errorThrown) {
 								console.log(type)
 							}
 						})
-						mui('#segmentedControl').on('tap', '.mui-control-item', function() {
+						mui('#sliderSegmentedControl').on('tap', '.mui-control-item', function() {
 							var type = this.getAttribute('data-sort');
 							var item = this.getAttribute('data-item');
 							getorderdata.sortType = type;
@@ -335,12 +358,13 @@
 								type: 'post',
 								data: getorderdata,
 								success: function(data) {
-									//console.log(JSON.stringify(data));
 									var orderdata = {
 										"list": data.res
 									}
+									var $wrap = $('<div class="wrap"></div>');
 									var html = template("template", orderdata);
-									document.getElementById(item).innerHTML = html;
+									$wrap.html(html);
+									$('.mui-scroll', item).append($wrap);
 								},
 								error: function(xhr, type, errorThrown) {
 									console.log(type)
