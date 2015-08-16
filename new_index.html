@@ -56,6 +56,7 @@
 			}
 			.imgwrap {
 				position: relative;
+				border-top: 3px solid #FFFFFF;
 			}
 			.picintro {
 				position: absolute;
@@ -274,14 +275,12 @@
 									<div class="addra">
 										<div class="func" id="hlep-son">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/send.png" />
 												<div class="picintro">send</div>
 											</div>
 										</div>
 										<div class="func rlb" id="i-will">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/deliver.png" />
 												<div class="picintro">deliver</div>
 											</div>
@@ -289,28 +288,24 @@
 										</div>
 										<div class="func">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/plan.png" />
 												<div class="picintro">trip plan</div>
 											</div>
 										</div>
 										<div class="func">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/order.png" />
 												<div class="picintro">order</div>
 											</div>
 										</div>
 										<div class="func rlb">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/wallet.png" />
 												<div class="picintro">wallet</div>
 											</div>
 										</div>
 										<div class="func">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/help.png" />
 												<div class="picintro">help</div>
 											</div>
@@ -328,8 +323,8 @@
 		<script type="text/javascript" src="js/new_index.js"></script>
 		<script>
 			$('.func').height($('.func').width()).on('tap', function() {
-				$('.bortop').hide()
-				$('.bortop', $(this)).show();
+				$('.imgwrap').css('border-color','#ffffff');
+				$('.imgwrap',$(this)).css('border-top-color','#46ac6f')
 			})
 		</script>
 	</body>
