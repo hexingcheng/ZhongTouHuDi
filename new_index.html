@@ -34,6 +34,7 @@
 				bottom: -5px;
 			}
 			.func {
+				overflow: hidden;
 				box-sizing: border-box;
 				margin-bottom: 0.5%;
 				width: 33%;
@@ -56,6 +57,7 @@
 			}
 			.imgwrap {
 				position: relative;
+				border-top: 3px solid #FFFFFF;
 			}
 			.picintro {
 				position: absolute;
@@ -142,9 +144,11 @@
 				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<div class="per-infos">
-							<div class="infowrap">
-								<div class="picwrap">
-									<img src="img/user.png" class="pho"/>
+							<div class="infowrap mui-table-view-cell">
+								<div class="picwrap"  >
+									<a data-src="./page/person/me_center.html">
+										<img src="img/user.png" class="pho"/>
+									</a>
 								</div>
 								<p class="myname">Hammond Danil</p>
 								<p class="mytitle">Admiral</p>
@@ -213,7 +217,7 @@
 			</aside>
 			<div class="mui-inner-wrap">
 				<header class="mui-bar mui-bar-nav">
-					<a class="mui-icon mui-icon-list mui-pull-left" id="menu" href=""></a>
+					<a class="mui-icon mui-icon-list mui-pull-left" id="menu" href="javascrip:void(0)"></a>
 					<h1 class="mui-title">Along</h1>
 					<a class="mui-icon mui-icon-chatbubble mui-pull-right"id="chat-info"></a>
 				</header>
@@ -274,14 +278,12 @@
 									<div class="addra">
 										<div class="func" id="hlep-son">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/send.png" />
 												<div class="picintro">send</div>
 											</div>
 										</div>
 										<div class="func rlb" id="i-will">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/deliver.png" />
 												<div class="picintro">deliver</div>
 											</div>
@@ -289,28 +291,24 @@
 										</div>
 										<div class="func">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/plan.png" />
 												<div class="picintro">trip plan</div>
 											</div>
 										</div>
-										<div class="func">
+										<div class="func" id='mysned'>
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/order.png" />
 												<div class="picintro">order</div>
 											</div>
 										</div>
-										<div class="func rlb">
+										<div class="func rlb" id="mywallet">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/wallet.png" />
 												<div class="picintro">wallet</div>
 											</div>
 										</div>
 										<div class="func">
 											<div class="imgwrap">
-												<div class="bortop"></div>
 												<img src="img/help.png" />
 												<div class="picintro">help</div>
 											</div>
@@ -328,8 +326,8 @@
 		<script type="text/javascript" src="js/new_index.js"></script>
 		<script>
 			$('.func').height($('.func').width()).on('tap', function() {
-				$('.bortop').hide()
-				$('.bortop', $(this)).show();
+				$('.imgwrap').css('border-color','#ffffff');
+				$('.imgwrap',$(this)).css('border-top-color','#46ac6f')
 			})
 		</script>
 	</body>

@@ -34,37 +34,32 @@
 			       }
 			       .pop_selinfo{
 			       	width: 14em;
-			       	padding: 0 .4em;
-			       	height: 4em;
-			       	border: 3px solid #3FA86A;
-			       	border-radius: .3em;
+			       	height: 10em;
 			       	background-color: white;
 			       	position: absolute;
 			       	overflow: hidden;
-			       	display: none;
-			        top: 10em;
+	      	        display: none;
+			        top: 20%;
 			       	left: 50%;
 			       	margin-left: -7em;
-			       	z-index: 100;
+			       	z-index: 999;
 			       }
 			       .pop_selinfo .info_input{
-			       	width:70% ;
-			       	height: 1.7em;
-			       	line-height: 1.5em;
-			       	border: 1px solid #3FA86A;
-			       	padding: 0;
-			       	margin-top: 1em;
+			         width: 8em;
+			         height: 2em;
+			         line-height: 1.5em;
+			         border: 1px solid silver;
+			        margin: 3em 3em;
+			       
 			       }
 			       .pop_sub{
-			       	width: 20%;
-			       	border-radius: .3em;
+			       	width: 100%;
+			       	height: 2.5em;
+			       	line-height:2.2em;
 			       	text-align: center;
-			       	background-color:#3FA86A ;
-			       	color: white;
-			       	height: 1.7em;
-			       	line-height: 1.7em;
-			       	margin-top: 1em;
-			       	float: right;
+			       	bottom: 0;
+			       	color: #13A064;
+			       	background-color: #C4E8DA;
 			       }
 			       .no_border{
 			       	border: 0;
@@ -83,13 +78,21 @@
 			       .toast{
 			       	display: none;
 			       }
+			       .popover {
+					z-index: 998;
+					background: rgba(0, 0, 0, .7);
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					}
 		</style>
 	</head>
 
 	<body class="bg_w">
 		<div class="" id="mask">
 			<!--蒙版-->
-		</div>
+		</div>  
 		<div class="me_main">
 			<img src="../../img/2147de349744915c611f470c84c67f94.jpg" id="bg_pic" alt="" />
 			<header class="mui-bar mui-bar-nav  none_box " style="background-color:#3FA86A ">
@@ -107,7 +110,7 @@
 			<!--弹框（编辑个人信息）-->
 			<div class=" pop_selinfo" id="popover">
 				<input type="text" class="info_input me_color" id="check_pwd" placeholder="请输入密码" />
-				<div class="pop_sub border " id="check">验证</div>
+				<div class="pop_sub" id="check">验证</div>
 			</div>
 			<div class="me_main-info">
 				<div class="me-info ">
@@ -165,11 +168,39 @@
 		 	</a></li>
 			</ul>
 		</div>
-
 	</body>
 	<script>
 		mui.plusReady(function(){
-		    	//背景图片
+			plus.webview.currentWebview().setStyle({scrollIndicator:'none'});//移除页面的滚动条
+		  	  mui.ajax(BASEURL+"account/info",{
+		  	  	 type:"post",
+		  	  	 success:function(data){
+                    if(data.ret==1){
+						$('#firsetName').val(data.res.firstName);
+						$('#familyName').val(data.res.familyName);
+						$('#phone').val(data.res.phone);
+						$('#pwd').val(data.res.pwd);
+						$('#email').val(data.res.email);
+						$('#nation').val(data.res.nation);
+						$('#title').val(data.res.title);
+						var n = BASEURL.indexOf('/a');
+						var imgurl = BASEURL.substring(0,n);
+						var pic = imgurl+data.res.headPic;
+						    plus.storage.setItem('head_pic_',pic);
+						var storage_headPic=plus.storage.getItem('head_pic')
+						if(storage_headPic){
+							$('#headPic').attr('src',storage_headPic);
+						}else if(pic){
+								$('#headPic').attr('src',pic);
+						}
+					}else{
+						mui.toast("请先登录！");
+					}
+		  	  	 },error:function(xhr, type){
+		  	  	 	console.log(type);
+		  	  	 }   
+		  	  });
+		  	  //背景图片
 		    	$('#change_bg').on('tap',function(){
 		    		alert(1);
 		    		plus.gallery.pick(function(path){
@@ -216,7 +247,6 @@
 		      //点击信息编辑按钮
 		      var token;
 		       $('#check').on('tap',function(){
-		       	$('#check').css('background-color','silver');
 		      //密码验证
 		         var pwd=$('#check_pwd').val();
 		          	var data = {
@@ -313,14 +343,7 @@
 		     	}
 		     
 		     })
-		  })
-	</script>
-	<script type="text/javascript" src="../../js/utils.js"></script>
-	<script src="../../js/comment.js"></script>
-	<script type="text/javascript" src="../../js/jquery.min.js"></script>
-	<script>
-		mui.plusReady(function() {
-			    	var iw;
+		     	    var iw;
 			$('.photo_').on('tap', function() {
 				var _this = this;
 				iw = $(this).outerWidth()
@@ -429,43 +452,9 @@
 					multiple: false
 				})
 			}
-		});
-	</script>
-	</body>
-	<script>
-		mui.plusReady(function(){
-		  	  mui.ajax(BASEURL+"account/info",{
-		  	  	 type:"post",
-		  	  	 success:function(data){
-                    if(data.ret==1){
-						$('#firsetName').val(data.res.firstName);
-						$('#familyName').val(data.res.familyName);
-						$('#phone').val(data.res.phone);
-						$('#pwd').val(data.res.pwd);
-						$('#email').val(data.res.email);
-						$('#nation').val(data.res.nation);
-						$('#title').val(data.res.title);
-						var n = BASEURL.indexOf('/a');
-						var imgurl = BASEURL.substring(0,n);
-						var pic = imgurl+data.res.headPic;
-						    plus.storage.setItem('head_pic_',pic);
-						var storage_headPic=plus.storage.getItem('head_pic')
-						if(storage_headPic){
-							$('#headPic').attr('src',storage_headPic);
-						}else if(pic){
-								$('#headPic').attr('src',pic);
-						}
-						
-					    
-					}else{
-						mui.toast("请先登录！");
-					}
-		  	  	 },error:function(xhr, type){
-		  	  	 	console.log(type);
-		  	  	 }   
-		  	  });
-		  	  
 		  })
 	</script>
-
+	<script type="text/javascript" src="../../js/utils.js"></script>
+	<script src="../../js/comment.js"></script>
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
 </html>

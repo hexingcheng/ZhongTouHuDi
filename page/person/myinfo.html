@@ -70,12 +70,12 @@
 	<!--文本内容-->
 		 <div class="me_main-info">  
 		 	<div class="me-info">
-		 		<img  id="headPic" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" />
+		 		<img  src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" />
 		 	</div>
 	 	</div>   
 		<ul class="mui-table-view ">
 			<li class="mui-table-view-cell line1" >
-			<span class="me_same me_color">Name</span> <span class="color" id="nickName">Daniel</span>
+			<span class="me_same me_color">Name</span> <span class="color" >Daniel</span>
 			<div class="me_country">
 	 				<img src="../../img/1096072.png" alt="" />
 	 		</div>
@@ -110,9 +110,9 @@
 	       {{each result}}
 	   	  <ul class="mui-table-view">
 				<li class="mui-table-view-cell line2 " style="padding: 0.5em;">
-					<div class="me-cen-img border mui-pull-left"><img src="../../img/2147de349744915c611f470c84c67f94.jpg" alt=""> </div>
+					<div class="me-cen-img border mui-pull-left"><img src="../../img/2147de349744915c611f470c84c67f94.jpg" alt="" id="headPic"> </div>
 					<div class="mui-pull-right moudle_div">
-						<span>sun4343lee</span>
+						<span >{{$value.name}}</span>
 						<span class="color mui-pull-right"><i class="fa fa-trophy " style="color: #FAF713;"></i> {{$value.score}}</span>
 					</div>
 					<div class="mui-pull-right moudle_div " style="line-height: 3em;height: 2em;">
@@ -130,6 +130,17 @@
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	  <script>
 	  	mui.plusReady(function(){
+	  		//背景图片
+    	function getbg_pic(){
+    		var foo=plus.storage.getItem('bg_pic');
+    		if(foo){
+    			$('#bg_pic').attr('src',foo);
+    		}else{
+    			$('#bg_pic').attr('src',"../../img/2147de349744915c611f470c84c67f94.jpg");
+    		}
+    	}
+    	getbg_pic();//调用背景图片
+	    plus.webview.currentWebview().setStyle({scrollIndicator:'none'});//移除页面的滚动条
 	  		var cpage = plus.webview.currentWebview();
 		  	var id = cpage.uid;
 		  	var pdata={  
@@ -142,15 +153,14 @@
 		  		data:pdata,                                               
 		  		success:function(data){
 		  			console.log(data.ret)
-		  			var datas={
+		  			
+		  			if(data.ret==1){
+		  				var datas={
 		  				"result":data.res
 		  			}
-//		  			if(data.ret==1){
-//		  				alert(1)
-//		  				alert(JSON.stringify(data));
-//		  				var html=template('content',data);
-//	  	              document.getElementById('content_c').innerHTML=html;
-//		  			}
+		  				alert(JSON.stringify(data.res));
+		  			
+		  			}
 		  		},
 		  		error:function(xhr,type){
 		  			alert('shibao');
@@ -160,42 +170,4 @@
 	  	})  	   
 	  </script>
 	</body>
-<script>
-
-mui.plusReady(function(){
-	   //背景图片
-    	function getbg_pic(){
-    		var foo=plus.storage.getItem('bg_pic');
-    		if(foo){
-    			$('#bg_pic').attr('src',foo);
-    		}else{
-    			$('#bg_pic').attr('src',"../../img/2147de349744915c611f470c84c67f94.jpg");
-    		}
-    	}
-    	getbg_pic();//调用背景图片
-	  plus.webview.currentWebview().setStyle({scrollIndicator:'none'});//移除页面的滚动条
-	 var nickName=document.getElementById('nickName');
-	 var phone=document.getElementById('phone');
-	 var headPic=document.getElementById('headPic');
-	 var email=document.getElementById('email');
-  	  mui.ajax(BASEURL+"account/info",{
-  	  	 type:"post",
-  	  	 success:function(data){
-  	  	 	if(data.ret==1){
-	                nickName.innerHTML=data.res.firstName+" "+data.res.familyName;
-					phone.innerHTML=data.res.phone;
-					email.innerHTML=data.res.email;
-					var n = BASEURL.indexOf('/a');
-					var imgurl = BASEURL.substring(0,n);
-					var pic = imgurl+data.res.headPic
-					$('#headPic').attr('src',pic);
-			}else{ 
-				mui.toast("请先登录！");
-			}  
-  	  	 },error:function(xhr, type){
-  	  	 	console.log(type);
-  	  	 }   
-  	  });
-  })  
-</script>
 </html>
