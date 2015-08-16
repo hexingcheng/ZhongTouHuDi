@@ -237,7 +237,7 @@
 									<div id="getaddr" data-addr="重庆" data-Jd="106.60111939165672" data-Wd="29.53408157290842">Pickup Address</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet addborb">
-									<span class="mui-icon mui-icon-bars"></span>
+									<span id="send-address" class="mui-icon mui-icon-bars"></span>
 								</div>
 							</div>
 							<div class="clear">
@@ -248,7 +248,7 @@
 									<div id="sendaddr" data-addr="北京" data-Jd="10" data-Wd="10">Receive address</div>
 								</div>
 								<div class="fr wid10 hei80 linehei tet">
-									<span class="mui-icon mui-icon-bars"></span>
+									<span id="receive-address" class="mui-icon mui-icon-bars"></span>
 								</div>
 							</div>
 						</div>
@@ -263,7 +263,7 @@
 								</div>
 							</div>
 							<div class="fr wid10 hei80 linehei tet">
-								<span class="mui-icon mui-icon-contact"></span>
+								<span id="sender-contact" class="mui-icon mui-icon-contact"></span>
 							</div>
 						</div>
 						<div class="phone clear">
@@ -287,7 +287,7 @@
 								</div>
 							</div>
 							<div class="fr wid10 hei80 linehei tet">
-								<span class="mui-icon mui-icon-contact"></span>
+								<span id="receiver-contact" class="mui-icon mui-icon-contact"></span>
 							</div>
 						</div>
 						<div class="phone clear">
@@ -493,6 +493,32 @@
 					var create = plus.webview.getWebviewById('sendorder/createorder.html');
 					mui.fire(create,'getdraft',getdata)
 				}
+				
+				// 选择发送者联系方式
+				document.getElementById("sender-contact").addEventListener("tap", function(){
+					// 回调联系人参数
+					findContact(function(contacts){
+						for(var i in contacts){
+							console.log(i +"   "+ contacts[i]);
+						}
+					})
+				}, false)    
+				
+				// 查询联系人列表
+				function findContact(callback){
+					plus.contacts.getAddressBook( plus.contacts.ADDRESSBOOK_PHONE, function( addressbook ) {
+						// 查找联系人
+						addressbook.find([], function(contacts){
+							callback(contacts);
+						}, function(err){
+							console.log("联系人查找错误："+err.message);
+						}, {multiple : false})
+						
+					}, function ( e ) {
+						console.log( "Get address book failed: " + e.message );
+					} );
+				}
+				
 			})
 		</script>
 	</body>
