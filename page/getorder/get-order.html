@@ -178,26 +178,26 @@
 				<div class="mui-slider-group">
 					<div id="item1" class="mui-slider-item mui-control-content mui-active">
 						<div class="mui-scroll-wrapper" id="scroll1">
-							<div class="mui-scroll">
+							<div class="mui-scroll" data-sort="time" data-item="#item1">
 
 							</div>
 						</div>
 					</div>
 					<div id="item2" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
+							<div class="mui-scroll" data-sort="dist" data-item="#item2">
 							</div>
 						</div>
 					</div>
 					<div id="item3" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
+							<div class="mui-scroll" data-sort="price" data-item="#item3">
 							</div>
 						</div>
 					</div>
 					<div id="item4" class="mui-slider-item mui-control-content">
 						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
+							<div class="mui-scroll" data-sort="weight" data-item="#item4">
 							</div>
 						</div>
 					</div>
@@ -272,6 +272,9 @@
 				mui.ready(function() {
 					//循环初始化所有下拉刷新，上拉加载。
 					mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+						var sort = $(this).attr('data-sort');
+						var item = $(this).attr('data-item')
+						getorderdata.sortType = sort;
 						mui(pullRefreshEl).pullToRefresh({
 							down: {
 								callback: function() {
@@ -287,7 +290,7 @@
 											var $wrap = $('<div class="wrap"></div>')
 											var html = template("template", orderdata);
 											$wrap.html(html);
-											$('.mui-scroll', '#item1').append($wrap)
+											$('.mui-scroll', item).append($wrap)
 										},
 										error: function(xhr, type, errorThrown) {
 											console.log(type)
@@ -297,7 +300,6 @@
 							},
 							up: {
 								callback: function() {
-									
 									var _this = this;
 									plus.nativeUI.showWaiting('加载中', {
 										background: '#d1d1d1'
@@ -309,13 +311,17 @@
 										success: function(data) {
 											_this.endPullUpToRefresh();
 											plus.nativeUI.closeWaiting()
-											var orderdata = {
-												"list": data.res
+											if (data.res.length!=0) {
+												var orderdata = {
+													"list": data.res
+												}
+												var $wrap = $('<div class="wrap"></div>');
+												var html = template("template", orderdata);
+												$wrap.html(html);
+												$('.mui-scroll', '#item1').append($wrap)
+											} else {
+												mui.toast('没有数据了')
 											}
-											var $wrap = $('<div class="wrap"></div>');
-											var html = template("template", orderdata);
-											$wrap.html(html);
-											$('.mui-scroll', '#item1').append($wrap)
 										},
 										error: function(xhr, type, errorThrown) {
 											console.log(type);

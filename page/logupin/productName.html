@@ -183,7 +183,23 @@
 				function successcb() {
 						plus.webview.currentWebview().close();
 						plus.webview.getLaunchWebview().show('slide-in-left')
+						getacountinfo()
 					}
+				function getacountinfo(){
+					mui.ajax(BASEURL+'account/info',{
+						type:'post',
+						success:function(data){
+							if(data.ret==1){
+								mui.toast('获取初始账户信息成功');
+								var i = plus.webview.getLaunchWebview();
+								mui.fire(i,'setaccount',data.res);
+							}
+						},
+						error:function(xhr,type){
+							console.log(type)
+						}
+					})
+				}
 					//密码可见
 				var img = document.getElementById('img_change');
 				img.addEventListener('tap', function() {

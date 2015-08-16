@@ -1,11 +1,4 @@
-mui.init({
-	preloadPages:[
-    {
-      url:'./page/logupin/login.html',
-      id:'login'
-    }
-  ]
-});
+mui.init();
 //处理菜单与侧滑部分、
 var offCanvasWrapper = mui('#offCanvasWrapper');
 var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
@@ -63,14 +56,24 @@ mui.plusReady(function() {
 				this.href = "#offCanvasSide";
 				offCanvasWrapper.offCanvas('show');
 			} else {
-				plus.webview.getWebviewById('login').show('slide-in-right');
+				openWindow('./page/logupin/login.html')
 			}
 
+		})
+		document.getElementById('mysned').addEventListener('tap',function(){
+			iflogin(function(){
+				openWindow('./page/mysendorder/my-send-order.html')
+			})
+		})
+		document.getElementById('mywallet').addEventListener('tap',function(){
+			iflogin(function(){
+				openWindow('./page/wallet/my-wallet.html')
+			})
 		})
 	})
 	//处理返回键
 window.addEventListener('removehref',function(){
-	document.getElementById('menu').href = "";
+	document.getElementById('menu').href = "javascrip:void(0)";
 })
 window.addEventListener('closeMenu', function() {
 	if ($('#offCanvasContentScroll').offset().left > 0) {
