@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <script src="../../js/mui.min.js"></script>
+    <style>
+    	.mui-bar {background-color: #3ba767;}
+		.mui-bar h1,.mui-bar a {color: #FFF;}
+		.mui-content>.mui-table-view:first-child {margin: 0;}
+		.mui-scroll-wrapper {top: 44px;}
+		.mui-media-body {margin-right: 1.5em;}
+    </style>
+</head>
+<body>
+	
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">address</h1>
+	</header>
+	<div class="mui-content">
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">
+						<div class="mui-navigate-right">
+							<div class="mui-pull-left mui-media-object">
+								<span class="mui-icon mui-icon-location "></span>
+							</div>
+							<div class="mui-media-body">
+								<div class="mui-ellipsis">中国重庆fsdfasdfasdfasdfasdfasdfasd</div>
+								<span class="sub-city mui-h6 mui-ellipsis">重庆市南岸区</span>
+							</div>	
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script>
+      	mui.init();
+      	mui.plusReady(function(){
+      		mui(".mui-scroll-wrapper").scroll();
+      	})
+    </script>
+</body>
+</html>

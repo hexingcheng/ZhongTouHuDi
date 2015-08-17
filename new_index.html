@@ -307,7 +307,7 @@
 												<div class="picintro">wallet</div>
 											</div>
 										</div>
-										<div class="func">
+										<div id="go-help" class="func">
 											<div class="imgwrap">
 												<img src="img/help.png" />
 												<div class="picintro">help</div>
@@ -329,6 +329,9 @@
 				$('.imgwrap').css('border-color','#ffffff');
 				$('.imgwrap',$(this)).css('border-top-color','#46ac6f')
 			})
+			document.getElementById("go-help").addEventListener("tap", function(){
+				openWindow("./page/help/help-index.html");
+			}, false)
 		</script>
 	</body>
 
