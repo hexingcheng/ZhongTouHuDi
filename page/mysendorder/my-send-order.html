@@ -7,6 +7,11 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="my-send-order.css"/>
 		<script src="../../js/mui.min.js"></script>
+		<style type="text/css">
+			.data-null {padding: 7em 0;color: #3ba767;font-weight: bold;}
+			.content-padded {height: 5px; background-color: #ffbfaf;opacity: 0.5;}
+			.content-padded:last-child {height: 0;}
+		</style>
 	</head>
 
 	<body style="background: #fff;">
@@ -24,23 +29,23 @@
 				<a class="mui-control-item" href="#item4" data-status="4">abandonded</a>
 			</div>
 			<div id="scroll-wrapper" class="mui-scroll-wrapper">
-				<div id="link-detail" class="mui-scroll">
-					<div id="item1" class="mui-control-content mui-active">
+				<div id="link-detail">
+					<div id="item1" class="mui-control-content mui-scroll mui-active">
 						<div style="position: relative;">
 							<div class="waiting-box"></div>
 						</div>
 					</div>
-					<div id="item2" class="mui-control-content">
+					<div id="item2" class="mui-control-content mui-scroll">
 						<div style="position: relative;">
 							<div class="waiting-box"></div>
 						</div>
 					</div>
-					<div id="item3" class="mui-control-content">
+					<div id="item3" class="mui-control-content mui-scroll">
 						<div style="position: relative;">
 							<div class="waiting-box"></div>
 						</div>
 					</div>
-					<div id="item4" class="mui-control-content">
+					<div id="item4" class="mui-control-content mui-scroll">
 						<div style="position: relative;">
 							<div class="waiting-box"></div>
 						</div>
@@ -100,6 +105,7 @@
 					</a>
 				</li>
 			</ul>
+			<div class="content-padded"></div>
 			{{/each}}
 		</script>
 		<script src="../../js/template.js"></script>
@@ -171,7 +177,7 @@
 					})
 				}
 				
-				// 实现上拉刷新与下拉刷新功能
+			/*	// 实现上拉刷新与下拉刷新功能
 				mui.each(document.querySelectorAll("#link-detail .mui-control-content"), function(index, element){
 					mui(element).pullToRefresh({
 						// 上拉的时候
@@ -188,7 +194,7 @@
 						}
 					})
 				})
-				
+				*/
 			})
 			
 			// 发送数据状态显示详情界面信息
@@ -198,13 +204,16 @@
 					timeout : 5000,
 					data: datas,
 					success: function(data) {
-						console.log(JSON.stringify(data));
+//						console.log(JSON.stringify(data));
 						var orderdata = {
 							"list": data.res
 						}
 //						alert(data.res.gWeight);
 						// 模板渲染
 						var html = template("template", orderdata);
+						if(!html){
+							html = '<div class="mui-h3 mui-text-center data-null">没有更多数据</div>'
+						}
 						document.getElementById('item'+datas.status).innerHTML = html;
 					},
 					error: function(xhr, type, errorThrown) {

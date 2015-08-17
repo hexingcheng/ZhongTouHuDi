@@ -20,10 +20,10 @@
 			<div class="mui-scroll">
 				<ul class="mui-table-view mui-grid-view mui-grid-9">
 					<li id="msg-warn" style="display: none;" class="mui-table-view-cell mui-ellipsis mui-col-xs-12">
-						<a href="./list-of-participants.html">
+						<span class="link-btn" data-href="./list-of-participants.html">
 							<span class="mui-icon mui-icon-star"></span>
 							<span class="mui-h5">There is an new advice you have not read!</span>
-						</a>
+						</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-12">
 						<span class="mui-pull-left title-color mui-text-left name">Name</span>
@@ -118,8 +118,8 @@
 			sendmsg(orderid);
 			
 			// 议价中添加选取递送人
-			$("#msg-warn").on("tap", "a", function(){
-				openWindow($(this).attr("href"));
+			$("#msg-warn").on("tap", ".link-btn", function(){
+				openWindow($(this).attr("data-href"));
 			})
 			
 			// 取消订单

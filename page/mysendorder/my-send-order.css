@@ -58,7 +58,7 @@
 }
 .waiting-box {
 	position: absolute;
-	background: #fff url(../../img/loading46.gif) no-repeat center center;
+	background: #fff url(../../img/loading.gif) no-repeat center center;
 	width: 100%;
 	height: 20em;
 }
