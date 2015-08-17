@@ -502,28 +502,58 @@
 				
 				// 选择发送者联系方式
 				document.getElementById("sender-contact").addEventListener("tap", function(){
-					// 回调联系人参数
-					findContact(function(contacts){
-						for(var i in contacts){
-							console.log(i +"   "+ contacts[i]);
-						}
-					})
+					findContact();
+					setstorage("order-type", "sender");
+					openWindow("./choose-contact.html");
 				}, false)    
 				
+				document.getElementById("receiver-contact").addEventListener("tap", function(){
+					findContact();
+					setstorage("order-type", "receiver");
+					openWindow("./choose-contact.html");
+				}, false)
+				
 				// 查询联系人列表
-				function findContact(callback){
-					plus.contacts.getAddressBook( plus.contacts.ADDRESSBOOK_PHONE, function( addressbook ) {
-						// 查找联系人
-						addressbook.find([], function(contacts){
-							callback(contacts);
-						}, function(err){
-							console.log("联系人查找错误："+err.message);
-						}, {multiple : false})
-						
-					}, function ( e ) {
-						console.log( "Get address book failed: " + e.message );
-					} );
+				function findContact(){
+					plus.contacts.getAddressBook(plus.contacts.ADDRESSBOOK_PHONE, function (addressbook) {
+						addressbook.find(["displayName","phoneNumbers"],function(contacts){
+							var lists = [];
+							for(var i = 0; i < contacts.length; i++){
+								var phonenum = contacts[i].phoneNumbers;
+								var obj = {
+									index : (i+1),
+									name : contacts[i].displayName
+								}
+								if(phonenum.length == 0){
+									break;
+								}
+								
+								for(var j = 0; j < phonenum.length; j++){
+									obj.contact = phonenum[j].value;
+									lists.push(obj);
+								}
+							}
+//							console.log(JSON.stringify(lists))
+							plus.storage.setItem("contacts", JSON.stringify(lists));
+						}, function ( err ) {
+							console.log("查找错误 :"+ err.message);
+						},{multiple:true});
+					},function(e){
+						console.log("Get address book failed: " + e.message);
+					});
 				}
+				
+				window.addEventListener("order:sender", function(eve){
+//					alert(eve.detail.name);
+					$("#sender").val(eve.detail.name);
+					$("#contact").val(eve.detail.tel);
+				})
+				
+				window.addEventListener("order:receiver", function(eve){
+//					alert(eve.detail.name)
+					$("#receiver").val(eve.detail.name);
+					$("#tel").val(eve.detail.tel);
+				})
 				
 			})
 		</script>
