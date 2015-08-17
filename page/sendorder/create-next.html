@@ -545,12 +545,12 @@
 				
 				window.addEventListener("order:sender", function(eve){
 //					alert(eve.detail.name);
+
 					$("#sender").val(eve.detail.name);
 					$("#contact").val(eve.detail.tel);
 				})
 				
 				window.addEventListener("order:receiver", function(eve){
-//					alert(eve.detail.name)
 					$("#receiver").val(eve.detail.name);
 					$("#tel").val(eve.detail.tel);
 				})
