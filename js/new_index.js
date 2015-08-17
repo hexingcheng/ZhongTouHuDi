@@ -37,7 +37,12 @@ window.addEventListener("swiperight", function() {
 });
 
 mui.plusReady(function() {
-		mui('#offCanvasSideScroll').scroll();
+		plus.screen.lockOrientation('portrait-primary')
+		plus.webview.currentWebview().setStyle({scrollIndicator:'none'})
+		mui('#offCanvasSideScroll').scroll({
+			bounce: true,
+			indicators: false
+		});
 		mui('#offCanvasContentScroll').scroll();
 		plus.webview.getLaunchWebview().setStyle({
 			scrollIndicator: 'none'
@@ -47,18 +52,11 @@ mui.plusReady(function() {
 			interval: 1500
 		});
 		//处理点击事件，跳转页面
-		mui('.mui-table-view-cell').on('tap', 'a', function() {
+		mui('.menulist').on('tap', '.list', function() {
+			$('.list').css('background-color','#03242c');
+			$(this).css('background-color','#063d4b')
 			var url = this.getAttribute('data-src');
 			openWindow(url);
-		})
-		document.getElementById('menu').addEventListener('tap', function() {
-			if (getstorage('token')) {
-				this.href = "#offCanvasSide";
-				offCanvasWrapper.offCanvas('show');
-			} else {
-				openWindow('./page/logupin/login.html')
-			}
-
 		})
 		document.getElementById('mysned').addEventListener('tap',function(){
 			iflogin(function(){
@@ -72,9 +70,6 @@ mui.plusReady(function() {
 		})
 	})
 	//处理返回键
-window.addEventListener('removehref',function(){
-	document.getElementById('menu').href = "javascrip:void(0)";
-})
 window.addEventListener('closeMenu', function() {
 	if ($('#offCanvasContentScroll').offset().left > 0) {
 		offCanvasWrapper.offCanvas('close');

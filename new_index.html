@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -92,16 +91,21 @@
 				padding-bottom: 20px;
 			}
 			.picwrap {
+				background-color: #FFFFFF;
+				margin: 0;
 				width: 80px;
 				height: 80px;
-				border: 2px solid #FFFFFF;
+				border: 2px solid #97a5a8;
 				border-radius: 50%;
 				overflow: hidden;
 				margin: 0 auto;
 			}
 			.picwrap img {
-				width: 80px;
-				height: 80px;
+				border: 0;
+				outline: none;
+				display: inline-block;
+				border-radius: 50%;
+				overflow: hidden;
 			}
 			.myname,
 			.mytitle {
@@ -135,89 +139,133 @@
 			.addlmar {
 				margin-left: 30px;
 			}
+			.menulist{
+				padding: 0;
+				margin: 0;
+			}
+			.list{
+				border-bottom: 1px solid #063d4b;
+				position: relative;
+				height: 60px;
+			}
+			.navagator,.icon{
+				padding: 10px;
+				line-height: 40px;
+				color: #FFFFFF;
+				height: 100%;
+				position: absolute;
+			}
+			.icon{
+				top: 0;
+				left: 0;
+			}
+			.navagator{
+				top: 0;
+				right: 0;
+			}
+			.menucon{
+				font-size: 15px;
+				height: 60px;
+				padding-left: 50px;
+				line-height: 60px;
+				color: #FFFFFF;
+			}
+			.sendtips,.recetips{
+				vertical-align: top;
+				display: inline-block;
+				height: 20px;
+				width: 20px;
+				margin: 20px 0 20px 10px;
+				border-radius: 50%;
+				color: #FFFFFF;
+				font-size: 12px;
+				line-height: 20px;
+				text-align: center;
+			}
+			.sendtips{
+				background-color: #23a0cf;
+			}
+			.recetips{
+				background-color: #3fc776;
+			}
+			.addtopbor{
+				border-top: 1px solid #063d4b;
+			}
+			.contact{
+				font-size: 15px;
+				color: #FFFFFF;
+				text-align: center;
+				background-color: #063d4b;
+				height: 60px;
+				line-height: 60px;
+				width: 100%;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				z-index: 100;
+			}
+			.mui-scroll{
+				height: 105%;
+			}
 		</style>
 	</head>
-
 	<body>
 		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
 			<aside id="offCanvasSide" class="mui-off-canvas-left">
 				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<div class="per-infos">
-							<div class="infowrap mui-table-view-cell">
-								<div class="picwrap"  >
-									<a data-src="./page/person/me_center.html">
-										<img src="img/user.png" class="pho"/>
-									</a>
+							<div class="infowrap">
+								<div class="picwrap">
+									<img src="img/defualt.png" class="pho" width="100%"/>
 								</div>
 								<p class="myname">Hammond Danil</p>
 								<p class="mytitle">Admiral</p>
 							</div>
 						</div>
-						<ul class="mui-table-view" id="caidan">
-							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" id="walte" data-src="./page/wallet/my-wallet.html">
-									<span class="mui-icon mui-icon-gear mui-pull-left"></span>
-									<div class="mui-media-body  addlmar">
-										<p class=''>my wallet</p>
-									</div>
-								</a>
+						<ul class="menulist">
+							<li class="list addtopbor" data-src="./page/wallet/my-wallet.html">
+								<span class="icon mui-icon-gear mui-icon"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">my wallet</div>
 							</li>
-							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" id="my-order" data-src="./page/mysendorder/my-send-order.html">
-									<span class="mui-icon mui-icon-list mui-pull-left"></span>
-									<div class="mui-media-body  addlmar">
-										<p class=''>my billing order</p>
-									</div>
-								</a>
+							<li class="list" data-src="./page/mysendorder/my-send-order.html">
+								<span class="icon mui-icon-list mui-icon"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">my billing order<span class="sendtips">5</span></div>
 							</li>
-							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" id="i-get" data-src="./page/mygetorder/my-get-order.html">
-									<span class="mui-icon mui-icon-paperplane mui-pull-left"></span>
-									<div class="mui-media-body  addlmar">
-										<p class=''>my receving order</p>
-									</div>
-								</a>
+							<li class="list" data-src="./page/mygetorder/my-get-order.html">
+								<span class="icon mui-icon-paperplane mui-icon"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">my receving order<span class="recetips">5</span></div>
 							</li>
-							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" id="help-me" data-src="">
-									<span class="mui-icon mui-icon-plusempty mui-pull-left"></span>
-									<div class="mui-media-body  addlmar">
-										<p class=''>deliver application</p>
-									</div>
-								</a>
+							<li class="list">
+								<span class="icon mui-icon-plusempty mui-icon"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">deliver application</div>
 							</li>
-							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" id="close" data-src="page/self-info-setting.html">
-									<span class="mui-icon mui-icon-home mui-pull-left"></span>
-									<div class="mui-media-body  addlmar">
-										<p class=''>oparating instruction</p>
-									</div>
-								</a>
+							<li class="list" data-src="page/self-info-setting.html">
+								<span class="icon mui-icon-home mui-icon"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">oparating instruction</div>
 							</li>
-							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" id="close" data-src="page/self-info-setting.html">
-									<span class="mui-icon mui-icon-personadd mui-pull-left"></span>
-									<div class="mui-media-body  addlmar">
-										<p class=''>contact Customer Server</p>
-									</div>
-								</a>
-							</li>
-							<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" id="close" data-src="page/self-info-setting.html">
-									<span class="mui-icon mui-icon-home mui-pull-left"></span>
-									<div class="mui-media-body  addlmar">
-										<p class=''>setting up</p>
-									</div>
-								</a>
+							<li class="list" data-src="page/self-info-setting.html">
+								<span class="icon mui-icon-gear mui-icon"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">setting up</div>
 							</li>
 						</ul>
+						
 					</div>
+				</div>
+				<div class="contact">
+					<span class="mui-icon mui-icon-person-filled"></span>
+					Contact Customer Service
 				</div>
 			</aside>
 			<div class="mui-inner-wrap">
 				<header class="mui-bar mui-bar-nav">
-					<a class="mui-icon mui-icon-list mui-pull-left" id="menu" href="javascrip:void(0)"></a>
+					<a class="mui-icon mui-icon-list mui-pull-left" id="menu" href="#offCanvasSide"></a>
 					<h1 class="mui-title">Along</h1>
 					<a class="mui-icon mui-icon-chatbubble mui-pull-right"id="chat-info"></a>
 				</header>

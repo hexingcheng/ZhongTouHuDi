@@ -12,8 +12,238 @@
       		
       	})
     </script>
+    <style type="text/css">
+    	.mui-off-canvas-left, .mui-off-canvas-right {visibility: visible;}
+    	html,
+			body,
+			.mui-content {
+				background-color: #d9dadb;
+			}
+			.mui-bar {
+				background-color: #46ac6f;
+			}
+			.mui-bar a,
+			.mui-bar h1 {
+				color: #FFFFFF;
+			}
+			.mui-slider-title {
+				background-color: #103f4b;
+				opacity: 0.6;
+			}
+			.mui-slider-indicator .mui-indicator {
+				width: 10px;
+				height: 10px;
+				margin: 10px 5px;
+			}
+			.mui-slider-indicator {
+				bottom: -5px;
+			}
+			.func {
+				overflow: hidden;
+				box-sizing: border-box;
+				margin-bottom: 0.5%;
+				width: 33%;
+				height: 100px;
+				float: left;
+				background-color: #ffffff;
+			}
+			.rlb {
+				margin-left: 0.5%;
+				margin-right: 0.5%;
+			}
+			.mui-content-padded {
+				margin: 30px 10px;
+				overflow: hidden;
+			}
+			.func img {
+				width: 40%;
+				height: 40%;
+				margin: 20% 30% 40% 30%;
+			}
+			.imgwrap {
+				position: relative;
+				border-top: 3px solid #FFFFFF;
+			}
+			.picintro {
+				position: absolute;
+				width: 100%;
+				line-height: 20px;
+				text-align: center;
+				color: #06495a;
+				bottom: 20%;
+				font-size: 20px;
+			}
+			.addra {
+				width: 100%;
+				overflow: hidden;
+				border-radius: 10px;
+			}
+			.bortop {
+				position: absolute;
+				width: 100%;
+				height: 3px;
+				top: 0;
+				left: 0;
+				background-color: #3fc776;
+				display: none;
+			}
+			#offCanvasSide {
+				height: 100%;
+				background-color: #03242c;
+			}
+			.per-infos {
+				width: 100%;
+				padding-top: 30px;
+				padding-bottom: 20px;
+			}
+			.picwrap {
+				background-color: #FFFFFF;
+				margin: 0;
+				width: 80px;
+				height: 80px;
+				border: 2px solid #FFFFFF;
+				border-radius: 50%;
+				overflow: hidden;
+				margin: 0 auto;
+				position: relative;
+			}
+			.picwrap img {
+				border: 0;
+				outline: none;
+			}
+			.myname,
+			.mytitle {
+				margin: 0;
+				padding: 0;
+				line-height: 20px;
+				color: #FFFFFF;
+				text-align: center;
+			}
+			#caidan,
+			#caidan li {
+				background-color: #03242c;
+			}
+			#caidan p {
+				color: #FFFFFF;
+			}
+			#caidan span {
+				color: #FFFFFF;
+			}
+			.mui-table-view:before{
+				top: -1px;
+				background-color: #063d4b;
+			}
+			.mui-table-view-cell:after {
+				left: 0;
+				background-color: #063d4b;
+			}
+			.mui-table-view:after {
+				background-color: #063d4b;
+			}
+			.addlmar {
+				margin-left: 30px;
+			}
+			.menulist{
+				padding: 0;
+				margin: 0;
+			}
+			.list{
+				border-bottom: 1px solid #063d4b;
+				position: relative;
+				height: 60px;
+			}
+			.navagator,.icon{
+				padding: 10px;
+				line-height: 40px;
+				color: #FFFFFF;
+				height: 100%;
+				position: absolute;
+			}
+			.icon{
+				top: 0;
+				left: 0;
+			}
+			.navagator{
+				top: 0;
+				right: 0;
+			}
+			.menucon{
+				font-size: 15px;
+				height: 60px;
+				padding-left: 50px;
+				line-height: 60px;
+				color: #FFFFFF;
+			}
+			.sendtips,.recetips{
+				vertical-align: top;
+				display: inline-block;
+				height: 20px;
+				width: 20px;
+				margin: 20px 0 20px 10px;
+				border-radius: 50%;
+				color: #FFFFFF;
+				font-size: 12px;
+				line-height: 20px;
+				text-align: center;
+			}
+			.sendtips{
+				background-color: #23a0cf;
+			}
+			.recetips{
+				background-color: #3fc776;
+			}
+			.addtopbor{
+				border-top: 1px solid #063d4b;
+			}
+    </style>
 </head>
 <body>
-	
+	<aside  class="mui-off-canvas-left">
+		<div  class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div class="per-infos">
+					<div class="infowrap">
+						<div class="picwrap">
+							<img src="../img/defualt.png" class="pho" width="100%"/>
+						</div>
+						<p class="myname">Hammond Danil</p>
+						<p class="mytitle">Admiral</p>
+					</div>
+				</div>
+				<ul class="menulist">
+					<li class="list addtopbor" data-src="./page/wallet/my-wallet.html">
+						<span class="icon mui-icon-gear mui-icon"></span>
+						<span class="navagator mui-icon-arrowright mui-icon"></span>
+						<div class="menucon">my wallet</div>
+					</li>
+					<li class="list" data-src="./page/mysendorder/my-send-order.html">
+						<span class="icon mui-icon-list mui-icon"></span>
+						<span class="navagator mui-icon-arrowright mui-icon"></span>
+						<div class="menucon">my billing order<span class="sendtips">5</span></div>
+					</li>
+					<li class="list" data-src="./page/mygetorder/my-get-order.html">
+						<span class="icon mui-icon-paperplane mui-icon"></span>
+						<span class="navagator mui-icon-arrowright mui-icon"></span>
+						<div class="menucon">my receving order<span class="recetips">5</span></div>
+					</li>
+					<li class="list">
+						<span class="icon mui-icon-plusempty mui-icon"></span>
+						<span class="navagator mui-icon-arrowright mui-icon"></span>
+						<div class="menucon">deliver application</div>
+					</li>
+					<li class="list" data-src="page/self-info-setting.html">
+						<span class="icon mui-icon-home mui-icon"></span>
+						<span class="navagator mui-icon-arrowright mui-icon"></span>
+						<div class="menucon">oparating instruction</div>
+					</li>
+					<li class="list" data-src="page/self-info-setting.html">
+						<span class="icon mui-icon-gear mui-icon"></span>
+						<span class="navagator mui-icon-arrowright mui-icon"></span>
+						<div class="menucon">setting up</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</aside>
 </body>
 </html>
