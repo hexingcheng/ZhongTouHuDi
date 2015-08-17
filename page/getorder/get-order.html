@@ -175,7 +175,7 @@
 						<a class="mui-control-item" href="#item4" data-sort="weight" data-item="#item4">weight</a>
 					</div>
 				</div>
-				<div class="mui-slider-group">
+				<div class="mui-slider-group" id="link-detail">
 					<div id="item1" class="mui-slider-item mui-control-content mui-active">
 						<div class="mui-scroll-wrapper" id="scroll1">
 							<div class="mui-scroll" data-sort="time" data-item="#item1">
@@ -391,6 +391,7 @@
 								orderid: this.getAttribute("data-orderid"), // 获取编号
 								status: this.getAttribute("data-status") // 运送状态
 							}
+						
 							// 数据储存在本地storage中
 						plus.storage.setItem("order", JSON.stringify(order));
 						var href = this.href;

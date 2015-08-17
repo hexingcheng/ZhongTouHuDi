@@ -37,7 +37,6 @@
 		<footer class="mui-bar mui-bar-footer">
 			<button class="mui-btn mui-badge-green mui-btn-block" id="close">退出登录</button>
 		</footer>
-		<div class="tips mui-hidden">正在退出...</div>
 		<div class="mui-content">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
@@ -86,11 +85,11 @@
 					openWindow('./about-us.html')
 				})
 				document.getElementById('close').addEventListener('tap', function(e) {
-					$('.tips').removeClass('mui-hidden');
+					plus.nativeUI.showWaiting('正在退出')
 					mui.ajax(BASEURL + 'auth/out', {
 							type: "get",
 							success: function(data) {
-								$('.tips').addClass('mui-hidden')
+								plus.nativeUI.closeWaiting()
 								console.log('success')
 								plus.storage.removeItem('token');
 								var i = plus.webview.getLaunchWebview();

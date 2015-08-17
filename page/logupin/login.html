@@ -39,7 +39,6 @@
 		<footer class="mui-bar mui-bar-footer  none_box">
 			<div class="log_button color_w" id="submit-button">Logon</div>
 		</footer>
-		<div class="tips mui-hidden">登录中...</div>
 		<div class="mui-content bg">
 			<!--log框-->
 			<div class="w_log ">
@@ -96,7 +95,7 @@
 					}
 					// 判断输入是否正确
 					if (flag) {
-						$('.tips').removeClass('mui-hidden')
+						plus.nativeUI.showWaiting('登录中')
 						var data = {
 								phone: phonenum,
 								pwd: pwd,
@@ -119,6 +118,7 @@
 									mui.toast("输入异常");
 								} else if (obj.ret = 1) {
 									//注册成功
+									plus.nativeUI.closeWaiting();
 									getacountinfo()
 									setstorage('token', obj.token);
 									plus.webview.currentWebview().close();
