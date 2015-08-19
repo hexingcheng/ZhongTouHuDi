@@ -392,8 +392,6 @@
 											if (data.ret == 1) {
 												plus.nativeUI.closeWaiting();
 												mui.toast('发单成功');
-												plus.webview.getWebviewById('sendorder/createorder').close()
-												plus.webview.getWebviewById('create-next').close();
 												openWindow('./result.html')
 											} else if (data.ret == -101) {
 												mui.confirm('您还未登陆，请登录！', '提示', ['确定', '取消'], function(e) {

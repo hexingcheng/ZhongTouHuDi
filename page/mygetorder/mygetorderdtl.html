@@ -36,9 +36,8 @@
 				position: absolute;
 				top: 0;
 				left: 0;
-				background-color: #000000;
-				opacity: 0.4;
-				z-index: 10;
+				background-color: rgba(0, 0, 0, 0.4);
+				z-index: 999;
 			}
 			.dialog,
 			.confirm,
@@ -50,7 +49,6 @@
 				width: 270px;
 				overflow: hidden;
 				word-break: break-all;
-				z-index: 10000;
 			}
 			.info {
 				color: #000000;
@@ -112,18 +110,41 @@
 			<h1 class="mui-title">Detail</h1>
 		</header>
 		<footer style="padding:10px; height: 60px;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-			<div class="cancel">cancel</div>
+			<div class="cancel mui-hidden">cancel</div>
 			<div class="check mui-hidden">send check code</div>
 			<div class="write mui-hidden">write code</div>
 		</footer>
-		<div class="mask mui-hidden"></div>
-		<div class="dialog mui-hidden">
-			<div class="info">
-				Make order complete?
+		<div class="mask mui-hidden">
+			<div class="dialog mui-hidden">
+				<div class="info">
+					Make order complete?
+				</div>
+				<p class="wron">this action will complete order.</p>
+				<div class="ok">ok</div>
+				<div class="cancels">cancel</div>
 			</div>
-			<p class="wron">this action will complete order.</p>
-			<div class="ok">ok</div>
-			<div class="cancels">cancel</div>
+			<div class="confirm mui-hidden">
+				<div class="info">
+					code send success
+				</div>
+				<div class="back">back</div>
+				<div class="checks">check</div>
+			</div>
+			<div class="inputcode mui-hidden">
+				<div class="info">
+					input your code from receiver
+				</div>
+				<p class="wron">
+					<input type="text" id="vacode" />
+				</p>
+				<div class="cancelinput">cancel</div>
+				<div class="checkr">check</div>
+			</div>
+		</div>
+		<div id="loading-mask">
+			<div id="loading-box">
+				<img src="../../img/loading45.gif" alt="loading" class="load" />
+			</div>
 		</div>
 		<div class="mui-content">
 			<div id="scroll-wrapper" class="mui-scroll-wrapper">
@@ -188,27 +209,6 @@
 		</div>
 		<!-- 遮罩层 -->
 		<!-- 加载中的蒙层 -->
-		<div id="loading-mask"></div>
-		<div id="loading-box">
-			<img src="../../img/loading45.gif" alt="loading" class="load"/>
-		</div>
-		<div class="confirm mui-hidden">
-			<div class="info">
-				code send success
-			</div>
-			<div class="back">back</div>
-			<div class="checks">check</div>
-		</div>
-		<div class="inputcode mui-hidden">
-			<div class="info">
-				input your code from receiver
-			</div>
-			<p class="wron">
-				<input type="text" id="vacode" />
-			</p>
-			<div class="cancelinput">cancel</div>
-			<div class="checkr">check</div>
-		</div>
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script>
@@ -229,6 +229,7 @@
 						$('#loading-mask').addClass('mui-hidden')
 						$('#loading-box').addClass('mui-hidden')
 						if (data.res.status == 1 && data.res.bargain == 1) {
+							$('.cancel').removeClass('mui-hidden')
 							$('.marktips').removeClass('mui-hidden');
 							$('.addmoney').text(data.res.bargainMoney + ".0");
 						}
@@ -238,7 +239,7 @@
 							$('.write').addClass('mui-hidden');
 						}
 						if (data.res.status == 3) {
-							$('.cancel').show();
+							$('.cancel').removeClass('mui-hidden');
 							$('.check').addClass('mui-hidden');
 							$('.write').addClass('mui-hidden');
 							$('.cancel').text('order done');
@@ -295,6 +296,7 @@
 					})
 				})
 				$('.cancel').on('tap', function() {
+					
 					if ($(this).text() == 'cancel') {
 						mui.ajax(BASEURL + 'order/bargainCancel', {
 							type: 'post',
@@ -316,7 +318,7 @@
 						})
 					} else if ($(this).text() == 'order done') {
 						$('.mask').removeClass('mui-hidden');
-						$('.dialog').removeClass('mui-hidden');
+						$('.dialog').removeClass('mui-hidden')
 						var l = ($(window).width() - 270) / 2;
 						var t = ($(window).height() - $('.dialog').height()) / 2;
 						$('.dialog').css({
@@ -357,8 +359,8 @@
 						success: function(data) {
 							if (data.ret == 1) {
 								plus.nativeUI.closeWaiting();
-								$('.confirm').removeClass('mui-hidden');
 								$('.mask').removeClass('mui-hidden');
+								$('.confirm').removeClass('mui-hidden')
 								var l = ($(window).width() - 270) / 2;
 								var t = ($(window).height() - $('.confirm').height()) / 2;
 								$('.confirm').css({
