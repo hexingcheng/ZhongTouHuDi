@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+		html,body,#slider{
+				height: 100%;
+			}
+			.mui-slider-item{
+				height: 100%;
+			}
+			.mui-slider-item a{
+				position: relative;
+				height: 100%;
+			}
+			.mui-slider-item a img{
+				position: absolute;
+				top: 50%;
+			}
+		</style>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-slider" id="slider">
+			<div class="mui-slider-group" id="preseepic">
+				<div class="mui-slider-item">
+					<a href="javascript:void(0)">
+						<img src="../img/cbd.jpg" class="preimg">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="javascript:void(0)">
+						<img src="../img/create-order.png" class="preimg">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="javascript:void(0)">
+						<img src="../img/help.png" class="preimg">
+					</a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="javascript:void(0)">
+						<img src="../img/pic1.png" class="preimg">
+					</a>
+				</div>
+			</div>
+		</div>
+		<script src="../js/jquery.min.js"></script>
+		<script>
+			var item = $('.preimg')
+			var len = item.length;
+			for(var i = 0;i<len;i++){
+				var t = ($(window).height()-item.eq(i).height())/2
+				item.eq(i).css('top',t)
+			}
+		</script>
+	</body>
+</html>

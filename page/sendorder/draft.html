@@ -203,7 +203,7 @@
 						"type": "send"
 					}
 					var cpage = plus.webview.currentWebview();
-					var opener = plus.webview.currentWebview().opener();
+					var opener = plus.webview.getWebviewById('sendorder/createorder')
 					showobj(datas)
 					mui.ajax(BASEURL + 'order/goodShow', {
 						type: 'post',
@@ -212,7 +212,7 @@
 //							console.log(JSON.stringify(data));
 							plus.storage.setItem("draft-datas", JSON.stringify(data))
 							mui.fire(opener, "draft:datas");
-							opener.show("slide-in-left", 200);
+							plus.webview.show(opener, "slide-in-left", 200);
 						},
 						error: function(xhr, type) {
 							console.log("错误信息显示：" + xhr.status);

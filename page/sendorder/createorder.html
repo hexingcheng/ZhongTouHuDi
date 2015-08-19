@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<title></title>
-		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/mui.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<style>
 			* {
@@ -179,15 +179,6 @@
 				right: -8px;
 				color: #3ba767;
 			}
-			.persee {
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				z-index: 1000;
-				top: 0;
-				left: 0;
-				background-color: #000000;
-			}
 			.persee-con {
 				width: 100%;
 				height: 100%;
@@ -218,7 +209,7 @@
 				height: 100%;
 				position: absolute;
 				z-index: 30;
-				background-color: rgba(0, 0, 0, 1);
+				background-color: rgba(0, 0, 0, 0.8);
 			}
 			.picwraps {
 				position: absolute;
@@ -233,9 +224,21 @@
 			}
 			.presee .mui-slider {
 				width: 80%;
-				max-height: 70%;
-				margin: 30% auto 40%;
+				height: 100%;
+				margin: 0 auto;
 				overflow: hidden;
+			}
+			.presee .mui-slider .mui-slider-item {
+				padding: 0 10px;
+				height: 100%;
+				box-sizing: border-box;
+			}
+			.presee .mui-slider .mui-slider-item a {
+				height: 100%;
+				position: relative;
+			}
+			.presee .mui-slider .mui-slider-item a img {
+				position: absolute;
 			}
 		</style>
 	</head>
@@ -254,42 +257,57 @@
 				<div class="mui-slider" id="slider">
 					<div class="mui-slider-group" id="preseepic">
 						<div class="mui-slider-item">
-							<a href="#">
+							<a href="javascript:void(0)">
 								<img src="" class="preimg">
 							</a>
 						</div>
 						<div class="mui-slider-item">
-							<a href="#">
+							<a href="javascript:void(0)">
 								<img src="" class="preimg">
 							</a>
 						</div>
 						<div class="mui-slider-item">
-							<a href="#">
+							<a href="javascript:void(0)">
 								<img src="" class="preimg">
 							</a>
 						</div>
 						<div class="mui-slider-item">
-							<a href="#">
+							<a href="javascript:void(0)">
 								<img src="" class="preimg">
 							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="mui-icon mui-icon-bars bars"></div>
+			<a class="mui-icon mui-icon-bars bars" href="#handle"></a>
 		</div>
 		<div id="delete" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a href="#" class="bycamera">拍照</a>
+					<a class="bycamera">拍照</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a href="#" class="bygallery">相册</a>
+					<a class="bygallery">相册</a>
 				</li>
 			</ul>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
 					<a href="#delete"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
+		<div id="handle" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a>确认</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>重新选择</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#handle"><b>返回</b></a>
 				</li>
 			</ul>
 		</div>
@@ -349,24 +367,24 @@
 						<div class="gap"></div>
 						<div class="goods-pic">
 							<ul class="mui-table-view mui-grid-view" id="take-photo">
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box" data-index='0'>
 									<a href="#delete" class="picpre">
-										<span class="mui-icon mui-icon-plusempty addclass 1"></span>
+										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box" data-index='1'>
 									<a href="#delete" class="picpre">
-										<span class="mui-icon mui-icon-plusempty addclass 2"></span>
+										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box" data-index='2'>
 									<a href="#delete" class="picpre">
-										<span class="mui-icon mui-icon-plusempty addclass 3"></span>
+										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box" data-index='3'>
 									<a href="#delete" class="picpre">
-										<span class="mui-icon mui-icon-plusempty addclass 4"></span>
+										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
 							</ul>
@@ -381,13 +399,11 @@
 	<script type="text/javascript" charset="utf-8">
 		mui.init();
 		var getdata = {};
-				getdata.gName="";
-				getdata.gWeight= "";
-				getdata.gValue= "";
-				getdata.pics= "";
-				getdata.info= "";
-				
-				
+		getdata.gName = "";
+		getdata.gWeight = "";
+		getdata.gValue = "";
+		getdata.pics = "";
+		getdata.info = "";
 		mui.plusReady(function() {
 			mui('#offCanvasSideScroll').scroll();
 			plus.webview.currentWebview().setStyle({
@@ -397,36 +413,43 @@
 				openWindow('./comment.html');
 			})
 			document.getElementById('next').addEventListener('tap', function() {
-				var name = $.trim($("#gname").val());
-				var weight = parseInt($.trim($("#gweight").val()));
-				var value = parseInt($.trim($("#gvalue").val()));
-				var info = $.trim($('#gettext').val());
-				
-				if(validate()){		// 验证成功
-					var param = {
-						gName: name,
-						gWeight: weight,
-						gValue: value,
-						info: info
-					}
-					if(!setpicid()){
-						param.pics = "";
+					var name = $.trim($("#gname").val());
+					var weight = parseInt($.trim($("#gweight").val()));
+					var value = parseInt($.trim($("#gvalue").val()));
+					var info = $.trim($('#gettext').val());
+					if (validate()) { // 验证成功
+						var param = {
+							gName: name,
+							gWeight: weight,
+							gValue: value,
+							info: info
+						}
+						if (!setpicid()) {
+							param.pics = "";
+						} else {
+							param.pics = setpicid();
+						}
+						var draft = JSON.parse(plus.storage.getItem("draft-datas"));
+						if (draft && draft.res && draft.res.orderId) {
+							param.orderId = draft.res.orderId;
+						}
+						openNewWindow('./create-next.html', param)
 					} else {
-						param.pics = setpicid();
+						mui.toast("资料填写不完整");
 					}
-					var draft = JSON.parse(plus.storage.getItem("draft-datas"));
-					if(draft && draft.res && draft.res.orderId){
-						param.orderId = draft.res.orderId;
-					}
-					
-					openNewWindow('./create-next.html', param) 
-				} else {
-					mui.toast("资料填写不完整");
+				})
+				// 信息验证
+
+			function toverticalcenter() {
+				var item = $('.preimg')
+				var len = item.length;
+				for (var i = 0; i < len; i++) {
+					var t = ($(window).height() - item.eq(i).height()) / 2
+					item.eq(i).css('top', t)
 				}
-			})
-			
-			// 信息验证
-			function validate(){
+			}
+
+			function validate() {
 				var flag = false;
 				var gname = $.trim($("#gname").val());
 				var gweight = $.trim($("#gweight").val());
@@ -442,7 +465,6 @@
 			var iw, _this;
 			mui('#take-photo').on('tap', '.addclass', function(e) {
 				iw = $(this).outerWidth()
-				$(this).parent().attr('href', "#");
 				_this = this;
 			})
 			$('.presee').on('tap', function() {
@@ -471,7 +493,6 @@
 					showobj(getdata)
 					mui.confirm('是否保存已填写信息？', '提示', ['确定', '取消'], function(e) {
 						if (e.index == 0) {
-//							alert(JSON.stringify(getdata));
 							mui.ajax(BASEURL + 'order/resOrderByGood', {
 								type: 'post',
 								data: getdata,
@@ -481,17 +502,18 @@
 								}
 							});
 						} else {
-							plus.webview.currentWebview().close();
-							closewebview();
 							plus.webview.getLaunchWebview().show('slide-in-left');
+							closewebview();
 							var pages = ["draft", "create-next"]
-							for(var i = 0; i < pages.length; i++){
+							for (var i = 0; i < pages.length; i++) {
 								var tmpage = plus.webview.getWebviewById(pages[i]);
-								if(tmpage){
+								if (tmpage) {
 									plus.webview.close(tmpage, "none", 0);
 								}
 							}
-							plus.webview.currentWebview().close("slide-out-right", 200);
+							setTimeout(function() {
+								plus.webview.currentWebview().close("slide-out-right");
+							}, 300)
 						}
 					})
 				} else {
@@ -501,9 +523,6 @@
 				}
 			}
 
-			$('.bars').on('tap', function() {})
-
-		
 			function closewebview() {
 				if (plus.webview.getWebviewById('create-next')) {
 					plus.webview.getWebviewById('create-next').close();
@@ -517,11 +536,14 @@
 			}
 
 			function bycamera(contexts) {
+				$(contexts).parent().attr('href', "#");
 				var camera = plus.camera.getCamera();
 				var res = camera.supportedImageResolutions[0];
 				var fmt = camera.supportedImageFormats[0];
 				camera.captureImage(function(path) {
 					dealpic(path, contexts)
+				}, function() {
+					$(contexts).parent().attr('href', "#delete");
 				})
 			}
 
@@ -540,10 +562,11 @@
 			}
 
 			function bygallery(context) {
+				$(context).parent().attr('href', "#");
 				plus.gallery.pick(function(path) {
 					dealpic(path, context);
 				}, function(e) {
-					//					mui.toast('选择图片失败' + e)
+					$(context).parent().attr('href', "#delete");
 					showobj(e)
 				}, {
 					filter: 'image',
@@ -586,30 +609,33 @@
 				return pics.join(',');
 			}
 			mui('.mui-table-view-cell').on('tap', '.wids', function() {
+				var ind = $(this).parents('.mui-table-view-cell').attr('data-index');
+				var num = $('.mui-slider-item', '#preseepic').length;
+				var inner = "";
+				for(var k = 0;k<4;k++){
+					inner+='<div class="mui-slider-item"><a href="javascript:void(0)"><img src="" class="preimg"></a></div>';
+				}
+				$('#preseepic').html(inner)
 				$('.presee').removeClass('mui-hidden');
-				//					var first = this.children[0].getAttribute('title');
-				//					$('.first').attr('src', first);
-				//					var haspic = $('.wids');
-				//					var len = haspic.length;
-				//					for (var i = 0; i < len; i++) { 
-				//						var path = $(haspic[i].children[0]).prop('title');
-				//						if (path != first) {
-				//							var item = $('<div class="mui-slider-item"><a href="#"><img src=' + path + '></a></div>');
-				//							$('#preseepic').append(item);
-				//						}
-				//					}
 				var haspic = $('.picpre');
+				var removeArr = [];
 				for (var i = 0; i < 4; i++) {
+					$('.mui-slider-item', '#preseepic').attr('data-index', i);
 					if (Boolean($('span', haspic.eq(i)).hasClass('wids'))) {
-						
 						var path = $('img', haspic.eq(i)).attr('title');
 						$('.preimg', '#preseepic').eq(i).attr('src', path)
 					} else {
-						$('.mui-slider-item', '#preseepic').eq(i).remove()
+						removeArr.push(i)
 					}
 				}
-				//				var gallery = mui('#slider');
-				//				gallery.slider().gotoItem(2);
+				for (var j = removeArr.length; j > 0; j--) {
+					$('.mui-slider-item', '#preseepic').eq(removeArr[j - 1]).remove();
+				}
+				toverticalcenter();
+				var gallery = mui('#slider');
+				gallery.slider({
+					interval: 0
+				}).gotoItem(ind);
 			})
 
 			function dealImage(path, obj, callback) {
@@ -645,51 +671,42 @@
 					callback(base64);
 				}
 			}
-			
-			
-			
 			window.addEventListener('getdraftdata', function(eve) {
 				var datas = eve.detail.formdatas;
 				console.log('hehehe')
 				showobj(datas);
 			})
-			window.addEventListener('getdraft',function(eve){
+			window.addEventListener('getdraft', function(eve) {
 				getdata = eve.detail;
 			})
-			
 		})
-		
-		
-		window.addEventListener("draft:datas", function(eve){
+		 window.addEventListener("draft:datas", function(eve) {
 			var iw = $('.addclass').outerWidth()
 			var datas = JSON.parse(plus.storage.getItem("draft-datas"));
-			
 			console.log(plus.storage.getItem("draft-datas"));
-			
-			$("#gname").val(datas.res.gName);		// 商品名
+			$("#gname").val(datas.res.gName); // 商品名
 			$("#gweight").val(datas.res.gWeight);
 			$("#gvalue").val(datas.res.gValue);
 			$("#gettext").val(datas.res.info);
-			getdata.orderId = datas.res.orderId;			// 该商品ID
-			var html = "<a><span class='mui-icon mui-icon-plusempty addclass'></span></a>";
+			getdata.orderId = datas.res.orderId; // 该商品ID
+			var html = "<a href='#delete' class='picpre'><span class='mui-icon mui-icon-plusempty addclass'></span></a>";
 			$(".img-box").html(html);
-			
-			if(datas.res.pics.length > 0){
+			if (datas.res.pics.length > 0) {
 				var n = BASEURL.indexOf('/api/');
-				var per = BASEURL.substring(0,n);
+				var per = BASEURL.substring(0, n);
 				var pic = datas.res.pics;
 				var len = pic.length;
 				console.log(JSON.stringify(pic));
-				if(len > 0){
-					for(var i = 0; i<len;i++){
+				if (len > 0) {
+					for (var i = 0; i < len; i++) {
 						var url = per + pic[i].path;
-						var html = '<a><span class="wids"><img alt="'+ pic[i].id +'" title="'+ url +'" height="'+ iw +'px" width="'+ iw +'px" src=' + url +'></span></a>';
+						var html = '<a  href="#" class="picpre"><span class="wids"><img alt="' + pic[i].id + '" title="' + url + '" height="' + iw + 'px" width="' + iw + 'px" src=' + url + '></span></a>';
 						console.log(html)
 						document.querySelectorAll(".img-box")[i].innerHTML = html;
 					}
 				}
 			}
-//			alert(plus.storage.getItem("draft-datas"))
 		})
 	</script>
+
 </html>
