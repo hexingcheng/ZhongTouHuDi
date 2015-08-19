@@ -348,6 +348,7 @@
 				c.setStyle({
 					scrollIndicator: 'none'
 				})
+				
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(function(pos) {
 						lot = pos.coords.longitude;
@@ -359,6 +360,12 @@
 						var c = plus.webview.currentWebview();
 						var onOff = true;
 						$('.mui-bbtn').on('tap', function() {
+							
+							var data = JSON.parse(plus.storage.getItem("draft-datas"))
+							if(data && data.res && data.res.orderId){
+								getdata.orderId = data.res.orderId;
+							}
+							
 							getdata.gName = c.gName;
 							getdata.gValue = c.gValue;
 							getdata.gWeight = c.gWeight;
@@ -379,7 +386,6 @@
 							getdata.receiverWd = $('#sendaddr').attr('data-Wd');
 							getdata.insType = parseInt($('#comer').val());
 							getdata.status = 1;
-							showobj(getdata)
 							if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 								if (onOff) {
 									onOff = false
@@ -389,6 +395,9 @@
 										type: 'post',
 										timeout:10000,
 										success: function(data) {
+											
+											plus.storage.removeItem("draft-datas");		// 返回时清楚storage中储存的数据
+											
 											if (data.ret == 1) {
 												plus.nativeUI.closeWaiting();
 												mui.toast('发单成功');
@@ -422,6 +431,8 @@
 				} else {
 					mui.toast('获取位置信息失败')
 				}
+				
+				
 				$('.pict,.arrtime').on('tap', function() {
 					var _this = $(this);
 					var options = {
@@ -467,13 +478,40 @@
 						$('#sendaddr').text(addr).css('color', "#000")
 					}
 				})
+				
+				// 获取草稿信息
+				var datas = JSON.parse(plus.storage.getItem("draft-datas"));
+				if(datas && datas.res.orderId && datas.res.gName){
+					$('#pay').val(datas.res.money);			// 奖励
+					$('#gettime').attr('data-time', datas.res.getTime);		// 属性取值
+					$('#gettime').html(datas.res.getTime);		// 显示值
+					$('#respecttime').attr('data-time', datas.res.finTime);
+					$('#respecttime').html(datas.res.finTime);
+					$('#getaddr').attr('data-addr', datas.res.sendAddr);		// 地址属性取值
+					$('#getaddr').html(datas.res.sendAddr)		// 地址属性值显示
+					$('#sendaddr').attr('data-addr', datas.res.receiveAddr);
+					$('#sendaddr').html(datas.res.receiveAddr);
+					
+					$('#sender').val(datas.res.sender);
+					$('#contact').val(datas.res.senderPhone);
+					$('#receiver').val(datas.res.receiver);
+					$('#tel').val(datas.res.receiverPhone);
+				}
+				
+				
+				// 返回按钮时进行数据存储
+				var back = mui.back;
 				mui.back = function() {
 					draftdata();
-					var sdod = plus.webview.getWebviewById('sendorder/createorder');
-					sdod.show('slide-in-left', 300);
+					back();
 				}
-
+				// 获取草稿信息
 				function draftdata() {
+					
+					if(c.orderId){
+						getdata.orderId = c.orderId;
+					}
+					
 					getdata.gName = c.gName;
 					getdata.gValue = c.gValue;
 					getdata.gWeight = c.gWeight;
@@ -494,8 +532,8 @@
 					getdata.receiverWd = $('#sendaddr').attr('data-Wd');
 					getdata.insType = parseInt($('#comer').val());
 					getdata.status = 0;
-					var create = plus.webview.getWebviewById('sendorder/createorder.html');
-					mui.fire(create,'getdraft',getdata)
+					var opener = plus.webview.currentWebview().opener();
+					mui.fire(opener,'getdraft',getdata)
 				}
 				
 				// 选择发送者联系方式

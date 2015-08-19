@@ -349,22 +349,22 @@
 						<div class="gap"></div>
 						<div class="goods-pic">
 							<ul class="mui-table-view mui-grid-view" id="take-photo">
-								<li class="mui-table-view-cell mui-media mui-col-xs-3">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box">
 									<a href="#delete" class="picpre">
 										<span class="mui-icon mui-icon-plusempty addclass 1"></span>
 									</a>
 								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box">
 									<a href="#delete" class="picpre">
 										<span class="mui-icon mui-icon-plusempty addclass 2"></span>
 									</a>
 								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box">
 									<a href="#delete" class="picpre">
 										<span class="mui-icon mui-icon-plusempty addclass 3"></span>
 									</a>
 								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box">
 									<a href="#delete" class="picpre">
 										<span class="mui-icon mui-icon-plusempty addclass 4"></span>
 									</a>
@@ -380,13 +380,15 @@
 	<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
 		mui.init();
+		var getdata = {};
+				getdata.gName="";
+				getdata.gWeight= "";
+				getdata.gValue= "";
+				getdata.pics= "";
+				getdata.info= "";
+				
+				
 		mui.plusReady(function() {
-			var getdata = {};
-			getdata.gName = "";
-			getdata.gWeight = "";
-			getdata.gValue = "";
-			getdata.pics = "";
-			getdata.info = "";
 			mui('#offCanvasSideScroll').scroll();
 			plus.webview.currentWebview().setStyle({
 				scrollIndicator: "none"
@@ -395,26 +397,36 @@
 				openWindow('./comment.html');
 			})
 			document.getElementById('next').addEventListener('tap', function() {
-					var name = $.trim($("#gname").val());
-					var weight = parseInt($.trim($("#gweight").val()));
-					var value = parseInt($.trim($("#gvalue").val()));
-					var info = $.trim($('#gettext').val());
-					if (validate()) { // 验证成功
-						var param = {
-							gName: name,
-							gWeight: weight,
-							gValue: value,
-							pics: setpicid(),
-							info: info
-						}
-						openWindow('./create-next.html', param)
-					} else {
-						mui.toast("资料填写不完整");
+				var name = $.trim($("#gname").val());
+				var weight = parseInt($.trim($("#gweight").val()));
+				var value = parseInt($.trim($("#gvalue").val()));
+				var info = $.trim($('#gettext').val());
+				
+				if(validate()){		// 验证成功
+					var param = {
+						gName: name,
+						gWeight: weight,
+						gValue: value,
+						info: info
 					}
-				})
-				// 信息验证
-
-			function validate() {
+					if(!setpicid()){
+						param.pics = "";
+					} else {
+						param.pics = setpicid();
+					}
+					var draft = JSON.parse(plus.storage.getItem("draft-datas"));
+					if(draft && draft.res && draft.res.orderId){
+						param.orderId = draft.res.orderId;
+					}
+					
+					openNewWindow('./create-next.html', param) 
+				} else {
+					mui.toast("资料填写不完整");
+				}
+			})
+			
+			// 信息验证
+			function validate(){
 				var flag = false;
 				var gname = $.trim($("#gname").val());
 				var gweight = $.trim($("#gweight").val());
@@ -445,24 +457,26 @@
 				mui('#delete').popover('toggle')
 			})
 			$('.draft').on('tap', function() {
-				openWindow('../draft.html')
+				openWindow('./draft.html')
 			})
 			mui.back = function() {
 				if ($('#gname').val()) {
 					getdata.gName = $('#gname').val();
 					getdata.gWeight = $('#gweight').val() || 0;
 					getdata.gValue = $('#gvalue').val() || 0;
-					getdata.info = $('#gettest').val() || "";
+					getdata.info = $('#gettext').val() || "";
 					getdata.pics = setpicid()
 					getdata.status = 0;
+					console.log(getdata.orderId)
+					showobj(getdata)
 					mui.confirm('是否保存已填写信息？', '提示', ['确定', '取消'], function(e) {
 						if (e.index == 0) {
+//							alert(JSON.stringify(getdata));
 							mui.ajax(BASEURL + 'order/resOrderByGood', {
 								type: 'post',
 								data: getdata,
 								success: function(data) {
-									console.log(data.ret);
-									openWindow('../draft.html')
+									openNewWindow("./draft.html");
 									mui.toast('保存草稿成功！')
 								}
 							});
@@ -470,6 +484,14 @@
 							plus.webview.currentWebview().close();
 							closewebview();
 							plus.webview.getLaunchWebview().show('slide-in-left');
+							var pages = ["draft", "create-next"]
+							for(var i = 0; i < pages.length; i++){
+								var tmpage = plus.webview.getWebviewById(pages[i]);
+								if(tmpage){
+									plus.webview.close(tmpage, "none", 0);
+								}
+							}
+							plus.webview.currentWebview().close("slide-out-right", 200);
 						}
 					})
 				} else {
@@ -478,8 +500,10 @@
 					plus.webview.getLaunchWebview().show('slide-in-left')
 				}
 			}
+
 			$('.bars').on('tap', function() {})
 
+		
 			function closewebview() {
 				if (plus.webview.getWebviewById('create-next')) {
 					plus.webview.getWebviewById('create-next').close();
@@ -537,7 +561,6 @@
 						dataLength: base.length // base字符串长度
 					},
 					success: function(data) {
-						console.log(data.ret);
 						var img = $('<span class="wids"><img title=' + path + ' src=' + base + ' alt=' + data.res.fid + '></span>');
 						$(context).parent().append(img);
 						$('img', '.wids').css({
@@ -556,9 +579,9 @@
 
 			function setpicid() {
 				var pics = [];
-				var num = $('.wids').length;
+				var num = $('#take-photo').find(".wids").length;
 				for (var i = 0; i < num; i++) {
-					pics[i] = $('img', $($('.wids')[i])).attr('alt');
+					pics[i] = $('img', $('#take-photo').find(".wids").eq(i)).attr('alt');
 				}
 				return pics.join(',');
 			}
@@ -622,15 +645,51 @@
 					callback(base64);
 				}
 			}
+			
+			
+			
 			window.addEventListener('getdraftdata', function(eve) {
 				var datas = eve.detail.formdatas;
 				console.log('hehehe')
 				showobj(datas);
 			})
-			window.addEventListener('getdraft', function(eve) {
-				var data = eve.detail;
+			window.addEventListener('getdraft',function(eve){
+				getdata = eve.detail;
 			})
+			
+		})
+		
+		
+		window.addEventListener("draft:datas", function(eve){
+			var iw = $('.addclass').outerWidth()
+			var datas = JSON.parse(plus.storage.getItem("draft-datas"));
+			
+			console.log(plus.storage.getItem("draft-datas"));
+			
+			$("#gname").val(datas.res.gName);		// 商品名
+			$("#gweight").val(datas.res.gWeight);
+			$("#gvalue").val(datas.res.gValue);
+			$("#gettext").val(datas.res.info);
+			getdata.orderId = datas.res.orderId;			// 该商品ID
+			var html = "<a><span class='mui-icon mui-icon-plusempty addclass'></span></a>";
+			$(".img-box").html(html);
+			
+			if(datas.res.pics.length > 0){
+				var n = BASEURL.indexOf('/api/');
+				var per = BASEURL.substring(0,n);
+				var pic = datas.res.pics;
+				var len = pic.length;
+				console.log(JSON.stringify(pic));
+				if(len > 0){
+					for(var i = 0; i<len;i++){
+						var url = per + pic[i].path;
+						var html = '<a><span class="wids"><img alt="'+ pic[i].id +'" title="'+ url +'" height="'+ iw +'px" width="'+ iw +'px" src=' + url +'></span></a>';
+						console.log(html)
+						document.querySelectorAll(".img-box")[i].innerHTML = html;
+					}
+				}
+			}
+//			alert(plus.storage.getItem("draft-datas"))
 		})
 	</script>
-
 </html>
