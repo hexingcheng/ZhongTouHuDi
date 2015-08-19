@@ -69,6 +69,42 @@ function openWindow(url, param, ani, time) {
 		}
 	}
 	// for test
+function openNewWindow(url, param, ani, time) {
+	var snum, id;
+	var animationType =  ani || 'slide-in-right';
+	var animationTime = time || 150;
+	param = param || {};
+	var pnum = url.indexOf('.html');
+	if (url.indexOf('page') != -1) {
+		snum = url.indexOf('e/') + 1;
+	} else {
+		snum = url.indexOf('/');
+	}
+	id = url.substring(snum + 1, pnum)
+	if (window.plus) {
+		mui.openWindow({
+			id: id,
+			url: url,
+			createNew : true,
+			extras: param,
+			show: {
+				aniShow: animationType,
+				duration: animationTime
+			},
+			waiting: {
+				autoShow: true,
+				title: '正在加载...',
+				options: {
+					background: '#d1d1d1'
+				}
+			}
+		})
+	} else {
+		alert(0)
+	}
+}
+
+
 
 function setsysstorage(val) {
 	var ago = getstorage('systemmsg') || "";

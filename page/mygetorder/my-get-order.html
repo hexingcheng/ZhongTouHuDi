@@ -69,13 +69,16 @@
 			}
 			.waiting-box {
 				position: absolute;
-				background: #fff url(../../img/loading46.gif) no-repeat center center;
+				background: #fff url(../../img/loading.gif) no-repeat center center;
 				width: 100%;
 				height: 20em;
 			}
 			.red {
 				color: #ff8474;
 			}
+			.content-padded {height: 5px; background-color: #ffbfaf;opacity: 0.5;}
+			.content-padded:last-child {height: 0;}
+			.data-null {padding: 7em 0;color: #3ba767;font-weight: bold;}
 		</style>
 	</head>
 
@@ -149,6 +152,7 @@
 					</a>
 				</li>
 			</ul>
+			<div class="content-padded"></div>
 			{{/each}}
 		</script>
 		<!--<script src="../../js/jquery.min.js"></script>-->
@@ -179,6 +183,9 @@
 								"list": data.res
 							}
 							var html = template("template", orderdata);
+							if(!html){
+								html = '<div class="mui-h3 mui-text-center data-null">没有更多数据</div>'
+							}
 							document.getElementById('item' + status).innerHTML = html;
 						},
 						error: function(xhr, type, errorThrown) {
