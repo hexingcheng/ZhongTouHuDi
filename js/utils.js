@@ -1,5 +1,5 @@
 var BASEURL = "http://202.202.43.107:8080/api/"
-//	var BASEURL = "http://172.31.56.19:8080/api/"
+	//	var BASEURL = "http://172.31.56.19:8080/api/"
 
 function getcamera(successcb, errorcb, option) {
 	var cmr = plus.camera.getCamera();
@@ -34,10 +34,88 @@ function ifloginCommon(cb) {
 		openWindow('./page/logupin/login.html')
 	}
 }
+//  ajax通用函数参数说明 options:基本配置参数，url、type（默认 post 可不填）、data 必填,successcb成功回调  必填 参数为请求返回data对象，
+//errorcb：必填 失败回调 参数 xhr,type,nonetworkcb 无网络回调 选填
+//eg:
+//myAjax({url:"auth/regDynCode",data:{phone:11010101011}},function(a){
+//		console.log(a.code);
+//	},function(){},function(){
+//		alert('没网呀')
+//	})
+function myAjax(options, successcb, errorcb,nonetworkcb) {
+	
+	var net = plus.networkinfo.getCurrentType();
+	if (net != 0 && net != 1) {
+		innerAjax(options, successcb, errorcb)
+	} else {
+		mui.toast('未连接网络,请链接网络');
+		if(nonetworkcb){
+			nonetworkcb()
+		}
+	}
+}
 
+function innerAjax(options,successcb,errorcb) {
+	var op = {
+		type:'post',
+		url:'',
+		data:{}
+	};
+	copyobj(options,op);
+	plus.nativeUI.showWaiting('请求中',{background:"#d1d1d1"})
+	mui.ajax(BASEURL + op.url, {
+		type: op.type,
+		data: op.data,
+		success: function(data) {
+			plus.nativeUI.closeWaiting();
+			if (data.ret == 1) {
+				alert(data)
+				successcb(data);
+			} else if (data.ret == -101) {
+				if(getstorage('token')){
+					var token = getstorage('token');
+					mui.ajax(BASEURL+'auth/activate',{
+						type:'post',
+						data:{
+							token:token
+						},
+						success:function(data){
+							if(data.ret==1){
+								innerAjax(options,successcb,errorcb);
+							}else if(data.ret==-1){
+								mui.toast('身份校验异常,请重新登录');
+								mui.ajax(BASEURL+'auth/out',{
+									type:'get',
+									success:function(){
+										openWindow('./page/logupin/login.html')
+									}
+								})
+							}
+						}
+					})
+				}
+			} else{
+				mui.toast('网络出错了')
+			}
+		},
+		error: function(xhr,type){
+			plus.nativeUI.closeWaiting();
+			errorcb(xhr,type)
+		}
+	})
+}
+function copyobj(from,to){
+	for(var i in from){
+		if(typeof from[i]=='object'){
+			copyobj(from[i],to[i])
+		}else{
+			to[i]=from[i];
+		}
+	}
+}
 function openWindow(url, param, ani, time) {
 		var snum, id;
-		var animationType =  ani || 'slide-in-right';
+		var animationType = ani || 'slide-in-right';
 		var animationTime = time || 150;
 		param = param || {};
 		var pnum = url.indexOf('.html');
@@ -69,9 +147,10 @@ function openWindow(url, param, ani, time) {
 		}
 	}
 	// for test
+
 function openNewWindow(url, param, ani, time) {
 	var snum, id;
-	var animationType =  ani || 'slide-in-right';
+	var animationType = ani || 'slide-in-right';
 	var animationTime = time || 150;
 	param = param || {};
 	var pnum = url.indexOf('.html');
@@ -85,7 +164,7 @@ function openNewWindow(url, param, ani, time) {
 		mui.openWindow({
 			id: id,
 			url: url,
-			createNew : true,
+			createNew: true,
 			extras: param,
 			show: {
 				aniShow: animationType,
@@ -115,7 +194,7 @@ function setsysstorage(val) {
 function getAllwebview() {
 	var a = plus.webview.all();
 	for (var i in a) {
-		console.log(a[i].getURL()+':'+a[i].id)
+		console.log(a[i].getURL() + ':' + a[i].id)
 	}
 }
 
@@ -152,17 +231,19 @@ function getuserbasicinfo() {
 	})
 	return obj;
 }
-function showobj(obj){
-	for(var i in obj){
-		console.log(i+":"+obj[i]);
+
+function showobj(obj) {
+	for (var i in obj) {
+		console.log(i + ":" + obj[i]);
 	}
 }
+
 function successcb() {
 	plus.webview.getLaunchWebview().show()
 }
 
 //表单前端验证
 
-function formRegTest(){
-	
+function formRegTest() {
+
 }
