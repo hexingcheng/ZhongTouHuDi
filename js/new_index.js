@@ -47,10 +47,6 @@ mui.plusReady(function() {
 		plus.webview.getLaunchWebview().setStyle({
 			scrollIndicator: 'none'
 		})
-		var gallery = mui('.mui-slider');
-		gallery.slider({
-			interval: 1500
-		});
 		//处理点击事件，跳转页面
 		mui('.menulist').on('tap', '.list', function() {
 			$('.list').css('background-color','#03242c');
