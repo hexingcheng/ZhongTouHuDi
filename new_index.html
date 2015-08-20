@@ -8,10 +8,19 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<style>
+		*{
+			box-sizing: border-box;
+		}
 			html,
 			body,
 			.mui-content {
+				position: relative;
+				width: 100%;
+				height: 100%;
 				background-color: #d9dadb;
+			}
+			#offCanvasWrapper{
+				width: 100%;
 			}
 			.mui-bar {
 				background-color: #46ac6f;
@@ -37,7 +46,7 @@
 				box-sizing: border-box;
 				margin-bottom: 0.5%;
 				width: 33%;
-				height: 100px;
+				height: 49.75%;
 				float: left;
 				background-color: #ffffff;
 			}
@@ -46,17 +55,21 @@
 				margin-right: 0.5%;
 			}
 			.mui-content-padded {
-				margin: 30px 10px;
+				width: 100%;
+				height: 100%;
+				padding:0;
+				margin: 0;
 				overflow: hidden;
 			}
 			.func img {
 				width: 40%;
 				height: 40%;
-				margin: 20% 30% 40% 30%;
+				margin: 30% 30% 30% 30%;
 			}
 			.imgwrap {
 				position: relative;
-				border-top: 3px solid #FFFFFF;
+				box-sizing: border-box;
+				/*border-top: 3px solid #FFFFFF;*/
 			}
 			.picintro {
 				position: absolute;
@@ -64,22 +77,14 @@
 				line-height: 20px;
 				text-align: center;
 				color: #06495a;
-				bottom: 20%;
+				bottom: 10%;
 				font-size: 20px;
 			}
 			.addra {
+				height: 100%;
 				width: 100%;
 				overflow: hidden;
 				border-radius: 10px;
-			}
-			.bortop {
-				position: absolute;
-				width: 100%;
-				height: 3px;
-				top: 0;
-				left: 0;
-				background-color: #3fc776;
-				display: none;
 			}
 			#offCanvasSide {
 				height: 100%;
@@ -87,14 +92,14 @@
 			}
 			.per-infos {
 				width: 100%;
-				padding-top: 30px;
+				padding-top: 40px;
 				padding-bottom: 20px;
 			}
 			.picwrap {
 				background-color: #FFFFFF;
 				margin: 0;
-				width: 80px;
-				height: 80px;
+				width: 85px;
+				height: 85px;
 				border: 2px solid #97a5a8;
 				border-radius: 50%;
 				overflow: hidden;
@@ -146,40 +151,49 @@
 			.list{
 				border-bottom: 1px solid #063d4b;
 				position: relative;
-				height: 60px;
+				height: 52px;
 			}
-			.navagator,.icon{
-				padding: 10px;
-				line-height: 40px;
+			.icon{
+				padding: 5px 20px;
+				line-height: 42px;
+				color: #FFFFFF;
+				height: 100%;
+				position: absolute;
+				}
+			.navagator{
+				padding: 5px 10px;
+				line-height: 42px;
 				color: #FFFFFF;
 				height: 100%;
 				position: absolute;
 			}
 			.icon{
-				top: 0;
+				top: 2px;
 				left: 0;
+				font-size: 18px;
 			}
 			.navagator{
 				top: 0;
 				right: 0;
+				font-size: 18px;
 			}
 			.menucon{
-				font-size: 15px;
-				height: 60px;
-				padding-left: 50px;
-				line-height: 60px;
+				font-size: 14px;
+				height: 52px;
+				padding-left: 55px;
+				line-height: 52px;
 				color: #FFFFFF;
 			}
 			.sendtips,.recetips{
 				vertical-align: top;
 				display: inline-block;
-				height: 20px;
-				width: 20px;
-				margin: 20px 0 20px 10px;
+				height: 16px;
+				width: 16px;
+				margin: 18px 0 18px 10px;
 				border-radius: 50%;
 				color: #FFFFFF;
 				font-size: 12px;
-				line-height: 20px;
+				line-height: 16px;
 				text-align: center;
 			}
 			.sendtips{
@@ -195,26 +209,80 @@
 				bottom: 60px;
 			}
 			.contact{
-				font-size: 15px;
+				font-size: 14px;
 				color: #FFFFFF;
 				text-align: center;
 				background-color: #063d4b;
-				height: 60px;
-				line-height: 60px;
+				height: 52px;
+				line-height: 52px;
 				width: 100%;
 				position: absolute;
 				bottom: 0;
 				left: 0;
 				z-index: 100;
 			}
+			.tact{
+				margin-right: 10px;
+				font-size: 18px;
+			}
+			#header{
+				height: 52px;
+			}
+			#header h1{
+				padding-left: 10px;
+				text-align: left;
+				line-height: 52px;
+			}
+			.mui-bar .mui-icon{
+				padding-top: 18px;
+			}
 			.mui-scroll{
 				/*height: 105%;*/
+			}
+			.mytitle{
+				font-size: 15px;
+			}
+			.myname{
+				font-size: 15px;
+				padding-top: 8px;
+			}
+			.mui-scroll{
+				padding: 0;
+				margin: 0;
+				height: 100%;
+			}
+			.slide{
+				width: 100%;
+				margin: 0;padding: 0;
+				height: 45%;
+			}
+			#slide{
+				width: 100%;
+				margin: 0;
+				padding: 0;
+				height: 100%;
+			}
+			.mui-slider-group,.mui-slider-item,.mui-slider-item a,.mui-slider-item img{
+				margin: 0;
+				padding: 0;
+				height: 100%;
+			}
+			.functions{
+				padding: 3%;
+				box-sizing: border-box;
+				height: 55%;
+				width: 100%;
+				position: absolute;
+				top: 45%;
+			}
+			.mui-bar-nav~.mui-content{
+				padding-top: 52px;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
-			<aside id="offCanvasSide" class="mui-off-canvas-left">
+			<aside id="offCanvasSide" class="mui-off-canvas-left mui-slide-in">
 				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<div class="per-infos">
@@ -262,19 +330,18 @@
 					</div>
 				</div>
 				<div class="contact">
-					<span class="mui-icon mui-icon-person-filled"></span>
+					<span class="mui-icon mui-icon-person-filled tact"></span>
 					Contact Customer Service
 				</div>
 			</aside>
 			<div class="mui-inner-wrap">
-				<header class="mui-bar mui-bar-nav">
+				<header class="mui-bar mui-bar-nav" id="header">
 					<a class="mui-icon mui-icon-list mui-pull-left" id="menu" href="#offCanvasSide"></a>
 					<h1 class="mui-title">Along</h1>
 					<a class="mui-icon mui-icon-chatbubble mui-pull-right"id="chat-info"></a>
 				</header>
 				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
-					<div class="mui-scroll">
-						<div class="mui-content">
+					<div class="mui-scroll" id="srcoll">
 							<div class="slide">
 								<div id="slider" class="mui-slider">
 									<div class="mui-slider-group mui-slider-loop">
@@ -325,7 +392,6 @@
 								</div>
 							</div>
 							<div class="functions">
-								<div class="mui-content-padded">
 									<div class="addra">
 										<div class="func" id="hlep-son">
 											<div class="imgwrap">
@@ -365,8 +431,6 @@
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -376,10 +440,12 @@
 		<script type="text/javascript" src="js/utils.js"></script>
 		<script type="text/javascript" src="js/new_index.js"></script>
 		<script>
-			$('.func').height($('.func').width()).on('tap', function() {
-				$('.imgwrap').css('border-color','#ffffff');
-				$('.imgwrap',$(this)).css('border-top-color','#46ac6f')
-			})
+			$('#offCanvasSide').css('width','83%');
+			$('#srcoll').height($(window).height()-52);
+//			$('.func').height($('.func').width()).on('tap', function() {
+//				$('.imgwrap').css('border-color','#ffffff');
+//				$('.imgwrap',$(this)).css('border-top-color','#46ac6f')
+//			})
 			document.getElementById("go-help").addEventListener("tap", function(){
 				openWindow("./page/help/help-index.html");
 			}, false)

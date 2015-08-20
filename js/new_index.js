@@ -28,6 +28,11 @@ window.addEventListener("swipeleft", function() {
 		return;
 	}
 });
+window.addEventListener('removehref',function(){
+	$('.pho').attr('src','img/defualt.png')
+	$('.myname').text("");
+	$('.mytittle').text("")
+})
 window.addEventListener("swiperight", function() {
 	if ($('#offCanvasContentScroll').offset().left < 200) {
 		offCanvasWrapper.offCanvas('show');
@@ -43,7 +48,7 @@ mui.plusReady(function() {
 			bounce: true,
 			indicators: false
 		});
-		mui('#offCanvasContentScroll').scroll();
+//		mui('#offCanvasContentScroll').scroll();
 		plus.webview.getLaunchWebview().setStyle({
 			scrollIndicator: 'none'
 		})
