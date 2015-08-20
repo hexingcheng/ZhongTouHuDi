@@ -140,6 +140,7 @@
 	<div id="loading-box">
 		<img src="../../img/loading45.gif" alt="loading"/>
 	</div>
+	
 	<script src="../../js/jquery.min.js" ></script>
 	<script src="../../js/utils.js"></script>
 	
@@ -154,25 +155,7 @@
 			
 			// 订单评价
 			document.getElementById("comment-order").addEventListener("tap", function(){
-				mui.ajax(BASEURL + "order/evaluate", {
-					data : {
-						orderId : orderid,
-						score : "5",
-						info : "评价信息"
-					},
-					type : "post",
-					success : function(data){
-						
-						if(data.ret == 1){
-							alert("评价成功");
-						} else {
-							alert("不能重复评论");
-						}
-					},
-					error : function(xhr, type){
-						console.log(type)
-					}
-				})
+				openWindow("./order-comment.html");
 			}, false);
 		})
 		
@@ -187,8 +170,7 @@
 	      		},
 	      		type : "post",
 	      		success : function(data){
-	      			console.log(JSON.stringify(data));
-	      			
+//	      			console.log(JSON.stringify(data));
 	      			if(data.ret == 1){
 	      				$(".goods-name").html(data.res.gName);		// 货物名称
 		      			$("#goods-value").html(data.res.money);		// 价值
@@ -235,6 +217,7 @@
 						// 验证是否需要取消按钮
 						if(data.res.status == 6){
 							$("#footer-cancel").css("display", "none")
+							$(".mui-scroll-wrapper").css("bottom", 0)
 						}
 						
 						
