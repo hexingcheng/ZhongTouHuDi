@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="get-order-comment.css" />
 		<script src="../../js/mui.min.js"></script>
 		<style>
+			body{font-size: 14px;}
 			.mui-bar {
 				background-color: #3ba767;
 			}
@@ -62,7 +63,7 @@
 				display: inline-block;
 				width: 25%;
 				border-left: 1px solid #e8e8e8;
-				padding: 2px 0 25px 11px;
+				padding: 8px 0 17px 10px;
 			}
 			.goods-rewards {
 				padding: 0.6em 0;
@@ -71,15 +72,21 @@
 				position: absolute;
 				background: #fff url(../../img/loading.gif) no-repeat center center;
 				width: 100%;
-				height: 20em;
+				height: 25em;
+				background-size: 30% 40%;
 			}
 			.red {
 				color: #ff8474;
 			}
-			.content-padded {height: 5px; background-color: #ffbfaf;opacity: 0.5;}
+			.content-padded {height: 10px; background-color: #F2F2F2;}
 			.content-padded:last-child {height: 0;}
 			.data-null {padding: 7em 0;color: #3ba767;font-weight: bold;}
-			div.mui-scroll-wrapper {top: 92px;}
+			div.mui-scroll-wrapper {top: 103px;}
+			.data-null {padding: 8em 0 0 0;color: #ccc;font-weight: bold;}
+			.mui-segmented-control .mui-control-item {line-height: 48px;}
+			.mui-segmented-control {height: 48px;}
+			.goods-name {font-size: 16px;}
+			.goods-value {font-size: 18px;}
 		</style>
 	</head>
 
@@ -102,6 +109,41 @@
 						<div style="position: relative;">
 							<div class="waiting-box"></div>
 						</div>
+						<!--<ul class="mui-table-view" data-id="{{$value.orderId}}">
+				<li class="mui-table-view-cell">
+					<a href="javascript:void(0)" class="detail-page">
+						<div class="goods-name-bar">
+							<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
+						</div>
+						<div class="goods-content">
+							<div class="goods-direction mui-pull-left">
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">Weight</span>
+									<span class="goods-msg">{{$value.gWeight}}</span>
+								</div>
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">From</span>
+									<span class="goods-msg">{{$value.sendAddr}}</span>
+								</div>
+								<div class="goods-bar goods-to-bar mui-ellipsis">
+									<span class="goods-to font-color">To</span>
+									<span class="goods-msg">{{$value.receiveAddr}}</span>
+								</div>
+								<div class="goods-bar goods-comment-bar mui-ellipsis">
+									<span class="goods-comment font-color">Deadline</span>
+									<span class="goods-msg red">{{$value.time}}</span>
+								</div>
+							</div>
+							<div class="goods-rewards-bar mui-pull-right mui-text-center">
+								<div>{{$value.statusDetail == 11? "议价中":$value.statusDetail==12 ? "待付款" : $value.statusDetail==13 ? "接单中" : $value.statusDetail==21 ? "未取货" : $value.statusDetail==22 ? "已取货" : $value.statusDetail==31 ? "待评价":"已评价"}}</div>
+								<div class="goods-rewards">Reward</div>
+								<div class="goods-value">{{$value.money}}</div>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div class="content-padded"></div>-->
 					</div>
 					<div id="item2" class="mui-control-content">
 						<div style="position: relative;">
@@ -140,14 +182,17 @@
 									<span class="goods-msg">{{$value.receiveAddr}}</span>
 								</div>
 								<div class="goods-bar goods-comment-bar mui-ellipsis">
-									<span class="goods-comment font-color">Deadline</span>
+									<span class="goods-comment font-color">
+										{{$value.statusDetail == 11 ? "发布时间" : $value.statusDetail == 12 ? "接单时间" : $value.statusDetail == 13 ? "发布时间" : 
+										$value.statusDetail == 21 ? "付款时间" : $value.statusDetail == 22 ? "取货时间" : $value.statusDetail == 31 ? "签单时间" : $value.statusDetail == 32 ? "评价时间" : "取消时间"}}
+									</span>
 									<span class="goods-msg red">{{$value.time}}</span>
 								</div>
 							</div>
 							<div class="goods-rewards-bar mui-pull-right mui-text-center">
 								<div>{{$value.statusDetail == 11? "议价中":$value.statusDetail==12 ? "待付款" : $value.statusDetail==13 ? "接单中" : $value.statusDetail==21 ? "未取货" : $value.statusDetail==22 ? "已取货" : $value.statusDetail==31 ? "待评价":"已评价"}}</div>
 								<div class="goods-rewards">Reward</div>
-								<div class="goods-value">{{$value.money}}</div>
+								<div class="goods-value mui-ellipsis">{{$value.money}}</div>
 							</div>
 						</div>
 					</a>
@@ -185,7 +230,7 @@
 							}
 							var html = template("template", orderdata);
 							if(!html){
-								html = '<div class="mui-h3 mui-text-center data-null">没有更多数据</div>'
+								html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
 							}
 							document.getElementById('item' + status).innerHTML = html;
 						},

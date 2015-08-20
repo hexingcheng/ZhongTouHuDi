@@ -8,14 +8,16 @@
 		<link rel="stylesheet" href="my-send-order.css"/>
 		<script src="../../js/mui.min.js"></script>
 		<style type="text/css">
-			.data-null {padding: 7em 0;color: #3ba767;font-weight: bold;}
-			.content-padded {height: 5px; background-color: #ffbfaf;opacity: 0.5;}
+			.data-null {padding: 8em 0 0 0;color: #ccc;font-weight: bold;}
+			.content-padded {height: 10px; background-color: #F2F2F2;}
 			.content-padded:last-child {height: 0;}
-			
+			.mui-segmented-control .mui-control-item {line-height: 48px;}
+			.mui-segmented-control {height: 48px;}
+			.goods-name {font-size: 16px;}
 		</style>
 	</head>
 
-	<body style="background: #fff;">
+	<body style="background: #fff;font-size: 14px;">
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">Order</h1>
@@ -27,14 +29,47 @@
 				<a class="mui-control-item mui-active" href="#item1" data-status="1">publish</a>
 				<a class="mui-control-item" href="#item2" data-status="2">transporting</a>
 				<a class="mui-control-item" href="#item3" data-status="3">success</a>
-				<a class="mui-control-item" href="#item4" data-status="4">abandonded</a>
+				<a class="mui-control-item" href="#item4" data-status="4">cancel</a>
 			</div>
 			<div id="scroll-wrapper" class="mui-scroll-wrapper">
 				<div id="link-detail">
 					<div id="item1" class="mui-control-content mui-scroll mui-active">
+						<!-- 等待框 -->
 						<div style="position: relative;">
 							<div class="waiting-box"></div>
 						</div>
+						<!-- 样式呈现列表 -->
+						<!--<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a id="go-detail" href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+								<div class="goods-name-bar">
+									<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
+								</div>
+								<div class="goods-content">
+									<div class="goods-direction mui-pull-left">
+										<div class="goods-bar goods-from-bar mui-ellipsis">
+											<span class="goods-from font-color">From</span>
+											<span class="goods-msg">{{$value.sendAddr}}</span>
+										</div>
+										<div class="goods-bar goods-to-bar mui-ellipsis">
+											<span class="goods-to font-color">To</span>
+											<span class="goods-msg">{{$value.receiveAddr}}</span>
+										</div>
+										<div class="goods-bar goods-comment-bar mui-ellipsis">
+											<span class="goods-comment font-color">Deadline</span>
+											<span class="goods-msg red">{{$value.time}}</span>
+										</div>
+									</div>
+									<div class="goods-rewards-bar mui-pull-right mui-text-center">
+										<div class="statusDetail">已取消</div>
+										<div class="goods-rewards">Reward</div>
+										<div class="goods-value mui-ellipsis">{{$value.money}}</div>
+									</div>
+								</div>
+							</a>
+							</li>
+						</ul>
+						<div class="content-padded"></div>-->
 					</div>
 					<div id="item2" class="mui-control-content mui-scroll">
 						<div style="position: relative;">
@@ -73,10 +108,6 @@
 						<div class="goods-content">
 							<div class="goods-direction mui-pull-left">
 								<div class="goods-bar goods-from-bar mui-ellipsis">
-									<span class="goods-from font-color">Weight</span>
-									<span class="goods-msg">{{$value.gWeight}}</span>
-								</div>
-								<div class="goods-bar goods-from-bar mui-ellipsis">
 									<span class="goods-from font-color">From</span>
 									<span class="goods-msg">{{$value.sendAddr}}</span>
 								</div>
@@ -85,7 +116,10 @@
 									<span class="goods-msg">{{$value.receiveAddr}}</span>
 								</div>
 								<div class="goods-bar goods-comment-bar mui-ellipsis">
-									<span class="goods-comment font-color">Deadline</span>
+									<span class="goods-comment font-color">
+										{{$value.statusDetail == 11 ? "发布时间" : $value.statusDetail == 12 ? "接单时间" : $value.statusDetail == 13 ? "发布时间" : 
+										$value.statusDetail == 21 ? "付款时间" : $value.statusDetail == 22 ? "取货时间" : $value.statusDetail == 31 ? "签单时间" : $value.statusDetail == 32 ? "评价时间" : "取消时间"}}
+									</span>
 									<span class="goods-msg red">{{$value.time}}</span>
 								</div>
 							</div>
@@ -100,7 +134,7 @@
 									<div class="statusDetail">已取消</div>
 								{{/if}}
 								<div class="goods-rewards">Reward</div>
-								<div class="goods-value">{{$value.money}}</div>
+								<div class="goods-value mui-ellipsis">{{$value.money}}</div>
 							</div>
 						</div>
 					</a>
@@ -153,21 +187,6 @@
 						openWindow("./mysendorder-detail-cancel.html");
 					}
 				})
-//				谁让我一不小心成为你生命中重要又美好的一部分呢
-//				我站在窗前，你也站在那儿
-//				我看过的书，你也看过的话
-//				这样也算在一起的话
-//				就当我们在一起吧
-//				会很想念你
-//				我耐你
-//				
-//				有些街道可以一走再走，有些话却不能一说再说
-//				
-//				错开了青梅竹马
-//				避开了情窦初开
-//				到如今，活着的意义也只是与云蝶两鬓斑白
-//				
-//				一钱半夏，一钱蒹葭。可解得我三分相思五分梦里繁华
 				
 				// 返回首页
 				mui.back = function(){
@@ -205,15 +224,14 @@
 					timeout : 5000,
 					data: datas,
 					success: function(data) {
-//						console.log(JSON.stringify(data));
+						console.log(JSON.stringify(data));
 						var orderdata = {
 							"list": data.res
 						}
-//						alert(data.res.gWeight);
 						// 模板渲染
 						var html = template("template", orderdata);
 						if(!html){
-							html = '<div class="mui-h3 mui-text-center data-null">没有更多数据</div>'
+							html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
 						}
 						document.getElementById('item'+datas.status).innerHTML = html;
 					},
@@ -222,8 +240,6 @@
 					}
 				})
 			}
-			
-			
 		</script>
 	</body>
 
