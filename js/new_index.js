@@ -42,6 +42,11 @@ window.addEventListener("swiperight", function() {
 });
 
 mui.plusReady(function() {
+	myAjax({url:"auth/regDynCode",data:{phone:11010101011}},function(a){
+		console.log(a.code);
+	},function(){},function(){
+		alert('没网呀')
+	})
 		plus.screen.lockOrientation('portrait-primary')
 		plus.webview.currentWebview().setStyle({scrollIndicator:'none'})
 		mui('#offCanvasSideScroll').scroll({
