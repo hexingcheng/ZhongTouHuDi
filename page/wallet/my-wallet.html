@@ -56,14 +56,14 @@
 		<!--<ul class="mui-table-view mui-table-view-chevron bg-color">
 			<li class="mui-table-view-cell mui-collapse">-->
 				<!-- 模拟展开数据显示 -->
-				<ul id="show-recodes" class="mui-table-view mui-table-view-chevron bg-color">
+				<ul class="mui-table-view mui-table-view-chevron bg-color">
 					<!-- 后期使用模板进行数据渲染 -->
 					<li class="mui-table-view-cell mui-media border-bottom">
 						<div class="mui-h5 pay-recode">payment records</div>
 					</li>
 					<div class="mui-scroll-wrapper">
-						<div class="mui-scroll">
-							<li class="mui-table-view-cell mui-media border-bottom">
+						<div id="show-recodes" class="mui-scroll">
+							<!--<li class="mui-table-view-cell mui-media border-bottom">
 								<div class="mui-pull-right mui-h3 style-coupon fixed-money">
 									-16.0
 								</div>
@@ -80,70 +80,7 @@
 									<div class="mui-ellipsis">Car share</div>
 									<p class="mui-ellipsis">18:22 28 Mar 2015</p>
 								</div>
-							</li>
-							<li class="mui-table-view-cell mui-media">
-								<div class="mui-pull-right mui-h3 style-point fixed-money">
-									+20.0
-								</div>
-								<div class="mui-media-body">
-									<div class="mui-ellipsis">Car share</div>
-									<p class="mui-ellipsis">18:22 28 Mar 2015</p>
-								</div>
-							</li>
-							<li class="mui-table-view-cell mui-media">
-								<div class="mui-pull-right mui-h3 style-point fixed-money">
-									+20.0
-								</div>
-								<div class="mui-media-body">
-									<div class="mui-ellipsis">Car share</div>
-									<p class="mui-ellipsis">18:22 28 Mar 2015</p>
-								</div>
-							</li>
-							<li class="mui-table-view-cell mui-media">
-								<div class="mui-pull-right mui-h3 style-point fixed-money">
-									+20.0
-								</div>
-								<div class="mui-media-body">
-									<div class="mui-ellipsis">Car share</div>
-									<p class="mui-ellipsis">18:22 28 Mar 2015</p>
-								</div>
-							</li>
-							<li class="mui-table-view-cell mui-media">
-								<div class="mui-pull-right mui-h3 style-point fixed-money">
-									+20.0
-								</div>
-								<div class="mui-media-body">
-									<div class="mui-ellipsis">Car share</div>
-									<p class="mui-ellipsis">18:22 28 Mar 2015</p>
-								</div>
-							</li>
-							<li class="mui-table-view-cell mui-media">
-								<div class="mui-pull-right mui-h3 style-point fixed-money">
-									+20.0
-								</div>
-								<div class="mui-media-body">
-									<div class="mui-ellipsis">Car share</div>
-									<p class="mui-ellipsis">18:22 28 Mar 2015</p>
-								</div>
-							</li>
-							<li class="mui-table-view-cell mui-media">
-								<div class="mui-pull-right mui-h3 style-point fixed-money">
-									+20.0
-								</div>
-								<div class="mui-media-body">
-									<div class="mui-ellipsis">Car share</div>
-									<p class="mui-ellipsis">18:22 28 Mar 2015</p>
-								</div>
-							</li>
-							<li class="mui-table-view-cell mui-media">
-								<div class="mui-pull-right mui-h3 style-point fixed-money">
-									+20.0
-								</div>
-								<div class="mui-media-body">
-									<div class="mui-ellipsis">Car share</div>
-									<p class="mui-ellipsis">18:22 28 Mar 2015</p>
-								</div>
-							</li>
+							</li>-->
 						</div>
 					</div>
 				</ul>
@@ -174,13 +111,9 @@
 	<script src="../../js/template.js"></script>
 	<script src="../../js/utils.js"></script>
 	<script>
-		mui.init();
-		mui.plusReady(function(){
-			mui(".mui-scroll-wrapper").scroll(); 
-		})
-//    	var script = document.createElement("script");
-//    	script.src = "../../js/wallet-index.js";
-//    	document.body.appendChild(script);
+      	var script = document.createElement("script");
+      	script.src = "../../js/wallet-index.js";
+      	document.body.appendChild(script);
 		//15123013920  123456 
     </script>
 </body>

@@ -1,16 +1,16 @@
 mui.init({
 	swipeBack　: true
 });
-mui.ready(function() {
-
+mui.plusReady(function() {
+	mui(".mui-scroll-wrapper").scroll(); 
 	var money = document.getElementById("current-money");
 	var point = document.getElementById("gold-point");
 	var coupon = document.getElementById("coupon");
 	var showlist = document.getElementById("show-recodes");
-	var url = "http://202.202.43.107:8080/api/wallet/info";
+	var url = BASEURL + "wallet/info";
 	var listobj = null;
 	// 发送给ajax获取余额信息显示
-	console.log("nihao")
+//	console.log("nihao")
 	mui.ajax(url, {
 		type: "post",
 		success: function(data) {
