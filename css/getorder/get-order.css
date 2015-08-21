@@ -46,3 +46,21 @@
 .content-padded:last-child {
 	height: 0;
 }
+.icon-up {
+	background: #fff url(../../img/turn-up.png) no-repeat 76px 0px;
+	background-size: 6% 100%;
+}
+.icon-down {
+	background: #fff url(../../img/turn-down.png) no-repeat 74px 0px;
+	background-size: 6% 100%;
+}
+.icon-up-2 {
+	background: #fff url(../../img/turn-up.png) no-repeat 79px 0px;
+	background-size: 6% 100%;
+}
+.icon-down-2 {
+	background: #fff url(../../img/turn-down.png) no-repeat 77px 0px;
+	background-size: 6% 100%;
+}
+
+

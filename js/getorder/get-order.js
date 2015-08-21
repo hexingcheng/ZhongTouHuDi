@@ -95,7 +95,6 @@ mui.plusReady(function() {
 				url: 'deliver/goodList',
 				data: getorderdata
 			}, function(data) {
-				//							console.log(JSON.stringify(data));
 				var orderdata = {
 						"list": data.res
 					}
@@ -117,11 +116,41 @@ mui.plusReady(function() {
 		mui.toast('获取位置信息失败')
 	}
 
+	// 请求排序数据
+	var status = "1",  // 默认当前状态
+		count = 1;	// 默认点击当前状态下的次数
 	mui('#segmentedControl').on('tap', '.mui-control-item', function() {
 		var type = this.getAttribute('data-sort');
-		var item = this.getAttribute('data-item');
-		var status = this.getAttribute("data-status");
+		var sta = this.getAttribute("data-status");
+		var cls = this.classList;			// 得到当前点击对象的classlist
+		if(sta == status){
+			count++;
+			if(sta != "2"){
+				cls.toggle("icon-up")
+				cls.toggle("icon-down")
+			} else {
+				cls.toggle("icon-up-2")
+				cls.toggle("icon-down-2")
+			}
+			if(count % 2 == 0){
+				getorderdata.sortVal = "desc"; 
+			} else {
+				getorderdata.sortVal = "asc";
+			}
+		} else {
+			status = sta;
+			$(".mui-control-item").removeClass("icon-up");			// 清空所有样式
+			$(".mui-control-item").removeClass("icon-up-2");
+			$(".mui-control-item").removeClass("icon-down");
+			$(".mui-control-item").removeClass("icon-down-2");
+			if(sta != "2"){
+				cls.add("icon-up")
+			} else {
+				cls.add("icon-up-2");
+			}
+		}
 		getorderdata.sortType = type;
+		
 		myAjax({
 			url: 'deliver/goodList',
 			data: getorderdata
