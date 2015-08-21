@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -8,210 +7,84 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="get-order-comment.css" />
+		<link rel="stylesheet" href="../../css/getorder/get-order-comment.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/getorder/get-order.css"/>
 		<script src="../../js/mui.min.js"></script>
-		<style>
-			.mui-segmented-control {
-				border-radius: 0;
-				border: none;
-				border-bottom: 1px solid #d1d1d1;
-				box-shadow: 0 1px 2px #d1d1d1;
-			}
-			.mui-segmented-control .mui-control-item.mui-active {
-				color: #36a462;
-				background-color: #fff;
-			}
-			.mui-segmented-control .mui-control-item {
-				border-color: #d1d1d1;
-				color: #8c8c8c;
-				background-color: #f2f2f2;
-			}
-			.font-color {
-				color: #bec0c2;
-				width: 35%;
-				display: inline-block;
-			}
-			.goods-value {
-				color: #d92400;
-				font-size: 1.5em;
-			}
-			.goods-name-bar {
-				overflow: hidden;
-				padding-bottom: 0.3em;
-			}
-			.goods-name {
-				width: 60%;
-			}
-			.goods-bar {
-				padding: 0.2em 0;
-			}
-			.goods-direction {
-				display: inline-block;
-				width: 70%;
-			}
-			.goods-rewards-bar {
-				display: inline-block;
-				width: 25%;
-				border-left: 1px solid #e8e8e8;
-				padding: 0 0 20px 10px;
-			}
-			.goods-rewards {
-				padding: 0.6em 0;
-			}
-			.waiting-box {
-				position: absolute;
-				background: #fff url(../../img/loading46.gif) no-repeat center center;
-				width: 100%;
-				height: 20em;
-			}
-			html,
-			body {
-				background-color: #efeff4;
-			}
-			.mui-bar~.mui-content .mui-fullscreen {
-				top: 44px;
-				height: auto;
-			}
-			.mui-pull-top-tips {
-				position: absolute;
-				top: -20px;
-				left: 50%;
-				margin-left: -25px;
-				width: 40px;
-				height: 40px;
-				border-radius: 100%;
-			}
-			.mui-bar~.mui-pull-top-tips {
-				top: 24px;
-			}
-			.mui-bar~.mui-content .mui-fullscreen {top: 52px;}
-			div.mui-scroll-wrapper {top: 0;}
-			.mui-pull-top-wrapper {
-				width: 42px;
-				height: 42px;
-				display: block;
-				text-align: center;
-				background-color: #efeff4;
-				border: 1px solid #ddd;
-				border-radius: 25px;
-				background-clip: padding-box;
-				box-shadow: 0 4px 10px #bbb;
-				overflow: hidden;
-			}
-			.mui-pull-top-tips.mui-transitioning {
-				-webkit-transition-duration: 200ms;
-				transition-duration: 200ms;
-			}
-			.mui-pull-top-tips .mui-pull-loading {
-				/*-webkit-backface-visibility: hidden;
-				-webkit-transition-duration: 400ms;
-				transition-duration: 400ms;*/
-				
-				margin: 0;
-			}
-			.mui-pull-top-wrapper .mui-icon,
-			.mui-pull-top-wrapper .mui-spinner {
-				margin-top: 7px;
-			}
-			.mui-pull-top-wrapper .mui-icon.mui-reverse {
-				/*-webkit-transform: rotate(180deg) translateZ(0);*/
-			}
-			.mui-pull-bottom-tips {
-				text-align: center;
-				background-color: #efeff4;
-				font-size: 15px;
-				line-height: 40px;
-				color: #777;
-			}
-			.mui-pull-top-canvas {
-				overflow: hidden;
-				background-color: #fafafa;
-				border-radius: 40px;
-				box-shadow: 0 4px 10px #bbb;
-				width: 40px;
-				height: 40px;
-				margin: 0 auto;
-			}
-			.mui-pull-top-canvas canvas {
-				width: 40px;
-			}
-			.mui-slider-indicator.mui-segmented-control {
-				background-color: #efeff4;
-			}
-			.mui-segmented-control {
-				box-shadow: 0 0 0 #FFFFFF;
-			}
-			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
-				color: #36a462;
-			}
-			#sliderSegmentedControl .mui-scroll {
-				width: 100%;
-			}
-			#sliderSegmentedControl .mui-control-item {
-				padding: 0;
-				text-align: center;
-				width: 25%;
-			}
-			.mui-slider-group .mui-scroll-wrapper {
-				margin-top: -44px;
-			}
-			.wrap {
-				z-index: -1;
-			}
-			/*.waiting-box {
-				position: absolute;
-				background: #efeff4 url(../../img/loading.gif) no-repeat center center;
-				width: 100%;
-				height: 30em;
-			}*/
-		</style>
 	</head>
 
-	<body>
+	<body style="background-color: #fff;">
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">Order</h1>
 			<i id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></i>
 		</header>
 		<div class="mui-content">
-			<div id="slider" class="mui-slider mui-fullscreen">
-				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-scroll">
-						<a class="mui-control-item mui-active" href="#item1" data-sort="time" data-item="#item1">Latest</a>
-						<a class="mui-control-item" href="#item2" data-sort="dist" data-item="#item2">Distance</a>
-						<a class="mui-control-item" href="#item3" data-sort="price" data-item="#item3">reward</a>
-						<a class="mui-control-item" href="#item4" data-sort="weight" data-item="#item4">weight</a>
-					</div>
+				<div id="segmentedControl" class="mui-segmented-control">
+					<a class="mui-control-item mui-active" href="#item1" data-sort="time" data-item="#item1" data-status="1">Latest</a>
+					<a class="mui-control-item" href="#item2" data-sort="dist" data-item="#item2" data-status="2">Distance</a>
+					<a class="mui-control-item" href="#item3" data-sort="price" data-item="#item3" data-status="3">reward</a>
+					<a class="mui-control-item" href="#item4" data-sort="weight" data-item="#item4" data-status="4">weight</a>
 				</div>
-				<div class="mui-slider-group" id="link-detail">
-					<div id="item1" class="mui-slider-item mui-control-content mui-active">
-						<div class="mui-scroll-wrapper" id="scroll1">
-							<div class="mui-scroll" data-sort="time" data-item="#item1">
-								<!--<div style="position: relative;">
-									<div class="waiting-box"></div>
-								</div>-->
-							</div>
+				
+			<div id="scroll-wrapper" class="mui-scroll-wrapper">
+				<div id="link-detail">
+					<div id="item1" class="mui-control-content mui-scroll mui-active">
+						<!-- 等待框 -->
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+						<!--<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a id="go-detail" href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+									<div class="goods-name-bar">
+										<span class="goods-name mui-pull-left mui-ellipsis">gName</span>
+									</div>
+									<div class="goods-content">
+										<div class="goods-direction mui-pull-left">
+											<div class="goods-bar goods-from-bar mui-ellipsis">
+												<span class="goods-from font-color">From</span>
+												<span class="goods-msg">sendAddr</span>
+											</div>
+											<div class="goods-bar goods-to-bar mui-ellipsis">
+												<span class="goods-to font-color">To</span>
+												<span class="goods-msg">receiveAddr</span>
+											</div>
+											<div class="goods-bar goods-comment-bar mui-ellipsis">
+												<span class="goods-comment font-color">Deadline</span>
+												<span class="goods-msg red">time</span>
+											</div>
+										</div>
+										<div class="goods-rewards-bar mui-pull-right mui-text-center">
+											<div class="rewards">
+												<div class="goods-rewards">Reward</div>
+												<div class="goods-value mui-ellipsis">20.00</div>
+											</div>
+											<div class="weight">
+												<div class="">weight</div>
+												<div class="mui-ellipsis goods-weight">5kg</div>
+											</div>
+										</div>
+									</div>
+								</a>
+							</li>
+						</ul>
+						<div class="content-padded"></div>-->
+					
+					
+					</div>
+					<div id="item2" class="mui-control-content mui-scroll">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
 						</div>
 					</div>
-					<div id="item2" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll" data-sort="dist" data-item="#item2">
-								
-							</div>
+					<div id="item3" class="mui-control-content mui-scroll">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
 						</div>
 					</div>
-					<div id="item3" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll" data-sort="price" data-item="#item3">
-								
-							</div>
-						</div>
-					</div>
-					<div id="item4" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll" data-sort="weight" data-item="#item4">
-								
-							</div>
+					<div id="item4" class="mui-control-content mui-scroll">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
 						</div>
 					</div>
 				</div>
@@ -221,244 +94,48 @@
 		<script src="../../js/template.js"></script>
 		<script type="text/html" id="template">
 			{{each list}}
-			<ul class="mui-table-view" style="margin-bottom: 10px;">
+			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a href="./get-detail.html" class="detail-message" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}">
+					<a id="go-detail" href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
 						<div class="goods-name-bar">
 							<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
-							<span class="mui-pull-right mui-h5 goods-date">{{$value.finTime}}</span>
 						</div>
 						<div class="goods-content">
 							<div class="goods-direction mui-pull-left">
 								<div class="goods-bar goods-from-bar mui-ellipsis">
 									<span class="goods-from font-color">From</span>
-									<span id="send-addr" class="goods-msg">{{$value.sendAddr}}</span>
+									<span class="goods-msg">{{$value.sendAddr}}</span>
 								</div>
 								<div class="goods-bar goods-to-bar mui-ellipsis">
 									<span class="goods-to font-color">To</span>
-									<span id="receive-addr" class="goods-msg">{{$value.receiveAddr}}</span>
+									<span class="goods-msg">{{$value.receiveAddr}}</span>
 								</div>
 								<div class="goods-bar goods-comment-bar mui-ellipsis">
-									<span class="goods-comment font-color">Comment</span>
-									<span id="goods-info" class="goods-msg">{{$value.info}}</span>
+									<span class="goods-comment font-color">finTime</span>
+									<span class="goods-msg red">{{$value.finTime}}</span>
 								</div>
 							</div>
 							<div class="goods-rewards-bar mui-pull-right mui-text-center">
-								<div class="goods-rewards">Reward</div>
-								<div class="goods-value">{{$value.money}}</div>
+								<div class="rewards">
+									<div class="goods-rewards">Reward</div>
+									<div class="goods-value mui-ellipsis">{{$value.money}}</div>
+								</div>
+								<div class="weight">
+									<div class="">weight</div>
+									<div class="mui-ellipsis goods-weight">{{$value.gWeight}}kg</div>
+								</div>
 							</div>
 						</div>
 					</a>
 				</li>
 			</ul>
+			<div class="content-padded"></div>
 			{{/each}}
 		</script>
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/mui.pullToRefresh.js"></script>
 		<script src="../../js/mui.pullToRefresh.material.js"></script>
-		<script>
-			mui.init();
-			mui.plusReady(function() {
-				var deceleration = mui.os.ios ? 0.003 : 0.0009;
-				var c = plus.webview.currentWebview().setStyle({
-					scrollIndicator: "none"
-				})
-				var getorderdata = {
-					"page": 1,
-					"pageSize": 10,
-					"curAddr": "重庆",
-					"curJd": "",
-					"curWd": "",
-					"sendAddr": "",
-					"receiveAddr": "",
-					"finTime": "",
-					"prices": ",",
-					"weights": ",",
-					"sortType": "time",
-					"sortVal": "asc"
-				};
-				mui(".mui-scroll-wrapper").scroll({
-					bounce: false,
-					indicators: true,
-					deceleration: deceleration
-				});
-				mui.ready(function() {
-					//循环初始化所有下拉刷新，上拉加载。
-					mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
-						var sort = $(this).attr('data-sort');
-						var item = $(this).attr('data-item')
-						getorderdata.sortType = sort;
-						mui(pullRefreshEl).pullToRefresh({
-							down: {
-								callback: function() {
-									var _this = this;
-									mui.ajax(BASEURL + 'deliver/goodList', {
-										type: 'post',
-										data: getorderdata,
-										success: function(data) {
-											_this.endPullDownToRefresh();
-											var orderdata = {
-												"list": data.res
-											}
-											var $wrap = $('<div class="wrap"></div>')
-											var html = template("template", orderdata);
-											$wrap.html(html);
-											$('.mui-scroll', item).append($wrap)
-										},
-										error: function(xhr, type, errorThrown) {
-											console.log(type)
-										}
-									})
-								}
-							},
-							up: {
-								callback: function() {
-									var _this = this;
-									plus.nativeUI.showWaiting('加载中', {
-										background: '#d1d1d1'
-									})
-									getorderdata.page++;
-									mui.ajax(BASEURL + 'deliver/goodList', {
-										type: 'post',
-										data: getorderdata,
-										success: function(data) {
-											_this.endPullUpToRefresh();
-											plus.nativeUI.closeWaiting()
-											if (data.res.length!=0) {
-												var orderdata = {
-													"list": data.res
-												}
-												var $wrap = $('<div class="wrap"></div>');
-												var html = template("template", orderdata);
-												$wrap.html(html);
-												$('.mui-scroll', '#item1').append($wrap)
-											} else {
-												mui.toast('没有数据了')
-											}
-										},
-										error: function(xhr, type, errorThrown) {
-											console.log(type);
-										}
-									})
-								}
-							}
-						});
-					});
-				});
-				// ajax 获取模板数据
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(function(pos) {
-						var lot = pos.coords.longitude;
-						var lat = pos.coords.latitude;
-						getorderdata.curJd = lot;
-						getorderdata.curWd = lat;
-						mui.ajax(BASEURL + 'deliver/goodList', {
-							type: 'post',
-							data: getorderdata,
-							success: function(data) {
-								var orderdata = {
-									"list": data.res
-								}
-								var $wrap = $('<div class="wrap"></div>')
-								var html = template("template", orderdata);
-								$wrap.html(html);
-								$('.mui-scroll', '#item1').append($wrap)
-							},
-							error: function(xhr, type, errorThrown) {
-								console.log(type)
-							}
-						})
-						mui('#sliderSegmentedControl').on('tap', '.mui-control-item', function() {
-							var type = this.getAttribute('data-sort');
-							var item = this.getAttribute('data-item');
-							getorderdata.sortType = type;
-							showobj(getorderdata);
-							mui.ajax(BASEURL + 'deliver/goodList', {
-								type: 'post',
-								data: getorderdata,
-								success: function(data) {
-									var orderdata = {
-										"list": data.res
-									}
-									var $wrap = $('<div class="wrap"></div>');
-									var html = template("template", orderdata);
-									$wrap.html(html);
-									$('.mui-scroll', item).append($wrap);
-								},
-								error: function(xhr, type, errorThrown) {
-									console.log(type)
-								}
-							})
-						})
-					}, function(e) {
-						mui.toast('获取位置信息失败')
-					}, {
-						enableHighAcuracy: true
-					})
-				} else {
-					mui.toast('获取位置信息失败')
-				}
-				// 详情页面跳转
-				mui('#link-detail').on('tap', '.detail-message', function() {
-						var order = {
-								orderid: this.getAttribute("data-orderid"), // 获取编号
-								status: this.getAttribute("data-status") // 运送状态
-							}
-						
-							// 数据储存在本地storage中
-						plus.storage.setItem("order", JSON.stringify(order));
-						var href = this.href;
-						openWindow(href); // 打开详情页面信息显示
-					})
-					// 返回函数
-				mui.back = function() {
-						var index = plus.webview.getLaunchWebview();
-						index.show("slide-in-left", 300)
-							//    			var pages = ["get-filter", "get-result", "get-detail"];
-						setTimeout(function() {
-							//    				for(var i = 0; i < pages.length; i++){
-							//	      				var page = plus.getWebviewById(pages[i]);
-							//	      				if(page){
-							//	      					plus.webview.close(page, "fade-out", 200);
-							//	      				}
-							//    				}
-							plus.webview.currentWebview().close("none", 0);
-						}, 300)
-					}
-					// 筛选查找
-				document.getElementById("filter-page").addEventListener("tap", function() {
-					openWindow("./get-filter.html")
-				}, false)
-				window.addEventListener('getfilter', function(eve) {
-					$('a', '#segmentedControl').removeClass('mui-active').eq(0).addClass('mui-active')
-					plus.nativeUI.showWaiting("搜索中...", {
-						background: "#d1d1d1"
-					})
-					var filter = eve.detail
-					getorderdata.sendAddr = filter.sendAddr;
-					getorderdata.receiveAddr = filter.receiveAddr;
-					getorderdata.prices = filter.prices;
-					getorderdata.weights = filter.weights;
-					getorderdata.finTime = filter.finTime;
-					mui.ajax(BASEURL + 'deliver/goodList', {
-						type: 'post',
-						data: getorderdata,
-						success: function(data) {
-							//						console.log(JSON.stringify(data));
-							plus.nativeUI.closeWaiting();
-							var orderdata = {
-								"list": data.res
-							}
-							var html = template("template", orderdata);
-							document.getElementById("item1").innerHTML = html;
-						},
-						error: function(xhr, type, errorThrown) {
-							console.log(type)
-						}
-					})
-				})
-			})
-		</script>
+		<script src="../../js/getorder/get-order.js"></script>
 	</body>
 
 </html>

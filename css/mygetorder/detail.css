@@ -1,0 +1,182 @@
+.mui-grid-view.mui-grid-9 {
+	background-color: #fff;
+}
+.mui-scroll-wrapper {
+	top: 44px;
+	bottom: 3.2em;
+}
+.title-color {
+	color: #bec0c2;
+}
+.name {
+	width: 25%;
+}
+.table-diviver {
+	width: 100%;
+	height: 7px;
+	background-color: #ededeb;
+}
+.goods-name {
+	width: 75%;
+}
+.value-color {
+	color: #dc3e26;
+}
+.value-size {
+	font-size: 1.2 em;
+	padding-left: 0.2em;
+}
+.title-padded {
+	padding: 0.5em 0;
+}
+.title-bottom-padded {
+	padding-bottom: 0.3em;
+}
+.title-weight {
+	padding: 0.5em 0.6em;
+}
+.content-length {
+	display: inline-block;
+	width: 75%;
+}
+.title-width {
+	display: inline-block;
+	width: 25%;
+}
+.desc-after {
+	border-bottom: 1px solid #e8e8e8;
+}
+.desc-after:after {
+	height: 0;
+}
+.img-box {
+	width: 4em;
+	height: 4em;
+	overflow: hidden;
+	position: absolute;
+	border: 1px solid #ccc;
+	text-align: center;
+	line-height: 4em;
+}
+.porel {
+	position: relative;
+	width: 100%;
+	height: 4em;
+}
+.img-box:nth-child(1) {
+	left: 0%;
+}
+.img-box:nth-child(2) {
+	left: 25%;
+}
+.img-box:nth-child(3) {
+	left: 50%;
+}
+.img-box:nth-child(4) {
+	left: 75%;
+}
+.mui-icon.mui-icon-plusempty {
+	color: #ccc;
+}
+/* 弹出层 */
+
+#order-mask {
+	position: absolute;
+	background: rgba(0, 0, 0, .5);
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	/*display: none;*/
+}
+#order-popup {
+	position: absolute;
+	width: 300px;
+	height: 12em;
+	z-index: 1001;
+	background: #fff;
+	left: 50%;
+	top: 50%;
+	margin-left: -150px;
+	margin-top: -6em;
+	display: none;
+}
+.popup-porel {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.popup-title {
+	padding: 0.8em 0 0 0.7em;
+}
+.sub-title {
+	padding: 0.7em 0 0.7em 1.2em;
+}
+.button-row {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 2.5em;
+}
+.popup-body {
+	padding: 0.5em 0 0em 1.2em;
+}
+.plus,
+.equal {
+	padding: 0.5em 1em 0em 1em;
+}
+.button-row button {
+	border: none;
+	width: 50%;
+	height: 100%;
+	padding: 0;
+	border-radius: none;
+}
+.button-row button:nth-child(1) {
+	background-color: #c4e8da;
+	color: #029c5d;
+}
+.button-row button:nth-child(2) {
+	background-color: #f6ccc2;
+	color: #da2a02;
+}
+.font-color {
+	color: #da2a02;
+}
+#loading-mask {
+	position: absolute;
+	z-index: 998;
+	background: rgba(0, 0, 0, .4);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+#loading-box {
+	position: absolute;
+	z-index: 999;
+	left: 50%;
+	margin-left: -50px;
+	top: 50%;
+	margin-top: -50px;
+}
+.fade-out {
+	opacity: 0;
+	-webkit-transition: all 500ms ease-out;
+}
+#plus-price {
+	font-size: 1.4em;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 0.1em;
+}
+
+
+
+
+
+
+
+
+

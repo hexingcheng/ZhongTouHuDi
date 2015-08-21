@@ -37,20 +37,26 @@ function ifloginCommon(cb) {
 //  ajax通用函数参数说明 options:基本配置参数，url、type（默认 post 可不填）、data 必填,successcb成功回调  必填 参数为请求返回data对象，
 //errorcb：必填 失败回调 参数 xhr,type,nonetworkcb 无网络回调 选填
 //eg:
-//myAjax({url:"auth/regDynCode",data:{phone:11010101011}},function(a){
-//		console.log(a.code);
-//	},function(){},function(){
-//		alert('没网呀')
-//	})
+//myAjax({url:"auth/regDynCode",data:{phone:11010101011}},function(data){
+//	console.log(data.code);
+//},function(xhr, type){
+//	console.log(xhr.status);
+//},function(){
+//	alert('没网呀')
+//})
+
+
+
 function myAjax(options, successcb, errorcb,nonetworkcb) {
 	
 	var net = plus.networkinfo.getCurrentType();
 	if (net != 0 && net != 1) {
 		innerAjax(options, successcb, errorcb)
 	} else {
-		mui.toast('未连接网络,请链接网络');
 		if(nonetworkcb){
 			nonetworkcb()
+		} else {
+			mui.toast('未连接网络,请链接网络');
 		}
 	}
 }
@@ -69,7 +75,6 @@ function innerAjax(options,successcb,errorcb) {
 		success: function(data) {
 			plus.nativeUI.closeWaiting();
 			if (data.ret == 1) {
-				alert(data)
 				successcb(data);
 			} else if (data.ret == -101) {
 				if(getstorage('token')){
@@ -93,9 +98,11 @@ function innerAjax(options,successcb,errorcb) {
 							}
 						}
 					})
+				} else {
+					openWindow('./page/logupin/login.html');
 				}
 			} else{
-				mui.toast('网络出错了')
+				mui.toast('网络服务出错了')
 			}
 		},
 		error: function(xhr,type){

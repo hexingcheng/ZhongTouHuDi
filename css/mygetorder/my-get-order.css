@@ -1,0 +1,103 @@
+body {
+	font-size: 14px;
+}
+.mui-bar {
+	background-color: #3ba767;
+}
+.mui-bar h1,
+.mui-bar a,
+.mui-bar i {
+	color: #FFFFFF;
+}
+.mui-scroll-wrapper {
+	top: 85px;
+}
+.mui-segmented-control {
+	border-radius: 0;
+	border: none;
+	border-bottom: 1px solid #d1d1d1;
+	box-shadow: 0 1px 2px #d1d1d1;
+}
+.mui-segmented-control .mui-control-item.mui-active {
+	color: #36a462;
+	background-color: #fff;
+}
+.mui-segmented-control .mui-control-item {
+	border-color: #d1d1d1;
+	color: #8c8c8c;
+	background-color: #f2f2f2;
+}
+.font-color {
+	color: #bec0c2;
+	width: 35%;
+	display: inline-block;
+}
+.goods-value {
+	color: #d92400;
+	font-size: 1.5em;
+}
+.goods-name-bar {
+	overflow: hidden;
+	padding-bottom: 0.3em;
+}
+.goods-name {
+	width: 60%;
+}
+.goods-bar {
+	padding: 0.2em 0;
+}
+.goods-direction {
+	display: inline-block;
+	width: 70%;
+}
+.goods-rewards-bar {
+	display: inline-block;
+	width: 25%;
+	border-left: 1px solid #e8e8e8;
+	padding: 8px 0 17px 10px;
+}
+.goods-rewards {
+	padding: 0.6em 0;
+}
+.waiting-box {
+	position: absolute;
+	background: #fff url(../../img/loading.gif) no-repeat center center;
+	width: 100%;
+	height: 25em;
+	background-size: 30% 40%;
+}
+.red {
+	color: #ff8474;
+}
+.content-padded {
+	height: 10px;
+	background-color: #F2F2F2;
+}
+.content-padded:last-child {
+	height: 0;
+}
+.data-null {
+	padding: 7em 0;
+	color: #3ba767;
+	font-weight: bold;
+}
+div.mui-scroll-wrapper {
+	top: 103px;
+}
+.data-null {
+	padding: 8em 0 0 0;
+	color: #ccc;
+	font-weight: bold;
+}
+.mui-segmented-control .mui-control-item {
+	line-height: 48px;
+}
+.mui-segmented-control {
+	height: 48px;
+}
+.goods-name {
+	font-size: 16px;
+}
+.goods-value {
+	font-size: 18px;
+}

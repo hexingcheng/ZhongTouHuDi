@@ -1,0 +1,85 @@
+.mui-btn.mui-btn-block {
+	background: #054859;
+}
+.mui-content-padded {
+	color: #999;
+}
+.title {
+	color: #999;
+}
+.g-name {
+	color: #cfd1d2;
+	padding-left: 0.5em;
+}
+.icon-font {
+	color: #31a25f;
+}
+.mui-input-row label {
+	padding: 0px 15px;
+	height: 100%;
+	line-height: 2.5;
+}
+.gName {
+	width: 65%;
+	height: 100%;
+	line-height: 2.5;
+	padding-left: 1em;
+}
+.mui-input-group .mui-input-row {
+	height: auto;
+}
+.mui-input-group .mui-input-row:first-child {
+	padding: 5px 0;
+}
+.mui-input-group .mui-input-row:after {
+	right: 15px;
+	height: 5px;
+}
+.mui-input-group .mui-input-row:nth-child(2):after {
+	height: 0px;
+}
+.mui-content-padded {
+	margin: 10px 10px 10px 30px;
+}
+.enter-words {
+	padding: 2px 5px 5px 0;
+	color: #bec0c2;
+}
+.mui-card {
+	box-shadow: 2px 2px 6px rgba(200, 200, 200, .6);
+	margin-bottom: 1em;
+	border-radius: 5px;
+}
+.mui-table-view:before,
+.mui-table-view:after,
+.mui-table-view-cell:after {
+	height: 0;
+}
+#delivery-speed {
+	padding: 5px 10px;
+	color: #5f5d5d;
+	font-size: 14px;
+	font-weight: bold;
+}
+#delive-speed,
+#delive-service {
+	color: #31a25f;
+	padding: 15px 0;
+}
+.mui-table-view-cell.mui-col-xs-7 {
+	padding: 11px 3px !important;
+}
+.iconfont {
+	color: #3fc776;
+	font-size: 1.7em;
+	font-weight: bold;
+	float: left;
+	padding-right: 10px;
+}
+.not-active {
+	color: #fff;
+	text-shadow: -1px -1px 3px #d3d4d5;
+}
+.mui-bar-nav~.mui-content {
+	padding-bottom: 3.2em;
+}

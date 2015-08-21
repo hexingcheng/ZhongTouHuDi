@@ -5,21 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="mysendorder-comment.css"/>
+    <link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css"/>
     <script src="../../js/mui.min.js"></script>
-    <style type="text/css">
-    	.mui-table-view-cell {padding: 0.6em 0;}
-    	.mui-table-view-cell:nth-child(2n) {background: #f5f5f5;}
-    	.img-row {width: 20%;}
-    	.headimg-box {width: 3.2em;height: 3.2em;border-radius: 50%;overflow: hidden;margin: 0 auto;}
-    	.name-box {width: 30%;padding: 3px 0 0 0;}
-    	.order-send {width: 12%;padding: 3px 0 0 0;}
-    	.order-send .send-num {color: #646464;}
-    	.order-reward {width: 14%;padding: 3px 0 0 0;}
-    	.order-reward .reward-money {color: #d92400;}
-    	.button-box {width: 24%;padding: 10px 0 0 0;}
-    	.mui-scroll-wrapper {top: 44px;}
-    </style>
+    <link rel="stylesheet" href="../../css/mysendorder/list-of-participants.css"/>
 </head>
 <body style="background: #fff;">
 	<header class="mui-bar mui-bar-nav">
@@ -104,91 +92,7 @@
 			</li>
 		{{/each}}
 	</script>
-	<script>
-      	mui.init();
-      	mui.plusReady(function(){
-      		mui("#scroll-wrapper").scroll();
-      		
-      		var orderid = plus.storage.getItem("my-send-order");
-//    		console.log(orderid);
-      		sendmsg({
-      			page : 1,
-      			pageSize : 10,
-      			orderId : orderid
-      		})
-      		plus.nativeUI.closeWaiting();
-      		
-      		// 添加选择该递送人
-      		var cpage = plus.webview.currentWebview();
-      		mui("#choose-sender").on("tap", ".choose-item", function(){
-      			var datas = {
-      				uid : this.getAttribute("data-uid"),
-      				orderId : orderid
-      			}
-      			mui.ajax(BASEURL + "order/bargainConfirm", {
-      				data : datas,
-      				type : "post",
-      				success : function(data){
-      					if(data.ret == 1){
-      						mui.toast("选择递送人成功");
-      						mui.openWindow({
-      							url : "./my-send-order.html",
-      							id : "my-send-order",
-      							createNew : true,
-      							show : {
-									aniShow : "slide-in-left",
-									duration : 200
-								},
-								waiting : {
-									autoShow : true,
-									title : "正在加载...",
-									options : {
-										background: '#d1d1d1'
-									}
-								}
-      						})
-      						setTimeout(function(){
-      							cpage.close("none", 0);
-      						}, 300)
-      					} else if (data.ret == 2) {
-      						mui.toast("非法操作");
-      					} else if (data.ret == 3){
-      						mui.toast("订单已接单");
-      					}
-      				}
-      			})
-      		})
-      		
-      		// 查看用户信息
-      		mui("#choose-sender").on("tap", ".headimg-box", function(){
-      			var ud = this.getAttribute("data-uid");
-      			console.log(ud);
-      			openWindow("../person/myinfo.html", {
-      				uid : ud
-      			})
-      		})
-      		
-      		
-      	})
-      	
-      	function sendmsg(datas){
-      		mui.ajax(BASEURL + "order/bargainList", {
-      			data : datas,
-      			type : "post",
-      			success : function(data){
-					var obj = {
-						list : data.res
-					}
-					var html = template("template", obj);
-					document.getElementById("choose-sender").innerHTML = html;
-      			},
-      			error : function(xhr, type){
-      				console.log(type);
-      			}
-      		})
-      	}
-      	
-    </script>
+	<script src="../../js/mysendorder/list-of-participants.js"></script>
 	
 </body>
 </html>
