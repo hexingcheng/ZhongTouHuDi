@@ -103,12 +103,12 @@
 					<div class="description">
 						<h3 class="title">Type Description</h3>
 						<div class="can-choose">
-							<span class="choose">valuables</span>
-							<span class="choose">don't un pack</span>
-							<span class="choose">put carful</span>
-							<span class="choose">no water</span>
-							<span class="choose">can't press</span>
-							<span class="choose">trian</span>
+							<span class="choose" data-off = "1">valuables</span>
+							<span class="choose" data-off = "1">don't un pack</span>
+							<span class="choose" data-off = "1">put carful</span>
+							<span class="choose" data-off = "1">no water</span>
+							<span class="choose" data-off = "1">can't press</span>
+							<span class="choose" data-off = "1">trian</span>
 						</div>
 					</div>
 					<div class="gap"></div>
@@ -123,21 +123,26 @@
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui.plusReady(function() {
-				var off = true;
+				var comments = [];
 				$('.choose').on('tap',function(){
-					if(off){
+					$('#impor-text').val(" ");
+					if(Boolean($(this).attr('data-off'))){
+						comments.push($(this).text());
 						$(this).css({
 							'color':'#fce7e4',
 							'background-color':'#fc9b29'
 						})
-						off = false;
+						$(this).attr('data-off','')
 					}else{
+						comments[comments.indexOf($(this).text())] = "";
 						$(this).css({
 							'color':'#fc9b29',
 							'background-color':'#fff3e5'
 						});
-						off = true;
+						$(this).attr('data-off','1')
 					}
+					var str = comments.join(' ').trim();
+					$('#impor-text').val(str);
 				})
 				$('#ok').on('tap',function(){
 					var value = document.getElementById('impor-text').value;
