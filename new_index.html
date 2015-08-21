@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -8,9 +9,9 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<style>
-		*{
-			box-sizing: border-box;
-		}
+			* {
+				box-sizing: border-box;
+			}
 			html,
 			body,
 			.mui-content {
@@ -19,7 +20,7 @@
 				height: 100%;
 				background-color: #d9dadb;
 			}
-			#offCanvasWrapper{
+			#offCanvasWrapper {
 				width: 100%;
 			}
 			.mui-bar {
@@ -57,7 +58,7 @@
 			.mui-content-padded {
 				width: 100%;
 				height: 100%;
-				padding:0;
+				padding: 0;
 				margin: 0;
 				overflow: hidden;
 			}
@@ -130,7 +131,7 @@
 			#caidan span {
 				color: #FFFFFF;
 			}
-			.mui-table-view:before{
+			.mui-table-view:before {
 				top: -1px;
 				background-color: #063d4b;
 			}
@@ -144,47 +145,39 @@
 			.addlmar {
 				margin-left: 30px;
 			}
-			.menulist{
+			.menulist {
 				padding: 0;
 				margin: 0;
 			}
-			.list{
+			.list {
 				border-bottom: 1px solid #063d4b;
 				position: relative;
 				height: 52px;
 			}
-			.icon{
-				padding: 5px 20px;
-				line-height: 42px;
-				color: #FFFFFF;
-				height: 100%;
+			.icon {
 				position: absolute;
-				}
-			.navagator{
+			}
+			.navagator {
 				padding: 5px 10px;
 				line-height: 42px;
 				color: #FFFFFF;
 				height: 100%;
 				position: absolute;
 			}
-			.icon{
-				top: 2px;
-				left: 0;
-				font-size: 18px;
-			}
-			.navagator{
+			.navagator {
 				top: 0;
 				right: 0;
 				font-size: 18px;
 			}
-			.menucon{
+			.menucon {
 				font-size: 14px;
 				height: 52px;
 				padding-left: 55px;
 				line-height: 52px;
-				color: #FFFFFF;
+				color: #c8d8e8;
 			}
-			.sendtips,.recetips{
+			.sendtips,
+			.recetips {
 				vertical-align: top;
 				display: inline-block;
 				height: 16px;
@@ -196,19 +189,19 @@
 				line-height: 16px;
 				text-align: center;
 			}
-			.sendtips{
+			.sendtips {
 				background-color: #23a0cf;
 			}
-			.recetips{
+			.recetips {
 				background-color: #3fc776;
 			}
-			.addtopbor{
+			.addtopbor {
 				border-top: 1px solid #063d4b;
 			}
 			#offCanvasSide .mui-scroll-wrapper {
 				bottom: 60px;
 			}
-			.contact{
+			.contact {
 				font-size: 14px;
 				color: #FFFFFF;
 				text-align: center;
@@ -219,55 +212,64 @@
 				position: absolute;
 				bottom: 0;
 				left: 0;
+				right: 0;
 				z-index: 100;
 			}
-			.tact{
+			.tact {
 				margin-right: 10px;
 				font-size: 18px;
 			}
-			#header{
+			#header {
 				height: 52px;
 			}
-			#header h1{
-				padding-left: 10px;
+			#header h1 {
+				padding-left: 20px;
 				text-align: left;
 				line-height: 52px;
 			}
-			.mui-bar .mui-icon{
+			.mui-bar .mui-icon {
 				padding-top: 18px;
 			}
-			.mui-scroll{
+			.mui-scroll {
 				/*height: 105%;*/
 			}
-			.mytitle{
+			.mytitle {
 				font-size: 15px;
 			}
-			.myname{
+			.myname {
 				font-size: 15px;
 				padding-top: 8px;
 			}
-			.mui-scroll{
+			.mui-scroll {
 				padding: 0;
 				margin: 0;
 				height: 100%;
 			}
-			.slide{
+			.slide {
+				margin: 0;
+				padding: 0;  
+				position: absolute;
+				top: 0;
+				bottom: 55%;
+				right: 0;
+				left: 0;
+			}
+			#slider {
 				width: 100%;
-				margin: 0;padding: 0;
-				height: 45%;
-			}
-			#slide{
-				width: 100%;
 				margin: 0;
 				padding: 0;
 				height: 100%;
 			}
-			.mui-slider-group,.mui-slider-item,.mui-slider-item a,.mui-slider-item img{
+			#slider-group,
+			#slider-group .mui-slider-item,
+			#slider-group .mui-slider-item a,
+			#slider-group .mui-slider-item img {
 				margin: 0;
 				padding: 0;
-				height: 100%;
+				width: 100%!important;
+				height: 100%!important;
 			}
-			.functions{
+			.functions {
 				padding: 3%;
 				box-sizing: border-box;
 				height: 55%;
@@ -275,11 +277,46 @@
 				position: absolute;
 				top: 45%;
 			}
-			.mui-bar-nav~.mui-content{
+			.mui-bar-nav~.mui-content {
 				padding-top: 52px;
 			}
-		</style>
+			.mui-slider-item{
+				height: 100px;
+			}
+			.mui-slider-item a,.mui-slider-item img{
+				height: 100%;
+			}
+			.myicon{
+				display: block;
+				width: 52px;
+				height: 52px;
+			}
+			.myicon img{
+				height: 100%;
+				width: 100%;
+			}
+			.wrapss{
+				width: 100px;
+				margin: 0 auto;
+				height: 30px;
+				line-height: 30px;
+				padding: 0;
+			}
+			.gift{
+				float: left;
+				width: 30px;
+				height: 30px;
+			}
+			.gift img{
+				height: 100%;
+				width: 100%;
+			}
+			.admira{
+				color: #FFFFFF;
+			}
+			</style>
 	</head>
+
 	<body>
 		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
 			<aside id="offCanvasSide" class="mui-off-canvas-left mui-slide-in">
@@ -288,149 +325,160 @@
 						<div class="per-infos">
 							<div class="infowrap">
 								<div class="picwrap">
-									<img src="img/defualt.png" class="pho" width="100%"/>
+									<img src="img/defualt.png" class="pho" width="100%" />
 								</div>
 								<p class="myname">Hammond Danil</p>
-								<p class="mytitle">Admiral</p>
+								<p class="mytitle">
+									<div class="wrapss">
+										<span class="gift"><img src="img/gift.png"></span>
+										<span class="admira">admira</span>
+									</div>
+								</p>
 							</div>
 						</div>
 						<ul class="menulist">
 							<li class="list addtopbor" data-src="./page/wallet/my-wallet.html">
-								<span class="icon mui-icon-gear mui-icon"></span>
+								<span class="icon myicon"><img src="img/wallet1.png"></span>
 								<span class="navagator mui-icon-arrowright mui-icon"></span>
 								<div class="menucon">my wallet</div>
 							</li>
 							<li class="list" data-src="./page/mysendorder/my-send-order.html">
-								<span class="icon mui-icon-list mui-icon"></span>
+								<span class="icon myicon"><img src="img/2deliverorder.png"></span>
 								<span class="navagator mui-icon-arrowright mui-icon"></span>
 								<div class="menucon">my billing order<span class="sendtips">5</span></div>
 							</li>
 							<li class="list" data-src="./page/mygetorder/my-get-order.html">
-								<span class="icon mui-icon-paperplane mui-icon"></span>
+								<span class="icon myicon"><img src="img/send-order.pn2g.png"></span>
 								<span class="navagator mui-icon-arrowright mui-icon"></span>
 								<div class="menucon">my receving order<span class="recetips">5</span></div>
 							</li>
 							<li class="list">
-								<span class="icon mui-icon-plusempty mui-icon"></span>
+								<span class="icon myicon"><img src="img/2application.png"></span>
 								<span class="navagator mui-icon-arrowright mui-icon"></span>
 								<div class="menucon">deliver application</div>
 							</li>
 							<li class="list" data-src="page/self-info-setting.html">
-								<span class="icon mui-icon-home mui-icon"></span>
+								<span class="icon myicon"><img src="img/2operation.png"></span>
 								<span class="navagator mui-icon-arrowright mui-icon"></span>
 								<div class="menucon">oparating instruction</div>
 							</li>
 							<li class="list" data-src="page/self-info-setting.html">
-								<span class="icon mui-icon-gear mui-icon"></span>
+								<span class="icon myicon"><img src="img/2set-up.png"></span>
 								<span class="navagator mui-icon-arrowright mui-icon"></span>
 								<div class="menucon">setting up</div>
 							</li>
 						</ul>
-						
+
 					</div>
 				</div>
 				<div class="contact">
-					<span class="mui-icon mui-icon-person-filled tact"></span>
-					Contact Customer Service
+					<div class="centers">
+						<span class="myicon mui-pull-left"><img src="img/contact.png"></span>
+						<span class="mui-pull-left">Contact Customer Service</span>
+					</div>
 				</div>
 			</aside>
 			<div class="mui-inner-wrap">
 				<header class="mui-bar mui-bar-nav" id="header">
-					<a class="mui-icon mui-icon-list mui-pull-left" id="menu" href="#offCanvasSide"></a>
+					<a class="mui-pull-left myicon" id="menu" href="#offCanvasSide">
+						<img src="img/menu.png"/>
+					</a>
 					<h1 class="mui-title">Along</h1>
-					<a class="mui-icon mui-icon-chatbubble mui-pull-right"id="chat-info"></a>
+					<a class="myicon mui-pull-right" id="chat-info">
+						<img src="img/message.png"/>
+					</a>
 				</header>
 				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
 					<div class="mui-scroll" id="srcoll">
-							<div class="slide">
-								<div id="slider" class="mui-slider">
-									<div class="mui-slider-group mui-slider-loop">
-										<div class="mui-slider-item mui-slider-item-duplicate">
-											<a href="javascript:void(0)">
-												<img src="img/yuantiao.jpg">
-											</a>
-											<p class="mui-slider-title">
-												<span class="mui-icon mui-icon-chatbubble"></span>
-												<span>2015-8-15..</span>
-											</p>
-										</div>
-										<div class="mui-slider-item">
-											<a href="javascript:void(0)">
-												<img src="img/shuijiao.jpg">
-											</a>
-											<p class="mui-slider-title">
-											</p>
-										</div>
-										<div class="mui-slider-item">
-											<a href="javascript:void(0)">
-												<img src="img/cbd.jpg">
-											</a>
-											<p class="mui-slider-title">
-											</p>
-										</div>
-										<div class="mui-slider-item">
-											<a href="javascript:void(0)">
-												<img src="img/yuantiao.jpg">
-											</a>
-											<p class="mui-slider-title">
-											</p>
-										</div>
-										<div class="mui-slider-item mui-slider-item-duplicate">
-											<a href="javascript:void(0)">
-												<img src="img/shuijiao.jpg">
-											</a>
-											<p class="mui-slider-title">
-											</p>
-										</div>
+						<div class="slide">
+							<div id="slider" class="mui-slider">
+								<div class="mui-slider-group mui-slider-loop" id="slider-group">
+									<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="javascript:void(0)">
+											<img src="img/yuantiao.jpg">
+										</a>
+										<p class="mui-slider-title">
+											<span class="mui-icon mui-icon-chatbubble"></span>
+											<span>2015-8-15..</span>
+										</p>
 									</div>
-									<div class="mui-slider-indicator mui-text-right">
-										<div class="mui-indicator mui-active"></div>
-										<div class="mui-indicator"></div>
-										<div class="mui-indicator"></div>
-										<div class="mui-indicator"></div>
+									<div class="mui-slider-item">
+										<a href="javascript:void(0)">
+											<img src="img/shuijiao.jpg">
+										</a>
+										<p class="mui-slider-title">
+										</p>
+									</div>
+									<div class="mui-slider-item">
+										<a href="javascript:void(0)">
+											<img src="img/cbd.jpg">
+										</a>
+										<p class="mui-slider-title">
+										</p>
+									</div>
+									<div class="mui-slider-item">
+										<a href="javascript:void(0)">
+											<img src="img/yuantiao.jpg">
+										</a>
+										<p class="mui-slider-title">
+										</p>
+									</div>
+									<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="javascript:void(0)">
+											<img src="img/shuijiao.jpg">
+										</a>
+										<p class="mui-slider-title">
+										</p>
+									</div>
+								</div>
+								<div class="mui-slider-indicator mui-text-right">
+									<div class="mui-indicator mui-active"></div>
+									<div class="mui-indicator"></div>
+									<div class="mui-indicator"></div>
+									<div class="mui-indicator"></div>
+								</div>
+							</div>
+						</div>
+						<div class="functions">
+							<div class="addra">
+								<div class="func" id="hlep-son">
+									<div class="imgwrap">
+										<img src="img/send.png" />
+										<div class="picintro">send</div>
+									</div>
+								</div>
+								<div class="func rlb" id="i-will">
+									<div class="imgwrap">
+										<img src="img/deliver.png" />
+										<div class="picintro">deliver</div>
+									</div>
+									<div></div>
+								</div>
+								<div class="func">
+									<div class="imgwrap">
+										<img src="img/plan.png" />
+										<div class="picintro">trip plan</div>
+									</div>
+								</div>
+								<div class="func" id='mysned'>
+									<div class="imgwrap">
+										<img src="img/order.png" />
+										<div class="picintro">order</div>
+									</div>
+								</div>
+								<div class="func rlb" id="mywallet">
+									<div class="imgwrap">
+										<img src="img/wallet.png" />
+										<div class="picintro">wallet</div>
+									</div>
+								</div>
+								<div id="go-help" class="func">
+									<div class="imgwrap">
+										<img src="img/help.png" />
+										<div class="picintro">help</div>
 									</div>
 								</div>
 							</div>
-							<div class="functions">
-									<div class="addra">
-										<div class="func" id="hlep-son">
-											<div class="imgwrap">
-												<img src="img/send.png" />
-												<div class="picintro">send</div>
-											</div>
-										</div>
-										<div class="func rlb" id="i-will">
-											<div class="imgwrap">
-												<img src="img/deliver.png" />
-												<div class="picintro">deliver</div>
-											</div>
-											<div></div>
-										</div>
-										<div class="func">
-											<div class="imgwrap">
-												<img src="img/plan.png" />
-												<div class="picintro">trip plan</div>
-											</div>
-										</div>
-										<div class="func" id='mysned'>
-											<div class="imgwrap">
-												<img src="img/order.png" />
-												<div class="picintro">order</div>
-											</div>
-										</div>
-										<div class="func rlb" id="mywallet">
-											<div class="imgwrap">
-												<img src="img/wallet.png" />
-												<div class="picintro">wallet</div>
-											</div>
-										</div>
-										<div id="go-help" class="func">
-											<div class="imgwrap">
-												<img src="img/help.png" />
-												<div class="picintro">help</div>
-											</div>
-										</div>
-									</div>
 						</div>
 					</div>
 				</div>
@@ -440,13 +488,13 @@
 		<script type="text/javascript" src="js/utils.js"></script>
 		<script type="text/javascript" src="js/new_index.js"></script>
 		<script>
-			$('#offCanvasSide').css('width','83%');
-			$('#srcoll').height($(window).height()-52);
-//			$('.func').height($('.func').width()).on('tap', function() {
-//				$('.imgwrap').css('border-color','#ffffff');
-//				$('.imgwrap',$(this)).css('border-top-color','#46ac6f')
-//			})
-			document.getElementById("go-help").addEventListener("tap", function(){
+			$('#offCanvasSide').css('width', '83%');
+			$('#srcoll').height($(window).height() - 52);
+			 //			$('.func').height($('.func').width()).on('tap', function() {
+			 //				$('.imgwrap').css('border-color','#ffffff');
+			 //				$('.imgwrap',$(this)).css('border-top-color','#46ac6f')
+			 //			})
+			document.getElementById("go-help").addEventListener("tap", function() {
 				openWindow("./page/help/help-index.html");
 			}, false)
 		</script>

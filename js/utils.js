@@ -212,7 +212,6 @@ function errorhandle(type) {
 	}
 	return;
 }
-
 function getuserbasicinfo() {
 	var obj = {};
 	mui.plusReady(function() {

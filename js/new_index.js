@@ -28,8 +28,8 @@ window.addEventListener("swipeleft", function() {
 		return;
 	}
 });
-window.addEventListener('removehref',function(){
-	$('.pho').attr('src','img/defualt.png')
+window.addEventListener('removehref', function() {
+	$('.pho').attr('src', 'img/defualt.png')
 	$('.myname').text("");
 	$('.mytittle').text("")
 })
@@ -42,35 +42,38 @@ window.addEventListener("swiperight", function() {
 });
 
 mui.plusReady(function() {
-	myAjax({url:"auth/regDynCode",data:{phone:11010101011}},function(a){
-		console.log(a.code);
-	},function(){},function(){
-		alert('没网呀')
-	})
 		plus.screen.lockOrientation('portrait-primary')
-		plus.webview.currentWebview().setStyle({scrollIndicator:'none'})
+		plus.webview.currentWebview().setStyle({
+			scrollIndicator: 'none'
+		})
 		mui('#offCanvasSideScroll').scroll({
 			bounce: true,
 			indicators: false
 		});
-//		mui('#offCanvasContentScroll').scroll();
+		//		mui('#offCanvasContentScroll').scroll();
 		plus.webview.getLaunchWebview().setStyle({
-			scrollIndicator: 'none'
-		})
-		//处理点击事件，跳转页面
+				scrollIndicator: 'none'
+			})
+			//处理点击事件，跳转页面
+			mui('.menulist').on('touchstart', '.list', function() {
+				$(this).css('background-color', '#063d4b');
+			})
+			mui('.menulist').on('touchend', '.list', function() {
+				$(this).css('background-color', '#03242c');
+			})
 		mui('.menulist').on('tap', '.list', function() {
-			$('.list').css('background-color','#03242c');
-			$(this).css('background-color','#063d4b')
+//			$('.list').css('background-color', '#03242c');
+//			$(this).css('background-color', '#063d4b')
 			var url = this.getAttribute('data-src');
 			openWindow(url);
 		})
-		document.getElementById('mysned').addEventListener('tap',function(){
-			iflogin(function(){
+		document.getElementById('mysned').addEventListener('tap', function() {
+			iflogin(function() {
 				openWindow('./page/mysendorder/my-send-order.html')
 			})
 		})
-		document.getElementById('mywallet').addEventListener('tap',function(){
-			iflogin(function(){
+		document.getElementById('mywallet').addEventListener('tap', function() {
+			iflogin(function() {
 				openWindow('./page/wallet/my-wallet.html')
 			})
 		})
@@ -82,13 +85,13 @@ window.addEventListener('closeMenu', function() {
 	}
 	//	$('#offCanvasSide').hide()
 })
-window.addEventListener('setaccount',function(eve){
-	$('.myname').text(eve.detail.firstName+" "+eve.detail.familyName);
+window.addEventListener('setaccount', function(eve) {
+	$('.myname').text(eve.detail.firstName + " " + eve.detail.familyName);
 	$('.mytitle').text(eve.detail.nation);
 	var n = BASEURL.indexOf('/a');
-	var pic = BASEURL.substring(0,n);
-	if(eve.detail.headPic){
-		$('.pho').attr('src',pic+eve.detail.headPic)
+	var pic = BASEURL.substring(0, n);
+	if (eve.detail.headPic) {
+		$('.pho').attr('src', pic + eve.detail.headPic)
 	}
 })
 var first = null;
@@ -129,27 +132,27 @@ document.getElementById('hlep-son').addEventListener('tap', function() {
 	})
 })
 document.getElementById('i-will').addEventListener('tap', function() {
-	iflogin(function() {
-		openWindow('./page/getorder/get-order.html');
+		iflogin(function() {
+			openWindow('./page/getorder/get-order.html');
+		})
 	})
-})
-//document.getElementById('help').addEventListener('tap', function() {
-//	iflogin(function() {
-//		mui.openWindow({
-//			url: './page/sendorder/createorder.html',
-//			id: 'createorder',
-//			show: {
-//				autoShow: true,
-//				aniShow: 'slide-in-bottom',
-//				duration: 200
-//			},
-//			waiting: {
-//				autoShow: true,
-//				title: '正在加载...',
-//				options: {
-//					background: '#d1d1d1'
-//				}
-//			}
-//		})
-//	})
-//})
+	//document.getElementById('help').addEventListener('tap', function() {
+	//	iflogin(function() {
+	//		mui.openWindow({
+	//			url: './page/sendorder/createorder.html',
+	//			id: 'createorder',
+	//			show: {
+	//				autoShow: true,
+	//				aniShow: 'slide-in-bottom',
+	//				duration: 200
+	//			},
+	//			waiting: {
+	//				autoShow: true,
+	//				title: '正在加载...',
+	//				options: {
+	//					background: '#d1d1d1'
+	//				}
+	//			}
+	//		})
+	//	})
+	//})

@@ -7,7 +7,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="common.css"/>
+		<link rel="stylesheet" href="common.css" />
 		<script src="../../js/mui.js"></script>
 		<style>
 			* {
@@ -15,7 +15,7 @@
 				margin: 0;
 			}
 			html,
-			body {
+			body,.mui-content,#offCanvasSideScroll ,.mui-scroll,.order-content{
 				height: 100%;
 				width: 100%;
 			}
@@ -81,10 +81,10 @@
 				clear: both;
 			}
 			.wid30 {
-				width: 30%;
+				width: 50px;
 			}
 			.wid70 {
-				width: 70%;
+				overflow: hidden;
 			}
 			.paddl10 {
 				padding-left: 10px;
@@ -93,24 +93,24 @@
 				padding-right: 10px;
 			}
 			.hei110 {
-				height: 60px;
+				height: 50px;
 			}
 			.linehei110 {
-				line-height: 60px;
+				line-height: 50px;
 			}
 			.linehei68 {
 				line-height: 30px;
 			}
 			.iptwrap {
 				padding: 0;
-				margin: 15px 0;
+				margin: 10px 0 10px -15px;
 				height: 30px;
 				border-radius: 10px;
 			}
 			.iptwrap input {
+				font-size: 14px;
 				border: 0;
-				background-color: #F7F5F5;
-				color: #219B52;
+				color: #5d5d5d;
 				margin: 0;
 				height: 30px
 			}
@@ -128,10 +128,10 @@
 				background-color: #FFFFFF;
 			}
 			.wid20 {
-				width: 20%;
+				width: 50px;
 			}
 			.wid50 {
-				width: 50%;
+				overflow: hidden;
 			}
 			.gWeight,
 			.gValue {
@@ -148,14 +148,17 @@
 			}
 			.goods-pic,
 			.addclass {
-				border: 1px solid #e6e1e1;
-				padding: 15px;
-				background-color: #fdfcfc;
+				background-color: #FFFFFF;
+			}
+			.goods-pic{
+				width: 100%;
+				padding: 15px 20px
 			}
 			#footer {
 				height: 60px;
 				background-color: #FFFFFF;
 				padding: 10px 20px;
+				overflow: hidden;
 			}
 			.next-step {
 				text-align: center;
@@ -241,15 +244,98 @@
 			.presee .mui-slider .mui-slider-item a img {
 				position: absolute;
 			}
-			div.mui-scroll-wrapper {top: 8px;}
+			div.mui-scroll-wrapper {
+				top: 8px;
+			}
+			.myicon {
+				width: 34px;
+				height: 34px;
+			}
+			.myicon img {
+				margin: 8px;
+				height: 34px;
+				width: 34px;
+			}
+			#gname{
+				padding-right: 15px;
+			}
+			.font-14{
+				font-size: 14px;
+			}
+			.addpad{
+				padding-left: 15px;
+			} 
+			.addline{
+				font-size: 14px;
+				line-height: 30px;
+				color: #acacac;
+			}
+			.drafticon{
+				width: 52px;
+				height: 52px;
+				
+			}
+			.drafticon img{
+				width: 52px;
+				height: 52px;
+			}
+			#head{
+				padding-right: 0px;
+			}
+			.goods-pic .mui-table-view{
+				width: 100%;
+				background-color: #FFFFFF;
+			}
+			.goods-pic .mui-table-view:before,.mui-table-view:after{
+				height: 0;
+			}
+			.goods-pic .mui-table-view .mui-table-view-cell{
+				float: left;
+				padding: 0 !important;
+				width: 23.5%;
+			}
+			.addmarr{
+				margin-right: 2%;
+			}
+			.goods-pic .mui-table-view ,.mui-table-view-cell:after{
+				height: 0;
+			}
+			.goods-pic .mui-table-view .mui-table-view-cell a{
+				width: 100%;
+				height: 100%;
+				margin: 0!important;
+			}
+			.goods-pic .mui-table-view .mui-table-view-cell a span{
+				font-size: 24px;
+				color: #D1D1D1;
+				text-align: center;
+				height: 100%;
+				width: 100%;
+			}
+			.addclass{
+				border: 1px solid #D1D1D1;
+			}
+			#take-photo{
+				padding: 0;
+			}
+			.clear{
+				zoom: 1;
+			}
+			.clear:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header class="mui-bar mui-bar-nav" id="head">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">create order</h1>
-			<span class="mui-icon iconfont icon-wenjian mui-pull-right draft"></span>
+			<span class="mui-pull-right draft drafticon" id="drafticon">
+				<img src="../../img/draft.png"/>
+			</span>
 		</header>
 		<footer class="mui-bar mui-bar-footer" id="footer">
 			<div class="next-step" id="next">Next Step</div>
@@ -318,73 +404,74 @@
 				<div class="mui-scroll">
 					<div class="order-content">
 						<div class="gName clear hei110">
-							<div class="wid30 paddl10 fl hei110 linehei110 colorg">
-								<span class="mui-icon mui-icon-person colorgray"></span> Name
+							<div class="wid30 fl hei110 linehei110 colorg">
+								<span class="colorgray myicon"><img src="../../img/host.png"></span>
 							</div>
-							<div class="wid70 paddr10 fl hei110">
+							<div class="wid70 paddr10 hei110">
 								<div class="iptwrap mui-input-row">
-									<input type="text" class="linehei68 mui-input-clear" id="gname" />
+									<input type="text" class="linehei68 mui-input-clear" id="gname" placeholder="Name"/>
 								</div>
 							</div>
 						</div>
 						<div class="gap"></div>
 						<div class="gWeight clear">
-							<div class="wid30 paddl10 fl hei110 linehei110 colorg">
-								<span class="mui-icon mui-icon-person colorgray"></span> Weight
-							</div>
-							<div class="wid50 paddr10 fl hei110">
-								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="gweight" />
-								</div>
+							<div class="wid30 fl hei110 linehei110 colorg">
+								<span class="colorgray myicon"><img src="../../img/weight.png"></span>
 							</div>
 							<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
-								<span class="kg-g">Kg</span>
+								<span class="kg-g font-14">Kg</span>
+							</div>
+							<div class="wid50 hei110">
+								<div class="iptwrap mui-input-row">
+									<input type="number" class="linehei68 mui-input-clear" id="gweight" placeholder="Weight"/>
+								</div>
 							</div>
 						</div>
 						<div class="gValue clear">
-							<div class="wid30 paddl10 fl hei110 linehei110 colorg">
-								<span class="mui-icon mui-icon-person colorgray"></span> Value
+							<div class="wid30 fl hei110 linehei110 colorg">
+								<span class="colorgray myicon"><img src="../../img/value.png"></span>
 							</div>
-							<div class="wid50 paddr10 fl hei110">
+							<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
+								<span class="kg-g font-14">$</span>
+							</div>
+							<div class="wid50 hei110">
 								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="gvalue" />
+									<input type="number" class="linehei68 mui-input-clear" id="gvalue" placeholder="Value"/>
 								</div>
-							</div>
-							<div class="fr hei110 linehei110 wid20 mui-text-center">$
 							</div>
 						</div>
 						<div class="info clear" id="info">
-							<div class="wid40 paddl10 fl hei110 linehei110 colorg">
-								<span class="mui-icon mui-icon-person colorgray"></span> Comment
+							<div class="wid30 fl hei110 linehei110 colorg">
+								<span class="colorgray myicon"><img src="../../img/coment.png"></span>
 							</div>
-							<div class="wid40 paddr10 fl hei110">
-								<div class="iptwrap mui-input-row">
-									<input type="text" class="linehei68 mui-input-clear" id="gettext" />
+							<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
+								<span class="kg-g font-14 myicon"><img src="../../img/enter.png"></span>
+							</div>
+							<div class="wid50 hei110">
+								<div class="iptwrap mui-input-row addpad addline" id="gettext">
+									Comment
 								</div>
-							</div>
-							<div class="fr hei110 linehei110 wid20 mui-text-center">
-								<span class="mui-icon mui-icon-arrowright"></span>
 							</div>
 						</div>
 						<div class="gap"></div>
 						<div class="goods-pic">
-							<ul class="mui-table-view mui-grid-view" id="take-photo">
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box" data-index='0'>
+							<ul class="mui-table-view clear" id="take-photo">
+								<li class="mui-table-view-cell img-box addmarr" data-index='0'>
 									<a href="#delete" class="picpre">
 										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box" data-index='1'>
+								<li class="mui-table-view-cell img-box addmarr" data-index='1'>
 									<a href="#delete" class="picpre">
 										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box" data-index='2'>
+								<li class="mui-table-view-cell img-box addmarr" data-index='2'>
 									<a href="#delete" class="picpre">
 										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
 								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-3 img-box" data-index='3'>
+								<li class="mui-table-view-cell img-box" data-index='3'>
 									<a href="#delete" class="picpre">
 										<span class="mui-icon mui-icon-plusempty addclass"></span>
 									</a>
@@ -406,6 +493,9 @@
 		getdata.gValue = "";
 		getdata.pics = "";
 		getdata.info = "";
+		var h = $('.picpre').width();
+		$('.picpre').height(h)
+		$('.addclass').css('line-height',h+'px')
 		mui.plusReady(function() {
 			mui('#offCanvasSideScroll').scroll();
 			plus.webview.currentWebview().setStyle({
@@ -462,7 +552,7 @@
 				return flag;
 			}
 			window.addEventListener('getinfo', function(eve) {
-				$('#gettext').val(eve.detail.info);
+				$('#gettext').text(eve.detail.info).css('color','#5d5d5d');
 			})
 			var iw, _this;
 			mui('#take-photo').on('tap', '.addclass', function(e) {
