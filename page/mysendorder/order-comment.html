@@ -5,39 +5,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="mysendorder-comment.css"/>
+    <link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css"/>
     <link rel="stylesheet" href="../../fonts/iconfont-star.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mysendorder/order-comment.css"/>
     <script src="../../js/mui.min.js"></script>
-    <style type="text/css">
-    	.mui-btn.mui-btn-block {background: #054859;}
-    	.mui-content-padded {color: #999;}
-    	.title {color: #999;}
-    	.g-name {color: #cfd1d2;padding-left: 0.5em;}
-    	.icon-font {color: #31a25f;}
-    	.mui-input-row label {padding: 0px 15px;height: 100%;line-height: 2.5;}
-    	.gName {width: 65%;height: 100%;line-height: 2.5;padding-left: 1em;}
-    	.mui-input-group .mui-input-row {height: auto;}
-    	.mui-input-group .mui-input-row:first-child {padding: 5px 0;}
-    	.mui-input-group .mui-input-row:after {right: 15px;height: 5px;}
-    	.mui-input-group .mui-input-row:nth-child(2):after {height: 0px;}
-    	.mui-content-padded {margin: 10px 10px 10px 30px;}
-    	.enter-words {padding: 2px 5px 5px 0;color: #bec0c2;}
-    	.mui-card {box-shadow: 2px 2px 6px rgba(200,200,200,.6);margin-bottom: 1em; border-radius: 5px;}
-    	.mui-table-view:before, .mui-table-view:after, .mui-table-view-cell:after {height: 0;}
-    	#delivery-speed {padding: 5px 10px;color: #5f5d5d;font-size: 14px;font-weight: bold;}
-    	#delive-speed, #delive-service {color: #31a25f;padding: 15px 0;}
-    	.mui-table-view-cell.mui-col-xs-7 {padding: 11px 3px !important;}
-    	.iconfont {color: #3fc776;font-size: 1.7em;font-weight: bold;float: left;padding-right: 10px;}
-    	.not-active {color: #fff; text-shadow: -1px -1px 3px #d3d4d5;}
-    	.mui-bar-nav~.mui-content {padding-bottom: 3.2em;}
-    </style>
 </head>
 <body>
 	<header class="mui-bar mui-bar-nav">
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<h1 class="mui-title">Order Comment</h1>
 	</header>
-	
 	<div class="mui-content">
 		<div class="mui-content-padded">Description evalution</div>
 		<div class="mui-card">
@@ -79,78 +56,6 @@
 		<button id="comment-order" class="mui-btn mui-btn-block">comment</button>
 	</footer>
 	<script src="../../js/utils.js"></script>
-    <script>
-      	mui.init();
-      	mui.plusReady(function(){
-      		plus.webview.currentWebview().setStyle({
-      			scrollIndicator : "none"
-      		})
-      		// 默认为两星
-      		var delivery = 1;
-      		
-      		// 星星评价
-      		var pin = document.getElementById("delive-speed");
-      		mui("#delivery").on("tap", ".iconfont", function(){
-      			var index = this.getAttribute("data-index");		// 当前点击的index值
-      			var type = this.getAttribute("data-type");			// 获取当前点击类型
-      			var child = this.parentNode.children;		// 获取当前节点下所有节点包括自己
-      			// 清理当前点击的样式呈现
-      			for(var i = 0; i < index; i++){
-      				var cls = child[i].classList;
-      				if(cls.contains("not-active")){
-      					cls.remove("not-active");
-      				}
-      			}
-      			// 添加店家后面样式的清空
-      			for(var j = index; j < 5; j++){
-      				var cls = child[j].classList;
-      				if(!cls.contains("not-active")){
-      					cls.add("not-active");
-      				}
-      			}
-      			// 分数评价
-      			delivery = index;
-      			pin.innerHTML = index == 1 ? "bad" : index == 2 ? "slow" : index == 3 ? "genral" : index == 4 ? "well" : "very"; 
-      		})
-      		
-      		// 对评价按钮的添加事件		bad slow genral well very well
-      		var finish = plus.webview.getWebviewById("mysendorder-detail-finish");
-      		var cpage = plus.webview.currentWebview();
-      		document.getElementById("comment-order").addEventListener("tap", function(){
-      			var inf = document.getElementById("info").value.trim();
-      			if(inf){
-	      			var datas = {
-	      				orderId : plus.storage.getItem("my-send-order"),
-	      				info : inf,
-	      				score : delivery
-	      			}
-	      			
-	      			// ajax发送数据
-	      			mui.ajax(BASEURL + "order/evaluate", {
-						data : datas,
-						type : "post",
-						success : function(data){
-							if(data.ret == 1){
-								mui.toast("评价成功");
-								openNewWindow("./my-send-order.html");
-								setTimeout(function(){
-									plus.webview.close(finish, "fade-out", 200)
-									plus.webview.close(cpage, "fade-out", 200)
-								}, 300)
-							} else {
-								alert("不能重复评论");
-							}
-						},
-						error : function(xhr, type){
-							console.log(type)
-						}
-					})
-      			} else {
-      				mui.toast("未填写评价信息")
-      			}
-      		})
-      		
-      	})
-    </script>
+    <script src="../../js/mysendorder/order-comment.js"></script>
 </body>
 </html>

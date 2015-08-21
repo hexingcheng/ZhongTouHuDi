@@ -1,0 +1,35 @@
+body {
+	background-color: #fff;
+}
+.mui-content-padded {
+	margin: 0;
+	padding-bottom: 5px;
+}
+.input-box input {
+	margin: 0;
+	border: none;
+}
+.input-box input:focus,
+input-box input:hover {
+	background-color: #ddffeb;
+}
+.rang-slider-bar {
+	padding: 1.3em 0;
+}
+.mui-btn.button-first {
+	background-color: #31a25f;
+}
+.mui-btn.button-next {
+	background-color: #ff8474;
+}
+.mui-button-row button {
+	color: #bdbdbd;
+}
+.mui-button-row button:nth-child(3),
+.mui-button-row button:nth-child(4) {
+	padding: 6px 1.3em;
+}
+.mui-button-row .active-color {
+	color: #35a462;
+	border-color: #37a563;
+}

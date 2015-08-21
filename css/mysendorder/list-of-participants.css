@@ -1,0 +1,41 @@
+.mui-table-view-cell {
+	padding: 0.6em 0;
+}
+.mui-table-view-cell:nth-child(2n) {
+	background: #f5f5f5;
+}
+.img-row {
+	width: 20%;
+}
+.headimg-box {
+	width: 3.2em;
+	height: 3.2em;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.name-box {
+	width: 30%;
+	padding: 3px 0 0 0;
+}
+.order-send {
+	width: 12%;
+	padding: 3px 0 0 0;
+}
+.order-send .send-num {
+	color: #646464;
+}
+.order-reward {
+	width: 14%;
+	padding: 3px 0 0 0;
+}
+.order-reward .reward-money {
+	color: #d92400;
+}
+.button-box {
+	width: 24%;
+	padding: 10px 0 0 0;
+}
+.mui-scroll-wrapper {
+	top: 44px;
+}

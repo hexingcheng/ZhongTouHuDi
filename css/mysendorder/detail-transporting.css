@@ -1,0 +1,47 @@
+.headimg-box {
+	width: 4em;
+	height: 4em;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0 auto;
+}
+#deliverer-img {
+	padding: 11px 0;
+}
+#deliverer-msg {
+	padding: 13px 0 22px 10px;
+	color: #333;
+}
+.deliverer-name {
+	font-size: 1.1em;
+	padding: 5px 0;
+}
+.deliverer-honor {
+	color: #8c8c8c;
+}
+#deliverer-num {
+	padding: 0 0 22px 0;
+}
+.send-title {
+	padding: 15px 0 10px 0;
+	color: #8c8c8c;
+}
+.send-num {
+	font-size: 1.2em;
+	color: #7f7f7f;
+}
+.mui-icon.mui-icon-chatbubble-filled {
+	color: #ffc11b;
+}
+.mui-icon.mui-icon-phone-filled {
+	color: #00b94e;
+}
+#deliverer-contact {
+	padding: 0;
+}
+#deliverer-contact div {
+	padding: 10px 0;
+}
+#deliverer-contact div:nth-child(1) {
+	border-bottom: 1px solid #eee;
+}

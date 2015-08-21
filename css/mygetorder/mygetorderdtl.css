@@ -1,0 +1,91 @@
+html,
+body,
+.mui-content {
+	background-color: #FFFFFF;
+}
+.marktips {
+	text-align: center;
+	color: #35a462;
+	line-height: 40px;
+}
+.cancel {
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background-color: #ffa619;
+	color: #fff3e5;
+}
+html,
+body,
+.mask {
+	width: 100%;
+	height: 100%;
+}
+.mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 999;
+}
+.dialog,
+.confirm,
+.inputcode {
+	background-color: #FFFFFF;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 270px;
+	overflow: hidden;
+	word-break: break-all;
+}
+.info {
+	color: #000000;
+	padding: 10px 20px;
+}
+.ok,
+.back,
+.cancelinput {
+	float: left;
+	height: 40px;
+	width: 50%;
+	line-height: 40px;
+	background-color: #c4e8da;
+	text-align: center;
+	color: #029c5d;
+}
+.wron {
+	padding: 0 20px;
+}
+.cancels,
+.checks,
+.checkr {
+	float: left;
+	height: 40px;
+	width: 50%;
+	line-height: 40px;
+	background-color: #f6ccc2;
+	text-align: center;
+	color: #da2a02;
+}
+.check,
+.write {
+	color: #FFFFFF;
+	height: 40px;
+	width: 48%;
+	line-height: 40px;
+	text-align: center;
+	float: left;
+}
+.check {
+	background-color: yellow;
+	margin-right: 2%;
+}
+.write {
+	background-color: green;
+	margin-left: 2%;
+}
+.load {
+	width: 100px;
+	height: 100px;
+}
