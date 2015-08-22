@@ -18,7 +18,7 @@ function iflogin(cb) {
 	if (getstorage('token')) {
 		cb();
 	} else {
-		openWindow('./page/logupin/login.html')
+		openWindow('./page/logupin/login.html');
 	}
 }
 

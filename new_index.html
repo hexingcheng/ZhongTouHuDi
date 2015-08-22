@@ -62,14 +62,17 @@
 				margin: 0;
 				overflow: hidden;
 			}
-			.func img {
-				width: 40%;
-				height: 40%;
-				margin: 30% 30% 30% 30%;
+			.width400 img {
+				width: 30%;
+				height: 30%;
+				display: inline-block;
+				margin: 35%;
 			}
 			.imgwrap {
 				position: relative;
 				box-sizing: border-box;
+				height: 100%;
+				width: 100%;
 				/*border-top: 3px solid #FFFFFF;*/
 			}
 			.picintro {
@@ -223,7 +226,8 @@
 				height: 52px;
 			}
 			#header h1 {
-				padding-left: 20px;
+				font-size: 16px;
+				padding-left: 10px;
 				text-align: left;
 				line-height: 52px;
 			}
@@ -314,6 +318,22 @@
 			.admira{
 				color: #FFFFFF;
 			}
+			#header{
+				padding: 0;
+			}
+			.headicon{
+				height: 40px;
+				width: 40px;
+				margin: 6px;
+				display: block;
+			}
+			.headicon img{
+				height: 40px;
+				width: 40px;
+			}
+			.width400{
+				width: 100%;;
+			}
 			</style>
 	</head>
 
@@ -368,7 +388,6 @@
 								<div class="menucon">setting up</div>
 							</li>
 						</ul>
-
 					</div>
 				</div>
 				<div class="contact">
@@ -380,11 +399,11 @@
 			</aside>
 			<div class="mui-inner-wrap">
 				<header class="mui-bar mui-bar-nav" id="header">
-					<a class="mui-pull-left myicon" id="menu" href="#offCanvasSide">
+					<a class="mui-pull-left headicon" id="menu" href="#offCanvasSide">
 						<img src="img/menu.png"/>
 					</a>
 					<h1 class="mui-title">Along</h1>
-					<a class="myicon mui-pull-right" id="chat-info">
+					<a class="headicon mui-pull-right" id="chat-info">
 						<img src="img/message.png"/>
 					</a>
 				</header>
@@ -443,38 +462,50 @@
 							<div class="addra">
 								<div class="func" id="hlep-son">
 									<div class="imgwrap">
-										<img src="img/send.png" />
+										<div class="width400">
+											<img src="img/send.png" />
+										</div>
 										<div class="picintro">send</div>
 									</div>
 								</div>
 								<div class="func rlb" id="i-will">
 									<div class="imgwrap">
-										<img src="img/deliver.png" />
+										<div class="width400">
+											<img src="img/deliver.png" />
+										</div>
 										<div class="picintro">deliver</div>
 									</div>
 									<div></div>
 								</div>
 								<div class="func">
 									<div class="imgwrap">
-										<img src="img/plan.png" />
+										<div class="width400">
+											<img src="img/plan.png" />
+										</div>
 										<div class="picintro">trip plan</div>
 									</div>
 								</div>
 								<div class="func" id='mysned'>
 									<div class="imgwrap">
-										<img src="img/order.png" />
+										<div class="width400">
+											<img src="img/order.png" />
+										</div>
 										<div class="picintro">order</div>
 									</div>
 								</div>
 								<div class="func rlb" id="mywallet">
 									<div class="imgwrap">
-										<img src="img/wallet.png" />
+										<div class="width400">
+											<img src="img/wallet.png" />
+										</div>
 										<div class="picintro">wallet</div>
 									</div>
 								</div>
 								<div id="go-help" class="func">
 									<div class="imgwrap">
-										<img src="img/help.png" />
+										<div class="width400">
+											<img src="img/help.png" />
+										</div>
 										<div class="picintro">help</div>
 									</div>
 								</div>
@@ -489,6 +520,7 @@
 		<script type="text/javascript" src="js/new_index.js"></script>
 		<script>
 			$('#offCanvasSide').css('width', '83%');
+			$('.width400').height($('.width400').width())
 			$('#srcoll').height($(window).height() - 52);
 			 //			$('.func').height($('.func').width()).on('tap', function() {
 			 //				$('.imgwrap').css('border-color','#ffffff');

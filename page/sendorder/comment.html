@@ -31,12 +31,14 @@
 				background-color: #F2F2F2;
 			}
 			textarea {
+				font-size: 14px;
 				margin-bottom: 0;
 			}
 			.texta {
 				position: relative;
 			}
 			.tips {
+				font-size: 14px;
 				position: absolute;
 				bottom: 10px;
 				right: 0;
@@ -44,40 +46,52 @@
 				color: #bec0c2;
 			}
 			.description ,.remark{
+				
 				padding: 10px;
 			}
 			.title {
 				color: #5f5d5d;
 				font-weight: normal;
-				font-size: 17px;
+				font-size: 16px;
 			}
 			.can-choose {
 				padding: 10px 10px 30px 0;
 			}
 			.can-choose span {
-				border-radius: 5px;
-				border: 1px solid #fc9b29;
+				border: 1px solid #bec0c2;
 				margin-bottom: 10px;
+				font-size: 14px;
 				display: inline-block;
-				padding: 10px;
-				background-color: #fff3e5;
-				color: #fc9b29;
+				padding: 5px;
+				background-color: #f3f3f3;
+				color: #bec0c2;
 			}
 			.remark-con{
+				font-size: 14px;
 				color: #818384;
 			}
 			#footer{
 				height: 60px;
 				background-color: #FFFFFF;
-				padding: 10px 20px;
+				padding: 6px 20px;
 			}
 			.next-step{
 				text-align: center;
 				background-color: #3ba767;
 				width: 100%;
 				height: 100%;
-				line-height: 40px;
+				line-height: 48px;
 				color: #ceefe4;
+			}
+			.mui-bar{
+				box-shadow: 0 0 1px #D1D1D1;
+			}
+			.mui-scroll{
+				padding: 5px;
+				background-color: #ededeb;
+			}
+			#impor-text{
+				border: 0;
 			}
 		</style>
 	</head>
@@ -95,12 +109,12 @@
 				<div class="mui-scroll">
 					<div class="texta">
 						<div class="mui-input-row">
-							<textarea rows="7" placeholder="Example" id="impor-text"></textarea>
+							<textarea rows="7" placeholder="Example" id="impor-text" maxlength="10"></textarea>
 						</div>
 						<div class="tips">can accommodate 100 words</div>
 					</div>
 					<div class="gap"></div>
-					<div class="description">
+					<div class="description" style="background-color: #FFFFFF;">
 						<h3 class="title">Type Description</h3>
 						<div class="can-choose">
 							<span class="choose" data-off = "1">valuables</span>
@@ -112,7 +126,7 @@
 						</div>
 					</div>
 					<div class="gap"></div>
-					<div class="remark">
+					<div class="remark" style="background-color: #FFFFFF;">
 						<h3 class="title">Remark</h3>
 						<div class="remark-con">must arrve in two days,there are fragile things inside</div>
 					</div>
@@ -123,28 +137,31 @@
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui.plusReady(function() {
-				var comments = [];
+				var values = [];
+				var str;
 				$('.choose').on('tap',function(){
-					$('#impor-text').val(" ");
-					if(Boolean($(this).attr('data-off'))){
-						comments.push($(this).text());
+					if($(this).attr('data-off')){
 						$(this).css({
-							'color':'#fce7e4',
-							'background-color':'#fc9b29'
+							'border':'1px solid #3fc776',
+							"background-color":'#e8fff3',
+							'color':'#3fc776'
 						})
 						$(this).attr('data-off','')
 					}else{
-						comments[comments.indexOf($(this).text())] = "";
 						$(this).css({
-							'color':'#fc9b29',
-							'background-color':'#fff3e5'
-						});
-						$(this).attr('data-off','1')
+							'border':'1px solid #bec0c2',
+							"background-color":'#f3f3f3',
+							'color':'#bec0c2'
+						})
+						$(this).attr('data-off','1');
 					}
-					var str = comments.join(' ').trim();
-					$('#impor-text').val(str);
 				})
 				$('#ok').on('tap',function(){
+					for(var i = 0;i<$('.choose').length;i++){
+						if(!$('.choose').eq(i).attr('data-off')){
+							values.push($('.choose').eq(i).text());
+						}
+					}
 					var value = document.getElementById('impor-text').value;
 					if (!value) {
 						mui.confirm('您还未输入任何重要信息，确认返回？', '提示', ['确认', '继续'], function(e) {
@@ -156,9 +173,10 @@
 							}
 						})
 					} else {
+						str = value+"("+values.join(',')+")"
 						var c = plus.webview.currentWebview();
 						var dl = plus.webview.getWebviewById('sendorder/createorder');
-						mui.fire(dl,'getinfo',{"info":value});
+						mui.fire(dl,'getinfo',{"info":str});
 						c.close();
 						dl.show('slide-in-left')
 					}

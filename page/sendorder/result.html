@@ -39,11 +39,12 @@
       	mui.init();
       	mui.plusReady(function(){
 			document.getElementById('main-page').addEventListener('tap',function(){
-				closeweb();
 				plus.webview.getLaunchWebview().show('slide-in-left');
+				closeweb();
 			})
 			document.getElementById('order-page').addEventListener('tap',function(){
 				openWindow('../mysendorder/my-send-order.html');
+				closeweb();
 			})
 			function closeweb(){
 				var webArr = ['sendorder/createorder','create-next','comment','chooseaddr','pickaddr','presee','result'];
