@@ -1,0 +1,137 @@
+.apply_header{
+	width: 100%;
+	height: 52px;
+	line-height: 52px;
+	font-size: 16px;
+	color: #FFFFFF;
+	background-color: #2A9F59;
+}
+.apply_header:after{
+	box-shadow: none;
+}
+.apply_title{
+	margin-left: .6em;
+}
+.apply_content{
+	padding: 0 .5em;
+	font-size: 14px;
+}
+.apply_prompt{
+	width: 100%;
+	height: 3em;
+	border: 1px solid red;
+	line-height: 4em;
+	padding-left: 1em;
+	color: #B9B9B9;
+}
+.mui-content .mui-table-view-cell{
+	height: 50px;
+	line-height: 50px;
+	padding: 0;
+}
+.apply_check{
+	height: 50px;
+	overflow: hidden;
+}
+.apply_check_div{
+	height: 50px;
+	width: 33%;
+	line-height: 50px;
+	text-align: center;
+	border: 1px solid red;
+	float: left;
+	overflow: hidden;
+}
+.mui-table-view-cell img{
+	width: 34px;
+	height: 34px;
+	margin: 8px 7px;
+}
+.apply_input_r{
+	height: 50px;
+	margin-right: 52px; 
+	overflow: hidden;
+}
+.apply_input_middle{
+	height: 50px;
+	margin-right:150px; 
+	overflow: hidden;
+}
+.apply_input_l{
+	height: 50px;
+	overflow: hidden;
+}
+.mui-content .apply_input{
+	width: 100%;
+	height: 50px;
+	overflow: hidden;
+	font-size: 14px;
+	border: 0;
+	padding-left: 0;
+	padding-right: 0;
+	margin-bottom: 0;
+}
+.apply_footer{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+    overflow: hidden;
+}
+.apply_footer .apply_button{
+	width: 80%;
+	height: 48px;
+	line-height: 48px;
+	margin: 0 auto;
+	color: white;
+	font-size: 16px;
+	text-align: center;
+	margin-bottom: .2em;
+	background-color: #054859;
+	
+}
+.mui-content .mui-table-view{
+	margin-top: 1em;
+}
+.apply_info{
+	overflow: hidden;
+}
+.apply_idCard{
+	overflow: hidden;
+	font-size: 14px;
+	color: silver;
+}
+.apply_idcard_div{
+	width: 88%;
+	height: 12em;
+	overflow: hidden;
+	margin: .3em 0 .3em 2.5em;
+}
+.apply_idcard_div .img_div{
+	width: 3em;
+	height: 4em;
+	margin: 4em 0 ;
+	text-align: center;
+	line-height: 1em;
+	float: right;
+}
+.img_div img{
+	width: 34px;
+	height: 34px;
+}
+.apply_idpho{
+	height: 12em;
+	padding: 0 1em;
+/*	background-color: #F6F6F6;*/
+	overflow: hidden;
+	text-align: center;
+	margin-right: 3.8em;
+	border: 2px solid silver;
+}
+.apply_idpho img{
+	width: 34px;
+	height: 34px;
+	margin:.2em auto;
+}
+.apply_idpho .text{
+	text-align: justify;
+}

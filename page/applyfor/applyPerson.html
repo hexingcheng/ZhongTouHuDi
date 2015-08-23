@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<script src="../../js/mui.js"></script>
+<link href="../../css/mui.css" rel="stylesheet"/>
+<link rel="stylesheet" href="apply.css" />
+<style>
+.apply_header{
+	width: 100%;
+	height: 52px;
+	line-height: 52px;
+	font-size: 16px;
+	color: #FFFFFF;
+	background-color: #2A9F59;
+}
+.apply_header:after{
+	box-shadow: none;
+}
+.apply_title{
+	margin-left: .6em;
+}
+.apply_content{
+	padding: 0 .5em;
+	font-size: 14px;
+}
+.apply_prompt{
+	width: 100%;
+	height: 3em;
+	border: 1px solid red;
+	line-height: 4em;
+	padding-left: 1em;
+	color: #B9B9B9;
+}
+.mui-content .mui-table-view-cell{
+	height: 50px;
+	padding: 0;
+}
+.mui-table-view-cell img{
+	width: 34px;  
+	height: 34px;
+	margin: 8px 7px;
+}
+.apply_input_r{
+	height: 50px;
+	margin-right: 52px;  
+	overflow: hidden;
+}
+.apply_input_l{
+	height: 50px;
+	overflow: hidden;  
+}
+.mui-content .apply_input{
+	width: 100%;
+	height: 50px;
+	overflow: hidden;
+	font-size: 14px;
+	border: 0;
+	padding-left: 0;
+	padding-right: 0;
+	margin-bottom: 0;
+}
+.apply_footer{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+    overflow: hidden;
+}
+.apply_footer .apply_button{
+	width: 80%;
+	height: 48px;
+	line-height: 48px;
+	margin: 0 auto;
+	color: white;
+	font-size: 16px;
+	text-align: center;
+	margin-bottom: .2em;
+	background-color: #054859;
+	
+}
+.mui-content .mui-table-view{
+	margin-top: 1em;
+}
+.apply_info{
+	overflow: hidden;
+}
+.apply_idCard{
+	overflow: hidden;
+	font-size: 14px;
+	color: silver;
+	border: 1px solid silver;
+}
+.apply_idcard_div{
+	width: 95%;
+	height: 12em;
+	overflow: hidden;
+	margin: .2em auto;
+}
+.apply_idcard_div .img_div{
+	width: 3em;
+	height: 4em;
+	margin: 4em 0;
+	text-align: center;
+	line-height: 1em;
+	float: right;
+}
+.img_div img{
+	width: 34px;
+	height: 34px;
+}
+.apply_idpho{
+	height: 12em;
+	padding: 0 1em;
+/*	background-color: #F6F6F6;*/
+	overflow: hidden;
+	text-align: center;
+	margin-right: 3em;
+	border: 2px solid silver;
+}
+.apply_idpho img{
+	width: 34px;
+	height: 34px;
+	margin:.2em auto;
+}
+.apply_idpho .text{
+	text-align: justify;
+}
+/*.mui-table-view-divider:before{
+	height: 0;
+}*/
+.apply_sex{
+	width: 150px;
+	height: 50px;
+	line-height: 50px;
+	float: right;
+	text-align: center;
+}
+/*.apply_sex input{
+	margin-top: 19px;
+}*/
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav apply_header">
+		<span class="mui-icon mui-icon-left-nav"></span>
+		<span class="apply_title">Application For Deliverer</span>
+	</header>
+	<div class="mui-content apply_content">
+		<ul class="mui-table-view" >  
+			<li class="mui-table-view-divider"> <span>Basic Information</span></li>
+			<li class="mui-table-view-cell">
+				<img src="../../img/name.png" class="mui-pull-left" alt="" />
+				<div class="apply_sex">
+					 <input type="radio" name="sex" value="man" checked="checked"/> <lable>man </lable>
+					 <input type="radio" name="sex" />  <lable>women </lable>
+				</div>
+				<div class="apply_input_middle">
+					<input type="text" class="apply_input"  placeholder="real name" id="apply_name"/>
+				</div>
+			</li>
+			<li class="mui-table-view-cell">
+				<img src="../../img/nationality.png" class="mui-pull-left" alt="" />
+				<img src="../../img/1096072.png" class="mui-pull-right" alt="" />
+				<div class="apply_input_r">
+					<input type="text" class="apply_input" placeholder="nationnality" id="apply_nation"/>
+				</div>
+			</li>
+			<li class="mui-table-view-cell">
+				<img src="../../img/4.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_l">
+					<input type="text" class="apply_input" placeholder="place of residence" id="apply_place"/>
+				</div>
+			</li>
+			<li class="mui-table-view-cell">
+				<img src="../../img/emergency.png" class="mui-pull-left" alt="" />
+				<img src="../../img/personbg.png" class="mui-pull-right" alt="" />
+				<div class="apply_input_r">
+					<input type="text" class="apply_input" placeholder="emergency contact" id="apply_emergencyC"/>
+				</div>
+			</li>    
+			<li class="mui-table-view-cell">
+				<img src="../../img/mobile.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_l">
+					<input type="text" class="apply_input" placeholder="mobile" id="apply_mobile"/>
+				</div>
+			</li>
+			<li class="mui-table-view-cell">
+				<img src="../../img/mobile.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_l">
+					<input type="text" class="apply_input" placeholder="信用卡号" id="creditCard"/>
+				</div>
+			</li>
+			<li class="mui-table-view-divider"> <span>Certificate Information</span></li>
+			<li class="mui-table-view-cell">
+				<img src="../../img/id.png" class="mui-pull-left" alt="" />
+				<img src="../../img/right.png" class="mui-pull-right" alt="" style="display: none;"/>
+				<img src="../../img/down.png" class="mui-pull-right" alt="" id="idCardInfo"/>
+				<div class="apply_input_r">
+					<input type="text" class="apply_input" placeholder="certification authentication" disabled="disabled" id="apply_idcard"/>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<a href="../../new_index.html"></a>
+	<div class="apply_footer">
+		<div class="apply_button" id="apply_submit"><span>submit</span></div>
+	</div>  
+</body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/utils.js"></script>
+<script>
+mui.plusReady(function(){
+    var flag=true;
+	function check_info(){//检测填写情况
+		var v_name=$('#apply_name').trim();
+		var v_nation=$('#apply_nation').trim();
+		var v_address=$('#apply_place').trim();
+		var v_emer=$('#apply_emergencyC').trim();
+		var v_mo=$('#apply_mobile').trim();
+		var v_creditCard=$("#creditCard").trim();
+        var carInfo=plus.storage.getItem('carInfo');
+        var car_info_status=plus.storage.getItem('carInfoSta');//得到carInfo的资料填写情况
+		if(true){
+		   if(!v_name){
+		   	  mui.toast('请填写你的真实姓名');
+		   	  flag=false;
+		   	  return;
+		   }
+		   if(!v_nation){
+		   	mui.toast('请填写你的国籍');
+		   	 flag=false;
+		   	  return;
+		   }
+		   if(!v_palce){
+		   	mui.toast('请填写你的地址');
+		   	 flag=false;
+		   	  return;
+		   }
+		   if(!v_emer){
+		   	mui.toast('请填写你的紧急联系人');
+		   	 flag=false;
+		   	  return;
+		   }
+		   if(!v_mo){
+		   	mui.toast('请填写你的电话号码');
+		   	 flag=false;
+		   	  return;
+		   }
+		   if(!apply_id==true){
+		   	mui.toast('请完成证件照资料');
+		     flag=false;
+		   }
+		}
+		
+	 //资料填写完成后上传
+	    if(flag&&car_info_status){
+	    	data_1={
+	    		nation:v_nation,
+	    		address:v_address,
+	    		realName:v_name,
+	    		idType:idtype
+	    	}
+	    	$.extend(data,dat_1,carInfo);
+	    	myAjax({url:"account/applyDeliver",data:data},function(data){
+	    		 if(data.ret==1){
+	    		    mui.toast('资料已提交，请等待审核');
+	    		    openWindow("../../new_index.html");
+	    		 }
+	    		 if(data.ret==2){
+	    		 	mui.toast('提交信息失败！');
+	    		 	openWindow("../../new_index.html");
+	    		 }
+	    	},function(){
+	    		
+	    	},function(){
+	    		
+	    	})
+	    }else{
+	    	mui.toast('请完成证件信息的填写！');
+	    }
+		
+	}
+	
+	$('#idCardInfo').on('tap',function(){
+		openWindow('./idcard.html');
+	})
+	$('#apply_submit').on('tap',function(){
+		check_info();
+	})
+})
+</script>
+</html>
