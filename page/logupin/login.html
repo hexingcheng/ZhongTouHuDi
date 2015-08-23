@@ -103,8 +103,8 @@
 									//登录成功
 									getacountinfo()
 									setstorage('token', obj.token);
+									plus.webview.getLaunchWebview().show('slide-in-left',200);
 									plus.webview.currentWebview().close();
-									plus.webview.getLaunchWebview().show('slide-in-left');
 								} else if (obj.ret == -1) {
 									mui.toast("手机号或密码错误")
 								} else if (obj.ret == -2) {  

@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../css/wallet-coment.css"/>
+    <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
     <script src="../../js/mui.min.js"></script>
     <style type="text/css">
     	.mui-table-view-chevron .mui-table-view-cell {padding-right: 1em;}
 		.mui-table-view-cell:after {height: 0;}
+		div.mui-scroll-wrapper {top: 150px;}
     </style>
 </head>
 <body class="bg-color">
@@ -31,28 +32,32 @@
 			</li>
 		</ul>
 		<div class="table-diviver"></div>
-		<div class="bg-color content-padded">pament records</div>
-		<ul id="recodes" class="mui-table-view mui-table-view-chevron bg-color">
-			<!-- 后期使用模板进行数据渲染 -->
-			<!--<li class="mui-table-view-cell mui-media border-bottom">
-				<div class="mui-pull-right mui-h3 style-coupon fixed-money">
-					-16.0
-				</div>
-				<div class="mui-media-body">
-					<div class="mui-ellipsis">Express reward</div>
-					<p class="mui-ellipsis">18:22 28 Mar 2015</p>
-				</div>
-			</li>
-			<li class="mui-table-view-cell mui-media">
-				<div class="mui-pull-right mui-h3 style-point fixed-money">
-					+20.0
-				</div>
-				<div class="mui-media-body">
-					<div class="mui-ellipsis">Car share</div>
-					<p class="mui-ellipsis">18:22 28 Mar 2015</p>
-				</div>
-			</li>-->
-		</ul>
+		
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul id="recodes" class="mui-table-view mui-table-view-chevron bg-color">
+					<!-- 后期使用模板进行数据渲染 -->
+					<!--<li class="mui-table-view-cell mui-media border-bottom">
+						<div class="mui-pull-right mui-h3 style-coupon fixed-money">
+							-16.0
+						</div>
+						<div class="mui-media-body">
+							<div class="mui-ellipsis">Express reward</div>
+							<p class="mui-ellipsis">18:22 28 Mar 2015</p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<div class="mui-pull-right mui-h3 style-point fixed-money">
+							+20.0
+						</div>
+						<div class="mui-media-body">
+							<div class="mui-ellipsis">Car share</div>
+							<p class="mui-ellipsis">18:22 28 Mar 2015</p>
+						</div>
+					</li>-->
+				</ul>
+			</div>
+		</div>
 	</div>
 	<script id="template" type="text/html">
 		{{each list}}
@@ -76,19 +81,40 @@
 		{{/each}}
 	</script>
 	<script src="../../js/template.js"></script>
+	<script src="../../js/utils.js"></script>
 	<script>
       	mui.init();
       	mui.plusReady(function(){
-//    		alert(plus.storage.getItem("recode"))
-      		var recode = JSON.parse(plus.storage.getItem("recode"));
-      		document.getElementById("show-point").innerHTML = recode.point;
+	      	mui(".mui-scroll-wrapper").scroll();
+      		var cpoint = document.getElementById("show-point")
       		
-      		// 模板渲染
-      		var obj = {
-      			"list" : JSON.parse(recode.list)
-      		}
+      		// 当前积分
+      		myAjax({
+      			url : "wallet/point"
+      		}, function(data){
+      			cpoint.innerHTML = data.res.point;
+      		}, function(xhr, type){
+      			console.log("错误代号："+xhr.status + "    错误信息："+type);
+      		})
+      		
+      		// 积分消费情况
+      		myAjax({
+      			url : "wallet/pointLog",
+      			data : {
+      				page : 1,
+      				pageSize : 6
+      			}
+      		}, function(data){
+      			var obj = {
+      				"list" : data.res.pointLog
+      			}
       		var html = template("template", obj);
-      		document.getElementById("recodes").innerHTML = html;
+    		document.getElementById("recodes").innerHTML = html;
+    		
+      		}, function(xhr, type){
+      			console.log("错误代号："+xhr.status + "    错误信息："+type);
+      		})
+      		
       	})
     </script>
 </body>

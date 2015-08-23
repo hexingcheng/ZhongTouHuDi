@@ -6,10 +6,12 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="common.css"/>
+		<link rel="stylesheet" href="common.css" />
 		<script src="../../js/mui.min.js"></script>
 		<style>
-			div.mui-scroll-wrapper {top: 8px;}
+			div.mui-scroll-wrapper {
+				top: 8px;
+			}
 			html,
 			body,
 			.mui-content {
@@ -45,8 +47,8 @@
 				padding-right: 10px;
 				color: #bec0c2;
 			}
-			.description ,.remark{
-				
+			.description,
+			.remark {
 				padding: 10px;
 			}
 			.title {
@@ -66,16 +68,16 @@
 				background-color: #f3f3f3;
 				color: #bec0c2;
 			}
-			.remark-con{
+			.remark-con {
 				font-size: 14px;
 				color: #818384;
 			}
-			#footer{
+			#footer {
 				height: 60px;
 				background-color: #FFFFFF;
 				padding: 6px 20px;
 			}
-			.next-step{
+			.next-step {
 				text-align: center;
 				background-color: #3ba767;
 				width: 100%;
@@ -83,15 +85,56 @@
 				line-height: 48px;
 				color: #ceefe4;
 			}
-			.mui-bar{
+			.mui-bar {
 				box-shadow: 0 0 1px #D1D1D1;
 			}
-			.mui-scroll{
+			.mui-scroll {
 				padding: 5px;
 				background-color: #ededeb;
 			}
-			#impor-text{
+			#impor-text {
 				border: 0;
+			}
+			.tipsmask {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				z-index: 30;
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+			.dialog {
+				background-color: #FFFFFF;
+				position: absolute;
+				top: 60px;
+				left: 0;
+				width: 270px;
+				overflow: hidden;
+				word-break: break-all;
+			}
+			.info {
+				color: #000000;
+				padding: 10px 20px;
+			}
+			.ok {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #c4e8da;
+				text-align: center;
+				color: #029c5d;
+			}
+			.wron {
+				padding: 0 20px;
+			}
+			.cancel {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #f6ccc2;
+				text-align: center;
+				color: #da2a02;
 			}
 		</style>
 	</head>
@@ -104,6 +147,16 @@
 		<footer class="mui-bar mui-bar-footer" id="footer">
 			<div class="next-step" id="ok">OK</div>
 		</footer>
+		<div class="tipsmask mui-hidden">
+			<div class="dialog mui-hidden">
+				<div class="info">
+					nothing write,leave still?
+				</div>
+				<p class="wron">this comment can make the order datail</p>
+				<div class="ok">ok</div>
+				<div class="cancel">cancel</div>
+			</div>
+		</div>
 		<div class="mui-content">
 			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -117,12 +170,12 @@
 					<div class="description" style="background-color: #FFFFFF;">
 						<h3 class="title">Type Description</h3>
 						<div class="can-choose">
-							<span class="choose" data-off = "1">valuables</span>
-							<span class="choose" data-off = "1">don't un pack</span>
-							<span class="choose" data-off = "1">put carful</span>
-							<span class="choose" data-off = "1">no water</span>
-							<span class="choose" data-off = "1">can't press</span>
-							<span class="choose" data-off = "1">trian</span>
+							<span class="choose" data-off="1">valuables</span>
+							<span class="choose" data-off="1">don't un pack</span>
+							<span class="choose" data-off="1">put carful</span>
+							<span class="choose" data-off="1">no water</span>
+							<span class="choose" data-off="1">can't press</span>
+							<span class="choose" data-off="1">trian</span>
 						</div>
 					</div>
 					<div class="gap"></div>
@@ -133,53 +186,87 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="../../js/jquery.min.js" ></script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui.plusReady(function() {
+				var c = plus.webview.currentWebview();
+				if (c.choose) {
+					var newstr = c.choose.replace("(", "").replace(")", "")
+					var v = newstr.split(',');
+					for (var i = 0; i < v.length; i++) {
+						for (var j = 0; j < $('.choose').length; j++) {
+							if ($('.choose').eq(j).text().trim() == v[i].trim()) {
+								$('.choose').eq(j).css({
+									'border': '1px solid #3fc776',
+									"background-color": '#e8fff3',
+									'color': '#3fc776'
+								})
+								$('.choose').eq(j).attr('data-off','')
+							}
+						}
+					}
+				}
+				if (c.ipt) {
+					$('#impor-text').text(c.ipt.trim())
+				}
 				var values = [];
 				var str;
-				$('.choose').on('tap',function(){
-					if($(this).attr('data-off')){
+				$('.choose').on('tap', function() {
+					if ($(this).attr('data-off')) {
 						$(this).css({
-							'border':'1px solid #3fc776',
-							"background-color":'#e8fff3',
-							'color':'#3fc776'
+							'border': '1px solid #3fc776',
+							"background-color": '#e8fff3',
+							'color': '#3fc776'
 						})
-						$(this).attr('data-off','')
-					}else{
+						$(this).attr('data-off', '')
+					} else {
 						$(this).css({
-							'border':'1px solid #bec0c2',
-							"background-color":'#f3f3f3',
-							'color':'#bec0c2'
+							'border': '1px solid #bec0c2',
+							"background-color": '#f3f3f3',
+							'color': '#bec0c2'
 						})
-						$(this).attr('data-off','1');
+						$(this).attr('data-off', '1');
 					}
 				})
-				$('#ok').on('tap',function(){
-					for(var i = 0;i<$('.choose').length;i++){
-						if(!$('.choose').eq(i).attr('data-off')){
+				$('#ok').on('tap', function() {
+					for (var i = 0; i < $('.choose').length; i++) {
+						if (!$('.choose').eq(i).attr('data-off')) {
 							values.push($('.choose').eq(i).text());
 						}
 					}
 					var value = document.getElementById('impor-text').value;
 					if (!value) {
-						mui.confirm('您还未输入任何重要信息，确认返回？', '提示', ['确认', '继续'], function(e) {
-							if (e.index == 0) {
-								plus.webview.currentWebview().close();
-								openWindow('./createorder.html');
-							} else {
-								return;
-							}
+						$('.tipsmask').removeClass('mui-hidden');
+						$('.dialog').removeClass('mui-hidden');
+						var l = ($(window).width() - 270) / 2;
+						var t = ($(window).height() - $('.dialog').height()) / 2;
+						$('.dialog').css({
+							'left': l,
+							'top': t
 						})
 					} else {
-						str = value+"("+values.join(',')+")"
-						var c = plus.webview.currentWebview();
+						var choose = "(" + values.join(',') + ")"
+						if(choose!='()'){
+							str = value+choose;
+						}else{
+							str = value;
+						}
 						var dl = plus.webview.getWebviewById('sendorder/createorder');
-						mui.fire(dl,'getinfo',{"info":str});
+						mui.fire(dl, 'getinfo', {
+							"info": str
+						});
+						dl.show('slide-in-left',200);
 						c.close();
-						dl.show('slide-in-left')
 					}
+				})
+				$('.ok').on('tap', function() {
+					mui.back();
+					c.close()
+				})
+				$('.cancel').on('tap', function() {
+					$('.tipsmask').addClass('mui-hidden');
+					$('.dialog').addClass('mui-hidden');
 				})
 			})
 		</script>

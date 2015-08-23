@@ -18,15 +18,11 @@ mui.plusReady(function() {
 		"sortType": "time",
 		"sortVal": "asc"
 	};
-	mui(".mui-scroll-wrapper").scroll({
-		bounce: false,
-		indicators: true,
-		deceleration: deceleration
-	});
+	mui(".mui-scroll-wrapper").scroll();
 
-
-	/*	//循环初始化所有下拉刷新，上拉加载。
-		mui.each(document.querySelectorAll('#link-detail .mui-control-content'), function(index, pullRefreshEl) {
+	
+	/*//循环初始化所有下拉刷新，上拉加载。
+		mui.each(document.querySelectorAll('.mui-control-content'), function(index, pullRefreshEl) {
 			var sort = $(this).attr('data-sort');
 			var item = $(this).attr('data-item')
 			getorderdata.sortType = sort;
@@ -39,13 +35,15 @@ mui.plusReady(function() {
 							data : getorderdata
 						}, function(data) {
 							_this.endPullDownToRefresh();
+//							console.log(JSON.stringify(data));
 							var orderdata = {
 								"list": data.res
 							}
-							var $wrap = $('<div class="wrap"></div>')
 							var html = template("template", orderdata);
-							$wrap.html(html);
-							$('.mui-scroll', item).append($wrap)
+							if (!html) {
+								html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
+							}
+							document.getElementById('item' + 1).innerHTML = html;
 						}, function(xhr, type, errorThrown) {
 							console.log(type)
 						})
@@ -63,26 +61,27 @@ mui.plusReady(function() {
 							data: getorderdata
 						}, function(data) {
 							_this.endPullUpToRefresh();
-							plus.nativeUI.closeWaiting()
-							if (data.res.length!=0) {
-								var orderdata = {
-									"list": data.res
-								}
-								var $wrap = $('<div class="wrap"></div>')
-								var html = template("template", orderdata);
-								$wrap.html(html);
-								$('.mui-scroll', item).append($wrap)
-							} else {
-								mui.toast('没有数据了')
-							}
+							console.log(JSON.stringify(data));
+//							plus.nativeUI.closeWaiting()
+//							if (data.res.length!=0) {
+//								var orderdata = {
+//									"list": data.res
+//								}
+//								var $wrap = $('<div class="wrap"></div>')
+//								var html = template("template", orderdata);
+//								$wrap.html(html);
+//								$('.mui-scroll', item).append($wrap)
+//							} else {
+//								mui.toast('没有数据了')
+//							}
 						}, function(xhr, type, errorThrown) {
 							console.log(type);
 						})
 					}
 				}
 			});
-		});
-		*/
+		});*/
+
 
 	// ajax 获取模板数据
 	if (navigator.geolocation) {
@@ -117,40 +116,40 @@ mui.plusReady(function() {
 	}
 
 	// 请求排序数据
-	var status = "1",  // 默认当前状态
-		count = 1;	// 默认点击当前状态下的次数
+	var status = "1", // 默认当前状态
+		count = 1; // 默认点击当前状态下的次数
 	mui('#segmentedControl').on('tap', '.mui-control-item', function() {
 		var type = this.getAttribute('data-sort');
 		var sta = this.getAttribute("data-status");
-		var cls = this.classList;			// 得到当前点击对象的classlist
-		if(sta == status){
+		var cls = this.classList; // 得到当前点击对象的classlist
+		if (sta == status) {
 			count++;
-			if(sta != "2"){
+			if (sta != "2") {
 				cls.toggle("icon-up")
 				cls.toggle("icon-down")
 			} else {
 				cls.toggle("icon-up-2")
 				cls.toggle("icon-down-2")
 			}
-			if(count % 2 == 0){
-				getorderdata.sortVal = "desc"; 
+			if (count % 2 == 0) {
+				getorderdata.sortVal = "desc";
 			} else {
 				getorderdata.sortVal = "asc";
 			}
 		} else {
 			status = sta;
-			$(".mui-control-item").removeClass("icon-up");			// 清空所有样式
+			$(".mui-control-item").removeClass("icon-up"); // 清空所有样式
 			$(".mui-control-item").removeClass("icon-up-2");
 			$(".mui-control-item").removeClass("icon-down");
 			$(".mui-control-item").removeClass("icon-down-2");
-			if(sta != "2"){
+			if (sta != "2") {
 				cls.add("icon-up")
 			} else {
 				cls.add("icon-up-2");
 			}
 		}
 		getorderdata.sortType = type;
-		
+
 		myAjax({
 			url: 'deliver/goodList',
 			data: getorderdata

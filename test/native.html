@@ -1,249 +1,445 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="../js/mui.min.js"></script>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-      	mui.plusReady(function(){
-      		
-      	})
-    </script>
-    <style type="text/css">
-    	.mui-off-canvas-left, .mui-off-canvas-right {visibility: visible;}
-    	html,
-			body,
-			.mui-content {
-				background-color: #d9dadb;
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
 			}
-			.mui-bar {
-				background-color: #46ac6f;
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
 			}
-			.mui-bar a,
-			.mui-bar h1 {
-				color: #FFFFFF;
-			}
-			.mui-slider-title {
-				background-color: #103f4b;
-				opacity: 0.6;
-			}
-			.mui-slider-indicator .mui-indicator {
-				width: 10px;
-				height: 10px;
-				margin: 10px 5px;
-			}
-			.mui-slider-indicator {
-				bottom: -5px;
-			}
-			.func {
-				overflow: hidden;
-				box-sizing: border-box;
-				margin-bottom: 0.5%;
-				width: 33%;
-				height: 100px;
-				float: left;
-				background-color: #ffffff;
-			}
-			.rlb {
-				margin-left: 0.5%;
-				margin-right: 0.5%;
-			}
-			.mui-content-padded {
-				margin: 30px 10px;
-				overflow: hidden;
-			}
-			.func img {
-				width: 40%;
-				height: 40%;
-				margin: 20% 30% 40% 30%;
-			}
-			.imgwrap {
-				position: relative;
-				border-top: 3px solid #FFFFFF;
-			}
-			.picintro {
+			.mui-pull-top-tips {
 				position: absolute;
-				width: 100%;
-				line-height: 20px;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+			}
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
 				text-align: center;
-				color: #06495a;
-				bottom: 20%;
-				font-size: 20px;
-			}
-			.addra {
-				width: 100%;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
 				overflow: hidden;
-				border-radius: 10px;
 			}
-			.bortop {
-				position: absolute;
-				width: 100%;
-				height: 3px;
-				top: 0;
-				left: 0;
-				background-color: #3fc776;
-				display: none;
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
 			}
-			#offCanvasSide {
-				height: 100%;
-				background-color: #03242c;
-			}
-			.per-infos {
-				width: 100%;
-				padding-top: 30px;
-				padding-bottom: 20px;
-			}
-			.picwrap {
-				background-color: #FFFFFF;
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				
 				margin: 0;
-				width: 80px;
-				height: 80px;
-				border: 2px solid #FFFFFF;
-				border-radius: 50%;
-				overflow: hidden;
-				margin: 0 auto;
-				position: relative;
 			}
-			.picwrap img {
-				border: 0;
-				outline: none;
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
 			}
-			.myname,
-			.mytitle {
-				margin: 0;
-				padding: 0;
-				line-height: 20px;
-				color: #FFFFFF;
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			.mui-pull-bottom-tips {
 				text-align: center;
-			}
-			#caidan,
-			#caidan li {
-				background-color: #03242c;
-			}
-			#caidan p {
-				color: #FFFFFF;
-			}
-			#caidan span {
-				color: #FFFFFF;
-			}
-			.mui-table-view:before{
-				top: -1px;
-				background-color: #063d4b;
-			}
-			.mui-table-view-cell:after {
-				left: 0;
-				background-color: #063d4b;
-			}
-			.mui-table-view:after {
-				background-color: #063d4b;
-			}
-			.addlmar {
-				margin-left: 30px;
-			}
-			.menulist{
-				padding: 0;
-				margin: 0;
-			}
-			.list{
-				border-bottom: 1px solid #063d4b;
-				position: relative;
-				height: 60px;
-			}
-			.navagator,.icon{
-				padding: 10px;
-				line-height: 40px;
-				color: #FFFFFF;
-				height: 100%;
-				position: absolute;
-			}
-			.icon{
-				top: 0;
-				left: 0;
-			}
-			.navagator{
-				top: 0;
-				right: 0;
-			}
-			.menucon{
+				background-color: #efeff4;
 				font-size: 15px;
-				height: 60px;
-				padding-left: 50px;
-				line-height: 60px;
-				color: #FFFFFF;
+				line-height: 40px;
+				color: #777;
 			}
-			.sendtips,.recetips{
-				vertical-align: top;
-				display: inline-block;
-				height: 20px;
-				width: 20px;
-				margin: 20px 0 20px 10px;
-				border-radius: 50%;
-				color: #FFFFFF;
-				font-size: 12px;
-				line-height: 20px;
-				text-align: center;
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
 			}
-			.sendtips{
-				background-color: #23a0cf;
+			.mui-pull-top-canvas canvas {
+				width: 40px;
 			}
-			.recetips{
-				background-color: #3fc776;
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
 			}
-			.addtopbor{
-				border-top: 1px solid #063d4b;
-			}
-    </style>
-</head>
-<body>
-	<aside  class="mui-off-canvas-left">
-		<div  class="mui-scroll-wrapper">
-			<div class="mui-scroll">
-				<div class="per-infos">
-					<div class="infowrap">
-						<div class="picwrap">
-							<img src="../img/defualt.png" class="pho" width="100%"/>
-						</div>
-						<p class="myname">Hammond Danil</p>
-						<p class="mytitle">Admiral</p>
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">选项卡切换+下拉刷新</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="mui-control-item mui-active" href="#item1mobile">
+							Latest
+						</a>
+						<a class="mui-control-item" href="#item2mobile">
+							Distance
+						</a>
+						<a class="mui-control-item" href="#item3mobile">
+							reward
+						</a>
+						<a class="mui-control-item" href="#item4mobile">
+							weight
+						</a>
 					</div>
 				</div>
-				<ul class="menulist">
-					<li class="list addtopbor" data-src="./page/wallet/my-wallet.html">
-						<span class="icon mui-icon-gear mui-icon"></span>
-						<span class="navagator mui-icon-arrowright mui-icon"></span>
-						<div class="menucon">my wallet</div>
-					</li>
-					<li class="list" data-src="./page/mysendorder/my-send-order.html">
-						<span class="icon mui-icon-list mui-icon"></span>
-						<span class="navagator mui-icon-arrowright mui-icon"></span>
-						<div class="menucon">my billing order<span class="sendtips">5</span></div>
-					</li>
-					<li class="list" data-src="./page/mygetorder/my-get-order.html">
-						<span class="icon mui-icon-paperplane mui-icon"></span>
-						<span class="navagator mui-icon-arrowright mui-icon"></span>
-						<div class="menucon">my receving order<span class="recetips">5</span></div>
-					</li>
-					<li class="list">
-						<span class="icon mui-icon-plusempty mui-icon"></span>
-						<span class="navagator mui-icon-arrowright mui-icon"></span>
-						<div class="menucon">deliver application</div>
-					</li>
-					<li class="list" data-src="page/self-info-setting.html">
-						<span class="icon mui-icon-home mui-icon"></span>
-						<span class="navagator mui-icon-arrowright mui-icon"></span>
-						<div class="menucon">oparating instruction</div>
-					</li>
-					<li class="list" data-src="page/self-info-setting.html">
-						<span class="icon mui-icon-gear mui-icon"></span>
-						<span class="navagator mui-icon-arrowright mui-icon"></span>
-						<div class="menucon">setting up</div>
-					</li>
-				</ul>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-1
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-2
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-3
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-4
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-5
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-6
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-7
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-8
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-9
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-10
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-11
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-12
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-13
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-14
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-15
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-16
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-17
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-18
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-19
+									</li>
+									<li class="mui-table-view-cell">
+										第1个选项卡子项-20
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-1
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-2
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-3
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-4
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-5
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-6
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-7
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-8
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-9
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-10
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-11
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-12
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-13
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-14
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-15
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-16
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-17
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-18
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-19
+									</li>
+									<li class="mui-table-view-cell">
+										第2个选项卡子项-20
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-1
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-2
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-3
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-4
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-5
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-6
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-7
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-8
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-9
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-10
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-11
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-12
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-13
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-14
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-15
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-16
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-17
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-18
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-19
+									</li>
+									<li class="mui-table-view-cell">
+										第3个选项卡子项-20
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item4mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-1
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-2
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-3
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-4
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-5
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-6
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-7
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-8
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-9
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-10
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-11
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-12
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-13
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-14
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-15
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-16
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-17
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-18
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-19
+									</li>
+									<li class="mui-table-view-cell">
+										第4个选项卡子项-20
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+				</div>
 			</div>
 		</div>
-	</aside>
-</body>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<script>
+			mui.init();
+			(function($) {
+				//阻尼系数
+				var deceleration = mui.os.ios?0.003:0.0009;
+				$('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration:deceleration
+				});
+				$.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+						$(pullRefreshEl).pullToRefresh({
+							down: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										var ul = self.element.querySelector('.mui-table-view');
+										ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
+										self.endPullDownToRefresh();
+									}, 1000);
+								}
+							},
+							up: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										var ul = self.element.querySelector('.mui-table-view');
+										ul.appendChild(createFragment(ul, index, 5));
+										self.endPullUpToRefresh();
+									}, 1000);
+								}
+							}
+						});
+					});
+					var createFragment = function(ul, index, count, reverse) {
+						var length = ul.querySelectorAll('li').length;
+						var fragment = document.createDocumentFragment();
+						var li;
+						for (var i = 0; i < count; i++) {
+							li = document.createElement('li');
+							li.className = 'mui-table-view-cell';
+							li.innerHTML = '第' + (index + 1) + '个选项卡子项-' + (length + (reverse ? (count - i) : (i + 1)));
+							fragment.appendChild(li);
+						}
+						return fragment;
+					};
+				});
+			})(mui);
+			
+		</script>
+	</body>
+
 </html>

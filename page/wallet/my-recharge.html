@@ -5,28 +5,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../css/wallet-coment.css"/>
+    <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
+    <link rel="stylesheet" type="text/css" href="wallet-withdraw-recharge-common.css"/>
     <script src="../../js/mui.min.js"></script>
-    <style type="text/css">
-    	.mui-table-view-cell span {display: inline-block;}
-    	.left-title {width: 50%;text-align: left;float: left;}
-    	.right-content {width: 50%;float: right;text-align: right;}
-    	.available-cash {font-size: 1.5em;}
-    	.mui-btn.button-next {background-color: #ff8474;color: #fff;padding: 10px 35%;}
-    	.amount-label {padding: 0.5em 0 0 0;color: #666;}
-    	#amount {margin: 0;border: none;background-color: #ddffeb;width: 100%;border-radius: 9px;}
-    	.withdraw-way {padding: 0 0 0.5em 0;}
-    	.paypal-box {position: relative;}
-    	.paypal-box span {width: 4em;height: 4em;}
-    	.left-logo {background: transparent url(../../img/wallet-logo.png) no-repeat 10px center;}
-    	.right-logo {background: transparent url(../../img/wallet-logo.png) no-repeat 100% center;margin-right: 0.7em;}
-    	.use-paypal {position: absolute;left: 4em;right: 4em;top: 0.3em;padding-left: 2em;}
-    </style>
 </head>
 <body class="bg-color">
 	<header class="mui-bar mui-bar-nav">
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">Withdraw</h1>
+		<h1 class="mui-title">Recharge</h1>
 	</header>
 	<div class="mui-content">
 		<ul class="mui-table-view mui-grid-9 mui-grid-view">
@@ -46,8 +32,12 @@
 					<input class="mui-input-clear" type="number" name="amount" id="amount" value="" placeholder="amount" />
 				</span>
 			</li>
+			<div class="table-diviver"></div>
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
-				<div class="mui-text-left withdraw-way">recharge way</div>
+				<div class="mui-text-left">
+				<span>Recharge way</span>
+			</li>
+			<!--<li class="mui-table-view-cell mui-media mui-col-xs-12">
 				<div class="paypal-box">
 					<span class="left-logo mui-pull-left"></span>
 					<span class="right-logo mui-pull-right"></span>
@@ -58,8 +48,28 @@
 						<p style="color: #777;" class="mui-text-left">go to paypal page</p>
 					</div>
 				</div>
-			</li>
+			</li>-->
 		</ul>
+		
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul id="type-container" class="mui-table-view mui-grid-view mui-grid-9">
+					<li class="mui-table-view-cell type-paypal mui-media mui-col-xs-12">
+						<div class="paypal-box paypal">
+							<span class="left-logo mui-pull-left"></span>
+							<span class="right-logo mui-pull-right shouyin"></span>
+							<div class="use-paypal">
+								<div style="color: #002e86;font-size: 1.2em;" class="mui-ellipsis mui-text-left">
+									Use PayPal
+								</div>
+								<p style="color: #777;padding-top: 0.2em;" class="mui-text-left">go to paypal page</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
 	</div>
 	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 		<button id="recharge" class="mui-btn button-next">recharge</button>
@@ -69,11 +79,33 @@
 	<script>
       	mui.init();
       	mui.plusReady(function(){
+      		mui(".mui-scroll-wrapper").scroll();
+      		// 当前余额
       		var cash = document.getElementById("remain-cash");
-      		var recode = JSON.parse(plus.storage.getItem("recode"));
-//    		var url = "http://202.202.43.107:8080/api/wallet/recharge";		// 充值路径
-      		var url = BASEURL + "wallet/recharge";		// 充值路径
-      		cash.innerHTML = recode.money;
+      		myAjax({
+      			url : "wallet/money",
+      			data : {}
+      		}, function(data){
+      			cash.innerHTML = data.res.money;
+      		})
+      		
+      		// 选择paypal取现方式
+      		var flag = false;
+	      	mui("#type-container").on("tap", ".paypal", function(){
+	      		var shouyin = this.querySelector(".shouyin");
+	      		var cls = shouyin.classList;
+	      		cls.toggle("right-logo");
+	      		cls.toggle("right-logo-tab");
+	      		if(cls.contains("right-logo-tab")){
+	      			flag = true;
+	      		} else {
+	      			flag = false;
+	      		}
+	      	})
+      		
+      		
+      		
+      		/*var url = BASEURL + "wallet/recharge";		// 充值路径
       		// 获取需要充值的金额
       		document.getElementById("recharge").addEventListener("tap", function(){
       			var value = document.getElementById("amount").value.trim();
@@ -92,7 +124,7 @@
       			} else {
       				mui.toast("输入金额格式错误")
       			}
-      		}, false)
+      		}, false)*/
       	})
       	
     </script>

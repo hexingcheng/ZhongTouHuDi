@@ -581,7 +581,20 @@
 				scrollIndicator: "none"
 			})
 			document.getElementById('info').addEventListener('tap', function() {
-				openWindow('./comment.html');
+				var param = {};
+				if($(this).text()!='Comment'){
+					var texts = $(this).text();
+					if(texts.lastIndexOf('(')!=-1){
+						var n = texts.lastIndexOf('(');
+						var ipt = texts.substring(0,n);
+						var choose = texts.substring(n);
+						param.ipt = ipt;
+						param.choose = choose;
+					}else{
+						param.ipt = ipt;
+					}
+				}
+				openWindow('./comment.html',param);
 			})
 			document.getElementById('next').addEventListener('tap', function() {
 					var name = $.trim($("#gname").val());
