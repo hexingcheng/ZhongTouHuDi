@@ -18,7 +18,7 @@
 		<ul class="mui-table-view mui-grid-9 mui-grid-view">
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
 				<span class="left-title">Account</span>
-				<span id="account" class="right-content">18584654947</span>
+				<span id="account-num" class="right-content">0</span>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
 				<span class="left-title">Remain cash</span>
@@ -37,24 +37,12 @@
 				<div class="mui-text-left">
 				<span>Recharge way</span>
 			</li>
-			<!--<li class="mui-table-view-cell mui-media mui-col-xs-12">
-				<div class="paypal-box">
-					<span class="left-logo mui-pull-left"></span>
-					<span class="right-logo mui-pull-right"></span>
-					<div class="use-paypal">
-						<div style="color: #002e86;font-size: 1.2em;padding: 0.3em 0;" class="mui-ellipsis mui-text-left">
-							Use PayPal
-						</div>
-						<p style="color: #777;" class="mui-text-left">go to paypal page</p>
-					</div>
-				</div>
-			</li>-->
 		</ul>
 		
 		<div class="mui-scroll-wrapper">
 			<div class="mui-scroll">
 				<ul id="type-container" class="mui-table-view mui-grid-view mui-grid-9">
-					<li class="mui-table-view-cell type-paypal mui-media mui-col-xs-12">
+					<!--<li class="mui-table-view-cell type-paypal mui-media mui-col-xs-12">
 						<div class="paypal-box paypal">
 							<span class="left-logo mui-pull-left"></span>
 							<span class="right-logo mui-pull-right shouyin"></span>
@@ -65,7 +53,7 @@
 								<p style="color: #777;padding-top: 0.2em;" class="mui-text-left">go to paypal page</p>
 							</div>
 						</div>
-					</li>
+					</li>-->
 				</ul>
 			</div>
 		</div>
@@ -75,7 +63,7 @@
 		<button id="recharge" class="mui-btn button-next">recharge</button>
 	</footer>
 	<script src="../../js/utils.js"></script>
-	<!--<script src="../../js/jquery.min.js"></script>-->
+	<script src="../../js/template.js"></script>
 	<script>
       	mui.init();
       	mui.plusReady(function(){
@@ -89,42 +77,33 @@
       			cash.innerHTML = data.res.money;
       		})
       		
-      		// 选择paypal取现方式
-      		var flag = false;
-	      	mui("#type-container").on("tap", ".paypal", function(){
-	      		var shouyin = this.querySelector(".shouyin");
-	      		var cls = shouyin.classList;
-	      		cls.toggle("right-logo");
-	      		cls.toggle("right-logo-tab");
-	      		if(cls.contains("right-logo-tab")){
-	      			flag = true;
-	      		} else {
-	      			flag = false;
-	      		}
-	      	})
-      		
-      		
-      		
-      		/*var url = BASEURL + "wallet/recharge";		// 充值路径
-      		// 获取需要充值的金额
-      		document.getElementById("recharge").addEventListener("tap", function(){
-      			var value = document.getElementById("amount").value.trim();
-      			var reg = /^([0-9]*.?[0-9]*)$/.exec(value)
-      			if(reg){
-					var current = parseFloat(recode.money)
-					var divide = parseFloat(reg[0]);
-					var total = current + divide;
-					recode.money = total;			// 充值金额算去总额
-					plus.storage.setItem("recode", JSON.stringify(recode));		// 重新存储storage值
-					document.getElementById("amount").value = "";
-//					alert(divide)
-//					postmsg(url, {money : divide});		// 发送数据
+      		// 解析当前用户信息
+      		var info = JSON.parse(plus.storage.getItem("personinfo"));
+      		document.getElementById("account-num").innerHTML = info.phone;
 
-					openWindow("./my-withdraw-result.html");
-      			} else {
-      				mui.toast("输入金额格式错误")
-      			}
-      		}, false)*/
+			// 充值
+			document.getElementById("recharge").addEventListener("tap", function(){
+      			var val = document.getElementById("amount").value.trim();
+      			var reg = /^([0-9]*.?[0-9]*)$/.exec(val)
+	      		if(reg[0]){
+					var amout = parseFloat(reg[0]);
+						if(amout > 0){
+							myAjax({
+								url : "wallet/recharge",
+								data : {
+									money : amout,
+									pcId : "paypal"
+								}
+							}, function(data){
+								console.log(JSON.stringify(data))
+							})
+						} else {
+							mui.toast("请正确输入充值金额")
+						}
+		      	} else {
+		      		mui.toast("请输入需要充值金额")
+		      	}
+	      	},false);
       	})
       	
     </script>

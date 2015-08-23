@@ -102,7 +102,7 @@ function innerAjax(options,successcb,errorcb) {
 				}
 			} else{
 				plus.nativeUI.closeWaiting()
-				mui.toast('网络服务出错了')
+				successcb(data);
 			}
 		},
 		error: function(xhr,type){
