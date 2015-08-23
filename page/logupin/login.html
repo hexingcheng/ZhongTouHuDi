@@ -1,164 +1,157 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title></title>
-		<script src="../../js/mui.js"></script>
-		<link href="../../css/mui.css" rel="stylesheet" />
-		<link rel="stylesheet" href="../../css/main.css" />
-		<link rel="stylesheet" href="../../css/cy_log_up.css" />
-		<script type="text/javascript" charset="utf-8">
-			mui.init();
-		</script>
-		<style type="text/css">
-		html,body{
-			width: 100%;
-			height: 100%;
-		}
-		.tips{
-			width: 100%;
-			position: absolute;
-			left: 0;
-			z-index: 11;
-			height: 100%;
-			background-color: rgba(0,0,0,0.2);
-			color: #FFFFFF;
-			padding-top: 50%;
-			font-size: 30px;
-			text-align: center;
-		}
-		</style>
-	</head>
-
-	<body>
-		<header class="mui-bar mui-bar-nav hea_bg">
-			<a class="mui-icon mui-icon-left-nav color_w mui-action-back"></a>
-			<h1 class="mui-title color_w">Welcome</h1>
-		</header>
-		<footer class="mui-bar mui-bar-footer  none_box">
-			<div class="log_button color_w" id="submit-button">Logon</div>
-		</footer>
-		<div class="mui-content bg">
-			<!--log框-->
-			<div class="w_log ">
-				<div class="log_img">
-					<img src="../../img/log.png" />
-					<span style="color: #06495A;"> <b>Along</b></span>
-				</div>
-			</div>               
-			<!--输入框-->
-			<div class="log_contain bg_w">
-				<div class="log_input ">
-					<img src="../../img/pho.png" alt="" />
-					<input type="text" class="log_input_" id="signup-phone-number" placeholder="phone number" />
-				</div>
-				<div class="log_clear">
-					<!--中间间隙-->
-				</div>
-				<div class="log_input">
-					<img src="../../img/valcode.png" alt="" />
-					<input type="text" class="log_input_" placeholder="password" id="signup-phone-password" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../../js/mui.js"></script>
+    <link href="../../css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="login_new.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav login_headr">
+		<a class="mui-icon mui-icon-left-nav mui-action-back login_color mui-action-back"></a>
+		<span class="login_title">Sigin In</span>
+	</header>
+	<div class="mui-content">
+		<div class="login_log">  
+			<img src="../../img/log.png" class="big_img" alt="" />
+		    <img src="../../img/along.png" class="small_img" alt="" />
+		</div>
+		<!--输入框-->   
+		<div class="login_input_contain">
+			<div class="login_input login_bor_bottom">
+				<img src="../../img/pho.png" class="login_map" alt="" />
+				<div class="input_div_">
+					<input type="tel" class="login_input_" id="signup-phone-number" placeholder="phone number"/> 
 				</div>
 			</div>
-			<div class="log_span">
-				<span class="color">forget password ? <a href="findpassword.html" class="log_color">click me</a>
-				<span class="mui-pull-right me_color"> <a href="productName.html">log in</a></span>
-				</span>
+			<div class="login_input">
+				<img src="../../img/valcode.png" class="login_map" alt=""/> 
+				<div class="login_change login_eye_show" >
+					<img src="../../img/eye.png" class="eye_one" alt="" >  
+					<img src="../../img/1182351.png" class="eye_two" />
+				</div>
+				<div class="input_div">
+				    <input type="password" class="mui-pull-left pwd login_input_" id="signup-phone-password" placeholder="password"/> 			   
+				</div>
 			</div>
 		</div>
-		<script src="../../js/utils.js"></script>
+	    <div class="login_info " style="margin-bottom: 5em;">
+	    	<span >forget password? </span> <span style="color: #72BC90;" id="find_pwd"> click me</span>
+	    	<span class="mui-pull-right login_loginfo"  id="log_up">log Up</span>
+	    </div>
+	</div>
+	<footer class="login_footer">
+		<div class="login_button" id="submit-button">Sign In</div> 
+	</footer>
+	<script src="../../js/utils.js"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js" ></script>
 		<script type="text/javascript">
-			mui.plusReady(function() {
+			mui.plusReady(function() {  
+				//open findpass address
+				$('#log_up').on('tap',function(){openWindow('./productName.html')});
+				$('#find_pwd').on('tap',function(){openWindow('./findpassword.html')});
 				var reph = /^[0-9]{6,12}$/;
 				var repw = /^[\\.a-zA-Z0-9_]{6}$/;
 
-				function checkLogin() {
-					var pho = document.getElementById('signup-phone-number');
-					var phonenum = pho.value.trim();
-					var pass = document.getElementById('signup-phone-password');
-					var pwd = pass.value.trim();
+				function checkLogin() {  
+					var phonenum = $('#signup-phone-number').val().trim();
+					var pwd = $('#signup-phone-password').val().trim();
 					var flag = true;
-					if (pwd && phonenum) {
+					if(!phonenum){
+						mui.toast('请输入电话号码');
+						return;
+					}else if(!pwd){
+						mui.toast('请输入密码');
+						return;
+					}else if(pwd && phonenum) {
 						if (!reph.test(phonenum)) {
 							flag = false;
-							mui.toast("请确定手机号码输入");
+							mui.toast("手机号输入有误！");
+							return;
 						}
 						if (!repw.test(pwd)) {
 							flag = false;
-							mui.toast("请确定密码输入格式正确");
-							pass.value = "";
+							mui.toast("密码输入有误！");
+							$('#signup-phone-password').val('');
+							
 						}
-					} else {
-						mui.toast("请填入登录信息");
 					}
 					// 判断输入是否正确
 					if (flag) {
-						plus.nativeUI.showWaiting('登录中')
 						var data = {
 								phone: phonenum,
 								pwd: pwd,
-								type: 1
+								type: 1  
 							}
 							//		  					var obj = getuserbasicinfo();
 						data.mac = plus.device.imei;
 						data.imsi = plus.device.imsi;
 						data.systemName = plus.device.vendor
 						data.systemVersion = plus.device.model;
-						pho.value = "";
-						pass.value = "";
+						$('#signup-phone-number').val('');
+						$('#signup-phone-password').val('');
 						// 登录时发送的ajax请求
-						mui.ajax(BASEURL + "auth/login", { // 后台交互数据			登录
-							type: "post",
-							data: data,
-							success: function(obj) { // 成功的时候，根据不同的状态回应不同的相应信息给客户端
-								$('.tips').addClass('mui-hidden')
+						myAjax({url:"auth/login",data:data},function(obj) { // 成功的时候，根据不同的状态回应不同的相应信息给客户端
 								if (obj.ret == 0) {
 									mui.toast("输入异常");
 								} else if (obj.ret = 1) {
-									//注册成功
-									plus.nativeUI.closeWaiting();
+									//登录成功
 									getacountinfo()
 									setstorage('token', obj.token);
+									plus.webview.getLaunchWebview().show('slide-in-left',200);
 									plus.webview.currentWebview().close();
-									plus.webview.getLaunchWebview().show('slide-in-left');
 								} else if (obj.ret == -1) {
 									mui.toast("手机号或密码错误")
-								} else if (obj.ret == -2) {
+								} else if (obj.ret == -2) {  
 									mui.toast("账户已冻结")
 								} else if (obj.ret == -3) {
 									mui.toast("验证次数太多稍后再试")
 								}
-							},
-							error: function(xhr, type, errorThrown) {
-								console.log(type);
+							},function(xhr, type, errorThrown) {
+								console.log(xhr.status)
+								console.log(type.satus);
 								errorhandle(type)
-							}
-						})
+							},function(){
+								mui.toast("没有网络！");  
+							})
+
 					}
 				}
 				function getacountinfo(){
-					mui.ajax(BASEURL+'account/info',{
-						type:'post',
-						success:function(data){
+					myAjax({url:'account/info',data:''},function(data){
 							if(data.ret==1){
 								mui.toast('获取初始账户信息成功');
 								var i = plus.webview.getLaunchWebview();
 								mui.fire(i,'setaccount',data.res);
 							}
-						},
-						error:function(xhr,type){
+						},function(xhr,type){
 							console.log(type)
-						}
-					})
+						},function(){
+							mui.toast("请检测网络！");
+						})
 				}
-				var submits = document.getElementById('submit-button')
-				submits.addEventListener('tap', function() {
+				$('#submit-button').on('tap', function() {
 					checkLogin();
 				});
+				//password可见切换
+				$('.login_eye_show').on('tap',function(){
+                	var show=$('.pwd').attr('type');
+					if(show=="password"){
+						$('.pwd').attr('type','text');
+						$('.eye_one').css('display','none');
+						$('.eye_two').css('display','block');
+					}else{
+						$('.pwd').attr('type','password');
+						$('.eye_one').css('display','block');
+						$('.eye_two').css('display','none');
+					}
+				})
 			});
 		</script>
-	</body>
-
+</body>
 </html>

@@ -18,7 +18,7 @@ function iflogin(cb) {
 	if (getstorage('token')) {
 		cb();
 	} else {
-		openWindow('./page/logupin/login.html')
+		openWindow('./page/logupin/login.html');
 	}
 }
 
@@ -48,7 +48,6 @@ function ifloginCommon(cb) {
 
 
 function myAjax(options, successcb, errorcb,nonetworkcb) {
-	
 	var net = plus.networkinfo.getCurrentType();
 	if (net != 0 && net != 1) {
 		innerAjax(options, successcb, errorcb)
@@ -102,6 +101,7 @@ function innerAjax(options,successcb,errorcb) {
 					openWindow('./page/logupin/login.html');
 				}
 			} else{
+				plus.nativeUI.closeWaiting()
 				mui.toast('网络服务出错了')
 			}
 		},

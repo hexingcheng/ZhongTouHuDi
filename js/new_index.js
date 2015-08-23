@@ -1,10 +1,76 @@
 mui.init();
 //处理菜单与侧滑部分、
+mui.plusReady(function() {
+		plus.navigator.closeSplashscreen();
+		if(getstorage('personinfo')){
+			plus.storage.removeItem('personinfo')
+		}
+		if (getstorage('token')) {
+			myAjax({
+				url: 'auth/activate',
+				data: {
+					token: getstorage('token')
+				}
+			}, function() {
+				mui.ajax(BASEURL + 'account/info', {
+					type: 'post',
+					success: function(data) {
+						if (data.ret == 1) {
+							setstorage('personinfo',JSON.stringify(data.res));
+							if(data.res.ptitle){
+								$('.admira').text(data.res.ptitle);
+							}
+						} else {
+							mui.toast('获取用户信息失败')
+						}
+					}
+				})
+			}, function(xhr, type) {
+				console.log(type)
+			})
+		}else{
+			mui.toast('无登录信息，请先登录')
+		}
+		plus.screen.lockOrientation('portrait-primary')
+		plus.webview.currentWebview().setStyle({
+			scrollIndicator: 'none'
+		})
+		mui('#offCanvasSideScroll').scroll({
+			bounce: true,
+			indicators: false
+		});
+		//		mui('#offCanvasContentScroll').scroll();
+		//处理点击事件，跳转页面
+		mui('.menulist').on('touchstart', '.list', function() {
+			$(this).css('background-color', '#063d4b');
+		})
+		mui('.menulist').on('touchend', '.list', function() {
+			$(this).css('background-color', '#03242c');
+		})
+		mui('.menulist').on('tap', '.list', function() {
+			//			$('.list').css('background-color', '#03242c');
+			//			$(this).css('background-color', '#063d4b')
+			var url = this.getAttribute('data-src');
+			openWindow(url);
+		})
+		document.getElementById('mysned').addEventListener('tap', function() {
+			iflogin(function() {
+				openWindow('./page/mysendorder/my-send-order.html')
+			})
+		})
+		document.getElementById('mywallet').addEventListener('tap', function() {
+			iflogin(function() {
+				openWindow('./page/wallet/my-wallet.html')
+			})
+		})
+	})
+	//处理返回键
+
 var offCanvasWrapper = mui('#offCanvasWrapper');
 var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
 var offCanvasSide = document.getElementById("offCanvasSide");
 var classList = offCanvasWrapper[0].classList;
-classList.remove('mui-slide-in');
+classList.add('mui-slide-in');
 offCanvasWrapper.offCanvas().refresh();
 offCanvasSide.classList.remove('mui-transitioning');
 offCanvasSide.setAttribute('style', '');
@@ -28,10 +94,13 @@ window.addEventListener("swipeleft", function() {
 		return;
 	}
 });
+$('.infowrap').on('tap', function() {
+	openWindow('./page/person/me_center.html')
+})
 window.addEventListener('removehref', function() {
 	$('.pho').attr('src', 'img/defualt.png')
 	$('.myname').text("");
-	$('.mytittle').text("")
+	$('.admira').text("")
 })
 window.addEventListener("swiperight", function() {
 	if ($('#offCanvasContentScroll').offset().left < 200) {
@@ -40,49 +109,8 @@ window.addEventListener("swiperight", function() {
 		return;
 	}
 });
-
-mui.plusReady(function() {
-		plus.screen.lockOrientation('portrait-primary')
-		plus.webview.currentWebview().setStyle({
-			scrollIndicator: 'none'
-		})
-		mui('#offCanvasSideScroll').scroll({
-			bounce: true,
-			indicators: false
-		});
-		//		mui('#offCanvasContentScroll').scroll();
-		plus.webview.getLaunchWebview().setStyle({
-				scrollIndicator: 'none'
-			})
-			//处理点击事件，跳转页面
-			mui('.menulist').on('touchstart', '.list', function() {
-				$(this).css('background-color', '#063d4b');
-			})
-			mui('.menulist').on('touchend', '.list', function() {
-				$(this).css('background-color', '#03242c');
-			})
-		mui('.menulist').on('tap', '.list', function() {
-//			$('.list').css('background-color', '#03242c');
-//			$(this).css('background-color', '#063d4b')
-			var url = this.getAttribute('data-src');
-			openWindow(url);
-		})
-		document.getElementById('mysned').addEventListener('tap', function() {
-			iflogin(function() {
-				openWindow('./page/mysendorder/my-send-order.html')
-			})
-		})
-		document.getElementById('mywallet').addEventListener('tap', function() {
-			iflogin(function() {
-				openWindow('./page/wallet/my-wallet.html')
-			})
-		})
-	})
-	//处理返回键
 window.addEventListener('closeMenu', function() {
-	if ($('#offCanvasContentScroll').offset().left > 0) {
-		offCanvasWrapper.offCanvas('close');
-	}
+	offCanvasWrapper.offCanvas('close');
 	//	$('#offCanvasSide').hide()
 })
 window.addEventListener('setaccount', function(eve) {

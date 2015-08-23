@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="common.css"/>
+		<link rel="stylesheet" href="common.css" />
 		<link rel="stylesheet" href="../../css/mui.listpicker.css" />
 		<link rel="stylesheet" href="../../css/mui.dtpicker.css" />
 		<script src="../../js/mui.min.js"></script>
@@ -77,7 +77,8 @@
 				clear: both;
 			}
 			.wid10 {
-				width: 10%;
+				width: 50px;
+				height: 50px;
 			}
 			.wid30 {
 				width: 30%;
@@ -92,10 +93,10 @@
 				width: 90%;
 			}
 			.hei80 {
-				height: 60px;
+				height: 50px;
 			}
 			.linehei {
-				line-height: 60px;
+				line-height: 50px;
 			}
 			.paddl10 {
 				padding-left: 10px;
@@ -108,8 +109,8 @@
 				margin: 15px 0;
 			}
 			.iptwrap input {
+				font-size: 14px;
 				border: 0;
-				background-color: #F7F5F5;
 				color: #219B52;
 				height: 30px;
 				padding: 0;
@@ -132,19 +133,20 @@
 			.host,
 			.phone,
 			.receiver {
+				position: relative;
 				border-bottom: 1px solid #e8e8e8;
 			}
 			#footer {
 				height: 60px;
 				background-color: #FFFFFF;
-				padding: 10px 20px;
+				padding: 6px 20px;
 			}
 			.next-step {
 				text-align: center;
-				background-color: #3ba767;
+				background-color: #06495a;
 				width: 100%;
 				height: 100%;
-				line-height: 40px;
+				line-height: 48px;
 				color: #ceefe4;
 			}
 			.insurea {
@@ -154,7 +156,8 @@
 				padding-bottom: 10px;
 			}
 			.order-content {
-				padding-bottom: 50px;
+				padding: 5px;
+				background-color: #ededeb;
 			}
 			.lmar {
 				margin-left: -10px;
@@ -176,14 +179,94 @@
 				padding-left: 15px;
 				color: #bec0c2;
 			}
-			div.mui-scroll-wrapper {top: 8px;}
+			div.mui-scroll-wrapper {
+				top: 8px;
+			}
+			.hidden {
+				overflow: hidden;
+			}
+			.myicon {
+				display: block;
+				width: 34px;
+				height: 34px;
+				margin: 8px;
+			}
+			.myicon img {
+				width: 34px;
+				height: 34px;
+			}
+			.down {
+				position: absolute;
+				width: 15px;
+				height: 40px;
+				top: 30px;
+				left: 17px;
+			}
+			.down img {
+				width: 7px;
+				height: 20px;
+				margin: 10px 4px;
+			}
+			.rewords {
+				color: #ACACAC;
+				font-size: 14px;
+				display: block;
+				text-align: center;
+			}
+			.widhe {
+				width: 70px;
+				height: 50px;
+				line-height: 50px;
+			}
+			.mui-content .removebor {
+				border: 0;
+			}
+			.wid10e {
+				width: 50px;
+				height: 50px;
+			}
+			.font-14 {
+				font-size: 14px;
+				color: #5d5d5d;
+			}
+			.mp0 {
+				margin: 0;
+				padding: 0;
+			}
+			.drafticon {
+				display: block;
+				margin: 6px;
+				width: 40px;
+				height: 40px;
+			}
+			.drafticon img {
+				width: 40px;
+				height: 40px;
+			}
+			.bgf {
+				background-color: #FFFFFF;
+			}
+			.asure {
+				font-size: 14px;
+				line-height: 50px;
+				color: #bec0c2;
+			}
+			#ordercon .pd0 {
+				padding-left: 0;
+			}
+			#head {
+				padding-right: 0px;
+			}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header class="mui-bar mui-bar-nav" id="head">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">create order</h1>
+			<span class="mui-pull-right draft drafticon" id="drafticon">
+				<img src="../../img/draft.png"/>
+			</span>
 		</header>
 		<footer class="mui-bar mui-bar-footer" id="footer">
 			<div class="next-step mui-bbtn" id="next">Next Step</div>
@@ -191,126 +274,136 @@
 		<!--<div class="mask mui-hidden"></div>
 		<div class="faorder mui-hidden">发单中</div>-->
 		<div class="mui-content">
-			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<div class="order-content">
-						<div class="reword clear">
-							<div class="fl wid30 hei80 paddl10 color5f linehei">Reword</div>
-							<div class="fl wid60 hei80">
-								<div class="iptwrap mui-input-row" id="closeicon">
-									<input type="number" class="ipt mui-input-clear" id="pay" />
-								</div>
-							</div>
-							<div class="fr wid10 hei80 tet">
-								$
-							</div>
+			<div class="order-content" id='ordercon'>
+				<div class="reword clear bgf">
+					<div class="fl widhe">
+						<span class="rewords">
+									Reward
+								</span>
+					</div>
+					<div class="fr wid10e hei80 linehei tet">
+						<span class="myicon">
+									<img src="../../img/$1.png"/>
+								</span>
+					</div>
+					<div class="hei80 linehei hidden">
+						<input type="number" class="ipt mui-input-clear removebor font-14 pd0" id="pay" placeholder="Reward" />
+					</div>
+				</div>
+				<div class="gap"></div>
+				<div class="times bgf">
+					<div class="clear pict">
+						<div class="fl wid10">
+							<span class="myicon"><img src="../../img/time.png"></span>
 						</div>
-						<div class="gap"></div>
-						<div class="times">
-							<div class="clear pict">
-								<div class="fl wid10 hei80 linehei mui-text-right">
-									<span class="mui-icon mui-icon-flag"></span>
-								</div>
-								<div class="fl wid80 hei80 linehei addborb">
-									<div id="gettime" class="gettimes" data-time="">Pickup Time</div>
-								</div>
-								<div class="fr wid10 hei80 linehei tet addborb">
-									<span class="mui-icon mui-icon-arrowright"></span>
-								</div>
-							</div>
-							<div class="arrtime clear">
-								<div class="fl wid10 hei80 linehei mui-text-right">
-									<span class="mui-icon mui-icon-locked"></span>
-								</div>
-								<div class="fl wid80 hei80 linehei">
-									<div id="respecttime" class="gettimes" data-time="">Arrival Time</div>
-								</div>
-								<div class="fr wid10 hei80 linehei tet">
-									<span class="mui-icon mui-icon-arrowright"></span>
-								</div>
-							</div>
+						<div class="fr wid10e hei80 linehei tet addborb">
+							<span class="myicon">
+										<img src="../../img/right.png"/>
+									</span>
 						</div>
-						<div class="gap"></div>
-						<div class="address">
-							<div class="clear" id="pict">
-								<div class="fl wid10 hei80 linehei mui-text-right">
-									<span class="mui-icon mui-icon-location"></span>
-								</div>
-								<div class="fl wid80 hei80 linehei addborb">
-									<div id="getaddr" data-addr="重庆" data-Jd="106.60111939165672" data-Wd="29.53408157290842">Pickup Address</div>
-								</div>
-								<div class="fr wid10 hei80 linehei tet addborb">
-									<span id="send-address" class="mui-icon mui-icon-bars"></span>
-								</div>
-							</div>
-							<div class="clear">
-								<div class="fl wid10 hei80 linehei mui-text-right">
-									<span class="mui-icon mui-icon-map"></span>
-								</div>
-								<div class="fl wid80 hei80 linehei">
-									<div id="sendaddr" data-addr="北京" data-Jd="10" data-Wd="10">Receive address</div>
-								</div>
-								<div class="fr wid10 hei80 linehei tet">
-									<span id="receive-address" class="mui-icon mui-icon-bars"></span>
-								</div>
-							</div>
+						<div class="hei80 linehei addborb hidden pd0">
+							<div id="gettime" class="gettimes font-14 pd0" data-time="">Pickup Time</div>
 						</div>
-						<div class="gap"></div>
-						<div class="host clear">
-							<div class="fl wid10 hei80 linehei mui-text-right">
-								<span class="mui-icon mui-icon-person"></span>
-							</div>
-							<div class="fl wid80 hei80 linehei">
-								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="Host" id="sender" />
-								</div>
-							</div>
-							<div class="fr wid10 hei80 linehei tet">
-								<span id="sender-contact" class="mui-icon mui-icon-contact"></span>
-							</div>
+					</div>
+					<div class="arrtime clear">
+						<div class="fl wid10">
+							<span class="myicon"><img src="../../img/time3.png"></span>
 						</div>
-						<div class="phone clear">
-							<div class="fl wid10 hei80 linehei mui-text-right">
-								<span class="mui-icon mui-icon-phone"></span>
-							</div>
-							<div class="fl wid90 hei80 linehei">
-								<div class="mui-input-row time">
-									<input type="tel" class="mui-input-clear" placeholder="Phone" id="contact" />
-								</div>
-							</div>
+						<div class="fr wid10e hei80 linehei tet">
+							<span class="myicon">
+										<img src="../../img/right.png"/>
+									</span>
 						</div>
-						<div class="gap"></div>
-						<div class="receiver clear">
-							<div class="fl wid10 hei80 linehei mui-text-right">
-								<span class="mui-icon mui-icon-personadd"></span>
-							</div>
-							<div class="fl wid80 hei80 linehei">
-								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="receiver" id="receiver" />
-								</div>
-							</div>
-							<div class="fr wid10 hei80 linehei tet">
-								<span id="receiver-contact" class="mui-icon mui-icon-contact"></span>
-							</div>
+						<div class="hei80 linehei hidden">
+							<div id="respecttime" class="gettimes font-14 pd0" data-time="">Arrival Time</div>
 						</div>
-						<div class="phone clear">
-							<div class="fl wid10 hei80 linehei mui-text-right">
-								<span class="mui-icon mui-icon-phone"></span>
-							</div>
-							<div class="fl wid90 hei80 linehei">
-								<div class="mui-input-row time">
-									<input type="text" class="mui-input-clear" placeholder="Phone" id="tel" />
-								</div>
-							</div>
+					</div>
+					<div class="down">
+						<img src="../../img/creat1.png" />
+					</div>
+				</div>
+				<div class="gap"></div>
+				<div class="address bgf">
+					<div class="clear" id="pict">
+						<div class="fl wid10">
+							<span class="myicon"><img src="../../img/location.png"></span>
 						</div>
-						<div class="insure">
-							<form class="mui-input-group">
-								<div class="mui-input-row mui-checkbox mui-left">
-									<label class="insurea lmar">Buy safety insurance $5</label>
-									<input name="radio1" type="checkbox" class="lmar" value="5" id="comer">;
-								</div>
-							</form>
+						<div class="fr wid10e hei80 linehei tet addborb" id="send-address">
+							<span class="myicon">
+										<img src="../../img/deliverorder.png"/>
+									</span>
 						</div>
+						<div class="hei80 linehei hidden addborb">
+							<div id="getaddr" data-addr="重庆" data-Jd="106.60111939165672" data-Wd="29.53408157290842" class="font-14 pd0">Pickup Address</div>
+						</div>
+					</div>
+					<div class="clear">
+						<div class="fl wid10">
+							<span class="myicon"><img src="../../img/address.png"></span>
+						</div>
+						<div class="fr wid10e hei80 linehei tet" id="receive-address">
+							<span class="myicon">
+										<img src="../../img/deliverorder.png"/>
+									</span>
+						</div>
+						<div class="hei80 linehei hidden">
+							<div id="sendaddr" data-addr="北京" data-Jd="10" data-Wd="10" class="font-14 pd0">Receive address</div>
+						</div>
+					</div>
+					<div class="down">
+						<img src="../../img/creat1.png" />
+					</div>
+				</div>
+				<div class="gap"></div>
+				<div class="host clear bgf">
+					<div class="fl wid10">
+						<span class="myicon"><img src="../../img/host.png"></span>
+					</div>
+					<div class="fr wid10e hei80 linehei tet" id="sender-contact">
+						<span class="myicon">
+										<img src="../../img/contacts.png"/>
+								</span>
+					</div>
+					<div class="hei80 linehei hidden">
+						<input type="text" class="mui-input-clear removebor font-14 pd0" placeholder="Host" id="sender" />
+					</div>
+				</div>
+				<div class="phone clear bgf">
+					<div class="fl wid10">
+						<span class="myicon"><img src="../../img/phones.png"></span>
+					</div>
+					<div class="hei80 linehei hidden">
+						<input type="tel" class="mui-input-clear removebor font-14 pd0" placeholder="Phone" id="contact" />
+					</div>
+				</div>
+				<div class="gap"></div>
+				<div class="receiver clear bgf">
+					<div class="fl wid10">
+						<span class="myicon"><img src="../../img/receivers.png"></span>
+					</div>
+					<div class="fr wid10e hei80 linehei tet" id="receiver-contact">
+						<span class="myicon">
+							<img src="../../img/contacts.png"/>
+						</span>
+					</div>
+					<div class="hei80 linehei hidden">
+						<input type="text" class="mui-input-clear removebor font-14 pd0" placeholder="receiver" id="receiver" />
+					</div>
+				</div>
+				<div class="phone clear bgf">
+					<div class="fl wid10">
+						<span class="myicon"><img src="../../img/phones.png"></span>
+					</div>
+					<div class="hei80 linehei hidden">
+						<input type="text" class="mui-input-clear removebor font-14 pd0" placeholder="Phone" id="tel" />
+					</div>
+				</div>
+				<div class="insure bgf" data-sure='5' id="comer">
+					<div class="fl wid10">
+						<span class="myicon"><img src="../../img/ok.png" class="sure"></span>
+					</div>
+					<div class="hei80 linehei hidden asure">
+						Buy safety insurance $5
 					</div>
 				</div>
 			</div>
@@ -349,7 +442,6 @@
 				c.setStyle({
 					scrollIndicator: 'none'
 				})
-				
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(function(pos) {
 						lot = pos.coords.longitude;
@@ -361,12 +453,10 @@
 						var c = plus.webview.currentWebview();
 						var onOff = true;
 						$('.mui-bbtn').on('tap', function() {
-							
 							var data = JSON.parse(plus.storage.getItem("draft-datas"))
-							if(data && data.res && data.res.orderId){
+							if (data && data.res && data.res.orderId) {
 								getdata.orderId = data.res.orderId;
 							}
-							
 							getdata.gName = c.gName;
 							getdata.gValue = c.gValue;
 							getdata.gWeight = c.gWeight;
@@ -385,39 +475,21 @@
 							getdata.receiverPhone = $('#tel').val();
 							getdata.receiverJd = $('#sendaddr').attr('data-Jd');
 							getdata.receiverWd = $('#sendaddr').attr('data-Wd');
-							getdata.insType = parseInt($('#comer').val());
+							getdata.insType = parseInt($('#comer').attr('data-sure'));
 							getdata.status = 1;
 							if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 								if (onOff) {
 									onOff = false
-									plus.nativeUI.showWaiting('发送中')
-									mui.ajax(BASEURL + 'order/resOrderByGood', {
-										data: getdata,
-										type: 'post',
-										timeout:10000,
-										success: function(data) {
-											
-											plus.storage.removeItem("draft-datas");		// 返回时清楚storage中储存的数据
-											
-											if (data.ret == 1) {
-												plus.nativeUI.closeWaiting();
-												mui.toast('发单成功');
-												openWindow('./result.html')
-											} else if (data.ret == -101) {
-												mui.confirm('您还未登陆，请登录！', '提示', ['确定', '取消'], function(e) {
-													if (e.index == 0) {
-														openWindow('../login-up.html');
-													} else {
-														return;
-													}
-												})
-											}
-										},
-										error: function(xhr, type) {
-											onOff = true;
-											plus.nativeUI.closeWaiting()
-											console.log(type)
-										}
+									myAjax({
+										url: 'order/resOrderByGood',
+										data: getdata
+									}, function(data) {
+										plus.storage.removeItem("draft-datas"); // 返回时清楚storage中储存的数据
+										mui.toast('发单成功');
+										openWindow('./result.html')
+									}, function(xhr, type) {
+										onOff = true;
+										console.log(type)
 									})
 								}
 							} else {
@@ -432,8 +504,6 @@
 				} else {
 					mui.toast('获取位置信息失败')
 				}
-				
-				
 				$('.pict,.arrtime').on('tap', function() {
 					var _this = $(this);
 					var options = {
@@ -460,138 +530,140 @@
 						$('.gettimes', _this).text(rs.text).css('color', "#000")
 					})
 				})
+				$('#drafticon').on('tap', function() {
+					openWindow('./draft.html')
+				})
 				$('#getaddr,#sendaddr').on('tap', function() {
 					setstorage('getaddr', $(this).text())
 					openWindow('./pickaddr.html')
 				})
 				window.addEventListener('getaddrs', function(eve) {
-					var addr = eve.detail.addrs;
-					var mylocation = eve.detail.mylocation;
-					if (getstorage('getaddr') == 'Pickup Address') {
-						$('#getaddr').attr('data-Jd', mylocation.K)
-						$('#getaddr').attr('data-Wd', mylocation.G)
-						$('#getaddr').attr('data-addr', addr)
-						$('#getaddr').text(addr).css('color', "#000")
-					} else {
-						$('#sendaddr').attr('data-Jd', mylocation.K);
-						$('#sendaddr').attr('data-Wd', mylocation.G);
-						$('#sendaddr').attr('data-addr', addr)
-						$('#sendaddr').text(addr).css('color', "#000")
-					}
-				})
-				
-				// 获取草稿信息
+						var addr = eve.detail.addrs;
+						var mylocation = eve.detail.mylocation;
+						if (getstorage('getaddr') == 'Pickup Address') {
+							$('#getaddr').attr('data-Jd', mylocation.K)
+							$('#getaddr').attr('data-Wd', mylocation.G)
+							$('#getaddr').attr('data-addr', addr)
+							$('#getaddr').text(addr).css('color', "#000")
+						} else {
+							$('#sendaddr').attr('data-Jd', mylocation.K);
+							$('#sendaddr').attr('data-Wd', mylocation.G);
+							$('#sendaddr').attr('data-addr', addr)
+							$('#sendaddr').text(addr).css('color', "#000")
+						}
+					})
+					// 获取草稿信息
 				var datas = JSON.parse(plus.storage.getItem("draft-datas"));
-				if(datas && datas.res.orderId && datas.res.gName){
-					$('#pay').val(datas.res.money);			// 奖励
-					$('#gettime').attr('data-time', datas.res.getTime);		// 属性取值
-					$('#gettime').html(datas.res.getTime);		// 显示值
+				if (datas && datas.res.orderId && datas.res.gName) {
+					$('#pay').val(datas.res.money); // 奖励
+					$('#gettime').attr('data-time', datas.res.getTime); // 属性取值
+					$('#gettime').html(datas.res.getTime); // 显示值
 					$('#respecttime').attr('data-time', datas.res.finTime);
 					$('#respecttime').html(datas.res.finTime);
-					$('#getaddr').attr('data-addr', datas.res.sendAddr);		// 地址属性取值
-					$('#getaddr').html(datas.res.sendAddr)		// 地址属性值显示
+					$('#getaddr').attr('data-addr', datas.res.sendAddr); // 地址属性取值
+					$('#getaddr').html(datas.res.sendAddr) // 地址属性值显示
 					$('#sendaddr').attr('data-addr', datas.res.receiveAddr);
 					$('#sendaddr').html(datas.res.receiveAddr);
-					
 					$('#sender').val(datas.res.sender);
 					$('#contact').val(datas.res.senderPhone);
 					$('#receiver').val(datas.res.receiver);
 					$('#tel').val(datas.res.receiverPhone);
 				}
-				
-				
 				// 返回按钮时进行数据存储
 				var back = mui.back;
 				mui.back = function() {
-					draftdata();
-					back();
-				}
-				// 获取草稿信息
-				function draftdata() {
-					
-					if(c.orderId){
-						getdata.orderId = c.orderId;
+						draftdata();
+						back();
 					}
-					
-					getdata.gName = c.gName;
-					getdata.gValue = c.gValue;
-					getdata.gWeight = c.gWeight;
-					getdata.pics = c.pics;
-					getdata.info = c.info;
-					getdata.money = parseInt($('#pay').val());
-					getdata.getTime = $('#gettime').attr('data-time');
-					getdata.finTime = $('#respecttime').attr('data-time');
-					getdata.senderAddress = $('#getaddr').attr('data-addr');
-					getdata.receiverAddress = $('#sendaddr').attr('data-addr');
-					getdata.sender = $('#sender').val();
-					getdata.senderPhone = $('#contact').val();
-					getdata.sendJd = $('#getaddr').attr('data-Jd');
-					getdata.sendWd = $('#getaddr').attr('data-Wd');
-					getdata.receiver = $('#receiver').val();
-					getdata.receiverPhone = $('#tel').val();
-					getdata.receiverJd = $('#sendaddr').attr('data-Jd');
-					getdata.receiverWd = $('#sendaddr').attr('data-Wd');
-					getdata.insType = parseInt($('#comer').val());
-					getdata.status = 0;
-					var opener = plus.webview.currentWebview().opener();
-					mui.fire(opener,'getdraft',getdata)
-				}
-				
-				// 选择发送者联系方式
-				document.getElementById("sender-contact").addEventListener("tap", function(){
+					// 获取草稿信息
+				$('.insure').on('tap', function() {
+					if ($('.sure').attr('src') == '../../img/ok.png') {
+						$('.sure').attr('src', '../../img/ok1.png');
+						$(this).attr('data-sure', '0')
+					} else {
+						$(this).attr('data-sure', '5')
+						$('.sure').attr('src', '../../img/ok.png');
+					}
+				})
+
+				function draftdata() {
+						if (c.orderId) {
+							getdata.orderId = c.orderId;
+						}
+						getdata.gName = c.gName;
+						getdata.gValue = c.gValue;
+						getdata.gWeight = c.gWeight;
+						getdata.pics = c.pics;
+						getdata.info = c.info;
+						getdata.money = parseInt($('#pay').val());
+						getdata.getTime = $('#gettime').attr('data-time');
+						getdata.finTime = $('#respecttime').attr('data-time');
+						getdata.senderAddress = $('#getaddr').attr('data-addr');
+						getdata.receiverAddress = $('#sendaddr').attr('data-addr');
+						getdata.sender = $('#sender').val();
+						getdata.senderPhone = $('#contact').val();
+						getdata.sendJd = $('#getaddr').attr('data-Jd');
+						getdata.sendWd = $('#getaddr').attr('data-Wd');
+						getdata.receiver = $('#receiver').val();
+						getdata.receiverPhone = $('#tel').val();
+						getdata.receiverJd = $('#sendaddr').attr('data-Jd');
+						getdata.receiverWd = $('#sendaddr').attr('data-Wd');
+						getdata.insType = parseInt($('#comer').attr('data-sure'));
+						getdata.status = 0;
+						var opener = plus.webview.currentWebview().opener();
+						mui.fire(opener, 'getdraft', getdata)
+					}
+					// 选择发送者联系方式
+				document.getElementById("sender-contact").addEventListener("tap", function() {
 					findContact();
 					setstorage("order-type", "sender");
 					openWindow("./choose-contact.html");
-				}, false)    
-				
-				document.getElementById("receiver-contact").addEventListener("tap", function(){
-					findContact();
-					setstorage("order-type", "receiver");
-					openWindow("./choose-contact.html");
 				}, false)
-				
-				// 查询联系人列表
-				function findContact(){
-					plus.contacts.getAddressBook(plus.contacts.ADDRESSBOOK_PHONE, function (addressbook) {
-						addressbook.find(["displayName","phoneNumbers"],function(contacts){
+				document.getElementById("receiver-contact").addEventListener("tap", function() {
+						findContact();
+						setstorage("order-type", "receiver");
+						openWindow("./choose-contact.html");
+					}, false)
+					// 查询联系人列表
+
+				function findContact() {
+					plus.contacts.getAddressBook(plus.contacts.ADDRESSBOOK_PHONE, function(addressbook) {
+						addressbook.find(["displayName", "phoneNumbers"], function(contacts) {
 							var lists = [];
-							for(var i = 0; i < contacts.length; i++){
+							for (var i = 0; i < contacts.length; i++) {
 								var phonenum = contacts[i].phoneNumbers;
 								var obj = {
-									index : (i+1),
-									name : contacts[i].displayName
+									index: (i + 1),
+									name: contacts[i].displayName
 								}
-								if(phonenum.length == 0){
+								if (phonenum.length == 0) {
 									break;
 								}
-								
-								for(var j = 0; j < phonenum.length; j++){
+								for (var j = 0; j < phonenum.length; j++) {
 									obj.contact = phonenum[j].value;
 									lists.push(obj);
 								}
 							}
-//							console.log(JSON.stringify(lists))
+							//							console.log(JSON.stringify(lists))
 							plus.storage.setItem("contacts", JSON.stringify(lists));
-						}, function ( err ) {
-							console.log("查找错误 :"+ err.message);
-						},{multiple:true});
-					},function(e){
+						}, function(err) {
+							console.log("查找错误 :" + err.message);
+						}, {
+							multiple: true
+						});
+					}, function(e) {
 						console.log("Get address book failed: " + e.message);
 					});
 				}
-				
-				window.addEventListener("order:sender", function(eve){
-//					alert(eve.detail.name);
-
+				window.addEventListener("order:sender", function(eve) {
+					//					alert(eve.detail.name);
 					$("#sender").val(eve.detail.name);
 					$("#contact").val(eve.detail.tel);
 				})
-				
-				window.addEventListener("order:receiver", function(eve){
+				window.addEventListener("order:receiver", function(eve) {
 					$("#receiver").val(eve.detail.name);
 					$("#tel").val(eve.detail.tel);
 				})
-				
 			})
 		</script>
 	</body>

@@ -15,9 +15,17 @@
 				margin: 0;
 			}
 			html,
-			body,.mui-content,#offCanvasSideScroll ,.mui-scroll,.order-content{
+			body,
+			.mui-content,
+			#offCanvasSideScroll,
+			.mui-scroll,
+			.order-content {
 				height: 100%;
 				width: 100%;
+			}
+			.order-content {
+				padding: 5px;
+				background-color: #ededeb;
 			}
 			html,
 			body,
@@ -99,20 +107,22 @@
 				line-height: 50px;
 			}
 			.linehei68 {
-				line-height: 30px;
+				line-height: 34px;
 			}
 			.iptwrap {
 				padding: 0;
-				margin: 10px 0 10px -15px;
-				height: 30px;
-				border-radius: 10px;
+				margin: 8px 0 8px 0px;
+				height: 34px;
 			}
 			.iptwrap input {
 				font-size: 14px;
 				border: 0;
 				color: #5d5d5d;
 				margin: 0;
-				height: 30px
+				height: 30px;
+				margin: 2px 0;
+				padding: 0;
+				line-height: 1;
 			}
 			.colorgray {
 				color: #5f5d5d;
@@ -135,6 +145,7 @@
 			}
 			.gWeight,
 			.gValue {
+				background-color: #FFFFFF;
 				border-bottom: 1px solid #E8E8E8;
 			}
 			.fr {
@@ -150,14 +161,14 @@
 			.addclass {
 				background-color: #FFFFFF;
 			}
-			.goods-pic{
+			.goods-pic {
 				width: 100%;
 				padding: 15px 20px
 			}
 			#footer {
 				height: 60px;
 				background-color: #FFFFFF;
-				padding: 10px 20px;
+				padding: 6px 20px;
 				overflow: hidden;
 			}
 			.next-step {
@@ -165,7 +176,7 @@
 				background-color: #3ba767;
 				width: 100%;
 				height: 100%;
-				line-height: 40px;
+				line-height: 48px;
 				color: #ceefe4;
 			}
 			input[type=number] {
@@ -208,12 +219,13 @@
 			.hidden {
 				display: none;
 			}
-			.presee {
+			.presee,
+			.backmask {
 				width: 100%;
 				height: 100%;
 				position: absolute;
 				z-index: 30;
-				background-color: rgba(0, 0, 0, 0.8);
+				background-color: rgba(0, 0, 0, 0.5);
 			}
 			.picwraps {
 				position: absolute;
@@ -248,83 +260,139 @@
 				top: 8px;
 			}
 			.myicon {
+				display: block;
 				width: 34px;
 				height: 34px;
+				margin: 8px;
 			}
 			.myicon img {
-				margin: 8px;
 				height: 34px;
 				width: 34px;
 			}
-			#gname{
+			#gname {
 				padding-right: 15px;
 			}
-			.font-14{
+			.font-14 {
 				font-size: 14px;
 			}
-			.addpad{
+			.addpad {
 				padding-left: 15px;
-			} 
-			.addline{
+			}
+			.addline {
 				font-size: 14px;
-				line-height: 30px;
+				line-height: 34px;
 				color: #acacac;
 			}
-			.drafticon{
-				width: 52px;
-				height: 52px;
-				
+			.drafticon {
+				display: block;
+				margin: 6px;
+				width: 40px;
+				height: 40px;
 			}
-			.drafticon img{
-				width: 52px;
-				height: 52px;
+			.drafticon img {
+				width: 40px;
+				height: 40px;
 			}
-			#head{
+			#head {
 				padding-right: 0px;
 			}
-			.goods-pic .mui-table-view{
+			.goods-pic .mui-table-view {
 				width: 100%;
 				background-color: #FFFFFF;
 			}
-			.goods-pic .mui-table-view:before,.mui-table-view:after{
+			.goods-pic .mui-table-view:before,
+			.mui-table-view:after {
 				height: 0;
 			}
-			.goods-pic .mui-table-view .mui-table-view-cell{
+			.goods-pic .mui-table-view .mui-table-view-cell {
 				float: left;
 				padding: 0 !important;
 				width: 23.5%;
 			}
-			.addmarr{
+			.addmarr {
 				margin-right: 2%;
 			}
-			.goods-pic .mui-table-view ,.mui-table-view-cell:after{
+			.goods-pic .mui-table-view,
+			.mui-table-view-cell:after {
 				height: 0;
 			}
-			.goods-pic .mui-table-view .mui-table-view-cell a{
+			.goods-pic .mui-table-view .mui-table-view-cell a {
 				width: 100%;
 				height: 100%;
 				margin: 0!important;
 			}
-			.goods-pic .mui-table-view .mui-table-view-cell a span{
+			.goods-pic .mui-table-view .mui-table-view-cell a span {
 				font-size: 24px;
 				color: #D1D1D1;
 				text-align: center;
 				height: 100%;
 				width: 100%;
 			}
-			.addclass{
+			.addclass {
 				border: 1px solid #D1D1D1;
 			}
-			#take-photo{
+			#take-photo {
 				padding: 0;
 			}
-			.clear{
+			.clear {
 				zoom: 1;
 			}
-			.clear:after{
+			.clear:after {
 				content: "";
 				display: block;
 				clear: both;
+			}
+			.borleft {
+				border-left: 1px solid #D1D1D1;
+			}
+			.pictips {
+				padding: 0 15px;
+				word-break: break-all;
+				color: #acacac;
+				font-size: 14px;
+			}
+			.gName .info {
+				background-color: #FFFFFF;
+			}
+			.cancel {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #f6ccc2;
+				text-align: center;
+				color: #da2a02;
+			}
+			.ok {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #c4e8da;
+				text-align: center;
+				color: #029c5d;
+			}
+			.wron {
+				padding: 0 20px;
+			}
+			.draftinfo {
+				color: #000000;
+				padding: 10px 20px;
+			}
+			.backhandle {
+				background-color: #FFFFFF;
+				position: absolute;
+				top: 60px;
+				left: 0;
+				width: 270px;
+				overflow: hidden;
+				word-break: break-all;
+			}
+			#gweight {
+				padding: 0;
+			}
+			#gvalue {
+				padding: 0;
 			}
 		</style>
 	</head>
@@ -367,7 +435,16 @@
 					</div>
 				</div>
 			</div>
-			<a class="mui-icon mui-icon-bars bars" href="#handle"></a>
+		</div>
+		<div class="backmask mui-hidden">
+			<div class="backhandle mui-hidden">
+				<div class="draftinfo">
+					Do you want to add this order to draft?
+				</div>
+				<p class="wron">you can use draft orde r to resend</p>
+				<div class="ok">ok</div>
+				<div class="cancel">cancel</div>
+			</div>
 		</div>
 		<div id="delete" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
@@ -400,86 +477,83 @@
 			</ul>
 		</div>
 		<div class="mui-content">
-			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<div class="order-content">
-						<div class="gName clear hei110">
-							<div class="wid30 fl hei110 linehei110 colorg">
-								<span class="colorgray myicon"><img src="../../img/host.png"></span>
-							</div>
-							<div class="wid70 paddr10 hei110">
-								<div class="iptwrap mui-input-row">
-									<input type="text" class="linehei68 mui-input-clear" id="gname" placeholder="Name"/>
-								</div>
-							</div>
-						</div>
-						<div class="gap"></div>
-						<div class="gWeight clear">
-							<div class="wid30 fl hei110 linehei110 colorg">
-								<span class="colorgray myicon"><img src="../../img/weight.png"></span>
-							</div>
-							<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
-								<span class="kg-g font-14">Kg</span>
-							</div>
-							<div class="wid50 hei110">
-								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="gweight" placeholder="Weight"/>
-								</div>
-							</div>
-						</div>
-						<div class="gValue clear">
-							<div class="wid30 fl hei110 linehei110 colorg">
-								<span class="colorgray myicon"><img src="../../img/value.png"></span>
-							</div>
-							<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
-								<span class="kg-g font-14">$</span>
-							</div>
-							<div class="wid50 hei110">
-								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="gvalue" placeholder="Value"/>
-								</div>
-							</div>
-						</div>
-						<div class="info clear" id="info">
-							<div class="wid30 fl hei110 linehei110 colorg">
-								<span class="colorgray myicon"><img src="../../img/coment.png"></span>
-							</div>
-							<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
-								<span class="kg-g font-14 myicon"><img src="../../img/enter.png"></span>
-							</div>
-							<div class="wid50 hei110">
-								<div class="iptwrap mui-input-row addpad addline" id="gettext">
-									Comment
-								</div>
-							</div>
-						</div>
-						<div class="gap"></div>
-						<div class="goods-pic">
-							<ul class="mui-table-view clear" id="take-photo">
-								<li class="mui-table-view-cell img-box addmarr" data-index='0'>
-									<a href="#delete" class="picpre">
-										<span class="mui-icon mui-icon-plusempty addclass"></span>
-									</a>
-								</li>
-								<li class="mui-table-view-cell img-box addmarr" data-index='1'>
-									<a href="#delete" class="picpre">
-										<span class="mui-icon mui-icon-plusempty addclass"></span>
-									</a>
-								</li>
-								<li class="mui-table-view-cell img-box addmarr" data-index='2'>
-									<a href="#delete" class="picpre">
-										<span class="mui-icon mui-icon-plusempty addclass"></span>
-									</a>
-								</li>
-								<li class="mui-table-view-cell img-box" data-index='3'>
-									<a href="#delete" class="picpre">
-										<span class="mui-icon mui-icon-plusempty addclass"></span>
-									</a>
-								</li>
-							</ul>
+			<div class="order-content clear">
+				<div class="gName clear hei110" style="background: #FFFFFF;">
+					<div class="wid30 fl hei110 linehei110 colorg">
+						<span class="colorgray myicon"><img src="../../img/host.png"></span>
+					</div>
+					<div class="wid70 paddr10 hei110">
+						<div class="iptwrap mui-input-row">
+							<input type="text" class="linehei68 mui-input-clear" id="gname" placeholder="Name" />
 						</div>
 					</div>
 				</div>
+				<div class="gap"></div>
+				<div class="gWeight clear">
+					<div class="wid30 fl hei110 linehei110 colorg">
+						<span class="colorgray myicon"><img src="../../img/weight.png"></span>
+					</div>
+					<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
+						<span class="kg-g font-14">Kg</span>
+					</div>
+					<div class="wid50 hei110">
+						<div class="iptwrap mui-input-row">
+							<input type="number" class="linehei68 mui-input-clear" id="gweight" placeholder="Weight" />
+						</div>
+					</div>
+				</div>
+				<div class="gValue clear">
+					<div class="wid30 fl hei110 linehei110 colorg">
+						<span class="colorgray myicon"><img src="../../img/value.png"></span>
+					</div>
+					<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
+						<span class="kg-g font-14">$</span>
+					</div>
+					<div class="wid50 hei110">
+						<div class="iptwrap mui-input-row">
+							<input type="number" class="linehei68 mui-input-clear" id="gvalue" placeholder="Value" />
+						</div>
+					</div>
+				</div>
+				<div class="info clear" id="info" style="background: #FFFFFF;">
+					<div class="wid30 fl hei110 linehei110 colorg">
+						<span class="colorgray myicon"><img src="../../img/coment.png"></span>
+					</div>
+					<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
+						<span class="kg-g font-14 myicon"><img src="../../img/enter.png"></span>
+					</div>
+					<div class="wid50 hei110">
+						<div class="iptwrap mui-input-row  addline" id="gettext">
+							Comment
+						</div>
+					</div>
+				</div>
+				<div class="gap"></div>
+				<div class="goods-pic">
+					<ul class="mui-table-view clear" id="take-photo">
+						<li class="mui-table-view-cell img-box addmarr" data-index='0'>
+							<a href="#delete" class="picpre">
+								<span class="mui-icon mui-icon-plusempty addclass"></span>
+							</a>
+						</li>
+						<li class="mui-table-view-cell img-box addmarr" data-index='1'>
+							<a href="#delete" class="picpre">
+								<span class="mui-icon mui-icon-plusempty addclass"></span>
+							</a>
+						</li>
+						<li class="mui-table-view-cell img-box addmarr" data-index='2'>
+							<a href="#delete" class="picpre">
+								<span class="mui-icon mui-icon-plusempty addclass"></span>
+							</a>
+						</li>
+						<li class="mui-table-view-cell img-box" data-index='3'>
+							<a href="#delete" class="picpre">
+								<span class="mui-icon mui-icon-plusempty addclass"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="pictips" style="background: #FFFFFF;">! please add goods picture to make the order more detail</div>
 			</div>
 		</div>
 	</body>
@@ -493,16 +567,34 @@
 		getdata.gValue = "";
 		getdata.pics = "";
 		getdata.info = "";
-		var h = $('.picpre').width();
-		$('.picpre').height(h)
-		$('.addclass').css('line-height',h+'px')
+
+		function layout() {
+			var h = $('.picpre').width();
+			$('.picpre').height(h);
+			$('#take-photo').height(h);
+			$('.addclass').css('line-height', h + 'px')
+		}
+		layout();
 		mui.plusReady(function() {
 			mui('#offCanvasSideScroll').scroll();
 			plus.webview.currentWebview().setStyle({
 				scrollIndicator: "none"
 			})
 			document.getElementById('info').addEventListener('tap', function() {
-				openWindow('./comment.html');
+				var param = {};
+				if($(this).text()!='Comment'){
+					var texts = $(this).text();
+					if(texts.lastIndexOf('(')!=-1){
+						var n = texts.lastIndexOf('(');
+						var ipt = texts.substring(0,n);
+						var choose = texts.substring(n);
+						param.ipt = ipt;
+						param.choose = choose;
+					}else{
+						param.ipt = ipt;
+					}
+				}
+				openWindow('./comment.html',param);
 			})
 			document.getElementById('next').addEventListener('tap', function() {
 					var name = $.trim($("#gname").val());
@@ -527,10 +619,27 @@
 						}
 						openNewWindow('./create-next.html', param)
 					} else {
-						mui.toast("资料填写不完整");
+						mui.toast("name is unkown");
 					}
 				})
 				// 信息验证
+			$('.ok').on('tap', function() {
+				$('.backmask').addClass('mui-hidden');
+				$('.backhandle').addClass('mui-hidden');
+				myAjax({
+					url: 'order/resOrderByGood',
+					data: getdata
+				}, function() {
+					openNewWindow("./draft.html");
+					mui.toast('保存草稿成功！');
+				}, function(xhr, type) {
+					mui.toast('出错了' + type)
+				})
+			})
+			$('.cancel').on('tap', function() {
+				plus.webview.getLaunchWebview().show('slide-in-left');
+				closewebview();
+			})
 
 			function toverticalcenter() {
 				var item = $('.preimg')
@@ -544,15 +653,13 @@
 			function validate() {
 				var flag = false;
 				var gname = $.trim($("#gname").val());
-				var gweight = $.trim($("#gweight").val());
-				var gvalue = $.trim($("#gvalue").val());
-				if (gname && gweight && gvalue) {
+				if (gname) {
 					flag = true;
 				}
 				return flag;
 			}
 			window.addEventListener('getinfo', function(eve) {
-				$('#gettext').text(eve.detail.info).css('color','#5d5d5d');
+				$('#gettext').text(eve.detail.info).css('color', '#5d5d5d');
 			})
 			var iw, _this;
 			mui('#take-photo').on('tap', '.addclass', function(e) {
@@ -583,39 +690,25 @@
 					getdata.status = 0;
 					console.log(getdata.orderId)
 					showobj(getdata)
-					mui.confirm('是否保存已填写信息？', '提示', ['确定', '取消'], function(e) {
-						if (e.index == 0) {
-							mui.ajax(BASEURL + 'order/resOrderByGood', {
-								type: 'post',
-								data: getdata,
-								success: function(data) {
-									openNewWindow("./draft.html");
-									mui.toast('保存草稿成功！')
-								}
-							});
-						} else {
-							plus.webview.getLaunchWebview().show('slide-in-left');
-							closewebview();
-							var pages = ["draft", "create-next"]
-							for (var i = 0; i < pages.length; i++) {
-								var tmpage = plus.webview.getWebviewById(pages[i]);
-								if (tmpage) {
-									plus.webview.close(tmpage, "none", 0);
-								}
-							}
-							setTimeout(function() {
-								plus.webview.currentWebview().close("slide-out-right");
-							}, 300)
-						}
+					$('.backmask').removeClass('mui-hidden');
+					$('.backhandle').removeClass('mui-hidden')
+					var l = ($(window).width() - 270) / 2;
+					var t = ($(window).height() - $('.backhandle').height()) / 2;
+					$('.backhandle').css({
+						'left': l,
+						'top': t
 					})
 				} else {
-					plus.webview.currentWebview().close();
+					plus.webview.getLaunchWebview().show('slide-in-left');
 					closewebview()
-					plus.webview.getLaunchWebview().show('slide-in-left')
 				}
+				return false
 			}
 
 			function closewebview() {
+				if (plus.webview.getWebviewById('sendorder/createorder')) {
+					plus.webview.getWebviewById('sendorder/createorder').close()
+				}
 				if (plus.webview.getWebviewById('create-next')) {
 					plus.webview.getWebviewById('create-next').close();
 				}
@@ -624,6 +717,9 @@
 				}
 				if (plus.webview.getWebviewById('chooseaddr')) {
 					plus.webview.getWebviewById('chooseaddr').close();
+				}
+				if (plus.webview.getWebviewById('draft')) {
+					plus.webview.getWebviewById('draft')
 				}
 			}
 
@@ -648,7 +744,7 @@
 					}, function(base) {
 						$(contexts).removeClass('mui-icon-plusempty mui-icon addclass').addClass('mui-spinner')
 						console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
-						sendData(BASEURL + "common/file/imgUp", base, contexts, local);
+						sendData("common/file/imgUp", base, contexts, local);
 					})
 				})
 			}
@@ -666,29 +762,27 @@
 				})
 			}
 
-			function sendData(url, base, context, path) {
+			function sendData(urls, base, context, path) {
 				var pics
-				mui.ajax(url, {
-					type: "post",
+				myAjax({
+					url: urls,
 					data: {
 						imgName: Math.floor(Math.random() * 100000) + ".jpg",
 						imgData: base, // base字符串
 						dataLength: base.length // base字符串长度
-					},
-					success: function(data) {
-						var img = $('<span class="wids"><img title=' + path + ' src=' + base + ' alt=' + data.res.fid + '></span>');
-						$(context).parent().append(img);
-						$('img', '.wids').css({
-							width: iw,
-							height: iw
-						})
-						$(context).remove();
-						setpicid();
-					},
-					error: function(xhr, type) {
-						console.log("错误信息显示：" + type);
-						errorhandle(type);
 					}
+				}, function(data) {
+					var img = $('<span class="wids"><img title=' + path + ' src=' + base + ' alt=' + data.res.fid + '></span>');
+					$(context).parent().append(img);
+					$('img', '.wids').css({
+						width: iw,
+						height: iw
+					})
+					$(context).remove();
+					setpicid();
+				}, function(xhr, type) {
+					console.log("错误信息显示：" + type);
+					errorhandle(type);
 				})
 			}
 
@@ -704,8 +798,8 @@
 				var ind = $(this).parents('.mui-table-view-cell').attr('data-index');
 				var num = $('.mui-slider-item', '#preseepic').length;
 				var inner = "";
-				for(var k = 0;k<4;k++){
-					inner+='<div class="mui-slider-item"><a href="javascript:void(0)"><img src="" class="preimg"></a></div>';
+				for (var k = 0; k < 4; k++) {
+					inner += '<div class="mui-slider-item"><a href="javascript:void(0)"><img src="" class="preimg"></a></div>';
 				}
 				$('#preseepic').html(inner)
 				$('.presee').removeClass('mui-hidden');
@@ -781,7 +875,7 @@
 			$("#gvalue").val(datas.res.gValue);
 			$("#gettext").val(datas.res.info);
 			getdata.orderId = datas.res.orderId; // 该商品ID
-			var html = "<a href='#delete' class='picpre'><span class='mui-icon mui-icon-plusempty addclass'></span></a>";
+			var html = "<a href='#delete' class='picpre'><span class='mui-icon mui-icon-plusempty addclass' style='height: " + iw + "px;line-height:" + iw + "px'></span></a>";
 			$(".img-box").html(html);
 			if (datas.res.pics.length > 0) {
 				var n = BASEURL.indexOf('/api/');
