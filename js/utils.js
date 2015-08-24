@@ -110,7 +110,7 @@ function innerAjax(options,successcb,errorcb) {
 					plus.nativeUI.closeWaiting()
 				}
 				successcb(data);
-				mui.toast('网络服务出错了')
+
 			}
 		},
 		error: function(xhr,type){
