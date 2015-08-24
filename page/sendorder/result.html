@@ -47,7 +47,7 @@
 				closeweb();
 			})
 			function closeweb(){
-				var webArr = ['sendorder/createorder','create-next','comment','chooseaddr','pickaddr','presee','result'];
+				var webArr = ['sendorder/createorder','create-next','comment','chooseaddr','pickaddr','presee'];
 				for(var i = 0;i<webArr.length;i++){
 					if(plus.webview.getWebviewById(webArr[i])){
 						plus.webview.getWebviewById(webArr[i]).close();

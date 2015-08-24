@@ -64,15 +64,20 @@ function innerAjax(options,successcb,errorcb) {
 	var op = {
 		type:'post',
 		url:'',
-		data:{}
+		data:{},
+		wait:true
 	};
 	copyobj(options,op);
-	plus.nativeUI.showWaiting('请求中',{background:"#d1d1d1"})
+	if(op.wait){
+		plus.nativeUI.showWaiting('请求中',{background:"#d1d1d1"})
+	}
 	mui.ajax(BASEURL + op.url, {
 		type: op.type,
 		data: op.data,
 		success: function(data) {
-			plus.nativeUI.closeWaiting();
+			if(op.wait){
+				plus.nativeUI.closeWaiting();
+			}
 			if (data.ret == 1) {
 				successcb(data);
 			} else if (data.ret == -101) {
@@ -101,12 +106,17 @@ function innerAjax(options,successcb,errorcb) {
 					openWindow('./page/logupin/login.html');
 				}
 			} else{
-				plus.nativeUI.closeWaiting()
+				if(op.wait){
+					plus.nativeUI.closeWaiting()
+				}
 				successcb(data);
+
 			}
 		},
 		error: function(xhr,type){
-			plus.nativeUI.closeWaiting();
+			if(op.wait){
+				plus.nativeUI.closeWaiting();
+			}
 			errorcb(xhr,type)
 		}
 	})

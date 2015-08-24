@@ -7,7 +7,7 @@ mui.plusReady(function() {
 	datas.type = c.type;
 	showobj(datas)
 	myAjax({
-		url : 'order/goodShow',
+		url: 'order/goodShow',
 		data: datas
 	}, function(data) {
 		renderdata(data);
@@ -43,7 +43,7 @@ mui.plusReady(function() {
 	}, function(xhr, type) {
 		console.log(type)
 	})
-	
+
 	$('.cancelinput').on('tap', function() {
 		$('.mask').addClass('mui-hidden');
 		$('.inputcode').addClass('mui-hidden');
@@ -61,7 +61,7 @@ mui.plusReady(function() {
 	$('.checkr').on('tap', function() {
 		var code = parseInt($('#vacode').val());
 		myAjax({
-			url : 'order/confirmCode',
+			url: 'order/confirmCode',
 			data: {
 				orderId: c.orderId,
 				signCode: code
@@ -80,11 +80,11 @@ mui.plusReady(function() {
 			console.log(type)
 		})
 	})
-	
+
 	$('.cancel').on('tap', function() {
 		if ($(this).text() == 'cancel') {
 			myAjax({
-				url : 'order/bargainCancel',
+				url: 'order/bargainCancel',
 				data: {
 					orderId: c.orderId
 				}
@@ -115,7 +115,7 @@ mui.plusReady(function() {
 					background: '#d1d1d1'
 				})
 				myAjax({
-					url : 'order/pickUp',
+					url: 'order/pickUp',
 					data: {
 						orderId: c.orderId
 					}
@@ -127,14 +127,14 @@ mui.plusReady(function() {
 			})
 		}
 	})
-	
-	
+
+
 	$('.check').on('tap', function() {
 		plus.nativeUI.showWaiting('发送中', {
 			background: '#d1d1d1'
 		});
 		myAjax({
-			url : 'order/sendCode',
+			url: 'order/sendCode',
 			data: {
 				orderId: c.orderId
 			}
@@ -150,17 +150,17 @@ mui.plusReady(function() {
 					'top': t
 				});
 			}
-		}, function(xhr, type){
+		}, function(xhr, type) {
 			console.log(type)
 		})
 	})
-	
+
 	$('.back').on('tap', function() {
 		$('.check').text('resend check code');
 		$('.mask').addClass('mui-hidden');
 		$('.confirm').addClass('mui-hidden');
 	})
-	
+
 	$('.checks').on('tap', function() {
 		$('.confirm').addClass('mui-hidden');
 		$('.inputcode').removeClass('mui-hidden');
@@ -171,6 +171,24 @@ mui.plusReady(function() {
 			'top': t
 		});
 	})
+	$('#msg').on('tap', function() {
+		var p = $('#msg').attr('data-p')
+		sms(p)
+	})
+	$('#tel').on('tap',function(){
+		var t = $(this).attr('data-p');
+		dial(t)
+	})
+	function sms(tel) {
+		var msg = plus.messaging.createMessage(plus.messaging.TYPE_SMS);
+		msg.to = [tel];
+		msg.body = '';
+		plus.messaging.sendMessage(msg);
+	}
+
+	function dial(t) {
+		plus.device.dial(t, true);
+	}
 
 	function renderdata(data) {
 		showobj(data.res)
@@ -179,10 +197,14 @@ mui.plusReady(function() {
 		$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
 		$("#get-time").html(data.res.getTime); // 获取时间
 		$("#deadline").html(data.res.finTime); // 期望时间
-		$("#sendaddr").html(data.res.sendAddr); // 发送地
-		$("#receiveaddr").html(data.res.receiveAddr) // 接收地
+		$("#sendaddr").html(data.res.sendAddr.name); // 发送地
+		$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
 		$("#gvalue").html(data.res.gValue); // value
 		$("#info").html(data.res.info); // 信息描述
+		$('#sender').text(data.res.sender);
+		$('#receiver').text(data.res.receiver)
+		$('#msg').attr('data-p', data.res.senderPhone);
+		$("#tel").attr('data-p',data.res.senderPhone)
 		if (data.res.pics) {
 			var pic = data.res.pics;
 			var len = pic.length;
@@ -192,6 +214,7 @@ mui.plusReady(function() {
 				var perurls = BASEURL.substring(0, n);
 				var imgurl = perurls + picurl;
 				var img = document.createElement('img');
+				img.className = 'picture'
 				img.src = imgurl;
 				document.getElementById('porel').appendChild(img);
 			}

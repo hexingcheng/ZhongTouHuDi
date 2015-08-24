@@ -13,12 +13,12 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<header class="mui-bar mui-bar-nav" id="head">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">Detail</h1>
 		</header>
 		<footer style="padding:10px; height: 60px;" class="mui-bar mui-bar-footer mui-text-center bg-color" id="foot">
-			<div class="cancel mui-hidden">cancel</div>
+			<div class="cancel mui-hidden">cancel bargin</div> 
 			<div class="check mui-hidden">send check code</div>
 			<div class="write mui-hidden">write code</div>
 		</footer>
@@ -49,64 +49,78 @@
 				<div class="checkr">check</div>
 			</div>
 		</div>
-		<div id="loading-mask">
+		<!--<div id="loading-mask">
 			<div id="loading-box">
 				<img src="../../img/loading45.gif" alt="loading" class="load" />
 			</div>
-		</div>
+		</div>-->
 		<div class="mui-content">
 			<div id="scroll-wrapper" class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<div class="marktips mui-hidden">you have mark up $
 						<span class="addmoney">--</span>
 					</div>
-					<ul class="mui-table-view mui-grid-view mui-grid-9">
-						<li class="mui-table-view-cell mui-col-xs-12">
+					<ul class="mui-table-view mui-grid-view mui-grid-9" id="ul">
+						<li class="mui-table-view-cell mui-col-xs-12 height50">
 							<span class="mui-pull-left title-color mui-text-left name">Name</span>
-							<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">--</span>
+							<span class="mui-pull-right mui-text-right mui-ellipsis goods-name fontsize14" style="padding-right: 15px;">--</span>
 						</li>
-						<li class="mui-table-view-cell mui-col-xs-6">
+						<li class="mui-table-view-cell mui-col-xs-6 height50">
 							<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
 							<span class="mui-pull-right">
-								<div class="goods-value-box">
-									<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
-									<p class="title-color">not paid</p>
+								<div class="goods-value-box mui-pull-right add15" style="margin-right: 15px;">
+									<span id="goods-value" class="value-color value-size">0.00</span>
+									<!--<p class="title-color">not paid</p>-->
 								</div>
 							</span>
 						</li>
-						<li class="mui-table-view-cell mui-col-xs-6">
+						<li class="mui-table-view-cell mui-col-xs-6 height50 add15">
 							<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
-							<span id="goods-weight" class="mui-pull-right title-weight">0kg</span>
+							<div class="goods-value-box mui-pull-right add15" style="margin-right: 15px;">
+								<span id="goods-weight" class="mui-pull-right title-weight">0kg</span>
+							</div>
 						</li>
-						<li class="mui-table-view-cell mui-col-xs-6">
-							<div class="title-color title-bottom-padded">Get Time</div>
+						<li class="mui-table-view-cell mui-col-xs-6" id="spe1">
+							<div class="title-color title-bottom-padded hei30">Get Time</div>
 							<div id="get-time">--:--</div>
 						</li>
-						<li class="mui-table-view-cell mui-col-xs-6">
-							<div class="title-color title-bottom-padded">Deadline</div>
+						<li class="mui-table-view-cell mui-col-xs-6" id="spe2">
+							<div class="title-color title-bottom-padded hei30">Deadline</div>
 							<div id="deadline">--:--</div>
 						</li>
 					</ul>
 				<div class="table-diviver"></div>
 
 				<ul class="mui-table-view">
-					<li class="mui-table-view-cell desc-after">
+					<li class="mui-table-view-cell desc-after height50">
+						<span class="title-color mui-pull-left title-width">Sender</span>
+						<span id="sender" class="mui-ellipsis content-length">--</span>
+						<div class="msgcall">
+							<span class="mui-icon mui-icon-chat coloryellow" id="msg" data-p = ""></span>
+							<span class="mui-icon mui-icon-phone-filled colorgreen" data-p = "" id="tel"></span>
+						</div>
+					</li>
+					<li class="mui-table-view-cell desc-after height50">
 						<span class="title-color mui-pull-left title-width">From</span>
 						<span id="sendaddr" class="mui-ellipsis content-length">--</span>
 					</li>
-					<li class="mui-table-view-cell desc-after">
+					<li class="mui-table-view-cell desc-after height50">
+						<span class="title-color mui-pull-left title-width">Receiver</span>
+						<span id="receiver" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after height50">
 						<span class="title-color mui-pull-left title-width">TO</span>
 						<span id="receiveaddr" class="mui-ellipsis content-length">--</span>
 					</li>
-					<li class="mui-table-view-cell desc-after">
+					<li class="mui-table-view-cell desc-after height50">
 						<span class="title-color mui-pull-left title-width">Value</span>
 						<span id="gvalue" class="mui-ellipsis content-length">--</span>
 					</li>
-					<li class="mui-table-view-cell desc-after">
+					<li class="mui-table-view-cell desc-after height50">
 						<span class="title-color mui-pull-left title-width">Desc</span>
 						<span id="info" class="mui-ellipsis content-length">--</span>
 					</li>
-					<li class="mui-table-view-cell desc-after">
+					<li class="mui-table-view-cell desc-after ">
 						<div class="porel" id="porel">
 						</div>
 					</li>
