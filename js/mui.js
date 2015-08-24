@@ -2948,13 +2948,13 @@ var mui = (function(document, undefined) {
 				indicators: true,
 				deceleration:0.003,
 				down: {
-					height: 50,
+					height: 100,
 					contentdown: '下拉可以刷新',
 					contentover: '释放立即刷新',
 					contentrefresh: '正在刷新...'
 				},
 				up: {
-					height: 50,
+					height: 100,
 					auto: false,
 					contentdown: '上拉显示更多',
 					contentrefresh: '正在加载...',

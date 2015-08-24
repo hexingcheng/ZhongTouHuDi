@@ -171,7 +171,11 @@
 	border-radius: 3px;
 	padding: 0.1em;
 }
-
+.picture{
+	width: 72px;
+	height: 100px;
+	margin: 10px;
+}
 
 
 

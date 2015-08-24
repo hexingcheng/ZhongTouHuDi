@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/getorder/get-order-comment.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/getorder/get-order.css" />	
+		<style>
+			html,body,.mui-content{
+				background-color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="pullrefresh">
+			<!--数据列表-->
+			<div class="ordercontents">
+				<!-- 等待框 -->
+				
+			</div>
+		</div>
+		<script src="../../js/template.js"></script>
+		<script type="text/html" id="template">
+			{{each list}}
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+						<div class="goods-name-bar">
+							<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
+						</div>
+						<div class="goods-content">
+							<div class="goods-direction mui-pull-left">
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">From</span>
+									<span class="goods-msg">{{$value.sendAddr}}</span>
+								</div>
+								<div class="goods-bar goods-to-bar mui-ellipsis">
+									<span class="goods-to font-color">To</span>
+									<span class="goods-msg">{{$value.receiveAddr}}</span>
+								</div>
+								<div class="goods-bar goods-comment-bar mui-ellipsis">
+									<span class="goods-comment font-color">finTime</span>
+									<span class="goods-msg red">{{$value.finTime}}</span>
+								</div>
+							</div>
+							<div class="goods-rewards-bar mui-pull-right mui-text-center">
+								<div class="rewards">
+									<div class="goods-rewards">Reward</div>
+									<div class="goods-value mui-ellipsis">{{$value.money}}</div>
+								</div>
+								<div class="weight">
+									<div class="">weight</div>
+									<div class="mui-ellipsis goods-weight">{{$value.gWeight}}kg</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div class="content-padded"></div>
+			{{/each}}
+		</script>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script src="../../js/getorder/get-order.js"></script>
+		<script>
+
+		</script>
+	</body>
+
+</html>

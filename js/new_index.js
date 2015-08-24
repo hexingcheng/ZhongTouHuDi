@@ -100,7 +100,7 @@ $('.infowrap').on('tap', function() {
 window.addEventListener('removehref', function() {
 	$('.pho').attr('src', 'img/defualt.png')
 	$('.myname').text("");
-	$('.admira').text("")
+	$('.admira').text("头衔")
 })
 window.addEventListener("swiperight", function() {
 	if ($('#offCanvasContentScroll').offset().left < 200) {
@@ -114,8 +114,10 @@ window.addEventListener('closeMenu', function() {
 	//	$('#offCanvasSide').hide()
 })
 window.addEventListener('setaccount', function(eve) {
-	$('.myname').text(eve.detail.firstName + " " + eve.detail.familyName);
-	$('.mytitle').text(eve.detail.nation);
+	if(eve.detail.familyName&&eve.detail.firstName){
+		$('.myname').text(eve.detail.firstName + " " + eve.detail.familyName);
+	}
+	$('.admira').text(eve.detail.ptitle);
 	var n = BASEURL.indexOf('/a');
 	var pic = BASEURL.substring(0, n);
 	if (eve.detail.headPic) {

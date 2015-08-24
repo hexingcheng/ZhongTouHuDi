@@ -59,7 +59,7 @@
 	    	<span id="signup-agree">I agree with the</span> <a href="" class="log_color">service rules</a>
 	    </div>
 	</div> 
-	<footer class="login_footer">
+	<footer class="login_footer" style="background-color: #F2F2F2">
 		<div class="login_button" id="submit-button">submit</div>
 	</footer>
 	<script src="../../js/utils.js"></script>
@@ -181,9 +181,10 @@
 									alert(JSON.stringify(data))
 										if (obj.token) {
 											setstorage('token', obj.token);
-											successcb();  
+											getacountinfo(); 
+											plus.webview.getLaunchWebview().show('slide-in-left', 200);
+											plus.webview.currentWebview().close();
 										}
-										
 										if (obj.ret == -1) {
 											mui.toast("账户已经注册")
 											return ;
@@ -200,10 +201,23 @@
 				                }
 							} 
                    }
-				function successcb() {
-						plus.webview.currentWebview().close();
-						plus.webview.getLaunchWebview().show('slide-in-left')
-					}
+				function getacountinfo() {
+					mui.ajax(BASEURL + 'account/info', {
+						type: 'post',
+						success: function(data) {
+							mui.toast('获取初始账户信息成功');
+							if(getstorage('personinfo')){
+								plus.storage.removeItem('personinfo')
+							}
+							setstorage('personinfo',JSON.stringify(data.res));
+							var i = plus.webview.getLaunchWebview();
+							mui.fire(i,'setaccount',data.res);
+						},
+						error:function(xhr,type){
+							console.log(xhr.status+":"+type);
+						}
+					})
+				}
 					//密码可见
 				var submit = document.getElementById('submit-button');
 				submit.addEventListener('tap', function() {
