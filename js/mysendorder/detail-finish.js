@@ -10,7 +10,7 @@ mui.plusReady(function() {
 	document.getElementById("comment-order").addEventListener("tap", function() {
 		openWindow("./order-comment.html");
 	}, false);
-})
+
 
 
 // 通过订单号获取数据
@@ -29,8 +29,8 @@ function sendmsg(orderid) {
 		$("#get-time").html(data.res.getTime); // 获取时间
 		$("#deadline").html(data.res.finTime); // 期望时间
 		$("#host").html(data.res.sender); // 发送者
-		$("#sendaddr").html(data.res.sendAddr); // 发送地
-		$("#receiveaddr").html(data.res.receiveAddr) // 接收地
+		$("#sendaddr").html(data.res.sendAddr.name); // 发送地
+		$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
 		$("#gvalue").html(data.res.gValue); // value
 		$("#info").html(data.res.info); // 信息描述
 		var pic = data.res.pics;
@@ -53,16 +53,24 @@ function sendmsg(orderid) {
 		}
 
 
+		var pic = data.res.pics;
 		var n = BASEURL.indexOf('/api/');
-
 		var per = BASEURL.substring(0, n);
 		var len = pic.length;
+		var box = document.querySelectorAll(".img-box");
 		if (len > 0) {
-			for (var i = 0; i < len; i++) {
-				var url = per + pic[i].path;
-				var html = '<img src=' + url + ' width="100%">';
-				document.querySelectorAll(".img-box")[i].innerHTML = html;
+			for (var i = 0; i < box.length; i++) {
+				if(i < len){
+					var url = per + pic[i].path;
+					var html = '<img src=' + url + ' width="100%">';
+					box[i].innerHTML = html;
+				} else {
+					box[i].style.display = "none";
+				}
 			}
+		} else {
+			var that = document.getElementById("last-wrap");
+			that.parentNode.removeChild(that);
 		}
 
 		// 验证是否需要取消按钮
@@ -89,6 +97,8 @@ function sendmsg(orderid) {
 			}, false)
 		}, 300)
 	}, function(xhr, type) {
-		console.log(type);
+		console.log("错误代号："+xhr.status + "   错误类型："+type);
 	})
 }
+
+})

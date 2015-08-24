@@ -56,22 +56,29 @@ function sendmsg(orderid) {
 		$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
 		$("#get-time").html(data.res.getTime); // 获取时间
 		$("#deadline").html(data.res.finTime); // 期望时间
-		$("#sendaddr").html(data.res.sendAddr); // 发送地
-		$("#receiveaddr").html(data.res.receiveAddr) // 接收地
+		$("#sendaddr").html(data.res.sendAddr.name); // 发送地
+		$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
 		$("#gvalue").html(data.res.gValue); // value
 		$("#info").html(data.res.info); // 信息描述
+		
 		var pic = data.res.pics;
-
 		var n = BASEURL.indexOf('/api/');
-
 		var per = BASEURL.substring(0, n);
 		var len = pic.length;
+		var box = document.querySelectorAll(".img-box");
 		if (len > 0) {
-			for (var i = 0; i < len; i++) {
-				var url = per + pic[i].path;
-				var html = '<img src=' + url + ' width="100%">';
-				document.querySelectorAll(".img-box")[i].innerHTML = html;
+			for (var i = 0; i < box.length; i++) {
+				if(i < len){
+					var url = per + pic[i].path;
+					var html = '<img src=' + url + ' width="100%">';
+					box[i].innerHTML = html;
+				} else {
+					box[i].style.display = "none";
+				}
 			}
+		} else {
+			var that = document.getElementById("last-wrap");
+			that.parentNode.removeChild(that);
 		}
 
 		// 判断是否在议价,显示议价消息链接框

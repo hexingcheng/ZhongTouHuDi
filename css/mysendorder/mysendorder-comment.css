@@ -1,15 +1,69 @@
-.mui-content>.mui-table-view:first-child {margin-top: 0;}
-header.mui-bar.mui-bar-nav {background-color: #44ab6e;}
-.mui-action-back ,
-.mui-icon-bars {color: #fff;}
-.mui-title {color: #fff}
-.mui-btn.button-first {background-color: #fc9b29;color: #fff;padding: 10px 16%;}
-.mui-btn.button-next {background-color: #23a0cf;color: #fff;padding: 10px 16%;}
-.mui-btn.mui-btn-block {padding: 10px 0;background-color: #ffa619;color: #fff;}
+.mui-content>.mui-table-view:first-child {
+	margin-top: 0;
+}
+header.mui-bar.mui-bar-nav {
+	background-color: #44ab6e;
+}
+.mui-action-back,
+.mui-icon-bars {
+	color: #fff;
+}
+.mui-title {
+	color: #fff
+}
+.mui-btn.button-first {
+	background-color: #fc9b29;
+	color: #fff;
+	padding: 12px 16%;
+}
+.mui-btn.button-next {
+	background-color: #23a0cf;
+	color: #fff;
+	padding: 12px 16%;
+}
+.mui-btn.mui-btn-block {
+	padding: 12px 0;
+	background-color: #ffa619;
+	color: #fff;
+}
 /* 头部样式  */
-.mui-bar {height: 52px;}
-.mui-bar .mui-icon {padding-top: 14px;padding-bottom: 14px;}
-.mui-title {line-height: 52px;text-align: left;}
-.mui-bar .mui-title {left: 43px;}
-.mui-bar-nav~.mui-content {padding-top: 52px;}
-div.mui-scroll-wrapper {top: 52px;}
+
+.mui-bar {
+	height: 52px;
+}
+.mui-bar .mui-icon {
+	padding-top: 14px;
+	padding-bottom: 14px;
+}
+.mui-title {
+	line-height: 52px;
+	text-align: left;
+}
+.mui-bar .mui-title {
+	left: 43px;
+}
+.mui-bar-nav~.mui-content {
+	padding-top: 52px;
+}
+div.mui-scroll-wrapper {
+	top: 52px;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell,
+.mui-table-view .mui-table-view-cell {
+	min-height: 50px;
+	padding: 11px 18px;
+}
+.title-color {
+	color: #ccc;
+}
+.header-box {
+	padding: 15px 10px;
+}
+.mui-grid-view.mui-grid-9 .header-box .mui-table-view-cell {
+	border: none;
+}
+#last-wrap .img-box {
+	width: 4.23em;
+	height: 4.23em;
+	line-height: 4.23em;
+}

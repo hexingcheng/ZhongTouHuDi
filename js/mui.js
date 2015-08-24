@@ -6013,7 +6013,13 @@ var mui = (function(document, undefined) {
 				if (classList.contains(CLASS_COLLAPSE_CONTENT)) { //collapse content
 					break;
 				}
-				if (classList.contains(CLASS_TABLE_VIEW_CELL)) {
+				/* 自定义点击屏幕的时候触发当前元素活动情况 */
+				if(classList.contains("lee-need-active")){
+					cell = target;
+					toggleActive(true);
+				}
+				// 如果是mui-table-view-cell需要混合lee-need-active使用才会有触发时活动状态
+				if (classList.contains(CLASS_TABLE_VIEW_CELL) && classList.contains("lee-need-active")) {
 					cell = target;
 					//TODO swipe to delete close
 					var selected = cell.parentNode.querySelector(SELECTOR_SELECTED);

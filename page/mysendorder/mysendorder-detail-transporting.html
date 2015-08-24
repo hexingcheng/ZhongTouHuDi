@@ -9,7 +9,12 @@
 		<link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css" />
 		<link rel="stylesheet" href="../../css/mysendorder/mysendorder-detail.css" />
 		<link rel="stylesheet" href="../../css/mysendorder/detail-transporting.css"/>
-		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/mui.js"></script>
+		<style type="text/css">
+			#deliverer-contact div:nth-child(1) {border: none;}
+			.mui-table-view:before {height: 0;}
+			.mui-table-view:after {height: 0;}
+		</style>
 	</head>
 
 	<body style="background: #fff;">
@@ -23,44 +28,45 @@
 				<div class="mui-scroll">
 					<ul class="mui-table-view mui-grid-view mui-grid-9">
 						<!-- 第一列显示信息start -->
-						<li id="deliverer-img" class="mui-table-view-cell mui-ellipsis mui-col-xs-3">
-							<div class="headimg-box">
-								<img id="head-img" alt="头像" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%" />
-							</div>
-						</li>
-						<li id="deliverer-msg" class="mui-table-view-cell mui-col-xs-5">
-							<div id="nickName" class="deliverer-name mui-text-left mui-ellipsis">匿名</div>
-							<div class="deliverer-honor mui-text-left">
-								<span style="color: #faf713;" class="mui-icon mui-icon-starhalf"></span>
-								<span id="ptitle">平民等级</span>
-							</div>
-						</li>
-						<li id="deliverer-num" class="mui-table-view-cell mui-col-xs-2">
-							<div class="send-title">send</div>
-							<div id="orderCount" class="send-num">0</div>
-						</li>
-						<li id="deliverer-contact" class="mui-table-view-cell mui-col-xs-2">
-							<div><span class="mui-icon mui-icon-chatbubble-filled"></span></div>
-							<div><span id="phone" data-phone="" class="mui-icon mui-icon-phone-filled"></span></div>
-						</li>
+						<div class="header-box">
+							<li id="deliverer-img" class="mui-table-view-cell mui-ellipsis mui-col-xs-3">
+								<div class="headimg-box">
+									<img id="head-img" alt="头像" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%" />
+								</div>
+							</li>
+							<li id="deliverer-msg" class="mui-table-view-cell mui-col-xs-5">
+								<div id="nickName" class="deliverer-name mui-text-left mui-ellipsis">匿名</div>
+								<div class="deliverer-honor mui-text-left">
+									<span style="color: #faf713;" class="mui-icon mui-icon-starhalf"></span>
+									<span id="ptitle">平民等级</span>
+								</div>
+							</li>
+							<li id="deliverer-num" class="mui-table-view-cell mui-col-xs-2">
+								<div class="send-title">send</div>
+								<div id="orderCount" class="send-num">0</div>
+							</li>
+							<li id="deliverer-contact" class="mui-table-view-cell mui-col-xs-2">
+								<div><span class="mui-icon mui-icon-chatbubble-filled"></span></div>
+								<div class="icon-phone"><span id="phone" data-phone="" class="mui-icon mui-icon-phone-filled"></span></div>
+							</li>
 						<!-- 第一列信息显示end -->
+						</div>
 
-						<li class="mui-table-view-cell mui-col-xs-12">
+						<li class="mui-table-view-cell mui-col-xs-12" style="border-top: none;">
 							<span class="mui-pull-left title-color mui-text-left name">Name</span>
-							<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">--</span>
+							<span class="mui-pull-left mui-text-left mui-ellipsis goods-name">--</span>
 						</li>
 						<li class="mui-table-view-cell mui-col-xs-6">
 							<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
-							<span class="mui-pull-right">
-							<div class="goods-value-box">
-								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
-							<p class="title-color">paided</p>
-				</div>
-				</span>
+							<span class="mui-pull-left">
+								<div class="goods-value-box">
+									<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
+								</div>
+							</span>
 				</li>
 				<li class="mui-table-view-cell mui-col-xs-6">
 					<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
-					<span id="goods-weight" class="mui-pull-right title-weight">0kg</span>
+					<span id="goods-weight" class="mui-pull-left title-weight">0kg</span>
 				</li>
 				<li class="mui-table-view-cell mui-col-xs-6">
 					<div class="title-color title-bottom-padded">Get Time</div>
@@ -95,7 +101,7 @@
 						<span class="title-color mui-pull-left title-width">Desc</span>
 						<span id="info" class="mui-ellipsis content-length">--</span>
 					</li>
-					<li class="mui-table-view-cell desc-after">
+					<li id="last-wrap" class="mui-table-view-cell">
 						<div class="porel">
 							<span class="img-box">
 								<span class="mui-icon mui-icon-plusempty"></span>
@@ -119,7 +125,7 @@
 		</div>
 		</div>
 
-		<footer id="footer-cancel" style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+		<footer id="footer-cancel" style="height: 3.5em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 			<!-- 已付款 status=3 -->
 			<div style="display: none;" class="status-3">
 				<button id="cancel-order" class="mui-btn mui-btn-block">cancel</button>
@@ -133,7 +139,7 @@
 		<!-- 加载中的蒙层 -->
 		<div id="loading-mask"></div>
 		<div id="loading-box">
-			<img src="../../img/loading45.gif" alt="loading" />
+			<img src="../../img/loading2.gif" alt="loading" width="150px" height="150px"/>
 		</div>
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
