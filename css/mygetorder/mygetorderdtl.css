@@ -13,7 +13,7 @@ body,
 	height: 48px;
 	line-height: 48px;
 	text-align: center;
-	background-color: #fc5352;
+	background-color: #fc614d;
 	color: #fff3e5;
 }
 .height50{
@@ -132,4 +132,20 @@ body,
 }
 .hei30{
 	margin-top:10px;
+}
+
+#porel{
+	/*text-align: center;*/
+	/*line-height: 50px;*/
+	color:#000000
+}
+.picture{
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+	margin: 10px;
+}
+#foot{
+	box-shadow: 0 0 1px #F1F1F1;
+	line-height: 48px;
 }

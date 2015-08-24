@@ -8,35 +8,6 @@ mui.plusReady(function() {
 		}
 		mui.toast(getstorage('token'))
 		if (getstorage('token')) {
-			//			myAjax({
-			//				url: 'auth/activate',
-			//				data: {
-			//					token: getstorage('token')
-			//				}
-			//			}, function(data) {
-			//				console.log('激活'+data.ret)
-			//				mui.ajax(BASEURL + 'account/info', {
-			//					type: 'post',
-			//					success: function(data) {
-			//						console.log(data.ret)
-			//						if (data.ret == 1) {
-			//							console.log(data.ret)
-			//							setstorage('personinfo',JSON.stringify(data.res));
-			//							if(data.res.ptitle){
-			//								$('.admira').text(data.res.ptitle);
-			//							}
-			//						} else {
-			//							mui.toast('获取用户信息失败')
-			//						}
-			//					}
-			//				})
-			//			}, function(xhr, type) {
-			//				console.log(type)
-			//			})
-			//			myAjax({
-			//				url:'account/info',
-			//				
-			//			})
 			mui.ajax(BASEURL + 'account/info', {
 				type: 'post',
 				success: function(data) {

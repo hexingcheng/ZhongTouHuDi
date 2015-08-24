@@ -38,7 +38,7 @@ mui.plusReady(function() {
 			$('#foot').html('暂时没有评论')
 		}
 		if (data.res.status == 6) {
-			$('#foot').html('查看评论')
+			$('#foot').html('该订单已完成')
 		}
 	}, function(xhr, type) {
 		console.log(type)
@@ -205,7 +205,7 @@ mui.plusReady(function() {
 		$('#receiver').text(data.res.receiver)
 		$('#msg').attr('data-p', data.res.senderPhone);
 		$("#tel").attr('data-p',data.res.senderPhone)
-		if (data.res.pics) {
+		if (data.res.pics.length) {
 			var pic = data.res.pics;
 			var len = pic.length;
 			for (var i = 0; i < len; i++) {
@@ -219,7 +219,7 @@ mui.plusReady(function() {
 				document.getElementById('porel').appendChild(img);
 			}
 		} else {
-			document.getElementById('porel').innerHTML = '并没有图片~';
+			document.getElementById('porel').innerHTML = 'there are no picture in this order~';
 		}
 	}
 })
