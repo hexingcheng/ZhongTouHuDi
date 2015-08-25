@@ -71,7 +71,8 @@ mui.plusReady(function() {
 function sendmsg(datas) {
 	myAjax({
 		url: 'order/myGoodList',
-		data: datas
+		data: datas,
+		wait : false
 	}, function(data) {
 		var orderdata = {
 				"list": data.res

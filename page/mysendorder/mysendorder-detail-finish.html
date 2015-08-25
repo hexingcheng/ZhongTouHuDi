@@ -39,7 +39,7 @@
 							<div id="orderCount" class="send-num">0</div>
 						</li>
 						<li id="deliverer-contact" class="mui-table-view-cell mui-col-xs-2">
-							<div><span class="mui-icon mui-icon-chatbubble-filled"></span></div>
+							<div><span id="sendmsg" data-phone="" class="mui-icon mui-icon-chatbubble-filled"></span></div>
 							<div class="icon-phone"><span id="phone" data-phone="" class="mui-icon mui-icon-phone-filled"></span></div>
 						</li>
 					</div>
@@ -52,14 +52,14 @@
 					<li class="mui-table-view-cell mui-col-xs-6">
 						<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
 						<span class="mui-pull-left">
-							<div class="goods-value-box">
+							<div class="goods-value-box mui-ellipsis">
 								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
 							</div>
 						</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
 						<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
-						<span id="goods-weight" class="mui-pull-left title-weight">0kg</span>
+						<span id="goods-weight" class="mui-pull-left title-weight mui-ellipsis">0kg</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
 						<div class="title-color title-bottom-padded">Get Time</div>
@@ -125,7 +125,7 @@
 	<!-- 加载中的蒙层 -->
 	<div id="loading-mask"></div>
 	<div id="loading-box">
-		<img src="../../img/loading2.gif" alt="loading" width="150px" height="150px"/>
+		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 	</div>
 	
 	<script src="../../js/jquery.min.js" ></script>

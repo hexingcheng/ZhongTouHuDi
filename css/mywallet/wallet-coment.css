@@ -1,4 +1,4 @@
-.bg-color{
+.bg-color {
 	background-color: #f2f2f2;
 }
 .table-diviver {
@@ -14,25 +14,86 @@
 	text-align: center;
 	line-height: 40px;
 }
-.mui-content>.mui-table-view:first-child {margin-top: 0;}
-header.mui-bar.mui-bar-nav {background-color: #44ab6e;}
-.mui-action-back {color: #fff;}
-.mui-title {color: #fff}
-.style-money {color: #ff7c1f;}
-.style-point {color: #19b95b;}
-.style-coupon {color: #ff391f;}
-.current-money {padding: 12px 0 7px 0;}
-.text-color {color: #ccc;}
+.mui-content>.mui-table-view:first-child {
+	margin-top: 0;
+}
+header.mui-bar.mui-bar-nav {
+	background-color: #44ab6e;
+}
+.mui-action-back {
+	color: #fff;
+}
+.mui-title {
+	color: #fff
+}
+.style-money {
+	color: #ff7c1f;
+}
+.style-point {
+	color: #19b95b;
+}
+.style-coupon {
+	color: #ff391f;
+}
+.current-money {
+	padding: 12px 0 7px 0;
+}
+.text-color {
+	color: #ccc;
+}
 .content-padded {
 	padding: 0.5em 1em;
 	color: #9f9f9f;
 	border-bottom: 1px solid #e8e8e8;
 }
-
 /* 头部样式  */
-.mui-bar {height: 52px;}
-.mui-bar .mui-icon {padding-top: 14px;padding-bottom: 14px;}
-.mui-title {line-height: 52px;text-align: left;}
-.mui-bar .mui-title {left: 43px;}
-.mui-bar-nav~.mui-content {padding-top: 52px;}
-div.mui-scroll-wrapper {top: 52px;}
+
+.mui-bar {
+	height: 52px;
+}
+.mui-bar .mui-icon {
+	padding-top: 14px;
+	padding-bottom: 14px;
+}
+.mui-title {
+	line-height: 52px;
+	text-align: left;
+}
+.mui-bar .mui-title {
+	left: 43px;
+}
+.mui-bar-nav~.mui-content {
+	padding-top: 52px;
+}
+div.mui-scroll-wrapper {
+	top: 52px;
+}
+/* 等待加载页面内容  */
+#loading-mask {
+	position: absolute;
+	z-index: 998;
+	background: #fff;
+	top: 52px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+#loading-box {
+	position: absolute;
+	z-index: 999;
+	width: 100px;
+	height: 100px;
+	left: 50%;
+	margin-left: -50px;
+	top: 50%;
+	margin-top: -50px;
+}
+.fade-out {
+	opacity: 0;
+	-webkit-transition: all 500ms ease-out;
+}
+/* footer 上边界线 */
+.mui-bar {
+	-webkit-box-shadow : 0 0 1px #ccc;
+	box-shadow : 0 0 1px #ccc;
+}

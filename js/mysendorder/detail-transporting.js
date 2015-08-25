@@ -52,7 +52,8 @@ function sendmsg(orderid) {
 		data: {
 			orderId: orderid,
 			type: "send"
-		}
+		},
+		wait : false
 	}, function(data) {
 //		console.log(JSON.stringify(data))
 		$(".goods-name").html(data.res.gName); // 货物名称

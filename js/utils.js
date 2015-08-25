@@ -263,3 +263,23 @@ function successcb() {
 function formRegTest() {
 
 }
+
+
+function closeMask(){
+	// 300毫秒之后清除等待框
+	var lmask = document.getElementById("loading-mask");
+	var lbox = document.getElementById("loading-box");
+	var mcl = lmask.classList;
+	var bcl = lbox.classList;
+	mcl.add("fade-out");
+	bcl.add("fade-out");
+	// 过渡动画结束的时候执行该事件
+	lmask.addEventListener("webkitTransitionEnd", function() {
+		document.getElementById("loading-mask").style.display = "none";
+		document.getElementById("loading-box").style.display = "none";
+		mcl.remove("fade-out");
+		bcl.remove("fade-out");
+	}, false)
+}
+
+

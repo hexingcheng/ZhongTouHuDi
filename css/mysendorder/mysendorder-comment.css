@@ -27,7 +27,11 @@ header.mui-bar.mui-bar-nav {
 	color: #fff;
 }
 /* 头部样式  */
-
+footer.mui-bar {
+	-webkit-box-shadow : 0 0 1px #ccc;
+	box-shadow : 0 0 1px #ccc;
+	background-color: #fff;
+}
 .mui-bar {
 	height: 52px;
 }
@@ -66,4 +70,10 @@ div.mui-scroll-wrapper {
 	width: 4.23em;
 	height: 4.23em;
 	line-height: 4.23em;
+}
+#sendmsg.tap-active {
+	color: red;
+}
+#phone.tap-active {
+	color: red;
 }

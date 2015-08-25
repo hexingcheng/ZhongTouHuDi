@@ -104,10 +104,12 @@
 #loading-box {
 	position: absolute;
 	z-index: 999;
+	width: 100px;
+	height: 100px;
 	left: 50%;
-	margin-left: -75px;
+	margin-left: -50px;
 	top: 50%;
-	margin-top: -75px;
+	margin-top: -50px;
 }
 .fade-out {
 	opacity: 0;

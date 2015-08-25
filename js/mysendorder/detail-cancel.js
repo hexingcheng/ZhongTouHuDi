@@ -75,7 +75,8 @@ function sendmsg(orderid) {
 		data: {
 			orderId: orderid,
 			type: "send"
-		}
+		},
+		wait : false
 	}, function(data) {
 		$(".goods-name").html(data.res.gName); // 货物名称
 		$("#goods-value").html(data.res.money); // 价值

@@ -11,7 +11,39 @@ mui.plusReady(function() {
 		openWindow("./order-comment.html");
 	}, false);
 
-
+	// 发信息
+	document.getElementById("sendmsg").addEventListener("tap", function(){
+		var phonenum = this.getAttribute("data-phone");
+//		var msg = plus.messaging.createMessage(plus.messaging.TYPE_SMS);
+//		msg.to = [phonenum];
+//		msg.body = '';
+//		plus.messaging.sendMessage( msg );
+	})
+	
+	// 打电话
+	document.getElementById("phone").addEventListener("tap", function(){
+		var phonenum = this.getAttribute("data-phone");
+//		plus.device.dial( phonenum , false );
+	})
+	
+	window.addEventListener("touchstart", function(){
+		var target = window.event.target;
+		var cls = target.classList;
+		if(cls.contains("mui-icon-phone-filled") || cls.contains("mui-icon-chatbubble-filled")){
+			target.style.webkitTransition = "all 100ms ease-in-out";
+			cls.add("tap-active");
+		}
+	})
+	
+	window.addEventListener("touchend", function(){
+		var target = window.event.target;
+		var cls = target.classList;
+		if(cls.contains("mui-icon-phone-filled") || cls.contains("mui-icon-chatbubble-filled")){
+			target.style.webkitTransition = "all 100ms ease-in-out";
+			cls.remove("tap-active");
+		}
+	})
+	
 
 // 通过订单号获取数据
 function sendmsg(orderid) {
@@ -21,8 +53,10 @@ function sendmsg(orderid) {
 		data: {
 			orderId: orderid,
 			type: "send"
-		}
+		},
+		wait : false
 	}, function(data) {
+//		console.log(JSON.stringify(data))
 		$(".goods-name").html(data.res.gName); // 货物名称
 		$("#goods-value").html(data.res.money); // 价值
 		$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
@@ -49,7 +83,8 @@ function sendmsg(orderid) {
 			$("#orderCount").html(data.res.deliver.orderCount);
 		}
 		if (data.res.deliver.phone) { // 电话号码
-			$("#pnone").attr("data-phone", data.res.deliver.phone);
+			$("#phone").attr("data-phone", data.res.deliver.phone);
+			$("#sendmsg").attr("data-phone", data.res.deliver.phone);
 		}
 
 
