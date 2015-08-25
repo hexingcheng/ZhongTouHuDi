@@ -112,7 +112,6 @@
 								getacountinfo()
 								setstorage('token', obj.token);
 								plus.webview.getLaunchWebview().show('slide-in-left', 200);
-								plus.webview.currentWebview().close();
 							} else if (obj.ret == -1) {
 								mui.toast("手机号或密码错误")
 							} else if (obj.ret == -2) {
@@ -134,16 +133,24 @@
 					mui.ajax(BASEURL + 'account/info', {
 						type: 'post',
 						success: function(data) {
-							mui.toast('获取初始账户信息成功');
-							if(getstorage('personinfo')){
-								plus.storage.removeItem('personinfo')
+							if(data.ret===1) {
+								if (getstorage('personinfo')) {
+									plus.storage.removeItem('personinfo')
+								}
+								setstorage('personinfo', JSON.stringify(data.res));
+								var index = plus.webview.getLaunchWebview();
+								alert("nihao")
+								alert(index)
+								mui.fire(index,"setaccount", data.res);
+								plus.webview.currentWebview().close();
+							}else{
+								mui.toast('获取基础信息失败'+data.ret)
+								console.log('获取基础信息失败'+data.ret)
+								plus.webview.currentWebview().close();
 							}
-							setstorage('personinfo',JSON.stringify(data.res));
-							var i = plus.webview.getLaunchWebview();
-							mui.fire(i,'setaccount',data.res);
 						},
-						error:function(xhr,type){
-							console.log(xhr.status+":"+type);
+						error: function(xhr, type) {
+							console.log(xhr.status + ":" + type);
 						}
 					})
 				}
