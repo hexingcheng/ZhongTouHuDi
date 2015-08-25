@@ -16,41 +16,14 @@ mui.plusReady(function() {
 	$("#cancel-order").on("tap", function() {
 		plus.nativeUI.confirm("您确认要取消此条订单消息吗？", function(eve){
 			if(eve.index == 1){
-				cancelorder();
-			}
-		}, "取消提示", ["ok", "cancel"])
-	})
-	
-	// 取消订单
-	function cancelorder(){
-		myAjax({
-			url: "order/cancel",
-			data: {
-				orderId: orderid,
-				descp: "订单取消原因",
-				status:status
-			}
-		}, function(data) {
-			if (data.ret == 1) {
-				mui.toast("取消成功");
-				mui.openWindow({
-					url: "./my-send-order.html",
-					id: "my-send-order",
-					createNew: true,
-					waiting: {
-						autoShow: true,
-						title: '正在加载...',
-						options: {
-							background: '#d1d1d1'
-						}
-					}
+				openWindow("./cancel-reason.html", {
+					orderId: orderid,
+					status:status
 				})
 				plus.storage.removeItem("my-send-order")
 			}
-		}, function(xhr, type) {
-			console.log(xhr.status+":"+type)
-		})
-	}
+		}, "取消提示", ["cancel", "ok"])
+	})
 	
 	// 返回首页
 	var cpage = plus.webview.currentWebview();
@@ -60,10 +33,9 @@ mui.plusReady(function() {
 			plus.webview.show(index, "slide-in-left", 200)
 			setTimeout(function(){
 				plus.webview.close(cpage, "none", 0)
-			}, 300)
+			}, 2000)
 		}
 	}
-	
 })
 
 function sendmsg(orderid) {
@@ -76,7 +48,7 @@ function sendmsg(orderid) {
 		},
 		wait : false
 	}, function(data) {
-		console.log(JSON.stringify(data))
+//		console.log(JSON.stringify(data))
 		$(".goods-name").html(data.res.gName); // 货物名称
 		$("#goods-value").html(data.res.money); // 价值
 		$("#goods-weight").html(data.res.gWeight + "kg"); // 重量

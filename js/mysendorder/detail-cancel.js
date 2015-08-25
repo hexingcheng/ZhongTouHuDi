@@ -1,35 +1,30 @@
 mui.init();
 mui.plusReady(function() {
 	mui("#scroll-wrapper").scroll();
+	var cpage = plus.webview.currentWebview();
 
-	var orderid = plus.storage.getItem("my-send-order");
+	var orderid = plus.storage.getItem("my-send-order") || cpage.orderId;
+	
 	sendmsg(orderid);
 
-	// 获取当前page
-	var cpage = plus.webview.currentWebview();
+	// 对不同情况下进行不同的回退功能
+	if(cpage.orderId){
+		mui.back = function(){
+			openWindow("./my-send-order.html");
+			setTimeout(function(){
+				plus.webview.close(cpage, "none", 0);
+			}, 2000)
+		}
+	}
+
 	// 重新编辑
 	document.getElementById("edit-btn").addEventListener("tap", function() {
-		mui.openWindow({
-			url: "../sendorder/createorder.html",
-			id: "createorder",
-			extras: {
-				orderId: orderid
-			},
-			show: {
-				aniShow: "slide-in-left",
-				duration: 200
-			},
-			waiting: {
-				autoShow: true,
-				title: "正在加载...",
-				options: {
-					background: '#d1d1d1'
-				}
-			}
+		openWindow("../sendorder/createorder.html", {
+			orderId: orderid
 		})
 		setTimeout(function() {
-			cpage.close("none", 0)
-		}, 300)
+			plus.webview.close(cpage, "none", 0)
+		}, 1000)
 		plus.storage.removeItem("my-send-order")
 
 	})
@@ -44,21 +39,10 @@ mui.plusReady(function() {
 		}, function(data) {
 			if (data.ret == 1) {
 				mui.toast("发布成功")
-				mui.openWindow({
-					url: "./my-send-order.html",
-					id: "my-send-order",
-					createNew: true,
-					waiting: {
-						autoShow: true,
-						title: "正在加载...",
-						options: {
-							background: '#d1d1d1'
-						}
-					}
-				})
+				openWindow("./my-send-order.html")
 				setTimeout(function() {
-					cpage.close("none", 0)
-				}, 200)
+					plus.webview.close(cpage, "none", 0)
+				}, 1000)
 			}
 		}, function(xhr, type) {
 			console.log(xhr.status);

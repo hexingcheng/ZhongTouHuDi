@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/mysendorder/mysendorder-comment.css"/>
     <script src="../../js/mui.min.js"></script>
 </head>
-<body>
+<body style="background: #fff;">
 	<header class="mui-bar mui-bar-nav">
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<h1 class="mui-title">Cancel reason</h1>
@@ -34,14 +34,51 @@
 	<footer style="height: 3.5em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 		<button id="submit-reason" class="mui-btn mui-btn-block">Submit</button>
 	</footer>
+	<script src="../../js/utils.js"></script>
     <script>
       	mui.init();
       	mui.plusReady(function(){
+      		var cpage = plus.webview.currentWebview();
       		
       		// 提交取消订单原因
+      		var reasonval;
       		document.getElementById("submit-reason").addEventListener("tap", function(){
-      			
+      			var radio = document.getElementsByName("radio");
+      			for(var i = 0; i < radio.length; i++){
+      				if(radio[i].checked){
+      					reasonval = radio[i].value;
+      				}
+      			}
+      			if(reasonval){
+      				cancelorder(cpage.orderId, reasonval, cpage.status);
+      			} else {
+      				mui.toast("请选择取消发单的原因")
+      			}
       		},false)
+      		
+      		// 取消订单
+			function cancelorder(orderid ,reason, status){
+				myAjax({
+					url: "order/cancel",
+					data: {
+						orderId: orderid,
+						descp: reason,
+						status:status
+					}
+				}, function(data) {
+					if (data.ret == 1) {
+						mui.toast("取消成功");
+						openWindow("./mysendorder-detail-cancel.html", {
+							orderId : orderid
+						})
+						setTimeout(function(){
+							plus.webview.close(cpage, "none", 0);
+						}, 2000)
+					}
+				}, function(xhr, type) {
+					console.log(xhr.status+":"+type)
+				})
+			}
       	})
     </script>
 </body>
