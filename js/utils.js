@@ -107,7 +107,8 @@ function innerAjax(options,successcb,errorcb) {
 		},
 		error: function(xhr,type){
 			plus.nativeUI.closeWaiting();
-			errorcb(xhr,type)
+			errorcb(xhr,type);
+			successcb(data);
 		}
 	})
 }

@@ -423,22 +423,7 @@
 					}
 				})
 			}
-			function sendData(url, base, path) {
-				var pics
-				mui.ajax(url, {
-					type: "post",
-					data: {
-						fid:path
-					},
-					success: function(data) {
-						console.log(data.ret);
-						alert("图片发送成功！")
-					},
-					error: function(xhr, type) {
-						console.log(xhr.status)
-					}
-				})
-			}
+
 			function bygallery(context) {
 				plus.gallery.pick(function(path) {
 					$('#headPic').attr('src',path);
