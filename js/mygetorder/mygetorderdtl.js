@@ -5,6 +5,14 @@ mui.plusReady(function() {
 	var datas = {};
 	datas.orderId = c.orderId;
 	datas.type = c.type;
+	mui.back = function(){
+		if(getstorage('getordertodtl')=='on'){
+			setstorage('getordertodtl','off');
+			openWindow('../getorder/get-order.html');
+		}else{
+			plus.webview.getLaunchWebview().show('slide-in-left',200);
+		}
+	}
 	showobj(datas)
 	myAjax({
 		url: 'order/goodShow',
@@ -82,17 +90,22 @@ mui.plusReady(function() {
 	})
 
 	$('.cancel').on('tap', function() {
-		if ($(this).text() == 'cancel') {
+		if ($(this).text() == 'cancel bargin') {
 			myAjax({
 				url: 'order/bargainCancel',
 				data: {
 					orderId: c.orderId
 				}
 			}, function(data) {
+				alert(data.ret)
 				if (data.ret == 1) {
-					c.close();
 					openWindow('./my-get-order.html');
+					var getorder = plus.webview.getWebviewById('mygetorder/my-get-order');
+					getorder.show('slide-in-left',200,function(){
+						mui.fire(getorder,'fresh')
+					})
 					mui.toast('取消议价成功');
+					c.close();
 				} else if (data.ret == 2) {
 					mui.toast('非法操作')
 				}

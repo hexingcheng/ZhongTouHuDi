@@ -88,7 +88,6 @@
 	bottom: 0;
 	left: 0;
 	z-index: 1000;
-	display: none;
 }
 #order-popup {
 	position: absolute;
@@ -171,12 +170,143 @@
 	border-radius: 3px;
 	padding: 0.1em;
 }
+#uls li,#ul2 li{
+	padding: 0;
+	height: 50px;
+	line-height: 50px;
+}
 
+.addl15mar{
+	padding-left: 15px;
+}
+.addr5mar{
+	padding-right: 15px;
+}
 
-
-
-
-
-
-
-
+.paddding0{
+	padding: 0;
+}
+.addlmar{
+	margin-left: 15px;
+}
+.addrmar{
+	margin-right: 15px;
+}
+#uls #tet,#uls #ret{
+	height: 70px;
+	line-height: 1;;
+}
+#tet .time,#ret .time{
+	font-size: 14px;
+	color: #D1D1D1;
+	padding-top: 10px;
+	height: 30px;
+}
+#tet .da,#ret .da{
+	font-size: 13px;
+	color: #D1D1D1;
+	padding-top: 10px;
+}
+.picture{
+	margin: 10px;
+	width: 70px;
+	height: 70px;
+}
+.marks{
+	width: 49%;
+	margin-right: 1%;
+	text-align: center;
+	float: left;
+	line-height: 48px;
+	background-color: #fc614d;
+	color: #FFFFFF;
+}
+.cllo{
+	text-align: center;
+	float: left;
+	width: 49%;
+	margin-left: 1%;
+	line-height: 48px;
+	background-color: #23a0cf;
+	color: #FFFFFF
+}
+#foot{
+	box-shadow: 0 0 0 #FFFFFF;
+	height: 60px;
+	padding: 6px 20px;
+	background-color: #FFFFFF;
+}
+#markups{
+	
+	background-color: #FFFFFF;;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	
+	padding: 10px 10px 0 10px;
+	width: 270px;
+	height: 208px;
+	margin-left: -135px;
+	margin-top: -100px;
+	z-index: 1001;
+}
+.mak-title{
+	font-size: 16px;
+	height: 40px;
+	line-height: 40px;
+	color: #777777;
+}
+.mak-worn{
+	line-height: 21px;
+	font-size: 13px;
+	word-break: break-all;
+	color: #D1D1D1
+}
+.borporal{
+	border: 1px solid #007AFF;
+	width: 100%;
+	height: 35px;
+	position: relative;
+}
+.inner{
+	position: absolute;
+	top: -2px;
+	left: -3px;
+	right: -2px;
+	bottom: 2px;
+}
+#mar-i{
+	text-align: center;
+	border: 0;
+	outline: 0;
+	width: 100%;
+	height: 100%;
+	color: red;
+}
+#ok,#cancel{
+	float: left;
+	width: 50%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #FFFFFF;
+}
+#ok{
+	background-color: #fc614d;
+}
+.mak-handle{
+	padding-top: 10px;
+}
+#cancel{
+	background-color: #23a0cf;
+}
+.origin,.now{
+	width: 50%;
+	float: left;
+}
+.cacu{
+	overflow: hidden;
+}
+.now,.origin{
+	padding-top: 10px;
+}

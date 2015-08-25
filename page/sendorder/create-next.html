@@ -477,6 +477,7 @@
 							getdata.receiverWd = $('#sendaddr').attr('data-Wd');
 							getdata.insType = parseInt($('#comer').attr('data-sure'));
 							getdata.status = 1;
+							showobj(getdata)
 							if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 								if (onOff) {
 									onOff = false

@@ -7,8 +7,8 @@ mui.plusReady(function() {
 		var sta = this.getAttribute('data-sta');
 		getlist(sta)
 	})
-
 	function getlist(status) {
+		var status = status||1
 		var getorderdata = {
 			"page": 1,
 			"pageSize": 10,
@@ -31,6 +31,9 @@ mui.plusReady(function() {
 			console.log(type);
 		})
 	}
+	window.addEventListener('fresh',function(){
+		getlist();
+	})
 	mui('#link-detail').on('tap', '.mui-table-view', function() {
 		var orderid = this.getAttribute('data-id');
 		var datas = {

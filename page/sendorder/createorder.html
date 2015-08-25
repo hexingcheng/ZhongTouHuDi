@@ -600,7 +600,7 @@
 					var name = $.trim($("#gname").val());
 					var weight = parseInt($.trim($("#gweight").val()));
 					var value = parseInt($.trim($("#gvalue").val()));
-					var info = $.trim($('#gettext').val());
+					var info = $.trim($('#gettext').text());
 					if (validate()) { // 验证成功
 						var param = {
 							gName: name,
