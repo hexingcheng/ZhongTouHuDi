@@ -5949,7 +5949,6 @@ var mui = (function(document, undefined) {
 			}
 		}
 	};
-
 	var updateTranslate = function() {
 		if (translateX !== lastTranslateX) {
 			if (buttonsRight && buttonsRight.length > 0) {
