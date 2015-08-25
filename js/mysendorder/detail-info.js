@@ -11,10 +11,18 @@ mui.plusReady(function() {
 	$("#msg-warn").on("tap", ".link-btn", function() {
 		openWindow($(this).attr("data-href"));
 	})
-
+	
 	// 取消订单
 	$("#cancel-order").on("tap", function() {
-		console.log(getstorage('my-send-order'))
+		plus.nativeUI.confirm("您确认要取消此条订单消息吗？", function(eve){
+			if(eve.index == 1){
+				cancelorder();
+			}
+		}, "取消提示", ["ok", "cancel"])
+	})
+	
+	// 取消订单
+	function cancelorder(){
 		myAjax({
 			url: "order/cancel",
 			data: {
@@ -42,7 +50,20 @@ mui.plusReady(function() {
 		}, function(xhr, type) {
 			console.log(xhr.status+":"+type)
 		})
-	})
+	}
+	
+	// 返回首页
+	var cpage = plus.webview.currentWebview();
+	var index = plus.webview.getLaunchWebview();
+	if(cpage.type = "createorder"){
+		mui.back = function(){
+			plus.webview.show(index, "slide-in-left", 200)
+			setTimeout(function(){
+				plus.webview.close(cpage, "none", 0)
+			}, 300)
+		}
+	}
+	
 })
 
 function sendmsg(orderid) {
