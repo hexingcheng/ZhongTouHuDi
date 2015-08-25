@@ -23,36 +23,36 @@ function iflogin(cb) {
 }
 
 function ifloginCommon(cb) {
-	if (getstorage('token')) {
-		cb();
-	} else {
-		var i = plus.webview.getLaunchWebview();
-		i.setStyle({
-			left: '0',
-			mask: 'none'
-		})
-		openWindow('./page/logupin/login.html')
+		if (getstorage('token')) {
+			cb();
+		} else {
+			var i = plus.webview.getLaunchWebview();
+			i.setStyle({
+				left: '0',
+				mask: 'none'
+			})
+			openWindow('./page/logupin/login.html')
+		}
 	}
-}
-//  ajax通用函数参数说明 options:基本配置参数，url、type（默认 post 可不填）、data 必填,successcb成功回调  必填 参数为请求返回data对象，
-//errorcb：必填 失败回调 参数 xhr,type,nonetworkcb 无网络回调 选填
-//eg:
-//myAjax({url:"auth/regDynCode",data:{phone:11010101011}},function(data){
-//	console.log(data.code);
-//},function(xhr, type){
-//	console.log(xhr.status);
-//},function(){
-//	alert('没网呀')
-//})
+	//  ajax通用函数参数说明 options:基本配置参数，url、type（默认 post 可不填）、data 必填,successcb成功回调  必填 参数为请求返回data对象，
+	//errorcb：必填 失败回调 参数 xhr,type,nonetworkcb 无网络回调 选填
+	//eg:
+	//myAjax({url:"auth/regDynCode",data:{phone:11010101011}},function(data){
+	//	console.log(data.code);
+	//},function(xhr, type){
+	//	console.log(xhr.status);
+	//},function(){
+	//	alert('没网呀')
+	//})
 
 
 
-function myAjax(options, successcb, errorcb,nonetworkcb) {
+function myAjax(options, successcb, errorcb, nonetworkcb) {
 	var net = plus.networkinfo.getCurrentType();
 	if (net != 0 && net != 1) {
 		innerAjax(options, successcb, errorcb)
 	} else {
-		if(nonetworkcb){
+		if (nonetworkcb) {
 			nonetworkcb()
 		} else {
 			mui.toast('未连接网络,请链接网络');
@@ -60,37 +60,44 @@ function myAjax(options, successcb, errorcb,nonetworkcb) {
 	}
 }
 
-function innerAjax(options,successcb,errorcb) {
+function innerAjax(options, successcb, errorcb) {
 	var op = {
-		type:'post',
-		url:'',
-		data:{}
+		type: 'post',
+		url: '',
+		data: {},
+		wait: true
 	};
-	copyobj(options,op);
-	plus.nativeUI.showWaiting('请求中',{background:"#d1d1d1"})
+	copyobj(options, op);
+	if (op.wait) {
+		plus.nativeUI.showWaiting('请求中', {
+			background: "#d1d1d1"
+		})
+	}
 	mui.ajax(BASEURL + op.url, {
 		type: op.type,
 		data: op.data,
 		success: function(data) {
-			plus.nativeUI.closeWaiting();
+			if (op.wait) {
+				plus.nativeUI.closeWaiting();
+			}
 			if (data.ret == 1) {
 				successcb(data);
 			} else if (data.ret == -101) {
-				if(getstorage('token')){
+				if (getstorage('token')) {
 					var token = getstorage('token');
-					mui.ajax(BASEURL+'auth/activate',{
-						type:'post',
-						data:{
-							token:token
+					mui.ajax(BASEURL + 'auth/activate', {
+						type: 'post',
+						data: {
+							token: token
 						},
-						success:function(data){
-							if(data.ret==1){
-								innerAjax(options,successcb,errorcb);
-							}else if(data.ret==-1){
+						success: function(data) {
+							if (data.ret == 1) {
+								innerAjax(options, successcb, errorcb);
+							} else if (data.ret == -1) {
 								mui.toast('身份校验异常,请重新登录');
-								mui.ajax(BASEURL+'auth/out',{
-									type:'get',
-									success:function(){
+								mui.ajax(BASEURL + 'auth/out', {
+									type: 'get',
+									success: function() {
 										openWindow('./page/logupin/login.html')
 									}
 								})
@@ -100,27 +107,35 @@ function innerAjax(options,successcb,errorcb) {
 				} else {
 					openWindow('./page/logupin/login.html');
 				}
-			} else{
-				plus.nativeUI.closeWaiting()
-				mui.toast('网络服务出错了')
+			} else {
+				if (op.wait) {
+					plus.nativeUI.closeWaiting()
+				}
+				successcb(data);
+
 			}
 		},
-		error: function(xhr,type){
-			plus.nativeUI.closeWaiting();
-			errorcb(xhr,type);
+		error: function(xhr, type) {
+			if (op.wait) {
+				plus.nativeUI.closeWaiting();
+			}
+			errorcb(xhr, type);
 			successcb(data);
+
 		}
 	})
 }
-function copyobj(from,to){
-	for(var i in from){
-		if(typeof from[i]=='object'){
-			copyobj(from[i],to[i])
-		}else{
-			to[i]=from[i];
+
+function copyobj(from, to) {
+	for (var i in from) {
+		if (typeof from[i] == 'object') {
+			copyobj(from[i], to[i])
+		} else {
+			to[i] = from[i];
 		}
 	}
 }
+
 function openWindow(url, param, ani, time) {
 		var snum, id;
 		var animationType = ani || 'slide-in-right';
@@ -220,6 +235,7 @@ function errorhandle(type) {
 	}
 	return;
 }
+
 function getuserbasicinfo() {
 	var obj = {};
 	mui.plusReady(function() {
@@ -253,4 +269,22 @@ function successcb() {
 
 function formRegTest() {
 
+}
+
+
+function closeMask() {
+	// 300毫秒之后清除等待框
+	var lmask = document.getElementById("loading-mask");
+	var lbox = document.getElementById("loading-box");
+	var mcl = lmask.classList;
+	var bcl = lbox.classList;
+	mcl.add("fade-out");
+	bcl.add("fade-out");
+	// 过渡动画结束的时候执行该事件
+	lmask.addEventListener("webkitTransitionEnd", function() {
+		document.getElementById("loading-mask").style.display = "none";
+		document.getElementById("loading-box").style.display = "none";
+		mcl.remove("fade-out");
+		bcl.remove("fade-out");
+	}, false)
 }

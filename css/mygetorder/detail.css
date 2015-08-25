@@ -3,7 +3,7 @@
 }
 .mui-scroll-wrapper {
 	top: 44px;
-	bottom: 3.2em;
+	bottom: 60px;
 }
 .title-color {
 	color: #bec0c2;
@@ -171,7 +171,11 @@
 	border-radius: 3px;
 	padding: 0.1em;
 }
-
+.picture{
+	width: 72px;
+	height: 100px;
+	margin: 10px;
+}
 
 
 

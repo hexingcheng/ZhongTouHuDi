@@ -17,7 +17,7 @@
 .mui-btn.button-next {
 	background-color: #ff8474;
 	color: #fff;
-	padding: 10px 35%;
+	padding: 13px 35%;
 }
 .amount-label {
 	padding: 0.5em 0 0 0;
@@ -55,9 +55,9 @@
 }
 .use-paypal {
 	position: absolute;
-	left: 3.5em;
+	left: 4em;
 	right: 3em;
-	top: 0.3em;
+	top: 0.9em;
 }
 .mui-grid-view.mui-grid-9 .mui-media .mui-icon {
 	font-size: 1.2em;
@@ -65,4 +65,22 @@
 }
 div.mui-scroll-wrapper {
 	top: 259px;
+	bottom: 3.5em;
 }
+#type-container .mui-table-view-cell {
+	padding: 0;
+}
+#type-container .paypal-box {
+	padding: 11px 15px;
+	background-color: #f2f2f2;
+	position: relative;
+	border-bottom: 2px solid #ddd;
+}
+#type-container .mui-table-view-cell:last-child .paypal-box {
+	border-bottom: none;
+}
+
+
+
+
+

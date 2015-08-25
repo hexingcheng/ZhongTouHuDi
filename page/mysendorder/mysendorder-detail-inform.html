@@ -7,7 +7,11 @@
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css"/>
     <link rel="stylesheet" href="../../css/mysendorder/mysendorder-detail.css"/>
-    <script src="../../js/mui.min.js"></script>
+    <script src="../../js/mui.js"></script>
+    <style type="text/css">
+    	.mui-table-view:before {height: 0;}
+		.mui-table-view:after {height: 0;}
+    </style>
 </head>
 <body style="background: #fff;">
 	<header class="mui-bar mui-bar-nav">
@@ -27,20 +31,19 @@
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-12">
 						<span class="mui-pull-left title-color mui-text-left name">Name</span>
-						<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">--</span>
+						<span class="mui-pull-right mui-text-left mui-ellipsis goods-name">--</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
 						<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
-						<span class="mui-pull-right">
-							<div class="goods-value-box">
+						<span class="mui-pull-left">
+							<div class="goods-value-box mui-ellipsis">
 								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
-								<p class="title-color">not paid</p>
 							</div>
 						</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
 						<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
-						<span id="goods-weight" class="mui-pull-right title-weight">0kg</span>
+						<span id="goods-weight" class="mui-pull-left title-weight mui-ellipsis">0kg</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
 						<div class="title-color title-bottom-padded">Get Time</div>
@@ -71,7 +74,7 @@
 						<span class="title-color mui-pull-left title-width">Desc</span>
 						<span id="info" class="mui-ellipsis content-length">--</span>
 					</li>
-					<li class="mui-table-view-cell desc-after">
+					<li id="last-wrap" class="mui-table-view-cell">
 						<div class="porel">
 							<span class="img-box">
 								<span class="mui-icon mui-icon-plusempty"></span>
@@ -95,14 +98,14 @@
 		</div>
 	</div>
 	
-	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+	<footer style="height: 3.5em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 		<button id="cancel-order" class="mui-btn mui-btn-block">cancel</button>
 	</footer>
 
 	<!-- 加载中的蒙层 -->
 	<div id="loading-mask"></div>
 	<div id="loading-box">
-		<img src="../../img/loading45.gif" alt="loading"/>
+		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 	</div>
 	
 	

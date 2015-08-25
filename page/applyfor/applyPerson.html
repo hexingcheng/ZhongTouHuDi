@@ -116,7 +116,7 @@
 	height: 70%;
 	overflow: hidden;
 	margin: 20% auto;
-	padding: 0 30px;
+/*	padding: 0 30px;*/
 	background-color: white; 
 }
 .nation_list .nation_list_contain{
@@ -131,15 +131,19 @@
 }
 .nation_list li{
 	list-style: none;
-	width: 90%;
+	width:100%;
 	height:34px;
 	line-height: 34px;
 	margin: .1em auto;
 	text-align: left;
 }
+.nation_list span{
+	margin: 0 1em;
+}
 .nation_list li img{
 	width: 34px;
 	height: 34px;
+	margin: 0 .5em;
 	float: right;
 }
 .img_div img{
@@ -173,11 +177,9 @@
 	float: right;
 	text-align: center;
 }
-
-
-/*.apply_sex input{  
-	margin-top: 19px;
-}*/
+.apply_bor_b{
+	border-bottom: 1px solid #E3E2E5;
+}
     </style>
 </head>
 <body>
@@ -186,28 +188,30 @@
 		<div class="nation_list">
 			<div class="nation_list_contain">
 			    <ul>
-			     	<li>中国 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>美国 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>印度 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>法国 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>德国 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>日本 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>加拿大 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>澳大利亚 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>中国 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>美国 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>印度 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>法国 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>德国 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>日本 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>加拿大 <img src="../../img/1096072.png" alt="" /></li>
-			     	<li>澳大利亚 <img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>中国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>美国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>印度</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>法国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>日本</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>加拿大</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>澳大利亚</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>中国</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>美国</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>中国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>美国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>印度</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>法国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>日本</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>加拿大</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>澳大利亚</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>中国</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>美国</span><img src="../../img/1096072.png" alt="" /></li>
 			    </ul>
 			</div>
 	    </div>
 	</div>
-	<header class="mui-bar mui-bar-nav apply_header">
-		<span class="mui-icon mui-icon-left-nav"></span>
+	<header class="mui-bar mui-bar-nav apply_header ">
+		<span class="mui-icon mui-icon-left-nav mui-action-back"></span>
 		<span class="apply_title">Application For Deliverer</span>
 	</header>
 	<div class="mui-content apply_content">
@@ -248,16 +252,38 @@
 					<input type="number" class="apply_input" placeholder="identity" id="identity"/>
 				</div>
 			</li>
-			<li class="mui-table-view-cell nation_marb" >  
+			<li class="mui-table-view-cell" >  
 				<img src="../../img/mobile.png" class="mui-pull-left" alt="" />
 				<div class="apply_input_l">
 					<input type="number" class="apply_input" placeholder="mobile" id="apply_mobile"/>
 				</div>
 			</li>
+<!--			<ul class="mui-table-view apply_padding" >-->
+			<li class="mui-table-view-cell" id="select_type" >
+				<img src="../../img/id.png" class="mui-pull-left" alt="" />
+				<img src="../../img/down.png" class="mui-pull-right" alt=""  />
+				<div class="apply_input_r">
+					<input type="text" class="apply_input" placeholder="请选择证件" readonly="readonly" id="select_type_show"/>
+				</div>
+			</li>     
+			<div class="spplay_select_type">
+				<ul class="id_type">
+					<li class="apply_bor_b">身份证</li>
+					<li class="apply_bor_b">军官证</li>
+					<li class="apply_bor_b">学生证</li>
+					<li class="apply_bor_b">驾照</li>
+				</ul>
+		    </div>
+			<li class="mui-table-view-cell nation_marb2" style="">
+				<img src="../../img/id.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_r">
+					<input type="number" class="apply_input" placeholder="请输入对应的证件号" id="id_number"/>
+				</div>
+			</li>
 			
+<!--		</ul>-->
 		</ul>
 	</div>
-	<a href="../../new_index.html"></a>
 	<div class="apply_footer">
 		<div class="apply_button" id="apply_submit"><span>Next Step</span></div>
 	</div>  
@@ -266,6 +292,7 @@
 <script src="../../js/utils.js"></script>
 <script>
 mui.plusReady(function(){
+	plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
     var flag=true; 
 	function check_info(){//检测填写情况
 		var v_name=$('#apply_name').val().trim(); 
@@ -276,12 +303,13 @@ mui.plusReady(function(){
 		var v_identity=$('#identity').val().trim();
         var check=$('#person_sex').attr('checked');
         var sex=(check=='checked')?'1':'2';
+        var id_nu=$('#id_number').val().trim();
         var car_info_status=plus.storage.getItem('carInfoSta');//得到carInfo的资料填写情况
 		if(true){  
 		   if(!v_name){
 		   	  mui.toast('请填写你的真实姓名');
 		   	  flag=false;
-		   	  return;
+		   	  return;  
 		   }
 		   if(nation=='select nation'){
 		   	mui.toast('请填写你的国籍');
@@ -299,7 +327,7 @@ mui.plusReady(function(){
 		   	  return;
 		    }
 		   if(!v_identity){
-		   	mui.toast('请填写你的省份证号码');
+		   	mui.toast('请填写你的省身份证号码');
 		   	 flag=false;  
 		   	  return;
 		   }
@@ -308,6 +336,16 @@ mui.plusReady(function(){
 		   	 flag=false;  
 		   	  return;
 		   }
+		   if(!id_type_name){
+					mui.toast('请先选择证件类型！');
+					flag=false;
+					return;
+				}
+		   if(!id_nu){
+				mui.toast('请输入证件号码！');
+				flag=false;
+				return;
+		   }
 		}   
 		if(flag){
 			data_1={  
@@ -315,29 +353,52 @@ mui.plusReady(function(){
 	    		address:v_address,
 	    		identity:v_identity,
 	    		realName:v_name,
-	    		armPhone:v_mo,
+	    		armPhone:v_mo,  
 	    		armUser:v_emer,
-	    		sex:sex
+	    		sex:sex,
+				idType:id_type_name,
+				creditCard:id_nu
 	    	}
-		plus.storage.setItem('nation_data1',JSON.stringify(data_1));
+		plus.storage.setItem('nation_data1',JSON.stringify(data_1));  
 		} 
 		mui.toast('请完成下一步操作');
 		openWindow("./idcard.html"); 
     }
+	var id_type_name="";//证件类型
+	$('.id_type li').on('tap',function(){
+				var id_number=$(this).index();
+				if(id_number==0){
+					id_type_name="身份证";
+				}else if(id_number==1){
+					id_type_name="军官证";
+				}else if(id_number==2){
+					id_type_name="学生证";
+				}else if(id_number==3){
+					id_type_name="驾照";
+				}
+	});
 	$('#apply_nation').on('tap',function(){ 
 		$('.nation_mark').css('display','block');
 	})
 	$('#apply_submit').on('tap',function(){  
 		check_info();
-	})
-	    
+	})  
 	$('.nation_list_contain ul li').on('tap',function(){
 	   var nation=$(this).text();  
 	   $('#nation').html(nation);
-	   $(this).css({"background-color":"#95A3AB"}).siblings().css({"background-color":"white"});
+	   $(this).css({"background-color":"#474749"}).siblings().css('background-color','white');
 	   	 $('.nation_mark').css('display','none');
 	  
 	})
+	 $('#select_type').on('tap',function(){
+        	$('.spplay_select_type').css('display','block');
+        })
+    $('.spplay_select_type li').on('tap',function(){
+    	$(this).css({'background-color':'silver','color':'white'})
+    	.siblings().css({'background-color':'white','color':'silver'})
+    	$('.spplay_select_type').css('display','none');
+    	$('#select_type_show').val($(this).text());
+    })
 })
 </script>  
 </html>

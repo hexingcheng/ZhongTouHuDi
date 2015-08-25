@@ -2,33 +2,80 @@ mui.init();
 //处理菜单与侧滑部分、
 mui.plusReady(function() {
 		plus.navigator.closeSplashscreen();
-		if(getstorage('personinfo')){
+		mui.toast(getstorage('personinfo'))
+		if (getstorage('personinfo')) {
 			plus.storage.removeItem('personinfo')
 		}
+		mui.toast(getstorage('token'))
 		if (getstorage('token')) {
-			myAjax({
-				url: 'auth/activate',
-				data: {
-					token: getstorage('token')
-				}
-			}, function() {
-				mui.ajax(BASEURL + 'account/info', {
-					type: 'post',
-					success: function(data) {
-						if (data.ret == 1) {
-							setstorage('personinfo',JSON.stringify(data.res));
-							if(data.res.ptitle){
-								$('.admira').text(data.res.ptitle);
-							}
-						} else {
-							mui.toast('获取用户信息失败')
+			mui.ajax(BASEURL + 'account/info', {
+				type: 'post',
+				success: function(data) {
+					showobj(data.res)
+					if (data.ret == 1) {
+						setstorage('personinfo', JSON.stringify(data.res));
+						mui.toast('get personal infomation success')
+						if (data.res.ptitle) {
+							$('.admira').text(data.res.ptitle);
+						}
+						if (data.res.headPic) {
+							var n = BASEURL.indexOf('/a');
+							var u = BASEURL.substring(0, n);
+							var picurl = u + data.res.headPic;
+							$('.pho').attr('src', picurl)
+						}
+						if (data.res.firstName && data.res.familyName) {
+							var name = data.res.familyName + " " + data.res.firstName
+							$('.myname').text(name);
 						}
 					}
-				})
-			}, function(xhr, type) {
-				console.log(type)
+					if (data.ret == -101) {
+						if (getstorage('token')) {
+							mui.ajax(BASEURL + 'auth/activate', {
+								type: 'post',
+								data: {
+									token: getstorage('token')
+								},
+								success: function(data) {
+									if (data.ret == 1) {
+										mui.toast('active success');
+										mui.ajax(BASEURL + 'account/info', {
+											type: 'post',
+											success: function(data) {
+												if (data.ret == 1) {
+													setstorage('personinfo', JSON.stringify(data.res));
+													if (data.res.ptitle) {
+														$('.admira').text(data.res.ptitle);
+													}
+													if (data.res.headPic) {
+														var n = BASEURL.indexOf('/a');
+														var u = BASEURL.substring(0, n);
+														var picurl = u + data.res.headPic;
+														$('.pho').attr('src', picurl)
+													}
+													if (data.res.firstName && data.res.familyName) {
+														var name = data.res.familyName + " " + data.res.firstName
+														$('.myname').text(name);
+													}
+												}
+											}
+										})
+									} else {
+										mui.toast('faild' + data.ret)
+									}
+								},
+								error: function(xhr, type) {
+									mui.toast(xhr.status + ":" + type)
+								}
+							})
+						}
+					}
+				},
+				error: function(xhr, type) {
+					mui.toast(xhr.status + ":" + type);
+				}
 			})
-		}else{
+		} else {
 			mui.toast('无登录信息，请先登录')
 		}
 		plus.screen.lockOrientation('portrait-primary')
@@ -100,7 +147,7 @@ $('.infowrap').on('tap', function() {
 window.addEventListener('removehref', function() {
 	$('.pho').attr('src', 'img/defualt.png')
 	$('.myname').text("");
-	$('.admira').text("")
+	$('.admira').text("头衔")
 })
 window.addEventListener("swiperight", function() {
 	if ($('#offCanvasContentScroll').offset().left < 200) {
@@ -114,12 +161,18 @@ window.addEventListener('closeMenu', function() {
 	//	$('#offCanvasSide').hide()
 })
 window.addEventListener('setaccount', function(eve) {
-	$('.myname').text(eve.detail.firstName + " " + eve.detail.familyName);
-	$('.mytitle').text(eve.detail.nation);
-	var n = BASEURL.indexOf('/a');
-	var pic = BASEURL.substring(0, n);
+	if (eve.detail.ptitle) {
+		$('.admira').text(eve.detail.ptitle);
+	}
 	if (eve.detail.headPic) {
-		$('.pho').attr('src', pic + eve.detail.headPic)
+		var n = BASEURL.indexOf('/a');
+		var u = BASEURL.substring(0, n);
+		var picurl = u + eve.detail.headPic;
+		$('.pho').attr('src', picurl)
+	}
+	if (eve.detail.firstName && eve.detail.familyName) {
+		var name = eve.detail.familyName + " " + eve.detail.firstName
+		$('.myname').text(name);
 	}
 })
 var first = null;

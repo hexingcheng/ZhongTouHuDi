@@ -49,10 +49,9 @@ jQuery(function() {
 		filterdata.finTime = time;
 		filterdata.prices = reword;
 		filterdata.weights = weight;
-		showobj(filterdata)
 		var order = plus.webview.getWebviewById('getorder/get-order');
 		order.show('slide-in-left', 200);
-		plus.webview.currentWebview().close();
 		mui.fire(order, 'getfilter', filterdata)
+		plus.webview.currentWebview().close();
 	}, false)
 })

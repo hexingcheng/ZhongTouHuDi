@@ -5,52 +5,34 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 		<title>Document</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.css"/>
 		<script type="text/javascript" src="../js/mui.min.js"></script>
-		<style>
-			html{height:100%}  
-body{height:100%;margin:0px;padding:0px}  
-#container{height:100%} 
-		</style>
 	</head>
 
 	<body>
-		<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=KfHZgIw2FeX1hkkjNLoZvsZS"></script>
-		<div id="container"></div>
-		<script type="text/javascript">	
-			var lot,let;
-			function getletlot() {
-				if (window.navigator) {
-					mui.plusReady(function() {
-						plus.geolocation.getCurrentPosition(scb, ecb, {
-							provider: "baidu"
-						});
-					})
-				} else {
-					document.getElementById('info').innerHTML = "不能获取位置信息"
-				}
-			}
-
-			function scb(position) {
-				lot = position.coords.longitude;
-				let = position.coords.latitude;
-				document.getElementById('info').innerHTML = "精度:" + lot + "纬度:" + let;
-				var map = new BMap.Map("container"); // 创建地图实例  
-				var point = new BMap.Point(lot, let); // 创建点坐标  
-				map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
-			}
-
-			function ecb(e) {
-				for (var i in e) {
-					console.log(i + ":" + e[i])
-					document.getElementById('info').innerHTML = "错误信息" + e[i];
-				}
-			}
-			getletlot()
-		</script>
-		<div id='info'></div>
-		<input type="text" id="ipt"/>
-		<script>
-		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">nihao</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+			  <li class="mui-table-view-cell">
+			    <a class="mui-navigate-right">
+			      Item 1
+			    </a>
+			  </li>
+			  <li class="mui-table-view-cell">
+			    <a class="mui-navigate-right">
+			      Item 2
+			    </a>
+			  </li>
+			  <li class="mui-table-view-cell">
+			    <a class="mui-navigate-right">
+			      Item 3
+			    </a>
+			  </li>
+			</ul>
+		</div>
 	</body>
 
 </html>

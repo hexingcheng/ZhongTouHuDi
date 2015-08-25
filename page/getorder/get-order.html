@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -8,133 +9,95 @@
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/getorder/get-order-comment.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/getorder/get-order.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/getorder/get-order.css" />
 		<script src="../../js/mui.min.js"></script>
-		
 	</head>
 
 	<body style="background-color: #fff;">
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<header class="mui-bar mui-bar-nav" id="head">
+			<!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+			<span class="mui-action-back mui-pull-left myicons">
+				<img src="../../img/left.png"/>
+			</span>
 			<h1 class="mui-title">Order</h1>
-			<i id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></i>
+			<!--<i id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></i>-->
+			<span id="filter-page" class="mui-pull-right myicons">
+				<img src="../../img/2set-up.png"/>
+			</span>
 		</header>
 		<div class="mui-content">
-				<div id="segmentedControl" class="mui-segmented-control">
-					<a class="mui-control-item mui-active icon-up" href="#item1" data-sort="time" data-item="#item1" data-status="1">Latest</a>
-					<a class="mui-control-item" href="#item2" data-sort="dist" data-item="#item2" data-status="2">Distance</a>
-					<a class="mui-control-item" href="#item3" data-sort="price" data-item="#item3" data-status="3">reward</a>
-					<a class="mui-control-item" href="#item4" data-sort="weight" data-item="#item4" data-status="4">weight</a>
-				</div>
-				
-			<div id="link-detail" class="mui-scroll-wrapper">
-				<div id="item1" class="mui-control-content mui-scroll mui-active">
-					<!-- 等待框 -->
-					<div style="position: relative;">
-						<div class="waiting-box"></div>
-					</div>
-					<!--<ul class="mui-table-view">
-						<li class="mui-table-view-cell">
-							<a id="go-detail" href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
-								<div class="goods-name-bar">
-									<span class="goods-name mui-pull-left mui-ellipsis">gName</span>
-								</div>
-								<div class="goods-content">
-									<div class="goods-direction mui-pull-left">
-										<div class="goods-bar goods-from-bar mui-ellipsis">
-											<span class="goods-from font-color">From</span>
-											<span class="goods-msg">sendAddr</span>
-										</div>
-										<div class="goods-bar goods-to-bar mui-ellipsis">
-											<span class="goods-to font-color">To</span>
-											<span class="goods-msg">receiveAddr</span>
-										</div>
-										<div class="goods-bar goods-comment-bar mui-ellipsis">
-											<span class="goods-comment font-color">Deadline</span>
-											<span class="goods-msg red">time</span>
-										</div>
-									</div>
-									<div class="goods-rewards-bar mui-pull-right mui-text-center">
-										<div class="rewards">
-											<div class="goods-rewards">Reward</div>
-											<div class="goods-value mui-ellipsis">20.00</div>
-										</div>
-										<div class="weight">
-											<div class="">weight</div>
-											<div class="mui-ellipsis goods-weight">5kg</div>
-										</div>
-									</div>
-								</div>
-							</a>
-						</li>
-					</ul>
-					<div class="content-padded"></div>-->
-				
-				
-				</div>
-				<div id="item2" class="mui-control-content mui-scroll">
-					<div style="position: relative;">
-						<div class="waiting-box"></div>
-					</div>
-				</div>
-				<div id="item3" class="mui-control-content mui-scroll">
-					<div style="position: relative;">
-						<div class="waiting-box"></div>
-					</div>
-				</div>
-				<div id="item4" class="mui-control-content mui-scroll">
-					<div style="position: relative;">
-						<div class="waiting-box"></div>
-					</div>
-				</div>
+			<div id="segmentedControl" class="mui-segmented-control" style="border-bottom: 1px solid #D1D1D1;">
+				<a class="mui-control-item mui-active icon-up" data-sort="time" data-desc="asc" data-num = "0">Latest</a>
+				<a class="mui-control-item" data-sort="dist" data-desc="asc" data-num = "0">Distance</a>
+				<a class="mui-control-item" data-sort="price" data-desc="asc" data-num = "0">reward</a>
+				<a class="mui-control-item" data-sort="weight" data-desc="asc" data-num = "0">weight</a>
 			</div>
 		</div>
-		<script src="../../js/utils.js"></script>
-		<script src="../../js/template.js"></script>
-		<script type="text/html" id="template">
-			{{each list}}
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">
-					<a id="go-detail" href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
-						<div class="goods-name-bar">
-							<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
-						</div>
-						<div class="goods-content">
-							<div class="goods-direction mui-pull-left">
-								<div class="goods-bar goods-from-bar mui-ellipsis">
-									<span class="goods-from font-color">From</span>
-									<span class="goods-msg">{{$value.sendAddr}}</span>
-								</div>
-								<div class="goods-bar goods-to-bar mui-ellipsis">
-									<span class="goods-to font-color">To</span>
-									<span class="goods-msg">{{$value.receiveAddr}}</span>
-								</div>
-								<div class="goods-bar goods-comment-bar mui-ellipsis">
-									<span class="goods-comment font-color">finTime</span>
-									<span class="goods-msg red">{{$value.finTime}}</span>
-								</div>
-							</div>
-							<div class="goods-rewards-bar mui-pull-right mui-text-center">
-								<div class="rewards">
-									<div class="goods-rewards">Reward</div>
-									<div class="goods-value mui-ellipsis">{{$value.money}}</div>
-								</div>
-								<div class="weight">
-									<div class="">weight</div>
-									<div class="mui-ellipsis goods-weight">{{$value.gWeight}}kg</div>
-								</div>
-							</div>
-						</div>
-					</a>
-				</li>
-			</ul>
-			<div class="content-padded"></div>
-			{{/each}}
-		</script>
 		<script src="../../js/jquery.min.js"></script>
-		<script src="../../js/mui.pullToRefresh.js"></script>
-		<script src="../../js/mui.pullToRefresh.material.js"></script>
-		<script src="../../js/getorder/get-order.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script>
+			mui.init({
+				gestureConfig: {
+					doubletap: true
+				}
+			});
+			mui.plusReady(function() {
+				embed = plus.webview.create("./order-content.html", "order-content", {
+					top: "101px",
+					bottom: "0px"
+				});
+				plus.webview.currentWebview().append(embed);
+				var sub = plus.webview.getWebviewById('order-content')
+				mui('#segmentedControl').on('tap', '.mui-control-item', function() {
+					if (mui.os.ios) {
+						sub.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+					} else {
+						sub.evalJS('mui.scrollTo(0, 100)');
+					}
+					var status = Number($(this).attr('data-num'));
+					var num = ++status;
+					$(this).attr('data-num',num);
+					$(".mui-control-item").removeClass("icon-up"); // 清空所有样式
+					$(".mui-control-item").removeClass("icon-up-2");
+					$(".mui-control-item").removeClass("icon-down");
+					$(".mui-control-item").removeClass("icon-down-2");
+					if (status % 2 == 0) {
+						$(this).addClass('icon-up');
+						$(this).attr('data-desc', "asc");
+					} else {
+						$(this).attr('data-desc', 'desc')
+						$(this).addClass('icon-down')
+					}
+					var param = {};
+					param.sortType = $(this).attr('data-sort');
+					param.sortVal = $(this).attr('data-desc');
+					mui.fire(sub, 'renderdata', param);
+				})
+				document.getElementById("filter-page").addEventListener("tap", function() {
+					openWindow("./get-filter.html")
+				}, false)
+			})
+			 window.addEventListener('getfilter', function(eve) {
+				var param = {}
+				var filter = eve.detail
+				param.sendAddr = filter.sendAddr;
+				param.receiveAddr = filter.receiveAddr;
+				param.prices = filter.prices;
+				param.weights = filter.weights;
+				param.finTime = filter.finTime;
+				var sub = plus.webview.getWebviewById('order-content');
+				param.sortType = $('.mui-control-item').filter('.mui-active').attr('data-sort');
+				param.sortVal = $('.mui-control-item').filter('.mui-active').attr('data-desc');
+				mui.fire(sub, 'renderdata', param)
+			})
+			 mui.back = function() {
+				var index = plus.webview.getLaunchWebview();
+				index.show("slide-in-left", 300)
+				setTimeout(function() {
+					plus.webview.currentWebview().close("none", 0);
+				}, 300)
+			}
+		</script>
 	</body>
 
 </html>

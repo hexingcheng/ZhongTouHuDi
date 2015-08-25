@@ -6,14 +6,19 @@ body,
 .marktips {
 	text-align: center;
 	color: #35a462;
-	line-height: 40px;
+	line-height: 50px;
+	height: 50px;
 }
 .cancel {
-	height: 40px;
-	line-height: 40px;
+	height: 48px;
+	line-height: 48px;
 	text-align: center;
-	background-color: #ffa619;
+	background-color: #fc614d;
 	color: #fff3e5;
+}
+.height50{
+	height: 50px;
+	line-height: 50px;
 }
 html,
 body,
@@ -88,4 +93,59 @@ body,
 .load {
 	width: 100px;
 	height: 100px;
+}
+.mui-table-view .mui-table-view-cell{
+	padding: 0 0 0 15px;
+	margin: 0;
+}
+.padding0{
+	padding: 0;
+}]
+.add15{
+	margin-right: 15px;
+}
+#ul li{
+	padding: 0 0 0 15px;
+}
+#ul li span{
+	padding: 0;
+}
+.msgcall{
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 50px;
+	width: 100px;
+}
+.coloryellow{
+	color: yellow;
+	padding-right: 15px;
+}
+.colorgreen{
+	color: green;
+}
+.fontsize14{
+	font-size: 14px;
+}
+#spe1,#spe2{
+	height: 70px;
+}
+.hei30{
+	margin-top:10px;
+}
+
+#porel{
+	/*text-align: center;*/
+	/*line-height: 50px;*/
+	color:#000000
+}
+.picture{
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+	margin: 10px;
+}
+#foot{
+	box-shadow: 0 0 1px #F1F1F1;
+	line-height: 48px;
 }

@@ -6,8 +6,9 @@
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
-    <link rel="stylesheet" type="text/css" href="wallet-withdraw-recharge-common.css"/>
+    <link rel="stylesheet" href="../../css/mywallet/wallet-withdraw-recharge-common.css"/>
     <script src="../../js/mui.min.js"></script>
+
 </head>
 <body class="bg-color">
 	<header class="mui-bar mui-bar-nav">
@@ -18,7 +19,7 @@
 		<ul id="withdraw-list" class="mui-table-view mui-grid-9 mui-grid-view">
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
 				<span class="left-title">Account</span>
-				<span id="account-num" class="right-content">18584654947</span>
+				<span id="account-num" class="right-content">0</span>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
 				<span class="left-title">Your available cash</span>
@@ -44,7 +45,10 @@
 			<div class="mui-scroll">
 				<ul id="type-container" class="mui-table-view mui-grid-view mui-grid-9">
 					<!--<li class="mui-table-view-cell type-paypal mui-media mui-col-xs-12">
-						<div class="paypal-box paypal">
+						<div class="mui-slider-right mui-disabled">
+							<a class="mui-btn mui-btn-red">编辑</a>
+						</div>
+						<div class="paypal-box paypal mui-slider-handle">
 							<span class="left-logo mui-pull-left"></span>
 							<span class="right-logo mui-pull-right shouyin"></span>
 							<div class="use-paypal">
@@ -60,135 +64,40 @@
 		</div>
 		
 	</div>
-	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+	<!-- 加载中的蒙层 -->
+	<!--<div id="loading-mask"></div>
+	<div id="loading-box">
+		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
+	</div>-->
+	
+	<footer style="height: 3.5em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 		<button id="next-step" class="mui-btn button-next">Next Step</button>
 	</footer>
+	<script type="text/html" id="template">
+		{{each list}}
+			{{if $value.channel == "paypal"}}
+			<li class="mui-table-view-cell type-paypal mui-media mui-col-xs-12">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red edit-account" data-mcid="{{$value.mcId}}">编辑</a>
+					</div>
+					<div class="paypal-box paypal mui-slider-handle" data-mcid="{{$value.mcId}}">
+						<span class="left-logo mui-pull-left"></span>
+						<span class="right-logo mui-pull-right shouyin"></span>
+						<div class="use-paypal">
+							<div style="color: #002e86;font-size: 1.2em;" class="mui-ellipsis mui-text-left">
+								Use PayPal
+							</div>
+							<p style="color: #777;padding-top: 0.2em;" class="mui-text-left">
+								尾号:{{$value.cardNum.length > 3 ? $value.cardNum.substr(-4) : $value.cardNum}}
+							</p>
+						</div>
+					</div>
+				</li>
+			{{/if}}
+		{{/each}}
+	</script>
 	<script src="../../js/utils.js"></script>
-	<script type="text/javascript" charset="utf-8">
-      	mui.init();
-      	mui.plusReady(function(){
-      		mui(".mui-scroll-wrapper").scroll();
-      		// 获取当前现金
-      		var cash = document.getElementById("available-cash");
-      		var current = null;
-      		var flag = false;		// 判断当前是否选择paypal取现
-      		
-      		// ajax获取现金
-      		myAjax({
-      			url : "wallet/money",
-      			data : {}
-      		}, function(data){
-      			cash.innerHTML = current = data.res.money;
-      		}, function(xhr, type){
-      			console.log("错误代号："+xhr.status +"    错误类型:"+type);
-      		})
-      		
-      		// ajax获取支付渠道
-	      	myAjax({
-      			url : "wallet/moneyChannelList",
-      			data : {}
-      		}, function(data){
-      			console.log(JSON.stringify(data));
-      		}, function(xhr, type){
-      			console.log("错误代号："+xhr.status +"    错误类型:"+type);
-      		})
-      		
-      		
-      		// 选择提现方式
-      		document.getElementById("ch-wi-way").addEventListener("tap", function(){
-      			openWindow("./my-withdraw-next.html");
-      		})
-      		
-	      	// 添加自定义函数 ---  触发自定义函数 发送ajax到后台获取绑定取现的形式
-	      	window.addEventListener("paypal:list", function(){
-	      		var list = document.getElementById("type-container");
-	      		var li = document.createElement("li");
-	      		li.className = "mui-table-view-cell mui-media type-paypal mui-col-xs-12";
-	      		li.innerHTML = '<div class="paypal-box paypal">'+
-									'<span class="left-logo mui-pull-left"></span>'+
-									'<span class="right-logo mui-pull-right shouyin"></span>'+
-									'<div class="use-paypal">'+
-										'<div style="color: #002e86;font-size: 1.2em;" class="mui-ellipsis mui-text-left">'+
-											'Use PayPal'+
-										'</div>'+
-										'<p style="color: #777;padding-top: 0.2em;" class="mui-text-left">go to paypal page</p>'+
-									'</div>'+
-								'</div>';
-				var typepaypal = list.querySelector(".type-paypal");			// 获取当前是否有支付渠道
-				if(typepaypal){
-					list.removeChild(typepaypal);
-				};
-				list.appendChild(li);
-	      	})
-	      	
-	      	
-	      	
-	      	
-	      	// 选择paypal取现方式
-	      	mui("#type-container").on("tap", ".paypal", function(){
-	      		var shouyin = this.querySelector(".shouyin");
-	      		var cls = shouyin.classList;
-	      		cls.toggle("right-logo");
-	      		cls.toggle("right-logo-tab");
-	      		if(cls.contains("right-logo-tab")){
-	      			flag = true;
-	      		} else {
-	      			flag = false;
-	      		}
-	      	})
-      	
-      		// 取现跳转到下一步
-	      	document.getElementById("next-step").addEventListener("tap", function(){
-	      		if(flag){
-	      			var val = document.getElementById("amount").value.trim();
-	      			var reg = /^([0-9]*.?[0-9]*)$/.exec(val)
-		      		if(reg[0]){
-						var divide = parseFloat(reg[0]);
-						if(current >= divide){
-							
-							var datas = {
-								money : divide,
-								type : "paypal",
-								account : document.getElementById("account-num").innerHTML
-							}
-							myAjax({
-								url : "wallet/withdraw",
-								data : datas
-							}, function(data){
-								if(data.ret == 1){
-									mui.toast("提现成功");
-								} else if (data.ret == 2){
-									mui.toast("渠道暂停提现");
-								} else {
-									mui.alert("你存在提现在审核，暂时不能再申请提现", "提示")
-								}
-							})
-	
-						} else {
-							mui.toast("余额不足")
-						}
-			      	} else {
-			      		mui.toast("请输入需要取现金额")
-			      	}
-	     		} else {
-	     			mui.toast("请选择取现方式");
-	     		}
-	      	},false);
-      	
-      	
-    })    	
-      	// 发送ajax处理
-      	function postmsg (url, datas){
-      		myAjax({
-      			url : url,
-      			data : datas
-      		}, function(data){
-      			console.log(JSON.stringify(data))
-      		}, function(xhr, type){
-  				console.log("错误代号："+xhr.status + "    错误类型："+type)
-  			})
-      	}
-      	
-    </script>
+	<script src="../../js/template.js"></script>
+	<script src="../../js/mywallet/wallet-withdraw.js"></script>
 </body>
 </html>

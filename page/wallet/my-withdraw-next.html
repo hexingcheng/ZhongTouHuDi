@@ -7,19 +7,7 @@
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
     <script src="../../js/mui.min.js"></script>
-    <style type="text/css">
-    	.mui-table-view-cell.first-item {position: relative;padding: 11px 15px;}
-    	.left-icon {width: 2.3em;height: 3em;background: transparent url(../../img/wallet-logo.png) no-repeat 0 center;background-size: 5em 2.5em;}
-    	.pay-pal {color: #002e86;font-size: 1.2em;padding: 0.2em 0;}
-    	.right-con {padding-left: 1em;width: 80%;}
-    	.mui-table-view-cell .mui-icon {font-size: 2em;font-weight: bold;color: #5f5d5d;}
-    	.input-box {width: 85%;height: 45px;padding-top: 5px;}
-    	.input-box input {width: 100%;border: none;background: transparent;margin: 0;}
-    	.mui-btn.button-ok {background-color: #23a0cf;color: #fff;padding: 10px 20%;}
-    	.mui-btn.button-last-step {background-color: #ff8474;color: #fff;padding: 10px 16%;}
-    	.mui-table-view-cell label {width: 12%;}
-    	.mui-table-view-cell {padding: 5px 15px;}
-    </style>
+    <link rel="stylesheet" href="../../css/mywallet/wallet-withdraw-next.css"/>
 </head>
 <body class="bg-color">
 	
@@ -56,44 +44,11 @@
 		</ul>
 	</div>
 	
-	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+	<footer style="height: 3.5em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 		<button id="ok-btn" class="mui-btn button-ok mui-btn-block">OK</button>
 	</footer>	
 	<script src="../../js/utils.js"></script>
-	<script type="text/javascript" charset="utf-8">
-      	mui.init();
-      	mui.plusReady(function(){
-      		var thispage = plus.webview.currentWebview();
-	      	var opener = plus.webview.currentWebview().opener();
-	      	// last step 事件的添加
-	      	document.getElementById("ok-btn").addEventListener("tap", function(){
-	      		var name = document.getElementById("name").value.trim();
-	      		var count = document.getElementById("to-acount").value.trim();
-//	      		if(name && count){
-	      			
-	      			// 新增提现渠道接口
-//	      			myAjax({
-//	      				url : "wallet/addMoneyChannel",
-//	      				data : {
-//	      					channel : "paypal",		// 渠道名称（当前默认为paypal）
-//	      					userName : name,
-//	      					cardNum : count
-//	      				}
-//	      			}, function(data){
-//	      				console.log(JSON.stringify(data));
-	      				
-	      				mui.fire(opener, "paypal:list")			// 触发取现更新渠道
-		      			plus.webview.show(opener, "slide-in-left", 200);
-		      			plus.webview.close(thispage, "slide-out-right", 200);
-//	      			}, function(xhr, type){
-//	      				console.log("错误代号："+xhr.status+"   错误类型："+type);
-//	      			})
-//	      		} else {
-//	      			mui.toast("请完善资料填写");
-//	      		}
-	      	}, false);
-      	})
-    </script>
+	<script src="../../js/mywallet/wallet-withdraw-next.js"></script>
 </body>
 </html>
 

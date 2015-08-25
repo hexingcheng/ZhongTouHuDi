@@ -3,13 +3,15 @@
 }
 .mui-scroll-wrapper {
 	top: 44px;
-	bottom: 3.2em;
+	bottom: 3.5em;
 }
-.title-color {
-	color: #bec0c2;
+.goods-value-box {
+	padding: 8px 0em 0 0.5em;
+	font-size: 20px;
 }
 .name {
-	width: 25%;
+	width: 20%;
+	line-height: 1.5;
 }
 .table-diviver {
 	width: 100%;
@@ -17,31 +19,41 @@
 	background-color: #ededeb;
 }
 .goods-name {
-	width: 75%;
+	width: 80%;
+	line-height: 1.5;
 }
 .value-color {
 	color: #dc3e26;
 }
 .value-size {
-	font-size: 1.2 em;
+	font-size: 20px;
 	padding-left: 0.2em;
 }
 .title-padded {
 	padding: 0.5em 0;
+	display: inline-block;
+	width: 40%;
+}
+.title-padded ~ span {
+	width: 60%;
+	text-align: left;
 }
 .title-bottom-padded {
 	padding-bottom: 0.3em;
 }
 .title-weight {
 	padding: 0.5em 0.6em;
+	font-size: 18px;
 }
 .content-length {
 	display: inline-block;
-	width: 75%;
+	width: 80%;
+	line-height: 1.5;
 }
 .title-width {
 	display: inline-block;
-	width: 25%;
+	width: 18%;
+	line-height: 1.5;
 }
 .desc-after {
 	border-bottom: 1px solid #e8e8e8;
@@ -83,8 +95,8 @@
 #loading-mask {
 	position: absolute;
 	z-index: 998;
-	background: rgba(0, 0, 0, .7);
-	top: 0;
+	background: #fff;
+	top: 52px;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -92,6 +104,8 @@
 #loading-box {
 	position: absolute;
 	z-index: 999;
+	width: 100px;
+	height: 100px;
 	left: 50%;
 	margin-left: -50px;
 	top: 50%;
@@ -121,10 +135,3 @@
 #msg-warn span {
 	color: #fc9b29;
 }
-
-
-
-
-
-
-
