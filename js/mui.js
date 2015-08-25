@@ -5949,7 +5949,10 @@ var mui = (function(document, undefined) {
 			}
 		}
 	};
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 	var updateTranslate = function() {
 		if (translateX !== lastTranslateX) {
 			if (buttonsRight && buttonsRight.length > 0) {

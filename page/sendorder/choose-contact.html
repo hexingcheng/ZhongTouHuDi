@@ -46,8 +46,11 @@
 				width: 40%;
 				height: 100%;
 			}
+<<<<<<< HEAD
 			/*.mui-search input[type=search] {margin-bottom: 0;}*/
 			div.mui-scroll-wrapper {top: 87px;}
+=======
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 		</style>
 	</head>
 	<body>
@@ -57,8 +60,15 @@
 		</header>
 
 		<div class="mui-content">
+<<<<<<< HEAD
 			<div class="mui-input-row mui-search">
 				<input type="search" class="mui-input-clear" placeholder="搜索联系人...">
+=======
+			<!--<div class="mui-content-padded">选择联系人</div>-->
+			<div class="mui-input-row">
+				<label>Input</label>
+				<input type="text" class="mui-input-clear" placeholder="带清除按钮的输入框">
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 			</div>
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -76,12 +86,22 @@
 
 		<script type="text/html" id="template">
 			{{each list}}
+<<<<<<< HEAD
 				<li class="mui-table-view-cell contact" data-name='{{$value.name}}' data-contact='{{$value.contact}}'>
 					<div class="msg-box">
 						<span class="mui-pull-left mui-ellipsis contact-name">{{$value.name}}</span>
 						<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">{{$value.contact}}</span>
 					</div>
 				</li>
+=======
+
+			<li class="mui-table-view-cell contact" data-name='{{$value.name}}' data-contact='{{$value.contact}}'>
+				<div class="msg-box">
+					<span class="mui-pull-left mui-ellipsis contact-name">{{$value.name}}</span>
+					<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">{{$value.contact}}</span>
+				</div>
+			</li>
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 			{{/each}}
 		</script>
 		<script src="../../js/mui.min.js"></script>
@@ -123,8 +143,12 @@
 						mui.toast("请选择联系人");
 					}
 				})
+<<<<<<< HEAD
 				
 				
+=======
+				document.getElementById("done").addEventListener("tap", function() {}, false)
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 			})
 		</script>
 	</body>

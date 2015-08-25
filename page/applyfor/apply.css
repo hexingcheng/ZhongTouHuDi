@@ -29,6 +29,7 @@
 	line-height: 50px;
 	padding: 0;
 }
+<<<<<<< HEAD
 .apply_check{
 	height: 50px;
 	overflow: hidden;
@@ -42,6 +43,8 @@
 	float: left;
 	overflow: hidden;
 }
+=======
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 .mui-table-view-cell img{
 	width: 34px;
 	height: 34px;
@@ -102,9 +105,15 @@
 }
 .apply_idcard_div{
 	width: 88%;
+<<<<<<< HEAD
 	height: 12em;
 	overflow: hidden;
 	margin: .3em 0 .3em 2.5em;
+=======
+	height: 25%;
+	overflow: hidden;
+	margin: 4% 5%;  
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 }
 .apply_idcard_div .img_div{
 	width: 3em;
@@ -120,18 +129,93 @@
 }
 .apply_idpho{
 	height: 12em;
+<<<<<<< HEAD
 	padding: 0 1em;
+=======
+/*	padding: 0 1em;*/
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 /*	background-color: #F6F6F6;*/
 	overflow: hidden;
 	text-align: center;
 	margin-right: 3.8em;
 	border: 2px solid silver;
 }
+<<<<<<< HEAD
 .apply_idpho img{
+=======
+.id_imgcover{
+	display: none;
+	width: 100%;
+	height: 100%;   
+}    
+.apply_idpho .id_img{
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 	width: 34px;
 	height: 34px;
 	margin:.2em auto;
 }
 .apply_idpho .text{
 	text-align: justify;
+<<<<<<< HEAD
+=======
+}
+.nation_marb{
+	margin-bottom: 6em;
+}
+.nation_marb2{
+	margin-bottom: 13em;
+}
+.apply_padding{
+		margin: 0 .2em;
+	}
+.apply_mark{
+	display: none;
+	z-index: 998;
+/*	overflow-y: none;*/
+	position: absolute;
+	background: rgba(0, 0, 0, .5);
+	top: 0;
+	left: 0;  
+	right: 0;
+	bottom: 0;
+}
+.apply_popover{
+	width: 80%;
+	height: 20em;
+	position: absolute;
+	left:50%;
+	margin-left: -40%;
+	top:50%; 
+	margin-top: -10em;
+	overflow: hidden; 
+	border: 1px solid white;
+}
+.apply_popover img{
+	z-index: 999;
+	width: 100%;
+	height: 20em;
+}
+.spplay_select_type{
+	width: 80%;     
+	position: absolute;
+	z-index: 100;  
+	left: 50%;
+    margin-left:-44%;
+	display: none;
+	color: white;
+	overflow: hidden;
+} 
+.spplay_select_type ul{
+	list-style: none;
+}
+.spplay_select_type li{
+	width: 100%;
+	height: 48px;
+	margin: 0 auto;
+	background-color: white;
+	color: silver;
+	margin-top: .1em;
+	line-height: 48px;
+	text-align: center;
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 }

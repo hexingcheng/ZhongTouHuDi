@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <meta cahrset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <title></title>
@@ -36,20 +37,47 @@
 	z-index: 999;
 	width: 100%;
 	height: 10em;
+=======
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<script src="../../js/mui.js"></script>
+
+<link href="../../css/mui.css" rel="stylesheet"/>
+<link rel="stylesheet" href="apply.css" />
+<style>
+
+.nation_content{
+	width:100% ;
+	height: 100%;
+	overflow: hidden;
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 }
 </style>
 </head>
 	<body>
+<<<<<<< HEAD
 	<!--实例蒙版-->
 	<div class="apply_mark">
 		<div class="apply_popover">
 			<img src="../../img/cbd.jpg" alt="" />
 		</div>
 	</div>
+=======
+	<div class="apply_mark">
+		<div class="apply_popover">
+			<img src="../../img/cbd.jpg" class="case_show" alt="" />
+		</div>
+	</div>
+		<div class="nation_content">
+	<!--实例蒙版-->     
+	
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 	<header class="mui-bar mui-bar-nav apply_header">
 		<span class="mui-icon mui-icon-left-nav mui-action-back"></span>
 		<span class="apply_title">Certificate Authentication</span>
 	</header>
+<<<<<<< HEAD
 	<div class="mui-content">
 		<ul class="mui-table-view apply_padding" >
 			<li class="mui-table-view-cell">
@@ -79,6 +107,20 @@
 				</div>
 				<div class="apply_idpho">
 					<img src="../../img/camera.png" alt="" />
+=======
+	<div class="mui-content ">
+		
+		  
+		<div class="apply_idCard">
+			<div class="apply_idcard_div">
+				<div class="img_div"> 
+					<img src="../../img/case.png" alt="" class="case" name="one"/>
+					<span>case</span>
+				</div>
+				<div class="apply_idpho photo_" name="one">
+					<img  src="" class="one id_imgcover" />
+					<img src="../../img/camera.png" class="id_img" alt="" />
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 					<p>Holding Certificate For Obverse</p>
 					<p class="text">[holding certificate nearer to the front of the camera,
 						 filming the chest above. fous the certificate above 
@@ -86,18 +128,29 @@
 				</div>
 			</div>
 			<div class="apply_idcard_div">
+<<<<<<< HEAD
 				<div class="img_div">
 					<img src="../../img/case.png" alt="" />
 					<span>case</span>
 				</div>
 				<div class="apply_idpho">
 					<img src="../../img/camera.png" alt="" />
+=======
+				<div class="img_div"> 
+					<img src="../../img/case.png" alt="" class="case" name="two"/>
+					<span>case</span>
+				</div>
+				<div class="apply_idpho photo_" name="two">    
+					<img src="" alt="" class="two id_imgcover" />
+					<img src="../../img/camera.png" class="id_img" alt="" />
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 					<p>Holding Certificate For Obverse</p>
 					<p class="text">[holding certificate nearer to the front of the camera,
 						 filming the chest above. fous the certificate above 
 						 fonts and pictures clearly visible]</p>
 				</div>
 			</div>
+<<<<<<< HEAD
 			<div class="apply_idcard_div">
 				<div class="img_div">
 					<img src="../../img/case.png" alt="" />
@@ -105,16 +158,211 @@
 				</div>
 				<div class="apply_idpho">
 					<img src="../../img/camera.png" alt="" />
+=======
+			<div class="apply_idcard_div deal_marb nation_marb">
+				<div class="img_div"> 
+					<img src="../../img/case.png" class="case" alt="" name="three"/>
+					<span>case</span>
+				</div>
+				<div class="apply_idpho photo_" name="three">
+					<img src="" alt="" class="three id_imgcover"/>
+					<img src="../../img/camera.png" class="id_img" alt="" />
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 					<p>Holding Certificate For Obverse</p>
 					<p class="text">[holding certificate nearer to the front of the camera,
 						 filming the chest above. fous the certificate above 
 						 fonts and pictures clearly visible]</p>
 				</div>
 			</div>
+<<<<<<< HEAD
 		</div>
     </div>
     <div class="apply_footer">
 		<div class="apply_button"><span>Done</span></div>
 	</div>
 	</body>
+=======
+		</div>       
+   </div>
+    <div class="apply_footer">
+		<div class="id_button apply_button" ><span>Done</span></div>
+	</div>
+</div>
+</body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/comment.js"></script>
+<script src="../../js/utils.js"></script>
+</body>
+<script>	
+       
+        $('.apply_mark').on('tap',function(){
+        	$(this).css('display','none');
+        	$('.deal_marb').addClass('nation_marb');
+        })
+        $('.case').on('tap',function(){
+        	var ca=$(this).attr('name');
+        	var a_src=$("."+ca).attr('src');
+        	$('.apply_mark').css('display','block');
+        	$('.deal_marb').removeClass('nation_marb');
+        	if(a_src){
+        		$('.case_show').attr('src',a_src);
+        	}else{
+        		$('.case_show').attr('src',"../../img/cbd.jpg");
+        	}
+        	
+        })
+		mui.plusReady(function(){ 
+			plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
+					     	    var iw;
+					     	    var fo
+			$('.photo_').on('tap', function() { 
+			   fo=$(this).attr('name'); 
+				var _this = this;
+				iw = $(this).outerWidth()
+				var btnArray = [{
+					title: "拍照"
+				}, {
+					title: "相册"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "选择照片",
+					cancel: "取消",
+					buttons: btnArray
+				}, function(e) {  
+					var index = e.index;
+					if (index == 1) {
+						bycamera(_this);
+					} else if (index == 2) {
+						bygallery(_this);
+					} else if (index == 0) {
+						return;
+					}
+				});
+			})
+			function bycamera(context) {
+				var camera = plus.camera.getCamera();
+				var res = camera.supportedImageResolutions[0];
+				var fmt = camera.supportedImageFormats[0];
+				var _this = context;
+				camera.captureImage(function(path) {
+					dealpic(path, _this);
+                     
+//                   $("."+fo).attr('src',path).css('display','block');
+				})
+			}
+			function dealpic(path, context) {
+				plus.io.resolveLocalFileSystemURL(path, function(entry) {
+					var local = entry.toLocalURL();
+					path=plus.io.convertLocalFileSystemURL(path);
+					$("."+fo).attr('src',path).css('display','block');
+					dealImage(local, {
+						width: 17 * 4,
+						quality: 0.5
+					}, function(base) {
+						console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
+						data={
+								imgName: Math.floor(Math.random() * 100000) + ".jpg",
+								imgData: base // base字符串
+							}
+						myAjax({url:"common/file/imgUp",data:data},
+							function(obj){
+								if(obj.ret==1){
+									if(fo=="one"){ 
+										plus.storage.setItem('nation_pic1',JSON.stringify(obj.res.fid));
+									}else if(fo=="two"){
+										plus.storage.setItem('nation_pic2',JSON.stringify(obj.res.fid));
+									}else if(fo=="three"){
+										plus.storage.setItem('nation_pic3',JSON.stringify(obj.res.fid));
+									}
+									  
+								}else{
+									mui.toast('请先登录在操作！');
+								}
+							},
+							function(xhr,type){
+								console.log(xhr.status);
+						},function(){
+							alert("qingdenglu")
+						})
+						
+					})
+				})  
+			}
+			//bg galary
+			function bygallery(context) {
+				plus.gallery.pick(function(path) {
+					
+					dealpic(path, context);
+//					$("."+fo).attr('src',path).css('display','block');
+				}, function(e) {
+					mui.toast('选择图片失败' + e)
+					showobj(e)
+				}, {
+					filter: 'image',
+					multiple: false
+				})
+			} 
+			var flag=true;
+			 var add_data="";
+	function checke(){
+			//获取前后页面的值
+			var data_1=plus.storage.getItem('nation_data1');
+			var data_one=JSON.parse(data_1);//转换成对象  
+			
+			if(true){
+			var pic1=plus.storage.getItem('nation_pic1');
+			var pic2=plus.storage.getItem('nation_pic2');
+			var pic3=plus.storage.getItem('nation_pic3');
+				
+				if(!pic1){
+					mui.toast('请完成手持证件照照片');
+					flag=false;
+					return;
+				}
+				if(!pic2){
+					mui.toast('请完成证件的正面照片');
+					flag=false;
+					return;
+				}
+				if(!pic3){
+					mui.toast('请完成证件的反面照片');
+					flag=false;
+					return;
+				}
+			}  
+			data_2={    
+				cardPic1:pic1,  
+				cardPic2:pic2,
+				cardPic3:pic3
+			}
+   		    add_data=$.extend({},data_one,data_2); //将前后对象进行合并
+	        if(flag){ 
+			   myAjax({url:"account/applyDeliver",data:add_data},function(obj){
+					   	plus.storage.removeItem('nation_data1');
+						plus.storage.removeItem('nation_pic1');
+						plus.storage.removeItem('nation_pic2');
+						plus.storage.removeItem('nation_pic3');
+			   	alert("yijaio")
+			   	     if(obj.ret==1){
+			   	     	alert('请等待审核！');
+			   	     	;
+			   	        openWindow("../../new_index.html"); 
+			   	     }else if(obj.ret==2){
+			   	     	mui.toast('提交失败');
+			   	     }else{
+			   	     	alert(obj.ret+"cycycycy");
+			   	     }
+			   
+		   },function(xhr,type){     
+		   	 console.log(xhr.status);  
+		   }  
+		)}
+	}
+		$('.id_button').on('tap',function(){
+	         	checke();
+		})           
+});  
+
+    </script>
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 </html>

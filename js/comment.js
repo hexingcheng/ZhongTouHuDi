@@ -1,3 +1,4 @@
+
 /**
  * 图片压缩，默认同比例压缩
  * @param {Object} path
@@ -92,22 +93,3 @@ function delPhotoMsg(delobj, cb){
 		format: fmt
 	})
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
