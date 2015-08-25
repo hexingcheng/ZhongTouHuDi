@@ -236,16 +236,16 @@
 						}
 					}
 					var value = document.getElementById('impor-text').value;
-					if (!value) {
-						$('.tipsmask').removeClass('mui-hidden');
-						$('.dialog').removeClass('mui-hidden');
-						var l = ($(window).width() - 270) / 2;
-						var t = ($(window).height() - $('.dialog').height()) / 2;
-						$('.dialog').css({
-							'left': l,
-							'top': t
-						})
-					} else {
+//					if (!value) {
+//						$('.tipsmask').removeClass('mui-hidden');
+//						$('.dialog').removeClass('mui-hidden');
+//						var l = ($(window).width() - 270) / 2;
+//						var t = ($(window).height() - $('.dialog').height()) / 2;
+//						$('.dialog').css({
+//							'left': l,
+//							'top': t
+//						})
+//					} else {
 						var choose = "(" + values.join(',') + ")"
 						if(choose!='()'){
 							str = value+choose;
@@ -258,7 +258,7 @@
 						});
 						dl.show('slide-in-left',200);
 						c.close();
-					}
+//					}
 				})
 				$('.ok').on('tap', function() {
 					mui.back();

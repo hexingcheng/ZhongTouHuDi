@@ -484,9 +484,15 @@
 										url: 'order/resOrderByGood',
 										data: getdata
 									}, function(data) {
-										plus.storage.removeItem("draft-datas"); // 返回时清楚storage中储存的数据
-										mui.toast('发单成功');
-										openWindow('./result.html')
+										if(data.ret==1){
+											plus.storage.removeItem("draft-datas"); // 返回时清楚storage中储存的数据
+											mui.toast('发单成功');
+											setstorage('my-send-order',data.res.orderId);
+											openWindow('./result.html')
+										} 
+										if(data.ret==2){
+											mui.toast('发单被限制');
+										}
 									}, function(xhr, type) {
 										onOff = true;
 										console.log(type)

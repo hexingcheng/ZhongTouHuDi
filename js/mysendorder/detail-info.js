@@ -1,5 +1,6 @@
 mui.init();
 mui.plusReady(function() {
+	var status;
 	mui("#scroll-wrapper").scroll();
 
 	var orderid = plus.storage.getItem("my-send-order");
@@ -13,11 +14,13 @@ mui.plusReady(function() {
 
 	// 取消订单
 	$("#cancel-order").on("tap", function() {
+		console.log(getstorage('my-send-order'))
 		myAjax({
 			url: "order/cancel",
 			data: {
 				orderId: orderid,
-				descp: "订单取消原因"
+				descp: "订单取消原因",
+				status:status
 			}
 		}, function(data) {
 			if (data.ret == 1) {
@@ -37,7 +40,7 @@ mui.plusReady(function() {
 				plus.storage.removeItem("my-send-order")
 			}
 		}, function(xhr, type) {
-			console.log(type)
+			console.log(xhr.status+":"+type)
 		})
 	})
 })
@@ -52,6 +55,7 @@ function sendmsg(orderid) {
 		},
 		wait : false
 	}, function(data) {
+		console.log(JSON.stringify(data))
 		$(".goods-name").html(data.res.gName); // 货物名称
 		$("#goods-value").html(data.res.money); // 价值
 		$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
@@ -61,7 +65,7 @@ function sendmsg(orderid) {
 		$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
 		$("#gvalue").html(data.res.gValue); // value
 		$("#info").html(data.res.info); // 信息描述
-		
+		status = data.res.status;
 		var pic = data.res.pics;
 		var n = BASEURL.indexOf('/api/');
 		var per = BASEURL.substring(0, n);
