@@ -1,0 +1,65 @@
+.font-color {
+	color: #bec0c2;
+	width: 30%;
+	display: inline-block;
+}
+.goods-msg {
+	width: 66%;
+	display: inline-block;
+}
+.goods-value {
+	color: #d92400;
+	font-size: 18px;
+}
+.goods-name-bar {
+	overflow: hidden;
+	padding-bottom: 0.3em;
+}
+.goods-name {
+	font-size: 16px;
+	width: 60%;
+}
+.goods-bar {
+	padding: 0.2em 0;
+}
+.goods-direction {
+	display: inline-block;
+	width: 70%;
+	border-right: 1px solid #e8e8e8;
+}
+.goods-rewards-bar {
+	display: inline-block;
+	width: 25%;
+}
+.goods-weight {
+	font-size: 16px;
+	color: #00A04F;
+}
+.rewards {
+	margin-top: -15px;
+	padding-bottom: 8px;
+}
+.content-padded {
+	height: 10px;
+	background-color: #F2F2F2;
+}
+.content-padded:last-child {
+	height: 0;
+}
+.icon-up {
+	background: #fff url(../../img/turn-up.png) no-repeat 76px 0px;
+	background-size: 6% 100%;
+}
+.icon-down {
+	background: #fff url(../../img/turn-down.png) no-repeat 74px 0px;
+	background-size: 6% 100%;
+}
+.icon-up-2 {
+	background: #fff url(../../img/turn-up.png) no-repeat 79px 0px;
+	background-size: 6% 100%;
+}
+.icon-down-2 {
+	background: #fff url(../../img/turn-down.png) no-repeat 77px 0px;
+	background-size: 6% 100%;
+}
+

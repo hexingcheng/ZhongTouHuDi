@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="get-order-comment.css" />
+		<script src="../js/mui.min.js"></script>
+		<style>
+			.mui-bar {
+				background-color: #3ba767;
+			}
+			.mui-bar h1,
+			.mui-bar a,
+			.mui-bar i {
+				color: #FFFFFF;
+			}
+			.mui-scroll-wrapper {
+				top: 85px;
+			}
+			.mui-segmented-control {
+				border-radius: 0;
+				border: none;
+				border-bottom: 1px solid #d1d1d1;
+				box-shadow: 0 1px 2px #d1d1d1;
+			}
+			.mui-segmented-control .mui-control-item.mui-active {
+				color: #36a462;
+				background-color: #fff;
+			}
+			.mui-segmented-control .mui-control-item {
+				border-color: #d1d1d1;
+				color: #8c8c8c;
+				background-color: #f2f2f2;
+			}
+			.font-color {
+				color: #bec0c2;
+				width: 35%;
+				display: inline-block;
+			}
+			.goods-value {
+				color: #d92400;
+				font-size: 1.5em;
+			}
+			.goods-name-bar {
+				overflow: hidden;
+				padding-bottom: 0.3em;
+			}
+			.goods-name {
+				width: 60%;
+			}
+			.goods-bar {
+				padding: 0.2em 0;
+			}
+			.goods-direction {
+				display: inline-block;
+				width: 70%;
+			}
+			.goods-rewards-bar {
+				display: inline-block;
+				width: 25%;
+				border-left: 1px solid #e8e8e8;
+				padding: 2px 0 25px 11px;
+			}
+			.goods-rewards {
+				padding: 0.6em 0;
+			}
+			.waiting-box {
+				position: absolute;
+				background: #fff url(../img/loading46.gif) no-repeat center center;
+				width: 100%;
+				height: 20em;
+			}
+			.red {
+				color: #ff8474;
+			}
+		</style>
+	</head>
+
+	<body style="background: #fff;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">Order</h1>
+			<i id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></i>
+		</header>
+
+		<div class="mui-content">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#item1" data-sta="1">published</a>
+				<a class="mui-control-item" href="#item2" data-sta="2">transporting</a>
+				<a class="mui-control-item" href="#item3" data-sta="3">success</a>
+			</div>
+			<div id="scroll-wrapper" class="mui-scroll-wrapper">
+				<div id="link-detail" class="mui-scroll">
+					<div id="item1" class="mui-control-content mui-active">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+					<div id="item2" class="mui-control-content">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+					<div id="item3" class="mui-control-content">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/template.js"></script>
+		<script type="text/html" id="template">
+			{{each list}}
+			<ul class="mui-table-view" data-id="{{$value.orderId}}">
+				<li class="mui-table-view-cell">
+					<a href="javascript:void(0)" class="detail-page">
+						<div class="goods-name-bar">
+							<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
+						</div>
+						<div class="goods-content">
+							<div class="goods-direction mui-pull-left">
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">Weight</span>
+									<span class="goods-msg">{{$value.gWeight}}</span>
+								</div>
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">From</span>
+									<span class="goods-msg">{{$value.sendAddr}}</span>
+								</div>
+								<div class="goods-bar goods-to-bar mui-ellipsis">
+									<span class="goods-to font-color">To</span>
+									<span class="goods-msg">{{$value.receiveAddr}}</span>
+								</div>
+								<div class="goods-bar goods-comment-bar mui-ellipsis">
+									<span class="goods-comment font-color">Deadline</span>
+									<span class="goods-msg red">{{$value.time}}</span>
+								</div>
+							</div>
+							<div class="goods-rewards-bar mui-pull-right mui-text-center">
+								<div>{{$value.statusDetail}}</div>
+								<div class="goods-rewards">Reward</div>
+								<div class="goods-value">{{$value.money}}</div>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			{{/each}}
+		</script>
+		<!--<script src="../../js/jquery.min.js"></script>-->
+		<script src="../js/utils.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				mui("#scroll-wrapper").scroll();
+				// ajax 获取模板数据
+				getlist(1);
+				mui('.mui-segmented-control').on('tap', '.mui-control-item', function() {
+					var sta = this.getAttribute('data-sta');
+					getlist(sta)
+				})
+
+				function getlist(status) {
+					var getorderdata = {
+						"page": 1,
+						"pageSize": 10,
+						"type": "rece",
+						"status": status
+					};
+					mui.ajax(BASEURL + 'order/myGoodList', {
+						type: 'post',
+						data: getorderdata,
+						success: function(data) {
+							var orderdata = {
+								"list": data.res
+							}
+							var html = template("template", orderdata);
+							document.getElementById('item' + status).innerHTML = html;
+						},
+						error: function(xhr, type, errorThrown) {
+							console.log(type);
+						}
+					})
+					mui('#link-detail').on('tap', '.mui-table-view', function() {
+						var orderid = this.getAttribute('data-id');
+						var datas = {
+							orderId : orderid,
+							type : 'rece'
+						};
+						openWindow('./getorder/get-detail.html',datas)
+						return false;
+					})
+				}
+			})
+		</script>
+	</body>
+
+</html>

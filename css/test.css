@@ -1,0 +1,84 @@
+html{
+	font-size: 16px;;
+}
+.clearfix{
+	zoom: 1;
+}
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.setting div{
+	height: 3rem;
+	line-height: 3rem;
+	padding: 0 0.625rem;
+}
+.setting{
+	position: relative;
+	border-bottom: 1px solid #000;
+}
+.setting-right{
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 0.75rem;
+}
+.footer{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+.seticon{
+	float: right;
+}
+.help-me{
+	text-align: center;
+	color: #ffffff;
+	margin: 0 auto;
+	width: 6rem;
+	height: 100%;
+}
+.mui-bar-footer.mui-bar {
+	padding: 0.3em 0 0 0;
+	height: 3.5em;
+	background: #e4e7ec;
+}
+.headimg-box {
+	width: 3.6em;
+	height: 3.6em;  
+	border-radius: 1.8em;
+	overflow: hidden; 
+}
+.headimg-box img{
+	width: 3.6em;
+	height: 3.6em;
+}
+.slider-menu {
+	display: inline-block;
+	height: 100%;
+}
+.mui-title.title-box {
+	margin: 0.2em 0 0 3em;
+}
+.index-title {
+	height: 1.5em;
+line-height: 1.5em;
+font-size: 1.3em;
+}
+.subindex-title {
+	height: 1em;
+line-height: 1em;
+margin: 0;
+}
+.mui-bar.mui-bar-nav{
+	height: 4em;
+	padding-top: 0.3em;
+}
+.mui-bar-nav~.mui-content {
+	padding-top: 4.1em;
+}
+.add-remove {
+	vertical-align: -9%;
+color: #dbdbdb;
+}

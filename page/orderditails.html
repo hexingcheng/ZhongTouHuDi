@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/orderdetails.css"/>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">订单详情</h1>
+		</header>
+		<div class="mui-content">
+			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll" ">
+					<div class="detials-content">
+						<div class="showwait mui-text-center">
+							<span class="mui-spinner"></span>
+						</div>
+						<!--<div class="per-info">
+							<div class="photo-info fl">
+								<div class="user-pic fl">
+									<img src="../img/user.png" class="vertical"/>
+								</div>
+								<div class="infos fl">
+									<p>张三</p>
+									<p>
+										已配送：<span>22</span>单
+									</p>
+									<p>
+										<span class="mui-icon mui-icon-star-filled"></span>
+									</p>
+								</div>
+							</div>
+							<div class="tel-msg fr">
+								<div class="add-p">
+									<span class="mui-icon mui-icon-chatbubble"></span>
+								</div>
+								<div class="add-p add-b">
+									<span class="mui-icon mui-icon-phone"></span>
+								</div>
+							</div>
+						</div>
+						<div class="total-pay">
+							<div class="d-left fl">配送总金额</div>
+							<div class="d-right">
+								<span class="pay">$50</span>
+								<div class="tips">(订单完成后，讲直接打到你的账户余额)</div>
+							</div>
+						</div>
+						<div class="orderid">
+							<div class="fl id">订单编号：</div>
+							<div class="fr">123456789</div>
+						</div>
+						<div class="d-get-time">
+							<div class="fl get-t">
+								<p>预约取件时间</p>
+								<p>2015-8-3</p>
+							</div>
+							<div class="fl e-get-t">
+								<p>预约取件时间</p>
+								<p>2015-8-3</p>
+							</div>
+						</div>
+						<div class="imp-info">
+							<div class="fl imp-tit">重要说明：</div>
+							<div class="fl imp-con">不可倒置，易碎，十二点前必须到达,不可倒置，易碎，十二点前必须到达.不可倒置，易碎，十二点前必须到达</div>
+						</div>
+						<div class="sender">
+							<div class="fl s-sen">寄件人：</div>
+							<div class="fl">张三</div>
+						</div>
+						<div class="sender add-top">
+							<div class="fl s-sen">收件人：</div>
+							<div class="fl">李四</div>
+							<div class="fr">
+								<span class="mui-icon mui-icon-chatbubble addbor"></span>
+								<span class="mui-icon mui-icon-phone"></span>						
+							</div>
+						</div>
+						<div class="start imp-info">
+							<div class="fl imp-tit">寄件地址：</div>
+							<div class="fl imp-con">重庆市南岸区崇文路二号重庆邮电大学</div>
+						</div>
+						<div class="end imp-info">
+							<div class="fl imp-tit">收件地址：</div>
+							<div class="fl imp-con">重庆市南岸区崇文路二号重庆邮电大学</div>
+						</div>
+						<div class="goods-info">
+							<div class="info-tit">物品信息：</div>
+							<div class="good-info">
+								<p class="fl">名称：<span>鲜花</span></p>
+								<p class="fr">价值：<psan>1000</psan></p>
+								<p class="over">重量：<spam>1kg</spam></p>
+							</div>
+							<div class="pic">
+								<div>照片</div>
+								<div class="showpic">
+									
+								</div>
+							</div>
+						</div>
+						<div class="ontheway">运送中</div>
+						<div class="giveadv">评价订单</div>-->
+					</div>
+				</div>
+				<!--<div class="yijia">
+					<div class="y-title">请输入加价金额</div>
+				</div>-->
+			</div>
+		</div>
+		<div class="mui-bar-footer mui-bar">
+			<div class="fl charg">议价</div>
+			<div class="fr getorder">抢单</div>
+			<div class="cancel mui-hidden">取消订单</div>
+			<div class="fl charg mui-hidden">修改订单</div>
+			<div class="fr getorder mui-hidden">重新发送</div>
+		</div>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../js/template.js" ></script>
+	<script type="text/javascript" src="../js/utils.js" ></script>
+	<script type="text/html" id="detials">
+		<div class="total-pay">
+			<div class="d-left fl">配送总金额</div>
+			<div class="d-right">
+				<span class="pay">${{money}}</span>
+				<div class="tips">(订单完成后，讲直接打到你的账户余额)</div>
+			</div>
+		</div>
+		<div class="d-get-time">
+			<div class="fl get-t">
+				<p>预约取件时间</p>
+				<p>{{getTime}}</p>
+			</div>
+			<div class="fl e-get-t">
+				<p>期望取件时间</p>
+				<p>{{finTime}}</p>
+			</div>
+		</div>
+		<div class="imp-info">
+			<div class="fl imp-tit">重要说明：</div>
+			<div class="fl imp-con">{{info}}</div>
+		</div>
+		<div class="goods-info">
+			<div class="info-tit">物品信息：</div>
+			<div class="good-info">
+				<p class="fl">名称：<span>{{gName}}</span></p>
+				<p class="fr">价值：<psan>{{gValue}}</psan></p>
+				<p class="over">重量：<spam>{{gWeight}}kg</spam></p>
+			</div>
+			<div class="pic">
+				<div>照片</div>
+				<div class="showpic">
+					
+				</div>
+			</div>
+		</div>
+	</script>
+	<script>
+		mui.plusReady(function(){
+			mui('#offCanvasSideScroll').scroll();
+			var c = plus.webview.currentWebview()
+			var orderdata = {
+				"orderId":c.orderId,
+				"type":c.type
+			}
+			handletemplat(orderdata);
+		})
+		function handletemplat(obj){
+			mui.ajax(BASEURL+'order/goodShow',{
+				type:'post',
+				data:obj,
+				success:function(data){
+					if(data.ret == 1){
+						$('.showwait').remove();
+						var html = template("detials", data.res)
+						alert(1)
+													showobj(data.res)
+						$('.detials-content').html(html);
+						orderhandle();
+						if(data.res.pics){
+							var pics = data.res.pics.split(',');
+							renderpic(pics);
+						}else{
+							$('.showpic').text('此订单无图片')
+						}
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					console.log(type)
+				}
+			});
+		}
+		function orderhandle(){
+			$('.charg').on('tap',function(){
+				
+			})
+			$('.getorder').on('tap',function(){
+				
+			})
+		}
+		function renderpic(picarr){
+			var n = BASEURL.indexOf('/api/');
+			var per = BASEURL.substring(0,n);
+			var len = picarr.length;
+			for(var i = 0; i<len;i++){
+				var url = per+picarr[i];
+				$('<img src='+url+'>').appendTo('.showpic')
+			}
+		}
+	</script>
+</body>
+</html>

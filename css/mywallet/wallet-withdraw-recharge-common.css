@@ -1,0 +1,86 @@
+.mui-table-view-cell span {
+	display: inline-block;
+}
+.left-title {
+	width: 50%;
+	text-align: left;
+	float: left;
+}
+.right-content {
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+.available-cash {
+	font-size: 1.5em;
+}
+.mui-btn.button-next {
+	background-color: #ff8474;
+	color: #fff;
+	padding: 13px 35%;
+}
+.amount-label {
+	padding: 0.5em 0 0 0;
+	color: #666;
+}
+#amount {
+	margin: 0;
+	border: none;
+	background-color: #ddd;
+	width: 100%;
+	border-radius: 5px;
+}
+.withdraw-way {
+	padding: 0
+}
+.paypal-box {
+	position: relative;
+	overflow: hidden;
+}
+.paypal-box span {
+	width: 2.5em;
+	height: 3em;
+}
+.left-logo {
+	background: transparent url(../../img/wallet-logo.png) no-repeat 4px center;
+	background-size: 5em 2.5em;
+}
+.right-logo {
+	background: transparent url(../../img/shouyin.png) no-repeat;
+	background-size: 2.6em 2.9em;
+}
+.right-logo-tab {
+	background: transparent url(../../img/shouyin2.png) no-repeat;
+	background-size: 2.6em 2.9em;
+}
+.use-paypal {
+	position: absolute;
+	left: 4em;
+	right: 3em;
+	top: 0.9em;
+}
+.mui-grid-view.mui-grid-9 .mui-media .mui-icon {
+	font-size: 1.2em;
+	color: #ccc;
+}
+div.mui-scroll-wrapper {
+	top: 259px;
+	bottom: 3.5em;
+}
+#type-container .mui-table-view-cell {
+	padding: 0;
+}
+#type-container .paypal-box {
+	padding: 11px 15px;
+	background-color: #f2f2f2;
+	position: relative;
+	border-bottom: 2px solid #ddd;
+}
+#type-container .mui-table-view-cell:last-child .paypal-box {
+	border-bottom: none;
+}
+
+
+
+
+

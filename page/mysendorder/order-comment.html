@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css"/>
+    <link rel="stylesheet" href="../../fonts/iconfont-star.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/mysendorder/order-comment.css"/>
+    <script src="../../js/mui.min.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">Order Comment</h1>
+	</header>
+	<div class="mui-content">
+		<div class="mui-content-padded">Description evalution</div>
+		<div class="mui-card">
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<label>
+						<span class="mui-icon mui-icon-pengyouquan icon-font"></span>
+						<span class="g-name">Name</span>
+					</label>
+					<div class="mui-pull-left gName mui-ellipsis">Flower</div>
+				</div>
+				<div class="mui-input-row">
+					<div class="">
+						<textarea id="info" maxlength="100" rows="5" placeholder="Please write down your comment..."></textarea>
+					</div>
+				</div>
+				<div class="mui-input-row enter-words mui-text-right">
+					can accommodate <span id="words">100</span> words
+				</div>
+			</div>
+		</div>
+		<ul class="mui-table-view mui-grid-view mui-grid-9">
+			<li class="mui-table-view-cell mui-col-xs-12 mui-text-left">
+				<div class="title">Qualitative evalution</div>
+			</li>
+			<li id="delivery-speed" class="mui-table-view-cell mui-col-xs-3 delivery-speed">Delivery speed</li>
+			<li id="delivery" class="mui-table-view-cell mui-col-xs-7">
+				<i data-index="1" class="iconfont icon-xingxing01 "></i>
+				<i data-index="2" class="iconfont icon-xingxing01 not-active"></i>
+				<i data-index="3" class="iconfont icon-xingxing01 not-active"></i>
+				<i data-index="4" class="iconfont icon-xingxing01 not-active"></i>
+				<i data-index="5" class="iconfont icon-xingxing01 not-active"></i>
+			</li>
+			<li id="delive-speed" class="mui-table-view-cell mui-col-xs-2">slow</li> 
+		</ul>
+	</div>
+	
+	<footer id="footer-cancel" style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+		<button id="comment-order" class="mui-btn mui-btn-block">comment</button>
+	</footer>
+	<script src="../../js/utils.js"></script>
+    <script src="../../js/mysendorder/order-comment.js"></script>
+</body>
+</html>

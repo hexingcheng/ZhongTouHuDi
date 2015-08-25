@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/mui.listpicker.css"/>
+    <link rel="stylesheet" href="../fonts/iconfont.css"/>
+    <script src="../js/mui.js"></script>
+    <script src="../js/mui.listpicker.js"></script>
+    <style type="text/css">
+    	.mui-input-row .left-btn {
+    		padding: 0.7em 0em;
+			width: 10%;
+    	}
+    	.input-box {
+    		width: 70%;
+			float: left;
+    	}
+    	.mui-input-row label {
+    		width: 20%;
+    	}
+    	.add-address {
+			vertical-align: -5%;
+			padding-left: 0.3em; 
+    	}
+    	.mui-media-body {
+    		padding-left: 0.5em;
+    	}
+    	.num-and-street {
+    		padding-left: 0.2em;
+    	}
+ 		#add-address {
+ 			margin-right: 0.4em; 
+ 		}
+ 		.bg-style {
+ 			transition:all 0.3s ease-in-out;
+ 			background: #F3F3F3;
+ 		}
+		/*用户列表示例*/
+		.user-panel {
+		}
+		.mui-picker-panel{
+			position: fixed;
+			left: 0px;
+			width: 100%;
+			z-index: 999999;
+			background-color: #eee;
+			border-top: solid 1px #ccc;
+			box-shadow: 0px -5px 7px 0px rgba(0, 0, 0, 0.1);
+			-webkit-transition: .3s;
+			bottom: 0px;
+			-webkit-transform: translateY(280px);
+		}
+		
+		.mui-picker-panel .mui-panel-header {
+			padding: 6px;
+			font-size: 14px;
+			color: #888;
+		}
+		.mui-picker-panel .mui-panel-body {
+			position: relative;
+			width: 100%;
+			height: 200px;
+			border-top: solid 1px #ddd;
+		}
+		.user-panel .mui-listpicker {
+			width: 100%;
+			height: 100%;
+			margin: 0px;
+			border: none;
+		}
+		.mui-panel-header button {
+			font-size: 12px;
+			padding: 5px 10px;
+		}
+		.mui-panel-header button:last-child {
+			float: right;
+		}
+		/** 级联示例样式 **/
+		.city-panel {
+		}
+		.city-panel .mui-listpicker {
+			width: 50%;
+			height: 100%;
+			margin: 0px; 
+			float: left;
+			border: none;
+		}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">选择出发地</h1>
+	</header>
+	<footer class="mui-bar mui-bar-footer">
+		<button id="submit-address" class="mui-btn mui-badge-green mui-btn-block">提交</button>
+	</footer>
+	<div class="mui-content">
+		<form class="mui-input-group">
+			<div class="mui-input-row">
+				<label>地区:</label>
+				<button id="select-area" type="button" class="mui-btn mui-btn-link mui-icon iconfont icon-you left-btn"></button>
+				<div class="input-box">
+					<input id="area-input" type="text" placeholder="enter starting point..." readonly="readonly" />
+				</div>
+			</div>
+			<div class="mui-input-row">
+				<label>街道:</label>
+				<div class="input-box">
+					<input id="street-input" type="text" class="mui-input-clear" placeholder="enter street name...">
+				</div>
+			</div>
+			<div class="mui-button-row">
+				<button id="add-address" type="button" class="mui-btn mui-btn-mini iconfont icon-jia2 mui-pull-right">
+					<span class="add-address">添加</span>
+				</button>
+			</div>
+		</form>
+		
+		<div class="mui-scroll">
+			<ul class="mui-table-view" id="adress-list">
+				<li class="mui-table-view-cell mui-media address-item">
+					<i class="iconfont icon-shouhuodizhi mui-media-object mui-pull-left"></i>
+					<div class="mui-media-body">
+						<span class="province-and-city">重庆-重庆市</span>
+						<p class="mui-ellipsis num-and-street">南岸区崇文路南山街道2号</p>
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-media address-item">
+					<i class="iconfont icon-shouhuodizhi mui-media-object mui-pull-left"></i>
+					<div class="mui-media-body">
+						<span class="province-and-city">四川-成都市</span>
+						<p class="mui-ellipsis num-and-street">金牛区</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- 城市选择面板  -->
+		<div class="city-panel mui-picker-panel">
+			<div class="mui-panel-header">
+				<button id='cityPickerCancel' class="mui-btn">取消</button>
+				<button id='cityPickerOK' class="mui-btn mui-btn-blue">确定</button>
+			</div>
+			<div class="mui-panel-body">
+				<div id='provincePicker' class="mui-listpicker">
+					<div class="mui-listpicker-inner">
+						<ul>
+						</ul>
+					</div>
+				</div>
+				<div id='cityPicker' class="mui-listpicker">
+					<div class="mui-listpicker-inner">
+						<ul>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script>
+		mui.init()
+		
+		mui.ready(function(){
+			var selectarea = document.getElementById("select-area");
+			var cityPickerPanel = document.querySelector(".city-panel");
+			var cancel = document.getElementById("cityPickerCancel");
+			var sure = document.getElementById("cityPickerOK");
+			
+			var province = document.getElementById("provincePicker");
+			var city = document.getElementById("cityPicker");
+			
+			var areainput = document.getElementById("area-input");
+			// 创建遮罩层
+			var mask = mui.createMask(function(){
+				cityPickerPanel.style.webkitTransform = 'translateY(280px)';
+			});
+			// 显示城市面板
+			function showCityPanel() {
+				mask.show();
+				cityPickerPanel.style.webkitTransform = 'translateY(0px)';
+			};
+			// 隐藏城市面板
+			function hideCityPanel() {
+				cityPickerPanel.style.webkitTransform = 'translateY(280px)';
+				mask.close();
+			};
+			
+			 //设置城市的名称
+			mui.ajax("./city.json", {
+				type : "GET",
+				success : function(data){
+
+					// json数据获取后添加到面板中  此处的data数据在移动端必须进行json的转义
+				    province.setItems(eval(data));
+
+					province.addEventListener('change', function(event) {
+						var eventData = event.detail;
+						city.setItems(eventData.item.citys);
+					}, false);
+					setTimeout(function() {
+						province.setSelectedIndex(1);
+					}, 200);
+				},
+				error : function(xhr, type){
+					console.log(type)
+				}
+			})
+			
+
+//			// ajax获取城市数据
+			selectarea.addEventListener("tap", showCityPanel, false);
+			cancel.addEventListener("tap", hideCityPanel, false);
+			sure.addEventListener("tap", function(){
+				var str = "";
+				str = province.getSelectedText() +"-"+ city.getSelectedText();
+				areainput.value = str;
+				hideCityPanel();
+			}, false);
+		})
+//		
+//		
+//		// 选择默认添加的地址
+		var parentpage = null;
+		var city, subcity;
+		mui("#adress-list").on("click", ".address-item", function(){
+			// 样式的监控
+			var oldclass = "mui-table-view-cell mui-media address-item";
+			var allbrother =  this.parentNode.children;
+			// 清空样式
+			for(var i = 0; i < allbrother.length; i++){
+				allbrother[i].className = oldclass;
+			}
+			// 为该点击的item添加样式
+			this.className =oldclass + " bg-style"; 
+			
+			var str = "";
+			city = this.querySelector(".province-and-city").innerHTML;
+			str += city;
+			subcity = this.querySelector(".num-and-street").innerHTML
+			str += " "+ subcity;
+//			mui.alert(str);
+	
+		});
+//		
+//		
+//		// 提交按钮执行
+		document.getElementById("submit-address").addEventListener("tap", function(){
+
+			if(city && subcity){
+				if(!parentpage){
+					parentpage = plus.webview.getWebviewById("get");
+				}
+				// 触发事件传值
+				mui.fire(parentpage, "cityinfo", {
+					city : city,
+					subcity : subcity
+				})
+				parentpage.show("slide-in-left", 150);
+			}
+		}, false)
+//		// 添加默认地址
+		var streetinput = document.getElementById("street-input");
+		var areain = document.getElementById("area-input");
+		var addresslist = document.getElementById("adress-list");
+		document.getElementById("add-address").addEventListener("tap", function(){
+			
+			if(areain.value != "" && streetinput.value != ""){
+				var templ = '<i class="iconfont icon-shouhuodizhi mui-media-object mui-pull-left"></i>'+
+							'<div class="mui-media-body">'+
+								'<span class="province-and-city">'+areain.value+'</span>'+
+								'<p class="mui-ellipsis num-and-street">'+streetinput.value+'</p>'+
+							'</div>';
+				var oli = document.createElement("li");
+				oli.className = "mui-table-view-cell mui-media address-item";
+				oli.innerHTML = templ;
+				addresslist.appendChild(oli);
+				// 清空input表单框的值
+				streetinput.value = "";
+				
+				areain.value = "";
+			} else {
+				mui.toast("请填写地区与街道名！");
+			}
+			
+		})
+		
+		// 返回键的设置
+		var oldback = mui.back;
+		mui.back = function(){
+			mui.confirm("确定放弃编辑？", "编辑", ["确定", "取消"], function(eve){
+				if(eve.index == 0){
+					oldback();
+				} 
+			})
+		}
+		
+	</script>
+</body>
+</html>

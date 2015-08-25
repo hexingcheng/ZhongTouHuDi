@@ -1,0 +1,137 @@
+.mui-grid-view.mui-grid-9 {
+	background-color: #fff;
+}
+.mui-scroll-wrapper {
+	top: 44px;
+	bottom: 3.5em;
+}
+.goods-value-box {
+	padding: 8px 0em 0 0.5em;
+	font-size: 20px;
+}
+.name {
+	width: 20%;
+	line-height: 1.5;
+}
+.table-diviver {
+	width: 100%;
+	height: 7px;
+	background-color: #ededeb;
+}
+.goods-name {
+	width: 80%;
+	line-height: 1.5;
+}
+.value-color {
+	color: #dc3e26;
+}
+.value-size {
+	font-size: 20px;
+	padding-left: 0.2em;
+}
+.title-padded {
+	padding: 0.5em 0;
+	display: inline-block;
+	width: 40%;
+}
+.title-padded ~ span {
+	width: 60%;
+	text-align: left;
+}
+.title-bottom-padded {
+	padding-bottom: 0.3em;
+}
+.title-weight {
+	padding: 0.5em 0.6em;
+	font-size: 18px;
+}
+.content-length {
+	display: inline-block;
+	width: 80%;
+	line-height: 1.5;
+}
+.title-width {
+	display: inline-block;
+	width: 18%;
+	line-height: 1.5;
+}
+.desc-after {
+	border-bottom: 1px solid #e8e8e8;
+}
+.desc-after:after {
+	height: 0;
+}
+.img-box {
+	width: 4em;
+	height: 4em;
+	overflow: hidden;
+	position: absolute;
+	border: 1px solid #ccc;
+	text-align: center;
+	line-height: 4em;
+}
+.porel {
+	position: relative;
+	width: 100%;
+	height: 4em;
+}
+.img-box:nth-child(1) {
+	left: 0%;
+}
+.img-box:nth-child(2) {
+	left: 25%;
+}
+.img-box:nth-child(3) {
+	left: 50%;
+}
+.img-box:nth-child(4) {
+	left: 75%;
+}
+.mui-icon.mui-icon-plusempty {
+	color: #ccc;
+}
+
+/* 等待加载页面内容  */
+#loading-mask {
+	position: absolute;
+	z-index: 998;
+	background: #fff;
+	top: 52px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+#loading-box {
+	position: absolute;
+	z-index: 999;
+	width: 100px;
+	height: 100px;
+	left: 50%;
+	margin-left: -50px;
+	top: 50%;
+	margin-top: -50px;
+}
+.fade-out {
+	opacity: 0;
+	-webkit-transition: all 500ms ease-out;
+}
+#plus-price {
+	font-size: 1.4em;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 0.1em;
+}
+
+/* 信息提醒   */
+#msg-warn {
+	background-color: #fff3e5;
+}
+#msg-warn span:nth-child(1) {
+	font-size: 1.1em;
+}
+#msg-warn a {
+	padding: 0;
+}
+#msg-warn span {
+	color: #fc9b29;
+}

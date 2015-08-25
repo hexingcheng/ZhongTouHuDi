@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
+    <script src="../../js/mui.min.js"></script>
+    <style type="text/css">
+    	.success-logo {padding: 6em 0 1.5em 0;}
+    	.mui-btn.button-next {background-color: #ff8474;color: #fff;padding: 13px 35%;}
+    	.withdraw-success {color: #219b52;font-size: 1.7em;padding: 0.5em 0;}
+    	.color {color: #ccc;padding: 0.2em 0;}
+    </style>
+</head>
+<body class="bg-color">
+	<header class="mui-bar mui-bar-nav">
+		<h1 class="mui-title">result</h1>
+	</header>
+	<div class="mui-content">
+		<div class="success-logo mui-text-center bg-color">
+			<img src="../../img/success-logo.png" width="25%"/>
+		</div>
+		<div class="withdraw-success mui-text-center bg-color">
+			Withdraw success
+		</div>
+		<div class="mui-text-center bg-color color">your withdrawal application has been</div>
+		<div class="mui-text-center bg-color color">completed, please wait.</div>
+	</div>
+	<footer style="height: 3.5em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+		<button id="main-page" class="mui-btn button-next">Main Page</button>
+	</footer>
+	
+	<script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		// 获取首页webview
+      		var main = plus.webview.getLaunchWebview();
+	      	// 获取已经打开的页面，在处理好应用之后需要进行关闭
+	      	var close = ["wallet/my-wallet", "my-current-money", "my-withdraw","my-point", "my-recharge","my-withdraw-next"];
+	      	// 获取当前文件需要webview窗口
+      		var thispage = plus.webview.currentWebview();
+      		
+      		mui.fire(main, "swipeleft");	//触发主页面的菜单侧滑显示页面主页
+	      	document.getElementById("main-page").addEventListener("tap", function(){
+	      		for(var i = 0; i < close.length; i++){
+	      			var cupage = plus.webview.getWebviewById(close[i]);
+	      			if(cupage){
+	      				plus.webview.close(cupage, "none", 0);
+	      			}
+	      		}
+	      		main.show("slide-in-left", 150)
+	   	      	setTimeout(function(){
+		      		plus.webview.close(thispage, "none", 0);
+	   	      	}, 160)
+	      	}, false)
+      	})
+    </script>
+</body>
+</html>

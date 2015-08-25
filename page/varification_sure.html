@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/main.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/main.css" />
+    
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	  <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	  <a class="mui-icon mui-icon-reply mui-pull-right"></a>
+	  <h1 class="mui-title">输入验证码</h1>
+</header>
+<div class="mui-content" >
+	<span style="margin: 3em 1em 3em 1em;display: block;">请输入收货验证码：</span>
+	<input type="text" style="margin: 0 1em 0 1em;border-radius: 0.5em; width: 90%;" class="mui-input-row" placeholder="输入框">
+     <div style="margin: 4em auto; width: 60%;height: 2em; text-align: center;line-height: 2em; border: 0.5spx solid green;background-color:#E6AF70;border-radius: 0.5em;">确认</div>
+	<div id="varifi_faile" style="width: 7em;height: 2em; line-height: 2em;text-align: center;color: #E6AF70;margin: 3em auto; border: 1px solid silver; border-radius: 0.5em;">验证失败情况	</div>
+	<!--弹出框-->
+	<div id="varification" class="tan_ " >
+		   <span style="font-size: 1.5em;"><h3 class="mui-title"><b>成功</b></h3></span>
+		   <div style="width: 90%;height: 1em; line-height: 1em; margin: 3em auto;">
+		   	<span style="font-size: 0.8em;" >发送验证码成功，请等待发货人接收</span>
+		   </div>
+		<div style="width: 100%; height: 3em; position: absolute;bottom: 0; border-top: 1px solid silver;">
+			<div id="varifi_sure" style="height: 3em; width: 50%; line-height: 3em;text-align: center;border-left: 1px solid silver;" class="mui-pull-right"> <span style="color:rgb(28, 116, 217) ;"><b>确定</b></span></div>
+		</div>  
+		 
+</div>
+</body>
+
+</html>

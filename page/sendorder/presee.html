@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body,
+			.mui-content,#preseepic{
+				height: 100%;
+				width: 100%;
+				background-color: #000000;
+			}
+			.mui-content{
+				padding: 44px 10px;
+			}
+			.handle {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+			}
+			.handle span {
+				color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="mui-slider">
+				<div class="mui-slider-group" id="preseepic">
+						<div class="mui-slider-item">
+							<a href="#"><img src="" class="first"></a>
+						</div>
+				</div>
+			</div>
+			<div class="handle">
+				<span class="mui-icon mui-icon-bars"></span>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery.min.js" ></script>
+		<script type="text/javascript" src="../../js/utils.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				var c = plus.webview.currentWebview();
+				$('.first').attr('src',c.first)
+				for(var i = 0;i<c.len;i++){
+					if(c[i]){
+						var path = c[i];
+						var item = $('<div class="mui-slider-item"><a href="#"><img src='+path+'></a></div>');
+						$('#preseepic').append(item);
+					}
+				}
+				$('.handle').on('tap', function() {
+					var btnArray = [{
+						title: "确定"
+					}, {
+						title: "重新选择"
+					}];
+					plus.nativeUI.actionSheet({
+						cancel: "取消",
+						buttons: btnArray
+					}, function(e) {
+						var index = e.index;
+						if (index == 1) {
+							c.close();
+							mui.back();
+							return;
+						} else if (index == 2) {
+						} else if (index == 0) {
+							return;
+						}
+					});
+					return false;
+				})
+			})
+		</script>
+	</body>
+
+</html>

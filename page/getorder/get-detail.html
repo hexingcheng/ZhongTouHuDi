@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../css/getorder/get-order-comment.css"/>
+    <link rel="stylesheet" href="../../css/getorder/get-detail.css"/>
+    <script src="../../js/mui.min.js"></script>
+    
+</head>
+<body style="background: #fff;">
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">Detail</h1>
+	</header>
+	
+	<div class="mui-content">
+		<div id="scroll-wrapper" class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+					<li class="mui-table-view-cell mui-col-xs-12">
+						<span class="mui-pull-left title-color mui-text-left name">Name</span>
+						<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">--</span>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
+						<span class="mui-pull-right">
+							<div class="goods-value-box">
+								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
+								<p class="title-color">not paid</p>
+							</div>
+						</span>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
+						<span id="goods-weight" class="mui-pull-right title-weight">0kg</span>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<div class="title-color title-bottom-padded">Get Time</div>
+						<div id="get-time">--:--</div>
+					</li>
+					<li class="mui-table-view-cell mui-col-xs-6">
+						<div class="title-color title-bottom-padded">Deadline</div>
+						<div id="deadline">--:--</div>
+					</li>
+				</ul>
+				
+				<div class="table-diviver"></div>
+				
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">From</span>
+						<span id="sendaddr" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">TO</span>
+						<span id="receiveaddr" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">Value</span>
+						<span id="gvalue" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<span class="title-color mui-pull-left title-width">Desc</span>
+						<span id="info" class="mui-ellipsis content-length">--</span>
+					</li>
+					<li class="mui-table-view-cell desc-after">
+						<div class="porel">
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<span class="img-box">
+								<span class="mui-icon mui-icon-plusempty"></span>
+							</span>
+							<!--<span class="img-box">
+								<img src="../../img/2147de349744915c611f470c84c67f94.jpg" width="100%"/>
+							</span>-->
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<footer style="height: 3.9em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+		<button id="markup" class="mui-btn button-first">markup</button>
+		<button id="collect" class="mui-btn button-next">collect</button>
+	</footer>
+
+	<!-- 遮罩层 -->
+	<div id="order-mask"></div>
+	<!-- 显示层 -->
+	<div id="order-popup">
+		<div class="popup-porel">
+			<div class="popup-title mui-h3">
+				Are you sure?
+			</div>
+			<div class="sub-title mui-h5">
+				This is your adjusted price
+			</div>
+			<div class="popup-body mui-clearfix">
+				<span class="mui-pull-left font-color">
+					<span>$</span><span id="current-price">20.00</span>
+					<div class="mui-h5 mui-text-center">origin</div>
+				</span>
+				<span class="plus mui-pull-left">+</span>
+				<span class="mui-pull-left font-color">
+					<span style="font-size: 1.4em;">$</span>
+					<span id="plus-price">1.00</span>
+					<div class="mui-h5 mui-text-center">markup</div>
+				</span>
+				<span class="equal mui-pull-left">=</span>
+				<span class="mui-pull-left font-color">
+					<span>$</span><span id="total-price">0.00</span>
+					<div class="mui-h5 mui-text-center">rel</div>
+				</span>
+			</div>
+			<div class="button-row">
+				<button id="ok" type="button">OK</button><button type="button" id="cancel">cancel</button>
+			</div>
+		</div>
+	</div>
+	<!-- 加载中的蒙层 -->
+	<div id="loading-mask"></div>
+	<div id="loading-box">
+		<img src="../../img/loading45.gif" alt="loading"/>
+	</div>
+	
+	<script src="../../js/jquery.min.js" ></script>
+	<script src="../../js/utils.js"></script>
+	<script src="../../js/getorder/get-detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="common.css" />
+		<style type="text/css">
+			body {
+				font-size: 60%;
+			}
+			.mui-content>.mui-table-view:first-child {
+				margin-top: 10px;
+			}
+			.mui-table-view-cell {
+				font-size: 1.5em;
+				height: 4em;
+				line-height: 2.5em;
+			}
+			.mui-bar {
+				background-color: #3ba767;
+			}
+			.mui-bar h1,
+			.mui-bar a {
+				color: #FFF;
+			}
+			.mui-table-view-cell {
+				padding: 11px 15px 11px 15px;
+			}
+			.mui-table-view-cell:after {
+				left: 15px;
+				right: 15px;
+			}
+			.msg-box {
+				overflow: hidden;
+			}
+			.tel-num {
+				display: inline-block;
+				width: 60%;
+				height: 100%;
+			}
+			.contact-name {
+				display: inline-block;
+				width: 40%;
+				height: 100%;
+			}
+			/*.mui-search input[type=search] {margin-bottom: 0;}*/
+			div.mui-scroll-wrapper {top: 87px;}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">choose contacts</h1>
+		</header>
+
+		<div class="mui-content">
+			<div class="mui-input-row mui-search">
+				<input type="search" class="mui-input-clear" placeholder="搜索联系人...">
+			</div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul id="contact-list" class="mui-table-view">
+						<!--<li class="mui-table-view-cell">
+							<div class="mui-navigate-right msg-box">
+								<span class="mui-pull-left mui-ellipsis contact-name">李鑫其</span>
+								<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">18584654947</span>
+							</div>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/html" id="template">
+			{{each list}}
+				<li class="mui-table-view-cell contact" data-name='{{$value.name}}' data-contact='{{$value.contact}}'>
+					<div class="msg-box">
+						<span class="mui-pull-left mui-ellipsis contact-name">{{$value.name}}</span>
+						<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">{{$value.contact}}</span>
+					</div>
+				</li>
+			{{/each}}
+		</script>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script src="../../js/template.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				mui(".mui-scroll-wrapper").scroll();
+				var contact = JSON.parse(plus.storage.getItem("contacts"));
+				var obj = {
+					list: contact
+				}
+				var html = template("template", obj);
+				document.getElementById("contact-list").innerHTML = html;
+				var val = {}
+					// 联系人选择列表
+				var type = getstorage("order-type");
+				var cpage = plus.webview.currentWebview();
+				var opener = plus.webview.currentWebview().opener();
+				mui("#contact-list").on("tap", ".contact", function() {
+					val = {}; // 清空数据
+					val.name = this.getAttribute("data-name");
+					val.tel = this.getAttribute("data-contact");
+					if (Boolean(val.name && val.tel)) {
+						if (type == "sender") {
+							plus.storage.removeItem("order-type");
+							mui.fire(opener, "order:sender", val);
+						} else if (type == "receiver") {
+							plus.storage.removeItem("order-type");
+							mui.fire(opener, "order:receiver", val);
+						}
+						plus.webview.show(opener, "slide-in-left", 200);
+						setTimeout(function() {
+							plus.webview.close(cpage, "none", 0)
+						}, 210)
+						plus.storage.removeItem("order-type");
+					} else {
+						mui.toast("请选择联系人");
+					}
+				})
+				
+				
+			})
+		</script>
+	</body>
+
+</html>

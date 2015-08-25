@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body,
+			.mui-content {
+				background-color: #FFFFFF;
+			}
+			.addlmar {
+				margin-left: 30px;
+			}
+			.user {
+				border-radius: 50%;
+			}
+		</style>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-media">
+				<a class="mui-navigate-right" id="p-info" data-src = "./myinfo.html">
+					<img class="mui-media-object mui-pull-left user" src="../img/user.png" />
+					<div class="mui-media-body addlmar">
+						<p class=''>小王</p>
+						<p class=''>18883846369</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<a class="mui-navigate-right" id="applay" data-src = "">
+					<span class="mui-icon mui-icon-chat mui-pull-left"></span>
+					<div class="mui-media-body addlmar">
+						<p class=''>申请自由快递人</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-divider"></li>
+			<li class="mui-table-view-cell mui-media">
+				<a class="mui-navigate-right" id="walte" data-src = "">
+					<span class="mui-icon mui-icon-gear mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class=''>我的钱包</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-divider"></li>
+			<li class="mui-table-view-cell mui-media">
+				<a class="mui-navigate-right" id="my-order" data-src = "">
+					<span class="mui-icon mui-icon-list mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class=''>我的发单</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media">
+				<a class="mui-navigate-right" id="i-get" data-src = "">
+					<span class="mui-icon mui-icon-paperplane mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class=''>我的接单</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-divider"></li>
+			<li class="mui-table-view-cell mui-media">
+				<a class="mui-navigate-right" id="help-me" data-src = "">
+					<span class="mui-icon mui-icon-plusempty mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class=''>使用帮助</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-divider"></li>
+			<li class="mui-table-view-cell mui-media">
+				<a class="mui-navigate-right" id="close" data-src = "">
+					<span class="mui-icon mui-icon-home mui-pull-left"></span>
+					<div class="mui-media-body  addlmar">
+						<p class=''>设置</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<script type="text/javascript" src="../js/utils.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script>
+			mui.init({
+				keyEventBind: {
+					backbutton: false,
+					menubutton: false
+				}
+			});
+			var main = null;
+			mui.plusReady(function() {
+				main = plus.webview.currentWebview().opener();
+				perload();
+				document.getElementById('close').addEventListener('tap', function(e) {
+						ifloginCommon(function() {
+							plus.storage.removeItem('token');
+							plus.webview.getWebviewById('index-menu').hide();
+							plus.webview.getLaunchWebview().setStyle({
+								left: "0",
+								mask: 'none'
+							})
+							mui.ajax(BASEURL + 'auth/out', {
+								type: "get",
+								success: function(data) {
+									console.log('success')
+									plus.storage.removeItem('token')
+								},
+								error: function(xhr, type) {
+									console.log(type);
+								}
+							})
+						})
+						return false;
+					})
+					//处理点击事件，跳转页面
+				mui('.mui-table-view-cell').on('tap', 'a', function() {
+					if(this.id&&this.id!='close'){
+						var url = this.getAttribute('data-src');
+						openWindow(url);
+					}
+				})
+			})
+
+			function perload() {
+				mui.preload({
+					id: 'learn',
+					url: './learn.html'
+				});
+				mui.preload({
+					id: 'myinfo',
+					url: './myinfo.html'
+				});
+			}
+			window.addEventListener("swipeleft", closeMenu);
+
+			function closeMenu() {
+				mui.fire(main, "menu:swipeleft");
+			}
+		</script>
+	</body>
+
+</html>

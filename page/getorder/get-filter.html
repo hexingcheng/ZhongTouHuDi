@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../css/getorder/get-order-comment.css"/>
+    <link rel="stylesheet" href="../../css/jquery.range.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/getorder/get-filter.css"/>
+    <script src="../../js/mui.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery.range.js"></script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav" id="head">
+		<span class="mui-action-back mui-pull-left myicons">
+				<img src="../../img/left.png"/>
+		</span>
+		<h1 class="mui-title">Filter</h1>
+	</header>
+	<div class="mui-content">
+		<div class="mui-scroll-wrapper" style="top: 52px;">
+			<div class="mui-scroll">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<div class="mui-content-padded">Departure</div>
+						<div class="input-box">
+							<input class="mui-input-clear" type="text" name="departure" id="departure" value="" />
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-content-padded">Destination</div>
+						<div class="input-box">
+							<input class="mui-input-clear" type="text" name="departure" id="destination" value="" />
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-content-padded">Remain <span class="mui-h5"> (more than)</span></div>
+						<div class="mui-button-row">
+							<button data-time="10">10 hour</button>
+							<button data-time="24">24 hour</button>
+							<button data-time="48">2 day</button>
+							<button data-time='120'>5 day</button>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-content-padded">Reword</div>
+						<div class="rang-slider-bar">
+							<input class="range-reward" type="hidden" value="0,50" id="reword"/>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="mui-content-padded">Weight</div>
+						<div class="rang-slider-bar">
+							<input class="range-weight" type="hidden" value="0,100" id="weight"/>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<footer style="height: 3.9em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+		<button id="ok-btn" class="mui-btn button-first">Ok</button>
+		<button id="cancel" class="mui-btn button-next">Cancel</button>
+	</footer>
+	<script src="../../js/utils.js"></script>
+	<script src="../../js/getorder/get-filter.js"></script>
+</body>
+</html>

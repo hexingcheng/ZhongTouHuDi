@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.mui-scroll-wrapper {
+				margin-top: 50px;
+			}
+			.order-content {
+				margin: 10px;
+				padding: 10px;
+				position: relative;
+				border: 1px solid #D1D1D1;
+				border-radius: 5px;
+			}
+			.jijian {
+				position: absolute;
+				width: 35px;
+				height: 35px;
+				top: 10px;
+				left: 10px;
+				border: 2px solid red;
+				color: red;
+				line-height: 35px;
+				text-align: center;
+				font-size: 12px;
+				border-radius: 50%;
+			}
+			.pay {
+				position: absolute;
+				right: 20px;
+				top: 10px;
+				height: 35px;
+				width: 60px;
+				line-height: 35px;
+				text-align: center;
+				color: red;
+			}
+			.expecttime {
+				margin-bottom: 10px;
+				height: 35px;
+				line-height: 35px;
+				text-align: center;
+			}
+			.gname {
+				line-height: 40px;
+			}
+			.ocontent {
+				border-top: 1px solid #D1D1D1;
+			}
+			.start-end {
+				border-bottom: 1px solid #D1D1D1;
+			}
+			.imp-info {
+				padding-top: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a class="mui-pull-right" style="line-height: 44px;">筛选</a>
+			<h1 class="mui-title">接单</h1>
+		</header>
+		<div class="mui-content">
+			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll" id="getoder">
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/utils.js"></script>
+	<script src="../js/template.js"></script>
+	<script type="text/html" id="getoders">
+		{{each order}}
+		<div class="order-content">
+			<div class="jijian">寄件</div>
+			<div class="pay">${{$value.money}}</div>
+			<div class="expecttime">{{$value.finTime}}</div>
+			<div class="ocontent">
+				<div class="gname">
+					<span class="mui-icon mui-icon-email"></span>
+					<span>{{$value.gName}}</span>
+				</div>
+				<div class="start-end">
+					<p>起：
+						<span>{{$value.sendAddr}}</span>
+					</p>
+					<p>终：
+						<span>{{$value.receiveAddr}}</span>
+					</p>
+				</div>
+				<div class="imp-info">
+					<p>重要说明:
+						<span>{{$value.info}}</span>
+					</p>
+				</div>
+				<input type="hidden" value="{{$value.orderId}}" class="oid"/>
+			</div>
+		</div>
+		{{/each}}
+	</script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init()
+		mui.plusReady(function() {
+			mui('#offCanvasSideScroll').scroll();
+			plus.geolocation.getCurrentPosition(function(pos) {
+				var lot = pos.coords.longitude;
+				var lat = pos.coords.latitude;
+				var getorderdata = {
+					"page":1,
+					"pageSize":10,
+					"curAddr":"重庆",
+					"curJd":lot,
+					"curWd":lat
+				};
+				mui.ajax(BASEURL + 'deliver/goodList', {
+					type:'post',
+					data:getorderdata,
+					success:function(data){
+						var orderdata = {
+							"order":data.res
+						}
+						var html = template("getoders", orderdata);
+						document.getElementById("getoder").innerHTML = html;
+						handleorder();
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(type)
+					}
+				})
+			}, function(e) {
+				console.log(e)
+			}, {
+				provider: "baidu"
+			})
+		})
+		function handleorder(){
+			mui('.order-content').on('tap','.ocontent',function(){
+				var orderid = $('.oid',$(this)).attr('value');
+				var param = {
+					"orderId":orderid,
+					"type":"comm"
+				}
+				mui.openWindow({
+				    url:"./orderditails.html",
+				    id:"orderditails",
+				    extras:param,
+				    createNew:false,
+				    waiting:{
+				      autoShow:true,
+				      title:'正在加载...',
+				      options:{
+				        background:"#d1d1d1"
+				      }
+				    }
+				})
+			})
+		}
+	</script>
+
+</html>

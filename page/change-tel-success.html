@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <script type="text/javascript" src="../js/common.js" ></script>
+    <style>
+        .mui-btn{
+        	margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">实名认证</h1>
+	</header>
+	<div class="mui-content mui-text-center">
+		<p class="mui-card">您的更换绑定手机申请已提交，我们会尽快审核，请耐心等待！</p>
+		<div class="mui-btn">确定</div>
+	</div>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		$('.mui-btn').on('tap',function(){
+			mui.openWindow({
+				id:"info",
+				url:"./myinfo.html"
+			})
+		})
+		mui.back = function(){
+			setTimeout(function(){
+				plus.webview.currentWebview().hide()
+			},200)
+		}
+	</script>
+</body>
+</html>

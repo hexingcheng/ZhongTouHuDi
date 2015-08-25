@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+//				swipeBack:false
+			});
+		</script>
+		<style>
+			.camera {
+				background-color: #FFFFFF;
+			}
+			.choose:before {
+				position: absolute;
+				right: 0;
+				top: 10px;
+				left: 15px;
+				height: 1px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+			}
+			#good-form:after {
+				background-color: #FFFFFF;
+			}
+			.choose {
+				font-size: 14px;
+				color: #101010;
+				position: relative;
+				padding: 20px 10px 0 15px;
+				color: #000000;
+			}
+			.canc {
+				color: #d1d1d1;
+				font-size: 12px;
+			}
+			.next {
+				padding-top: 30px;
+			}
+			#good-form label {
+				font-size: 14px;
+				color: #101010;
+			}
+			/*.mui-icon-camera{
+				font-size: 60px;
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我要发货</h1>
+			<button class="mui-btn mui-pull-right" id="draft">草稿</button>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group" id="good-form">
+				<div class="mui-input-row">
+					<label>物品名称：</label>
+					<input type="text" placeholder="鲜花">
+				</div>
+				<div class="mui-input-row">
+					<label>物品重量：</label>
+					<input type="text" placeholder="0kg">
+				</div>
+				<div class="mui-input-row">
+					<label>物品价值：</label>
+					<input type="text" placeholder="0$">
+				</div>
+				<div class="mui-input-row">
+					<label>重要说明：</label>
+					<input type="text" placeholder="重要说明">
+				</div>
+			</form>
+			<div class="camera">
+				<p class="choose">物品照片：<span class="canc">（可选）</span></p>
+				<ul class="mui-table-view mui-grid-view " style="background: #FFFFFF;">
+					<li class="mui-table-view-cell mui-media mui-col-xs-3" style="border: 0;">
+						<a href="#">
+							<span class="mui-icon mui-icon-camera" style="border: 1px solid #D1D1D1;"></span>
+							<!--<img src="../img/details.jpeg" style="width: 100%;height: 100%;"/>-->
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-3" style="border: 0;">
+						<a href="#">
+							<span class="mui-icon mui-icon-camera" style="border: 1px solid #D1D1D1;"></span>
+							<!--<img src="../img/details.jpeg" style="width: 100%;height: 100%;"/>-->
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-3" style="border: 0;">
+						<a href="#">
+							<span class="mui-icon mui-icon-camera" style="border: 1px solid #D1D1D1;"></span>
+							<!--<img src="../img/details.jpeg" style="width: 100%;height: 100%;"/>-->
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-3" style="border: 0;">
+						<a href="#">
+							<span class="mui-icon mui-icon-camera" style="border: 1px solid #D1D1D1;"></span>
+							<!--<img src="../img/details.jpeg" style="width: 100%;height: 100%;"/>-->
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="next mui-text-center">
+				<button class="mui-btn" id="next-button">下一步</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/utils.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script>
+			var draft = null;
+			var next = null;
+			mui.plusReady(function() {
+				//处理侧滑导航，为了避免和子页面初始化等竞争资源，延迟加载侧滑页面；
+				setTimeout(function() {
+					draft = mui.preload({
+						id: 'draft',
+						url: './draft.html'
+					});
+				}, 200);
+				mui('.mui-table-view').on('tap', 'a', function() {
+					
+					getcamera(function(path) {
+						//得到图片路径并存本地,改变站位图片
+						var photourl = plus.io.convertLocalFileSystemURL(path);
+						setstorage('photourl',photourl);
+						//压缩图片
+						//上传压缩图片
+					}, function(e) {
+						console.log(e);
+						//						失败返回提示信息
+					})
+				})
+			});
+			$('#draft').on('tap', function() {
+				draft.show('slide-in-right', 150)
+			})
+//			 $('#next-button').on('tap', function() {
+//				var pagedata = {
+//					gName: "巧克力",
+//					gValue: 100,
+//					gWeight: 50,
+//					info: "选填",
+//					pic:""
+//				}
+//				openWindow('./next.html', pagedata);
+//			})
+			 var oderdata = {
+				gName:"巧克力",
+				gValue:100,
+				gWeight:50,
+				info:"选填",
+				insType:"简单保险",
+				pics:"",
+				money:5,
+				getTime:"2015-7-26",
+				finTime:"2015-7-30",
+				sender:"18883848005",
+				senderPhone:"18883848005",
+				sendAddress:"黄角丫",
+				sendJd:30,
+				sendWd:120,
+				status:1
+			}
+//			document.getElementById('next-button').addEventListener('tap',function(){
+//				mui.plusReady(function(){
+//					mui.ajax(BASEURL+'good/add',{
+//						data:oderdata,
+//						type:'post',
+//						dataType:'json',
+//						timeout:10000,
+//						error:function(xhr,type,errorThrown){
+//							console.log(type);
+//						},
+//						success:function(data){
+//							handleData(data)
+//						}
+//					})
+//				})
+//			})
+			
+			function test(){
+				mui.plusReady(function(){
+					mui.ajax(BASEURL+'auth/activate', {
+//											data: {
+//												phone: "18883849999",
+//												code: "555607",
+//												pwd: "123456",
+//												rePwd: "123456",
+//												type: "1",
+//												mac: "123456",
+//												imsi: "54321",
+//												systemName: "huawei",
+//												systemVersion: "4.2.0"
+//											},
+//									data:{
+//										phone: "18883849999",
+//										pwd: "123456",
+//										type: "1",
+//										mac: "123456",
+//										imsi: "54321",
+//										systemName: "huawei",
+//									    csystemVersion: "4.2.0"
+//										
+//									},
+//						data: {
+//							"phone": "18883849999"
+//						},
+//						data:{
+//							phone: "18883849999",
+//							code: "555607",
+//							
+//						}
+						data:{
+							token:"dc96bde746ffb6f200cddf6533048524"
+						},
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						success: function(data) {
+							//服务器返回响应，根据响应结果，分析是否登录成功；
+							console.log(data.ret);
+//							console.log(data.token);
+//							console.log(data.code)
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							console.log(type);
+						}
+					});
+				})
+			}
+			document.getElementById('next-button').addEventListener('tap',function(){
+//				test();
+				alert(0)
+			})
+		</script>
+	</body>
+</html>

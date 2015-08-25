@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+		<title></title>
+		<!--<script src="../js/mui.min.js"></script>-->
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/msg.css" />
+		<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	</head>
+	<body>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="mui-table-view mui-table-view-chevron">
+					
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			var str ='<div class="mui-slider-right mui-disabled">'+
+						'<a class="mui-btn mui-btn-grey mui-icon mui-icon-person"></a>'+
+						'<a class="mui-btn mui-btn-yellow mui-icon mui-icon-phone"></a>'+
+					'</div>'+
+					'<div class="mui-slider-handle">'+
+						'<a href="#">'+
+							'<img class="mui-media-object mui-pull-left" src="../img/user.png">'+
+							'<div class="mui-media-body" style="margin-right:0">'+
+								'幸福'+
+								'<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>'+
+							'</div>'+
+						'</a>'+
+						'<span class="msg-time">12 minutes ago</span>'+
+					'</div>';
+			function pulldownRefresh() {
+				setTimeout(function() {
+					var table = $('.mui-table-view');
+					var cells = $('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 3; i < len; i++) {
+						var li = document.createElement('li');
+						var li = $('<li class="mui-table-view-cell mui-media"></li>')
+						li.css('padding-right','10px')
+						li.html(str)
+						//下拉刷新，新纪录插到最前面；
+						table.prepend(li);
+					}
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var table = $('.mui-table-view');
+					var cells = $('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 20; i < len; i++) {
+						var li = $('<li class="mui-table-view-cell mui-media"></li>')
+						li.css('padding-right','10px')
+						li.html(str)
+						table.append(li);
+					}
+				}, 1500);
+			}
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 1000);
+
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+		</script>
+	</body>
+
+</html>

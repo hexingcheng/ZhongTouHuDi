@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.js"></script>
+		<link href="../css/mui.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+			}
+			.tips {
+				width: 100%;
+				position: absolute;
+				left: 0;
+				z-index: 11;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.2);
+				color: #FFFFFF;
+				padding-top: 50%;
+				font-size: 30px;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">设置</h1>
+		</header>
+
+		<footer class="mui-bar mui-bar-footer">
+			<button class="mui-btn mui-badge-green mui-btn-block" id="close">退出登录</button>
+		</footer>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					声音提示
+					<div class="mui-switch mui-active">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					震动提醒
+					<div class="mui-switch mui-active">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					接受推送消息
+					<div class="mui-switch mui-active">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+				<li class="mui-table-view-divider"></li>
+				<li class="mui-table-view-cell">
+					<a href="" class="mui-navigate-right">
+					重置密码
+				</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="" class="mui-navigate-right">
+					清除缓存
+				</a>
+				</li>
+				<li class="mui-table-view-divider"></li>
+				<li class="mui-table-view-cell">
+					<a id="about-us" class="mui-navigate-right">
+					关于我们
+				</a>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script src="../js/utils.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				document.getElementById('about-us').addEventListener('tap', function() {
+					openWindow('./about-us.html')
+				})
+				document.getElementById('close').addEventListener('tap', function(e) {
+					plus.nativeUI.showWaiting('正在退出',{background:'#d1d1d1'})
+					mui.ajax(BASEURL + 'auth/out', {
+						type: "get",
+						success: function(data) {
+							plus.nativeUI.closeWaiting()
+							console.log('success')
+							plus.storage.removeItem('token');
+							var i = plus.webview.getLaunchWebview();
+							mui.fire(i, 'removehref')
+							var i = plus.webview.getLaunchWebview();
+//							mui.fire(i, 'closeMenu');
+//							setTimeout(function(){
+//								i.show('slide-in-left');
+//							},2000)
+							i.show('slide-in-left',200);
+							plus.webview.currentWebview().close();
+						},
+						error: function(xhr, type) {
+							plus.nativeUI.closeWaiting()
+							console.log(type);
+							errorhandle(type)
+						}
+					})
+					return false;
+				})
+			})
+		</script>
+	</body>
+
+</html>

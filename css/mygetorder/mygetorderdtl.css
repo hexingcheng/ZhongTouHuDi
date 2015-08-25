@@ -1,0 +1,151 @@
+html,
+body,
+.mui-content {
+	background-color: #FFFFFF;
+}
+.marktips {
+	text-align: center;
+	color: #35a462;
+	line-height: 50px;
+	height: 50px;
+}
+.cancel {
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	background-color: #fc614d;
+	color: #fff3e5;
+}
+.height50{
+	height: 50px;
+	line-height: 50px;
+}
+html,
+body,
+.mask {
+	width: 100%;
+	height: 100%;
+}
+.mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 999;
+}
+.dialog,
+.confirm,
+.inputcode {
+	background-color: #FFFFFF;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 270px;
+	overflow: hidden;
+	word-break: break-all;
+}
+.info {
+	color: #000000;
+	padding: 10px 20px;
+}
+.ok,
+.back,
+.cancelinput {
+	float: left;
+	height: 40px;
+	width: 50%;
+	line-height: 40px;
+	background-color: #c4e8da;
+	text-align: center;
+	color: #029c5d;
+}
+.wron {
+	padding: 0 20px;
+}
+.cancels,
+.checks,
+.checkr {
+	float: left;
+	height: 40px;
+	width: 50%;
+	line-height: 40px;
+	background-color: #f6ccc2;
+	text-align: center;
+	color: #da2a02;
+}
+.check,
+.write {
+	color: #FFFFFF;
+	height: 40px;
+	width: 48%;
+	line-height: 40px;
+	text-align: center;
+	float: left;
+}
+.check {
+	background-color: yellow;
+	margin-right: 2%;
+}
+.write {
+	background-color: green;
+	margin-left: 2%;
+}
+.load {
+	width: 100px;
+	height: 100px;
+}
+.mui-table-view .mui-table-view-cell{
+	padding: 0 0 0 15px;
+	margin: 0;
+}
+.padding0{
+	padding: 0;
+}]
+.add15{
+	margin-right: 15px;
+}
+#ul li{
+	padding: 0 0 0 15px;
+}
+#ul li span{
+	padding: 0;
+}
+.msgcall{
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 50px;
+	width: 100px;
+}
+.coloryellow{
+	color: yellow;
+	padding-right: 15px;
+}
+.colorgreen{
+	color: green;
+}
+.fontsize14{
+	font-size: 14px;
+}
+#spe1,#spe2{
+	height: 70px;
+}
+.hei30{
+	margin-top:10px;
+}
+
+#porel{
+	/*text-align: center;*/
+	/*line-height: 50px;*/
+	color:#000000
+}
+.picture{
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+	margin: 10px;
+}
+#foot{
+	box-shadow: 0 0 1px #F1F1F1;
+	line-height: 48px;
+}

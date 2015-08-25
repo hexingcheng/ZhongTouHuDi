@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../../js/mui.min.js"></script>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
+    <link rel="stylesheet" href="../../css/mywallet/wallet-index.css"/>
+</head>
+<body class="bg-color">
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">My wallet</h1>
+	</header>
+	<div class="mui-content">
+		<ul id="show-info" class="mui-table-view mui-grid-9 mui-grid-view">
+			<li class="mui-table-view-cell mui-media mui-col-xs-12">
+				<a href="javascript:void(0)" data-src="./my-current-money.html">
+					<div id="current-money" class="mui-text-center mui-h1 style-money current-money">0.00</div>
+					<p class="mui-text-center mui-h6">
+						current money
+					</p>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-6 border-top">
+				<a href="javascript:void(0)" data-src="./my-point.html">
+					<div id="gold-point" class="mui-text-center mui-h2 style-point">0</div>
+					<p class="mui-text-center mui-h6">
+						gold point
+					</p>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-6 border-left border-top">
+				<a href="javascript:void(0)" data-src="./my-coupon.html">
+					<div id="coupon" class="mui-text-center mui-h2 style-coupon">0</div>
+					<p class="mui-text-center mui-h6">
+						coupon
+					</p>
+				</a>
+			</li>
+		</ul>
+		<div class="table-diviver"></div>
+		<!--<ul class="mui-table-view mui-table-view-chevron bg-color">
+			<li class="mui-table-view-cell mui-collapse">-->
+				<!-- 模拟展开数据显示 -->
+				<ul class="mui-table-view mui-table-view-chevron bg-color">
+					<div class="mui-scroll-wrapper">
+						<div id="show-recodes" class="mui-scroll">
+							
+							<!--<li class="mui-table-view-cell mui-media border-bottom">
+								<div class="mui-pull-right mui-h3 style-coupon fixed-money">
+									-16.0
+								</div>
+								<div class="mui-media-body">
+									<div class="mui-ellipsis">Express reward</div>
+									<p class="mui-ellipsis">18:22 28 Mar 2015</p>
+								</div>
+							</li>
+							<li class="mui-table-view-cell mui-media">
+								<div class="mui-pull-right mui-h3 style-point fixed-money">
+									+20.0
+								</div>
+								<div class="mui-media-body">
+									<div class="mui-ellipsis">Car share</div>
+									<p class="mui-ellipsis">18:22 28 Mar 2015</p>
+								</div>
+							</li>-->
+							
+						</div>
+					</div>
+				</ul>
+			<!--</li>
+		</ul>-->
+	</div>
+	
+	<!-- 加载中的蒙层 -->
+	<div id="loading-mask"></div>
+	<div id="loading-box">
+		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
+	</div>
+	
+	<script id="recode" type="text/html">
+		{{each list}}
+			<li class="mui-table-view-cell mui-media border-bottom">
+				{{if $value.value > 0}}
+					<div class="mui-pull-right mui-h3 style-point fixed-money">
+						{{"+" + $value.value}}
+					</div>
+				{{ else }}
+					<div class="mui-pull-right mui-h3 style-coupon fixed-money">
+						{{"-" + $value.value}}
+					</div>
+				{{/if}}
+				<div class="mui-media-body">
+					<div class="mui-ellipsis">
+						{{$value.type == 1 ? "资金" : $value.type == 2 ? "积分" : "优惠卷"}}
+					</div>
+					<p class="mui-ellipsis">{{$value.time}}</p>
+				</div>
+			</li>
+		{{/each}}
+	</script>
+	<script src="../../js/template.js"></script>
+	<script src="../../js/utils.js"></script>
+	<script>
+      	var script = document.createElement("script");
+      	script.src = "../../js/mywallet/wallet-index.js";
+      	document.body.appendChild(script);
+    </script>
+</body>
+</html>

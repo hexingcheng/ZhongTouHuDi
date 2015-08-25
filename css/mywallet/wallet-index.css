@@ -1,0 +1,27 @@
+.mui-table-view .mui-col-xs-6.border-top {
+	border-top: 1px solid #e8e8e8;
+}
+.mui-table-view .mui-col-xs-6.border-left {
+	border-left: 1px solid #e8e8e8;
+}
+.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell {
+	padding: 1em;
+}
+.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell:after {
+	height: 0;
+}
+.mui-table-view .mui-media-object.mui-pull-right {
+	margin-left: 0;
+}
+.mui-table-view-cell:after {
+	height: 0;
+}
+.mui-table-view-chevron .mui-table-view-cell {
+	padding-right: 10px;
+}
+div.mui-scroll-wrapper {
+	top: 255px;
+}
+.mui-table-view {
+	position: inherit;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/mysendorder/my-send-order.css"/>
+		<script src="../../js/mui.min.js"></script>
+	</head>
+
+	<body style="background: #fff;font-size: 14px;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">My Order</h1>
+			<i id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></i>
+		</header>
+
+		<div class="mui-content">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#item1" data-status="1">publish</a>
+				<a class="mui-control-item" href="#item2" data-status="2">transporting</a>
+				<a class="mui-control-item" href="#item3" data-status="3">success</a>
+				<a class="mui-control-item" href="#item4" data-status="4">cancel</a>
+			</div>
+			<div id="scroll-wrapper" class="mui-scroll-wrapper">
+				<div id="link-detail">
+					<div id="item1" class="mui-control-content mui-scroll mui-active">
+						<!-- 等待框 -->
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+						<!-- 样式呈现列表 -->
+						<!--<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<a id="go-detail" href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+								<div class="goods-name-bar">
+									<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
+								</div>
+								<div class="goods-content">
+									<div class="goods-direction mui-pull-left">
+										<div class="goods-bar goods-from-bar mui-ellipsis">
+											<span class="goods-from font-color">From</span>
+											<span class="goods-msg">{{$value.sendAddr}}</span>
+										</div>
+										<div class="goods-bar goods-to-bar mui-ellipsis">
+											<span class="goods-to font-color">To</span>
+											<span class="goods-msg">{{$value.receiveAddr}}</span>
+										</div>
+										<div class="goods-bar goods-comment-bar mui-ellipsis">
+											<span class="goods-comment font-color">Deadline</span>
+											<span class="goods-msg red">{{$value.time}}</span>
+										</div>
+									</div>
+									<div class="goods-rewards-bar mui-pull-right mui-text-center">
+										<div class="statusDetail">已取消</div>
+										<div class="goods-rewards">Reward</div>
+										<div class="goods-value mui-ellipsis">{{$value.money}}</div>
+									</div>
+								</div>
+							</a>
+							</li>
+						</ul>
+						<div class="content-padded"></div>-->
+					</div>
+					<div id="item2" class="mui-control-content mui-scroll">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+					<div id="item3" class="mui-control-content mui-scroll">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+					<div id="item4" class="mui-control-content mui-scroll">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/html" id="template">
+			{{each list}}
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					{{if $value.status == 1}}
+						<a id="go-detail" href="./get-detail.html" class="detail-page published" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+					{{else if $value.status == 2}}
+						<a id="go-detail" href="./get-detail.html" class="detail-page transporting" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+					{{else if $value.status == 3}}
+						<a id="go-detail" href="./get-detail.html" class="detail-page successed" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+					{{else}}
+						<a id="go-detail" href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+					{{/if}}
+						<div class="goods-name-bar">
+							<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
+						</div>
+						<div class="goods-content">
+							<div class="goods-direction mui-pull-left">
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">From</span>
+									<span class="goods-msg">{{$value.sendAddr}}</span>
+								</div>
+								<div class="goods-bar goods-to-bar mui-ellipsis">
+									<span class="goods-to font-color">To</span>
+									<span class="goods-msg">{{$value.receiveAddr}}</span>
+								</div>
+								<div class="goods-bar goods-comment-bar mui-ellipsis">
+									<span class="goods-comment font-color">
+										{{$value.statusDetail == 11 ? "发布时间" : $value.statusDetail == 12 ? "接单时间" : $value.statusDetail == 13 ? "发布时间" : 
+										$value.statusDetail == 21 ? "付款时间" : $value.statusDetail == 22 ? "取货时间" : $value.statusDetail == 31 ? "签单时间" : $value.statusDetail == 32 ? "评价时间" : "取消时间"}}
+									</span>
+									<span class="goods-msg red">{{$value.time}}</span>
+								</div>
+							</div>
+							<div class="goods-rewards-bar mui-pull-right mui-text-center">
+								{{if $value.status == 1}}
+									<div class="statusDetail">{{$value.statusDetail == 11 ? "议价中" : $value.statusDetail == 12 ? "待付款" : "接单中"}}</div>
+								{{else if $value.status == 2}}
+									<div class="statusDetail">{{$value.statusDetail == 21 ? "未取货" : "已取货"}}</div>
+								{{else if $value.status == 3}}
+									<div class="statusDetail">{{$value.statusDetail == 31 ? "待评价" : "已评价"}}</div>
+								{{else}}
+									<div class="statusDetail">已取消</div>
+								{{/if}}
+								<div class="goods-rewards">Reward</div>
+								<div class="goods-value mui-ellipsis">{{$value.money}}</div>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<div class="content-padded"></div>
+			{{/each}}
+		</script>
+		<script src="../../js/template.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script src="../../js/mui.pullToRefresh.js"></script>
+		<script src="../../js/mui.pullToRefresh.material.js"></script>
+		<script src="../../js/mysendorder/my-send-order.js"></script>
+	</body>
+
+</html>

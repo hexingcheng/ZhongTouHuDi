@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="common.css" />
+		<script src="../../js/mui.js"></script>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			html,
+			body,
+			.mui-content,
+			#offCanvasSideScroll,
+			.mui-scroll,
+			.order-content {
+				height: 100%;
+				width: 100%;
+			}
+			.order-content {
+				padding: 5px;
+				background-color: #ededeb;
+			}
+			html,
+			body,
+			.mui-content {
+				background-color: #FFFFFF;
+			}
+			.mui-bar {
+				background-color: #3ba767;
+			}
+			.mui-bar h1,
+			.mui-bar a {
+				color: #FFFFFF;
+			}
+			.draft {
+				color: #FFFFFF;
+			}
+			@font-face {
+				font-family: "iconfont";
+				src: url('../../icon/iconfont.eot');
+				/* IE9*/
+				
+				src: url('../../icon/iconfont.eot?#iefix') format('embedded-opentype'),
+				/* IE6-IE8 */
+				
+				url('../../icon/iconfont.woff') format('woff'),
+				/* chrome、firefox */
+				
+				url('../../icon/iconfont.ttf') format('truetype'),
+				/* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+				
+				url('../../icon/iconfont.svg#iconfont') format('svg');
+				/* iOS 4.1- */
+			}
+			.iconfont {
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			.icon-wenjian:before {
+				content: "\e600";
+			}
+			.mui-scroll-wrapper {
+				margin-top: 44px;
+				margin-bottom: 60px;
+			}
+			.fl {
+				float: left;
+			}
+			.fr {
+				float: right;
+			}
+			.clear {
+				zoom: 1;
+			}
+			.clear:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			.wid30 {
+				width: 50px;
+			}
+			.wid70 {
+				overflow: hidden;
+			}
+			.paddl10 {
+				padding-left: 10px;
+			}
+			.paddr10 {
+				padding-right: 10px;
+			}
+			.hei110 {
+				height: 50px;
+			}
+			.linehei110 {
+				line-height: 50px;
+			}
+			.linehei68 {
+				line-height: 34px;
+			}
+			.iptwrap {
+				padding: 0;
+				margin: 8px 0 8px 0px;
+				height: 34px;
+			}
+			.iptwrap input {
+				font-size: 14px;
+				border: 0;
+				color: #5d5d5d;
+				margin: 0;
+				height: 30px;
+				margin: 2px 0;
+				padding: 0;
+				line-height: 1;
+			}
+			.colorgray {
+				color: #5f5d5d;
+			}
+			.colorg {
+				color: #bec0c2;
+			}
+			.gap {
+				height: 10px;
+				background-color: #F2F2F2;
+			}
+			#border-none {
+				background-color: #FFFFFF;
+			}
+			.wid20 {
+				width: 50px;
+			}
+			.wid50 {
+				overflow: hidden;
+			}
+			.gWeight,
+			.gValue {
+				background-color: #FFFFFF;
+				border-bottom: 1px solid #E8E8E8;
+			}
+			.fr {
+				color: #a1a1a1;
+			}
+			.addborder {
+				border-left: 1px solid #e8e8e8;
+			}
+			.wid40 {
+				width: 40%;
+			}
+			.goods-pic,
+			.addclass {
+				background-color: #FFFFFF;
+			}
+			.goods-pic {
+				width: 100%;
+				padding: 15px 20px
+			}
+			#footer {
+				height: 60px;
+				background-color: #FFFFFF;
+				padding: 6px 20px;
+				overflow: hidden;
+			}
+			.next-step {
+				text-align: center;
+				background-color: #3ba767;
+				width: 100%;
+				height: 100%;
+				line-height: 48px;
+				color: #ceefe4;
+			}
+			input[type=number] {
+				padding: 0 15px;
+			}
+			.mui-input-row .mui-input-clear~.mui-icon-clear {
+				top: 5px;
+			}
+			.hidden {
+				width: 0;
+				height: 0;
+			}
+			.pos {
+				position: absolute;
+				right: -8px;
+				color: #3ba767;
+			}
+			.persee-con {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				z-index: 1000;
+				top: 0;
+				left: 0;
+			}
+			.handle {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+			}
+			.handle span {
+				color: #FFFFFF;
+			}
+			.num {
+				position: absolute;
+				bottom: 10px;
+				left: 45%;
+				color: #FFFFFF;
+			}
+			.hidden {
+				display: none;
+			}
+			.presee,
+			.backmask {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				z-index: 30;
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+			.picwraps {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+			}
+			.bars {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+				color: #FFFFFF;
+			}
+			.presee .mui-slider {
+				width: 80%;
+				height: 100%;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			.presee .mui-slider .mui-slider-item {
+				padding: 0 10px;
+				height: 100%;
+				box-sizing: border-box;
+			}
+			.presee .mui-slider .mui-slider-item a {
+				height: 100%;
+				position: relative;
+			}
+			.presee .mui-slider .mui-slider-item a img {
+				position: absolute;
+			}
+			div.mui-scroll-wrapper {
+				top: 8px;
+			}
+			.myicon {
+				display: block;
+				width: 34px;
+				height: 34px;
+				margin: 8px;
+			}
+			.myicon img {
+				height: 34px;
+				width: 34px;
+			}
+			#gname {
+				padding-right: 15px;
+			}
+			.font-14 {
+				font-size: 14px;
+			}
+			.addpad {
+				padding-left: 15px;
+			}
+			.addline {
+				font-size: 14px;
+				line-height: 34px;
+				color: #acacac;
+			}
+			.drafticon {
+				display: block;
+				margin: 6px;
+				width: 40px;
+				height: 40px;
+			}
+			.drafticon img {
+				width: 40px;
+				height: 40px;
+			}
+			#head {
+				padding-right: 0px;
+			}
+			.goods-pic .mui-table-view {
+				width: 100%;
+				background-color: #FFFFFF;
+			}
+			.goods-pic .mui-table-view:before,
+			.mui-table-view:after {
+				height: 0;
+			}
+			.goods-pic .mui-table-view .mui-table-view-cell {
+				float: left;
+				padding: 0 !important;
+				width: 23.5%;
+			}
+			.addmarr {
+				margin-right: 2%;
+			}
+			.goods-pic .mui-table-view,
+			.mui-table-view-cell:after {
+				height: 0;
+			}
+			.goods-pic .mui-table-view .mui-table-view-cell a {
+				width: 100%;
+				height: 100%;
+				margin: 0!important;
+			}
+			.goods-pic .mui-table-view .mui-table-view-cell a span {
+				font-size: 24px;
+				color: #D1D1D1;
+				text-align: center;
+				height: 100%;
+				width: 100%;
+			}
+			.addclass {
+				border: 1px solid #D1D1D1;
+			}
+			#take-photo {
+				padding: 0;
+			}
+			.clear {
+				zoom: 1;
+			}
+			.clear:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			.borleft {
+				border-left: 1px solid #D1D1D1;
+			}
+			.pictips {
+				padding: 0 15px;
+				word-break: break-all;
+				color: #acacac;
+				font-size: 14px;
+			}
+			.gName .info {
+				background-color: #FFFFFF;
+			}
+			.cancel {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #f6ccc2;
+				text-align: center;
+				color: #da2a02;
+			}
+			.ok {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #c4e8da;
+				text-align: center;
+				color: #029c5d;
+			}
+			.wron {
+				padding: 0 20px;
+			}
+			.draftinfo {
+				color: #000000;
+				padding: 10px 20px;
+			}
+			.backhandle {
+				background-color: #FFFFFF;
+				position: absolute;
+				top: 60px;
+				left: 0;
+				width: 270px;
+				overflow: hidden;
+				word-break: break-all;
+			}
+			#gweight {
+				padding: 0;
+			}
+			#gvalue {
+				padding: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" id="head">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">create order</h1>
+			<span class="mui-pull-right draft drafticon" id="drafticon">
+				<img src="../../img/draft.png"/>
+			</span>
+		</header>
+		<footer class="mui-bar mui-bar-footer" id="footer">
+			<div class="next-step" id="next">Next Step</div>
+		</footer>
+		<div class="presee mui-hidden">
+			<div class="picwraps">
+				<div class="mui-slider" id="slider">
+					<div class="mui-slider-group" id="preseepic">
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="backmask mui-hidden">
+			<div class="backhandle mui-hidden">
+				<div class="draftinfo">
+					Do you want to add this order to draft?
+				</div>
+				<p class="wron">you can use draft orde r to resend</p>
+				<div class="ok">ok</div>
+				<div class="cancel">cancel</div>
+			</div>
+		</div>
+		<div id="delete" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="bycamera">拍照</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="bygallery">相册</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#delete"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
+		<div id="handle" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a>确认</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>重新选择</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#handle"><b>返回</b></a>
+				</li>
+			</ul>
+		</div>
+		<div class="mui-content">
+			<div class="order-content clear">
+				<div class="gName clear hei110" style="background: #FFFFFF;">
+					<div class="wid30 fl hei110 linehei110 colorg">
+						<span class="colorgray myicon"><img src="../../img/host.png"></span>
+					</div>
+					<div class="wid70 paddr10 hei110">
+						<div class="iptwrap mui-input-row">
+							<input type="text" class="linehei68 mui-input-clear" id="gname" placeholder="Name" />
+						</div>
+					</div>
+				</div>
+				<div class="gap"></div>
+				<div class="gWeight clear">
+					<div class="wid30 fl hei110 linehei110 colorg">
+						<span class="colorgray myicon"><img src="../../img/weight.png"></span>
+					</div>
+					<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
+						<span class="kg-g font-14">Kg</span>
+					</div>
+					<div class="wid50 hei110">
+						<div class="iptwrap mui-input-row">
+							<input type="number" class="linehei68 mui-input-clear" id="gweight" placeholder="Weight" />
+						</div>
+					</div>
+				</div>
+				<div class="gValue clear">
+					<div class="wid30 fl hei110 linehei110 colorg">
+						<span class="colorgray myicon"><img src="../../img/value.png"></span>
+					</div>
+					<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
+						<span class="kg-g font-14">$</span>
+					</div>
+					<div class="wid50 hei110">
+						<div class="iptwrap mui-input-row">
+							<input type="number" class="linehei68 mui-input-clear" id="gvalue" placeholder="Value" />
+						</div>
+					</div>
+				</div>
+				<div class="info clear" id="info" style="background: #FFFFFF;">
+					<div class="wid30 fl hei110 linehei110 colorg">
+						<span class="colorgray myicon"><img src="../../img/coment.png"></span>
+					</div>
+					<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
+						<span class="kg-g font-14 myicon"><img src="../../img/enter.png"></span>
+					</div>
+					<div class="wid50 hei110">
+						<div class="iptwrap mui-input-row  addline" id="gettext">
+							Comment
+						</div>
+					</div>
+				</div>
+				<div class="gap"></div>
+				<div class="goods-pic">
+					<ul class="mui-table-view clear" id="take-photo">
+						<li class="mui-table-view-cell img-box addmarr" data-index='0'>
+							<a href="#delete" class="picpre">
+								<span class="mui-icon mui-icon-plusempty addclass"></span>
+							</a>
+						</li>
+						<li class="mui-table-view-cell img-box addmarr" data-index='1'>
+							<a href="#delete" class="picpre">
+								<span class="mui-icon mui-icon-plusempty addclass"></span>
+							</a>
+						</li>
+						<li class="mui-table-view-cell img-box addmarr" data-index='2'>
+							<a href="#delete" class="picpre">
+								<span class="mui-icon mui-icon-plusempty addclass"></span>
+							</a>
+						</li>
+						<li class="mui-table-view-cell img-box" data-index='3'>
+							<a href="#delete" class="picpre">
+								<span class="mui-icon mui-icon-plusempty addclass"></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="pictips" style="background: #FFFFFF;">! please add goods picture to make the order more detail</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../js/utils.js"></script>
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		var getdata = {};
+		getdata.gName = "";
+		getdata.gWeight = "";
+		getdata.gValue = "";
+		getdata.pics = "";
+		getdata.info = "";
+
+		function layout() {
+			var h = $('.picpre').width();
+			$('.picpre').height(h);
+			$('#take-photo').height(h);
+			$('.addclass').css('line-height', h + 'px')
+		}
+		layout();
+		mui.plusReady(function() {
+			mui('#offCanvasSideScroll').scroll();
+			plus.webview.currentWebview().setStyle({
+				scrollIndicator: "none"
+			})
+			document.getElementById('info').addEventListener('tap', function() {
+				var param = {};
+				if($(this).text()!='Comment'){
+					var texts = $(this).text();
+					if(texts.lastIndexOf('(')!=-1){
+						var n = texts.lastIndexOf('(');
+						var ipt = texts.substring(0,n);
+						var choose = texts.substring(n);
+						param.ipt = ipt;
+						param.choose = choose;
+					}else{
+						param.ipt = ipt;
+					}
+				}
+				openWindow('./comment.html',param);
+			})
+			document.getElementById('next').addEventListener('tap', function() {
+					var name = $.trim($("#gname").val());
+					var weight = parseInt($.trim($("#gweight").val()));
+					var value = parseInt($.trim($("#gvalue").val()));
+					var info = $.trim($('#gettext').val());
+					if (validate()) { // 验证成功
+						var param = {
+							gName: name,
+							gWeight: weight,
+							gValue: value,
+							info: info
+						}
+						if (!setpicid()) {
+							param.pics = "";
+						} else {
+							param.pics = setpicid();
+						}
+						var draft = JSON.parse(plus.storage.getItem("draft-datas"));
+						if (draft && draft.res && draft.res.orderId) {
+							param.orderId = draft.res.orderId;
+						}
+						openNewWindow('./create-next.html', param)
+					} else {
+						mui.toast("name is unkown");
+					}
+				})
+				// 信息验证
+			$('.ok').on('tap', function() {
+				$('.backmask').addClass('mui-hidden');
+				$('.backhandle').addClass('mui-hidden');
+				myAjax({
+					url: 'order/resOrderByGood',
+					data: getdata
+				}, function() {
+					openNewWindow("./draft.html");
+					mui.toast('保存草稿成功！');
+				}, function(xhr, type) {
+					mui.toast('出错了' + type)
+				})
+			})
+			$('.cancel').on('tap', function() {
+				plus.webview.getLaunchWebview().show('slide-in-left');
+				closewebview();
+			})
+
+			function toverticalcenter() {
+				var item = $('.preimg')
+				var len = item.length;
+				for (var i = 0; i < len; i++) {
+					var t = ($(window).height() - item.eq(i).height()) / 2
+					item.eq(i).css('top', t)
+				}
+			}
+
+			function validate() {
+				var flag = false;
+				var gname = $.trim($("#gname").val());
+				if (gname) {
+					flag = true;
+				}
+				return flag;
+			}
+			window.addEventListener('getinfo', function(eve) {
+				$('#gettext').text(eve.detail.info).css('color', '#5d5d5d');
+			})
+			var iw, _this;
+			mui('#take-photo').on('tap', '.addclass', function(e) {
+				iw = $(this).outerWidth()
+				_this = this;
+			})
+			$('.presee').on('tap', function() {
+				$(this).addClass('mui-hidden')
+			})
+			$('.bycamera').on('tap', function() {
+				bycamera(_this)
+				mui('#delete').popover('toggle')
+			})
+			$('.bygallery').on('tap', function() {
+				bygallery(_this);
+				mui('#delete').popover('toggle')
+			})
+			$('.draft').on('tap', function() {
+				openWindow('./draft.html')
+			})
+			mui.back = function() {
+				if ($('#gname').val()) {
+					getdata.gName = $('#gname').val();
+					getdata.gWeight = $('#gweight').val() || 0;
+					getdata.gValue = $('#gvalue').val() || 0;
+					getdata.info = $('#gettext').val() || "";
+					getdata.pics = setpicid()
+					getdata.status = 0;
+					console.log(getdata.orderId)
+					showobj(getdata)
+					$('.backmask').removeClass('mui-hidden');
+					$('.backhandle').removeClass('mui-hidden')
+					var l = ($(window).width() - 270) / 2;
+					var t = ($(window).height() - $('.backhandle').height()) / 2;
+					$('.backhandle').css({
+						'left': l,
+						'top': t
+					})
+				} else {
+					plus.webview.getLaunchWebview().show('slide-in-left');
+					closewebview()
+				}
+				return false
+			}
+
+			function closewebview() {
+				if (plus.webview.getWebviewById('sendorder/createorder')) {
+					plus.webview.getWebviewById('sendorder/createorder').close()
+				}
+				if (plus.webview.getWebviewById('create-next')) {
+					plus.webview.getWebviewById('create-next').close();
+				}
+				if (plus.webview.getWebviewById('pickaddr')) {
+					plus.webview.getWebviewById('pickaddr').close();
+				}
+				if (plus.webview.getWebviewById('chooseaddr')) {
+					plus.webview.getWebviewById('chooseaddr').close();
+				}
+				if (plus.webview.getWebviewById('draft')) {
+					plus.webview.getWebviewById('draft')
+				}
+			}
+
+			function bycamera(contexts) {
+				$(contexts).parent().attr('href', "#");
+				var camera = plus.camera.getCamera();
+				var res = camera.supportedImageResolutions[0];
+				var fmt = camera.supportedImageFormats[0];
+				camera.captureImage(function(path) {
+					dealpic(path, contexts)
+				}, function() {
+					$(contexts).parent().attr('href', "#delete");
+				})
+			}
+
+			function dealpic(path, contexts) {
+				plus.io.resolveLocalFileSystemURL(path, function(entry) {
+					var local = entry.toLocalURL();
+					dealImage(local, {
+						width: 17 * 4,
+						quality: 0.5
+					}, function(base) {
+						$(contexts).removeClass('mui-icon-plusempty mui-icon addclass').addClass('mui-spinner')
+						console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
+						sendData("common/file/imgUp", base, contexts, local);
+					})
+				})
+			}
+
+			function bygallery(context) {
+				$(context).parent().attr('href', "#");
+				plus.gallery.pick(function(path) {
+					dealpic(path, context);
+				}, function(e) {
+					$(context).parent().attr('href', "#delete");
+					showobj(e)
+				}, {
+					filter: 'image',
+					multiple: false
+				})
+			}
+
+			function sendData(urls, base, context, path) {
+				var pics
+				myAjax({
+					url: urls,
+					data: {
+						imgName: Math.floor(Math.random() * 100000) + ".jpg",
+						imgData: base, // base字符串
+						dataLength: base.length // base字符串长度
+					}
+				}, function(data) {
+					var img = $('<span class="wids"><img title=' + path + ' src=' + base + ' alt=' + data.res.fid + '></span>');
+					$(context).parent().append(img);
+					$('img', '.wids').css({
+						width: iw,
+						height: iw
+					})
+					$(context).remove();
+					setpicid();
+				}, function(xhr, type) {
+					console.log("错误信息显示：" + type);
+					errorhandle(type);
+				})
+			}
+
+			function setpicid() {
+				var pics = [];
+				var num = $('#take-photo').find(".wids").length;
+				for (var i = 0; i < num; i++) {
+					pics[i] = $('img', $('#take-photo').find(".wids").eq(i)).attr('alt');
+				}
+				return pics.join(',');
+			}
+			mui('.mui-table-view-cell').on('tap', '.wids', function() {
+				var ind = $(this).parents('.mui-table-view-cell').attr('data-index');
+				var num = $('.mui-slider-item', '#preseepic').length;
+				var inner = "";
+				for (var k = 0; k < 4; k++) {
+					inner += '<div class="mui-slider-item"><a href="javascript:void(0)"><img src="" class="preimg"></a></div>';
+				}
+				$('#preseepic').html(inner)
+				$('.presee').removeClass('mui-hidden');
+				var haspic = $('.picpre');
+				var removeArr = [];
+				for (var i = 0; i < 4; i++) {
+					$('.mui-slider-item', '#preseepic').attr('data-index', i);
+					if (Boolean($('span', haspic.eq(i)).hasClass('wids'))) {
+						var path = $('img', haspic.eq(i)).attr('title');
+						$('.preimg', '#preseepic').eq(i).attr('src', path)
+					} else {
+						removeArr.push(i)
+					}
+				}
+				for (var j = removeArr.length; j > 0; j--) {
+					$('.mui-slider-item', '#preseepic').eq(removeArr[j - 1]).remove();
+				}
+				toverticalcenter();
+				var gallery = mui('#slider');
+				gallery.slider({
+					interval: 0
+				}).gotoItem(ind);
+			})
+
+			function dealImage(path, obj, callback) {
+				var img = new Image();
+				img.src = path;
+				img.onload = function() {
+					var that = this;
+					// 默认按比例压缩
+					var w = that.width,
+						h = that.height,
+						scale = w / h;
+					w = obj.width || w;
+					h = obj.height || (w / scale);
+					var quality = 0.7; // 默认图片质量为0.7
+					//生成canvas
+					var canvas = document.createElement('canvas');
+					var ctx = canvas.getContext('2d');
+					// 创建属性节点
+					var anw = document.createAttribute("width");
+					anw.nodeValue = w;
+					var anh = document.createAttribute("height");
+					anh.nodeValue = h;
+					canvas.setAttributeNode(anw);
+					canvas.setAttributeNode(anh);
+					ctx.drawImage(that, 0, 0, w, h);
+					// 图像质量
+					if (obj.quality && obj.quality <= 1 && obj.quality > 0) {
+						quality = obj.quality;
+					}
+					// quality值越小，所绘制出的图像越模糊
+					var base64 = canvas.toDataURL('image/jpeg', quality);
+					// 回调函数返回base64的值
+					callback(base64);
+				}
+			}
+			window.addEventListener('getdraftdata', function(eve) {
+				var datas = eve.detail.formdatas;
+				console.log('hehehe')
+				showobj(datas);
+			})
+			window.addEventListener('getdraft', function(eve) {
+				getdata = eve.detail;
+			})
+		})
+		 window.addEventListener("draft:datas", function(eve) {
+			var iw = $('.addclass').outerWidth()
+			var datas = JSON.parse(plus.storage.getItem("draft-datas"));
+			console.log(plus.storage.getItem("draft-datas"));
+			$("#gname").val(datas.res.gName); // 商品名
+			$("#gweight").val(datas.res.gWeight);
+			$("#gvalue").val(datas.res.gValue);
+			$("#gettext").val(datas.res.info);
+			getdata.orderId = datas.res.orderId; // 该商品ID
+			var html = "<a href='#delete' class='picpre'><span class='mui-icon mui-icon-plusempty addclass' style='height: " + iw + "px;line-height:" + iw + "px'></span></a>";
+			$(".img-box").html(html);
+			if (datas.res.pics.length > 0) {
+				var n = BASEURL.indexOf('/api/');
+				var per = BASEURL.substring(0, n);
+				var pic = datas.res.pics;
+				var len = pic.length;
+				console.log(JSON.stringify(pic));
+				if (len > 0) {
+					for (var i = 0; i < len; i++) {
+						var url = per + pic[i].path;
+						var html = '<a  href="#" class="picpre"><span class="wids"><img alt="' + pic[i].id + '" title="' + url + '" height="' + iw + 'px" width="' + iw + 'px" src=' + url + '></span></a>';
+						console.log(html)
+						document.querySelectorAll(".img-box")[i].innerHTML = html;
+					}
+				}
+			}
+		})
+	</script>
+
+</html>

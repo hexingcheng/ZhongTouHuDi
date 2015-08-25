@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../css/wallet-coment.css"/>
+    <script src="../../js/mui.min.js"></script>
+    <style type="text/css">
+    	.mui-table-view-cell span {display: inline-block;}
+    	.left-title {width: 50%;text-align: left;float: left;}
+    	.right-content {width: 50%;float: right;text-align: right;}
+    	.available-cash {font-size: 1.5em;}
+    	.mui-btn.button-next {background-color: #ff8474;color: #fff;padding: 10px 35%;}
+    	.amount-label {padding: 0.5em 0 0 0;color: #666;}
+    	#amount {margin: 0;border: none;background-color: #ddffeb;width: 100%;border-radius: 9px;}
+    	.withdraw-way {padding: 0 0 0.5em 0;}
+    	.paypal-box {position: relative;}
+    	.paypal-box span {width: 3em;height: 3em;}
+    	.left-logo {background: transparent url(../../img/wallet-logo.png) no-repeat 10px center;background-size: 170% 70%;}
+    	.right-logo {background: transparent url(../../img/wallet-logo.png) no-repeat 100% center;margin-right: 0.7em;background-size: 170% 70%;}
+    	.use-paypal {position: absolute;left: 3em;right: 3em;top: 0.3em;padding-left: 2em;}
+    </style>
+</head>
+<body class="bg-color">
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">Withdraw</h1>
+	</header>
+	<div class="mui-content">
+		<ul class="mui-table-view mui-grid-9 mui-grid-view">
+			<li class="mui-table-view-cell mui-media mui-col-xs-12">
+				<span class="left-title">Total</span>
+				<span class="right-content style-money available-cash">$<span id="available-cash">20.00</span></span>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-12">
+				<span class="left-title">Date</span>
+				<span class="right-content">2015-06-20 18:07</span>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-12">
+				<span class="left-title">Use Coupon</span>
+				<span class="right-content mui-h4">$10.00</span>
+			</li>
+			
+			<li class="mui-table-view-cell mui-media mui-col-xs-12">
+				<div class="paypal-box">
+					<span class="left-logo mui-pull-left"></span>
+					<span class="right-logo mui-pull-right"></span>
+					<div class="use-paypal">
+						<div style="font-size: 1.2em;padding: 0.3em 0;" class="mui-ellipsis mui-text-left">
+							Use Wallet
+						</div>
+						<p style="color: #777;" class="mui-text-left">you have $300.00 left</p>
+					</div>
+				</div>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-12">
+				<div class="paypal-box">
+					<span class="left-logo mui-pull-left"></span>
+					<span class="right-logo mui-pull-right"></span>
+					<div class="use-paypal">
+						<div style="color: #002e86;font-size: 1.2em;padding: 0.3em 0;" class="mui-ellipsis mui-text-left">
+							Use PayPal
+						</div>
+						<p style="color: #777;" class="mui-text-left">go to paypal page</p>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+		<button id="next-step" class="mui-btn button-next">Next Step</button>
+	</footer>
+	<script src="../../js/utils.js"></script>
+	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function(){
+			// 定单号
+			var orderid = plus.storage.getItem("my-send-order");
+			// 付款按钮
+			var cpage = plus.webview.currentWebview();
+			document.getElementById("next-step").addEventListener("tap", function(){
+				plus.nativeUI.showWaiting("付款中...", {
+					background: '#d1d1d1'
+				})
+				mui.ajax(BASEURL + "pay/temp", {
+					data : {
+						orderId : orderid
+					},
+					type : "post",
+					success : function(data){
+						if(data.ret == 1){
+							plus.nativeUI.closeWaiting();
+							openWindow("./result.html")
+							setTimeout(function(){
+								cpage.close("none", 0)
+							}, 230)
+						}
+					},
+					error : function(xhr, type){
+						console.log(xhr.status);			// 支付接口 404
+					}
+				})
+			}, false)
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+[
+	{
+		"value" : "cq",
+		"text" : "重庆",
+		"citys" : [
+			{"value" : "cq", "text" : "重庆市"}
+		]
+	},
+	{
+		"value" : "sc",
+		"text" : "四川",
+		"citys" : [
+			{"value" : "cd", "text" : "成都市"},
+			{"value" : "dz", "text" : "达州市"},
+			{"value" : "nc", "text" : "南充市"},
+			{"value" : "xh", "text" : "宣汉市"}
+		]
+	},
+	{
+		"value" : "yn",
+		"text" : "云南",
+		"citys" : [
+			{"value" : "dl", "text" : "大理市"},
+			{"value" : "km", "text" : "昆明市"},
+			{"value" : "qj", "text" : "曲靖市"}
+		]
+	}
+]

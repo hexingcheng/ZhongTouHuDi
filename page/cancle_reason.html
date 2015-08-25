@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/main.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav" style="box-shadow: none;">
+	  <a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+	  <a class="mui-icon mui-icon-reply mui-pull-right"></a>
+	  <h1 class="mui-title">取消发单原因</h1>
+</header>
+<div class="mui-content">
+	
+
+	<form class="mui-input-group mui-par" style="margin: 0; padding: 0;border: 0;background-color: #EFEFF4;">
+		<div class="mui-input-row mui-radio mui-left" style="margin: 0; border: 0;">
+			<label>按错了</label>
+			<input name="radio1" type="radio">
+		</div>
+		<div class="mui-input-row mui-radio mui-left">
+			<label>重新议价抢单</label>
+			<input name="radio2" type="radio" >
+		</div>
+		<div class="mui-input-row mui-radio mui-left">
+			<label>不接了</label>
+			<input name="radio3" type="radio">
+		</div>
+		<div class="mui-input-row mui-radio mui-left">
+			<label>其他原因</label>
+			<input name="radio4" type="radio">
+		</div>
+		
+	</form>
+	     <div class="cancle_re_button" id="cancle_reason_sub">提交</div>
+</div>
+</body>
+<script type="text/javascript">
+	document.getElementById('cancle_reason_sub').addEventListener('tap', function() {
+  //打开关于页面
+  mui.openWindow({
+    url: 'index.html', 
+    id:'index.html'
+  });
+});
+	
+</script>
+</html>

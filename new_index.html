@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<link href="./css/mui.css" rel="stylesheet" />
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+			html,
+			body,
+			.mui-content {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				background-color: #d9dadb;
+			}
+			#offCanvasWrapper {
+				width: 100%;
+			}
+			.mui-bar {
+				background-color: #46ac6f;
+			}
+			.mui-bar a,
+			.mui-bar h1 {
+				color: #FFFFFF;
+			}
+			.mui-slider-title {
+				background-color: #103f4b;
+				opacity: 0.6;
+			}
+			.mui-slider-indicator .mui-indicator {
+				width: 10px;
+				height: 10px;
+				margin: 10px 5px;
+			}
+			.mui-slider-indicator {
+				bottom: -5px;
+			}
+			.func {
+				overflow: hidden;
+				box-sizing: border-box;
+				margin-bottom: 0.5%;
+				width: 33%;
+				height: 49.75%;
+				float: left;
+				background-color: #ffffff;
+			}
+			.rlb {
+				margin-left: 0.5%;
+				margin-right: 0.5%;
+			}
+			.mui-content-padded {
+				width: 100%;
+				height: 100%;
+				padding: 0;
+				margin: 0;
+				overflow: hidden;
+			}
+			.width400 img {
+				width: 30%;
+				height: 30%;
+				display: inline-block;
+				margin: 35%;
+			}
+			.imgwrap {
+				position: relative;
+				box-sizing: border-box;
+				height: 100%;
+				width: 100%;
+				/*border-top: 3px solid #FFFFFF;*/
+			}
+			.picintro {
+				position: absolute;
+				width: 100%;
+				line-height: 20px;
+				text-align: center;
+				color: #06495a;
+				bottom: 25%;
+				font-size: 20px;
+			}
+			.addra {
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+				border-radius: 10px;
+			}
+			#offCanvasSide {
+				height: 100%;
+				background-color: #03242c;
+			}
+			.per-infos {
+				width: 100%;
+				padding-top: 40px;
+				padding-bottom: 20px;
+			}
+			.picwrap {
+				background-color: #FFFFFF;
+				margin: 0;
+				width: 85px;
+				height: 85px;
+				border: 2px solid #97a5a8;
+				border-radius: 50%;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			.picwrap img {
+				border: 0;
+				outline: none;
+				display: inline-block;
+				border-radius: 50%;
+				overflow: hidden;
+			}
+			.myname,
+			.mytitle {
+				margin: 0;
+				padding: 0;
+				line-height: 20px;
+				color: #FFFFFF;
+				text-align: center;
+			}
+			#caidan,
+			#caidan li {
+				background-color: #03242c;
+			}
+			#caidan p {
+				color: #FFFFFF;
+			}
+			#caidan span {
+				color: #FFFFFF;
+			}
+			.mui-table-view:before {
+				top: -1px;
+				background-color: #063d4b;
+			}
+			.mui-table-view-cell:after {
+				left: 0;
+				background-color: #063d4b;
+			}
+			.mui-table-view:after {
+				background-color: #063d4b;
+			}
+			.addlmar {
+				margin-left: 30px;
+			}
+			.menulist {
+				padding: 0;
+				margin: 0;
+			}
+			.list {
+				border-bottom: 1px solid #063d4b;
+				position: relative;
+				height: 52px;
+			}
+			.icon {
+				position: absolute;
+			}
+			.navagator {
+				padding: 5px 10px;
+				line-height: 42px;
+				color: #FFFFFF;
+				height: 100%;
+				position: absolute;
+			}
+			.navagator {
+				top: 0;
+				right: 0;
+				font-size: 18px;
+			}
+			.menucon {
+				font-size: 14px;
+				height: 52px;
+				padding-left: 55px;
+				line-height: 52px;
+				color: #c8d8e8;
+			}
+			.sendtips,
+			.recetips {
+				vertical-align: top;
+				display: inline-block;
+				height: 16px;
+				width: 16px;
+				margin: 18px 0 18px 10px;
+				border-radius: 50%;
+				color: #FFFFFF;
+				font-size: 12px;
+				line-height: 16px;
+				text-align: center;
+			}
+			.sendtips {
+				background-color: #23a0cf;
+			}
+			.recetips {
+				background-color: #3fc776;
+			}
+			.addtopbor {
+				border-top: 1px solid #063d4b;
+			}
+			#offCanvasSide .mui-scroll-wrapper {
+				bottom: 60px;
+			}
+			.contact {
+				font-size: 14px;
+				color: #FFFFFF;
+				text-align: center;
+				background-color: #063d4b;
+				height: 52px;
+				line-height: 52px;
+				width: 100%;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index: 100;
+			}
+			.tact {
+				margin-right: 10px;
+				font-size: 18px;
+			}
+			#header {
+				height: 52px;
+			}
+			#header h1 {
+				font-size: 16px;
+				padding-left: 10px;
+				text-align: left;
+				line-height: 52px;
+			}
+			.mui-bar .mui-icon {
+				padding-top: 18px;
+			}
+			.mui-scroll {
+				/*height: 105%;*/
+			}
+			.mytitle {
+				font-size: 15px;
+			}
+			.myname {
+				font-size: 15px;
+				padding-top: 8px;
+			}
+			.mui-scroll {
+				padding: 0;
+				margin: 0;
+			}
+			.slide {
+				margin: 0;
+				padding: 0;  
+				position: absolute;
+				top: 0;
+				bottom: 55%;
+				right: 0;
+				left: 0;
+			}
+			#slider {
+				width: 100%;
+				margin: 0;
+				padding: 0;
+				height: 100%;
+			}
+			#slider-group,
+			#slider-group .mui-slider-item,
+			#slider-group .mui-slider-item a,
+			#slider-group .mui-slider-item img {
+				margin: 0;
+				padding: 0;
+				width: 100%!important;
+				height: 100%!important;
+			}
+			.functions {
+				padding: 3%;
+				box-sizing: border-box;
+				height: 55%;
+				width: 100%;
+				position: absolute;
+				top: 45%;
+			}
+			.mui-bar-nav~.mui-content {
+				padding-top: 52px;
+			}
+			.mui-slider-item{
+				height: 100px;
+			}
+			.mui-slider-item a,.mui-slider-item img{
+				height: 100%;
+			}
+			.myicon{
+				display: block;
+				width: 52px;
+				height: 52px;
+			}
+			.myicon img{
+				height: 100%;
+				width: 100%;
+			}
+			.wrapss{
+				width: 100px;
+				margin: 0 auto;
+				height: 30px;
+				line-height: 30px;
+				padding: 0;
+			}
+			.gift{
+				float: left;
+				width: 30px;
+				height: 30px;
+			}
+			.gift img{
+				height: 100%;
+				width: 100%;
+			}
+			.admira{
+				color: #FFFFFF;
+			}
+			#header{
+				padding: 0;
+			}
+			.headicon{
+				height: 40px;
+				width: 40px;
+				margin: 6px;
+				display: block;
+			}
+			.headicon img{
+				height: 40px;
+				width: 40px;
+			}
+			.width400{
+				width: 100%;;
+			}
+			</style>
+	</head>
+
+	<body>
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<aside id="offCanvasSide" class="mui-off-canvas-left mui-slide-in">
+				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="per-infos">
+							<div class="infowrap">
+								<div class="picwrap">
+									<img src="img/defualt.png" class="pho" width="100%" height="100%"/>
+								</div>
+								<p class="myname">Hammond Danil</p>
+								<p class="mytitle">
+									<div class="wrapss">
+										<span class="gift"><img src="img/gift.png"></span>
+										<span class="admira">admira</span>
+									</div>
+								</p>
+							</div>
+						</div>
+						<ul class="menulist">
+							<li class="list addtopbor" data-src="./page/wallet/my-wallet.html">
+								<span class="icon myicon"><img src="img/wallet1.png"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">my wallet</div>
+							</li>
+							<li class="list" data-src="./page/mysendorder/my-send-order.html">
+								<span class="icon myicon"><img src="img/2deliverorder.png"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">my billing order<span class="sendtips">5</span></div>
+							</li>
+							<li class="list" data-src="./page/mygetorder/my-get-order.html">
+								<span class="icon myicon"><img src="img/send-order.pn2g.png"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">my receving order<span class="recetips">5</span></div>
+							</li>
+							<li class="list" data-src="">
+								<span class="icon myicon"><img src="img/2application.png"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">deliver application</div>
+							</li>
+							<li class="list" data-src="./page/applyfor/applyPerson.html">
+								<span class="icon myicon"><img src="img/2operation.png"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon" id="deliver_apply">oparating instruction</div>
+							</li>
+							<li class="list" data-src="page/setting/self-info-setting.html">
+								<span class="icon myicon"><img src="img/2set-up.png"></span>
+								<span class="navagator mui-icon-arrowright mui-icon"></span>
+								<div class="menucon">setting up</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="contact">
+					<div class="centers">
+						<span class="myicon mui-pull-left"><img src="img/contact.png"></span>
+						<span class="mui-pull-left">Contact Customer Service</span>
+					</div>
+				</div>
+			</aside>
+			<div class="mui-inner-wrap">
+				<header class="mui-bar mui-bar-nav" id="header">
+					<a class="mui-pull-left headicon" id="menu" href="#offCanvasSide">
+						<img src="img/menu.png"/>
+					</a>
+					<h1 class="mui-title">Along</h1>
+					<a class="headicon mui-pull-right" id="chat-info">
+						<img src="img/message.png"/>
+					</a>
+				</header>
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll" id="srcoll">
+						<div class="slide">
+							<div id="slider" class="mui-slider">
+								<div class="mui-slider-group" id="slider-group">
+									<!--<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="javascript:void(0)">
+											<img src="img/yuantiao.jpg">
+										</a>
+										<p class="mui-slider-title">
+											<span class="mui-icon mui-icon-chatbubble"></span>
+											<span>2015-8-15..</span>
+										</p>
+									</div>-->
+									<div class="mui-slider-item">
+										<a href="javascript:void(0)">
+											<img src="img/pic12.jpg">
+										</a>
+										<p class="mui-slider-title">
+										</p>
+									</div>
+									<div class="mui-slider-item">
+										<a href="javascript:void(0)">
+											<img src="img/pic11.jpg">
+										</a>
+										<p class="mui-slider-title">
+										</p>
+									</div>
+									<div class="mui-slider-item">
+										<a href="javascript:void(0)">
+											<img src="img/pic13.jpg">
+										</a>
+										<p class="mui-slider-title">
+										</p>
+									</div>
+									<div class="mui-slider-item">
+										<a href="javascript:void(0)">
+											<img src="img/pic14.jpg">
+										</a>
+										<p class="mui-slider-title">
+										</p>
+									</div>
+								</div>
+								<div class="mui-slider-indicator mui-text-right">
+									<div class="mui-indicator mui-active"></div>
+									<div class="mui-indicator"></div>
+									<div class="mui-indicator"></div>
+									<div class="mui-indicator"></div>
+								</div>
+							</div>
+						</div>
+						<div class="functions">
+							<div class="addra">
+								<div class="func" id="hlep-son">
+									<div class="imgwrap">
+										<div class="width400">
+											<img src="img/send.png" />
+										</div>
+										<div class="picintro">send</div>
+									</div>
+								</div>
+								<div class="func rlb" id="i-will">
+									<div class="imgwrap">
+										<div class="width400">
+											<img src="img/deliver.png" />
+										</div>
+										<div class="picintro">deliver</div>
+									</div>
+									<div></div>
+								</div>
+								<div class="func" id="trip-plan">
+									<div class="imgwrap">
+										<div class="width400">
+											<img src="img/plan.png" />
+										</div>
+										<div class="picintro">trip plan</div>
+									</div>
+								</div>
+								<div class="func" id='mysned'>
+									<div class="imgwrap">
+										<div class="width400">
+											<img src="img/order.png" />
+										</div>
+										<div class="picintro">order</div>
+									</div>
+								</div>
+								<div class="func rlb" id="mywallet">
+									<div class="imgwrap">
+										<div class="width400">
+											<img src="img/wallet.png" />
+										</div>
+										<div class="picintro">wallet</div>
+									</div>
+								</div>
+								<div id="go-help" class="func">
+									<div class="imgwrap">
+										<div class="width400">
+											<img src="img/help.png" />
+										</div>
+										<div class="picintro">help</div>
+									</div>
+								</div>
+							</div>
+						</div>    
+					</div>
+				</div>
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/utils.js"></script>
+		<script type="text/javascript" src="js/new_index.js"></script>
+		<script>
+			$('#offCanvasSide').css('width', '83%');
+			$('.width400').height($('.width400').width())
+			$('#srcoll').height($(window).height() - 52);
+			
+			document.getElementById("go-help").addEventListener("tap", function() {
+				openWindow("./page/help/help-index.html");
+			}, false)
+			
+			document.getElementById("trip-plan").addEventListener("tap", function(){
+				openWindow("./page/tripplan/send-trip.html");
+			})
+		</script>
+	</body>
+
+</html>

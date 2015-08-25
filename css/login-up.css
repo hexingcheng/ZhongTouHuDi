@@ -1,0 +1,111 @@
+body {
+	background: #fff;
+}
+#slider {
+	padding: 1.5em 0;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	z-index: 998;
+	background: #fff;
+	border-bottom: 1px solid #ccc;
+}
+.content-box {
+	position: absolute;
+	width: 100%;
+	top: 15%;
+	z-index: 997;
+}
+.mui-table-view-cell {
+	padding: 0;
+}
+#sliderControl {
+	width: 60%;
+	margin: 0 auto;
+}
+.app-introduce { 
+	padding: 2.5em 0;
+	margin-bottom: -2px;
+}
+#signin {
+	border: none;
+margin: 0.8em 0;
+}
+input[type="password"]{
+	border: none;
+}
+.first-input-row {
+	margin-bottom: -1px;
+}
+
+#signin .first-input-row input {
+	border-bottom: 2px solid #ddd;
+}
+
+
+.other-box {
+	width: 100%;
+height: 3em;
+line-height: 2em;
+padding-left: 1em;
+	
+}
+
+#signup .re-clear {
+	margin-bottom: -1px;
+}
+#signup .first-clear input{
+	border-bottom: 1px solid #ddd;
+}
+#signup .re-clear input{
+	border-bottom: 2px solid #ddd;
+}
+
+#signup .get-code {
+	width: 28%;
+border-left: 1px solid #ddd;
+height: 100%;
+text-align: center;
+line-height: 2.2em;
+margin-top: -1px;
+}
+.get-code-input {
+	width: 70%;
+height: 100%;
+display: inline-block;
+}
+.special-line {
+	border-bottom: 1px solid #ddd;
+}
+.clear-top-line {
+	margin-top: -1px;
+}
+.agree-box {
+	width: 100%;
+height: 3em;
+line-height: 3em;
+}
+#signup input[type="checkbox"] {
+	padding-top: 0.2em;
+}
+#signup .rules-box {
+	color: #008000;
+}
+.fp-link {
+	padding: 8px 0 0 3px;
+}
+.mui-segmented-control {
+	border-radius: 0.33em;
+}
+.product-name {
+	color: #0062CC;
+}
+.agree-box-line{
+	height: 3em;
+	line-height: 3em;
+}
+
+
+
+
