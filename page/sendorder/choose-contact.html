@@ -10,9 +10,10 @@
 		<style type="text/css">
 			.mui-bar {background-color: #3ba767;}
 			.mui-bar h1,.mui-bar a {color: #FFF;}
-			#done.btn-disabled {color: #ccc;}
-			.tel-name {width: 60%;padding-top: 2px;}
-			.tel-num {width: 40%;padding-top: 3px;}
+			.mui-table-view-cell {padding: 11px 40px 11px 15px;}
+			.msg-box {overflow: hidden;}
+			.tel-num {display: inline-block;width: 60%;height: 100%;}
+			.contact-name {display: inline-block;width: 40%;height: 100%;}
 		</style>
 	</head>
 
@@ -21,25 +22,18 @@
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">contacts</h1>
-			<a id='done' class="mui-btn mui-btn-link mui-pull-right">完成</a>
 		</header>
 		
 		<div class="mui-content">
-			<div class="">
-				<!--<div class="mui-content-padded">常用联系人</div>
-				<div id="usual-contact-list" class="mui-input-group"></div>-->
-				<div class="mui-content-padded">选择联系人</div>
-				<div id="contact-list" class="mui-input-group">
-					<!--<div class="mui-input-row mui-radio mui-left">
-						<label>
-							<span class="mui-pull-left mui-ellipsis tel-name">李鑫其</span>
-							<span class="tel-num mui-pull-right mui-ellipsis mui-h5 mui-text-right">18584654947</span>
-						</label>
-						<input name="style" type="radio" checked value="">
-					</div>-->
-					
-				</div>
-			</div>
+			<div class="mui-content-padded">选择联系人</div>
+			<ul id="contact-list" class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="mui-navigate-right msg-box">
+						<span class="mui-pull-left mui-ellipsis contact-name">李鑫其</span>
+						<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">18584654947</span>
+					</div>
+				</li>
+			</ul>
 		</div>
 		
 		<script type="text/html" id="template">
@@ -77,7 +71,7 @@
 					val.tel = this.getAttribute("data-contact");
 				})
 				
-				// 联系人选择列表
+				/*// 联系人选择列表
 				var type = getstorage("order-type");
 				var cpage = plus.webview.currentWebview();
 				var opener = plus.webview.currentWebview().opener();
@@ -99,7 +93,7 @@
 						mui.toast("请选择联系人");
 					}
 
-				}, false)
+				}, false)*/
 				
 			})
 		</script>
