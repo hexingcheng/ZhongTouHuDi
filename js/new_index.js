@@ -64,8 +64,8 @@ mui.plusReady(function() {
 										mui.toast('faild' + data.ret)
 									}
 								},
-								error: function(xhr,type) {
-										mui.toast(xhr.status+":"+type)
+								error: function(xhr, type) {
+									mui.toast(xhr.status + ":" + type)
 								}
 							})
 						}
@@ -161,14 +161,18 @@ window.addEventListener('closeMenu', function() {
 	//	$('#offCanvasSide').hide()
 })
 window.addEventListener('setaccount', function(eve) {
-	if (eve.detail.familyName && eve.detail.firstName) {
-		$('.myname').text(eve.detail.firstName + " " + eve.detail.familyName);
+	if (eve.detail.ptitle) {
+		$('.admira').text(eve.detail.ptitle);
 	}
-	$('.admira').text(eve.detail.ptitle);
-	var n = BASEURL.indexOf('/a');
-	var pic = BASEURL.substring(0, n);
 	if (eve.detail.headPic) {
-		$('.pho').attr('src', pic + eve.detail.headPic)
+		var n = BASEURL.indexOf('/a');
+		var u = BASEURL.substring(0, n);
+		var picurl = u + eve.detail.headPic;
+		$('.pho').attr('src', picurl)
+	}
+	if (eve.detail.firstName && eve.detail.familyName) {
+		var name = eve.detail.familyName + " " + eve.detail.firstName
+		$('.myname').text(name);
 	}
 })
 var first = null;
