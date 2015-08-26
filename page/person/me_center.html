@@ -38,7 +38,7 @@
 			       	background-color: white;
 			       	position: absolute;
 			       	overflow: hidden;
-	      	        display: none;
+	      	        /*display: none;*/
 			        top: 20%;
 			       	left: 50%;
 			       	margin-left: -7em;
@@ -210,7 +210,7 @@
 		    			console.log('取消！');
 		    		},{filter:"img"});
 		    	}) 
-		    	function getbg_pic(){
+		    	function getbg_pic(){  
 		    		var foo=plus.storage.getItem('bg_pic');
 		    		if(foo){
 		    			$('#bg_pic').attr('src',foo);
@@ -251,7 +251,7 @@
 		         var pwd=$('#check_pwd').val();
 		          	var data = {
 		          		pwd:pwd
-		          	   }
+		          	 }  
 		          mui.ajax(BASEURL+"account/updateSet",{
 		          	data:data,
 		      	    type:"post",

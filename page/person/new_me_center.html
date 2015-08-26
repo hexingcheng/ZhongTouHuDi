@@ -5,12 +5,11 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<title></title>
 	<script src="../../js/mui.min.js"></script>
-	<script src="../../js/jquery.min.js"></script>
-	<link rel="stylesheet" href="../../css/cy_log_up.css" />
-	<link rel="stylesheet" href="../../css/main.css" />
 	<link href="../../css/mui.min.css" rel="stylesheet" />
-	<link rel="stylesheet" href="../../css/font-awesome.css" />
 	<style>
+	html,body{
+		height: 100%;
+	}
 		.centerbg{
 			background-color: white !important;
 		}
@@ -18,12 +17,16 @@
 			height: 52px;
 			line-height: 52px ;
 			font-size: 16px !important; 
-			color: white;
+			color: white; 
 			background-color: #3FA86A;
 			box-shadow: none !important;
 		}
+		.mui-content{
+			height: 100%;
+		}
 		.com_font{
 			font-size: 16px !important;
+			color: white;
 		}
 		.center_title{
 			margin-left: .6em;
@@ -39,14 +42,13 @@
 		}
 		.center_top{
 			margin-top: 8px;
-			position: relative;
 		}
 		.center_bg{
 			width: 100%;
-			height: 10em;
+			height:40%;
 			position: relative;
-			background: url(../../img/2147de349744915c611f470c84c67f94.jpg) no-repeat;
-			background-size: 100% 10em;
+			background: url(../../img/pic12.jpg) no-repeat;
+			background-size: 100% 100%;
 		}
 		.center_headpic{
 			width: 7em;
@@ -109,11 +111,11 @@
 /*			display: none;*/
 		}
 		.center_input .edit_hide{
-			display: block;
-		}
-		.center_input .edit_show{
 			display: none;
 		}
+		/*.center_input .edit_show{
+			display: none;
+		}*/
 		.center_input_div{
 			overflow: hidden;
 			height: 50px;
@@ -133,39 +135,138 @@
 			margin-bottom: 0;
 			
 		}
+		.center_pop{
+			z-index: 999;
+			width:70%;
+			line-height: 2em;
+			overflow: hidden;
+			position: fixed;
+			display: none;
+			padding: .8em;
+			background-color: #fff;
+			top: 50%;
+			margin-top: -10%;
+			left: 50%;
+			margin-left: -35%;    
+			
+		}
+		.center_pop input{
+			width: 100%;
+			height: 40px;
+			border:0;
+			font-size: 14px;
+			line-height: 14px;
+			margin-bottom:.5em;
+			padding-bottom: 0;
+			border-radius: 0;
+			border-bottom: 2px solid #3FA86A;
+		}
+		/*.input_div input{
+			width: 100%;
+			height: ;
+		}*/
+		#pop_submit{
+			float: right;
+			font-size: 16px;
+			line-height:19px;
+			margin-top: 1em;
+			color: #3FA86A;
+		}
+		#nav_title{
+			float: left;
+			font-size: 16px;
+		}
+		/*.center_pop .title_button{
+			width: 100%;
+			height: 48px;
+			line-height: 48px;
+			text-align: center;
+			position: absolute;
+			color: #fff;
+			bottom: 0;
+			background-color: #C4E8DA;
+		}*/
+		.mui-backdrop {
+		    position: fixed;
+		    top: 0;
+		    right: 0;
+		    bottom: 0;
+		    left: 0;
+		    z-index: 998;
+		    background-color: rgba(0,0,0,.3);
+		    display: none;
+        }
+       /*国家*/
+      .nation_list{
+		z-index: 999;
+		width: 70%;
+		height: 70%;
+		overflow: hidden;
+		margin: 20% auto;
+	/*	padding: 0 30px;*/
+		background-color: white; 
+		}
+		.nation_list .nation_list_contain{
+			width: 100%;
+			height: 90%;
+			margin: 5% 0;
+			overflow-y: scroll;
+		
+		}
+		.nation_list ul{
+			padding: 0;
+		}
+		.nation_list li{
+			list-style: none;
+			width:100%;
+			height:34px;
+			line-height: 34px;
+			margin: .1em auto;
+			text-align: left;
+		}
+		.nation_list span{
+			margin: 0 1em;
+		}
+		.nation_list li img{
+			width: 34px;
+			height: 34px;
+			margin: 0 .5em;
+			float: right;
+		}
+        
 	</style>
 </head>
 	<body>
 	  <header class="mui-bar mui-bar-nav center_nav">
-	      <a class="mui-icon mui-icon-left-nav color_w mui-action-back com_font" ></a>
+	      <a class="mui-icon mui-icon-left-nav  mui-action-back com_font" ></a>
 	      <span class="center_title">personal</span>
-	      <img src="../../img/edit2.png" class="center_icon" alt="" style="display: none;"/>
-	      <img src="../../img/set-up.png" class="center_icon" alt="" />
+	      <img src="../../img/edit2.1.png" class="center_icon center_edit" alt="" />
+	      <img src="../../img/save.png" class="center_icon center_save" alt="" style="display: none;"/>
 	  </header>
 	  <div class="mui-content center_top ">
-	  	<div class="center_bg ">
-	  	    <div class="center_headpic " id="headPic">
+	  	<div class="center_bg">
+	  	    <div class="center_headpic photo_" id="headPic">
 	  	    	<div class="header_camara ">
 	  	    		<img src="../../img/camera.png" alt="" />
 	  	    	</div>
 	  	    </div>
-	  	    <img src="../../img/edit.png" class="center_bg_edit" alt="" />
+	  	    <img src="../../img/edit3.png" class="center_bg_edit photo_ bg" alt="" />  
 	  	</div>
 	  	<div class="center_clear"> <!--中间间隙--></div>
 	  	<div class="center_input ">
 	  		<div class="center_divl" ><span>family name</span></div>
-	  		<!--<img src="../../img/male2.png" alt=""  class="edit_show male"/>-->
-	  		<!--<img src="../../img/female2.png" alt="" class="edit_show female"/>
-	  		<img src="../../img/edit.png" alt="" class="edit_hide" />-->
+	  		<img src="../../img/male2.png" alt=""  class="edit_show male"/>
+	  		<img src="../../img/female2.png" alt="" class="edit_show female"/>
+	  		<img src="../../img/edit.png" alt="" class="edit_hide" />
 	  		<div class="center_input_div "> 
-	  			<input type="text" placeholder="Daniel" id="familyName" /> 
+	  			<input type="text" placeholder="Daniel" id="familyName" readonly="readonly" class="edit_input"/> 
 	  		</div>
 	  	</div>
 	  	<div class="center_input ">
 	  		<div class="center_divl" ><span>first name</span></div>
 	  		<img src="../../img/edit.png" alt="" class="edit_hide"/>
 	  		<div class="center_input_div"> 
-	  			<input type="text" placeholder="Hammond" id="firstName"/>
+	  			<input type="text" placeholder="Hammond" id="firstName" readonly="readonly" class="edit_input"/>
 	  		</div>
 	  	</div>
 	  	<div class="center_clear"> <!--中间间隙--></div>
@@ -179,7 +280,7 @@
 	  		<div class="center_divl"><span>password</span></div>
 	  		<img src="../../img/edit.png" alt="" class="edit_hide"/>
 	  		<div class="center_input_div"> 
-	  			<input type="password" placeholder="********"/>
+	  			<input type="password" placeholder="********" readonly="readonly" class="edit_input" id="password"/>
 	  		</div>
 	  	</div>
 	  	<div class="center_clear"> <!--中间间隙--></div>
@@ -187,7 +288,7 @@
 	  		<div class="center_divl"><span>E-mail</span></div>
 	  		<img src="../../img/edit.png" alt="" class="edit_hide"/>
 	  		<div class="center_input_div"> 
-	  			<input type="text" placeholder="sun4343lee" id="email"/>
+	  			<input type="text" placeholder="sun4343lee" id="email" readonly="readonly" class="edit_input"/>
 	  		</div>
 	  	</div>
 	  	<div class="center_input ">
@@ -195,7 +296,7 @@
 	  		<img src="../../img/1096072.png" alt="" class="edit_show"/>
 	  		<img src="../../img/edit.png" alt="" class="edit_hide"/>
 	  		<div class="center_input_div"> 
-	  			<input type="text" placeholder="Canada" id="nation"/>
+	  			<input type="text" placeholder="Canada" id="nation" readonly="readonly" class="edit_input"/>
 	  		</div>
 	  	</div>
 	  	<div class="center_clear"> <!--中间间隙--></div>
@@ -204,7 +305,7 @@
 	  		<div class="center_divl"><span>credibility</span></div>
 	  		<div class="center_input_div"> 
 	  		  <img src="../../img/jiangbei.png" alt="" />
-	  		  <span id="ptitle">士兵</span>
+	  		  <span id="ptitle">暂时没有等级</span>
 
 	  		</div>
 	  	</div>
@@ -213,42 +314,254 @@
 	  		<span id="not_deliver">你还不是递送人</span>
 	  	</div>
 	  </div>
+	  <!--蒙版-->
+	  <div class="mui-scroll-wrapper mui-backdrop " id="center_popover"></div>
+	  <!--选择国际-->
+	  <!--<div class="nation_list">
+			<div class="nation_list_contain">
+			    <ul>
+			     	<li><span>中国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>美国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>印度</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>法国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>日本</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>加拿大</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>澳大利亚</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>中国</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>美国</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>中国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>美国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>印度</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>法国 </span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>日本</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>加拿大</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>澳大利亚</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>中国</span><img src="../../img/1096072.png" alt="" /></li>
+			     	<li><span>美国</span><img src="../../img/1096072.png" alt="" /></li>
+			    </ul>
+			</div>-->
+	    </div>
+	  <!--弹出框-->
+	  <div class="center_pop">
+	  	<span id="nav_title"><b>Please input your password</b> </span>
+	  	<div class="input_div">
+	  		<input type="text" placeholder="请输入密码" id="pop_password" maxlength="20"/>  
+	  	</div>
+     		<span id="pop_submit"><strong>确定</strong></span>
+     	</div>
 	 <script src="../../js/jquery.min.js"></script>
 	 <script src="../../js/utils.js"></script>
 	 <script src="../../js/comment.js"></script>
 	 <script>
 	 mui.plusReady(function(){
+	 	plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
+	 	 //调用蒙版
+	   
 	 	var data='';
 	 	myAjax({url:'account/info',data:data},
 	 	function(obj){
-	 		alert(1);
-	 		alert(JSON.stringify(obj));
 	 		if(obj.ret==1){
 	 			var data=obj.res;
-	 			 $('#headPic').css({'background':'url(data.headPic)'});
+	 			var n = BASEURL.indexOf('/a');
+				var imgurl = BASEURL.substring(0,n);
+				var pic = imgurl+data.headPic;
+				$('.center_headpic').css('background','url('+pic+')');//得到头像
 	 			 $('#familyName').val(data.familyName);
 	 			 $('#firstName').val(data.firstName);
-	 			 $('#email').val(data.email); 
+	 			 $('#email').val(data.email);  
 	 			 $('#nation').val(data.nation);
 	 			 $('#phone').val(data.phone);
 	 			 $('#ptitle').text(data.ptitle);
-	 			 $('')
 	 			 if(data.deliver==1){
-	 			 	$('#deliver').css('display','block');
+	 			 	$('#deliver').css('display','block');    
 	 			 	$('#not_deliver').css('display','none');
 	 			 }
 	 			if(data.sex==1){
-	 				$('.male').css('display','block').siblings().css('display','none');
+	 				$('.male').css('display','block');
+	 				$('.female').css('display','none');
+	 				
 	 			}else{
-	 				$('.female').css('display','block').siblings().css('display','none');
+	 				$('.male').css('display','none');
+	 				$('.female').css('display','block');
 	 			}
-	 		}
+	 		}   
 	 	},
 	 	function(){
-	 		alert('shibaile');
+	 		alert('shibaile');  
 	 	})
-	 })
 	 	
+	 	
+	 	var iw;
+		$('.photo_').on('tap', function() {
+			var _this = this;
+			iw = $(this).outerWidth()
+			var btnArray = [{
+				title: "拍照"
+			}, {
+				title: "相册"
+			}];
+			plus.nativeUI.actionSheet({
+				title: "选择照片",
+				cancel: "取消",
+				buttons: btnArray
+			}, function(e) {
+				var index = e.index;
+				if (index == 1) {
+					bycamera(_this);
+				} else if (index == 2) {
+					bygallery(_this);
+				} else if (index == 0) {
+					return;
+				}
+			});
+		})
+		
+		function bycamera(context) {
+			var camera = plus.camera.getCamera();
+			var res = camera.supportedImageResolutions[0];
+			var fmt = camera.supportedImageFormats[0];
+			var _this = context;
+			camera.captureImage(function(path) {
+				dealpic(path, _this);     
+				})
+		};
+
+	
+		//图片压缩
+		function dealpic(path, context) {
+				plus.io.resolveLocalFileSystemURL(path, function(entry) {
+					var local = entry.toLocalURL();
+					path=plus.io.convertLocalFileSystemURL(path);
+					$('.center_headpic').css('background','url('+path+')');//得到头像
+					dealImage(local, {
+						width: 17 * 4,
+						quality: 0.5
+					}, function(base) {
+						console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
+						data={
+								imgName: Math.floor(Math.random() * 100000) + ".jpg",
+								imgData: base // base字符串
+							}
+						myAjax({url:"common/file/imgUp",data:data},
+							function(obj){
+								if(obj.ret==1){
+									data={
+										fid:obj.res.fid
+									}
+									 //头像上传
+									 myAjax({url:'account/setHeadPic',data:data},function(obj){
+									 	if(obj.ret==1){
+									 		mui.toast('修改成功');
+									 	}else{
+									 		mui.toast('图片上传至服务器存在问题');
+									 	}
+									 },function(xhr,type){
+									 	mui.toast(xhr.status);
+									 })
+									 
+								}else{
+									mui.toast('请先登录在操作！');
+								}
+							},
+							function(xhr,type){
+								console.log(xhr.status);
+						})
+						
+					})
+				})  
+			}
+			//bg galary
+			function bygallery(context) {
+				plus.gallery.pick(function(path) {
+					
+					dealpic(path, context);
+				}, function(e) {
+					mui.toast('选择图片失败' + e)
+					showobj(e)
+				}, {
+					filter: 'image',
+					multiple: false
+				})
+			} 
+	 	
+	 })
+	 //编辑信息
+	 var token='';
+	  function update(){
+	  	 var pwd=$('#pop_password').val();
+	  	if(pwd){
+			  	data={
+			  		pwd:pwd
+			  	}
+			  	    myAjax({url:'account/updateSet',data:data},function(obj){
+			  	    	  if(obj.ret==1){
+			  	    	  	$('#center_popover').css('display','none');
+		     	 			$('.center_pop').css('display','none');
+		     	 			$('.edit_show').css('display','none');
+		     	 			$('#password').val(pwd);
+		     	 			$('.edit_hide').css({'display':'block'});
+		     	 			$('.edit_input').removeAttr('readonly');
+			  	    	  }else if(obj.ret==2){
+			  	    	  	mui.toast('密码错误');
+			  	    	  }
+			  	    	 token=obj.res.token;
+			  	    },function(xhr,type){
+			  	    	alert(xhr.status);
+			  	    })
+			  	}else{
+			  		mui.toast('请输入密码');
+			  	}
+	  }
+	  function save(){      
+	  			var fn=$('#familyName').val().trim(); 
+				var fin=$('#firstName').val().trim();
+				var em=	$('#email').val().trim(); 
+				var	nation=$('#nation').val().trim();
+				var	ph=$('#phone').val().trim();
+				var pwd=$('#password').val().trim();
+	  	data={
+	  		firstName:fin,
+	  		familyName:fn,
+	  		email:em,
+	  		nation:nation,
+	  		phone:ph,
+	  		pwd:pwd,
+	  		token:token
+	  	}
+	  	myAjax({url:'account/updateSave',data:data},function(obj){
+	  		if(obj.ret==1){
+	  		   mui.toast('保存成功');
+	  		    $('.center_save').css('display','none');
+		     	$('.center_edit').css('display','block');
+		     	$('.edit_input').attr('readonly','readonly');
+	  		   openWindow('new_me_center.html');
+	  		}else if(obj.ret==2){
+	  			mui.toast('保存失败');
+	  		}else{
+	  			mui.toast('服务器出现问题');
+	  		}
+	  	},function(){
+	  		
+	  	})
+	  	
+	  	
+	  }
+     $('.center_edit').on('tap',function(){
+     	$(this).css('display','none');
+     	$('.center_save').css('display','block');  
+     	 $('#center_popover').css('display','block');
+     	 $('.center_pop').css('display','block');
+     })
+     $('.center_save').on('tap',function(){
+     	   save();//保存
+     })
+     $('#center_popover').on('tap',function(){
+     	$(this).css('display','none');
+     	$('.center_pop').css('display','none');
+     })
+     $('#pop_submit').on('tap',function(){
+     	update();
+     })
 	 </script>
 	</body>
 </html>
