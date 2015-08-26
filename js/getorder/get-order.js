@@ -250,7 +250,7 @@ mui.plusReady(function() {
 				}
 				// 数据储存在本地storage中
 			plus.storage.setItem("order", JSON.stringify(order));
-			var href = this.href;
+			var href = this.getAttribute('data-href')
 			openWindow(href); // 打开详情页面信息显示
 		})
 })

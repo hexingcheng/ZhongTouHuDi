@@ -35,12 +35,15 @@ body,
 }
 .dialog,
 .confirm,
-.inputcode {
+.inputcode,.cancelget {
 	background-color: #FFFFFF;
 	position: absolute;
-	top: 0;
-	left: 0;
+	height: 145px;
 	width: 270px;
+	top: 50%;
+	left: 50%;
+	margin-top: -73px;
+	margin-left: -135px;
 	overflow: hidden;
 	word-break: break-all;
 }
@@ -50,7 +53,7 @@ body,
 }
 .ok,
 .back,
-.cancelinput {
+.cancelinput,.cancel-get-ok {
 	float: left;
 	height: 40px;
 	width: 50%;
@@ -60,11 +63,12 @@ body,
 	color: #029c5d;
 }
 .wron {
+	margin-bottom: 43px;
 	padding: 0 20px;
 }
 .cancels,
 .checks,
-.checkr {
+.checkr,.cancel-get-cancel {
 	float: left;
 	height: 40px;
 	width: 50%;

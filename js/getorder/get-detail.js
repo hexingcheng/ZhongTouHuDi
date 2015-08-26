@@ -7,16 +7,6 @@ mui.plusReady(function() {
 	var panel = document.getElementById("markups");
 	// 显示markup弹出层
 	document.getElementById("markup").addEventListener("tap", function() {
-		//			var cshow = document.getElementById("current-price"); // 弹出层显示当前价格
-		//			var cp = document.getElementById("goods-value").innerHTML; // 页面显示当前价格
-		//			cshow.innerHTML = cp;
-		//			var cprice = parseFloat(cp);
-		//			mp = parseFloat(document.getElementById("plus-price").innerHTML); // 获取需要加价的金额
-		//			var total = document.getElementById("total-price");
-		//			total.innerHTML = cprice + mp; // 显示总金额
-
-		//			mask.style.display = "block";
-		//			panel.style.display = "block";
 		$('#order-mask').removeClass('mui-hidden');
 		$('#markups').removeClass('mui-hidden');
 	}, false)
@@ -88,7 +78,6 @@ mui.plusReady(function() {
 			if (parseInt(money) < parseInt($('.rel').text())) {
 				alert('余额不足')
 			} else {
-				alert(1)
 				plus.nativeUI.showWaiting("接单中...", {
 					background: "#ddd"
 				});
@@ -100,7 +89,9 @@ mui.plusReady(function() {
 				}, function(data) {
 					plus.nativeUI.closeWaiting();
 					if (data.ret == 1) {
-						openWindow("./get-result.html",{orderId:order.orderid});
+						openWindow("./get-result.html", {
+							orderId: order.orderid
+						});
 					} else if (data.ret == 2) {
 						mui.alert("此单已不存在", "提示");
 					} else if (data.ret == 3) {
@@ -123,56 +114,65 @@ mui.plusReady(function() {
 				money = data.res.money;
 			}
 		})
-		// 页面加载时，获取数据
-	myAjax({
-		url: "order/goodShow",
-		data: {
-			orderId: order.orderid,
-			type: "comm"
-		}
-	}, function(data) {
-		$(".goods-name").html(data.res.gName); // 货物名称
-		$("#goods-value").html(data.res.money); // 价值
-		$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
-		$("#get-time").html(data.res.getTime); // 获取时间
-		$("#deadline").html(data.res.finTime); // 期望时间
-		$("#sendaddr").html(data.res.sendAddr.name); // 发送地
-		$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
-		$("#gvalue").html(data.res.gValue); // value
-		$("#info").html(data.res.info); // 信息描述
-		var pic = data.res.pics;
-		$('.rewrod').text(data.res.money)
-		$('.rel').text(data.res.money)
-		var n = BASEURL.indexOf('/api/');
-
-		var per = BASEURL.substring(0, n);
-		var len = pic.length;
-		if (len > 0) {
-			for (var i = 0; i < len; i++) {
-				var url = per + pic[i].path;
-				//					var html = '<img src=' + url + ' width="100%">';
-				//					document.querySelectorAll(".img-box")[i].innerHTML = html;
-				$('<img class="picture" src="' + url + '">').appendTo('#picwrap');
-			}
-		}
-
-		// 300毫秒之后清除等待框
-		setTimeout(function() {
-			var lmask = document.getElementById("loading-mask");
-			var lbox = document.getElementById("loading-box");
-			var mcl = lmask.classList;
-			var bcl = lbox.classList;
-			mcl.add("fade-out");
-			bcl.add("fade-out");
-			// 过渡动画结束的时候执行该事件
-			lmask.addEventListener("webkitTransitionEnd", function() {
-				document.getElementById("loading-mask").style.display = "none";
-				document.getElementById("loading-box").style.display = "none";
-				mcl.remove("fade-out");
-				bcl.remove("fade-out");
-			}, false)
-		}, 300)
-	}, function(xhr, type) {
-		console.log("错误代码：" + xhr.status + "    错误类型：" + type);
+	
+	// 定义刷新页面数据显示
+	window.addEventListener("refresh:data", function(){
+		refreshdata();
 	})
+	
+		// 页面加载时，获取数据
+	refreshdata();
+	function refreshdata() {
+		myAjax({
+			url: "order/goodShow",
+			data: {
+				orderId: order.orderid,
+				type: "comm"
+			}
+		}, function(data) {
+			$(".goods-name").html(data.res.gName); // 货物名称
+			$("#goods-value").html(data.res.money); // 价值
+			$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
+			$("#get-time").html(data.res.getTime); // 获取时间
+			$("#deadline").html(data.res.finTime); // 期望时间
+			$("#sendaddr").html(data.res.sendAddr.name); // 发送地
+			$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
+			$("#gvalue").html(data.res.gValue); // value
+			$("#info").html(data.res.info); // 信息描述
+			var pic = data.res.pics;
+			$('.rewrod').text(data.res.money)
+			$('.rel').text(data.res.money)
+			var n = BASEURL.indexOf('/api/');
+
+			var per = BASEURL.substring(0, n);
+			var len = pic.length;
+			if (len > 0) {
+				for (var i = 0; i < len; i++) {
+					var url = per + pic[i].path;
+					//					var html = '<img src=' + url + ' width="100%">';
+					//					document.querySelectorAll(".img-box")[i].innerHTML = html;
+					$('<img class="picture" src="' + url + '">').appendTo('#picwrap');
+				}
+			}
+
+			// 300毫秒之后清除等待框
+			setTimeout(function() {
+				var lmask = document.getElementById("loading-mask");
+				var lbox = document.getElementById("loading-box");
+				var mcl = lmask.classList;
+				var bcl = lbox.classList;
+				mcl.add("fade-out");
+				bcl.add("fade-out");
+				// 过渡动画结束的时候执行该事件
+				lmask.addEventListener("webkitTransitionEnd", function() {
+					document.getElementById("loading-mask").style.display = "none";
+					document.getElementById("loading-box").style.display = "none";
+					mcl.remove("fade-out");
+					bcl.remove("fade-out");
+				}, false)
+			}, 300)
+		}, function(xhr, type) {
+			console.log("错误代码：" + xhr.status + "    错误类型：" + type);
+		})
+	}
 })

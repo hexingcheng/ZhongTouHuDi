@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/mysendorder/mysendorder-comment.css" />
+		<style>
+			.mask {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background-color: rgba(0, 0, 0, 0.4);
+				z-index: 999;
+			}
+			.cancelget {
+				background-color: #FFFFFF;
+				position: absolute;
+				height: 145px;
+				width: 270px;
+				top: 50%;
+				left: 50%;
+				margin-top: -73px;
+				margin-left: -135px;
+				overflow: hidden;
+				word-break: break-all;
+				z-index: 1000;
+			}
+			.info {
+				color: #000000;
+				padding: 10px 20px;
+			}
+			.cancel-get-ok {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #c4e8da;
+				text-align: center;
+				color: #029c5d;
+			}
+			.wron {
+				margin-bottom: 43px;
+				padding: 0 20px;
+			}
+			.cancel-get-cancel {
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				background-color: #f6ccc2;
+				text-align: center;
+				color: #da2a02;
+			}
+		</style>
+		<script src="../../js/mui.min.js"></script>
+	</head>
+
+	<body style="background: #fff;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">Cancel reason</h1>
+		</header>
+		<div class="mask mui-hidden"></div>
+		<div class="cancelget mui-hidden">
+			<div class="info">
+				cancel this order?
+			</div>
+			<p class="wron">此操作将取消你的抢单，并扣除积分</p>
+			<div class="cancel-get-ok">ok</div>
+			<div class="cancel-get-cancel">cancel</div>
+		</div>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-radio mui-left">
+					<input name="radio" type="radio" value="不满意此接单人">不满意此接单人
+				</li>
+				<li class="mui-table-view-cell mui-radio mui-left">
+					<input name="radio" type="radio" value="自由递送人长时间未接单">自由递送人长时间未接单
+				</li>
+				<li class="mui-table-view-cell mui-radio mui-left">
+					<input name="radio" type="radio" value="信息填写错误重新发送">信息填写错误重新发送
+				</li>
+				<li class="mui-table-view-cell mui-radio mui-left">
+					<input name="radio" type="radio" value="不想发单了">不想发单了
+				</li>
+			</ul>
+		</div>
+
+		<footer style="height: 3.5em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+			<button id="submit-reason" class="mui-btn mui-btn-block">Submit</button>
+		</footer>
+		<script type="text/javascript" src="../../js/jquery.min.js" ></script>
+		<script src="../../js/utils.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				var cpage = plus.webview.currentWebview();
+				// 提交取消订单原因
+				var reasonval;
+				document.getElementById("submit-reason").addEventListener("tap", function() {
+						var radio = document.getElementsByName("radio");
+						for (var i = 0; i < radio.length; i++) {
+							if (radio[i].checked) {
+								reasonval = radio[i].value;
+							}
+						}
+						if (reasonval) {
+							$('.mask').removeClass('mui-hidden');
+							$('.cancelget').removeClass('mui-hidden');
+						} else {
+							mui.toast("请选择取消发单的原因")
+						}
+					}, false)
+					// 取消订单
+					mui('body').on('tap','.cancel-get-ok',function(){
+						cancelorder(cpage.orderId, reasonval, cpage.status);
+					})
+					mui('body').on('tap','.cancel-get-cancel',function(){
+						$('.mask').addClass('mui-hidden');
+						$('.cancelget').addClass('mui-hidden');
+					})
+				function cancelorder(orderid, reason, status) {
+					myAjax({
+						url: "order/cancel",
+						data: {
+							orderId: orderid,
+							descp: reason,
+							status: status
+						}
+					}, function(data) {
+						if (data.ret == 1) {
+							mui.toast("取消成功");
+							var mygetorder = plus.webview.getWebviewById('mygetorder/my-get-order')
+							if (mygetorder) {
+								mygetorder.show('slide-in-left', 200);
+							} else {
+								openWindow('./my-get-order.html')
+							}
+							setTimeout(function() {
+								plus.webview.close(cpage, "none", 0);
+							}, 2000)
+						} else if (data.ret == 2) {} else if (data.ret == 3) {} else if (data.ret == 4) {} else if (data.ret == 5) {}
+					}, function(xhr, type) {
+						console.log(xhr.status + ":" + type)
+					})
+				}
+			})
+		</script>
+	</body>
+
+</html>

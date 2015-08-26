@@ -1,13 +1,25 @@
-mui.init();
+mui.init({
+	beforeback: function(){
+		plus.webview.getLaunchWebview().show('slide-in-left',200)
+		return false;
+	}
+});
 mui.plusReady(function() {
 	mui("#scroll-wrapper").scroll();
+	function closewebs(){
+		if(plus.webview.getWebviewById('mygetorderdtl')){
+			plus.webview.getWebviewById('mygetorderdtl').close();
+		}
+		if(plus.webview.getWebviewById('cancel-reason')){
+			plus.webview.getWebviewById('cancel-reason')
+		}
+	}
 	// ajax 获取模板数据
 	getlist(1);
 	mui('.mui-segmented-control').on('tap', '.mui-control-item', function() {
 		var sta = this.getAttribute('data-sta');
 		getlist(sta)
 	})
-
 	function getlist(status) {
 		var status = status||1
 		var getorderdata = {
@@ -42,6 +54,7 @@ mui.plusReady(function() {
 			orderId: orderid,
 			type: 'rece'
 		};
-		openWindow('./mygetorderdtl.html', datas);
+		
+		openWindow('./mygetorderdtl.html',datas)
 	})
 })

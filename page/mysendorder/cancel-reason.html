@@ -38,8 +38,10 @@
     <script>
       	mui.init();
       	mui.plusReady(function(){
+      		alert(111)
       		var cpage = plus.webview.currentWebview();
-      		
+      		alert(cpage.orderId)
+      		alert(cpage.status)
       		// 提交取消订单原因
       		var reasonval;
       		document.getElementById("submit-reason").addEventListener("tap", function(){
