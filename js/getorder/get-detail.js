@@ -100,7 +100,7 @@ mui.plusReady(function() {
 				}, function(data) {
 					plus.nativeUI.closeWaiting();
 					if (data.ret == 1) {
-						openWindow("./get-result.html");
+						openWindow("./get-result.html",{orderId:order.orderid});
 					} else if (data.ret == 2) {
 						mui.alert("此单已不存在", "提示");
 					} else if (data.ret == 3) {
