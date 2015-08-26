@@ -29,6 +29,22 @@
 	line-height: 50px;
 	padding: 0;
 }
+<<<<<<< HEAD
+.apply_check{
+	height: 50px;
+	overflow: hidden;
+}
+.apply_check_div{
+	height: 50px;
+	width: 33%;
+	line-height: 50px;
+	text-align: center;
+	border: 1px solid red;
+	float: left;
+	overflow: hidden;
+}
+=======
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 .mui-table-view-cell img{
 	width: 34px;
 	height: 34px;
@@ -89,9 +105,15 @@
 }
 .apply_idcard_div{
 	width: 88%;
+<<<<<<< HEAD
+	height: 12em;
+	overflow: hidden;
+	margin: .3em 0 .3em 2.5em;
+=======
 	height: 25%;
 	overflow: hidden;
 	margin: 4% 5%;  
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 }
 .apply_idcard_div .img_div{
 	width: 3em;
@@ -107,25 +129,35 @@
 }
 .apply_idpho{
 	height: 12em;
+<<<<<<< HEAD
+	padding: 0 1em;
+=======
 /*	padding: 0 1em;*/
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 /*	background-color: #F6F6F6;*/
 	overflow: hidden;
 	text-align: center;
 	margin-right: 3.8em;
 	border: 2px solid silver;
 }
+<<<<<<< HEAD
+.apply_idpho img{
+=======
 .id_imgcover{
 	display: none;
 	width: 100%;
 	height: 100%;   
 }    
 .apply_idpho .id_img{
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 	width: 34px;
 	height: 34px;
 	margin:.2em auto;
 }
 .apply_idpho .text{
 	text-align: justify;
+<<<<<<< HEAD
+=======
 }
 .nation_marb{
 	margin-bottom: 6em;
@@ -185,4 +217,5 @@
 	margin-top: .1em;
 	line-height: 48px;
 	text-align: center;
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 }

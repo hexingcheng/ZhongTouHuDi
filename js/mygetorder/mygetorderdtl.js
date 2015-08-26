@@ -5,6 +5,8 @@ mui.plusReady(function() {
 	var datas = {};
 	datas.orderId = c.orderId;
 	datas.type = c.type;
+<<<<<<< HEAD
+=======
 	mui.back = function(){
 		if(getstorage('getordertodtl')=='on'){
 			setstorage('getordertodtl','off');
@@ -13,6 +15,7 @@ mui.plusReady(function() {
 			plus.webview.getLaunchWebview().show('slide-in-left',200);
 		}
 	}
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 	showobj(datas)
 	myAjax({
 		url: 'order/goodShow',
@@ -90,13 +93,23 @@ mui.plusReady(function() {
 	})
 
 	$('.cancel').on('tap', function() {
+<<<<<<< HEAD
+		if ($(this).text() == 'cancel') {
+=======
 		if ($(this).text() == 'cancel bargin') {
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 			myAjax({
 				url: 'order/bargainCancel',
 				data: {
 					orderId: c.orderId
 				}
 			}, function(data) {
+<<<<<<< HEAD
+				if (data.ret == 1) {
+					c.close();
+					openWindow('./my-get-order.html');
+					mui.toast('取消议价成功');
+=======
 				alert(data.ret)
 				if (data.ret == 1) {
 					openWindow('./my-get-order.html');
@@ -106,6 +119,7 @@ mui.plusReady(function() {
 					})
 					mui.toast('取消议价成功');
 					c.close();
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 				} else if (data.ret == 2) {
 					mui.toast('非法操作')
 				}

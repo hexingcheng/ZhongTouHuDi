@@ -88,6 +88,10 @@
 	bottom: 0;
 	left: 0;
 	z-index: 1000;
+<<<<<<< HEAD
+	display: none;
+=======
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 }
 #order-popup {
 	position: absolute;
@@ -170,6 +174,17 @@
 	border-radius: 3px;
 	padding: 0.1em;
 }
+<<<<<<< HEAD
+
+
+
+
+
+
+
+
+
+=======
 #uls li,#ul2 li{
 	padding: 0;
 	height: 50px;
@@ -310,3 +325,4 @@
 .now,.origin{
 	padding-top: 10px;
 }
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190

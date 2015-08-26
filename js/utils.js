@@ -23,6 +23,33 @@ function iflogin(cb) {
 }
 
 function ifloginCommon(cb) {
+<<<<<<< HEAD
+	if (getstorage('token')) {
+		cb();
+	} else {
+		var i = plus.webview.getLaunchWebview();
+		i.setStyle({
+			left: '0',
+			mask: 'none'
+		})
+		openWindow('./page/logupin/login.html')
+	}
+}
+//  ajax通用函数参数说明 options:基本配置参数，url、type（默认 post 可不填）、data 必填,successcb成功回调  必填 参数为请求返回data对象，
+//errorcb：必填 失败回调 参数 xhr,type,nonetworkcb 无网络回调 选填
+//eg:
+//myAjax({url:"auth/regDynCode",data:{phone:11010101011}},function(data){
+//	console.log(data.code);
+//},function(xhr, type){
+//	console.log(xhr.status);
+//},function(){
+//	alert('没网呀')
+//})
+
+
+
+function myAjax(options, successcb, errorcb,nonetworkcb) {
+=======
 		if (getstorage('token')) {
 			cb();
 		} else {
@@ -48,11 +75,16 @@ function ifloginCommon(cb) {
 
 
 function myAjax(options, successcb, errorcb, nonetworkcb) {
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 	var net = plus.networkinfo.getCurrentType();
 	if (net != 0 && net != 1) {
 		innerAjax(options, successcb, errorcb)
 	} else {
+<<<<<<< HEAD
+		if(nonetworkcb){
+=======
 		if (nonetworkcb) {
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 			nonetworkcb()
 		} else {
 			mui.toast('未连接网络,请链接网络');
@@ -60,6 +92,18 @@ function myAjax(options, successcb, errorcb, nonetworkcb) {
 	}
 }
 
+<<<<<<< HEAD
+function innerAjax(options,successcb,errorcb) {
+	var op = {
+		type:'post',
+		url:'',
+		data:{},
+		wait:true
+	};
+	copyobj(options,op);
+	if(op.wait){
+		plus.nativeUI.showWaiting('请求中',{background:"#d1d1d1"})
+=======
 function innerAjax(options, successcb, errorcb) {
 	var op = {
 		type: 'post',
@@ -72,17 +116,39 @@ function innerAjax(options, successcb, errorcb) {
 		plus.nativeUI.showWaiting('请求中', {
 			background: "#d1d1d1"
 		})
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 	}
 	mui.ajax(BASEURL + op.url, {
 		type: op.type,
 		data: op.data,
 		success: function(data) {
+<<<<<<< HEAD
+			if(op.wait){
+=======
 			if (op.wait) {
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 				plus.nativeUI.closeWaiting();
 			}
 			if (data.ret == 1) {
 				successcb(data);
 			} else if (data.ret == -101) {
+<<<<<<< HEAD
+				if(getstorage('token')){
+					var token = getstorage('token');
+					mui.ajax(BASEURL+'auth/activate',{
+						type:'post',
+						data:{
+							token:token
+						},
+						success:function(data){
+							if(data.ret==1){
+								innerAjax(options,successcb,errorcb);
+							}else if(data.ret==-1){
+								mui.toast('身份校验异常,请重新登录');
+								mui.ajax(BASEURL+'auth/out',{
+									type:'get',
+									success:function(){
+=======
 				if (getstorage('token')) {
 					var token = getstorage('token');
 					mui.ajax(BASEURL + 'auth/activate', {
@@ -98,6 +164,7 @@ function innerAjax(options, successcb, errorcb) {
 								mui.ajax(BASEURL + 'auth/out', {
 									type: 'get',
 									success: function() {
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 										openWindow('./page/logupin/login.html')
 									}
 								})
@@ -107,14 +174,38 @@ function innerAjax(options, successcb, errorcb) {
 				} else {
 					openWindow('./page/logupin/login.html');
 				}
+<<<<<<< HEAD
+			} else{
+				if(op.wait){
+=======
 			} else {
 				if (op.wait) {
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 					plus.nativeUI.closeWaiting()
 				}
 				successcb(data);
 
 			}
 		},
+<<<<<<< HEAD
+		error: function(xhr,type){
+			if(op.wait){
+				plus.nativeUI.closeWaiting();
+			}
+			errorcb(xhr,type)
+		}
+	})
+}
+function copyobj(from,to){
+	for(var i in from){
+		if(typeof from[i]=='object'){
+			copyobj(from[i],to[i])
+		}else{
+			to[i]=from[i];
+		}
+	}
+}
+=======
 		error: function(xhr, type) {
 			if (op.wait) {
 				plus.nativeUI.closeWaiting();
@@ -136,6 +227,7 @@ function copyobj(from, to) {
 	}
 }
 
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 function openWindow(url, param, ani, time) {
 		var snum, id;
 		var animationType = ani || 'slide-in-right';
@@ -235,7 +327,10 @@ function errorhandle(type) {
 	}
 	return;
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 function getuserbasicinfo() {
 	var obj = {};
 	mui.plusReady(function() {
@@ -272,7 +367,11 @@ function formRegTest() {
 }
 
 
+<<<<<<< HEAD
+function closeMask(){
+=======
 function closeMask() {
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 	// 300毫秒之后清除等待框
 	var lmask = document.getElementById("loading-mask");
 	var lbox = document.getElementById("loading-box");
@@ -287,4 +386,10 @@ function closeMask() {
 		mcl.remove("fade-out");
 		bcl.remove("fade-out");
 	}, false)
+<<<<<<< HEAD
 }
+
+
+=======
+}
+>>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
