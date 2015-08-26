@@ -7,13 +7,9 @@ mui.plusReady(function() {
 		var sta = this.getAttribute('data-sta');
 		getlist(sta)
 	})
-<<<<<<< HEAD
 
 	function getlist(status) {
-=======
-	function getlist(status) {
 		var status = status||1
->>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 		var getorderdata = {
 			"page": 1,
 			"pageSize": 10,
@@ -36,12 +32,10 @@ mui.plusReady(function() {
 			console.log(type);
 		})
 	}
-<<<<<<< HEAD
-=======
+
 	window.addEventListener('fresh',function(){
 		getlist();
 	})
->>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 	mui('#link-detail').on('tap', '.mui-table-view', function() {
 		var orderid = this.getAttribute('data-id');
 		var datas = {
