@@ -2,8 +2,8 @@
 	background-color: #fff;
 }
 .mui-scroll-wrapper {
-	top: 44px;
-	bottom: 3.2em;
+	top: 52px;
+	bottom: 55px;
 }
 .title-color {
 	color: #bec0c2;
@@ -88,10 +88,6 @@
 	bottom: 0;
 	left: 0;
 	z-index: 1000;
-<<<<<<< HEAD
-	display: none;
-=======
->>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 }
 #order-popup {
 	position: absolute;
@@ -150,8 +146,8 @@
 #loading-mask {
 	position: absolute;
 	z-index: 998;
-	background: rgba(0, 0, 0, .7);
-	top: 0;
+	background: #fff;
+	top: 52px;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -160,6 +156,8 @@
 	position: absolute;
 	z-index: 999;
 	left: 50%;
+	width: 100px;
+	height: 100px;
 	margin-left: -50px;
 	top: 50%;
 	margin-top: -50px;
@@ -174,7 +172,6 @@
 	border-radius: 3px;
 	padding: 0.1em;
 }
-<<<<<<< HEAD
 
 
 

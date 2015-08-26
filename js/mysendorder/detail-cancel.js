@@ -30,6 +30,9 @@ mui.plusReady(function() {
 	})
 
 	// 重新发布
+	var sendorder = plus.webview.getWebviewById("mysendorder/my-send-order") || 
+					plus.webview.getWebviewById("my-send-order") || 
+					plus.webview.currentWebview().opener();
 	document.getElementById("resend-btn").addEventListener("tap", function() {
 		myAjax({
 			url: "order/release",
@@ -39,7 +42,8 @@ mui.plusReady(function() {
 		}, function(data) {
 			if (data.ret == 1) {
 				mui.toast("发布成功")
-				openWindow("./my-send-order.html")
+				mui.fire(sendorder, "refresh:data"); 	// 触发自定义事件进行数据的刷新
+				plus.webview.show(sendorder, "slide-in-left", 200);
 				setTimeout(function() {
 					plus.webview.close(cpage, "none", 0)
 				}, 1000)

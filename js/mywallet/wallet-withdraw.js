@@ -8,12 +8,17 @@ mui.plusReady(function() {
 
 	// 解析当前用户信息
 	var info = JSON.parse(plus.storage.getItem("personinfo"));
-	document.getElementById("account-num").innerHTML = info.phone;
+	if(info){
+		document.getElementById("account-num").innerHTML = info.phone;
+	} else {
+		mui.toast("当前未登陆");
+	}
 
 	// ajax获取现金
 	myAjax({
 		url: "wallet/money",
-		data: {}
+		data: {},
+		wait : false
 	}, function(data) {
 		cash.innerHTML = current = data.res.money;
 	}, function(xhr, type) {
@@ -37,7 +42,8 @@ mui.plusReady(function() {
 	function withdrawWay() {
 		myAjax({
 			url: "wallet/moneyChannelList",
-			data: {}
+			data: {},
+			wait : false
 		}, function(data) {
 			//	      			console.log(JSON.stringify(data));
 			var obj = {

@@ -1,7 +1,10 @@
 mui.init();
 mui.plusReady(function() {
 		mui("#scroll-wrapper").scroll();
-		var orderid = plus.storage.getItem("my-send-order");
+		
+		var cpage = plus.webview.currentWebview();
+		
+		var orderid = plus.storage.getItem("my-send-order") || cpage.orderId;
 		sendmsg(orderid);
 		// 取消订单 status=3
 		$("#cancel-order").on("tap", function() {
@@ -14,10 +17,21 @@ mui.plusReady(function() {
 		document.getElementById("button-pay").addEventListener("tap", function() {
 			openWindow("../pay/pay.html");
 		}, false)
+		
+		// 当页面是从选择递送人界面打开的时候
+		if(cpage.orderId){
+			// 重新定义返回按钮
+			mui.back = function(){
+				openWindow("./my-send-order.html");
+				setTimeout(function(){
+					plus.webview.close(cpage, "none", 0)
+				},1000)
+			}
+		}
 	})
-	// 取消订单函数调用
 
-function cancelorder(orderid) {
+	// 取消订单函数调用
+	function cancelorder(orderid) {
 		myAjax({
 			url: "order/cancel",
 			data: {

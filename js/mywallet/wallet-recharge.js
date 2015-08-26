@@ -12,7 +12,11 @@ mui.plusReady(function() {
 
 	// 解析当前用户信息
 	var info = JSON.parse(plus.storage.getItem("personinfo"));
-	document.getElementById("account-num").innerHTML = info.phone;
+	if(info){
+		document.getElementById("account-num").innerHTML = info.phone;
+	} else {
+		mui.toast("当前未登陆");
+	}
 
 	// 充值
 	document.getElementById("recharge").addEventListener("tap", function() {

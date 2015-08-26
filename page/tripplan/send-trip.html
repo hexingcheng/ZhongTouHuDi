@@ -45,6 +45,7 @@
 				div.mui-scroll-wrapper {top: 52px;bottom: 60px;}
 				
 				.date-box {padding: 10px 0;color: #aaa;padding-right: 3em;}
+				#ok-btn.btn-active, #cancel-btn.btn-active {opacity: 0.5;-webkit-transition: opacity 100ms ease-in-out;}
 		</style>
 	</head>
 
@@ -92,7 +93,7 @@
 							<div class="mui-navigate-right">
 								<label class="label-wrap mui-pull-left">Start Date</label>
 								<div class="sub-input">
-									<div class="date-box">start date</div>
+									<div id="start-date" class="date-box" data-type="start">start date</div>
 									<!--<input type="text" name="" id="start-date" value="" placeholder="Start Date" readonly="readonly"/>-->
 								</div>
 							</div>
@@ -101,7 +102,7 @@
 							<div class="mui-navigate-right">
 								<label class="label-wrap mui-pull-left">End Date</label>
 								<div class="sub-input">
-									<div class="date-box">end date</div>
+									<div  id="end-date" class="date-box" data-type="end">end date</div>
 									<!--<input type="text" name="" id="end-date" value="" placeholder="End Date" readonly="readonly"/>-->
 								</div>
 							</div>
@@ -126,31 +127,124 @@
 			mui.init();
 			mui.plusReady(function(){
 				mui(".mui-scroll-wrapper").scroll();
-				
+				var year = new Date().getFullYear();
+				var options = {
+					"type":"hour",
+					"customData":{
+						"h":[{
+								"text":"上午",
+								"value":"上午"
+							},{
+								"text":"下午",
+								"value":"下午"
+							},{
+								"text":"晚上",
+								"value":"晚上"
+							}]
+					},
+					"labels":["年", "月", "日", "时段"],
+					"beginYear" : year,
+					"endYear" : year + 3
+				}
+//				console.log(options.endYear)
 				// 选择日期
+				var startdate, enddate;
 				mui("#dalegate").on("tap", ".date-box", function(){
-					var options = {
-						"type":"hour",
-						"customData":{
-							"h":[{
-									"text":"上午",
-									"value":"上午"
-								},{
-									"text":"下午",
-									"value":"下午"
-								},{
-									"text":"晚上",
-									"value":"晚上"
-								}]
-						},
-						"labels":["年", "月", "日", "时段", "分"]
-					}
+					var that = this;
+					var type = that.getAttribute("data-type");
 					var picker = new mui.DtPicker(options);
 					picker.show(function(rs) {
-							alert(rs.text);
+						if(type == "start"){
+							that.innerHTML = rs.value;
+							startdate = parseInt(rs.value.replace(/-/ig, ''));
 							picker.dispose();
-						});
+						} else if(type == "end"){
+							var end = parseInt(rs.value.replace(/-/ig, ''));
+							if(end >= startdate){
+								enddate = end;
+								that.innerHTML = rs.value;
+							} else {
+								mui.toast("时间选取错误");
+							}
+						}
+					});
 				})
+				
+				// 点击时触发事件
+				var cpage = plus.webview.currentWebview();
+				window.addEventListener("touchstart", function(event){
+					var target = event.target;
+					if(target.id == "ok-btn"){
+						target.classList.add("btn-active");
+						dispose();
+					} else if(target.id == "cancel-btn"){
+						target.classList.add("btn-active");
+						setTimeout(function(){
+							mui.back();
+							setTimeout(function(){
+								plus.webview.close(cpage, "none", 0)
+							}, 300)
+						}, 100)
+					}
+				})
+				
+				// 点击结束时触发事件
+				window.addEventListener("touchend", function(event){
+					var target = event.target;
+					if(target.id == "ok-btn" || target.id == "cancel-btn"){
+						target.classList.remove("btn-active");
+					}
+				})
+				
+				var form = document.getElementById("from");
+				var to = document.getElementById("to");
+				var way = document.getElementById("by-way-of");
+				var start = document.getElementById("start-date");
+				var end = document.getElementById("end-date");
+				var info = document.getElementById("info")
+				
+				// 判断 storage 中是否含有行程内容
+				var trip = JSON.parse(plus.storage.getItem("trip-plan"));
+//				console.log(plus.storage.getItem("trip-plan"));
+				if(trip){
+					form.value = trip.form;
+					to.value = trip.to;
+					way.value = trip.way;
+					start.innerHTML = trip.start;
+					end.innerHTML = trip.end;
+					info.value = trip.info;
+				}
+				
+				// ok-btn点击事件的处理 
+				function dispose(){
+					var fv = form.value.trim();
+					var tv = to.value.trim();
+					var wv = way.value.trim();
+					var sv = start.innerHTML.trim();
+					var ev = end.innerHTML.trim();
+					var iv = info.value.trim();
+					var obj = {
+							form : fv,
+							to : tv, 
+							way : wv, 
+							start : sv,
+							end : ev,
+							info : iv
+						}
+					if(fv && tv && wv && sv && ev && iv){
+//						console.log(JSON.stringify(obj))
+						plus.storage.setItem("trip-plan", JSON.stringify(obj))
+						mui.toast("行程保存成功");
+						setTimeout(function(){
+							mui.back();
+							setTimeout(function(){
+								plus.webview.close(cpage, "none", 0)
+							}, 300)
+						}, 100)
+					} else {
+						mui.toast("请完善信息");
+					}
+				}
 				
 			})
 		</script>
