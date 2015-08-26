@@ -47,6 +47,7 @@
 				</ul>
 			</div>
 		</div>
+		
 	</div>
 	<script src="../../js/template.js"></script>
 	<script src="../../js/utils.js"></script>
@@ -57,9 +58,9 @@
 				<div class="img-row mui-pull-left">
 					<div class="headimg-box" data-uid="{{$value.uid}}">
 						{{if $value.headPic == ""}}
-							<img alt="headpicture" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%"/>
+							<img alt="headpicture" src="../../img/defualt.png" width="100%"/>
 						{{else}}
-							<img alt="headpicture" src="{{$value.headPic}}" width="100%"/>
+							<img alt="headpicture" src="http://202.202.43.107:8080{{$value.headPic}}" width="100%"/>
 						{{/if}}
 					</div>
 				</div>

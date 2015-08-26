@@ -24,25 +24,12 @@ mui.plusReady(function() {
 		}, function(data) {
 			if (data.ret == 1) {
 				mui.toast("选择递送人成功");
-				mui.openWindow({
-					url: "./my-send-order.html",
-					id: "my-send-order",
-					createNew: true,
-					show: {
-						aniShow: "slide-in-left",
-						duration: 200
-					},
-					waiting: {
-						autoShow: true,
-						title: "正在加载...",
-						options: {
-							background: '#d1d1d1'
-						}
-					}
+				openWindow("./mysendorder-detail-transporting.html", {
+					orderId : orderid
 				})
 				setTimeout(function() {
-					cpage.close("none", 0);
-				}, 300)
+					plus.webview.close(cpage, "none", 0);
+				}, 2000)
 			} else if (data.ret == 2) {
 				mui.toast("非法操作");
 			} else if (data.ret == 3) {
