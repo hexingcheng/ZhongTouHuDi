@@ -28,7 +28,7 @@ mui.plusReady(function() {
 	// 返回首页
 	var cpage = plus.webview.currentWebview();
 	var index = plus.webview.getLaunchWebview();
-	if(cpage.type = "createorder"){
+	if(cpage.type){
 		mui.back = function(){
 			plus.webview.show(index, "slide-in-left", 200)
 			setTimeout(function(){

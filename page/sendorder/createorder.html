@@ -770,7 +770,8 @@
 						imgName: Math.floor(Math.random() * 100000) + ".jpg",
 						imgData: base, // base字符串
 						dataLength: base.length // base字符串长度
-					}
+					},
+					wait : false
 				}, function(data) {
 					var img = $('<span class="wids"><img title=' + path + ' src=' + base + ' alt=' + data.res.fid + '></span>');
 					$(context).parent().append(img);

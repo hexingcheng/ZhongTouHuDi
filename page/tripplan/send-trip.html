@@ -45,6 +45,7 @@
 				div.mui-scroll-wrapper {top: 52px;bottom: 60px;}
 				
 				.date-box {padding: 10px 0;color: #aaa;padding-right: 3em;}
+				#ok-btn.btn-active, #cancel-btn.btn-active {opacity: 0.5;-webkit-transition: opacity 100ms ease-in-out;}
 		</style>
 	</head>
 
@@ -92,7 +93,7 @@
 							<div class="mui-navigate-right">
 								<label class="label-wrap mui-pull-left">Start Date</label>
 								<div class="sub-input">
-									<div class="date-box" data-type="start">start date</div>
+									<div id="start-date" class="date-box" data-type="start">start date</div>
 									<!--<input type="text" name="" id="start-date" value="" placeholder="Start Date" readonly="readonly"/>-->
 								</div>
 							</div>
@@ -101,7 +102,7 @@
 							<div class="mui-navigate-right">
 								<label class="label-wrap mui-pull-left">End Date</label>
 								<div class="sub-input">
-									<div class="date-box" data-type="end">end date</div>
+									<div  id="end-date" class="date-box" data-type="end">end date</div>
 									<!--<input type="text" name="" id="end-date" value="" placeholder="End Date" readonly="readonly"/>-->
 								</div>
 							</div>
@@ -169,10 +170,81 @@
 					});
 				})
 				
-				// ok按钮
-				document.getElementById("ok-btn").addEventListener("tap", function(){
-					
+				// 点击时触发事件
+				var cpage = plus.webview.currentWebview();
+				window.addEventListener("touchstart", function(event){
+					var target = event.target;
+					if(target.id == "ok-btn"){
+						target.classList.add("btn-active");
+						dispose();
+					} else if(target.id == "cancel-btn"){
+						target.classList.add("btn-active");
+						setTimeout(function(){
+							mui.back();
+							setTimeout(function(){
+								plus.webview.close(cpage, "none", 0)
+							}, 300)
+						}, 100)
+					}
 				})
+				
+				// 点击结束时触发事件
+				window.addEventListener("touchend", function(event){
+					var target = event.target;
+					if(target.id == "ok-btn" || target.id == "cancel-btn"){
+						target.classList.remove("btn-active");
+					}
+				})
+				
+				var form = document.getElementById("from");
+				var to = document.getElementById("to");
+				var way = document.getElementById("by-way-of");
+				var start = document.getElementById("start-date");
+				var end = document.getElementById("end-date");
+				var info = document.getElementById("info")
+				
+				// 判断 storage 中是否含有行程内容
+				var trip = JSON.parse(plus.storage.getItem("trip-plan"));
+//				console.log(plus.storage.getItem("trip-plan"));
+				if(trip){
+					form.value = trip.form;
+					to.value = trip.to;
+					way.value = trip.way;
+					start.innerHTML = trip.start;
+					end.innerHTML = trip.end;
+					info.value = trip.info;
+				}
+				
+				// ok-btn点击事件的处理 
+				function dispose(){
+					var fv = form.value.trim();
+					var tv = to.value.trim();
+					var wv = way.value.trim();
+					var sv = start.innerHTML.trim();
+					var ev = end.innerHTML.trim();
+					var iv = info.value.trim();
+					var obj = {
+							form : fv,
+							to : tv, 
+							way : wv, 
+							start : sv,
+							end : ev,
+							info : iv
+						}
+					if(fv && tv && wv && sv && ev && iv){
+//						console.log(JSON.stringify(obj))
+						plus.storage.setItem("trip-plan", JSON.stringify(obj))
+						mui.toast("行程保存成功");
+						setTimeout(function(){
+							mui.back();
+							setTimeout(function(){
+								plus.webview.close(cpage, "none", 0)
+							}, 300)
+						}, 100)
+					} else {
+						mui.toast("请完善信息");
+					}
+				}
 				
 			})
 		</script>

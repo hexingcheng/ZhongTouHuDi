@@ -20,7 +20,7 @@ mui.plusReady(function() {
 		//					console.log(JSON.stringify(datas));
 		sendmsg(datas); // 调用函数进行数据渲染
 	})
-
+	
 	// 详情页面显示跳转代理事件
 	mui("#link-detail").on("tap", "#go-detail", function() {
 		var status = this.getAttribute("data-status");
@@ -46,6 +46,12 @@ mui.plusReady(function() {
 			cpage.close("none", 0)
 		})
 	}
+	
+	// 自定义事件刷新列表信息
+	window.addEventListener("refresh:data", function(){
+		var ele = document.querySelector(".item-four");
+		mui.trigger(ele, "tap");
+	})
 
 	/*	// 实现上拉刷新与下拉刷新功能
 		mui.each(document.querySelectorAll("#link-detail .mui-control-content"), function(index, element){
@@ -66,6 +72,7 @@ mui.plusReady(function() {
 		})
 		*/
 })
+
 
 // 发送数据状态显示详情界面信息
 function sendmsg(datas) {
