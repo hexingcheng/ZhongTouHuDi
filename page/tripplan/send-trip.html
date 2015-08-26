@@ -92,7 +92,7 @@
 							<div class="mui-navigate-right">
 								<label class="label-wrap mui-pull-left">Start Date</label>
 								<div class="sub-input">
-									<div class="date-box">start date</div>
+									<div class="date-box" data-type="start">start date</div>
 									<!--<input type="text" name="" id="start-date" value="" placeholder="Start Date" readonly="readonly"/>-->
 								</div>
 							</div>
@@ -101,7 +101,7 @@
 							<div class="mui-navigate-right">
 								<label class="label-wrap mui-pull-left">End Date</label>
 								<div class="sub-input">
-									<div class="date-box">end date</div>
+									<div class="date-box" data-type="end">end date</div>
 									<!--<input type="text" name="" id="end-date" value="" placeholder="End Date" readonly="readonly"/>-->
 								</div>
 							</div>
@@ -126,30 +126,52 @@
 			mui.init();
 			mui.plusReady(function(){
 				mui(".mui-scroll-wrapper").scroll();
-				
+				var year = new Date().getFullYear();
+				var options = {
+					"type":"hour",
+					"customData":{
+						"h":[{
+								"text":"上午",
+								"value":"上午"
+							},{
+								"text":"下午",
+								"value":"下午"
+							},{
+								"text":"晚上",
+								"value":"晚上"
+							}]
+					},
+					"labels":["年", "月", "日", "时段"],
+					"beginYear" : year,
+					"endYear" : year + 3
+				}
+//				console.log(options.endYear)
 				// 选择日期
+				var startdate, enddate;
 				mui("#dalegate").on("tap", ".date-box", function(){
-					var options = {
-						"type":"hour",
-						"customData":{
-							"h":[{
-									"text":"上午",
-									"value":"上午"
-								},{
-									"text":"下午",
-									"value":"下午"
-								},{
-									"text":"晚上",
-									"value":"晚上"
-								}]
-						},
-						"labels":["年", "月", "日", "时段", "分"]
-					}
+					var that = this;
+					var type = that.getAttribute("data-type");
 					var picker = new mui.DtPicker(options);
 					picker.show(function(rs) {
-							alert(rs.text);
+						if(type == "start"){
+							that.innerHTML = rs.value;
+							startdate = parseInt(rs.value.replace(/-/ig, ''));
 							picker.dispose();
-						});
+						} else if(type == "end"){
+							var end = parseInt(rs.value.replace(/-/ig, ''));
+							if(end >= startdate){
+								enddate = end;
+								that.innerHTML = rs.value;
+							} else {
+								mui.toast("时间选取错误");
+							}
+						}
+					});
+				})
+				
+				// ok按钮
+				document.getElementById("ok-btn").addEventListener("tap", function(){
+					
 				})
 				
 			})
