@@ -8,7 +8,7 @@
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="common.css" />
-		<script src="../../js/mui.js"></script>
+		<script src="../../js/mui.min.js"></script>
 		<style>
 			* {
 				padding: 0;
@@ -600,11 +600,7 @@
 					var name = $.trim($("#gname").val());
 					var weight = parseInt($.trim($("#gweight").val()));
 					var value = parseInt($.trim($("#gvalue").val()));
-<<<<<<< HEAD
 					var info = $.trim($('#gettext').val());
-=======
-					var info = $.trim($('#gettext').text());
->>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
 					if (validate()) { // 验证成功
 						var param = {
 							gName: name,
