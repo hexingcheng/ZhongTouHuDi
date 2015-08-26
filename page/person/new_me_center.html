@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+	<link rel="stylesheet" href="../../css/cy_log_up.css" />
+	<link rel="stylesheet" href="../../css/main.css" />
+	<link href="../../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../../css/font-awesome.css" />
+	<style>
+		.centerbg{
+			background-color: white !important;
+		}
+		.center_nav{
+			height: 52px;
+			line-height: 52px ;
+			font-size: 16px !important; 
+			color: white;
+			background-color: #3FA86A;
+			box-shadow: none !important;
+		}
+		.com_font{
+			font-size: 16px !important;
+		}
+		.center_title{
+			margin-left: .6em;
+		}
+		.center_icon{
+			width: 34px;
+			height: 34px;
+			margin: 9px 0 9px 9px;
+			float: right;
+		}
+		.border{
+			border: 1px solid red;
+		}
+		.center_top{
+			margin-top: 8px;
+			position: relative;
+		}
+		.center_bg{
+			width: 100%;
+			height: 10em;
+			position: relative;
+			background: url(../../img/2147de349744915c611f470c84c67f94.jpg) no-repeat;
+			background-size: 100% 10em;
+		}
+		.center_headpic{
+			width: 7em;
+			height:7em;
+			position: absolute;
+			bottom:0;
+			left: 50%;
+			border: 2px solid #F7F5F0;
+			background: url(../../img/u=2205791892,1328528914&fm=21&gp=0.jpg) no-repeat;
+			background-size: 7em 7em;
+			border-radius: 3.5em;
+			margin-left: -3.5em;
+			margin-bottom: -1.5em;
+		}
+		.center_headpic .header_camara{
+			width: 36px;
+			height: 36px;
+			border-radius: 18px;
+			position: absolute;
+			background-color: white;
+			bottom: 5px;
+			right: 0;
+		}
+		.center_bg_edit{
+			width: 34px;
+			height: 34px;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+		.header_camara img{
+			width: 34px;
+			height: 34px;
+		}
+		.center_input{
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			padding: 0 0 0 1em;
+			overflow: hidden;
+			background-color: white !important; 
+			font-size: 14px !important;
+			border-bottom: 1px solid #EFEFEF;
+		}
+		.center_clear{
+			width: 100%;
+			height: .5em;
+		}
+		.center_divl{
+			width: 7em;
+			height: 50px;
+			line-height: 50px;
+			float: left;
+		}
+		.center_input img{
+			width: 34px;
+			height: 34px;
+			margin: 8px;
+			float: right;
+/*			display: none;*/
+		}
+		.center_input .edit_hide{
+			display: block;
+		}
+		.center_input .edit_show{
+			display: none;
+		}
+		.center_input_div{
+			overflow: hidden;
+			height: 50px;
+			margin-right: 55px;
+		}
+		.center_input_div img{
+			float: left;
+			margin-left: 0;
+		}
+		.center_input_div input{
+			width: 100%;
+			height: 50px;
+			font-size: 14px;
+			border: 0;
+			padding-left: 0;
+			padding-right: 0 ;
+			margin-bottom: 0;
+			
+		}
+	</style>
+</head>
+	<body>
+	  <header class="mui-bar mui-bar-nav center_nav">
+	      <a class="mui-icon mui-icon-left-nav color_w mui-action-back com_font" ></a>
+	      <span class="center_title">personal</span>
+	      <img src="../../img/edit2.png" class="center_icon" alt="" style="display: none;"/>
+	      <img src="../../img/set-up.png" class="center_icon" alt="" />
+	  </header>
+	  <div class="mui-content center_top ">
+	  	<div class="center_bg ">
+	  	    <div class="center_headpic " id="headPic">
+	  	    	<div class="header_camara ">
+	  	    		<img src="../../img/camera.png" alt="" />
+	  	    	</div>
+	  	    </div>
+	  	    <img src="../../img/edit.png" class="center_bg_edit" alt="" />
+	  	</div>
+	  	<div class="center_clear"> <!--中间间隙--></div>
+	  	<div class="center_input ">
+	  		<div class="center_divl" ><span>family name</span></div>
+	  		<!--<img src="../../img/male2.png" alt=""  class="edit_show male"/>-->
+	  		<!--<img src="../../img/female2.png" alt="" class="edit_show female"/>
+	  		<img src="../../img/edit.png" alt="" class="edit_hide" />-->
+	  		<div class="center_input_div "> 
+	  			<input type="text" placeholder="Daniel" id="familyName" /> 
+	  		</div>
+	  	</div>
+	  	<div class="center_input ">
+	  		<div class="center_divl" ><span>first name</span></div>
+	  		<img src="../../img/edit.png" alt="" class="edit_hide"/>
+	  		<div class="center_input_div"> 
+	  			<input type="text" placeholder="Hammond" id="firstName"/>
+	  		</div>
+	  	</div>
+	  	<div class="center_clear"> <!--中间间隙--></div>
+	  	<div class="center_input ">
+	  		<div class="center_divl"><span>phone</span></div>
+	  		<div class="center_input_div"> 
+	  			<input type="number" placeholder="0965399648" readonly="readonly" id="phone"/>
+	  		</div>
+	  	</div>
+	  	<div class="center_input ">
+	  		<div class="center_divl"><span>password</span></div>
+	  		<img src="../../img/edit.png" alt="" class="edit_hide"/>
+	  		<div class="center_input_div"> 
+	  			<input type="password" placeholder="********"/>
+	  		</div>
+	  	</div>
+	  	<div class="center_clear"> <!--中间间隙--></div>
+	  	<div class="center_input ">
+	  		<div class="center_divl"><span>E-mail</span></div>
+	  		<img src="../../img/edit.png" alt="" class="edit_hide"/>
+	  		<div class="center_input_div"> 
+	  			<input type="text" placeholder="sun4343lee" id="email"/>
+	  		</div>
+	  	</div>
+	  	<div class="center_input ">
+	  		<div class="center_divl"><span>nationnality</span></div>
+	  		<img src="../../img/1096072.png" alt="" class="edit_show"/>
+	  		<img src="../../img/edit.png" alt="" class="edit_hide"/>
+	  		<div class="center_input_div"> 
+	  			<input type="text" placeholder="Canada" id="nation"/>
+	  		</div>
+	  	</div>
+	  	<div class="center_clear"> <!--中间间隙--></div>
+	  	
+	  	<div class="center_input ">
+	  		<div class="center_divl"><span>credibility</span></div>
+	  		<div class="center_input_div"> 
+	  		  <img src="../../img/jiangbei.png" alt="" />
+	  		  <span id="ptitle">士兵</span>
+
+	  		</div>
+	  	</div>
+	  	<div class="center_input mui-text-center">
+	  		<span id="deliver" style="display: none;">你是递送人</span>
+	  		<span id="not_deliver">你还不是递送人</span>
+	  	</div>
+	  </div>
+	 <script src="../../js/jquery.min.js"></script>
+	 <script src="../../js/utils.js"></script>
+	 <script src="../../js/comment.js"></script>
+	 <script>
+	 mui.plusReady(function(){
+	 	var data='';
+	 	myAjax({url:'account/info',data:data},
+	 	function(obj){
+	 		alert(1);
+	 		alert(JSON.stringify(obj));
+	 		if(obj.ret==1){
+	 			var data=obj.res;
+	 			 $('#headPic').css({'background':'url(data.headPic)'});
+	 			 $('#familyName').val(data.familyName);
+	 			 $('#firstName').val(data.firstName);
+	 			 $('#email').val(data.email); 
+	 			 $('#nation').val(data.nation);
+	 			 $('#phone').val(data.phone);
+	 			 $('#ptitle').text(data.ptitle);
+	 			 $('')
+	 			 if(data.deliver==1){
+	 			 	$('#deliver').css('display','block');
+	 			 	$('#not_deliver').css('display','none');
+	 			 }
+	 			if(data.sex==1){
+	 				$('.male').css('display','block').siblings().css('display','none');
+	 			}else{
+	 				$('.female').css('display','block').siblings().css('display','none');
+	 			}
+	 		}
+	 	},
+	 	function(){
+	 		alert('shibaile');
+	 	})
+	 })
+	 	
+	 </script>
+	</body>
+</html>
