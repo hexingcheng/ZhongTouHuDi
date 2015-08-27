@@ -52,6 +52,18 @@ mui.plusReady(function() {
 		var ele = document.querySelector(".item-four");
 		mui.trigger(ele, "tap");
 	})
+	
+	// 刷新数据显示
+	window.addEventListener("refresh:alldata", function(){
+		var ele = document.querySelector(".item-first");
+		mui.trigger(ele, "tap");
+	})
+	
+	// 刷新数据显示
+	window.addEventListener("refresh:comment", function(){
+		var ele = document.querySelector(".item-third");
+		mui.trigger(ele, "tap");
+	})
 
 	/*	// 实现上拉刷新与下拉刷新功能
 		mui.each(document.querySelectorAll("#link-detail .mui-control-content"), function(index, element){
