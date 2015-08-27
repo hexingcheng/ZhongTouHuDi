@@ -12,14 +12,6 @@ mui.plusReady(function() {
 	}
 	pullfresh();
 	mui("#scroll-wrapper").scroll();
-	//		$('.mui-scroll-wrapper').on('drag',function(e){
-	//		console.log('height'+$(this).find('.mui-scroll').height()+"parent:"+$(this).height())
-	//		console.log($(this).find('.mui-scroll').position().top)
-
-	//			for(var i in e.originalEvent.detail){
-	//				console.log(i+":"+e.originalEvent.detail[i])
-	//			}
-	//		})
 	function closewebs() {
 			if (plus.webview.getWebviewById('mygetorderdtl')) {
 				plus.webview.getWebviewById('mygetorderdtl').close();
@@ -36,41 +28,62 @@ mui.plusReady(function() {
 	})
 
 	function pullfresh() {
-		var callbacks = $.Callbacks('once');
-		callbacks.add(function() {
-			alert('down')
-			$('.pullfresh').removeClass('mui-hidden');
-			$('.mui-scroll').on('dragend', function(e) {
-				$('.pullfresh').addClass('mui-hidden');
-				var status = $('.mui-control-item').filter('.mui-active').attr('data-sta');
-				getlist(status,true);
-			})
-		});
-		var cb = $.Callbacks('once')
-		cb.add(function() {
-			alert('up')
-			$('.pullupfresh').removeClass('mui-hidden')
-			$('.mui-scroll').on('dragend', function(e) {
-				$('.pullfresh').addClass('mui-hidden');
-				var status = $('.mui-control-item').filter('.mui-active').attr('data-sta');
-				var oldhtml = $('#item'+status).html();
-				
-			})
+		var funcArr = [down,up];
+//		var callbacks = $.Callbacks('once');
+//		callbacks.add(function() {
+//			$('.pullfresh').removeClass('mui-hidden');
+//			
+//				$('.pullfresh').addClass('mui-hidden');
+//				var status = $('.mui-control-item').filter('.mui-active').attr('data-sta');
+//				getlist(status,true);
+//		});
+//		var cb = $.Callbacks('once')
+//		cb.add(function() {
+//			$('.pullupfresh').removeClass('mui-hidden')
+//			
+//				$('.pullfresh').addClass('mui-hidden');
+//				var status = $('.mui-control-item').filter('.mui-active').attr('data-sta');
+//				var oldhtml = $('#item'+status).html();
+//				getnextlist(2,status,true)
+//		})
+		$('.mui-scroll').on('dragend', function(e) {
+			if($('.mui-scroll').position().top==0){
+				funcArr[0] = down;
+			}
 		})
 		$('.mui-scroll').on('drag', function(e) {
 			var top = $(this).position().top;
 			var pullfoot = $(this).height() - $(this).parent().height() + 40;
 			if (e.originalEvent.detail.direction == 'down' && top > 40) {
-				callbacks.fire();
+				if(funcArr[0]){
+					funcArr[0]();
+				}
+				funcArr[0] = '';
 			}
 			if (e.originalEvent.detail.direction == 'up' && -top > pullfoot) {
-				cb.fire()
+				if(funcArr[1]){
+					funcArr[0]()
+				}
+				funcArr[1] = '';
 			}
 
 		})
 	}
-
+	function down(){
+		$('.pullfresh').removeClass('mui-hidden');
+		$('.pullfresh').addClass('mui-hidden');
+		var status = $('.mui-control-item').filter('.mui-active').attr('data-sta');
+		getlist(status,true);
+	}
+	function up(){
+		$('.pullupfresh').removeClass('mui-hidden');
+		$('.pullfresh').addClass('mui-hidden');
+		var status = $('.mui-control-item').filter('.mui-active').attr('data-sta');
+		var oldhtml = $('#item'+status).html();
+		getnextlist(2,status,true)
+	}
 	function getlist(status,wait) {
+		console.log(1)
 		wait = wait||false;
 		var status = status || 1
 		var getorderdata = {
