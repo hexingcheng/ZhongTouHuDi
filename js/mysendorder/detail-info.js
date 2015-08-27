@@ -15,11 +15,12 @@ mui.plusReady(function() {
 				page : 1,
 				pageSize : 3,
 				orderId : orderid
-			}
+			},
+			wait : false
 		}, function(data){
 			console.log(JSON.stringify(data))
 			if(data.ret == 1){
-				openWindow($(this).attr("data-href"));
+				openWindow("./list-of-participants.html");
 			} else if(data.ret == 2){
 				mui.toast("非发单人没有权限查看")
 			} else if(data.ret == 3){
