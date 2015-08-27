@@ -38,10 +38,9 @@
     <script>
       	mui.init();
       	mui.plusReady(function(){
-      		alert(111)
       		var cpage = plus.webview.currentWebview();
-      		alert(cpage.orderId)
-      		alert(cpage.status)
+//    		console.log(cpage.orderId)
+//    		console.log(cpage.status)
       		// 提交取消订单原因
       		var reasonval;
       		document.getElementById("submit-reason").addEventListener("tap", function(){
@@ -52,6 +51,7 @@
       				}
       			}
       			if(reasonval){
+//    				console.log(reasonval);
       				cancelorder(cpage.orderId, reasonval, cpage.status);
       			} else {
       				mui.toast("请选择取消发单的原因")
@@ -59,6 +59,8 @@
       		},false)
       		
       		// 取消订单
+      		var send = plus.webview.getWebviewById("mysendorder/my-send-order") ||
+      					plus.webview.getWebviewById("my-send-order");
 			function cancelorder(orderid ,reason, status){
 				myAjax({
 					url: "order/cancel",
@@ -76,10 +78,33 @@
 						setTimeout(function(){
 							plus.webview.close(cpage, "none", 0);
 						}, 2000)
+					} else if(data.ret == 2){
+						mui.toast("不存在的订单");
+						refresh();
+					} else if(data.ret == 3){
+						mui.toast("不是你的订单");
+						refresh();
+					} else if(data.ret == 4){
+						mui.toast("该状态下不能取消");
+						refresh();
+					} else if(data.ret == 5){
+						mui.toast("状态已经变更取消失败");
+						refresh();
 					}
 				}, function(xhr, type) {
 					console.log(xhr.status+":"+type)
 				})
+			}
+			
+			// 触发订单详情刷新，并返回该页面
+			function refresh(){
+				mui.fire(send, "refresh:alldata");
+				setTimeout(function(){
+					plus.webview.show(send, "slide-in-left", 200)
+					setTimeout(function(){
+						plus.webview.close(cpage, "none", 0)
+					}, 200)
+				}, 100)
 			}
       	})
     </script>

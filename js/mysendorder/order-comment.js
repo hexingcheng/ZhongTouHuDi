@@ -32,6 +32,7 @@ mui.plusReady(function() {
 	})
 
 	// 对评价按钮的添加事件		bad slow genral well very well
+	var send = plus.webview.getWebviewById("mysendorder/my-send-order") || plus.webview.getWebviewById("my-send-order");
 	var finish = plus.webview.getWebviewById("mysendorder-detail-finish");
 	var cpage = plus.webview.currentWebview();
 	document.getElementById("comment-order").addEventListener("tap", function() {
@@ -50,13 +51,16 @@ mui.plusReady(function() {
 			}, function(data) {
 				if (data.ret == 1) {
 					mui.toast("评价成功");
-					openNewWindow("./my-send-order.html");
+					mui.fire(send, "refresh:comment")
 					setTimeout(function() {
-						plus.webview.close(finish, "fade-out", 200)
-						plus.webview.close(cpage, "fade-out", 200)
-					}, 300)
+						plus.webview.show(send, "slide-in-left", 200)
+						setTimeout(function(){
+							plus.webview.close(finish, "none", 0)
+							plus.webview.close(cpage, "none", 0)
+						}, 300)
+					}, 100)
 				} else {
-					alert("不能重复评论");
+					mui.toast("不能重复评论");
 				}
 			}, function(xhr, type) {
 				console.log(type)
