@@ -6,6 +6,14 @@ mui.init({
 });
 mui.plusReady(function() {
 	mui("#scroll-wrapper").scroll();
+	$('.mui-scroll-wrapper').on('drag',function(e){
+		console.log('height'+$(this).find('.mui-scroll').height()+"parent:"+$(this).height())
+		console.log($(this).find('.mui-scroll').position().top)
+		
+//		for(var i in e.originalEvent.detail){
+//			console.log(i+":"+e.originalEvent.detail[i])
+//		}
+	})
 	function closewebs(){
 		if(plus.webview.getWebviewById('mygetorderdtl')){
 			plus.webview.getWebviewById('mygetorderdtl').close();
