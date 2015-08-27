@@ -17,12 +17,25 @@ mui.plusReady(function() {
 				orderId : orderid
 			}
 		}, function(data){
+			console.log(JSON.stringify(data))
 			if(data.ret == 1){
 				openWindow($(this).attr("data-href"));
 			} else if(data.ret == 2){
 				mui.toast("非发单人没有权限查看")
 			} else if(data.ret == 3){
-				sdkjfalksfdjlkasdjlfkjasldkfjlsa;dfjlkjlkjlk;
+				// 当前有人抢单后，需要进行发单人提醒该单已经抢单。是否需要支付
+				plus.nativeUI.confirm("当前订单已经被他人抢单，是否进行支付？", function(eve){
+					if(eve.index == 1){
+						openNewWindow("./mysendorder-detail-inform.html", {
+							orderId : orderid,
+							status : status
+						})
+						setTimeout(function(){
+							plus.webview.currentWebview().close();
+							plus.storage.removeItem("my-send-order")
+						}, 300)
+					}
+				}, "支付提示", ["否", "是"])
 			}
 		})
 	})
