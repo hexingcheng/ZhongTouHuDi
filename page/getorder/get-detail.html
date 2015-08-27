@@ -8,98 +8,101 @@
     <link rel="stylesheet" href="../../css/getorder/get-order-comment.css"/>
     <link rel="stylesheet" href="../../css/getorder/get-detail.css"/>
     <script src="../../js/mui.min.js"></script>
-    
 </head>
 <body style="background: #fff;">
 	<header class="mui-bar mui-bar-nav">
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<h1 class="mui-title">Detail</h1>
 	</header>
-	
+	<footer style="height: 3.9em;" class="mui-bar mui-bar-footer mui-text-center bg-color" id="foot">
+		<div id="markup" class="marks">markup</div>
+		<div id="collect" class="cllo">collect</div>
+	</footer>
+	<div id="order-mask" class="mui-hidden"></div>
+		<div id="markups" class="mui-hidden">
+		<div class="mak-title">please input the reword!</div>
+		<div class="mak-worn">please input the reword you want to be paid on the order.</div>
+		<div class="borporal">
+			<div class="inner">
+				<input / id="mar-i" placeholder="0.00" type="number">
+			</div>
+		</div>
+		<div class="cacu">
+			<div class="origin">
+				<span>oringin</span>
+				<span class="rewrod"></span>
+			</div>
+			<div class="now">
+				<span>real</span>
+				<span class="rel"></span>
+			</div>
+		</div>
+		<div class="mak-handle">
+			<div id="ok">ok</div>
+			<div id="cancel">cancel</div>
+		</div>
+	</div>
 	<div class="mui-content">
-		<div id="scroll-wrapper" class="mui-scroll-wrapper">
+		<div class="mui-scroll-wrapper">
 			<div class="mui-scroll">
-				<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<ul class="mui-table-view mui-grid-view mui-grid-9" id="uls">
 					<li class="mui-table-view-cell mui-col-xs-12">
-						<span class="mui-pull-left title-color mui-text-left name">Name</span>
-						<span class="mui-pull-right mui-text-right mui-ellipsis goods-name">--</span>
+						<span class="mui-pull-left title-color mui-text-left name addl15mar">Name</span>
+						<span class="mui-pull-right mui-text-right mui-ellipsis goods-name addr5mar">--</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
-						<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
+						<span class="mui-pull-left title-color mui-text-left title-padded addl15mar paddding0 addl15mar addlmar">Reward</span>
 						<span class="mui-pull-right">
 							<div class="goods-value-box">
-								<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
-								<p class="title-color">not paid</p>
-							</div>
+								<span class="value-color">$</span><span id="goods-value" class="value-color value-size addr5mar">0.00</span>
+ 							</div>
 						</span>
 					</li>
 					<li class="mui-table-view-cell mui-col-xs-6">
-						<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
-						<span id="goods-weight" class="mui-pull-right title-weight">0kg</span>
+						<span class="mui-pull-left title-color mui-text-left title-padded paddding0 addlmar">Weight</span>
+						<span id="goods-weight" class="mui-pull-right title-weight paddding0 addrmar">0kg</span>
 					</li>
-					<li class="mui-table-view-cell mui-col-xs-6">
-						<div class="title-color title-bottom-padded">Get Time</div>
-						<div id="get-time">--:--</div>
+					<li class="mui-table-view-cell mui-col-xs-6" id="tet">
+						<div class="time">Get Time</div>
+						<div id="get-time" class="da">--:--</div>
 					</li>
-					<li class="mui-table-view-cell mui-col-xs-6">
-						<div class="title-color title-bottom-padded">Deadline</div>
-						<div id="deadline">--:--</div>
+					<li class="mui-table-view-cell mui-col-xs-6" id="ret">
+						<div class="time">Deadline</div>
+						<div id="deadline" class="da">--:--</div>
 					</li>
 				</ul>
 				
 				<div class="table-diviver"></div>
 				
-				<ul class="mui-table-view">
+				<ul class="mui-table-view" id="ul2">
 					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width">From</span>
-						<span id="sendaddr" class="mui-ellipsis content-length">--</span>
+						<span class="title-color mui-pull-left title-width addl15mar">From</span>
+						<span id="sendaddr" class="mui-ellipsis content-length addl15mar">--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width">TO</span>
-						<span id="receiveaddr" class="mui-ellipsis content-length">--</span>
+						<span class="title-color mui-pull-left title-width addl15mar">TO</span>
+						<span id="receiveaddr" class="mui-ellipsis content-length addl15mar">--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width">Value</span>
-						<span id="gvalue" class="mui-ellipsis content-length">--</span>
+						<span class="title-color mui-pull-left title-width addl15mar">Value</span>
+						<span id="gvalue" class="mui-ellipsis content-length addl15mar">--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width">Desc</span>
-						<span id="info" class="mui-ellipsis content-length">--</span>
+						<span class="title-color mui-pull-left title-width addl15mar">Desc</span>
+						<span id="info" class="mui-ellipsis content-length addl15mar">--</span>
 					</li>
-					<li class="mui-table-view-cell desc-after">
-						<div class="porel">
-							<span class="img-box">
-								<span class="mui-icon mui-icon-plusempty"></span>
-							</span>
-							<span class="img-box">
-								<span class="mui-icon mui-icon-plusempty"></span>
-							</span>
-							<span class="img-box">
-								<span class="mui-icon mui-icon-plusempty"></span>
-							</span>
-							<span class="img-box">
-								<span class="mui-icon mui-icon-plusempty"></span>
-							</span>
-							<!--<span class="img-box">
-								<img src="../../img/2147de349744915c611f470c84c67f94.jpg" width="100%"/>
-							</span>-->
-						</div>
-					</li>
+					<div id="picwrap"></div>
 				</ul>
 			</div>
 		</div>
 	</div>
 	
-	<footer style="height: 3.9em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="markup" class="mui-btn button-first">markup</button>
-		<button id="collect" class="mui-btn button-next">collect</button>
-	</footer>
 
 	<!-- 遮罩层 -->
-	<div id="order-mask"></div>
+	
 	<!-- 显示层 -->
-	<div id="order-popup">
-		<div class="popup-porel">
+	<!--<div id="order-popup">
+		<div class="popup-porel">class="mui-hidden"
 			<div class="popup-title mui-h3">
 				Are you sure?
 			</div>
@@ -126,12 +129,14 @@
 			<div class="button-row">
 				<button id="ok" type="button">OK</button><button type="button" id="cancel">cancel</button>
 			</div>
-		</div>
-	</div>
-	<!-- 加载中的蒙层 -->
+
+		</div>class="mui-hidden"
+	</div>-->
+
+	 <!--加载中的蒙层--> 
 	<div id="loading-mask"></div>
 	<div id="loading-box">
-		<img src="../../img/loading45.gif" alt="loading"/>
+		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 	</div>
 	
 	<script src="../../js/jquery.min.js" ></script>

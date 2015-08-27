@@ -1,14 +1,31 @@
-mui.init();
+mui.init({
+	beforeback: function(){
+		plus.webview.getLaunchWebview().show('slide-in-left',200)
+		return false;
+	}
+});
 mui.plusReady(function() {
 	mui("#scroll-wrapper").scroll();
+	function closewebs(){
+		if(plus.webview.getWebviewById('mygetorderdtl')){
+			plus.webview.getWebviewById('mygetorderdtl').close();
+		}
+		if(plus.webview.getWebviewById('cancel-reason')){
+			plus.webview.getWebviewById('cancel-reason')
+		}
+	}
 	// ajax 获取模板数据
 	getlist(1);
 	mui('.mui-segmented-control').on('tap', '.mui-control-item', function() {
 		var sta = this.getAttribute('data-sta');
 		getlist(sta)
 	})
-
+<<<<<<< HEAD
+=======
+	
+>>>>>>> cf9c8e855444c785813efd4ba7267f0d82dd1cdf
 	function getlist(status) {
+		var status = status||1
 		var getorderdata = {
 			"page": 1,
 			"pageSize": 10,
@@ -31,12 +48,17 @@ mui.plusReady(function() {
 			console.log(type);
 		})
 	}
+
+	window.addEventListener('fresh',function(){
+		getlist();
+	})
 	mui('#link-detail').on('tap', '.mui-table-view', function() {
 		var orderid = this.getAttribute('data-id');
 		var datas = {
 			orderId: orderid,
 			type: 'rece'
 		};
-		openWindow('./mygetorderdtl.html', datas);
+		
+		openWindow('./mygetorderdtl.html',datas)
 	})
 })

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<script src="../../js/mui.js"></script>
+		<!--<link rel="stylesheet" type="text/css" href="../../css/app.css" />-->
+		<link href="../../css/mui.listpicker.css" rel="stylesheet" />
+		<link href="../../css/mui.dtpicker.css" rel="stylesheet" />
+		<style type="text/css">
+			body {background-color: #fff;}
+				.mui-content>.mui-table-view:first-child {margin-top: 0;}
+		    	.mui-bar-nav~.mui-content {padding-top: 52px;}
+		    	.mui-table-view-cell:after {left: 0;}
+		    	header.mui-bar {height: 52px;background-color: #46ac6f;}
+		    	.mui-bar .mui-icon {
+					padding-top: 14px;
+					padding-bottom: 14px;
+					color: #fff;
+				}
+				footer.mui-bar {-webkit-box-shadow: 0 0 1px rgba(0,0,0,.5);box-shadow: 0 0 1px rgba(0,0,0,.5);}
+				.mui-bar .mui-title {
+					left: 43px;
+					color: #fff;
+					height: 52px;
+					line-height: 52px;
+				}
+				.clear-padding {padding: 0;}
+				.input-box {overflow: hidden;padding: 10px 0px 10px 15px;}
+				.label-wrap {width: 5em;padding: 0.5em 0;}
+				.icon-wrap {height: 100%;padding: 18px;border-left: 1px solid #ddd;color: red;}
+				.mui-table-view-cell input {margin-bottom: 0;border: none;padding: 10px 0;}
+				.mui-table-view-cell textarea {padding: 0;margin-bottom: 0;border: none;}
+				.mui-table-view-cell label {color: #ccc;}
+				.input {left: 6em;position: absolute;right: 65px;}
+				.sub-input {position: absolute;left: 6em;right: 0;}
+				
+				footer.mui-bar {padding: 6px 10px;height: 60px;}
+				footer span {display: inline-block;height: 48px;line-height: 48px;color: #fff;}
+				#ok-btn {padding: 0 17%;background: #0062CC;}
+				#cancel-btn {padding: 0 14%;background: #255625;margin-left: 2%;}
+				div.mui-scroll-wrapper {top: 52px;bottom: 60px;}
+				
+				.date-box {padding: 10px 0;color: #aaa;padding-right: 3em;}
+				#ok-btn.btn-active, #cancel-btn.btn-active {opacity: 0.5;-webkit-transition: opacity 100ms ease-in-out;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title mui-text-left">Trip plan</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view" id="dalegate">
+						<li class="mui-table-view-cell clear-padding">
+							<div class="icon-wrap mui-pull-right">
+								<span class="mui-icon mui-icon-location-filled"></span>
+							</div>
+							<div class="input-box">
+								<label class="label-wrap mui-pull-left">From</label>
+								<div class="input">
+									<input type="text" name="from" id="from" value="" placeholder="from" />
+								</div>
+							</div>
+						</li>
+						<li class="mui-table-view-cell clear-padding">
+							<div class="icon-wrap mui-pull-right">
+								<span class="mui-icon mui-icon-location-filled"></span>
+							</div>
+							<div class="input-box">
+								<label class="label-wrap mui-pull-left">To</label>
+								<div class="input">
+									<input type="text" name="to" id="to" value="" placeholder="to" />
+								</div>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="">
+								<label class="label-wrap mui-pull-left">By way of</label>
+								<div class="sub-input">
+									<input type="text" name="" id="by-way-of" value="" placeholder="way of" />
+								</div>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="mui-navigate-right">
+								<label class="label-wrap mui-pull-left">Start Date</label>
+								<div class="sub-input">
+									<div id="start-date" class="date-box" data-type="start">start date</div>
+									<!--<input type="text" name="" id="start-date" value="" placeholder="Start Date" readonly="readonly"/>-->
+								</div>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="mui-navigate-right">
+								<label class="label-wrap mui-pull-left">End Date</label>
+								<div class="sub-input">
+									<div  id="end-date" class="date-box" data-type="end">end date</div>
+									<!--<input type="text" name="" id="end-date" value="" placeholder="End Date" readonly="readonly"/>-->
+								</div>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="">
+								<textarea id="info" rows="5" placeholder="Please write down your comment..."></textarea>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<footer class="mui-bar mui-bar-footer mui-text-center">
+			<span id="ok-btn">Ok</span>
+			<span id="cancel-btn">cancel</span>
+		</footer>
+		<script src="../../js/mui.listpicker.js"></script>
+		<script src="../../js/mui.dtpicker.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function(){
+				mui(".mui-scroll-wrapper").scroll();
+				var year = new Date().getFullYear();
+				var options = {
+					"type":"hour",
+					"customData":{
+						"h":[{
+								"text":"上午",
+								"value":"上午"
+							},{
+								"text":"下午",
+								"value":"下午"
+							},{
+								"text":"晚上",
+								"value":"晚上"
+							}]
+					},
+					"labels":["年", "月", "日", "时段"],
+					"beginYear" : year,
+					"endYear" : year + 3
+				}
+//				console.log(options.endYear)
+				// 选择日期
+				var startdate, enddate;
+				mui("#dalegate").on("tap", ".date-box", function(){
+					var that = this;
+					var type = that.getAttribute("data-type");
+					var picker = new mui.DtPicker(options);
+					picker.show(function(rs) {
+						if(type == "start"){
+							that.innerHTML = rs.value;
+							startdate = parseInt(rs.value.replace(/-/ig, ''));
+							picker.dispose();
+						} else if(type == "end"){
+							var end = parseInt(rs.value.replace(/-/ig, ''));
+							if(end >= startdate){
+								enddate = end;
+								that.innerHTML = rs.value;
+							} else {
+								mui.toast("时间选取错误");
+							}
+						}
+					});
+				})
+				
+				// 点击时触发事件
+				var cpage = plus.webview.currentWebview();
+				window.addEventListener("touchstart", function(event){
+					var target = event.target;
+					if(target.id == "ok-btn"){
+						target.classList.add("btn-active");
+						dispose();
+					} else if(target.id == "cancel-btn"){
+						target.classList.add("btn-active");
+						setTimeout(function(){
+							mui.back();
+							setTimeout(function(){
+								plus.webview.close(cpage, "none", 0)
+							}, 300)
+						}, 100)
+					}
+				})
+				
+				// 点击结束时触发事件
+				window.addEventListener("touchend", function(event){
+					var target = event.target;
+					if(target.id == "ok-btn" || target.id == "cancel-btn"){
+						target.classList.remove("btn-active");
+					}
+				})
+				
+				var form = document.getElementById("from");
+				var to = document.getElementById("to");
+				var way = document.getElementById("by-way-of");
+				var start = document.getElementById("start-date");
+				var end = document.getElementById("end-date");
+				var info = document.getElementById("info")
+				
+				// 判断 storage 中是否含有行程内容
+				var trip = JSON.parse(plus.storage.getItem("trip-plan"));
+//				console.log(plus.storage.getItem("trip-plan"));
+				if(trip){
+					form.value = trip.form;
+					to.value = trip.to;
+					way.value = trip.way;
+					start.innerHTML = trip.start;
+					end.innerHTML = trip.end;
+					info.value = trip.info;
+				}
+				
+				// ok-btn点击事件的处理 
+				function dispose(){
+					var fv = form.value.trim();
+					var tv = to.value.trim();
+					var wv = way.value.trim();
+					var sv = start.innerHTML.trim();
+					var ev = end.innerHTML.trim();
+					var iv = info.value.trim();
+					var obj = {
+							form : fv,
+							to : tv, 
+							way : wv, 
+							start : sv,
+							end : ev,
+							info : iv
+						}
+					if(fv && tv && wv && sv && ev && iv){
+//						console.log(JSON.stringify(obj))
+						plus.storage.setItem("trip-plan", JSON.stringify(obj))
+						mui.toast("行程保存成功");
+						setTimeout(function(){
+							mui.back();
+							setTimeout(function(){
+								plus.webview.close(cpage, "none", 0)
+							}, 300)
+						}, 100)
+					} else {
+						mui.toast("请完善信息");
+					}
+				}
+				
+			})
+		</script>
+	</body>
+
+</html>

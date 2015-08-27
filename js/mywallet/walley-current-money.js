@@ -22,6 +22,7 @@ mui.plusReady(function() {
 		},
 		wait : false
 	}, function(data) {
+//		console.log(JSON.stringify(data))
 		var obj = {
 			"list": data.res.moneyLog
 		}

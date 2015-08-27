@@ -1,16 +1,41 @@
 mui.init();
 mui.plusReady(function() {
+	var status;
 	mui("#scroll-wrapper").scroll();
 	var c = plus.webview.currentWebview();
 	var datas = {};
 	datas.orderId = c.orderId;
 	datas.type = c.type;
-	showobj(datas)
+
+	var back = mui.back;
+	mui.back = function(){
+		if (getstorage('getordertodtl') == 'on') {
+		setstorage('getordertodtl', 'off');
+		openWindow('../../page/getorder/get-order.html');
+	} else {
+		var getorder = plus.webview.getWebviewById('mygetorder/my-get-order')
+		if(getorder){
+			back();
+			}else{
+				openWindow('./my-get-order.html')
+			}
+		}
+	}
+//	
+//	setTimeout(function(){
+//		plus.webview.close(c, "none", 0)
+//	}, 300)
+	
+	
+	
+//	showobj(datas)
 	myAjax({
 		url: 'order/goodShow',
 		data: datas
 	}, function(data) {
+		status = data.res.status;
 		renderdata(data);
+		mui.toast('当前订单状态：' + data.res.status)
 		$('#loading-mask').addClass('mui-hidden')
 		$('#loading-box').addClass('mui-hidden')
 		if (data.res.status == 1 && data.res.bargain == 1) {
@@ -19,6 +44,7 @@ mui.plusReady(function() {
 			$('.addmoney').text(data.res.bargainMoney + ".0");
 		}
 		if (data.res.status == 2) {
+			$('.cancel').text('cancel');
 			$('.cancel').removeClass('mui-hidden');
 			$('.check').addClass('mui-hidden');
 			$('.write').addClass('mui-hidden');
@@ -51,12 +77,6 @@ mui.plusReady(function() {
 	$('.write').on('tap', function() {
 		$('.mask').removeClass('mui-hidden');
 		$('.inputcode').removeClass('mui-hidden');
-		var l = ($(window).width() - 270) / 2;
-		var t = ($(window).height() - $('.inputcode').height()) / 2;
-		$('.inputcode').css({
-			'left': l,
-			'top': t
-		});
 	})
 	$('.checkr').on('tap', function() {
 		var code = parseInt($('#vacode').val());
@@ -71,6 +91,7 @@ mui.plusReady(function() {
 				mui.toast('验证成功');
 				$('.mask').addClass('mui-hidden');
 				$('.inputcode').addClass('mui-hidden');
+				$('#foot').html('暂时没有评论')
 			}
 			if (data.ret == 2) {
 				$('.mask').addClass('mui-hidden');
@@ -80,19 +101,27 @@ mui.plusReady(function() {
 			console.log(type)
 		})
 	})
-
+	$('.cancels').on('tap', function() {
+		$('.mask').addClass('mui-hidden')
+		$('.dialog').addClass('mui-hidden')
+	})
 	$('.cancel').on('tap', function() {
-		if ($(this).text() == 'cancel') {
+		if ($(this).text() == 'cancel bargin') {
 			myAjax({
 				url: 'order/bargainCancel',
 				data: {
 					orderId: c.orderId
 				}
 			}, function(data) {
+				alert(data.ret)
 				if (data.ret == 1) {
-					c.close();
 					openWindow('./my-get-order.html');
+					var getorder = plus.webview.getWebviewById('mygetorder/my-get-order');
+					getorder.show('slide-in-left', 200, function() {
+						mui.fire(getorder, 'fresh')
+					})
 					mui.toast('取消议价成功');
+					c.close();
 				} else if (data.ret == 2) {
 					mui.toast('非法操作')
 				}
@@ -102,12 +131,6 @@ mui.plusReady(function() {
 		} else if ($(this).text() == 'order done') {
 			$('.mask').removeClass('mui-hidden');
 			$('.dialog').removeClass('mui-hidden')
-			var l = ($(window).width() - 270) / 2;
-			var t = ($(window).height() - $('.dialog').height()) / 2;
-			$('.dialog').css({
-				'left': l,
-				'top': t
-			})
 			$('.ok').on('tap', function() {
 				$('.mask').addClass('mui-hidden');
 				$('.dialog').addClass('mui-hidden');
@@ -121,10 +144,23 @@ mui.plusReady(function() {
 					}
 				}, function(data) {
 					plus.nativeUI.closeWaiting();
+					$('.cancel').addClass('mui-hidden');
+					$('.check').removeClass('mui-hidden');
+					$('.write').removeClass('mui-hidden');
 				}, function(xhr, type) {
 					console.log(type)
 				})
 			})
+		} else if ($(this).text() == 'cancel') {
+			var param = {};
+			param.orderId = c.orderId;
+			param.status = status;
+			if (plus.webview.getWebviewById('cancel-reason')) {
+				plus.webview.getWebviewById('cancel-reason').close();
+				openWindow('./cancel-reason.html', param);
+			} else {
+				openWindow('./cancel-reason.html', param);
+			}
 		}
 	})
 
@@ -143,12 +179,6 @@ mui.plusReady(function() {
 				plus.nativeUI.closeWaiting();
 				$('.mask').removeClass('mui-hidden');
 				$('.confirm').removeClass('mui-hidden')
-				var l = ($(window).width() - 270) / 2;
-				var t = ($(window).height() - $('.confirm').height()) / 2;
-				$('.confirm').css({
-					'left': l,
-					'top': t
-				});
 			}
 		}, function(xhr, type) {
 			console.log(type)
@@ -164,21 +194,16 @@ mui.plusReady(function() {
 	$('.checks').on('tap', function() {
 		$('.confirm').addClass('mui-hidden');
 		$('.inputcode').removeClass('mui-hidden');
-		var l = ($(window).width() - 270) / 2;
-		var t = ($(window).height() - $('.inputcode').height()) / 2;
-		$('.inputcode').css({
-			'left': l,
-			'top': t
-		});
 	})
 	$('#msg').on('tap', function() {
 		var p = $('#msg').attr('data-p')
 		sms(p)
 	})
-	$('#tel').on('tap',function(){
+	$('#tel').on('tap', function() {
 		var t = $(this).attr('data-p');
 		dial(t)
 	})
+
 	function sms(tel) {
 		var msg = plus.messaging.createMessage(plus.messaging.TYPE_SMS);
 		msg.to = [tel];
@@ -204,7 +229,7 @@ mui.plusReady(function() {
 		$('#sender').text(data.res.sender);
 		$('#receiver').text(data.res.receiver)
 		$('#msg').attr('data-p', data.res.senderPhone);
-		$("#tel").attr('data-p',data.res.senderPhone)
+		$("#tel").attr('data-p', data.res.senderPhone)
 		if (data.res.pics.length) {
 			var pic = data.res.pics;
 			var len = pic.length;

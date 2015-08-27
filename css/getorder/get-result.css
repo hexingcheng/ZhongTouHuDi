@@ -16,3 +16,22 @@
 	color: #ccc;
 	padding: 0.2em 0;
 }
+.button-first,#view-order{
+	float: left;
+	height: 48px;
+	line-height: 48px;
+	width: 49%;
+	color: #FFFFFF;
+}
+.button-first{
+	margin-right: 1%;
+	background-color: #034657;
+}
+#view-order{
+	margin-left: 1%;
+	background-color: #23a0cf;
+}
+<<<<<<< HEAD
+
+=======
+>>>>>>> cf9c8e855444c785813efd4ba7267f0d82dd1cdf
