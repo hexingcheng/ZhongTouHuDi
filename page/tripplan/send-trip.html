@@ -31,7 +31,9 @@
 				.clear-padding {padding: 0;}
 				.input-box {overflow: hidden;padding: 10px 0px 10px 15px;}
 				.label-wrap {width: 5em;padding: 0.5em 0;}
-				.icon-wrap {height: 100%;padding: 18px;border-left: 1px solid #ddd;color: red;}
+				.icon-wrap {height: 100%;border-left: 1px solid #ddd;color: red;}
+				.icon-wrap .mui-icon {padding: 18px;}
+				.icon-wrap.btn-active {-webkit-transition: all 100ms ease-in-out;transition: all 100ms ease-in-out;background-color: #ccc;color: #008000;}
 				.mui-table-view-cell input {margin-bottom: 0;border: none;padding: 10px 0;}
 				.mui-table-view-cell textarea {padding: 0;margin-bottom: 0;border: none;}
 				.mui-table-view-cell label {color: #ccc;}
@@ -45,7 +47,7 @@
 				div.mui-scroll-wrapper {top: 52px;bottom: 60px;}
 				
 				.date-box {padding: 10px 0;color: #aaa;padding-right: 3em;}
-				#ok-btn.btn-active, #cancel-btn.btn-active {opacity: 0.5;-webkit-transition: opacity 100ms ease-in-out;}
+				#ok-btn.btn-active, #cancel-btn.btn-active {opacity: 0.5;-webkit-transition: opacity 100ms ease-in-out;transition: opacity 100ms ease-in-out;}
 		</style>
 	</head>
 
@@ -176,15 +178,21 @@
 					var target = event.target;
 					if(target.id == "ok-btn"){
 						target.classList.add("btn-active");
-						dispose();
+						if(ismodified()){
+							dispose();
+						} else {
+							mui.toast("未修改")
+						}
 					} else if(target.id == "cancel-btn"){
 						target.classList.add("btn-active");
 						setTimeout(function(){
 							mui.back();
-							setTimeout(function(){
-								plus.webview.close(cpage, "none", 0)
-							}, 300)
 						}, 100)
+					}
+					// 添加按钮式响应
+					var cls = target.parentNode.classList;
+					if(cls.contains("icon-wrap")){
+						cls.add("btn-active");
 					}
 				})
 				
@@ -193,6 +201,10 @@
 					var target = event.target;
 					if(target.id == "ok-btn" || target.id == "cancel-btn"){
 						target.classList.remove("btn-active");
+					}
+					var cls = target.parentNode.classList;
+					if(cls.contains("icon-wrap")){
+						cls.remove("btn-active");
 					}
 				})
 				
@@ -213,6 +225,20 @@
 					start.innerHTML = trip.start;
 					end.innerHTML = trip.end;
 					info.value = trip.info;
+				}
+				
+				// 验证信息是否有修改
+				function ismodified(){
+					var flag;
+					if(trip){
+						flag = form.value == trip.form &&
+								to.value == trip.to &&
+								way.value == trip.way &&
+								start.innerHTML == trip.start &&
+								end.innerHTML == trip.end &&
+								info.value == trip.info;
+					}
+					return !flag;
 				}
 				
 				// ok-btn点击事件的处理 

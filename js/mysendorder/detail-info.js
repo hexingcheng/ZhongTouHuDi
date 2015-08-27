@@ -9,7 +9,22 @@ mui.plusReady(function() {
 
 	// 议价中添加选取递送人
 	$("#msg-warn").on("tap", ".link-btn", function() {
-		openWindow($(this).attr("data-href"));
+		myAjax({
+			url : "order/bargainList",
+			data : {
+				page : 1,
+				pageSize : 3,
+				orderId : orderid
+			}
+		}, function(data){
+			if(data.ret == 1){
+				openWindow($(this).attr("data-href"));
+			} else if(data.ret == 2){
+				mui.toast("非发单人没有权限查看")
+			} else if(data.ret == 3){
+				sdkjfalksfdjlkasdjlfkjasldkfjlsa;dfjlkjlkjlk;
+			}
+		})
 	})
 	
 	// 取消订单

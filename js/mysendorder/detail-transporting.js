@@ -28,6 +28,41 @@ mui.plusReady(function() {
 				},1000)
 			}
 		}
+		
+		// 发信息
+		document.getElementById("sendmsg").addEventListener("tap", function(){
+			var phonenum = this.getAttribute("data-phone");
+			var msg = plus.messaging.createMessage(plus.messaging.TYPE_SMS);
+			msg.to = [phonenum];
+			msg.body = '';
+			plus.messaging.sendMessage( msg );
+		})
+		
+		// 打电话
+		document.getElementById("phone").addEventListener("tap", function(){
+			var phonenum = this.getAttribute("data-phone");
+			plus.device.dial( phonenum , false );
+		})
+		
+		// 添加点击样式与过渡效果
+		window.addEventListener("touchstart", function(){
+			var target = window.event.target;
+			var cls = target.classList;
+			if(cls.contains("mui-icon-phone-filled") || cls.contains("mui-icon-chatbubble-filled")){
+				target.style.webkitTransition = "all 100ms ease-in-out";
+				cls.add("tap-active");
+			}
+		})
+		// 清除添加样式与过渡效果
+		window.addEventListener("touchend", function(){
+			var target = window.event.target;
+			var cls = target.classList;
+			if(cls.contains("mui-icon-phone-filled") || cls.contains("mui-icon-chatbubble-filled")){
+				target.style.webkitTransition = "all 100ms ease-in-out";
+				cls.remove("tap-active");
+			}
+		})
+		
 	})
 
 	// 取消订单函数调用
