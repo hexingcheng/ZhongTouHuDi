@@ -61,10 +61,14 @@ body {
 }
 .waiting-box {
 	position: absolute;
-	background: #fff url(../../img/loading.gif) no-repeat center center;
-	width: 100%;
-	height: 25em;
-	background-size: 30% 40%;
+	background: #fff url(../../img/loading2.gif) no-repeat center center;
+	width: 100px;
+	height: 100px;
+	background-size: 100% 100%;
+	top: 50%;
+	left: 50%;
+	margin-left: -50px;
+	margin-top: -50px;
 }
 .red {
 	color: #ff8474;
@@ -101,4 +105,9 @@ div.mui-scroll-wrapper {
 .goods-value {
 	font-size: 18px;
 }
-
+.waiting{
+	top: 101px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}

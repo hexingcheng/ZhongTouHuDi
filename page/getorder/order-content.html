@@ -14,15 +14,41 @@
 			html,body,.mui-content{
 				background-color: #FFFFFF;
 			}
+			.masks{
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: #FFFFFF;
+				z-index: 999;
+			}
+			.loading{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -50px;
+				margin-top: -50px;
+			}
+			.loading img{
+				width: 100px;
+				height: 100px;
+			}
 		</style>
 	</head>
 
 	<body>
-		<div id="pullrefresh">
+		<div class="masks">
+			<div class="loading">
+				<img src="../../img/loading2.gif"/>
+			</div>
+		</div>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
 			<!--数据列表-->
-			<div class="ordercontents">
+			<div class="ordercontents mui-scroll" id="ordercontent">
 				<!-- 等待框 -->
-				
 			</div>
 		</div>
 		<script src="../../js/template.js"></script>
@@ -70,9 +96,6 @@
 		<script src="../../js/mui.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script src="../../js/getorder/get-order.js"></script>
-		<script>
-
-		</script>
 	</body>
 
 </html>

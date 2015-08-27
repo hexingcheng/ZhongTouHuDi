@@ -20,10 +20,6 @@ mui.plusReady(function() {
 		var sta = this.getAttribute('data-sta');
 		getlist(sta)
 	})
-<<<<<<< HEAD
-=======
-	
->>>>>>> cf9c8e855444c785813efd4ba7267f0d82dd1cdf
 	function getlist(status) {
 		var status = status||1
 		var getorderdata = {
@@ -34,7 +30,8 @@ mui.plusReady(function() {
 		};
 		myAjax({
 			url : 'order/myGoodList',
-			data: getorderdata
+			data: getorderdata,
+			wait:false
 		}, function(data) {
 			var orderdata = {
 				"list": data.res

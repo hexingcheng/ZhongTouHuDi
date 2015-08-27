@@ -142,7 +142,7 @@ window.addEventListener("swipeleft", function() {
 	}
 });
 $('.infowrap').on('tap', function() {
-	openWindow('./page/person/me_center.html')
+	openWindow('./page/person/new_me_center.html')
 })
 window.addEventListener('removehref', function() {
 	$('.pho').attr('src', 'img/defualt.png')
