@@ -15,7 +15,7 @@
 </head>
 	<body>
 	  <header class="mui-bar mui-bar-nav center_nav">
-	      <img src="../../img/left.png" alt=""  class="left_img"/>
+	      <img src="../../img/left.png" alt=""  class="left_img mui-action-back"/>
 	      <span >personal</span>
 	      <img src="../../img/edit2.1.png" class="center_icon center_edit" alt="" />
 	      <img src="../../img/save.png" class="center_icon center_save" alt="" style="display: none;"/>
@@ -30,7 +30,7 @@
 	  	    <img src="../../img/edit3.png" class="center_bg_edit photo_ bg" alt="" />  
 	  	</div>
 	  	<div class="center_clear"> <!--中间间隙--></div>
-	  	<div class="center_input ">
+	  	<div class="center_input has_sex">
 	  		<div class="center_divl" ><span>family name</span></div>
 	  		<img src="../../img/male2.png" alt=""  class="edit_show male sex" />
 	  		<img src="../../img/female2.png" alt="" class="edit_show female sex"/>
@@ -154,12 +154,9 @@
 	 			 	$('#not_deliver').css('display','none');
 	 			 }
 	 			if(data.sex==1){
-	 				$('.male').css('display','block');
-	 				$('.female').css('display','none');
-	 				
+	 				$('.male').css('display','block');	
 	 			}else{
 	 				$('.male').css('display','none');
-	 				$('.female').css('display','block');
 	 			}
 	 		}   
 	 	},
@@ -276,6 +273,7 @@
 		     	 			$('.center_pop').css('display','none');
 		     	 			$('.edit_show').css('display','none');
 		     	 			$('#password').val(pwd);
+		     	 			$('#pop_password').val('');
 		     	 			$('.edit_hide').css({'display':'block'});
 			  	    	  }else if(obj.ret==2){
 			  	    	  	mui.toast('密码错误');
@@ -338,7 +336,7 @@
      	var edit= $(this).attr('name');
      	$('.'+edit).removeAttr('readonly');
      })
-     $('#center_popover').on('tap',function(){
+     $('#center_popover').on('tap',function(){  
      	$(this).css('display','none');
      	$('.center_pop').css('display','none');
      })

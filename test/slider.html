@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -8,59 +7,40 @@
 		<script src="../js/mui.min.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<style>
-		html,body,#slider{
-				height: 100%;
-			}
-			.mui-slider-item{
-				height: 100%;
-			}
-			.mui-slider-item a{
-				position: relative;
-				height: 100%;
-			}
-			.mui-slider-item a img{
+			#lee-mask {
+				background: #000;
+				opacity: 0.4;
 				position: absolute;
-				top: 50%;
+				top: 0;left: 0;right: 0;bottom: 0;
+			}
+			#lee-content-wrap {
+				position: absolute;
+				left: 50%;top: 50%;
+				width: 300px;height: 200px;
+				margin-left: -150px;margin-top: -100px;
+				background: #fff;
+			}
+			#lee-content {
+				position: relative;
+			}
+			#lee-content {
+				position: absolute;
+				top: 0;left: 0;
+				width: 100%;height: 40px;
+				background: #0062CC;
 			}
 		</style>
-		<script type="text/javascript" charset="utf-8">
-			mui.init();
-		</script>
 	</head>
-
 	<body>
-		<div class="mui-slider" id="slider">
-			<div class="mui-slider-group" id="preseepic">
-				<div class="mui-slider-item">
-					<a href="javascript:void(0)">
-						<img src="../img/cbd.jpg" class="preimg">
-					</a>
-				</div>
-				<div class="mui-slider-item">
-					<a href="javascript:void(0)">
-						<img src="../img/create-order.png" class="preimg">
-					</a>
-				</div>
-				<div class="mui-slider-item">
-					<a href="javascript:void(0)">
-						<img src="../img/help.png" class="preimg">
-					</a>
-				</div>
-				<div class="mui-slider-item">
-					<a href="javascript:void(0)">
-						<img src="../img/pic1.png" class="preimg">
-					</a>
-				</div>
+		
+		<div id="lee-mask"></div>
+		<div id="lee-content-wrap">
+			<div id="lee-content">
+				<div class="title">标题</div>
 			</div>
 		</div>
-		<script src="../js/jquery.min.js"></script>
 		<script>
-			var item = $('.preimg')
-			var len = item.length;
-			for(var i = 0;i<len;i++){
-				var t = ($(window).height()-item.eq(i).height())/2
-				item.eq(i).css('top',t)
-			}
+			mui.init();
 		</script>
 	</body>
 </html>
