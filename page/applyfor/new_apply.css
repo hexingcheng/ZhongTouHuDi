@@ -12,7 +12,7 @@ html,body{
 			background-color: #3FA86A;
 			box-shadow: none !important;
 		}
-		.center_nav .left_img{
+		 .left_img{
 			width: 34px;
 			height: 34px;
 			margin: 9px 9px 9px 0;
@@ -51,9 +51,9 @@ html,body{
 			bottom:0;
 			left: 50%;
 			border: 2px solid #F7F5F0;
-			background: url(../../img/u=2205791892,1328528914&fm=21&gp=0.jpg) no-repeat;
-			background-size: 7em 7em;
-			border-radius: 3.5em;
+		 	background: url(../../img/defualt.png) no-repeat;
+			background-size: 100% 100%;
+			border-radius: 50%;
 			margin-left: -3.5em;
 			margin-bottom: -1.5em;
 		}

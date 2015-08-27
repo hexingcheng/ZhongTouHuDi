@@ -12,6 +12,12 @@
 .apply_title{
 	margin-left: .6em;
 }
+.left_img{
+	width: 34px;
+	height: 34px;
+	margin: 9px 9px 9px 0;
+	float: left;
+		}
 .apply_content{
 	padding: 0 .5em;
 	font-size: 14px;
