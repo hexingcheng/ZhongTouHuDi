@@ -19,6 +19,7 @@
 		</header>
 
 		<div class="mui-content">
+			<div class="pullfresh mui-hidden">pull refresh</div>
 			<div id="segmentedControl" class="mui-segmented-control">
 				<a class="mui-control-item mui-active" href="#item1" data-sta="1">published</a>
 				<a class="mui-control-item" href="#item2" data-sta="2">transporting</a>
@@ -30,41 +31,6 @@
 						<div style="position: relative;" class="waiting">
 							<div class="waiting-box"></div>
 						</div>
-						<!--<ul class="mui-table-view" data-id="{{$value.orderId}}">
-				<li class="mui-table-view-cell">
-					<a href="javascript:void(0)" class="detail-page">
-						<div class="goods-name-bar">
-							<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
-						</div>
-						<div class="goods-content">
-							<div class="goods-direction mui-pull-left">
-								<div class="goods-bar goods-from-bar mui-ellipsis">
-									<span class="goods-from font-color">Weight</span>
-									<span class="goods-msg">{{$value.gWeight}}</span>
-								</div>
-								<div class="goods-bar goods-from-bar mui-ellipsis">
-									<span class="goods-from font-color">From</span>
-									<span class="goods-msg">{{$value.sendAddr}}</span>
-								</div>
-								<div class="goods-bar goods-to-bar mui-ellipsis">
-									<span class="goods-to font-color">To</span>
-									<span class="goods-msg">{{$value.receiveAddr}}</span>
-								</div>
-								<div class="goods-bar goods-comment-bar mui-ellipsis">
-									<span class="goods-comment font-color">Deadline</span>
-									<span class="goods-msg red">{{$value.time}}</span>
-								</div>
-							</div>
-							<div class="goods-rewards-bar mui-pull-right mui-text-center">
-								<div>{{$value.statusDetail == 11? "议价中":$value.statusDetail==12 ? "待付款" : $value.statusDetail==13 ? "接单中" : $value.statusDetail==21 ? "未取货" : $value.statusDetail==22 ? "已取货" : $value.statusDetail==31 ? "待评价":"已评价"}}</div>
-								<div class="goods-rewards">Reward</div>
-								<div class="goods-value">{{$value.money}}</div>
-							</div>
-						</div>
-					</a>
-				</li>
-			</ul>
-			<div class="content-padded"></div>-->
 					</div>
 					<div id="item2" class="mui-control-content">
 						<div style="position: relative;" class="waiting">
@@ -78,6 +44,7 @@
 					</div>
 				</div>
 			</div>
+			<div class="pullupfresh mui-hidden">pull up refresh</div>
 		</div>
 		<script src="../../js/template.js"></script>
 		<script type="text/html" id="template">

@@ -19,13 +19,13 @@ mui.plusReady(function() {
 
 	// 隐藏显示层
 	document.getElementById("cancel").addEventListener("tap", function() {
-		mask.style.display = "none";
-		panel.style.display = "none";
+		$('#order-mask').addClass('mui-hidden');
+		$('#markups').addClass('mui-hidden');
 	}, false)
 
 	mask.addEventListener("tap", function() {
-		mask.style.display = "none";
-		panel.style.display = "none";
+		$('#order-mask').addClass('mui-hidden');
+		$('#markups').addClass('mui-hidden');
 	}, false)
 
 	var order = JSON.parse(plus.storage.getItem("order"));
