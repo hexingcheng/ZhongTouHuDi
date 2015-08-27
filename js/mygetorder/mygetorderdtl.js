@@ -31,7 +31,8 @@ mui.plusReady(function() {
 //	showobj(datas)
 	myAjax({
 		url: 'order/goodShow',
-		data: datas
+		data: datas,
+		wait:false
 	}, function(data) {
 		status = data.res.status;
 		renderdata(data);

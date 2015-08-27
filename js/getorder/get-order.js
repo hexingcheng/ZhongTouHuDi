@@ -39,7 +39,6 @@ function pulldownRefresh() {
 	getorderdata.sortType = whichitem;
 	getorderdata.sortVal = whichval;
 	if (navigator.geolocation) {
-		$('.ordercontents').html("")
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			var lot = pos.coords.longitude;
 			var lat = pos.coords.latitude;
@@ -60,7 +59,7 @@ function pulldownRefresh() {
 				if (!html) {
 					html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
 				}
-				$('.ordercontents').html(html)
+				$('#ordercontent').html(html)
 			}, function(xhr, type, errorThrown) {
 				console.log(type)
 			})
@@ -93,7 +92,7 @@ function pullupRefresh() {
 	getorderdata.sortVal = whichval;
 	getorderdata.page = ++allpage[whichitem];
 	if (navigator.geolocation) {
-		var old = $('.ordercontents').html();
+		var old = $('#ordercontent').html();
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			var lot = pos.coords.longitude;
 			var lat = pos.coords.latitude;
@@ -114,7 +113,7 @@ function pullupRefresh() {
 					mui.toast('没有更多数据')
 				}else{
 					var h = old+html
-					$('.ordercontents').html(h)
+					$('#ordercontent').html(h)
 				}
 				
 			}, function(xhr, type, errorThrown) {
@@ -130,6 +129,7 @@ function pullupRefresh() {
 	}
 }
 mui.plusReady(function() {
+	mui('.mui-scroll-wrapper').scroll();
 	var getorderdata = {
 		"page": 1,
 		"pageSize": 10,
@@ -152,7 +152,8 @@ mui.plusReady(function() {
 			getorderdata.curWd = lat;
 			myAjax({
 				url: 'deliver/goodList',
-				data: getorderdata
+				data: getorderdata,
+				wait:false
 			}, function(data) {
 				var orderdata = {
 						"list": data.res
@@ -162,7 +163,8 @@ mui.plusReady(function() {
 				if (!html) {
 					html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
 				}
-				$('.ordercontents').html(html)
+				$('#ordercontent').html(html);
+				$('.masks').addClass('mui-hidden')
 			}, function(xhr, type, errorThrown) {
 				console.log(type)
 			})
@@ -215,8 +217,7 @@ mui.plusReady(function() {
 						showobj(getorderdata)
 						myAjax({
 							url: 'deliver/goodList',
-							data: getorderdata,
-							wait:true
+							data: getorderdata
 						}, function(data) {
 							var orderdata = {
 									"list": data.res
@@ -226,7 +227,7 @@ mui.plusReady(function() {
 							if (!html) {
 								html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
 							}
-							$('.ordercontents').html(html)
+							$('#ordercontent').html(html)
 						}, function(xhr, type, errorThrown) {
 							console.log(type)
 						})

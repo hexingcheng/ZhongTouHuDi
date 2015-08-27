@@ -147,8 +147,8 @@
 #loading-mask {
 	position: absolute;
 	z-index: 998;
-	background: rgba(0, 0, 0, .4);
-	top: 0;
+	background-color: #FFFFFF;
+	top: 52px;
 	left: 0;
 	right: 0;
 	bottom: 0;
