@@ -338,21 +338,19 @@
    		    add_data=$.extend({},data_one,data_2); //将前后对象进行合并
 	        if(flag){ 
 			   myAjax({url:"account/applyDeliver",data:add_data},function(obj){
-					   	plus.storage.removeItem('nation_data1');
+					  
+			   	     if(obj.ret==1){
+			   	     	plus.storage.removeItem('nation_data1');
 						plus.storage.removeItem('nation_pic1');
 						plus.storage.removeItem('nation_pic2');
 						plus.storage.removeItem('nation_pic3');
-			   	alert("yijaio")
-			   	     if(obj.ret==1){
-			   	     	alert('请等待审核！');
-			   	     	;
-			   	        openWindow("../../new_index.html"); 
+			   	        openWindow("submitted.html"); 
 			   	     }else if(obj.ret==2){
 			   	     	mui.toast('提交失败');
 			   	     }else{
 			   	     	alert(obj.ret+"cycycycy");
 			   	     }
-			   
+			    
 		   },function(xhr,type){     
 		   	 console.log(xhr.status);  
 		   }  

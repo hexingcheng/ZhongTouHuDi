@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<script src="../../js/mui.js"></script>
+<script src="../../js/utils.js"></script>
+<link href="../../css/mui.css" rel="stylesheet"/>
+<link rel="stylesheet" href="apply.css" />
+<style type="text/css">
+	.sub_log{
+		width: 100px;
+		height: 100px;
+		border: 1px solid red;
+		background: url();
+		margin: 30% auto 10% auto;
+	}
+	.submit_title{
+		width: 80%;
+		margin: 0 auto;
+		text-align: center;
+		overflow: hidden;
+		line-height: 1.5em;
+		
+	}
+	.submit_succ{
+		font-size: 18px;
+		color: #3FA86A;
+	}
+</style>
+</head>
+	<body>
+			<span class="apply_title">Submitted</span>
+	    </header>
+	    <div class="mui-content">
+	    	<div class="sub_log">
+	    	</div>
+	    	<div class="submit_title">
+	    		<span class="submit_succ"><strong>Submit success</strong></span>
+	    		<p><span>your application has submitted, please wait</span></p>
+	    	</div>
+	    </div>
+	    <div class="apply_footer">
+		     <div class="apply_button" id="submit_home"><span>Home page</span></div>
+	    </div>
+	    <script src="../../js/jquery.min.js"></script>
+	</body>
+	<script>
+	
+		$('#submit_home').on('tap',function(){
+			openWindow('../../new_index.html');
+		})
+	</script>
+</html>
