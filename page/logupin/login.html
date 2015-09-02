@@ -12,7 +12,6 @@
 			mui.init();
 		</script>
 	</head>
-
 	<body>
 		<header class="mui-bar mui-bar-nav login_headr">
 			<a class="mui-icon mui-icon-left-nav mui-action-back login_color mui-action-back"></a>
@@ -107,12 +106,11 @@
 						}, function(obj) { // 成功的时候，根据不同的状态回应不同的相应信息给客户端
 							if (obj.ret == 0) {
 								mui.toast("输入异常");
-							} else if (obj.ret = 1) {
-								//登录成功
-								alert(obj.token)
+							} else if (obj.ret == 1) {
+								mui.toast(obj.ret)
+								mui.toast(obj.token)
 								setstorage('token', obj.token);
 								getacountinfo()
-								
 								plus.webview.getLaunchWebview().show('slide-in-left', 200);
 							} else if (obj.ret == -1) {
 								mui.toast("手机号或密码错误")
