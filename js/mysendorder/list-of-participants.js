@@ -50,7 +50,7 @@ mui.plusReady(function() {
 	mui("#choose-sender").on("tap", ".headimg-box", function() {
 		var ud = this.getAttribute("data-uid");
 		console.log(ud);
-		openWindow("../person/myinfo.html", {
+		openWindow("../person/new_personal_info.html", {
 			uid: ud
 		})
 	})

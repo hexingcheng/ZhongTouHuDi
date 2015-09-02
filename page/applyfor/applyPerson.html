@@ -1,405 +1,443 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-<title></title>
-<script src="../../js/mui.js"></script>
-<link href="../../css/mui.css" rel="stylesheet"/>
-<link rel="stylesheet" href="apply.css" />
-<style>
-.apply_header{
-	width: 100%;
-	height: 52px;
-	line-height: 52px;
-	font-size: 16px;
-	color: #FFFFFF;
-	background-color: #2A9F59;
-}
-.apply_header:after{
-	box-shadow: none;
-}
-.apply_title{
-	margin-left: .6em;
-}
-.apply_content{
-	padding: 0 .5em;
-	font-size: 14px;
-	color: silver;
-}
-.mui-content .mui-table-view-cell{
-	height: 50px;
-	padding: 0;
-}
-.mui-table-view-cell img{
-	width: 34px;  
-	height: 34px;
-	margin: 8px 7px;
-}
-.apply_input_r{
-	height: 50px;
-	margin-right: 52px;  
-	overflow: hidden;
-}
-.apply_input_l{
-	height: 50px;
-	overflow: hidden;  
-}
-.mui-content .apply_input{
-	width: 100%;
-	height: 50px;
-	overflow: hidden;
-	font-size: 14px;
-	border: 0;
-	padding-left: 0;
-	padding-right: 0;
-	margin-bottom: 0;
-}
-.apply_footer{
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-    overflow: hidden;
-}
-.apply_footer .apply_button{
-	width: 80%;
-	height: 48px;
-	line-height: 48px;
-	margin: 0 auto;
-	color: white;
-	font-size: 16px;
-	text-align: center;
-	margin-bottom: .2em;
-	background-color: #054859;
-	
-}
-.mui-content .mui-table-view{
-	margin-top: 1em;
-}
-.apply_info{
-	overflow: hidden;
-}
-.apply_idCard{
-	overflow: hidden;
-	font-size: 14px;
-	color: silver;
-	border: 1px solid silver;
-}
-.apply_idcard_div{
-	width: 95%;
-	height: 12em;
-	overflow: hidden;
-	margin: .2em auto;
-}
-.apply_idcard_div .img_div{
-	width: 3em;
-	height: 4em;
-	margin: 4em 0;
-	text-align: center;
-	line-height: 1em;
-	float: right;
-}
-.nation_mark{
-	width: 100%;
-	display: none;
-	position: fixed;
-	z-index: 998;
-	background-color: rgba(0,0,0,.7);
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-}
-.nation_list{
-	z-index: 999;
-	width: 70%;
-	height: 70%;
-	overflow: hidden;
-	margin: 20% auto;
-/*	padding: 0 30px;*/
-	background-color: white; 
-}
-.nation_list .nation_list_contain{
-	width: 100%;
-	height: 90%;
-	margin: 5% 0;
-	overflow-y: scroll;
 
-}
-.nation_list ul{
-	padding: 0;
-}
-.nation_list li{
-	list-style: none;
-	width:100%;
-	height:34px;
-	line-height: 34px;
-	margin: .1em auto;
-	text-align: left;
-}
-.nation_list span{
-	margin: 0 1em;
-}
-.nation_list li img{
-	width: 34px;
-	height: 34px;
-	margin: 0 .5em;
-	float: right;
-}
-.img_div img{
-	width: 34px;
-	height: 34px;
-}
-.apply_idpho{
-	height: 12em;
-	padding: 0 1em;
-/*	background-color: #F6F6F6;*/
-	overflow: hidden;
-	text-align: center;
-	margin-right: 3em;
-	border: 2px solid silver;
-}
-.apply_idpho img{
-	width: 34px;
-	height: 34px;
-	margin:.2em auto;
-}
-.apply_idpho .text{
-	text-align: justify;
-}
-/*.mui-table-view-divider:before{
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.js"></script>
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="apply.css" />
+		<style>
+			.apply_header {
+				width: 100%;
+				height: 52px;
+				line-height: 52px;
+				font-size: 16px;
+				color: #FFFFFF;
+				background-color: #2A9F59;
+			}
+			.apply_header:after {
+				box-shadow: none;
+			}
+			.apply_title {
+				margin-left: .6em;
+			}
+			.apply_content {
+				padding: 0.5em;
+				font-size: 14px;
+				color: silver;
+			}
+			.mui-content .mui-table-view-cell {
+				height: 50px;
+				padding: 0;
+			}
+			.mui-table-view-cell img {
+				width: 34px;
+				height: 34px;
+				margin: 8px 7px;
+			}
+			.apply_input_r {
+				height: 50px;
+				margin-right: 52px;
+				overflow: hidden;
+			}
+			.apply_input_l {
+				height: 50px;
+				overflow: hidden;
+			}
+			.mui-content .apply_input {
+				width: 100%;
+				height: 50px;
+				overflow: hidden;
+				font-size: 14px;
+				border: 0;
+				padding-left: 0;
+				padding-right: 0;
+				margin-bottom: 0;
+			}
+			.apply_footer {
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+				overflow: hidden;
+			}
+			.apply_footer .apply_button {
+				width: 80%;
+				height: 48px;
+				line-height: 48px;
+				margin: 0 auto;
+				color: white;
+				font-size: 16px;
+				text-align: center;
+				margin-bottom: .2em;
+				background-color: #054859;
+			}
+			.mui-content .mui-table-view {
+				margin-top: 1em;
+			}
+			.apply_info {
+				overflow: hidden;
+			}
+			.apply_idCard {
+				overflow: hidden;
+				font-size: 14px;
+				color: silver;
+				border: 1px solid silver;
+			}
+			.apply_idcard_div {
+				width: 95%;
+				height: 12em;
+				overflow: hidden;
+				margin: .2em auto;
+			}
+			.apply_idcard_div .img_div {
+				width: 3em;
+				height: 4em;
+				margin: 4em 0;
+				text-align: center;
+				line-height: 1em;
+				float: right;
+			}
+			.nation_mark {
+				display: none;
+				position: absolute;
+				z-index: 998;
+				background-color: rgba(0, 0, 0, .4);
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+			.nation_list {
+				display: none;
+				z-index: 999;
+				width: 70%;
+				height: 300px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -150px;
+				margin-left: -35%;
+				overflow: hidden;
+				background-color: white;
+			}
+			.nation_list .nation_list_contain {
+				width: 100%;
+				height: 90%;
+				margin: 5% 0;
+				overflow-y: scroll;
+			}
+			.nation_list ul {
+				padding: 0;
+			}
+			.nation_list li {
+				list-style: none;
+				width: 100%;
+				height: 34px;
+				line-height: 34px;
+				margin: .1em auto;
+				text-align: left;
+			}
+			.nation_list span {
+				margin: 0 1em;
+			}
+			.nation_list li img {
+				width: 34px;
+				height: 34px;
+				margin: 0 .5em;
+				float: right;
+			}
+			.img_div img {
+				width: 34px;
+				height: 34px;
+			}
+			.apply_idpho {
+				height: 12em;
+				padding: 0 1em;
+				/*	background-color: #F6F6F6;*/
+				
+				overflow: hidden;
+				text-align: center;
+				margin-right: 3em;
+				border: 2px solid silver;
+			}
+			.apply_idpho img {
+				width: 34px;
+				height: 34px;
+				margin: .2em auto;
+			}
+			.apply_idpho .text {
+				text-align: justify;
+			}
+			/*.mui-table-view-divider:before{
 	height: 0;
 }*/
-.apply_sex{
-	width: 150px;
-	height: 50px;
-	line-height: 50px;
-	float: right;
-	text-align: center;
-}
-.apply_bor_b{
-	border-bottom: 1px solid #E3E2E5;
-}
-    </style>
-</head>
-<body>
-	<!--国籍列表-->
-	<div class="nation_mark mui-scroll-wrapper">
+			
+			.apply_sex {
+				width: 150px;
+				height: 50px;
+				line-height: 50px;
+				float: right;
+				text-align: center;
+			}
+			.apply_bor_b {
+				border-bottom: 1px solid #E3E2E5;
+			}
+			.mui-scroll-wrapper {
+				top: 52px;
+				bottom: 60px;
+			}
+			.mui-content .mui-table-view {
+				margin-top: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--国籍列表-->
+		<div class="nation_mark"></div>
 		<div class="nation_list">
 			<div class="nation_list_contain">
-			    <ul>
-			     	<li><span>中国 </span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>美国 </span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>印度</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>法国 </span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>日本</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>加拿大</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>澳大利亚</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>中国</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>美国</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>中国 </span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>美国 </span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>印度</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>法国 </span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>日本</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>加拿大</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>澳大利亚</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>中国</span><img src="../../img/1096072.png" alt="" /></li>
-			     	<li><span>美国</span><img src="../../img/1096072.png" alt="" /></li>
-			    </ul>
-			</div>
-	    </div>
-	</div>
-	<header class="mui-bar mui-bar-nav apply_header ">
-		<span class="mui-icon mui-icon-left-nav mui-action-back"></span>
-		<span class="apply_title">Application For Deliverer</span>
-	</header>
-	<div class="mui-content apply_content">
-		<ul class="mui-table-view" >  
-			<li class="mui-table-view-divider"> <span>Basic Information</span></li>
-			<li class="mui-table-view-cell">
-				<img src="../../img/name.png" class="mui-pull-left" alt="" />
-				<div class="apply_sex">
-					 <input type="radio" name="sex" value="man" checked="checked" id="person_sex"/> <lable>man </lable>
-					 <input type="radio" name="sex" />  <lable>women </lable>
-				</div>
-				<div class="apply_input_middle">
-					<input type="text" class="apply_input"  placeholder="real name" id="apply_name"/>
-				</div>
-			</li>
-			
-			<li class="mui-table-view-cell" id="apply_nation">
-				<img src="../../img/nationality.png" class="mui-pull-left" alt="" />
-				<img src="../../img/1096072.png" class="mui-pull-right" alt="" />
-				<span id="nation">select nation</span>
-			</li>
-			<li class="mui-table-view-cell">
-				<img src="../../img/4.png" class="mui-pull-left" alt="" />
-				<div class="apply_input_l">
-					<input type="text" class="apply_input" placeholder="place of residence" id="apply_place"/>
-				</div>
-			</li>
-			<li class="mui-table-view-cell " >
-				<img src="../../img/emergency.png" class="mui-pull-left" alt="" />
-				<img src="../../img/personbg.png" class="mui-pull-right" alt="" />
-				<div class="apply_input_r">
-					<input type="text" class="apply_input" placeholder="emergency contact " id="apply_emergencyC"/>
-				</div>
-			</li>
-			<li class="mui-table-view-cell" >  
-				<img src="../../img/id.png" class="mui-pull-left" alt="" />
-				<div class="apply_input_l">
-					<input type="number" class="apply_input" placeholder="identity" id="identity"/>
-				</div>
-			</li>
-			<li class="mui-table-view-cell" >  
-				<img src="../../img/mobile.png" class="mui-pull-left" alt="" />
-				<div class="apply_input_l">
-					<input type="number" class="apply_input" placeholder="mobile" id="apply_mobile"/>
-				</div>
-			</li>
-<!--			<ul class="mui-table-view apply_padding" >-->
-			<li class="mui-table-view-cell" id="select_type" >
-				<img src="../../img/id.png" class="mui-pull-left" alt="" />
-				<img src="../../img/down.png" class="mui-pull-right" alt=""  />
-				<div class="apply_input_r">
-					<input type="text" class="apply_input" placeholder="请选择证件" readonly="readonly" id="select_type_show"/>
-				</div>
-			</li>     
-			<div class="spplay_select_type">
-				<ul class="id_type">
-					<li class="apply_bor_b">身份证</li>
-					<li class="apply_bor_b">军官证</li>
-					<li class="apply_bor_b">学生证</li>
-					<li class="apply_bor_b">驾照</li>
+				<ul>
+					<li><span>中国 </span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>美国 </span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>印度</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>法国 </span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>日本</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>加拿大</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>澳大利亚</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>中国</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>美国</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>中国 </span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>美国 </span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>印度</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>法国 </span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>日本</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>加拿大</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>澳大利亚</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>中国</span><img src="../../img/1096072.png" alt="" /></li>
+					<li><span>美国</span><img src="../../img/1096072.png" alt="" /></li>
 				</ul>
-		    </div>
-			<li class="mui-table-view-cell nation_marb2" style="">
-				<img src="../../img/id.png" class="mui-pull-left" alt="" />
-				<div class="apply_input_r">
-					<input type="number" class="apply_input" placeholder="请输入对应的证件号" id="id_number"/>
+			</div>
+		</div>
+
+		<header class="mui-bar mui-bar-nav apply_header ">
+			<img src="../../img/left.png" alt="" class="left_img mui-action-back" />
+			<span>Application For Deliverer</span>
+		</header>
+		<div class="mui-content apply_content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-divider"> <span>Basic Information</span></li>
+						<li class="mui-table-view-cell">
+							<img src="../../img/name.png" class="mui-pull-left" alt="" />
+							<div class="apply_sex">
+								<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
+								<lable>man </lable>
+								<input type="radio" name="sex" />
+								<lable>women </lable>
+							</div>
+							<div class="apply_input_middle">
+								<input type="text" class="apply_input" placeholder="real name" id="apply_name" />
+							</div>
+						</li>
+
+						<li class="mui-table-view-cell" id="apply_nation">
+							<img src="../../img/nationality.png" class="mui-pull-left" alt="" />
+							<img src="../../img/1096072.png" class="mui-pull-right" alt="" />
+							<span id="nation">select nation</span>
+						</li>
+						<li class="mui-table-view-cell">
+							<img src="../../img/4.png" class="mui-pull-left" alt="" />
+							<div class="apply_input_l">
+								<input type="text" class="apply_input" placeholder="place of residence" id="apply_place" />
+							</div>
+						</li>
+						<li class="mui-table-view-cell ">
+							<img src="../../img/emergency.png" class="mui-pull-left" alt="" />
+							<img src="../../img/personbg.png" class="mui-pull-right" alt="" />
+							<div class="apply_input_r">
+								<input type="text" class="apply_input" placeholder="emergency contact " id="apply_emergencyC" />
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<img src="../../img/id.png" class="mui-pull-left" alt="" />
+							<div class="apply_input_l">
+								<input type="number" class="apply_input" placeholder="identity" id="identity" />
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<img src="../../img/mobile.png" class="mui-pull-left" alt="" />
+							<div class="apply_input_l">
+								<input type="number" class="apply_input" placeholder="mobile" id="apply_mobile" />
+							</div>
+						</li>
+						<!--			<ul class="mui-table-view apply_padding" >-->
+						<li class="mui-table-view-cell" id="select_type">
+							<img src="../../img/id.png" class="mui-pull-left" alt="" />
+							<img src="../../img/down.png" class="mui-pull-right" alt="" />
+							<div class="apply_input_r">
+								<input type="text" class="apply_input" placeholder="请选择证件" readonly="readonly" id="select_type_show" />
+							</div>
+						</li>
+						<div class="spplay_select_type">
+							<ul class="id_type">
+								<li class="apply_bor_b">身份证</li>
+								<li class="apply_bor_b">军官证</li>
+								<li class="apply_bor_b">学生证</li>
+								<li class="apply_bor_b">驾照</li>
+							</ul>
+						</div>
+						<li class="mui-table-view-cell nation_marb2" style="">
+							<img src="../../img/id.png" class="mui-pull-left" alt="" />
+							<div class="apply_input_r">
+								<input type="number" class="apply_input" placeholder="请输入对应的证件号" id="id_number" />
+							</div>
+						</li>
+					</ul>
 				</div>
-			</li>
+			</div>
+		</div>
+		<div class="apply_footer">
+			<div class="apply_button" id="apply_submit"><span>Next Step</span></div>
+		</div>
+	</body>
+	<script src="../../js/jquery.min.js"></script>
+	<script src="../../js/utils.js"></script>
+	<script>
+		mui.plusReady(function() {
+			plus.webview.currentWebview().setStyle({
+				scrollIndicator: 'none'
+			});
+			mui('.mui-scroll-wrapper').scroll();
+			var flag = true;
+			$('#apply_submit').on('tap',function(){
+				alert(1)
+				check_info();
+			}) 
+			function check_info() { //检测填写情况
+				var v_name = $('#apply_name').val().trim();
+				var v_nation = $('#nation').text();
+				var v_address = $('#apply_place').val().trim();
+				var v_emer = $('#apply_emergencyC').val().trim();
+				var v_mo = $('#apply_mobile').val().trim();
+				var v_identity = $('#identity').val().trim();
+				var check = $('#person_sex').attr('checked');
+				var sex = (check == 'checked') ? '1' : '2';
+				var id_nu = $('#id_number').val().trim();
+				var car_info_status = plus.storage.getItem('carInfoSta'); //得到carInfo的资料填写情况
+				if (true) {
+					if (!v_name) {
+						mui.toast('请填写你的真实姓名');
+						flag = false;
+						return;
+					}
+					if (nation == 'select nation') {
+						mui.toast('请填写你的国籍');
+						flag = false;
+						return;
+					}
+					if (!v_address) {
+						mui.toast('请填写你的地址');
+						flag = false;
+						return;
+					}
+					if (!v_emer) {
+						mui.toast('请填写你的紧急联系人');
+						flag = false;
+						return;
+					}
+					if (!v_identity) {
+						mui.toast('请填写你的省身份证号码');
+						flag = false;
+						return;
+					}
+					if (!v_mo) {
+						mui.toast('请填写你的急联系人电话号码');
+						flag = false;
+						return;
+					}
+					if (!id_type_name) {
+						mui.toast('请先选择证件类型！');
+						flag = false;
+						return;
+					}
+					if (!id_nu) {
+						mui.toast('请输入证件号码！');
+						flag = false;
+						return;
+					}
+				}
+				alert(flag)
+				if (flag) {
+					data_1 = {
+						nation: v_nation,
+						address: v_address,
+						identity: v_identity,
+						realName: v_name,
+						armPhone: v_mo,
+						armUser: v_emer,
+						sex: sex,
+						idType: id_type_name,
+						creditCard: id_nu
+					}
+					plus.storage.setItem('nation_data1', JSON.stringify(data_1));
+				}
+				mui.toast('请完成下一步操作');
+				alert(1)
+					//		$('input').val("");
+				openWindow("./idcard.html");
+			}
+			var id_type_name = ""; //证件类型
+			$('.id_type li').on('tap', function() {
+				var id_number = $(this).index();
+				if (id_number == 0) {
+					id_type_name = "身份证";
+				} else if (id_number == 1) {
+					id_type_name = "军官证";
+				} else if (id_number == 2) {
+					id_type_name = "学生证";
+				} else if (id_number == 3) {
+					id_type_name = "驾照";
+				}
+			});
+			document.querySelector(".nation_mark").addEventListener("click", function() {
+				$('.nation_mark').css('display', 'none');
+				$('.nation_list').css('display', 'none');
+			})
+			$('#apply_nation').on('click', function() {
+				$('.nation_mark').css('display', 'block');
+				$('.nation_list').css('display', 'block');
+			})
+			alert(1)
 			
-<!--		</ul>-->
-		</ul>
-	</div>
-	<div class="apply_footer">
-		<div class="apply_button" id="apply_submit"><span>Next Step</span></div>
-	</div>  
-</body>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/utils.js"></script>
-<script>
-mui.plusReady(function(){
-	plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
-    var flag=true; 
-	function check_info(){//检测填写情况
-		var v_name=$('#apply_name').val().trim(); 
-		var v_nation=$('#nation').text();
-		var v_address=$('#apply_place').val().trim();
-		var v_emer=$('#apply_emergencyC').val().trim();
-		var v_mo=$('#apply_mobile').val().trim();
-		var v_identity=$('#identity').val().trim();
-        var check=$('#person_sex').attr('checked');
-        var sex=(check=='checked')?'1':'2';
-        var id_nu=$('#id_number').val().trim();
-        var car_info_status=plus.storage.getItem('carInfoSta');//得到carInfo的资料填写情况
-		if(true){  
-		   if(!v_name){
-		   	  mui.toast('请填写你的真实姓名');
-		   	  flag=false;
-		   	  return;  
-		   }
-		   if(nation=='select nation'){
-		   	mui.toast('请填写你的国籍');
-		   	 flag=false;
-		   	  return;
-		   }
-		   if(!v_address){
-		   	mui.toast('请填写你的地址');
-		   	 flag=false;
-		   	  return;
-		   }
-		   if(!v_emer){
-		   	mui.toast('请填写你的紧急联系人');
-		   	 flag=false;
-		   	  return;
-		    }
-		   if(!v_identity){
-		   	mui.toast('请填写你的省身份证号码');
-		   	 flag=false;  
-		   	  return;
-		   }
-		   if(!v_mo){
-		   	mui.toast('请填写你的急联系人电话号码');
-		   	 flag=false;  
-		   	  return;
-		   }
-		   if(!id_type_name){
-					mui.toast('请先选择证件类型！');
-					flag=false;
-					return;
-				}
-		   if(!id_nu){
-				mui.toast('请输入证件号码！');
-				flag=false;
-				return;
-		   }
-		}   
-		if(flag){
-			data_1={  
-	    		nation:v_nation,
-	    		address:v_address,
-	    		identity:v_identity,
-	    		realName:v_name,
-	    		armPhone:v_mo,  
-	    		armUser:v_emer,
-	    		sex:sex,
-				idType:id_type_name,
-				creditCard:id_nu
-	    	}
-		plus.storage.setItem('nation_data1',JSON.stringify(data_1));  
-		} 
-		mui.toast('请完成下一步操作');
-//		$('input').val("");
-		openWindow("./idcard.html"); 
-    }
-	var id_type_name="";//证件类型
-	$('.id_type li').on('tap',function(){
-				var id_number=$(this).index();
-				if(id_number==0){
-					id_type_name="身份证";
-				}else if(id_number==1){
-					id_type_name="军官证";
-				}else if(id_number==2){
-					id_type_name="学生证";
-				}else if(id_number==3){
-					id_type_name="驾照";
-				}
-	});
-	$('#apply_nation').on('tap',function(){ 
-		$('.nation_mark').css('display','block');
-	})
-	$('#apply_submit').on('tap',function(){  
-		check_info();
-	})  
-	$('.nation_list_contain ul li').on('tap',function(){
-	   var nation=$(this).text();  
-	   $('#nation').html(nation);
-	   $(this).css({"background-color":"#474749"}).siblings().css('background-color','white');
-	   	 $('.nation_mark').css('display','none');
-	  
-	})
-	 $('#select_type').on('tap',function(){
-        	$('.spplay_select_type').css('display','block');
-        })
-    $('.spplay_select_type li').on('tap',function(){
-    	$(this).css({'background-color':'silver','color':'white'})
-    	.siblings().css({'background-color':'white','color':'silver'})
-    	$('.spplay_select_type').css('display','none');
-    	$('#select_type_show').val($(this).text());
-    })
-})
-</script>  
+			$('.nation_list_contain ul li').on('click', function() {
+				var nation = $(this).text();
+				$('#nation').html(nation);
+				$(this).css({
+					"background-color": "#474749"
+				}).siblings().css('background-color', 'white');
+				$('.nation_mark').css('display', 'none');
+				$('.nation_list').css('display', 'none');
+			})
+			$('#select_type').on('tap', function() {
+				$('.spplay_select_type').css('display', 'block');
+			})
+			$('.spplay_select_type li').on('tap', function() {
+				$(this).css({
+						'background-color': 'silver',
+						'color': 'white'
+					})
+					.siblings().css({
+						'background-color': 'white',
+						'color': 'silver'
+					})
+				$('.spplay_select_type').css('display', 'none');
+				$('#select_type_show').val($(this).text());
+			})
+		})
+	</script>
+
 </html>

@@ -1,16 +1,317 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="../js/mui.min.js"></script>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-</head>
-<body>
-	
-</body>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style>
+			html,body,.mui-content{
+				background-color: #F7F7F7;
+			}
+			#head {
+				background-color: #44ab6d;
+				height: 52px;
+				padding: 0;
+			}
+			.myicon {
+				height: 40px;
+				height: 40px;
+				margin: 6px 0;
+			}
+			#head h1,
+			#head span {
+				color: #FFFFFF;
+			}
+			#head h1 {
+				line-height: 52px;
+			}
+			.lefticon {
+				height: 80px;
+				width: 80px;
+				float: right;
+			}
+			.lefticon img {
+				height: 34px;
+				width: 34px;
+				margin: 23px;
+			}
+			.colored {
+				background-color: #ededed;
+			}
+			.colorff34 {
+				background-color: #ff3444;
+			}
+			#msglists {
+				background-color: #F7F7F7;
+			}
+			#msglists li {
+				padding: 0;
+				height: 80px;
+			}
+			.mainpic {
+				position: relative;
+				float: left;
+				width: 50px;
+				height: 50px;
+				margin: 15px 10px;
+			}
+			.detailpage {
+				float: right;
+				width: 50px;
+				height: 50px;
+				margin: 15px 10px;
+			}
+			.mainpic img,
+			.detailpage img {
+				height: 50px;
+				width: 50px;
+			}
+			.mainctt {
+				overflow: hidden;
+			}
+			.ctttile {
+				font-weight: normal;
+				font-size: 16px;
+				margin-top: 15px;
+			}
+			.cttmain {
+				font-size: 12px;
+				line-height: 15px;
+				height: 29px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			.mui-table-view-cell:after {
+				height: 0;
+			}
+			.mui-table-view-cell {
+				margin-bottom: 10px;
+			}
+			.newmsg {
+				position: absolute;
+				height: 10px;
+				width: 10px;
+				border-radius: 50%;
+				right: -3px;
+				top: -3px;
+				background-color: red;
+			}
+			.msgctt {
+				position: relative;
+			}
+			.msgtime {
+				position: absolute;
+				top: 10px;
+				right: 25px;
+				font-size: 13px;
+				color: green;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" id="head">
+			<span class="mui-action-back mui-pull-left myicon">
+				<img src="../../img/left.png"/>
+			</span>
+			<span class="mui-pull-right myicon">
+				<img src="../../img/2set-up.png">
+			</span>
+			<h1 class="mui-title">Message</h1>
+		</header>
+		<div class="mui-content">
+			<ul id="msglists" class="mui-table-view">
+				<!--<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="lefticon colored mui-btn" style="padding: 0;">
+							<img src="../../img/2application.png" />
+						</a>
+						<a class="lefticon colorff34 mui-btn" style="padding: 0;">
+							<img src="../../img/2deliverorder.png" />
+						</a>
+					</div>
+					<div class="mui-slider-handle mui-table">
+						<div class="mui-table-cell">
+							<div class="msgctt">
+								<div class="mainpic">
+									<img src="../../img/prompt.png" />
+									<span class="newmsg"></span>
+								</div>
+								<div class="detailpage">
+									<img src="../../img/enter.png" />
+								</div>
+								<div class="mainctt">
+									<h3 class="ctttile">Activity</h3>
+									<p class="cttmain">working on the layout working on the layout working on the layout working on the layout</p>
+								</div>
+								<div class="msgtime">2015-09-02 10:30</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="lefticon colored mui-btn" style="padding: 0;">
+							<img src="../../img/2application.png" />
+						</a>
+						<a class="lefticon colorff34 mui-btn" style="padding: 0;">
+							<img src="../../img/2deliverorder.png" />
+						</a>
+					</div>
+					<div class="mui-slider-handle mui-table">
+						<div class="mui-table-cell">
+							<div class="msgctt">
+								<div class="mainpic">
+									<img src="../../img/1.png" />
+								</div>
+								<div class="detailpage">
+									<img src="../../img/enter.png" />
+								</div>
+								<div class="mainctt">
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="lefticon colored mui-btn" style="padding: 0;">
+							<img src="../../img/2application.png" />
+						</a>
+						<a class="lefticon colorff34 mui-btn" style="padding: 0;">
+							<img src="../../img/2deliverorder.png" />
+						</a>
+					</div>
+					<div class="mui-slider-handle mui-table">
+						<div class="mui-table-cell">
+							<div class="msgctt">
+								<div class="mainpic">
+									<img src="../../img/activity.png" />
+								</div>
+								<div class="detailpage">
+									<img src="../../img/enter.png" />
+								</div>
+								<div class="mainctt">
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="lefticon colored mui-btn" style="padding: 0;">
+							<img src="../../img/2application.png" />
+						</a>
+						<a class="lefticon colorff34 mui-btn" style="padding: 0;">
+							<img src="../../img/2deliverorder.png" />
+						</a>
+					</div>
+					<div class="mui-slider-handle mui-table">
+						<div class="mui-table-cell">
+							<div class="msgctt">
+								<div class="mainpic">
+									<img src="../../img/order-tracker.png" />
+								</div>
+								<div class="detailpage">
+									<img src="../../img/enter.png" />
+								</div>
+								<div class="mainctt">
+									<h3></h3>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>-->
+			</ul>
+		</div>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/template.js"></script>
+		<script type="text/html" id="msglist">
+			{{each list}}
+			<li class="mui-table-view-cell">
+				<div class="mui-slider-right mui-disabled">
+					<a class="lefticon colored mui-btn" style="padding: 0;">
+						<img src="../../img/2application.png" />
+					</a>
+					<a class="lefticon colorff34 mui-btn" style="padding: 0;">
+						<img src="../../img/2deliverorder.png" />
+					</a>
+				</div>
+				<div class="mui-slider-handle mui-table">
+					<div class="mui-table-cell">
+						<div class="msgctt">
+							<div class="mainpic">
+								{{if $value.type==1}}
+								<img src="../../img/order-tracker.png" /> {{/if}} {{if $value.type==2}}
+								<img src="../../img/activity.png" /> {{/if}} {{if $value.type==3}}
+								<img src="../../img/1.png" /> {{/if}} {{if $value.type==4}}
+								<img src="../../img/prompt.png" /> {{/if}}
+								<span class="newmsg"></span>
+							</div>
+							<div class="detailpage">
+								<img src="../../img/enter.png" />
+							</div>
+							<div class="mainctt">
+								{{if $value.type==1}}
+								<h3 class="ctttile">Order Tracker</h3> {{/if}} {{if $value.type==2}}
+								<h3 class="ctttile">Activity</h3> {{/if}} {{if $value.type==3}}
+								<h3 class="ctttile">Prompt</h3> {{/if}} {{if $value.type==4}}
+								<h3 class="ctttile">Advice</h3> {{/if}}
+								<p class="cttmain">{{$value.msg}}</p>
+							</div>
+							<div class="msgtime">{{$value.time}}</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			{{/each}}
+		</script>
+		<script type="text/javascript" src="../../js/utils.js"></script>
+		<script>
+			mui.plusReady(function() {
+				myAjax({ 
+					url: 'message/getMsg'
+				}, function(data) {
+					if (data.ret == 1) {
+						var msgdata = {
+							"list": data.res.msgList
+						}
+						msgdata.list = [{
+							type:1,
+							time:'22222',
+							msg:'hehe'
+						},{
+							type:2,
+							time:'22222',
+							msg:'hehe'
+						},{
+							type:3,
+							time:'22222',
+							msg:'hehe'
+						},{
+							type:4,
+							time:'22222',
+							msg:'hehe'
+						}]
+						var str = template("msglist", msgdata);
+						if(!msgdata.list.length){
+							str = "没有新消息哦"
+						}
+						$('#msglists').html(str)
+					}
+				}, function(xhr, type) {
+					mui.toast(xhr.status + ":" + type)
+				})
+			})
+		</script>
+	</body>
+
 </html>

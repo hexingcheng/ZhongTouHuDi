@@ -1,6 +1,9 @@
 html,body{
 		height: 100%;
 	}
+	.mui-bar-nav~.mui-content{
+		padding-top: 52px;
+	}
 		.centerbg{
 			background-color: white !important;
 		}
@@ -12,7 +15,7 @@ html,body{
 			background-color: #3FA86A;
 			box-shadow: none !important;
 		}
-		.center_nav .left_img{
+		 .left_img{
 			width: 34px;
 			height: 34px;
 			margin: 9px 9px 9px 0;
@@ -34,12 +37,12 @@ html,body{
 		.border{
 			border: 1px solid red;
 		}
-		.center_top{
+		/*.center_top{
 			margin-top: 8px;
-		}
+		}*/
 		.center_bg{
 			width: 100%;
-			height:40%;
+			height:230px;
 			position: relative;
 			background: url(../../img/pic12.jpg) no-repeat;
 			background-size: 100% 100%;
@@ -51,9 +54,9 @@ html,body{
 			bottom:0;
 			left: 50%;
 			border: 2px solid #F7F5F0;
-			background: url(../../img/u=2205791892,1328528914&fm=21&gp=0.jpg) no-repeat;
-			background-size: 7em 7em;
-			border-radius: 3.5em;
+		 	/*background: url(../../img/defualt.png) no-repeat;*/
+			background-size: 100% 100%;
+			border-radius: 50%;
 			margin-left: -3.5em;
 			margin-bottom: -1.5em;
 		}
@@ -130,7 +133,7 @@ html,body{
 			
 		}
 		.center_pop{
-			z-index: 999;
+			z-index: 502;
 			width:70%;
 			line-height: 2em;
 			overflow: hidden;
@@ -180,19 +183,19 @@ html,body{
 			bottom: 0;
 			background-color: #C4E8DA;
 		}*/
-		.mui-backdrop {
+		/*.mui-backdrop {
 		    position: fixed;
 		    top: 0;
 		    right: 0;
 		    bottom: 0;
 		    left: 0;
-		    z-index: 998;
-		    background-color: rgba(0,0,0,.3);
+		    z-index: 500;
+		    background-color: rgba(0,0,0,.4);
 		    display: none;
-        }
+        }*/
        /*国家*/
       .nation_list{
-		z-index: 999;
+		z-index: 501;
 		width: 70%;
 		height: 70%;
 		overflow: hidden;
@@ -206,6 +209,18 @@ html,body{
 			margin: 5% 0;
 			overflow-y: scroll;
 		
+		}
+		#center_popover{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 500;
+			background-color: rgba(0,0,0,0.4);
+		}
+		.mui-scroll-wrapper{
+			top: 52px;
 		}
 		.nation_list ul{
 			padding: 0;

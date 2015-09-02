@@ -95,10 +95,11 @@ mui.plusReady(function() {
 			$(this).css('background-color', '#03242c');
 		})
 		mui('.menulist').on('tap', '.list', function() {
-			//			$('.list').css('background-color', '#03242c');
-			//			$(this).css('background-color', '#063d4b')
+			
 			var url = this.getAttribute('data-src');
-			openWindow(url);
+			iflogin(function(){
+				openWindow(url);
+			})
 		})
 		document.getElementById('mysned').addEventListener('tap', function() {
 			iflogin(function() {
@@ -142,7 +143,7 @@ window.addEventListener("swipeleft", function() {
 	}
 });
 $('.infowrap').on('tap', function() {
-	openWindow('./page/person/new_me_center.html')
+	openWindow('./page/person/new_me_center.html');
 })
 window.addEventListener('removehref', function() {
 	$('.pho').attr('src', 'img/defualt.png')
@@ -205,7 +206,7 @@ mui.menu = function() {
 	}
 	//处理主页tap事件
 document.getElementById('chat-info').addEventListener('tap', function() {
-	openWindow('./page/msgcontent.html');
+	openWindow('./page/message/message.html');
 })
 document.getElementById('hlep-son').addEventListener('tap', function() {
 	iflogin(function() {
