@@ -62,7 +62,7 @@
 					openWindow('./findpassword.html')
 				});
 				var reph = /^[0-9]{6,12}$/;
-				var repw = /^[\\.a-zA-Z0-9_]{6}$/;
+				var repw = /^[\\.a-zA-Z0-9_]{3,}$/;
 
 				function checkLogin() {
 					var phonenum = $('#signup-phone-number').val().trim();

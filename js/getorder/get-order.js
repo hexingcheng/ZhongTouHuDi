@@ -10,6 +10,7 @@ mui.init({
 		}
 	}
 });
+
 var whichitem = "time";
 var whichval = "asc";
 var allpage = {
@@ -18,10 +19,10 @@ var allpage = {
 	"price":1,
 	"weight":1
 }
+var opener;
+var dom = document.querySelector(".load-data");
 function pulldownRefresh() {
-	plus.nativeUI.showWaiting('刷新中', {
-		background: '#d1d1d1'
-	})
+	dom.style.display = "block";
 	var getorderdata = {
 		"page": 1,
 		"pageSize": 10,
@@ -49,7 +50,7 @@ function pulldownRefresh() {
 				data: getorderdata,
 				wait:false
 			}, function(data) {
-				plus.nativeUI.closeWaiting();
+				dom.style.display = "none";
 				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 				var orderdata = {
 						"list": data.res
@@ -128,8 +129,12 @@ function pullupRefresh() {
 		mui.toast('获取位置信息失败');
 	}
 }
+
 mui.plusReady(function() {
 	mui('.mui-scroll-wrapper').scroll();
+	
+	opener = plus.webview.getWebviewById("getorder/get-order");
+	
 	var getorderdata = {
 		"page": 1,
 		"pageSize": 10,
