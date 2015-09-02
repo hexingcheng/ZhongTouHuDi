@@ -1,5 +1,5 @@
 var BASEURL = "http://202.202.43.107:8080/api/"
-	//	var BASEURL = "http://172.31.56.19:8080/api/"
+//		var BASEURL = "http://192.168.0.100:8080/api/"
 
 function getcamera(successcb, errorcb, option) {
 	var cmr = plus.camera.getCamera();

@@ -62,12 +62,11 @@
 					bottom: "0px"
 				});
 				plus.webview.currentWebview().append(embed);
-				var sub = plus.webview.getWebviewById('order-content')
 				mui('#segmentedControl').on('tap', '.mui-control-item', function() {
 					if (mui.os.ios) {
-						sub.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+						embed.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
 					} else {
-						sub.evalJS('mui.scrollTo(0, 100)');
+						embed.evalJS('mui.scrollTo(0, 100)');
 					}
 					var status = Number($(this).attr('data-num'));
 					var num = ++status;
@@ -82,7 +81,7 @@
 					var param = {};
 					param.sortType = $(this).attr('data-sort');
 					param.sortVal = $(this).attr('data-desc');
-					mui.fire(sub, 'renderdata', param);
+					mui.fire(embed, 'renderdata', param);
 				})
 				document.getElementById("filter-page").addEventListener("tap", function() {
 					openWindow("./get-filter.html")
@@ -96,10 +95,9 @@
 				param.prices = filter.prices;
 				param.weights = filter.weights;
 				param.finTime = filter.finTime;
-				var sub = plus.webview.getWebviewById('order-content');
 				param.sortType = $('.mui-control-item').filter('.mui-active').attr('data-sort');
 				param.sortVal = $('.mui-control-item').filter('.mui-active').attr('data-desc');
-				mui.fire(sub, 'renderdata', param)
+				mui.fire(embed, 'renderdata', param)
 			})
 			 mui.back = function() {
 				var index = plus.webview.getLaunchWebview();

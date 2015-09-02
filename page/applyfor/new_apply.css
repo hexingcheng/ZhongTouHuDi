@@ -51,15 +51,9 @@ html,body{
 			bottom:0;
 			left: 50%;
 			border: 2px solid #F7F5F0;
-<<<<<<< HEAD
-			background: url(../../img/defualt.png) no-repeat;
-			background-size: 7em 7em;
-			border-radius: 3.5em;
-=======
 		 	background: url(../../img/defualt.png) no-repeat;
 			background-size: 100% 100%;
 			border-radius: 50%;
->>>>>>> 222dfd0b357ed7afdaacce3208233d37917412fa
 			margin-left: -3.5em;
 			margin-bottom: -1.5em;
 		}

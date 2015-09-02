@@ -129,7 +129,6 @@ function pullupRefresh() {
 	}
 }
 mui.plusReady(function() {
-	alert(1)
 	mui('.mui-scroll-wrapper').scroll();
 	var getorderdata = {
 		"page": 1,
