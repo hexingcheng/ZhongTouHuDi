@@ -22,12 +22,44 @@
 			}
 			#lee-content {
 				position: relative;
+				width: 100%;height: 100%;
 			}
-			#lee-content {
+			/* title */
+			#lee-content .title{
 				position: absolute;
 				top: 0;left: 0;
-				width: 100%;height: 40px;
-				background: #0062CC;
+				padding: 0 30px;
+				width: 100%;height: 40px;line-height: 40px;
+				background: #0062CC;color: #fff;
+			}
+			/* content */
+			#lee-content .content-wrap {
+				position: absolute;
+				top: 40px;left: 0;width: 100%;
+				bottom: 40px;padding: 10px;
+			}
+			
+			/* footer */
+			#lee-content .footer {
+				position: absolute;
+				bottom: 0;left: 0;width: 100%;
+				height: 40px;
+			}
+			#lee-content .footer .btn-group {
+				position: relative;width: 100%;height: 100%;
+			}
+			#lee-content .footer .btn-group .button-one,
+			#lee-content .footer .btn-group .button-two {
+				position: absolute;height: 100%;line-height: 2.5;
+				text-align: center;color: #fff;
+			}
+			#lee-content .footer .btn-group .button-one {
+				background: #204D74;
+				left: 0;right: 50%;
+			}
+			#lee-content .footer .btn-group .button-two {
+				background: #008000;
+				left: 50%;right: 0;
 			}
 		</style>
 	</head>
@@ -37,10 +69,64 @@
 		<div id="lee-content-wrap">
 			<div id="lee-content">
 				<div class="title">标题</div>
+				<div class="content-wrap">
+					确定需要删除？
+				</div>
+				<div class="footer">
+					<div class="btn-group">
+						<div class="button-one">按钮1</div>
+						<div class="button-two">按钮2</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<script>
 			mui.init();
+			(function(global, factory){
+				factory(global);
+			})(window, function(global){
+				
+				function popup(options){
+					var option = {
+						width : 
+					}
+					this.options = options || 
+				}
+				
+				popup.prototype = {
+					constructor : popup,
+					
+					
+				}
+				
+				global.popup =  popup;
+			})
+			
+			popup({
+				width : 300,
+				height : 200,
+				title : {
+					color : "#fff",
+					background : "#0062CC"
+				},
+				footer : {
+					buttons : [{
+						name : "按钮1",
+						background : "#204D74",
+						color : "#fff",
+						click : function(){
+							alert("按钮1")
+						}
+					}, {
+						name : "按钮2",
+						background : "#008000",
+						color : "#fff",
+						click : function(){
+							alert("按钮2")
+						}
+					}]
+				}
+			})
 		</script>
 	</body>
 </html>

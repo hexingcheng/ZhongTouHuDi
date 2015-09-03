@@ -14,14 +14,16 @@
 			html,body,.mui-content{
 				background-color: #FFFFFF;
 			}
-			.masks{
+			.masks, .load-data{
 				position: absolute;
 				top: 0;
 				bottom: 0;
 				left: 0;
 				right: 0;
-				background-color: #FFFFFF;
 				z-index: 999;
+			}
+			.masks{
+				background-color: #FFF;
 			}
 			.loading{
 				width: 100px;
@@ -38,11 +40,15 @@
 			}
 		</style>
 	</head>
-
 	<body>
 		<div class="masks">
 			<div class="loading">
 				<img src="../../img/loading2.gif"/>
+			</div>
+		</div>
+		<div class="load-data" style="display: none;">
+			<div class="loading">
+				<img src="../../img/loading2.gif" width="100%"/>
 			</div>
 		</div>
 		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
