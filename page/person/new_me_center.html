@@ -7,13 +7,32 @@
 		<title></title>
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="../applyfor/new_apply.css" />
+		<link rel="stylesheet" href="new_person.css" />
 		<style>
 			.center_input .sex {
 				display: none;
 			}
+			.center_headpic .heade_pic{
+				height: 7em;
+				width: 7em;
+				border-radius: 50%;
+				border: 2px solid #fff;
+				display: inline-block;
+			}
+			.nation_select{
+				width: 70%;
+				height: 80%;
+				z-index: 999;
+				overflow-y: scroll;
+				top: 10%;
+				left: 50%;
+				margin-left: -35%;
+				position: absolute;
+				background-color: white;
+				display: none;
+			}    
 		</style>
-	</head>
+	</head> 
 
 	<body>
 		<header class="mui-bar mui-bar-nav center_nav">
@@ -22,41 +41,40 @@
 			<img src="../../img/edit2.1.png" class="center_icon center_edit" alt="" />
 			<img src="../../img/save.png" class="center_icon center_save" alt="" style="display: none;" />
 		</header>
+		<!--蒙版-->
 		<div id="center_popover" class="mui-hidden"></div>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<div class="center_bg">
 						<div class="center_headpic " style="padding: 0;border: 0;">
-							<img src="../../img/defualt.png" style="width: 7em; height: 7em; border-radius: 50%;display: inline-block;" id="headpic" />
-							<div class="header_camara ">
-								<a href="#gitpic" style="display: inline-block;">
+							<a href="#gitpic" >
+								<img src="../../img/defualt.png" class="heade_pic"  id="headpic" />
+								<div class="header_camara ">
 									<img src="../../img/camera.png" />
-								</a>
-							</div>
+								</div>
+							</a> 
 						</div>
-						<a href="#gitpic" style="display: inline-block;">
 							<img src="../../img/edit3.png" class="center_bg_edit" />
-						</a>
 					</div>
-					<div class="center_clear">
-						<!--中间间隙-->
-					</div> 
-					<div class="center_input has_sex">
+					<div class="center_clear">   
+						<!--中间间隙--> 
+					</div>
+					<div class="center_input has_sex">  
 						<div class="center_divl"><span>family name</span></div>
 						<img src="../../img/male2.png" alt="" class="edit_show male sex" />
 						<img src="../../img/female2.png" alt="" class="edit_show female sex" />
 						<img src="../../img/edit.png" alt="" class="edit_hide" name="one" />
 						<div class="center_input_div ">
-							<input type="text" id="familyName" readonly="readonly" class="edit_input one " />
+							<input type="text" id="familyName" disabled="disabled" class="edit_input one " />
 						</div>
 					</div>
 					<div class="center_input ">
 						<div class="center_divl"><span>first name</span></div>
 						<img src="../../img/edit.png" alt="" class="edit_hide" name="two" />
 						<div class="center_input_div">
-							<input type="text" id="firstName" readonly="readonly " class="edit_input two " />
-						</div>
+							<input type="text" id="firstName" disabled="disabled" class="edit_input two " />
+						</div>   
 					</div>
 					<div class="center_clear">
 						<!--中间间隙-->
@@ -64,14 +82,14 @@
 					<div class="center_input ">
 						<div class="center_divl"><span>phone</span></div>
 						<div class="center_input_div">
-							<input type="number" readonly="readonly" id="phone" />
+							<input type="number" disabled="disabled" id="phone" />
 						</div>
 					</div>
 					<div class="center_input ">
 						<div class="center_divl"><span>password</span></div>
 						<img src="../../img/edit.png" alt="" class="edit_hide" name="three" />
 						<div class="center_input_div">
-							<input type="password" placeholder="******" readonly="readonly" class="edit_input three " id="password" />
+							<input type="password" value="123456" disabled="disabled" class="edit_input three " id="password" />
 						</div>
 					</div>
 					<div class="center_clear">
@@ -81,21 +99,20 @@
 						<div class="center_divl"><span>E-mail</span></div>
 						<img src="../../img/edit.png" alt="" class="edit_hide" name="four" />
 						<div class="center_input_div">
-							<input type="text" id="email" readonly="readonly" class="edit_input four" />
+							<input type="text" id="email" disabled="disabled" class="edit_input four" />
 						</div>
 					</div>
-					<div class="center_input ">
+					<div class="center_input " id="nation_select">
 						<div class="center_divl"><span>nationnality</span></div>
-						<img src="../../img/1096072.png" alt="" class="edit_show" />
 						<img src="../../img/edit.png" alt="" class="edit_hide" name="five" />
-						<div class="center_input_div">
-							<input type="text" id="nation" readonly="readonly" class="edit_input five" />
+						<div class="center_input_div" id="select_nation">
+							<span id="nation" class="edit_input five"></span>
 						</div>
-					</div>
+					</div>  
 					<div class="center_clear">
 						<!--中间间隙-->
 					</div>
-
+   
 					<div class="center_input ">
 						<div class="center_divl"><span>credibility</span></div>
 						<div class="center_input_div">
@@ -109,17 +126,58 @@
 						<span id="deliver" class="mui-hidden">是</span>
 						<span id="not_deliver" class="">否</span>
 					</div>
+					<div class="center_clear">
+						<!--中间间隙-->
+					</div>
+					<div class="center_input" id="apply_info">
+						<img src="../../img/enter.png" alt="" />
+						<div class="center_divl"><span>deliver info</span></div>
+						
+					</div>
+					<div class="center_input" id="wallet_pwd">
+						<img src="../../img/enter.png" alt="" />
+						<div class="center_divl"><span>payword</span></div> 
+					</div>
 				</div>
 			</div>
 		</div>
-		<!--蒙版-->
-		<!--<div class="mui-backdrop" id="center_popover"></div>-->
 		<div class="center_pop">
 			<span id="nav_title"><b>Please input your password</b> </span>
 			<div class="input_div">
 				<input type="text" placeholder="请输入密码" id="pop_password" maxlength="20" />
 			</div>
 			<span id="pop_submit"><strong>确定</strong></span>
+		</div>
+		<div class="nation_select " id='nation_select_'>
+			 <ul class="mui-table-view">
+			 	<li class="mui-table-view-cell">中国</li>
+			 	<li class="mui-table-view-cell">美国</li>
+			 	<li class="mui-table-view-cell">日本</li>
+			 	<li class="mui-table-view-cell">韩国</li>
+			 	<li class="mui-table-view-cell">朝鲜</li>
+			 	<li class="mui-table-view-cell">德国</li>
+			 	<li class="mui-table-view-cell">英国</li>
+			 	<li class="mui-table-view-cell">法国</li>
+			 	<li class="mui-table-view-cell">瑞士</li>
+			 	<li class="mui-table-view-cell">美国</li>
+			 	<li class="mui-table-view-cell">加拿大</li>
+			 	<li class="mui-table-view-cell">意大利</li>
+			 	<li class="mui-table-view-cell">柬埔寨</li>
+			 	<li class="mui-table-view-cell">老挝</li>
+			 	<li class="mui-table-view-cell">泰国</li>
+			 	<li class="mui-table-view-cell">俄罗斯</li>
+			 	<li class="mui-table-view-cell">澳大利亚</li>
+			 	<li class="mui-table-view-cell">巴基斯坦</li>
+			 	<li class="mui-table-view-cell">以色列</li>
+			 	<li class="mui-table-view-cell">缅甸</li>
+			 	<li class="mui-table-view-cell">蒙古</li>
+			 	<li class="mui-table-view-cell">牙买加</li>
+			 	<li class="mui-table-view-cell">印度</li>
+			 	<li class="mui-table-view-cell">非洲</li>
+			 	<li class="mui-table-view-cell">匈牙利</li>
+			 	<li class="mui-table-view-cell">奥地利</li>
+			 	<li class="mui-table-view-cell">瑞士</li>
+			 </ul>  
 		</div>
 		<div id="gitpic" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
@@ -159,7 +217,7 @@
 								$('#familyName').val(data.familyName);
 								$('#firstName').val(data.firstName);
 								$('#email').val(data.email);
-								$('#nation').val(data.nation);
+								$('#nation').text(data.nation);
 								$('#phone').val(data.phone);
 								$('#ptitle').text(data.ptitle);
 								if (data.deliver == 1) {
@@ -225,14 +283,11 @@
 													data: data
 												}, function(obj) {
 													if (obj.ret == 1) {
-														mui.toast('修改成功');
 														var p = headpicurl+head; 
 														$('#headpic').attr('src', p);
-//														if (mui.os.ios) {
-//															$('#headpic').attr('transform', 'rotate(90deg)');
-//														}
-													var i = plus.webview.getLaunchWebview();
-													mui.fire(i,'setaccount',{headPic:head})
+														mui('.mui-popover').popover('toggle');
+														var i = plus.webview.getLaunchWebview();
+														mui.fire(i,'setaccount',{headPic:head})
 													} else {
 														mui.toast('图片上传至服务器存在问题');
 													}
@@ -278,7 +333,7 @@
 						data: data
 					}, function(obj) {
 						if (obj.ret == 1) {
-							$('#center_popover').css('display', 'none');
+							$('#center_popover').addClass('mui-hidden');
 							$('.center_pop').css('display', 'none');
 							$('.edit_show').css('display', 'none');
 							$('#password').val(pwd);
@@ -286,6 +341,7 @@
 							$('.edit_hide').css({
 								'display': 'block'
 							});
+							$('.edit_input').removeAttr('disabled');
 						} else if (obj.ret == 2) {
 							mui.toast('密码错误');
 						}
@@ -302,7 +358,7 @@
 				var fn = $('#familyName').val().trim();
 				var fin = $('#firstName').val().trim();
 				var em = $('#email').val().trim();
-				var nation = $('#nation').val().trim();
+				var nation = $('#nation').text().trim();
 				var ph = $('#phone').val().trim();
 				var pwd = $('#password').val().trim();
 				data = {
@@ -322,7 +378,7 @@
 						mui.toast('保存成功');
 						$('.center_save').css('display', 'none');
 						$('.center_edit').css('display', 'block');
-						$('.edit_input').attr('readonly', 'readonly');
+						$('.edit_input').attr('disabled', 'disabled');
 						$('.edit_hide').css('display', 'none');
 						$('.edit_show').css('display', 'block');
 						var i = plus.webview.getLaunchWebview();
@@ -344,21 +400,33 @@
 			})
 			 $('.center_save').on('tap', function() {
 					save(); //保存
-				})
-				//点击之后可进行编辑
-			 $('.edit_hide').on('tap', function() {
-				var edit = $(this).attr('name');
-				$('.' + edit).removeAttr('readonly');
-			})
+				})  
 			 $('#center_popover').on('tap', function() {
 				$(this).addClass('mui-hidden')
 				$('.center_pop').css('display', 'none');
 				$('.center_edit').css('display', 'block');
 				$('.center_save').css('display', 'none');
+				$('#nation_select_').css('display','none');
+				
 			})
 			 $('#pop_submit').on('tap', function() {
 				update();
 			})
+			 //选择国籍
+			 $('#select_nation').on('tap',function(){
+			 	$('#center_popover').removeClass('mui-hidden');
+			 	$('#nation_select_').css('display','block');
+			 })
+			 $('.nation_select ul li').on('tap',function(){ 
+			 	var nation_name=$(this).text();
+			 	$('#nation').text(nation_name);
+			 	$('#center_popover').addClass('mui-hidden');
+			 	$('#nation_select_').css('display','none');
+			 })
+			 //查看申请递送人信息  
+			 $('#apply_info').on('tap',function(){
+			 	openWindow('../applyfor/applyPerson.html');  
+			 })
 		</script>
 	</body>
 
