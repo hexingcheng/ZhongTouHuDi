@@ -257,7 +257,7 @@
 						</li>
 						<li class="mui-table-view-cell ">
 							<img src="../../img/emergency.png" class="mui-pull-left" alt="" />
-							<img src="../../img/personbg.png" class="mui-pull-right" alt="" />
+							<img src="../../img/personbg.png" id="choose-contacts" class="mui-pull-right" alt="" />
 							<div class="apply_input_r">
 								<input type="text" class="apply_input" placeholder="emergency contact " id="apply_emergencyC" />
 							</div>
@@ -412,7 +412,6 @@
 				$('.nation_mark').css('display', 'block');
 				$('.nation_list').css('display', 'block');
 			})
-			alert(1)
 			
 			$('.nation_list_contain ul li').on('click', function() {
 				var nation = $(this).text();
@@ -437,6 +436,16 @@
 					})
 				$('.spplay_select_type').css('display', 'none');
 				$('#select_type_show').val($(this).text());
+			})
+			
+			// 选择联系人button按钮
+			document.getElementById("choose-contacts").addEventListener("tap", function(){
+				openWindow("./choose-contact.html");
+			})
+			
+			window.addEventListener("choose:contacts", function(eve){
+				document.getElementById("apply_emergencyC").value = eve.detail.name;
+				document.getElementById("apply_mobile").value = eve.detail.tel;
 			})
 		})
 	</script>

@@ -638,12 +638,12 @@
 							var lists = [];
 							for (var i = 0; i < contacts.length; i++) {
 								var phonenum = contacts[i].phoneNumbers;
+								if (phonenum.length == 0) {
+									break;
+								}
 								var obj = {
 									index: (i + 1),
 									name: contacts[i].displayName
-								}
-								if (phonenum.length == 0) {
-									break;
 								}
 								for (var j = 0; j < phonenum.length; j++) {
 									obj.contact = phonenum[j].value;
