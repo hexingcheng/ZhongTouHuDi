@@ -84,7 +84,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="apply_footer mui-bar mui-bar-footer" id="foot">
+		<div class="mui-popover  mui-popover-action mui-popover-bottom" id="photo">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" id="bycamera">照相</li>
+				<li class="mui-table-view-cell" id="bygallary">相册</li>
+			</ul>
+			<ul class="mui-table-view">
+				<a href="#photo"><li class="mui-table-view-cell"><b>取消</b></li></a>
+			</ul>
+		</div>
+		<div class="apply_footer" id="foot">  
 			<div class="id_button apply_button"><span>Done</span></div>
 		</div>
 	</body>
@@ -112,34 +121,21 @@
 			plus.webview.currentWebview().setStyle({
 				scrollIndicator: 'none'
 			});
+			var fo='';
 			mui('.mui-scroll-wrapper').scroll();
-			var iw;
-			var fo
 			$('.photo_').on('tap', function() {
-				fo = $(this).attr('name');
-				var _this = this;
-				iw = $(this).outerWidth()
-				var btnArray = [{
-					title: "拍照"
-				}, {
-					title: "相册"
-				}];
-				plus.nativeUI.actionSheet({
-					title: "选择照片",
-					cancel: "取消",
-					buttons: btnArray
-				}, function(e) {
-					var index = e.index;
-					if (index == 1) {
-						bycamera(_this);
-					} else if (index == 2) {
-						bygallery(_this);
-					} else if (index == 0) {
-						return;
-					}
-				});
+				fo=$(this).attr('name');
+				mui('#photo').popover('toggle');
 			})
-
+			//选择照片
+			$('#bycamera').on('tap',function(){
+				bycamera();
+				mui('#photo').popover('toggle');
+			})
+			$('#bygallary').on('tap',function(){
+				bygallery();
+				mui('#photo').popover('toggle');
+			})
 			function bycamera(context) {
 				var camera = plus.camera.getCamera();
 				var res = camera.supportedImageResolutions[0];
@@ -147,10 +143,8 @@
 				var _this = context;
 				camera.captureImage(function(path) {
 					dealpic(path, _this);
-					//                   $("."+fo).attr('src',path).css('display','block');
 				})
 			}
-
 			function dealpic(path, context) {
 					plus.io.resolveLocalFileSystemURL(path, function(entry) {
 						var local = entry.toLocalURL();
@@ -195,7 +189,6 @@
 			function bygallery(context) {
 				plus.gallery.pick(function(path) {
 					dealpic(path, context);
-					//					$("."+fo).attr('src',path).css('display','block');
 				}, function(e) {
 					mui.toast('选择图片失败' + e)
 					showobj(e)
@@ -209,8 +202,8 @@
 
 			function checke() {
 				//获取前后页面的值
-				var data_1 = plus.storage.getItem('nation_data1');
-				var data_one = JSON.parse(data_1); //转换成对象  
+				var data_first = plus.storage.getItem('nation_data1');
+				var data_one = JSON.parse(data_first); //转换成对象  
 				if (true) {
 					var pic1 = plus.storage.getItem('nation_pic1');
 					var pic2 = plus.storage.getItem('nation_pic2');
@@ -236,8 +229,8 @@
 					cardPic2: pic2,
 					cardPic3: pic3
 				}
-				add_data = $.extend(data_one, data_2); //将前后对象进行合并
-				showobj(add_data)
+				var  add_data = $.extend(data_one, data_2); //将前后对象进行合并  
+				alert(JSON.stringify(add_data))
 				if (flag) {
 					myAjax({
 						url: "account/applyDeliver",
