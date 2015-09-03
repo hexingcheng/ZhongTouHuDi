@@ -53,9 +53,6 @@ html,body{
 			position: absolute;
 			bottom:0;
 			left: 50%;
-			border: 2px solid #F7F5F0;
-		 	/*background: url(../../img/defualt.png) no-repeat;*/
-			background-size: 100% 100%;
 			border-radius: 50%;
 			margin-left: -3.5em;
 			margin-bottom: -1.5em;

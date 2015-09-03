@@ -12,7 +12,6 @@
 			mui.init();
 		</script>
 	</head>
-
 	<body>
 		<header class="mui-bar mui-bar-nav login_headr">
 			<a class="mui-icon mui-icon-left-nav mui-action-back login_color mui-action-back"></a>
@@ -98,8 +97,7 @@
 						data.imsi = plus.device.imsi;
 						data.systemName = plus.device.vendor
 						data.systemVersion = plus.device.model;
-						$('#signup-phone-number').val('');
-						$('#signup-phone-password').val('');
+						
 						// 登录时发送的ajax请求
 						myAjax({
 							url: "auth/login",
@@ -107,13 +105,14 @@
 						}, function(obj) { // 成功的时候，根据不同的状态回应不同的相应信息给客户端
 							if (obj.ret == 0) {
 								mui.toast("输入异常");
-							} else if (obj.ret = 1) {
-								//登录成功
-								alert(obj.token)
+							} else if (obj.ret == 1) {
+								mui.toast(obj.ret)
+								mui.toast(obj.token)
 								setstorage('token', obj.token);
 								getacountinfo()
-								
 								plus.webview.getLaunchWebview().show('slide-in-left', 200);
+								$('#signup-phone-number').val('');
+								$('#signup-phone-password').val('');
 							} else if (obj.ret == -1) {
 								mui.toast("手机号或密码错误")
 							} else if (obj.ret == -2) {
@@ -123,14 +122,13 @@
 							}
 						}, function(xhr, type, errorThrown) {
 							console.log(xhr.status)
-							console.log(xhr.satus);
-							errorhandle(type)
+
 						}, function() {
 							mui.toast("没有网络！");
 						})
 					}
 				}
-
+  
 				function getacountinfo() {
 					mui.ajax(BASEURL + 'account/info', {
 						type: 'post',

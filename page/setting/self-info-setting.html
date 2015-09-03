@@ -100,7 +100,7 @@
 					</div>
 				</li>
 				<li class="mui-table-view-divider"></li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" data-src = '../logupin/findpassword.html'>
 					<a href="" class="mui-navigate-right">
 					Reset password
 				</a>
@@ -123,9 +123,9 @@
 		<script>
 			mui.init();
 			mui.plusReady(function() {
-				document.getElementById('about-us').addEventListener('tap', function() {
-					openWindow('./about-us.html')
-				})
+//				document.getElementById('about-us').addEventListener('tap', function() {
+//					openWindow('./about-us.html')
+//				})
 				document.getElementById('close').addEventListener('tap', function(e) {
 					plus.nativeUI.showWaiting('正在退出',{background:'#d1d1d1'})
 					mui.ajax(BASEURL + 'auth/out', {
@@ -141,12 +141,17 @@
 							plus.webview.currentWebview().close();
 						},
 						error: function(xhr, type) {
+							mui.toast(xhr.status)
 							plus.nativeUI.closeWaiting()
 							console.log(type);
 							errorhandle(type)
 						}
 					})
 					return false;
+				})
+				mui('.mui-content').on('tap','.mui-table-view-cell',function(){
+					var src = this.getAttribute('data-src');
+					openWindow(src)
 				})
 			})
 		</script>

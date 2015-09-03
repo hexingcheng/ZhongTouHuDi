@@ -47,7 +47,6 @@
 }
 .apply_input_middle{
 	height: 50px;
-	margin-right:150px; 
 	overflow: hidden;
 }
 .apply_input_l{
@@ -80,7 +79,6 @@
 	text-align: center;
 	margin-bottom: .2em;
 	background-color: #054859;
-	
 }
 .mui-content .mui-table-view{
 	margin-top: 1em;
@@ -132,6 +130,7 @@
 }
 .apply_idpho .text{  
 	text-align: justify;
+	padding: 0 10px;
 }
 .nation_marb{
 	margin-bottom: 6em;
