@@ -106,3 +106,4 @@ function sendmsg(datas) {
 		console.log(type)
 	})
 }
+
