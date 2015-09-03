@@ -127,27 +127,21 @@
 //					openWindow('./about-us.html')
 //				})
 				document.getElementById('close').addEventListener('tap', function(e) {
-					plus.nativeUI.showWaiting('正在退出',{background:'#d1d1d1'})
-					mui.ajax(BASEURL + 'auth/out', {
-						type: "get",
-						success: function(data) {
-							plus.nativeUI.closeWaiting()
+					myAjax({
+						url:'auth/out',
+						type:'get'
+					},function(){
 							console.log('success')
 							plus.storage.removeItem('token');
 							var i = plus.webview.getLaunchWebview();
 							mui.fire(i, 'removehref')
 							var i = plus.webview.getLaunchWebview();
-							i.show('slide-in-left',200);
+							mui.fire(i,'closeMenu')
+							i.show('slide-in-left',300);
 							plus.webview.currentWebview().close();
-						},
-						error: function(xhr, type) {
-							mui.toast(xhr.status)
-							plus.nativeUI.closeWaiting()
-							console.log(type);
-							errorhandle(type)
-						}
+					},function(xhr,type){
+						console.log(xhr.status+":"+type)
 					})
-					return false;
 				})
 				mui('.mui-content').on('tap','.mui-table-view-cell',function(){
 					var src = this.getAttribute('data-src');

@@ -10,5 +10,3 @@ header.mui-bar.mui-bar-nav {background-color: #44ab6e;}
 .mui-bar .mui-icon {padding-top: 14px;padding-bottom: 14px;}
 .mui-title {line-height: 52px;text-align: left;}
 .mui-bar .mui-title {left: 43px;}
-.mui-bar-nav~.mui-content {padding-top: 52px;}
-div.mui-scroll-wrapper {top: 52px;}

@@ -124,7 +124,7 @@
 					<div class="center_input">
 						<div class="center_divl"><span>deliver</span></div>
 						<span id="deliver" class="mui-hidden">是</span>
-						<span id="not_deliver">否</span>
+						<span id="not_deliver" class="">否</span>
 					</div>
 					<div class="center_clear">
 						<!--中间间隙-->
@@ -190,7 +190,7 @@
 			</ul>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a href="#gitpic"><b>取消</b></a>
+					<a href="#gitpic" id="trigger"><b>取消</b></a>
 				</li>
 			</ul>
 		</div>
@@ -221,8 +221,8 @@
 								$('#phone').val(data.phone);
 								$('#ptitle').text(data.ptitle);
 								if (data.deliver == 1) {
-									$('#deliver').css('display', 'block');
-									$('#not_deliver').css('display', 'none');
+									$('#deliver').removeClass('mui-hidden')
+									$('#not_deliver').addClass('mui-hidden')
 								}
 								if (data.sex == 1) {
 									$('.male').css('display', 'block');
@@ -241,6 +241,7 @@
 						bygallery();
 					})
 					function bycamera() {
+						mui('#gitpic').popover('toggle')
 						var camera = plus.camera.getCamera();
 						var res = camera.supportedImageResolutions[0];
 						var fmt = camera.supportedImageFormats[0];
@@ -282,15 +283,11 @@
 													data: data
 												}, function(obj) {
 													if (obj.ret == 1) {
-														mui.toast('修改成功');
 														var p = headpicurl+head; 
 														$('#headpic').attr('src', p);
 														mui('.mui-popover').popover('toggle');
-//														if (mui.os.ios) {
-//															$('#headpic').attr('transform', 'rotate(90deg)');
-//														}
-													var i = plus.webview.getLaunchWebview();
-													mui.fire(i,'setaccount',{headPic:head})
+														var i = plus.webview.getLaunchWebview();
+														mui.fire(i,'setaccount',{headPic:head})
 													} else {
 														mui.toast('图片上传至服务器存在问题');
 													}
@@ -310,6 +307,7 @@
 						//bg galary
 
 					function bygallery() {
+						mui('#gitpic').popover('toggle')
 						plus.gallery.pick(function(path) {
 							dealpic(path);
 						}, function(e) {

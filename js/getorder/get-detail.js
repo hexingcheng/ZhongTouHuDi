@@ -130,6 +130,7 @@ mui.plusReady(function() {
 				type: "comm"
 			}
 		}, function(data) {
+			showobj(data.res.pics[0]);
 			$(".goods-name").html(data.res.gName); // 货物名称
 			$("#goods-value").html(data.res.money); // 价值
 			$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
@@ -143,14 +144,12 @@ mui.plusReady(function() {
 			$('.rewrod').text(data.res.money)
 			$('.rel').text(data.res.money)
 			var n = BASEURL.indexOf('/api/');
-
 			var per = BASEURL.substring(0, n);
 			var len = pic.length;
 			if (len > 0) {
 				for (var i = 0; i < len; i++) {
 					var url = per + pic[i].path;
-					//					var html = '<img src=' + url + ' width="100%">';
-					//					document.querySelectorAll(".img-box")[i].innerHTML = html;
+					console.log(url)
 					$('<img class="picture" src="' + url + '">').appendTo('#picwrap');
 				}
 			}
