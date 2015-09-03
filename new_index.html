@@ -100,7 +100,6 @@
 				padding-bottom: 20px;
 			}
 			.picwrap {
-				background-color: #FFFFFF;
 				margin: 0;
 				width: 85px;
 				height: 85px;
@@ -311,8 +310,8 @@
 				height: 30px;
 			}
 			.gift img{
-				height: 100%;
-				width: 100%;
+				height: 30px;
+				width: 30px;
 			}
 			.admira{
 				color: #FFFFFF;
@@ -346,11 +345,11 @@
 								<div class="picwrap">
 									<img src="img/defualt.png" class="pho" width="100%" height="100%"/>
 								</div>
-								<p class="myname">Hammond Danil</p>
+								<p class="myname">未登录</p>
 								<p class="mytitle">
 									<div class="wrapss">
 										<span class="gift"><img src="img/gift.png"></span>
-										<span class="admira">admira</span>
+										<span class="admira">头衔</span>
 									</div>
 								</p>
 							</div>
@@ -509,18 +508,6 @@
 		</div>
 		<script type="text/javascript" src="js/utils.js"></script>
 		<script type="text/javascript" src="js/new_index.js"></script>
-		<script>
-			$('#offCanvasSide').css('width', '83%');
-			$('.width400').height($('.width400').width())
-			$('#srcoll').height($(window).height() - 52);
-			document.getElementById("go-help").addEventListener("tap", function() {
-				openWindow("./page/help/help-index.html");
-			}, false)
-			document.getElementById("trip-plan").addEventListener("tap", function(){
-				openWindow("./page/tripplan/send-trip.html");
-			})
-
-		</script>
 	</body>
 
 </html>

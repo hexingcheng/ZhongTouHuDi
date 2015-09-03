@@ -169,3 +169,7 @@
 .border {
 	border: 1px solid red;
 }
+.mui-scroll-wrapper{
+	top: 52px;
+	bottom: 60px;
+}

@@ -107,8 +107,6 @@
 							if (obj.ret == 0) {
 								mui.toast("输入异常");
 							} else if (obj.ret == 1) {
-								mui.toast(obj.ret)
-								mui.toast(obj.token)
 								setstorage('token', obj.token);
 								getacountinfo()
 								plus.webview.getLaunchWebview().show('slide-in-left', 200);
@@ -139,14 +137,16 @@
 								}
 								setstorage('personinfo', JSON.stringify(data.res));
 								var index = plus.webview.getLaunchWebview();
-								alert("nihao")
-								alert(index)
 								mui.fire(index,"setaccount", data.res);
-								plus.webview.currentWebview().close();
+								setTimeout(function(){
+									plus.webview.currentWebview().close();
+								},500)
 							}else{
 								mui.toast('获取基础信息失败'+data.ret)
 								console.log('获取基础信息失败'+data.ret)
-								plus.webview.currentWebview().close();
+								setTimeout(function(){
+									plus.webview.currentWebview().close();
+								},500)
 							}
 						},
 						error: function(xhr, type) {

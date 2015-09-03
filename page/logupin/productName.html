@@ -178,12 +178,13 @@
 								data.systemName = plus.device.vendor
 								data.systemVersion = plus.device.model;
 								myAjax({url: "auth/reg",data:data},function(obj) {
-									alert(JSON.stringify(data))
 										if (obj.token) {
 											setstorage('token', obj.token);
 											getacountinfo(); 
 											plus.webview.getLaunchWebview().show('slide-in-left', 200);
-											plus.webview.currentWebview().close();
+											setTimeout(function(){
+												plus.webview.currentWebview().close();
+											},500)
 										}
 										if (obj.ret == -1) {
 											mui.toast("账户已经注册")

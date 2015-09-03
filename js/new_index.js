@@ -1,83 +1,109 @@
 mui.init();
 //处理菜单与侧滑部分、
+$('#offCanvasSide').css('width', '83%');
+$('.width400').height($('.width400').width())
+$('#srcoll').height($(window).height() - 52);
+document.getElementById("go-help").addEventListener("tap", function() {
+	openWindow("./page/help/help-index.html");
+}, false)
+document.getElementById("trip-plan").addEventListener("tap", function() {
+	openWindow("./page/tripplan/send-trip.html");
+})
 mui.plusReady(function() {
 		plus.navigator.closeSplashscreen();
-		mui.toast(getstorage('personinfo'))
-		if (getstorage('personinfo')) {
-			plus.storage.removeItem('personinfo')
-		}
-		mui.toast(getstorage('token'))
-		if (getstorage('token')) {
-			mui.ajax(BASEURL + 'account/info', {
-				type: 'post',
-				success: function(data) {
-					showobj(data.res)
-					if (data.ret == 1) {
-						setstorage('personinfo', JSON.stringify(data.res));
-						mui.toast('get personal infomation success')
-						if (data.res.ptitle) {
-							$('.admira').text(data.res.ptitle);
+		var net = plus.networkinfo.getCurrentType();
+		alert(net)
+		if (net != 0 && net != 1) {
+			if (getstorage('personinfo')) {
+				plus.storage.removeItem('personinfo')
+			}
+			if (getstorage('token')) {
+				mui.ajax(BASEURL + 'account/info', {
+					type: 'post',
+					timeout:10000,
+					success: function(data) {
+						if (data.ret == 1) {
+							setstorage('personinfo', JSON.stringify(data.res));
+							mui.toast('get personal infomation success')
+							if (data.res.ptitle) {
+								$('.admira').text(data.res.ptitle);
+							}
+							if (data.res.headPic) {
+								var n = BASEURL.indexOf('/a');
+								var u = BASEURL.substring(0, n);
+								var picurl = u + data.res.headPic;
+								console.log(picurl);
+								$('.pho').attr('src', picurl)
+							}
+							if (data.res.firstName && data.res.familyName) {
+								var name = data.res.familyName + " " + data.res.firstName
+								$('.myname').text(name);
+							}
 						}
-						if (data.res.headPic) {
-							var n = BASEURL.indexOf('/a');
-							var u = BASEURL.substring(0, n);
-							var picurl = u + data.res.headPic;
-							$('.pho').attr('src', picurl)
-						}
-						if (data.res.firstName && data.res.familyName) {
-							var name = data.res.familyName + " " + data.res.firstName
-							$('.myname').text(name);
-						}
-					}
-					if (data.ret == -101) {
-						if (getstorage('token')) {
-							mui.ajax(BASEURL + 'auth/activate', {
-								type: 'post',
-								data: {
-									token: getstorage('token')
-								},
-								success: function(data) {
-									if (data.ret == 1) {
-										mui.toast('active success');
-										mui.ajax(BASEURL + 'account/info', {
-											type: 'post',
-											success: function(data) {
-												if (data.ret == 1) {
-													setstorage('personinfo', JSON.stringify(data.res));
-													if (data.res.ptitle) {
-														$('.admira').text(data.res.ptitle);
-													}
-													if (data.res.headPic) {
-														var n = BASEURL.indexOf('/a');
-														var u = BASEURL.substring(0, n);
-														var picurl = u + data.res.headPic;
-														$('.pho').attr('src', picurl)
-													}
-													if (data.res.firstName && data.res.familyName) {
-														var name = data.res.familyName + " " + data.res.firstName
-														$('.myname').text(name);
+						if (data.ret == -101) {
+							if (getstorage('token')) {
+								mui.ajax(BASEURL + 'auth/activate', {
+									type: 'post',
+									data: {
+										token: getstorage('token')
+									},
+									success: function(data) {
+										if (data.ret == 1) {
+											mui.toast('active success');
+											mui.ajax(BASEURL + 'account/info', {
+												type: 'post',
+												success: function(data) {
+													if (data.ret == 1) {
+														setstorage('personinfo', JSON.stringify(data.res));
+														if (data.res.ptitle) {
+															$('.admira').text(data.res.ptitle);
+														}
+														if (data.res.headPic) {
+															var n = BASEURL.indexOf('/a');
+															var u = BASEURL.substring(0, n);
+															var picurl = u + data.res.headPic;
+															$('.pho').attr('src', picurl)
+														}
+														if (data.res.firstName && data.res.familyName) {
+															var name = data.res.familyName + " " + data.res.firstName
+															$('.myname').text(name);
+														}
 													}
 												}
-											}
-										})
-									} else {
-										mui.toast('faild' + data.ret)
+											})
+										} else {
+											openWindow('./page/logupin/login.html')
+											mui.toast('faild' + data.ret)
+										}
+									},
+									error: function(xhr, type) {
+										mui.toast(xhr.status + ":" + type)
 									}
-								},
-								error: function(xhr, type) {
-									mui.toast(xhr.status + ":" + type)
-								}
-							})
+								})
+							}
+						}
+					},
+					error: function(xhr, type) {
+						mui.toast(xhr.status + ":" + type);
+						if(type=='timeout'){
+							mui.toast('超时')
+						}
+						if(type=='abort'){
+							mui.toast('访问被禁止')
 						}
 					}
-				},
-				error: function(xhr, type) {
-					mui.toast(xhr.status + ":" + type);
-				}
-			})
+				})
+			} else {
+				mui.toast('无登录信息，请先登录')
+			}
 		} else {
-			mui.toast('无登录信息，请先登录')
+			if (nonetworkcb) {
+				nonetworkcb()
+			} else {
+				mui.toast('未连接网络,请链接网络');
+			}
 		}
+
 		plus.screen.lockOrientation('portrait-primary')
 		plus.webview.currentWebview().setStyle({
 			scrollIndicator: 'none'
@@ -86,7 +112,6 @@ mui.plusReady(function() {
 			bounce: true,
 			indicators: false
 		});
-		//		mui('#offCanvasContentScroll').scroll();
 		//处理点击事件，跳转页面
 		mui('.menulist').on('touchstart', '.list', function() {
 			$(this).css('background-color', '#063d4b');
@@ -95,9 +120,8 @@ mui.plusReady(function() {
 			$(this).css('background-color', '#03242c');
 		})
 		mui('.menulist').on('tap', '.list', function() {
-			
 			var url = this.getAttribute('data-src');
-			iflogin(function(){
+			iflogin(function() {
 				openWindow(url);
 			})
 		})
@@ -135,13 +159,6 @@ window.addEventListener('dragright', function(e) {
 window.addEventListener('dragleft', function(e) {
 	e.detail.gesture.preventDefault();
 });
-window.addEventListener("swipeleft", function() {
-	if ($('#offCanvasContentScroll').offset().left > 0) {
-		offCanvasWrapper.offCanvas('close');
-	} else {
-		return;
-	}
-});
 $('.infowrap').on('tap', function() {
 	openWindow('./page/person/new_me_center.html');
 })
@@ -150,16 +167,8 @@ window.addEventListener('removehref', function() {
 	$('.myname').text("");
 	$('.admira').text("头衔")
 })
-window.addEventListener("swiperight", function() {
-	if ($('#offCanvasContentScroll').offset().left < 200) {
-		offCanvasWrapper.offCanvas('show');
-	} else {
-		return;
-	}
-});
 window.addEventListener('closeMenu', function() {
 	offCanvasWrapper.offCanvas('close');
-	//	$('#offCanvasSide').hide()
 })
 window.addEventListener('setaccount', function(eve) {
 	if (eve.detail.ptitle) {
@@ -178,7 +187,9 @@ window.addEventListener('setaccount', function(eve) {
 })
 var first = null;
 mui.back = function() {
-	if ($('#offCanvasContentScroll').offset().left > 0) {
+	//	alert($('#offCanvasSide').width())
+	//	alert($('#offCanvasSide').offset().left)
+	if ($('#offCanvasSide').offset().left == 0) {
 		offCanvasWrapper.offCanvas('close');
 	} else {
 		if (!first) {
@@ -198,7 +209,7 @@ mui.back = function() {
 
 //处理菜单键
 mui.menu = function() {
-		if ($('#offCanvasContentScroll').offset().left > 0) {
+		if ($('#offCanvasContentScroll').offset().left == 0) {
 			offCanvasWrapper.offCanvas('close');
 		} else {
 			offCanvasWrapper.offCanvas('show');
@@ -214,27 +225,7 @@ document.getElementById('hlep-son').addEventListener('tap', function() {
 	})
 })
 document.getElementById('i-will').addEventListener('tap', function() {
-		iflogin(function() {
-			openWindow('./page/getorder/get-order.html');
-		})
+	iflogin(function() {
+		openWindow('./page/getorder/get-order.html');
 	})
-	//document.getElementById('help').addEventListener('tap', function() {
-	//	iflogin(function() {
-	//		mui.openWindow({
-	//			url: './page/sendorder/createorder.html',
-	//			id: 'createorder',
-	//			show: {
-	//				autoShow: true,
-	//				aniShow: 'slide-in-bottom',
-	//				duration: 200
-	//			},
-	//			waiting: {
-	//				autoShow: true,
-	//				title: '正在加载...',
-	//				options: {
-	//					background: '#d1d1d1'
-	//				}
-	//			}
-	//		})
-	//	})
-	//})
+})

@@ -41,7 +41,7 @@
 					</div>
 					<div class="center_clear">
 						<!--中间间隙-->
-					</div>
+					</div> 
 					<div class="center_input has_sex">
 						<div class="center_divl"><span>family name</span></div>
 						<img src="../../img/male2.png" alt="" class="edit_show male sex" />
@@ -107,7 +107,7 @@
 					<div class="center_input">
 						<div class="center_divl"><span>deliver</span></div>
 						<span id="deliver" class="mui-hidden">是</span>
-						<span id="not_deliver">否</span>
+						<span id="not_deliver" class="">否</span>
 					</div>
 				</div>
 			</div>
@@ -132,7 +132,7 @@
 			</ul>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a href="#gitpic"><b>取消</b></a>
+					<a href="#gitpic" id="trigger"><b>取消</b></a>
 				</li>
 			</ul>
 		</div>
@@ -163,8 +163,8 @@
 								$('#phone').val(data.phone);
 								$('#ptitle').text(data.ptitle);
 								if (data.deliver == 1) {
-									$('#deliver').css('display', 'block');
-									$('#not_deliver').css('display', 'none');
+									$('#deliver').removeClass('mui-hidden')
+									$('#not_deliver').addClass('mui-hidden')
 								}
 								if (data.sex == 1) {
 									$('.male').css('display', 'block');
@@ -183,6 +183,7 @@
 						bygallery();
 					})
 					function bycamera() {
+						mui('#gitpic').popover('toggle')
 						var camera = plus.camera.getCamera();
 						var res = camera.supportedImageResolutions[0];
 						var fmt = camera.supportedImageFormats[0];
@@ -251,6 +252,7 @@
 						//bg galary
 
 					function bygallery() {
+						mui('#gitpic').popover('toggle')
 						plus.gallery.pick(function(path) {
 							dealpic(path);
 						}, function(e) {
