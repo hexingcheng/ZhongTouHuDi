@@ -291,7 +291,7 @@
 					</div>
 				</div>
 				<div class="gap"></div>
-				<div class="times bgf">
+				<div id="dalegate" class="times bgf">
 					<div class="clear pict">
 						<div class="fl wid10">
 							<span class="myicon"><img src="../../img/time.png"></span>
@@ -302,7 +302,7 @@
 									</span>
 						</div>
 						<div class="hei80 linehei addborb hidden pd0">
-							<div id="gettime" class="gettimes font-14 pd0" data-time="">Pickup Time</div>
+							<div id="gettime" class="gettimes font-14 pd0" data-type="start" data-time="">Pickup Time</div>
 						</div>
 					</div>
 					<div class="arrtime clear">
@@ -315,7 +315,7 @@
 									</span>
 						</div>
 						<div class="hei80 linehei hidden">
-							<div id="respecttime" class="gettimes font-14 pd0" data-time="">Arrival Time</div>
+							<div id="respecttime" class="gettimes font-14 pd0" data-type="end" data-time="">Arrival Time</div>
 						</div>
 					</div>
 					<div class="down">
@@ -510,32 +510,61 @@
 				} else {
 					mui.toast('获取位置信息失败')
 				}
-				$('.pict,.arrtime').on('tap', function() {
-					var _this = $(this);
-					var options = {
-						"type": "hour",
-						"beginYear": 2015,
-						"endYear": 2015,
-						"customData": {
-							"h": [{
-								"text": "上午",
-								"value": "上午"
-							}, {
-								"text": "下午",
-								"value": "下午"
-							}, {
-								"text": "晚上",
-								"value": "晚上"
-							}]
-						},
-						"labels": ["年", "月", "日", "时段", "分"]
+				
+				var year = new Date().getFullYear();
+				var options = {
+					"type": "hour",
+					"beginYear": year,
+					"endYear": year + 3,
+					"customData": {
+						"h": [{
+							"text": "上午",
+							"value": "上午"
+						}, {
+							"text": "下午",
+							"value": "下午"
+						}, {
+							"text": "晚上",
+							"value": "晚上"
+						}]
+					},
+					"labels": ["年", "月", "日", "时段"]
+				}
+				// 
+				var startdate, enddate;
+				mui("#dalegate").on("tap", ".gettimes", function(){
+					var that = this;
+					var type = that.getAttribute("data-type");
+					if(type == "end"){
+						var text = document.getElementById("gettime").innerHTML;
+						if(text == "Pickup Time"){
+							mui.toast("请先选择起始时间")
+							return false;
+						}
 					}
-					var time = new mui.DtPicker(options);
-					time.show(function(rs) {
-						$('.gettimes', _this).attr('data-time', rs.text);
-						$('.gettimes', _this).text(rs.text).css('color', "#000")
-					})
+					var picker = new mui.DtPicker(options);
+					picker.show(function(rs) {
+						if(type == "start"){
+							that.setAttribute("data-time", rs.value)
+							that.innerHTML = rs.value;
+							startdate = parseInt(rs.value.replace(/-/ig, ''));
+							picker.dispose();
+						} else if(type == "end"){
+							var end = parseInt(rs.value.replace(/-/ig, ''));
+							if(end >= startdate){
+								enddate = end;
+								that.setAttribute("data-time", rs.value)
+								that.innerHTML = rs.value;
+							} else {
+								mui.toast("时间选取错误");
+							}
+						}
+					});
 				})
+				
+				
+				
+				
 				$('#drafticon').on('tap', function() {
 					openWindow('./draft.html')
 				})
