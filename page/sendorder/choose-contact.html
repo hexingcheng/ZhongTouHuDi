@@ -7,6 +7,7 @@
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="common.css" />
+		<link rel="stylesheet" href="../../css/mui.indexedlist.css"/>
 		<style type="text/css">
 			body {
 				font-size: 60%;
@@ -46,8 +47,10 @@
 				width: 40%;
 				height: 100%;
 			}
-			/*.mui-search input[type=search] {margin-bottom: 0;}*/
-			div.mui-scroll-wrapper {top: 87px;}
+			div.mui-scroll-wrapper {top: 34px;}
+			.mui-indexed-list {
+				position: absolute;top: 53px;bottom: 0;width: 100%;height: auto;
+			}
 		</style>
 	</head>
 	<body>
@@ -57,26 +60,28 @@
 		</header>
 
 		<div class="mui-content">
-			<div class="mui-input-row mui-search">
-				<input type="search" class="mui-input-clear" placeholder="搜索联系人...">
-			</div>
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
+			<div id='list' class="mui-indexed-list">
+				<div class="mui-input-row mui-search mui-indexed-list-search">
+					<input id="search-contact" type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索联系人...">
+				</div>
+				<div class="mui-indexed-list-bar" style="display: none;"></div>
+				<div class="mui-indexed-list-alert"></div>
+				<div class="mui-indexed-list-inner">
+					<div class="mui-indexed-list-empty-alert">没有数据</div>
 					<ul id="contact-list" class="mui-table-view">
 						<!--<li class="mui-table-view-cell">
 							<div class="mui-navigate-right msg-box">
-								<span class="mui-pull-left mui-ellipsis contact-name">李鑫其</span>
-								<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">18584654947</span>
+								<span class="mui-pull-left mui-ellipsis contact-name">李0000</span>
+								<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">185000000</span>
 							</div>
 						</li>-->
 					</ul>
 				</div>
 			</div>
 		</div>
-
 		<script type="text/html" id="template">
 			{{each list}}
-				<li class="mui-table-view-cell contact" data-name='{{$value.name}}' data-contact='{{$value.contact}}'>
+				<li class="mui-table-view-cell contact" data-tags="{{$value.name}}" data-value="{{$value.contact}}" data-name='{{$value.name}}' data-contact='{{$value.contact}}'>
 					<div class="msg-box">
 						<span class="mui-pull-left mui-ellipsis contact-name">{{$value.name}}</span>
 						<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">{{$value.contact}}</span>
@@ -87,10 +92,10 @@
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mui.indexedlist.js"></script>
 		<script>
 			mui.init();
 			mui.plusReady(function() {
-				mui(".mui-scroll-wrapper").scroll();
 				var contact = JSON.parse(plus.storage.getItem("contacts"));
 				var obj = {
 					list: contact
@@ -123,6 +128,9 @@
 						mui.toast("请选择联系人");
 					}
 				})
+				
+				var list = document.getElementById("list");
+				window.indexedList = new mui.IndexedList(list);
 			})
 		</script>
 	</body>
