@@ -154,6 +154,13 @@
 				mui("#dalegate").on("tap", ".date-box", function(){
 					var that = this;
 					var type = that.getAttribute("data-type");
+					if(type == "end"){
+						var text = document.getElementById("start-date").innerText;
+						if(text == "start date"){
+							mui.toast("请先选择起始时间")
+							return false;
+						}
+					}
 					var picker = new mui.DtPicker(options);
 					picker.show(function(rs) {
 						if(type == "start"){
