@@ -1,19 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="../js/mui.min.js"></script>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-</head>
-<body>
-	
-</body>
-</html>  
-=======
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -24,7 +10,9 @@
 			mui.init();
 		</script>
 		<style>
-			html,body,.mui-content{
+			html,
+			body,
+			.mui-content {
 				background-color: #F7F7F7;
 			}
 			#head {
@@ -161,40 +149,27 @@
 						<div class="msgctt">
 							<div class="mainpic">
 								{{if $value.type==1}}
-								<img src="../../img/order-tracker.png" /> 
-								{{/if}} 
-								{{if $value.type==2}}
-								<img src="../../img/activity.png" /> 
-								{{/if}} 
-								{{if $value.type==3}}
-								<img src="../../img/1.png" /> 
-								{{/if}} 
-								{{if $value.type==4}}
-								<img src="../../img/prompt.png" /> 
-								{{/if}}
-								<span class="newmsg"></span>
+								<img src="../../img/order-tracker.png" /> {{/if}} {{if $value.type==2}}
+								<img src="../../img/activity.png" /> {{/if}} {{if $value.type==3}}
+								<img src="../../img/prompt.png" /> {{/if}} {{if $value.type==4}}
+								<img src="../../img/1.png" /> {{/if}}
+								 {{if $value.ifnew==1}}<span class="newmsg"></span>{{/if}}
 							</div>
 							{{if $value.type==1}}
-								<div class="detailpage">
-									<img src="../../img/enter.png" />
-								</div>
-							{{/if}}
-							{{if $value.type == 2}}
-								<div class="detailpage">
-									<img src="../../img/enter.png" />
-								</div>
+							<div class="detailpage">
+								<img src="../../img/enter.png" />
+							</div>
+							{{/if}} {{if $value.type == 2}}
+							<div class="detailpage">
+								<img src="../../img/enter.png" />
+							</div>
 							{{/if}}
 							<div class="mainctt">
 								{{if $value.type==1}}
-								<h3 class="ctttile">Order Tracker</h3> 
-								{{/if}} {{if $value.type==2}}
-								<h3 class="ctttile">Activity</h3> {{/if}} 
-								{{if $value.type==3}}
-								<h3 class="ctttile">Prompt</h3> 
-								{{/if}} 
-								{{if $value.type==4}}
-								<h3 class="ctttile">Advice</h3> 
-								{{/if}}
+								<h3 class="ctttile">Order Tracker</h3> {{/if}} {{if $value.type==2}}
+								<h3 class="ctttile">Activity</h3> {{/if}} {{if $value.type==3}}
+								<h3 class="ctttile">Prompt</h3> {{/if}} {{if $value.type==4}}
+								<h3 class="ctttile">Advice</h3> {{/if}}
 								<p class="cttmain">{{$value.msg}}</p>
 							</div>
 							<div class="msgtime">{{$value.time}}</div>
@@ -206,43 +181,61 @@
 		</script>
 		<script type="text/javascript" src="../../js/utils.js"></script>
 		<script>
-			mui.plusReady(function() {
+			mui.plusReady(function(systemmes) {
+				console.log(getstorage('systemmes'))
 				myAjax({
 					url: 'message/getMsg'
 				}, function(data) {
 					if (data.ret == 1) {
-						var msgdata = {
-							"list": data.res.msgList
+						if (!getstorage('systemmes')) {
+							setstorage("systemmes", JSON.stringify(data.res));
+							console.log(getstorage('systemmes'))
+							var msgdata = {
+								"list": data.res.msgList
+							}
+							var str = template("msglist", msgdata);
+							$('#msglists').html(str)
+						} else {
+							handlemsg(data);
 						}
-						msgdata.list = [{
-							type: 1,
-							time: '22222',
-							msg: 'hehe'
-						}, {
-							type: 2,
-							time: '22222',
-							msg: 'hehe'
-						}, {
-							type: 3,
-							time: '22222',
-							msg: 'hehe'
-						}, {
-							type: 4,
-							time: '22222',
-							msg: 'hehe'
-						}]
-						var str = template("msglist", msgdata);
-						if (!msgdata.list.length) {
-							str = "没有新消息哦"
-						}
-						$('#msglists').html(str)
 					}
 				}, function(xhr, type) {
 					mui.toast(xhr.status + ":" + type)
 				})
 			})
+
+			function handlemsg(data) {
+				var old = JSON.parse(getstorage('systemmes'));
+				var listArr = old.msgList;
+				var newmsg = data.res.msgList;
+				var temp = [];
+				for (var j = 0; j < newmsg.length; j++) {
+					if (newmsg[j].type == 1) {
+						for (var i = 0; i < listArr.length; i++) {
+							if (listArr[i].type == 1) {
+								if (newmsg[j].params.id == listArr[i].params.id) {
+									listArr[i] = newmsg[j];
+									listArr[i].ifnew = 1
+								}
+							}
+						}
+					} else {
+						temp.push(newmsg[j]);
+					}
+				}
+				var now = temp.concat(listArr);
+				var obj = {
+					'msgList': now
+				}
+				setstorage('systemmes', JSON.stringify(obj));
+				console.log(getstorage('systemmes'))
+				var msgdata = {
+					"list": now
+				}
+				var str = template("msglist", msgdata);
+				$('#msglists').html(str)
+			}
 		</script>
 	</body>
 
 </html>
->>>>>>> 036f399e2a824b532b25b123606cdc5ca39aaa5e

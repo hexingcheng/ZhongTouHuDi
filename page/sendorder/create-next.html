@@ -58,10 +58,6 @@
 			.icon-wenjian:before {
 				content: "\e600";
 			}
-			.mui-scroll-wrapper {
-				margin-top: 44px;
-				margin-bottom: 44px;
-			}
 			.fl {
 				float: left;
 			}
@@ -179,9 +175,6 @@
 				padding-left: 15px;
 				color: #bec0c2;
 			}
-			div.mui-scroll-wrapper {
-				top: 8px;
-			}
 			.hidden {
 				overflow: hidden;
 			}
@@ -257,6 +250,10 @@
 			#head {
 				padding-right: 0px;
 			}
+			.mui-scroll-wrapper {
+				top: 52px;
+				bottom: 60px;
+			}
 		</style>
 	</head>
 
@@ -274,30 +271,33 @@
 		<!--<div class="mask mui-hidden"></div>
 		<div class="faorder mui-hidden">发单中</div>-->
 		<div class="mui-content">
-			<div class="order-content" id='ordercon'>
-				<div class="reword clear bgf">
-					<div class="fl widhe">
-						<span class="rewords">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="order-content" id='ordercon'>
+						<div class="reword clear bgf">
+							<div class="fl widhe">
+								<span class="rewords">
 									Reward
 								</span>
-					</div>
-					<div class="fr wid10e hei80 linehei tet">
-						<span class="myicon">
+							</div>
+							<div class="fr wid10e hei80 linehei tet">
+								<span class="myicon">
 									<img src="../../img/$1.png"/>
 								</span>
-					</div>
-					<div class="hei80 linehei hidden">
-						<input type="number" class="ipt mui-input-clear removebor font-14 pd0" id="pay" placeholder="Reward" />
-					</div>
-				</div>
-				<div class="gap"></div>
-				<div id="dalegate" class="times bgf">
-					<div class="clear pict">
-						<div class="fl wid10">
-							<span class="myicon"><img src="../../img/time.png"></span>
+							</div>
+							<div class="hei80 linehei hidden">
+								<input type="number" class="ipt mui-input-clear removebor font-14 pd0" id="pay" placeholder="Reward" />
+							</div>
+
 						</div>
-						<div class="fr wid10e hei80 linehei tet addborb">
-							<span class="myicon">
+						<div class="gap"></div>
+						<div class="times bgf">
+							<div class="clear pict">
+								<div class="fl wid10">
+									<span class="myicon"><img src="../../img/time.png"></span>
+								</div>
+								<div class="fr wid10e hei80 linehei tet addborb">
+									<span class="myicon">
 										<img src="../../img/right.png"/>
 									</span>
 						</div>
@@ -313,101 +313,102 @@
 							<span class="myicon">
 										<img src="../../img/right.png"/>
 									</span>
+								</div>
+								<div class="hei80 linehei hidden">
+									<div id="respecttime" class="gettimes font-14 pd0" data-time="">Arrival Time</div>
+								</div>
+							</div>
+							<div class="down">
+								<img src="../../img/creat1.png" />
+							</div>
 						</div>
-						<div class="hei80 linehei hidden">
-							<div id="respecttime" class="gettimes font-14 pd0" data-type="end" data-time="">Arrival Time</div>
-						</div>
-					</div>
-					<div class="down">
-						<img src="../../img/creat1.png" />
-					</div>
-				</div>
-				<div class="gap"></div>
-				<div class="address bgf">
-					<div class="clear" id="pict">
-						<div class="fl wid10">
-							<span class="myicon"><img src="../../img/location.png"></span>
-						</div>
-						<div class="fr wid10e hei80 linehei tet addborb" id="send-address">
-							<span class="myicon">
+						<div class="gap"></div>
+						<div class="address bgf">
+							<div class="clear" id="pict">
+								<div class="fl wid10">
+									<span class="myicon"><img src="../../img/location.png"></span>
+								</div>
+								<div class="fr wid10e hei80 linehei tet addborb" id="send-address">
+									<span class="myicon">
 										<img src="../../img/deliverorder.png"/>
 									</span>
-						</div>
-						<div class="hei80 linehei hidden addborb">
-							<div id="getaddr" data-addr="重庆" data-Jd="106.60111939165672" data-Wd="29.53408157290842" class="font-14 pd0">Pickup Address</div>
-						</div>
-					</div>
-					<div class="clear">
-						<div class="fl wid10">
-							<span class="myicon"><img src="../../img/address.png"></span>
-						</div>
-						<div class="fr wid10e hei80 linehei tet" id="receive-address">
-							<span class="myicon">
+								</div>
+								<div class="hei80 linehei hidden addborb">
+									<div id="getaddr" data-addr="重庆" data-Jd="106.60111939165672" data-Wd="29.53408157290842" class="font-14 pd0">Pickup Address</div>
+								</div>
+							</div>
+							<div class="clear">
+								<div class="fl wid10">
+									<span class="myicon"><img src="../../img/address.png"></span>
+								</div>
+								<div class="fr wid10e hei80 linehei tet" id="receive-address">
+									<span class="myicon">
 										<img src="../../img/deliverorder.png"/>
 									</span>
+								</div>
+								<div class="hei80 linehei hidden">
+									<div id="sendaddr" data-addr="北京" data-Jd="10" data-Wd="10" class="font-14 pd0">Receive address</div>
+								</div>
+							</div>
+							<div class="down">
+								<img src="../../img/creat1.png" />
+							</div>
 						</div>
-						<div class="hei80 linehei hidden">
-							<div id="sendaddr" data-addr="北京" data-Jd="10" data-Wd="10" class="font-14 pd0">Receive address</div>
-						</div>
-					</div>
-					<div class="down">
-						<img src="../../img/creat1.png" />
-					</div>
-				</div>
-				<div class="gap"></div>
-				<div class="host clear bgf">
-					<div class="fl wid10">
-						<span class="myicon"><img src="../../img/host.png"></span>
-					</div>
-					<div class="fr wid10e hei80 linehei tet" id="sender-contact">
-						<span class="myicon">
+						<div class="gap"></div>
+						<div class="host clear bgf">
+							<div class="fl wid10">
+								<span class="myicon"><img src="../../img/host.png"></span>
+							</div>
+							<div class="fr wid10e hei80 linehei tet" id="sender-contact">
+								<span class="myicon">
 										<img src="../../img/contacts.png"/>
 								</span>
-					</div>
-					<div class="hei80 linehei hidden">
-						<input type="text" class="mui-input-clear removebor font-14 pd0" placeholder="Host" id="sender" />
-					</div>
-				</div>
-				<div class="phone clear bgf">
-					<div class="fl wid10">
-						<span class="myicon"><img src="../../img/phones.png"></span>
-					</div>
-					<div class="hei80 linehei hidden">
-						<input type="tel" class="mui-input-clear removebor font-14 pd0" placeholder="Phone" id="contact" />
-					</div>
-				</div>
-				<div class="gap"></div>
-				<div class="receiver clear bgf">
-					<div class="fl wid10">
-						<span class="myicon"><img src="../../img/receivers.png"></span>
-					</div>
-					<div class="fr wid10e hei80 linehei tet" id="receiver-contact">
-						<span class="myicon">
+							</div>
+							<div class="hei80 linehei hidden">
+								<input type="text" class="mui-input-clear removebor font-14 pd0" placeholder="Host" id="sender" />
+							</div>
+						</div>
+						<div class="phone clear bgf">
+							<div class="fl wid10">
+								<span class="myicon"><img src="../../img/phones.png"></span>
+							</div>
+							<div class="hei80 linehei hidden">
+								<input type="tel" class="mui-input-clear removebor font-14 pd0" placeholder="Phone" id="contact" />
+							</div>
+						</div>
+						<div class="gap"></div>
+						<div class="receiver clear bgf">
+							<div class="fl wid10">
+								<span class="myicon"><img src="../../img/receivers.png"></span>
+							</div>
+							<div class="fr wid10e hei80 linehei tet" id="receiver-contact">
+								<span class="myicon">
 							<img src="../../img/contacts.png"/>
 						</span>
-					</div>
-					<div class="hei80 linehei hidden">
-						<input type="text" class="mui-input-clear removebor font-14 pd0" placeholder="receiver" id="receiver" />
-					</div>
-				</div>
-				<div class="phone clear bgf">
-					<div class="fl wid10">
-						<span class="myicon"><img src="../../img/phones.png"></span>
-					</div>
-					<div class="hei80 linehei hidden">
-						<input type="text" class="mui-input-clear removebor font-14 pd0" placeholder="Phone" id="tel" />
-					</div>
-				</div>
-				<div class="insure bgf" data-sure='5' id="comer">
-					<div class="fl wid10">
-						<span class="myicon"><img src="../../img/ok.png" class="sure"></span>
-					</div>
-					<div class="hei80 linehei hidden asure">
-						Buy safety insurance $5
+							</div>
+							<div class="hei80 linehei hidden">
+								<input type="text" class="mui-input-clear removebor font-14 pd0" placeholder="receiver" id="receiver" />
+							</div>
+						</div>
+						<div class="phone clear bgf">
+							<div class="fl wid10">
+								<span class="myicon"><img src="../../img/phones.png"></span>
+							</div>
+							<div class="hei80 linehei hidden">
+								<input type="text" class="mui-input-clear removebor font-14 pd0" placeholder="Phone" id="tel" />
+							</div>
+						</div>
+						<div class="insure bgf" data-sure='5' id="comer">
+							<div class="fl wid10">
+								<span class="myicon"><img src="../../img/ok.png" class="sure"></span>
+							</div>
+							<div class="hei80 linehei hidden asure">
+								Buy safety insurance $5
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 		</div>
 		<script type="text/javascript" src="../../js/mui.listpicker.js"></script>
 		<script type="text/javascript" src="../../js/mui.dtpicker.js"></script>
@@ -416,6 +417,7 @@
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui.plusReady(function() {
+				mui('.mui-scroll-wrapper').scroll()
 				var getdata = {};
 				getdata.gName = "";
 				getdata.gValue = "";
@@ -453,6 +455,7 @@
 						var c = plus.webview.currentWebview();
 						var onOff = true;
 						$('.mui-bbtn').on('tap', function() {
+							alert(1)
 							var data = JSON.parse(plus.storage.getItem("draft-datas"))
 							if (data && data.res && data.res.orderId) {
 								getdata.orderId = data.res.orderId;
@@ -477,6 +480,7 @@
 							getdata.receiverWd = $('#sendaddr').attr('data-Wd');
 							getdata.insType = parseInt($('#comer').attr('data-sure'));
 							getdata.status = 1;
+							showobj(getdata)
 							if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 								if (onOff) {
 									onOff = false
@@ -484,13 +488,13 @@
 										url: 'order/resOrderByGood',
 										data: getdata
 									}, function(data) {
-										if(data.ret==1){
+										if (data.ret == 1) {
 											plus.storage.removeItem("draft-datas"); // 返回时清楚storage中储存的数据
 											mui.toast('发单成功');
-											setstorage('my-send-order',data.res.orderId);
+											setstorage('my-send-order', data.res.orderId);
 											openWindow('./result.html')
-										} 
-										if(data.ret==2){
+										}
+										if (data.ret == 2) {
 											mui.toast('发单被限制');
 										}
 									}, function(xhr, type) {

@@ -93,7 +93,7 @@
 						</div>
 					</div>
 					<div class="center_clear">
-						<!--中间间隙-->
+						<!--中间间隙-->  
 					</div>
 					<div class="center_input ">
 						<div class="center_divl"><span>E-mail</span></div>
@@ -181,11 +181,11 @@
 		</div>
 		<div id="gitpic" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">
-					<a class="bycamera">拍照</a>
+				<li class="mui-table-view-cell " id="bycamera">
+					拍照
 				</li>
-				<li class="mui-table-view-cell">
-					<a class="bygallery">相册</a>
+				<li class="mui-table-view-cell" id="bygallery">
+					相册
 				</li>
 			</ul>
 			<ul class="mui-table-view">
@@ -234,14 +234,17 @@
 						function() {
 							alert('shibaile');
 						})
-					$('.bycamera').on('tap',function(){
+					$('#bycamera').on('tap',function(){
+						
 						bycamera()
-					})
-					$('.bygallery').on('tap',function(){
-						bygallery();
+						mui('#gitpic').popover('toggle');
+					})  
+					$('#bygallery').on('tap',function(){  
+						
+						bygallery(); 
+						mui('#gitpic').popover('toggle');
 					})
 					function bycamera() {
-						mui('#gitpic').popover('toggle')
 						var camera = plus.camera.getCamera();
 						var res = camera.supportedImageResolutions[0];
 						var fmt = camera.supportedImageFormats[0];
@@ -285,7 +288,6 @@
 													if (obj.ret == 1) {
 														var p = headpicurl+head; 
 														$('#headpic').attr('src', p);
-														mui('.mui-popover').popover('toggle');
 														var i = plus.webview.getLaunchWebview();
 														mui.fire(i,'setaccount',{headPic:head})
 													} else {
@@ -293,6 +295,7 @@
 													}
 												}, function(xhr, type) {
 													mui.toast(xhr.status);
+													
 												})
 											} else {
 												mui.toast('请先登录在操作！');
@@ -307,7 +310,6 @@
 						//bg galary
 
 					function bygallery() {
-						mui('#gitpic').popover('toggle')
 						plus.gallery.pick(function(path) {
 							dealpic(path);
 						}, function(e) {

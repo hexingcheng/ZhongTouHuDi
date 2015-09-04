@@ -13,8 +13,11 @@
 	.sub_log{
 		width: 100px;
 		height: 100px;
-		border: 1px solid red;
-		background: url();
+		overflow: hidden;
+		border-radius: 50%;
+		background: url(../../img/success-logo.png) no-repeat;
+		background-size: 100px 100px;
+		background-color: #2A9F59;
 		margin: 30% auto 10% auto;
 	}
 	.submit_title{
@@ -26,21 +29,21 @@
 		
 	}
 	.submit_succ{
-		font-size: 18px;
+		font-size: 16px;
 		color: #3FA86A;
 	}
 </style>
 </head>
 	<body>
-		<header class="mui-bar mui-bar-nav apply_header">
-			<span class="mui-text-center">Submitted</span>
+		<header class="mui-bar mui-bar-nav apply_header mui-text-center">
+			<span class="">Submitted</span>
 	    </header>
 	    <div class="mui-content">
 	    	<div class="sub_log">
 	    	</div>
 	    	<div class="submit_title">
 	    		<span class="submit_succ"><strong>Submit success</strong></span>
-	    		<p><span>your application has submitted, please wait</span></p>
+	    		<p><span class="fontsize14">your application has submitted, please wait</span></p>
 	    	</div>
 	    </div>
 	    <div class="apply_footer">
