@@ -320,7 +320,7 @@
 						flag = false;
 						return;
 					}
-					if (nation == 'select nation') {
+					if (!v_nation) {
 						mui.toast('请填写你的国籍');
 						flag = false;
 						return;
@@ -389,7 +389,7 @@
 				$('.nation_mark').css('display', 'block');
 				$('#nation_select_').css('display', 'block');
 			})
-			$('.nation_list_contain ul li').on('click', function() {
+			$('#nation_select_ ul li').on('click', function() {
 				var nation = $(this).text();
 				$('#nation').html(nation);
 				$('.nation_mark').css('display', 'none');

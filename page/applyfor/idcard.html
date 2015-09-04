@@ -230,6 +230,7 @@
 					cardPic3: pic3
 				}
 				var  add_data = $.extend(data_one, data_2); //将前后对象进行合并  
+				alert(JSON.stringify(add_data));
 				if (flag) {
 					myAjax({
 						url: "account/applyDeliver",
@@ -242,7 +243,7 @@
 							plus.storage.removeItem('nation_pic3');
 							openWindow("submitted.html");
 						} else if (obj.ret == 2) {
-							mui.toast('提交失败');
+							mui.toast('你已申请,请勿重复申请！');
 						} else {
 							alert(obj.ret + "cycycycy");
 						}
