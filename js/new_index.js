@@ -126,7 +126,7 @@ mui.plusReady(function() {
 				openWindow('./page/mysendorder/my-send-order.html')
 			})
 		})
-		document.getElementById('mywallet').addEventListener('tap', function() {
+		document.getElementById('mywallet').addEventListener('tap', function() { 
 			iflogin(function() {
 				openWindow('./page/wallet/my-wallet.html')
 			})
