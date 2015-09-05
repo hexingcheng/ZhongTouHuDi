@@ -532,22 +532,22 @@
 				<div class="goods-pic">
 					<ul class="mui-table-view clear" id="take-photo">
 						<li class="mui-table-view-cell img-box addmarr" data-index='0'>
-							<a href="#delete" class="picpre">
+							<a href="#delete" class="picpre pic-img">
 								<span class="mui-icon mui-icon-plusempty addclass"></span>
 							</a>
 						</li>
 						<li class="mui-table-view-cell img-box addmarr" data-index='1'>
-							<a href="#delete" class="picpre">
+							<a href="#delete" class="picpre pic-img">
 								<span class="mui-icon mui-icon-plusempty addclass"></span>
 							</a>
 						</li>
 						<li class="mui-table-view-cell img-box addmarr" data-index='2'>
-							<a href="#delete" class="picpre">
+							<a href="#delete" class="picpre pic-img">
 								<span class="mui-icon mui-icon-plusempty addclass"></span>
 							</a>
 						</li>
 						<li class="mui-table-view-cell img-box" data-index='3'>
-							<a href="#delete" class="picpre">
+							<a href="#delete" class="picpre pic-img">
 								<span class="mui-icon mui-icon-plusempty addclass"></span>
 							</a>
 						</li>
@@ -681,28 +681,32 @@
 				openWindow('./draft.html')
 			})
 			mui.back = function() {
-				if ($('#gname').val()) {
-					getdata.gName = $('#gname').val();
-					getdata.gWeight = $('#gweight').val() || 0;
-					getdata.gValue = $('#gvalue').val() || 0;
-					getdata.info = $('#gettext').val() || "";
-					getdata.pics = setpicid()
-					getdata.status = 0;
-					console.log(getdata.orderId)
-					showobj(getdata)
-					$('.backmask').removeClass('mui-hidden');
-					$('.backhandle').removeClass('mui-hidden')
-					var l = ($(window).width() - 270) / 2;
-					var t = ($(window).height() - $('.backhandle').height()) / 2;
-					$('.backhandle').css({
-						'left': l,
-						'top': t
-					})
+				var cls = document.querySelector(".presee").classList;
+				if(cls.contains("mui-hidden")){
+					if ($('#gname').val()) {
+						getdata.gName = $('#gname').val();
+						getdata.gWeight = $('#gweight').val() || 0;
+						getdata.gValue = $('#gvalue').val() || 0;
+						getdata.info = $('#gettext').val() || "";
+						getdata.pics = setpicid()
+						getdata.status = 0;
+						console.log(getdata.orderId)
+						showobj(getdata)
+						$('.backmask').removeClass('mui-hidden');
+						$('.backhandle').removeClass('mui-hidden')
+						var l = ($(window).width() - 270) / 2;
+						var t = ($(window).height() - $('.backhandle').height()) / 2;
+						$('.backhandle').css({
+							'left': l,
+							'top': t
+						})
+					} else {
+						plus.webview.getLaunchWebview().show('slide-in-left');
+						closewebview()
+					}
 				} else {
-					plus.webview.getLaunchWebview().show('slide-in-left');
-					closewebview()
+					cls.add("mui-hidden")
 				}
-				return false
 			}
 
 			function closewebview() {
@@ -751,23 +755,73 @@
 
 			function bygallery(context) {
 				$(context).parent().attr('href', "#");
-				plus.gallery.pick(function(path) {
-					dealpic(path, context);
+				plus.gallery.pick(function(eve) {
+					
+					for (var i = 0, len = eve.files.length; i < len; i++) {
+						(function(i, len) {
+							plus.io.resolveLocalFileSystemURL(eve.files[i], function(entry) {
+								var local = entry.toLocalURL(); // 获取本地地址
+								// 图片压缩处理
+								dealImage(local, {width: 17 * 4,quality: 0.5}, 
+									function(base) {
+										var obj = {
+											path : local,
+											base : base
+										}
+										sendImgData(obj)
+								})
+							})
+						})(i, len)
+					}
+					
 				}, function(e) {
 					$(context).parent().attr('href', "#delete");
-					showobj(e)
 				}, {
 					filter: 'image',
-					multiple: false
+					multiple: true
 				})
 			}
-
+			
+			// 多张选择照片上传
+			function sendImgData(datas){
+				myAjax({
+					url: "common/file/imgUp",
+					data: {
+						imgName: Math.floor(Math.random() * 1000)+""+(new Date().getTime()) + ".jpg",
+						imgData: datas.base, // base字符串
+						dataLength: datas.base.length // base字符串长度
+					},
+					wait : false
+				}, function(data) {
+					var img = '<span class="wids"><img title=' + datas.path + ' src=' + datas.base + ' alt=' + data.res.fid + '></span>';
+//					console.log(datas.path);
+//					$(context).parent().append(img);
+					var picimg = $("#take-photo").find(".pic-img")
+					for(var i = 0; i < picimg.size(); i++){
+//						console.log(picimg.eq(i).find("img").size())
+						if(picimg.eq(i).find("img").size() == 0){
+							picimg.eq(i).html(img);
+							picimg.eq(i).attr("href", "javascript:void(0);")
+							break;
+						}
+					}
+					$('img', '.wids').css({
+						width: iw,
+						height: iw
+					})
+				}, function(xhr, type) {
+					console.log("错误信息显示：" + type);
+					errorhandle(type);
+				})
+			}
+			
+			// 照相获取图片上传
 			function sendData(urls, base, context, path) {
 				var pics
 				myAjax({
 					url: urls,
 					data: {
-						imgName: Math.floor(Math.random() * 100000) + ".jpg",
+						imgName: Math.floor(Math.random() * 1000)+""+(new Date().getTime()) + ".jpg",
 						imgData: base, // base字符串
 						dataLength: base.length // base字符串长度
 					},
@@ -780,7 +834,6 @@
 						height: iw
 					})
 					$(context).remove();
-					setpicid();
 				}, function(xhr, type) {
 					console.log("错误信息显示：" + type);
 					errorhandle(type);
