@@ -1,15 +1,104 @@
-mui.init();
+mui.init({
+	pullRefresh: {
+		container: '#pullrefresh',
+		down: {
+			callback: pulldownRefresh
+		},
+		up: {
+			contentrefresh: '正在加载...',
+			callback: pullupRefresh
+		}
+	}
+});
+var whichstatus;
+var whichpage = {
+	'1':1,
+	'2':1,
+	'3':1
+}
+function pulldownRefresh() {
+	plus.nativeUI.showWaiting('刷新中', {
+		background: '#d1d1d1'
+	})
+	var data = {
+		"page": 1,
+		"pageSize": 10,
+		"type": "send",
+		"status": whichstatus
+	}
+	sendmsg(data)
+	function sendmsg(data) {
+		myAjax({
+			url: 'order/myGoodList',
+			data: data,
+			wait: false
+		}, function(data) {
+			plus.nativeUI.closeWaiting();
+			mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+			var orderdata = {
+					"list": data.res
+				}
+			// 模板渲染
+			var html = template("template", orderdata);
+			if (!html) {
+				mui.toast('no more')
+			}
+			document.getElementById('pullrefreshs').innerHTML = html;
+		}, function(xhr, type, error) {
+			console.log(type)
+		})
+	}
+}
+
+function pullupRefresh() {
+	var data = {
+		"page": 1,
+		"pageSize": 10,
+		"type": "send",
+		"status": status
+	}
+	data.page = ++whichpage[whichstatus]       
+	sendmsg(data)
+	function sendmsg(datas) {
+		myAjax({
+			url: 'order/myGoodList',
+			data: datas,
+			wait: false
+		}, function(data) {
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh()
+			var orderdata = {
+					"list": data.res
+				}
+				// 模板渲染
+			plus.nativeUI.closeWaiting();
+			var html = template("template", orderdata);
+			document.getElementById('pullrefreshs').innerHTML = html;
+		}, function(xhr, type, error) {
+			console.log(type)
+		})
+	}
+}
 mui.plusReady(function() {
 	mui("#scroll-wrapper").scroll();
 	// 默认发送第一次
+
 	sendmsg({
 		"page": 1,
 		"pageSize": 10,
 		"type": "send",
 		"status": 1
 	})
-
-	// 委托显示详情界面
+	window.addEventListener('renderdata', function(eve) {
+			whichstatus = eve.detail.status
+			var data = {
+				"page": 1,
+				"pageSize": 10,
+				"type": "send",
+				"status":whichstatus 
+			}
+			sendmsg(data);
+		})
+		// 委托显示详情界面
 	mui("#segmentedControl").on("tap", "a", function() {
 		var datas = {
 			"page": 1,
@@ -17,10 +106,10 @@ mui.plusReady(function() {
 			"type": "send",
 			"status": this.getAttribute("data-status")
 		};
-		//					console.log(JSON.stringify(datas));
+		//console.log(JSON.stringify(datas));
 		sendmsg(datas); // 调用函数进行数据渲染
 	})
-	
+
 	// 详情页面显示跳转代理事件
 	mui("#link-detail").on("tap", "#go-detail", function() {
 		var status = this.getAttribute("data-status");
@@ -46,43 +135,24 @@ mui.plusReady(function() {
 			cpage.close("none", 0)
 		})
 	}
-	
+
 	// 自定义事件刷新列表信息
-	window.addEventListener("refresh:data", function(){
+	window.addEventListener("refresh:data", function() {
 		var ele = document.querySelector(".item-four");
 		mui.trigger(ele, "tap");
 	})
-	
+
 	// 刷新数据显示
-	window.addEventListener("refresh:alldata", function(){
+	window.addEventListener("refresh:alldata", function() {
 		var ele = document.querySelector(".item-first");
 		mui.trigger(ele, "tap");
 	})
-	
+
 	// 刷新数据显示
-	window.addEventListener("refresh:comment", function(){
+	window.addEventListener("refresh:comment", function() {
 		var ele = document.querySelector(".item-third");
 		mui.trigger(ele, "tap");
 	})
-
-	/*	// 实现上拉刷新与下拉刷新功能
-		mui.each(document.querySelectorAll("#link-detail .mui-control-content"), function(index, element){
-			mui(element).pullToRefresh({
-				// 上拉的时候
-				down : {
-					callback : function(){
-						
-					}
-				},
-				// 上拉的时候
-				up : {
-					callback : function(){
-						
-					}
-				}
-			})
-		})
-		*/
 })
 
 
@@ -91,19 +161,18 @@ function sendmsg(datas) {
 	myAjax({
 		url: 'order/myGoodList',
 		data: datas,
-		wait : false
+		wait: false
 	}, function(data) {
 		var orderdata = {
 				"list": data.res
 			}
-		// 模板渲染
+			// 模板渲染
 		var html = template("template", orderdata);
 		if (!html) {
 			html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
 		}
-		document.getElementById('item' + datas.status).innerHTML = html;
+		document.getElementById('pullrefreshs').innerHTML = html;
 	}, function(xhr, type, error) {
 		console.log(type)
 	})
 }
-
