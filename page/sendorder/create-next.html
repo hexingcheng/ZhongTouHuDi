@@ -703,6 +703,31 @@
 					$("#receiver").val(eve.detail.name);
 					$("#tel").val(eve.detail.tel);
 				})
+				// 选择常用地址
+				document.getElementById("send-address").addEventListener("tap", function(){
+					openWindow("./choose-address.html",{
+						type : "send"
+					})
+				})
+				document.getElementById("receive-address").addEventListener("tap", function(){
+					openWindow("./choose-address.html",{
+						type : "receive"
+					})
+				})
+				// 常用地址选择 id="sendaddr" data-addr="北京" data-Jd="10" data-Wd="10"
+				window.addEventListener("usual:address", function(eve){
+					if(eve.detail.type == "send"){
+						$("#sendaddr").attr("data-addr", eve.detail.addr);
+						$("#sendaddr").html(eve.detail.addr);
+						$("#sendaddr").attr("data-Jd", eve.detail.jd);
+						$("#sendaddr").attr("data-Wd", eve.detail.wd);
+					} else if(eve.detail.type == "receive"){
+						$("#getaddr").attr("data-addr", eve.detail.addr);
+						$("#getaddr").html(eve.detail.addr);
+						$("#getaddr").attr("data-Jd", eve.detail.jd);
+						$("#getaddr").attr("data-Wd", eve.detail.wd);
+					}
+				})
 			})
 		</script>
 	</body>
