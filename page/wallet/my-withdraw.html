@@ -65,18 +65,18 @@
 		
 	</div>
 	<!-- 加载中的蒙层 -->
-	<div id="loading-mask"></div>
+	<!--<div id="loading-mask"></div>
 	<div id="loading-box">
 		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 	</div>
-	
-	<footer style="height: 3.5em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+	-->
+	<footer style="height: 64px;" class="mui-bar mui-bar-footer mui-text-center bg-color">
 		<button id="next-step" class="mui-btn button-next">Next Step</button>
 	</footer>
 	<script type="text/html" id="template">
 		{{each list}}
 			{{if $value.channel == "paypal"}}
-			<li class="mui-table-view-cell type-paypal mui-media mui-col-xs-12">
+				<li class="mui-table-view-cell type-paypal mui-media mui-col-xs-12">
 					<div class="mui-slider-right mui-disabled">
 						<a class="mui-btn mui-btn-red edit-account" data-mcid="{{$value.mcId}}">编辑</a>
 					</div>

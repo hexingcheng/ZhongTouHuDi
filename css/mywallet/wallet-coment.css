@@ -48,7 +48,7 @@ header.mui-bar.mui-bar-nav {
 }
 /* 头部样式  */
 
-.mui-bar {
+header.mui-bar {
 	height: 52px;
 }
 .mui-bar .mui-icon {
@@ -93,7 +93,7 @@ div.mui-scroll-wrapper {
 	-webkit-transition: all 500ms ease-out;
 }
 /* footer 上边界线 */
-.mui-bar {
-	-webkit-box-shadow : 0 0 1px #ccc;
-	box-shadow : 0 0 1px #ccc;
+footer.mui-bar {
+	-webkit-box-shadow : 0 0 1px #40AA53;
+	box-shadow : 0 0 1px #40AA53;
 }
