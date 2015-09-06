@@ -30,6 +30,9 @@
 	color: #d92400;
 	font-size: 18px;
 }
+.mui-table-view-cell .goods-content {
+	font-size: 14px;
+}
 .goods-name-bar {
 	overflow: hidden;
 	padding-bottom: 0.3em;
@@ -68,24 +71,28 @@
 }
 .published .statusDetail {
 	color: #ffa619;
+	font-size: 17px;
 }
 .successed {
-	border-left: 4px solid #00a04f;
+	border-left: 4px solid #ff8474;
 }
 .successed .statusDetail {
-	color: #00a04f;
+	color: #ff8474;
+	font-size: 17px;
 }
 .transporting {
-	border-left: 4px solid #7c956d;
+	border-left: 4px solid #23a0cf;
 }
 .transporting .statusDetail {
-	color: #7c956d;
+	color: #23a0cf;
+	font-size: 17px;
 }
 .abandonded {
-	border-left: 4px solid #247b83;
+	border-left: 4px solid #90b900;
 }
 .abandonded .statusDetail {
-	color: #247b83;
+	color: #90b900;
+	font-size: 17px;
 }
 /* 头部样式  */
 
@@ -113,7 +120,7 @@
 	font-weight: bold;
 }
 .content-padded {
-	height: 10px;
+	height: 8px;
 	background-color: #F2F2F2;
 }
 .content-padded:last-child {
@@ -126,5 +133,5 @@
 	height: 48px;
 }
 .goods-name {
-	font-size: 16px;
+	font-size: 17px;
 }

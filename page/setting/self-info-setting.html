@@ -136,9 +136,11 @@
 							var i = plus.webview.getLaunchWebview();
 							mui.fire(i, 'removehref')
 							var i = plus.webview.getLaunchWebview();
-							mui.fire(i,'closeMenu')
+//							mui.fire(i,'closeMenu')
 							i.show('slide-in-left',300);
-							plus.webview.currentWebview().close();
+							setTimeout(function(){
+								plus.webview.currentWebview().close("none", 0);
+							}, 330)
 					},function(xhr,type){
 						console.log(xhr.status+":"+type)
 					})

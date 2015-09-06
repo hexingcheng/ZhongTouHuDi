@@ -12,24 +12,34 @@ header.mui-bar.mui-bar-nav {
 	color: #fff
 }
 .mui-btn.button-first {
-	background-color: #fc9b29;
+	background-color: #06495a;
 	color: #fff;
-	padding: 12px 16%;
+	padding: 14px 0;
+	width: 45%;
 }
 .mui-btn.button-next {
-	background-color: #23a0cf;
+	background-color: #23A0CF;
 	color: #fff;
-	padding: 12px 16%;
+	padding: 14px 0;
+	width: 45%;
+}
+footer.mui-bar {
+	height: 64px;
+	padding: 7px 0;
+}
+footer.mui-bar .mui-btn {
+	top: 0;
 }
 .mui-btn.mui-btn-block {
-	padding: 12px 0;
-	background-color: #ffa619;
+	padding: 14px 0;
+	background-color: #06495a;
 	color: #fff;
+	width: 90%;margin: 0 auto;
 }
 /* 头部样式  */
 footer.mui-bar {
-	-webkit-box-shadow : 0 0 1px #ccc;
-	box-shadow : 0 0 1px #ccc;
+	-webkit-box-shadow : 0 0 1px #40AA53;
+	box-shadow : 0 0 1px #40AA53;
 	background-color: #fff;
 }
 .mui-bar {

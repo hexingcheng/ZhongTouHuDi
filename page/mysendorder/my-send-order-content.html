@@ -30,13 +30,13 @@
 			{{each list}}
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					{{if $value.status == 1}}
+					{{if $value.statusDetail == 11 || $value.statusDetail == 32 || $value.statusDetail == 22 || $value.status == 4}}
 					<a id="go-detail" href="./get-detail.html" class="detail-page published" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
-					{{else if $value.status == 2}}
+					{{else if $value.statusDetail == 21 || $value.statusDetail == 31}}
 						<a id="go-detail" href="./get-detail.html" class="detail-page transporting" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
-					{{else if $value.status == 3}}
+					{{else if $value.statusDetail == 12}}
 						<a id="go-detail" href="./get-detail.html" class="detail-page successed" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
-					{{else}}
+					{{else if $value.statusDetail == 13}}
 						<a id="go-detail" href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
 					{{/if}}
 						<div class="goods-name-bar">

@@ -136,26 +136,6 @@ mui.plusReady(function() {
 		})
 	}
 
-	// 自定义事件刷新列表信息
-	window.addEventListener("refresh:data", function() {
-		var ele = document.querySelector(".item-four");
-		mui.trigger(ele, "tap");
-	})
-
-	// 刷新数据显示
-	window.addEventListener("refresh:alldata", function() {
-		var ele = document.querySelector(".item-first");
-		mui.trigger(ele, "tap");
-	})
-
-	// 刷新数据显示
-	window.addEventListener("refresh:comment", function() {
-		var ele = document.querySelector(".item-third");
-		mui.trigger(ele, "tap");
-	})
-})
-
-
 // 发送数据状态显示详情界面信息
 function sendmsg(datas) {
 	myAjax({
