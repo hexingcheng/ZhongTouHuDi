@@ -1,3 +1,27 @@
+body{
+	background-color: #fff;
+}
+.nav_header{
+	height: 52px;
+	line-height: 52px;
+	font-size: 16px;
+	text-align: left;
+	color: #fff;
+	background-color: #44ab6d;
+	box-shadow: none;
+}
+.nav_header .left_img{
+	width: 34px;
+	height: 34px;
+	float: left;
+	margin: 9px 9px 9px 0; 
+}
+.nav_header .right_img{
+	width: 34px;
+	height: 34px;
+	float: right;
+	margin: 9px 0 9px 9px; 
+}
 .mui-content>.mui-table-view:first-child {
 	margin-top: 0;
 }
@@ -29,6 +53,9 @@ footer.mui-bar {
 }
 footer.mui-bar .mui-btn {
 	top: 0;
+	border: none;
+	outline: none;
+	border-radius: 0;
 }
 .mui-btn.mui-btn-block {
 	padding: 14px 0;
