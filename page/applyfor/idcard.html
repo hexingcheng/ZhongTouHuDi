@@ -233,7 +233,7 @@
 				alert(JSON.stringify(add_data));
 				if (flag) {
 					myAjax({
-						url: "account/applyDeliver",
+						url: "account/applyDeliver",  
 						data: add_data
 					}, function(obj) {
 						if (obj.ret == 1) {
@@ -244,6 +244,9 @@
 							openWindow("submitted.html");
 						} else if (obj.ret == 2) {
 							mui.toast('你已申请,请勿重复申请！');
+							plus.storage.removeItem('nation_pic1');
+							plus.storage.removeItem('nation_pic2');  
+							plus.storage.removeItem('nation_pic3');
 						} else {
 							alert(obj.ret + "cycycycy");
 						}

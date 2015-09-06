@@ -1,3 +1,6 @@
+body{
+	font-size: 14px;
+}
 .apply_header{
 	width: 100%;
 	height: 52px;
@@ -188,3 +191,4 @@
 	line-height: 48px; 
 	color: #000;
 }
+
