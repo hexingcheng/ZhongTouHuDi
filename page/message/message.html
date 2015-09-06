@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -53,7 +54,7 @@
 			}
 			#msglists li {
 				padding: 0;
-				height: 80px;
+				/*height: 80px;*/
 			}
 			.mainpic {
 				position: relative;
@@ -82,11 +83,10 @@
 				margin-top: 15px;
 			}
 			.cttmain {
+				padding-top: 5px;
 				font-size: 12px;
 				line-height: 15px;
-				height: 29px;
-				overflow: hidden;
-				text-overflow: ellipsis;
+				word-break: break-all;
 			}
 			.mui-table-view-cell:after {
 				height: 0;
@@ -113,6 +113,52 @@
 				font-size: 13px;
 				color: green;
 			}
+			.mui-scroll-wrapper {
+				top: 52px;
+			}
+			.deletemask {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background-color: rgba(0, 0, 0, 0.4);
+				z-index: 99;
+			}
+			.deletetips {
+				width: 270px;
+				height: 112px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -135px;
+				margin-top: -56px;
+				background-color: #FFFFFF;
+			}
+			.deletetitle {
+				padding: 10px;
+				word-break: break-all;
+			}
+			.handlebtn {
+				margin-top: 20px;
+			}
+			.sure,
+			.cancel {
+				float: left;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				width: 135px;
+				padding: 0;
+				margin: 0;
+				color: #FFFFFF;
+			}
+			.sure {
+				background-color: pink;
+			}
+			.cancel {
+				background-color: #67B168;
+			}
 		</style>
 	</head>
 
@@ -121,26 +167,36 @@
 			<span class="mui-action-back mui-pull-left myicon">
 				<img src="../../img/left.png"/>
 			</span>
-			<span class="mui-pull-right myicon">
+			<span class="mui-pull-right myicon" id="deleteall">
 				<img src="../../img/2set-up.png">
 			</span>
 			<h1 class="mui-title">Message</h1>
 		</header>
+		<div class="deletemask mui-hidden">
+			<div class="deletetips">
+				<div class="deletetitle">this action will delete all the system messages,sure complete ?</div>
+				<div class="handlebtn">
+					<div class="sure">delete all</div>
+					<div class="cancel">cancel</div>
+				</div>
+			</div>
+		</div>
 		<div class="mui-content">
-			<ul id="msglists" class="mui-table-view">
-
-			</ul>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul id="msglists" class="mui-table-view">
+						
+					</ul>
+				</div>
+			</div>
 		</div>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script src="../../js/template.js"></script>
 		<script type="text/html" id="msglist">
 			{{each list}}
-			<li class="mui-table-view-cell">
+			<li class="mui-table-view-cell" data-src='{{$value.type}}' data-id='{{$value.params.id}}'>
 				<div class="mui-slider-right mui-disabled">
-					<a class="lefticon colored mui-btn" style="padding: 0;">
-						<img src="../../img/2application.png" />
-					</a>
-					<a class="lefticon colorff34 mui-btn" style="padding: 0;">
+					<a class="lefticon colorff34 mui-btn delete" style="padding: 0;" data-time='{{$value.time}}'>
 						<img src="../../img/2deliverorder.png" />
 					</a>
 				</div>
@@ -152,8 +208,7 @@
 								<img src="../../img/order-tracker.png" /> {{/if}} {{if $value.type==2}}
 								<img src="../../img/activity.png" /> {{/if}} {{if $value.type==3}}
 								<img src="../../img/prompt.png" /> {{/if}} {{if $value.type==4}}
-								<img src="../../img/1.png" /> {{/if}}
-								 {{if $value.ifnew==1}}<span class="newmsg"></span>{{/if}}
+								<img src="../../img/1.png" /> {{/if}} {{if $value.ifnew==1}}<span class="newmsg"></span>{{/if}}
 							</div>
 							{{if $value.type==1}}
 							<div class="detailpage">
@@ -182,16 +237,22 @@
 		<script type="text/javascript" src="../../js/utils.js"></script>
 		<script>
 			mui.plusReady(function(systemmes) {
-				console.log(getstorage('systemmes'))
+				mui('.mui-scroll-wrapper').scroll();
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				})
 				myAjax({
 					url: 'message/getMsg'
 				}, function(data) {
 					if (data.ret == 1) {
-						if (!getstorage('systemmes')) {
-							setstorage("systemmes", JSON.stringify(data.res));
-							console.log(getstorage('systemmes'))
+						console.log(data.res.msgList)
+						var personinfo = JSON.parse(getstorage('personinfo')).phone;
+						var whichperson = 'systemmes' + personinfo
+						if (!getstorage(whichperson)) {
+							setstorage(whichperson, JSON.stringify(data.res));
+							console.log(getstorage(whichperson))
 							var msgdata = {
-								"list": data.res.msgList
+								"list": JSON.parse(getstorage(whichperson)).msgList
 							}
 							var str = template("msglist", msgdata);
 							$('#msglists').html(str)
@@ -203,21 +264,30 @@
 					mui.toast(xhr.status + ":" + type)
 				})
 			})
-
+			
 			function handlemsg(data) {
-				var old = JSON.parse(getstorage('systemmes'));
+				var personinfo = JSON.parse(getstorage('personinfo')).phone;
+				var whichperson = 'systemmes' + personinfo;
+				var old = JSON.parse(getstorage(whichperson));
 				var listArr = old.msgList;
 				var newmsg = data.res.msgList;
+				showobj(data.res.msgList[0])
 				var temp = [];
 				for (var j = 0; j < newmsg.length; j++) {
 					if (newmsg[j].type == 1) {
+						var on = true;
 						for (var i = 0; i < listArr.length; i++) {
 							if (listArr[i].type == 1) {
 								if (newmsg[j].params.id == listArr[i].params.id) {
 									listArr[i] = newmsg[j];
-									listArr[i].ifnew = 1
+									listArr[i].ifnew = 1;
+									on = false;
 								}
 							}
+						}
+						if (on) {
+							newmsg[j].ifnew = 1
+							listArr.unshift(newmsg[j]);
 						}
 					} else {
 						temp.push(newmsg[j]);
@@ -227,14 +297,62 @@
 				var obj = {
 					'msgList': now
 				}
-				setstorage('systemmes', JSON.stringify(obj));
-				console.log(getstorage('systemmes'))
+				setstorage(whichperson, JSON.stringify(obj));
+				console.log(getstorage(whichperson))
 				var msgdata = {
 					"list": now
 				}
 				var str = template("msglist", msgdata);
-				$('#msglists').html(str)
+				$('#msglists').html(str);
 			}
+			mui('#msglists').on('tap', '.mui-table-view-cell', function() {
+				var type = this.getAttribute('data-src');
+				var id
+				if (Object.prototype.toString.call(this.getAttribute('data-id')) != 'Object Null') {
+					id = this.getAttribute('data-id')
+				}
+				if (type == '1') {
+					var param = {
+						orderid: id
+					}
+					openWindow('./ordermsg.html', param);
+				} else if (type == 2) {} else {
+					return;
+				}
+			})
+			 mui('#msglists').on('tap', '.delete', function() {
+				var time = this.getAttribute('data-time');
+				var personinfo = JSON.parse(getstorage('personinfo')).phone;
+				var whichperson = 'systemmes' + personinfo
+				var old = JSON.parse(getstorage(whichperson));
+				var listArr = old.msgList;
+				for (var i = 0; i < listArr.length; i++) {
+					if (listArr[i].time == time) {
+						listArr.splice(i, 1);
+					}
+				}
+				var obj = {
+					'msgList': listArr
+				}
+				setstorage(whichperson, JSON.stringify(obj));
+				document.getElementById('msglists').removeChild(this.parentNode.parentNode);
+			})
+			 document.getElementById('deleteall').addEventListener('tap', function() {
+				if ($('#msglists').html()) {
+					$('.deletemask').removeClass('mui-hidden')
+				} else {
+					return;
+				}
+			})
+			 $('.deletemask').on('tap', function() {
+				$(this).addClass('mui-hidden')
+			})
+			 $('.sure').on('tap', function() {
+				var personinfo = JSON.parse(getstorage('personinfo')).phone;
+				var whichperson = 'systemmes' + personinfo;
+				plus.storage.removeItem(whichperson);
+				$('#msglists').detach();
+			})
 		</script>
 	</body>
 
