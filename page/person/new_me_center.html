@@ -105,8 +105,8 @@
 					<div class="center_input " id="nation_select">
 						<div class="center_divl"><span>nationnality</span></div>
 						<img src="../../img/edit.png" alt="" class="edit_hide" name="five" />
-						<div class="center_input_div" id="select_nation">
-							<span id="nation" class="edit_input five"></span>
+						<div class="center_input_div " id="nation_">
+							<span id="nation"></span>
 						</div>
 					</div>  
 					<div class="center_clear">
@@ -121,19 +121,17 @@
 
 						</div>
 					</div>
-					<div class="center_input">
+					<div class="center_input" id="open_apply">
 						<div class="center_divl"><span>deliver</span></div>
-						<span id="deliver" class="mui-hidden">是</span>
-						<span id="not_deliver" class="">否</span>
+						<img src="../../img/enter.png" alt="" />
+						<div class="center_input_div" >
+							<!--<input type="text" class="edit_input" readonly="readonly" id="deliver"/>-->
+						</div>
 					</div>
 					<div class="center_clear">
 						<!--中间间隙-->
 					</div>
-					<div class="center_input" id="apply_info">
-						<img src="../../img/enter.png" alt="" />
-						<div class="center_divl"><span>deliver info</span></div>
-						
-					</div>
+					
 					<div class="center_input" id="wallet_pwd">
 						<img src="../../img/enter.png" alt="" />
 						<div class="center_divl"><span>payword</span></div> 
@@ -190,7 +188,7 @@
 			</ul>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a href="#gitpic" id="trigger"><b>取消</b></a>
+					<a href="#gitpic" id="trigger"><b>取消</b></a> <a href="../applyfor/apply_info.html"></a>
 				</li>
 			</ul>
 		</div>
@@ -199,11 +197,14 @@
 		<script src="../../js/comment.js"></script>
 		<script>
 			mui.plusReady(function() {
+				    
+				var d_status='';
 					plus.webview.currentWebview().setStyle({
 						scrollIndicator: 'none'
 					});
 					//调用蒙版
 					mui('.mui-scroll-wrapper').scroll();
+					
 					myAjax({
 							url: 'account/info',
 						},
@@ -211,22 +212,24 @@
 							if (obj.ret == 1) {
 								var data = obj.res;
 								var n = BASEURL.indexOf('/a');
-								var imgurl = BASEURL.substring(0, n);
+								var imgurl = BASEURL.substring(0, n); 
+								
 								var pic = imgurl + data.headPic;
-								$('#headpic').attr('src', pic)
+								
+								if(data.headPic){
+									$('#headpic').attr('src', pic)
+								}
 								$('#familyName').val(data.familyName);
 								$('#firstName').val(data.firstName);
 								$('#email').val(data.email);
 								$('#nation').text(data.nation);
 								$('#phone').val(data.phone);
 								$('#ptitle').text(data.ptitle);
-								if (data.deliver == 1) {
-									$('#deliver').removeClass('mui-hidden')
-									$('#not_deliver').addClass('mui-hidden')
-								}
 								if (data.sex == 1) {
 									$('.male').css('display', 'block');
+									$('.female').css('display', 'none');
 								} else {
+									$('.female').css('display', 'block');
 									$('.male').css('display', 'none');
 								}
 							}
@@ -320,7 +323,7 @@
 							multiple: false
 						})
 					}
-				})
+				
 				//编辑信息
 			var token = '';
 
@@ -340,9 +343,7 @@
 							$('.edit_show').css('display', 'none');
 							$('#password').val(pwd);
 							$('#pop_password').val('');
-							$('.edit_hide').css({
-								'display': 'block'
-							});
+							$('.edit_hide').css({'display': 'block'});
 							$('.edit_input').removeAttr('disabled');
 						} else if (obj.ret == 2) {
 							mui.toast('密码错误');
@@ -415,7 +416,7 @@
 				update();
 			})
 			 //选择国籍
-			 $('#select_nation').on('tap',function(){
+			 $('#nation_').on('tap',function(){
 			 	$('#center_popover').removeClass('mui-hidden');
 			 	$('#nation_select_').css('display','block');
 			 })
@@ -425,10 +426,15 @@
 			 	$('#center_popover').addClass('mui-hidden');
 			 	$('#nation_select_').css('display','none');
 			 })
-			 //查看申请递送人信息  
-			 $('#apply_info').on('tap',function(){
-			 	openWindow('../applyfor/applyPerson.html');  
+			 //查看申请递送人信息    
+			 $('#open_apply').on('tap',function(){  
+			 		openWindow('../applyfor/apply_info.html');  
 			 })
+			 //修改支付密码
+			 $('#wallet_pwd').on('tap',function(){
+			 	openWindow('../wallet/set_wallet_pwd.html');
+			 })
+})
 		</script>
 	</body>
 

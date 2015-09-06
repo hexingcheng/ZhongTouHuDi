@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link href="../../css/mui.css" rel="stylesheet"/>
+<link rel="stylesheet" href="apply.css" />
+<script src="../../js/mui.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<style type="text/css">
+body{
+	background-color: white;
+}
+.bell_title{
+	width: 170px;  
+	height: 34px; 
+	margin: auto;
+	line-height: 34px;
+	left: 50%;
+	color: #F7B56A;
+	
+}
+.mui-table-view .title_{
+	padding: 0;
+	background-color: #F6E1CA;
+}
+img{
+	width: 34px;
+	height: 34px;
+	float: left;
+}
+.ul_mar{
+	margin-top: 9px !important;
+}
+.clear_padd{
+	padding: 0 10px !important;
+}
+.clear_padd img{
+	width: 30%;
+	height: 50px;
+	margin: 0 auto;
+}
+.pic_two{
+	margin-left: 5% !important;
+}
+</style>
+</head>
+	<body>
+		<header class="mui-bar mui-bar-nav apply_header ">
+			<img src="../../img/left.png" alt="" class="left_img mui-action-back" />
+			<span>ApplyInfo</span>
+		</header>
+	<div class="mui-content">  
+		<ul class="mui-table-view ul_mar">
+			<li class="mui-table-view-divider title_ " id="title_apply">
+				<div class="bell_title">
+					<img src="../../img/title_bell.png" alt="" />
+					<span class="mui-pull-left" id="status_info"></span> 
+				</div>
+			</li>
+			<li class="mui-table-view-divider"> <span>Basic Information</span></li>
+			<li class="mui-table-view-cell">
+				<img src="../../img/name.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_middle">
+					<input type="text" class="apply_input"  id="familyName" readonly="readonly"/>
+				</div>
+			</li>
+			  
+			<li class="mui-table-view-cell">    
+				<img src="../../img/name.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_middle">
+					<input type="text" class="apply_input" id="firsetName" readonly="readonly"/>
+				</div>
+			</li>
+			<li class="mui-table-view-cell" >
+				<img src="../../img/name.png" class="mui-pull-left" alt="" />
+				<img src="../../img/male2.png" class="mui-pull-right one" alt=""  style="display: none;"/>
+				<img src="../../img/female2.png" class="mui-pull-right two" alt="" style="display: none;"/>
+				<div class="apply_input_r">
+					<input type="text" class="apply_input"  id="sex" readonly="readonly"/>
+				</div>
+			</li> 
+			<li class="mui-table-view-cell" >
+				<img src="../../img/nationality.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_middle">
+					<input type="text" class="apply_input" id="nation" readonly="readonly"/>
+				</div>
+			</li>
+			<li class="mui-table-view-cell" >
+				<img src="../../img/4.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_l">
+					<input type="text" class="apply_input"   id="address" readonly="readonly"/>
+				</div>
+			</li>
+			<li class="mui-table-view-cell ">
+				<img src="../../img/emergency.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_l">
+					<input type="text" class="apply_input"  id="armUser" readonly="readonly"/>
+				</div>
+			</li>
+			<li class="mui-table-view-cell">
+				<img src="../../img/mobile.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_l">
+					<input type="text" class="apply_input"  id="armPhone" readonly="readonly"/>
+				</div>
+			</li>
+			<li class="mui-table-view-cell">
+				<img src="../../img/id.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_l">
+					<input type="text" class="apply_input"  id="idType" readonly="readonly"/>
+				</div>
+			</li>
+			<!--			<ul class="mui-table-view apply_padding" >-->
+			<li class="mui-table-view-cell" id="select_type">
+				<img src="../../img/id.png" class="mui-pull-left" alt="" />
+				<div class="apply_input_l">
+					<input type="text" class="apply_input" readonly="readonly" id="identity"/>
+				</div>
+			</li>
+			
+			
+			<li class="mui-table-view-cell clear_padd">
+				<img src="../../img/cbd.jpg"  class="mui-pull-left" id="pic_one"/>
+				<img src="../../img/cbd.jpg" class="pic_two"  id="pic_two" />
+				<img src="../../img/cbd.jpg" class="mui-pull-right" id="pic_three"/>
+			</li>
+		</ul>
+	</div>    
+</body>
+	<script>
+   mui.plusReady(function(){
+   	  var data='';
+   	  myAjax({url:'account/getDeliverInfo',data:data},function(obj){
+   	  	var status=obj.ret;
+   	  		if(status==1){
+   	  			$('#status_info').text('你的审核已成功');
+   	  		}else if(status==11){ 
+   	  			$('#status_info').text('你还没有提交申请');
+   	  			$('#title_apply').addClass('applyPerson');  
+   	  		}else if(status==12){  
+   	  			$('#status_info').text('你的审核还在审核中');
+   	  		}else if(status==13){
+   	  			$('#status_info').text('审核失败,请点击重新申请');
+   	  			$('#title_apply').addClass('applyPerson');
+   	  			
+   	  		}
+   	  	var res=obj.res;
+   	  	if(JSON.stringify(res)){
+   	  		$('#familyName').val(res.familyName);
+   	  		$('#firsetName').val(res.firstName);
+   	  		$('#nation').val(res.nation);
+   	  		$('#address').val(res.address);
+   	  		$('#idType').val(res.idType);
+   	  		$('#identity').val(res.identity);
+   	  		$('#armUser').val(res.armUser);
+   	  		$('#armPhone').val(res.armPhone);
+   	  		var n=BASEURL.indexOf('/a');
+   	  		var path=BASEURL.substring(0,n);
+   	  		$('#pic_one').attr('src',path+res.cardPic1.minPath);
+   	  		$('#pic_two').attr('src',path+res.cardPic2.minPath);
+   	  		$('#pic_three').attr('src',path+res.cardPic3.minPath);  
+   	  		if(res.sex==1){
+   	  			$('.one').css('display','block');
+   	  		}else{
+   	  			$('.two').css('display','block');
+   	  		}
+   	  	}
+   	  },function(type,xhr){
+   	  	alert(type.status)
+   	  })
+// 	 $('.applyPerson').on('tap',function(){  
+// 	  	openWindow('applyPerson.html');
+// 	  })
+	mui('.mui-content').on('tap','.applyPerson',function(){
+		openWindow('applyPerson.html');
+	})
+   })
+    
+	</script>
+</html>
