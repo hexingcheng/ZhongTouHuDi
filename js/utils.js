@@ -153,7 +153,7 @@ function openWindow(url, param, ani, time) {
 					duration: animationTime
 				},
 				waiting: {
-					autoShow: true,
+					autoShow: false,
 					title: '正在加载...',
 					options: {
 						background: '#d1d1d1'
@@ -189,7 +189,7 @@ function openNewWindow(url, param, ani, time) {
 				duration: animationTime
 			},
 			waiting: {
-				autoShow: true,
+				autoShow: false,
 				title: '正在加载...',
 				options: {
 					background: '#d1d1d1'
@@ -282,4 +282,18 @@ function closeMask(){
 		bcl.remove("fade-out");
 	}, false)
 }
-
+//function getmsgs() {
+//	myAjax({
+//		url: 'message/getMsg'
+//	}, function(data) {
+//		if (data.ret == 1) {
+//			alert(data.res.msgList.length)
+//			if(data.res.msgList.length){
+//				alert('news')
+//				$('#msgtips').attr('src','./img/tips.png')
+//			}
+//		}
+//	}, function(xhr, type) {
+//		mui.toast(xhr.status + ":" + type)
+//	})
+//}

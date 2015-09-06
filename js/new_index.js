@@ -10,7 +10,9 @@ document.getElementById("trip-plan").addEventListener("tap", function() {
 	openWindow("./page/tripplan/send-trip.html");
 })
 mui.plusReady(function() {
-//		plus.storage.removeItem('systemmes')
+		console.log(plus.runtime.appid)
+		//		plus.storage.removeItem('systemmes14714714774')
+		//		plus.storage.removeItem('systemmes25825825885')
 		plus.navigator.closeSplashscreen();
 		var net = plus.networkinfo.getCurrentType();
 		if (net != 0 && net != 1) {
@@ -20,10 +22,11 @@ mui.plusReady(function() {
 			if (getstorage('token')) {
 				mui.ajax(BASEURL + 'account/info', {
 					type: 'post',
-					timeout:10000,
+					timeout: 10000,
 					success: function(data) {
 						if (data.ret == 1) {
 							setstorage('personinfo', JSON.stringify(data.res));
+							getsystemmsg();
 							mui.toast('get personal infomation success')
 							if (data.res.ptitle) {
 								$('.admira').text(data.res.ptitle);
@@ -32,7 +35,6 @@ mui.plusReady(function() {
 								var n = BASEURL.indexOf('/a');
 								var u = BASEURL.substring(0, n);
 								var picurl = u + data.res.headPic;
-								console.log(picurl);
 								$('.pho').attr('src', picurl)
 							}
 							if (data.res.firstName && data.res.familyName) {
@@ -55,6 +57,7 @@ mui.plusReady(function() {
 												success: function(data) {
 													if (data.ret == 1) {
 														setstorage('personinfo', JSON.stringify(data.res));
+														getsystemmsg();
 														if (data.res.ptitle) {
 															$('.admira').text(data.res.ptitle);
 														}
@@ -73,6 +76,7 @@ mui.plusReady(function() {
 											})
 										} else {
 											openWindow('./page/logupin/login.html')
+											plus.storage.removeItem('token')
 											mui.toast('faild' + data.ret)
 										}
 									},
@@ -85,10 +89,10 @@ mui.plusReady(function() {
 					},
 					error: function(xhr, type) {
 						mui.toast(xhr.status + ":" + type);
-						if(type=='timeout'){
+						if (type == 'timeout') {
 							mui.toast('超时')
 						}
-						if(type=='abort'){
+						if (type == 'abort') {
 							mui.toast('访问被禁止')
 						}
 					}
@@ -126,14 +130,72 @@ mui.plusReady(function() {
 				openWindow('./page/mysendorder/my-send-order.html')
 			})
 		})
-		document.getElementById('mywallet').addEventListener('tap', function() { 
+		document.getElementById('mywallet').addEventListener('tap', function() {
 			iflogin(function() {
 				openWindow('./page/wallet/my-wallet.html')
 			})
 		})
+		
 	})
 	//处理返回键
 
+function getsystemmsg() {
+	myAjax({
+		url: 'message/getMsg',
+		wait:false
+	}, function(data) {
+		if (data.ret == 1) {   
+			if(data.res.msgList.length){
+				$('#msgtips').attr('src', './img/tips.png');
+			}
+			var personinfo = JSON.parse(getstorage('personinfo')).phone;
+			var whichperson = 'systemmes' + personinfo;
+			if (!getstorage(whichperson)) {
+				setstorage(whichperson, JSON.stringify(data.res));
+			} else {
+				handlemsg(data);
+			}
+		}else{
+			return;
+		}
+	}, function(xhr, type) {
+		mui.toast(xhr.status + ":" + type)
+	})
+}
+
+function handlemsg(data) {
+	var personinfo = JSON.parse(getstorage('personinfo')).phone;
+	var whichperson = 'systemmes' + personinfo
+	var old = JSON.parse(getstorage(whichperson));
+	var listArr = old.msgList;
+	var newmsg = data.res.msgList;
+	showobj(data.res.msgList[0])
+	var temp = [];
+	for (var j = 0; j < newmsg.length; j++) {
+		if (newmsg[j].type == 1) {
+			var on = true;
+			for (var i = 0; i < listArr.length; i++) {
+				if (listArr[i].type == 1) {
+					if (newmsg[j].params.id == listArr[i].params.id) {
+						listArr[i] = newmsg[j];
+						listArr[i].ifnew = 1;
+						on = false;
+					}
+				}
+			}
+			if (on) {
+				listArr.unshift(newmsg[j]);
+			}
+		} else {
+			temp.push(newmsg[j]);
+		}
+	}
+	var now = temp.concat(listArr);
+	var obj = {
+		'msgList': now
+	}
+	setstorage(whichperson, JSON.stringify(obj));
+}
 var offCanvasWrapper = mui('#offCanvasWrapper');
 var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
 var offCanvasSide = document.getElementById("offCanvasSide");
@@ -181,10 +243,12 @@ window.addEventListener('setaccount', function(eve) {
 		$('.myname').text(name);
 	}
 })
+window.addEventListener('msgtips', function(eve) {
+	$('#msgtips').attr('src', './img/tips.png')
+})
+
 var first = null;
 mui.back = function() {
-	//	alert($('#offCanvasSide').width())
-	//	alert($('#offCanvasSide').offset().left)
 	if ($('#offCanvasSide').offset().left == 0) {
 		offCanvasWrapper.offCanvas('close');
 	} else {
@@ -204,7 +268,7 @@ mui.back = function() {
 };
 
 //处理菜单键
-mui.menu = function() {
+mui.menu = function() { 
 		if ($('#offCanvasContentScroll').offset().left == 0) {
 			offCanvasWrapper.offCanvas('close');
 		} else {
@@ -213,7 +277,10 @@ mui.menu = function() {
 	}
 	//处理主页tap事件
 document.getElementById('chat-info').addEventListener('tap', function() {
-	openWindow('./page/message/message.html');
+	iflogin(function() {
+		$('#msgtips').attr('src', './img/message.png');
+		openWindow('./page/message/message.html');
+	})
 })
 document.getElementById('hlep-son').addEventListener('tap', function() {
 	iflogin(function() {
