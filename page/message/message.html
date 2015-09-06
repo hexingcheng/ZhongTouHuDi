@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style>
+			html,
+			body,
+			.mui-content {
+				background-color: #F7F7F7;
+			}
+			#head {
+				background-color: #44ab6d;
+				height: 52px;
+				padding: 0;
+			}
+			.myicon {
+				height: 40px;
+				height: 40px;
+				margin: 6px 0;
+			}
+			#head h1,
+			#head span {
+				color: #FFFFFF;
+			}
+			#head h1 {
+				line-height: 52px;
+			}
+			.lefticon {
+				height: 80px;
+				width: 80px;
+				float: right;
+			}
+			.lefticon img {
+				height: 34px;
+				width: 34px;
+				margin: 23px;
+			}
+			.colored {
+				background-color: #ededed;
+			}
+			.colorff34 {
+				background-color: #ff3444;
+			}
+			#msglists {
+				background-color: #F7F7F7;
+			}
+			#msglists li {
+				padding: 0;
+				height: 80px;
+			}
+			.mainpic {
+				position: relative;
+				float: left;
+				width: 50px;
+				height: 50px;
+				margin: 15px 10px;
+			}
+			.detailpage {
+				float: right;
+				width: 50px;
+				height: 50px;
+				margin: 15px 10px;
+			}
+			.mainpic img,
+			.detailpage img {
+				height: 50px;
+				width: 50px;
+			}
+			.mainctt {
+				overflow: hidden;
+			}
+			.ctttile {
+				font-weight: normal;
+				font-size: 16px;
+				margin-top: 15px;
+			}
+			.cttmain {
+				font-size: 12px;
+				line-height: 15px;
+				height: 29px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			.mui-table-view-cell:after {
+				height: 0;
+			}
+			.mui-table-view-cell {
+				margin-bottom: 10px;
+			}
+			.newmsg {
+				position: absolute;
+				height: 10px;
+				width: 10px;
+				border-radius: 50%;
+				right: -3px;
+				top: -3px;
+				background-color: red;
+			}
+			.msgctt {
+				position: relative;
+			}
+			.msgtime {
+				position: absolute;
+				top: 10px;
+				right: 25px;
+				font-size: 13px;
+				color: green;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" id="head">
+			<span class="mui-action-back mui-pull-left myicon">
+				<img src="../../img/left.png"/>
+			</span>
+			<span class="mui-pull-right myicon">
+				<img src="../../img/2set-up.png">
+			</span>
+			<h1 class="mui-title">Message</h1>
+		</header>
+		<div class="mui-content">
+			<ul id="msglists" class="mui-table-view">
+
+			</ul>
+		</div>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script src="../../js/template.js"></script>
+		<script type="text/html" id="msglist">
+			{{each list}}
+			<li class="mui-table-view-cell">
+				<div class="mui-slider-right mui-disabled">
+					<a class="lefticon colored mui-btn" style="padding: 0;">
+						<img src="../../img/2application.png" />
+					</a>
+					<a class="lefticon colorff34 mui-btn" style="padding: 0;">
+						<img src="../../img/2deliverorder.png" />
+					</a>
+				</div>
+				<div class="mui-slider-handle mui-table">
+					<div class="mui-table-cell">
+						<div class="msgctt">
+							<div class="mainpic">
+								{{if $value.type==1}}
+								<img src="../../img/order-tracker.png" /> {{/if}} {{if $value.type==2}}
+								<img src="../../img/activity.png" /> {{/if}} {{if $value.type==3}}
+								<img src="../../img/prompt.png" /> {{/if}} {{if $value.type==4}}
+								<img src="../../img/1.png" /> {{/if}}
+								 {{if $value.ifnew==1}}<span class="newmsg"></span>{{/if}}
+							</div>
+							{{if $value.type==1}}
+							<div class="detailpage">
+								<img src="../../img/enter.png" />
+							</div>
+							{{/if}} {{if $value.type == 2}}
+							<div class="detailpage">
+								<img src="../../img/enter.png" />
+							</div>
+							{{/if}}
+							<div class="mainctt">
+								{{if $value.type==1}}
+								<h3 class="ctttile">Order Tracker</h3> {{/if}} {{if $value.type==2}}
+								<h3 class="ctttile">Activity</h3> {{/if}} {{if $value.type==3}}
+								<h3 class="ctttile">Prompt</h3> {{/if}} {{if $value.type==4}}
+								<h3 class="ctttile">Advice</h3> {{/if}}
+								<p class="cttmain">{{$value.msg}}</p>
+							</div>
+							<div class="msgtime">{{$value.time}}</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			{{/each}}
+		</script>
+		<script type="text/javascript" src="../../js/utils.js"></script>
+		<script>
+			mui.plusReady(function(systemmes) {
+				console.log(getstorage('systemmes'))
+				myAjax({
+					url: 'message/getMsg'
+				}, function(data) {
+					if (data.ret == 1) {
+						if (!getstorage('systemmes')) {
+							setstorage("systemmes", JSON.stringify(data.res));
+							console.log(getstorage('systemmes'))
+							var msgdata = {
+								"list": data.res.msgList
+							}
+							var str = template("msglist", msgdata);
+							$('#msglists').html(str)
+						} else {
+							handlemsg(data);
+						}
+					}
+				}, function(xhr, type) {
+					mui.toast(xhr.status + ":" + type)
+				})
+			})
+
+			function handlemsg(data) {
+				var old = JSON.parse(getstorage('systemmes'));
+				var listArr = old.msgList;
+				var newmsg = data.res.msgList;
+				var temp = [];
+				for (var j = 0; j < newmsg.length; j++) {
+					if (newmsg[j].type == 1) {
+						for (var i = 0; i < listArr.length; i++) {
+							if (listArr[i].type == 1) {
+								if (newmsg[j].params.id == listArr[i].params.id) {
+									listArr[i] = newmsg[j];
+									listArr[i].ifnew = 1
+								}
+							}
+						}
+					} else {
+						temp.push(newmsg[j]);
+					}
+				}
+				var now = temp.concat(listArr);
+				var obj = {
+					'msgList': now
+				}
+				setstorage('systemmes', JSON.stringify(obj));
+				console.log(getstorage('systemmes'))
+				var msgdata = {
+					"list": now
+				}
+				var str = template("msglist", msgdata);
+				$('#msglists').html(str)
+			}   
+		</script>
+	</body>
+
+</html>

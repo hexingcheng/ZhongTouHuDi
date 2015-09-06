@@ -6,9 +6,6 @@
 .mui-bar i {
 	color: #FFFFFF;
 }
-.mui-scroll-wrapper {
-	top: 85px;
-}
 .mui-segmented-control {
 	border-radius: 0;
 	border: none;
@@ -109,9 +106,6 @@
 }
 .mui-bar-nav~.mui-content {
 	padding-top: 52px;
-}
-div.mui-scroll-wrapper {
-	top: 103px;
 }
 .data-null {
 	padding: 8em 0 0 0;

@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/mui.indexedlist.css"/>
 		<style type="text/css">
 			body {
 				font-size: 60%;
@@ -51,9 +52,10 @@
 			.mui-title {line-height: 52px;text-align: left;}
 			.mui-bar .mui-title {left: 43px;}
 			.mui-bar-nav~.mui-content {padding-top: 52px;}
-			div.mui-scroll-wrapper {top: 52px;}
-			/*.mui-search input[type=search] {margin-bottom: 0;}*/
-			div.mui-scroll-wrapper {top: 87px;}
+			div.mui-scroll-wrapper {top: 34px;}
+			.mui-indexed-list {
+				position: absolute;top: 53px;bottom: 0;width: 100%;height: auto;
+			}
 		</style>
 	</head>
 	<body>
@@ -61,28 +63,31 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">choose contacts</h1>
 		</header>
-
+		
 		<div class="mui-content">
-			<div class="mui-input-row mui-search">
-				<input type="search" class="mui-input-clear" placeholder="搜索联系人...">
-			</div>
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
+			<div id='list' class="mui-indexed-list">
+				<div class="mui-input-row mui-search mui-indexed-list-search">
+					<input id="search-contact" type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索联系人...">
+				</div>
+				<div class="mui-indexed-list-bar" style="display: none;"></div>
+				<div class="mui-indexed-list-alert"></div>
+				<div class="mui-indexed-list-inner">
+					<div class="mui-indexed-list-empty-alert">没有数据</div>
 					<ul id="contact-list" class="mui-table-view">
 						<!--<li class="mui-table-view-cell">
 							<div class="mui-navigate-right msg-box">
-								<span class="mui-pull-left mui-ellipsis contact-name">李鑫其</span>
-								<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">18584654947</span>
+								<span class="mui-pull-left mui-ellipsis contact-name">李0000</span>
+								<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">185000000</span>
 							</div>
 						</li>-->
 					</ul>
 				</div>
 			</div>
 		</div>
-
+		
 		<script type="text/html" id="template">
 			{{each list}}
-				<li class="mui-table-view-cell contact" data-name='{{$value.name}}' data-contact='{{$value.contact}}'>
+				<li class="mui-table-view-cell contact" data-tags="{{$value.name}}" data-value="{{$value.contact}}" data-name='{{$value.name}}' data-contact='{{$value.contact}}'>
 					<div class="msg-box">
 						<span class="mui-pull-left mui-ellipsis contact-name">{{$value.name}}</span>
 						<span class="mui-pull-right mui-ellipsis mui-h5 mui-text-right tel-num">{{$value.contact}}</span>
@@ -93,13 +98,10 @@
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script src="../../js/template.js"></script>
+		<script src="../../js/mui.indexedlist.js"></script>
 		<script>
 			mui.init();
 			mui.plusReady(function() {
-				mui(".mui-scroll-wrapper").scroll({
-					bounce : false
-				});
-				
 				var con = plus.storage.getItem("contacts");
 				if(!con){
 					plus.nativeUI.showWaiting("加载中.", {
@@ -165,6 +167,9 @@
 						console.log("Get address book failed: " + e.message);
 					});
 				}
+				
+				var list = document.getElementById("list");
+				window.indexedList = new mui.IndexedList(list);
 				
 			})
 		</script>

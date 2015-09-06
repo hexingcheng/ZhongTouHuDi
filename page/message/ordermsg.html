@@ -31,7 +31,7 @@
 		    		font-size: 16px;
 			    }
 			    .basicmsg{
-			    	padding: 0 20px;]
+			    	padding: 0 20px;
 			    	background-color: #FFFFFF;
 			    }
 			    .ordername,.orderid{
@@ -54,9 +54,26 @@
 			    	float: left;
 			    	width: 100px;
 			    	height: 50px;
+			    	color: #BEC0C2;
+			    	line-height: 50px;
+			    	padding-left: 10px;
 			    }
 			    .msginfo{
 			    	overflow: hidden;
+			    	height: 50px;
+			    	line-height: 50px;
+			    	color: #565656;
+			    }
+			    .mui-scroll-wrapper{
+			    	top: 52px;
+			    }
+			    .ordertracker{
+			    	margin-top: 3px;
+			    	padding: 0 3px;
+			    	background-color: #FFFFFF;
+			    }
+			    .trackctt{
+			    	border-top: 3px solid #35a461;
 			    }
 		</style>
 	</head>
@@ -76,10 +93,17 @@
 							<div class="car">
 								<img src="../../img/coment.png"/>
 							</div>
-							<div class="msgs"></div>
+							<div class="msgs">Name</div>
 							<div class="msginfo"></div>
 						</div>
-						<div class="orderid"></div>
+						<div class="orderid">
+							<div class="car"></div>
+							<div class="msgs">OrderId</div>
+							<div class="msginfo"></div>
+						</div>
+					</div>
+					<div class="ordertracker">
+						<div class="trackctt"></div>
 					</div>
 				</div>
 			</div>

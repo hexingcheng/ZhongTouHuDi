@@ -53,7 +53,6 @@
     	.set_pwd_input input{
     		width: 100%;
     		height: 50px;
-    		line-height: 50px;
     		font-size: 14px;
     		border: 0;
     		margin-bottom: 0;
@@ -102,40 +101,115 @@
 			<li class="mui-table-view-cell second_show">
 				<img src="../../img/payWord1.png" alt="" />
 				<div class="set_pwd_input">
-					<input type="text" placeholder="oldpassword"/>
+					<input type="password" placeholder="oldpassword" id="old_pwd"/>
 				</div>
 			</li>
 			<li class="mui-table-view-cell">
 				<img src="../../img/payWord1.png" alt="" />
 				<div class="set_pwd_input">
-					<input type="text" placeholder="password" id="pwd"/>
+					<input type="password" placeholder="password" id="pwd"/>
 				</div>
 			</li>
 			<li class="mui-table-view-cell">
 				<img src="../../img/payWord1.png" alt="" />
 				<div class="set_pwd_input">
-					<input type="text" placeholder="comfirm password"/>
+					<input type="password" placeholder="comfirm password" id="comf_pwd"/>
 				</div>
 			</li>
 		</ul>
 			<span class="mui-pull-right forgat_pwd second_show"  >Forgot Your Password</span>
-		<div class="set_button">确定</div>  
 	</div>
+	<footer>
+		<div class="set_button" id="submit">确定</div>  
+	</footer>
 </body>
 <script src="../../js/utils.js"></script>
 <script src="../../js/jquery.min.js"></script>
 <script>
-	mui.plusReady(function(){    
-		//支付密码修改
+	mui.plusReady(function(){ 
 		var pay_pwd=JSON.parse(getstorage('personinfo')); 
-			if(pay_pwd.setpay==0){
-				$('.second_show').css('display','block');
-			}else{
+		alert(JSON.stringify(pay_pwd))
+			if(pay_pwd.setpay==0){ 
 				$('.second_show').css('display','none');
-			}
-		var pwd=$('#pwd').val();
-	myAjax({url:'account/checkPayPwd',data:data});		
+			}else{
+				$('.second_show').css('display','block');
+			}   
+	function check(){
+		//支付密码修改
+		
+		var pwd=$('#pwd').val().trim();
+		var flag=true;
+		var old_pwd=$('#old_pwd').val().trim();
+		var pwd=$('#pwd').val().trim();
+		var comf_pwd=$('#comf_pwd').val().trim();
+		    if(pay_pwd.setpay==0){
+		    	
+		    	if(!pwd){
+		    		mui.toast('请输入新密码');
+		    		flag=false;
+		    		return;
+		    	}
+		    	if(!comf_pwd){
+		    		mui.toast('请输入确认密码');
+		    		flag=false;    
+		    		return;
+		    	}
+		    	
+		    	if(!(pwd==comf_pwd)){
+			    		mui.toast('确认密码有误，请重新输入');
+			    		flag=false;  
+			    		$('#comf_pwd').val('');
+			    		return;
+			    	
+		    	}
+		    }else if(pay_pwd.setpay==1){
+		    	if(!old_pwd){
+		    		mui.toast('请输入旧密码');
+		    		flag=false;
+		    		return;
+		    	}
+		    	if(!pwd){
+		    		mui.toast('请输入新密码');
+		    		flag=false;
+		    		return;
+		    	}
+		    	if(!comf_pwd){
+		    		mui.toast('请输入确认密码');
+		    		flag=false;
+		    		return;
+		    	}
+		    	if(!(pwd==comf_pwd)){
+		    		mui.toast('确认密码有误，请重新输入');
+		    		flag=false;
+		    		$('#comf_pwd').val('');  
+		    	}
+		    }
+		
+		  	if(flag){
+			data={newPwd:pwd,oldPwd:old_pwd} 
+			myAjax({url:'account/setPayPwd',data:data},function(obj){
+				alert(JSON.stringify(obj)+'cycycy');
+				if(obj.ret==1){
+					mui.toast('成功'); 
+						$('.second_show').css('display','block');
+						$('#pwd').val('');
+						$('#comf_pwd').val('');
+						pay_pwd.setpay=1;
+						plus.storage.removeItem('personinfo');
+						setstorage('personinfo',JSON.stringify(pay_pwd));
+					
+				}else if(obj.res==2){
+					mui.toast('老密码验证错误');  
+				}
+			},function(xhr,type){
+				mui.toast(type.satus);
+			});
+  		}
+	}
+	$('#submit').on('tap',function(){  
+		check(); 
 	})
+})
 </script>
 </html>
 

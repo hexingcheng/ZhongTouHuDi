@@ -10,9 +10,9 @@ document.getElementById("trip-plan").addEventListener("tap", function() {
 	openWindow("./page/tripplan/send-trip.html");
 })
 mui.plusReady(function() {
+//		plus.storage.removeItem('systemmes')
 		plus.navigator.closeSplashscreen();
 		var net = plus.networkinfo.getCurrentType();
-		alert(net)
 		if (net != 0 && net != 1) {
 			if (getstorage('personinfo')) {
 				plus.storage.removeItem('personinfo')
@@ -97,11 +97,7 @@ mui.plusReady(function() {
 				mui.toast('无登录信息，请先登录')
 			}
 		} else {
-			if (nonetworkcb) {
-				nonetworkcb()
-			} else {
-				mui.toast('未连接网络,请链接网络');
-			}
+			mui.toast('未连接网络,请链接网络');
 		}
 
 		plus.screen.lockOrientation('portrait-primary')
@@ -130,7 +126,7 @@ mui.plusReady(function() {
 				openWindow('./page/mysendorder/my-send-order.html')
 			})
 		})
-		document.getElementById('mywallet').addEventListener('tap', function() {
+		document.getElementById('mywallet').addEventListener('tap', function() { 
 			iflogin(function() {
 				openWindow('./page/wallet/my-wallet.html')
 			})
