@@ -8,21 +8,42 @@
     <script src="../../js/mui.min.js"></script>
     <style>
     	body{background-color: #fff;}
-    	.mui-bar {background-color: #3ba767;}
-		.mui-bar h1,.mui-bar a {color: #FFF;}
 		.mui-table-view-cell:after {height: 0;}
 		.mui-table-view-cell>a:not(.mui-btn) {border-bottom: 1px solid #ddd;}
 		.mui-content>.mui-table-view:first-child {margin: 0;}
+.nav_header{
+	height: 52px;
+	line-height: 52px;
+	font-size: 16px;
+	text-align: left;
+	color: #fff;
+	background-color: #44ab6d;
+	box-shadow: none;
+}
+.nav_header .left_img{
+	width: 34px;
+	height: 34px;
+	float: left;
+	margin: 9px 9px 9px 0; 
+}
+.nav_header .right_img{
+	width: 34px;
+	height: 34px;
+	float: right;
+	margin: 9px 0 9px 9px; 
+}
+.top_header{
+	margin-top: 9px;
+}
     </style>
 </head>
 <body>
 	
-	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">Help</h1>
+	<header class="mui-bar mui-bar-nav nav_header">
+		<img src="../../img/left.png" class="mui-action-back left_img" alt="" />
+		<span>Help</span>
 	</header>
-	
-	<div class="mui-content">
+	<div class="mui-content top_header">
 		<ul class="mui-table-view">
 			<li class="mui-table-view-cell">
 				<a href="javascript:void(0)" class="mui-navigate-right">

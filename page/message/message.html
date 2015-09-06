@@ -17,10 +17,26 @@
 			.mui-content {
 				background-color: #F7F7F7;
 			}
-			#head {
-				background-color: #44ab6d;
+			.nav_header{
 				height: 52px;
-				padding: 0;
+				line-height: 52px;
+				font-size: 16px;
+				text-align: left;
+				color: #fff;
+				background-color: #44ab6d;
+				box-shadow: none;
+			}
+			.nav_header .left_img{
+				width: 34px;
+				height: 34px;
+				float: left;
+				margin: 9px 9px 9px 0; 
+			}
+			.nav_header .right_img{
+				width: 34px;
+				height: 34px;
+				float: right;
+				margin: 9px 0 9px 9px; 
 			}
 			.myicon {
 				height: 40px;
@@ -164,14 +180,10 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav" id="head">
-			<span class="mui-action-back mui-pull-left myicon">
-				<img src="../../img/left.png"/>
-			</span>
-			<span class="mui-pull-right myicon" id="deleteall">
-				<img src="../../img/2set-up.png">
-			</span>
-			<h1 class="mui-title">Message</h1>
+		<header class="mui-bar mui-bar-nav nav_header" >
+			<img src="../../img/left.png" class="left_img"/>
+		    <img src="../../img/2set-up.png" class="right_img" id="deleteall">
+			<span>message</span>
 		</header>
 		<div class="deletemask mui-hidden">
 			<div class="deletetips">

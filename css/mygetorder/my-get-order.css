@@ -1,5 +1,27 @@
 body {
 	font-size: 14px;
+	background-color: #fff;
+}
+.nav_header{
+	height: 52px;
+	line-height: 52px;
+	font-size: 16px;
+	text-align: left;
+	color: #fff;
+	background-color: #44ab6d;
+	box-shadow: none;
+}
+.nav_header .left_img{
+	width: 34px;
+	height: 34px;
+	float: left;
+	margin: 9px 9px 9px 0; 
+}
+.nav_header .right_img{
+	width: 34px;
+	height: 34px;
+	float: right;
+	margin: 9px 0 9px 9px; 
 }
 .mui-bar {
 	background-color: #3ba767;
