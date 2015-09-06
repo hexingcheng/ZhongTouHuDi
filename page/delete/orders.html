@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/font-awesome.css"/>
+    <link rel="stylesheet" href="../css/main.css" />
+    <script type="text/javascript" src="../js/main.js"> </script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style>
+ 
+    </style>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+	  <a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+	  <a class="mui-icon mui-icon-reply mui-pull-right"></a>
+	  <h1 class="mui-title">我的接单</h1>
+</header>
+<div class="mui-content">
+	<div class="tab_header">
+		<div id="ordersing" style="border-right: 1px solid silver;" class="orders"><span>接单中</span>	</div>
+		<div id="orders_ing" style="border-right: 1px solid silver;" class="orders"><span>运送中</span>	</div>	
+		<div id="orders_ed" class="orders"><span>已完成</span>	</div>
+	</div>
+	   <!--接单中-->
+	<div class="tab ordersing"  style="display: block;">
+		<div class="tab-content">
+		<ul class="mui-table-view" style="border: 1px solid silver;">
+			<li class="mui-table-view-cell" style="line-height: 4em;height: 3em; margin: 0;padding: 0;">
+				<div style="width: 3em; height: 3em;line-height: 4em;text-align: center;" class="mui-pull-left">
+					<span style="color: rgb(56, 232, 32);"><i class="fa fa-circle-thin fa-2x"></i> <span style="font-size: 0.8em;position: absolute;margin-top: -0.5em;margin-left: -1.5em;">接</span></span>
+				</div>
+				<span style="margin-left: 25%;"><i class="fa fa-briefcase"></i> 鲜花（接单中）</span>
+				<span style="font-size: 0.5em;margin-right: 1em;color: rgb(245, 196, 2);" class="mui-pull-right">议价中</span>
+			</li>
+			<li class="mui-table-view-cell" style="padding-left: 2em;line-height: 2em;font-size: 0.8em;">
+				起：<span id="start"></span></br>
+				终：<span id="end"></span>
+			</li>
+			<li class="mui-table-view-cell" style="padding-left: 2em;font-size: 0.8em;">
+				确定抢单时间：2015-06-28  <span class="mui-pull-right" style="font-size:1em;color: red;"><i class="fa fa-usd"></i> 50</span></br>
+				22:30
+			</li>
+		</ul>
+		</div>
+	</div>
+	
+	<!--运送中-->
+	<div class="tab orders_ing" style="display:none;">
+		<div class="tab-content">
+		<ul class="mui-table-view" style="border: 1px solid silver;">
+			<li class="mui-table-view-cell" style="line-height: 4em;height: 3em; margin: 0;padding: 0;">
+				<div style="width: 3em; height: 3em;line-height: 4em;text-align: center;" class="mui-pull-left">
+					<span style="color: rgb(56, 232, 32);"><i class="fa fa-circle-thin fa-2x"></i> <span style="font-size: 0.8em;position: absolute;margin-top: -0.5em;margin-left: -1.5em;">接</span></span>
+				</div>
+				<span style="margin-left: 25%;"><i class="fa fa-briefcase"></i> 鲜花（运送中）</span>
+				<span style="font-size: 0.5em;margin-right: 1em;color: rgb(245, 196, 2);" class="mui-pull-right">议价中</span>
+			</li>
+			<li class="mui-table-view-cell" style="padding-left: 2em;line-height: 2em;font-size: 0.8em;">
+				起：重庆邮电大学</br>
+				终：重庆市南岸区崇文路2号
+			</li>
+			<li class="mui-table-view-cell" style="padding-left: 2em;font-size: 0.8em;">
+				确定抢单时间：2015-06-28  <span class="mui-pull-right" style="font-size:1em;color: red;"><i class="fa fa-usd"></i> 50</span></br>
+				22:30
+			</li>
+		</ul>
+		</div>
+	</div>
+	
+	<!--已完成-->
+	<div class="tab orders_ed"  style="display: none;">
+		<div class="tab-content">
+		<ul class="mui-table-view" style="border: 1px solid silver;">
+			<li class="mui-table-view-cell" style="line-height: 4em;height: 3em; margin: 0;padding: 0;">
+				<div style="width: 3em; height: 3em;line-height: 4em;text-align: center;" class="mui-pull-left">
+					<span style="color: rgb(56, 232, 32);"><i class="fa fa-circle-thin fa-2x"></i> <span style="font-size: 0.8em;position: absolute;margin-top: -0.5em;margin-left: -1.5em;">接</span></span>
+				</div>
+				<span style="margin-left: 25%;"><i class="fa fa-briefcase"></i> 鲜花（已完成）</span>
+				<span style="font-size: 0.5em;margin-right: 1em;color: rgb(245, 196, 2);" class="mui-pull-right">议价中</span>
+			</li>
+			<li class="mui-table-view-cell" style="padding-left: 2em;line-height: 2em;font-size: 0.8em;">
+				起：重庆邮电大学</br>
+				终：重庆市南岸区崇文路2号
+			</li>
+			<li class="mui-table-view-cell " style="padding-left: 2em;font-size: 0.8em;">
+				确定抢单时间：2015-06-28  <span class="mui-pull-right" style="font-size:1em;color: red;"><i class="fa fa-usd"></i> 50</span></br>
+				22:30
+			</li>
+		</ul>
+		</div>
+	</div>
+</div>
+</body>
+<script>
+
+	mui.ajax('order_details.json',{
+	dataType:'json',//服务器返回json格式数据
+	type:'get',//HTTP请求类型
+	success:function(data){
+		document.querySelector('#start').innerHTML=data.start;
+		document.querySelector('#end').innerHTML=data.end;
+	},
+	error:function(xhr,type){
+		alert(xhr.status);
+	}
+});
+</script>
+</html>

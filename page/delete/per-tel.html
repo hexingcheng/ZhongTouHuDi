@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">绑定手机</h1>
+	</header>
+	<div class="mui-content">
+		<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<span>绑定手机：</span>
+					<span class="mui-pull-right">188****6369</span>
+				</li>
+				<li class="mui-table-view-cell" id="change-tel">
+					<span>更换绑定手机：</span>
+					<span class="mui-pull-right mui-icon mui-icon-arrowright"></span>
+				</li>
+			</ul>
+	</div>
+	<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	<script>
+$('#change-tel').on('tap',function(){
+	mui.openWindow({
+		id:"change-tel",
+		url:"change-tel.html"
+	})
+})
+	</script>
+</body>
+</html>

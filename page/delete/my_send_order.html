@@ -1,0 +1,366 @@
+<!--<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/font-awesome.css" />
+		<link rel="stylesheet" href="../css/main.css" />
+		<style>
+			.ordercontent {
+				border: 1px solid #D1D1D1;
+				border-radius: 5px;
+				position: relative;
+				margin: 10px;
+				padding: 5px;
+			}
+			.sendg {
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				width: 35px;
+				height: 35px;
+				border: 2px solid red;
+				top: 5px;
+				left: 5px;
+				border-radius: 50%;
+				font-size: 12px;
+				text-align: center;
+				line-height: 35px;
+				color: red;
+			}
+			.ifshow {
+				color: orange;
+				font-size: 12px;
+				line-height: 50px;
+			}
+			.gName {
+				font-size: 14px;
+			}
+			.icons {
+				line-height: 40px;
+				font-size: 20px;
+			}
+			.h3 {
+				border-bottom: 1px solid #D1D1D1;
+				height: 40px;
+				line-height: 40px;
+			}
+			.address {
+				border-bottom: 1px solid #D1D1D1;
+			}
+			.gettime {
+				line-height: 40px;
+			}
+			.mui-scroll-wrapper {
+				margin-top: 85px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
+			<h1 class="mui-title">我的发单</h1>
+			<span class="mui-btn mui-pull-right">草稿</span>
+		</header>
+		<div class="mui-content">
+			<div>
+				<div id="segmentedControl" class="mui-segmented-control">
+					<a data-status="1" class="mui-control-item mui-active" href="#item1">接单中</a>
+					<a data-status="2" class="mui-control-item" href="#item2">运送中</a>
+					<a data-status="3" class="mui-control-item" href="#item3">已完成</a>
+					<a data-status="4" class="mui-control-item" href="#item4">已取消</a>
+				</div>
+			</div>
+			<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div id="item1" class="mui-control-content mui-active"></div>
+					<div id="item2" class="mui-control-content"></div>
+					<div id="item3" class="mui-control-content"></div>
+					<div id="item4" class="mui-control-content"></div>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/template.js"></script>
+	<script type="text/javascript" src="../js/utils.js"></script>
+	<script type="text/javascript" src="../js/main.js"></script>
+	<script type="text/html" id="mygetorder">
+		{{each mygetorder}}
+		<div class="ordercontent" title="{{$value.orderId}}">
+			<div class="sendg">寄件</div>
+			<div class="gcontent">
+				<h3 class="mui-text-center h3">
+							<span class="mui-icon mui-icon-email icons"></span>
+							<span class="gName">{{$value.gName}}</span>
+							<a class="mui-pull-right ifshow">{{$value.statusDetail == 11 ? "议价中" : $value.statusDetail == 12 ? "代付款" : $value.statusDetail == 13 ? "接单中" : $value.statusDetail == 21 ? "未取货": $value.statusDetail == 22 ? "已取货" : $value.statusDetail == 31 ? "待评价": $value.statusDetail == 32 ? "已评价":""}}</a>
+						</h3>
+				<div class="address">
+					<p>起:<span>{{$value.sendAddr}}</span></p>
+					<p>终:<span>{{$value.receiveAddr}}</span></p>
+				</div>
+				<div class="ordertime">
+					<p class="gettime">订单<span>发布</span>时间:<span>{{$value.time}}</span><span class="mui-pull-right">{{$value.money}}</span></p>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+	</script>
+	<script>
+		mui.init();
+		 //document.getElementById('my_ing').addEventListener('tap', function() {
+		 ////打开关于页面
+		 //mui.openWindow({
+		 //  url: 'my_order_details.html', 
+		 //  id:'my_ing'
+		 //});
+		 //});
+		mui.plusReady(function() {
+			mui('#offCanvasSideScroll').scroll()
+			sendData(url, 1);
+			// 获取后台发单数据显示
+			var url = BASEURL+"order/myGoodList";
+			mui("#segmentedControl").on("tap", ".mui-control-item", function(){
+				var status = this.getAttribute("data-status");
+				sendData(url, status)
+			})
+			
+			// 接单中触发
+			sendData(url, 1);
+			
+			// 发送数据请求
+			function sendData(url, sta){
+				var sendobj = {
+					page : 1,
+					pageSize : 10,
+					type : "send",
+					status : sta+""
+				}
+				mui.ajax(url, {
+					data : sendobj,
+					type : "post",
+					success : function(data){
+						var data = {
+							"mygetorder" : data.res
+						}
+						document.getElementById("item"+sta).innerHTML = template("mygetorder", data);	// 数据渲染
+					}
+				})
+			}
+			
+			// 发单详情内容显示
+			mui('.mui-control-content').on('tap','.ordercontent',function(){
+				var id = this.title;
+				alert(id)
+				var param = {
+					"type":"send",
+					"orderid":id
+				}
+//				openWindow('./order_details.html',param)
+			})
+		})
+	</script>
+
+</html>-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="get-order-comment.css" />
+		<script src="../js/mui.min.js"></script>
+		<style>
+			.mui-bar {
+				background-color: #3ba767;
+			}
+			.mui-bar h1,
+			.mui-bar a,
+			.mui-bar i {
+				color: #FFFFFF;
+			}
+			.mui-scroll-wrapper {
+				top: 85px;
+			}
+			.mui-segmented-control {
+				border-radius: 0;
+				border: none;
+				border-bottom: 1px solid #d1d1d1;
+				box-shadow: 0 1px 2px #d1d1d1;
+			}
+			.mui-segmented-control .mui-control-item.mui-active {
+				color: #36a462;
+				background-color: #fff;
+			}
+			.mui-segmented-control .mui-control-item {
+				border-color: #d1d1d1;
+				color: #8c8c8c;
+				background-color: #f2f2f2;
+			}
+			.font-color {
+				color: #bec0c2;
+				width: 35%;
+				display: inline-block;
+			}
+			.goods-value {
+				color: #d92400;
+				font-size: 1.5em;
+			}
+			.goods-name-bar {
+				overflow: hidden;
+				padding-bottom: 0.3em;
+			}
+			.goods-name {
+				width: 60%;
+			}
+			.goods-bar {
+				padding: 0.2em 0;
+			}
+			.goods-direction {
+				display: inline-block;
+				width: 70%;
+			}
+			.goods-rewards-bar {
+				display: inline-block;
+				width: 25%;
+				border-left: 1px solid #e8e8e8;
+				padding: 2px 0 25px 11px;
+			}
+			.goods-rewards {
+				padding: 0.6em 0;
+			}
+			.waiting-box {
+				position: absolute;
+				background: #fff url(../img/loading46.gif) no-repeat center center;
+				width: 100%;
+				height: 20em;
+			}
+			.red {
+				color: #ff8474;
+			}
+		</style>
+	</head>
+
+	<body style="background: #fff;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">Order</h1>
+			<i id="filter-page" class="mui-icon mui-icon-bars mui-pull-right"></i>
+		</header>
+
+		<div class="mui-content">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#item1">publish</a>
+				<a class="mui-control-item" href="#item2">transporting</a>
+				<a class="mui-control-item" href="#item3">success</a>
+				<a class="mui-control-item" href="#item4">abandonded</a>
+			</div>
+			<div id="scroll-wrapper" class="mui-scroll-wrapper">
+				<div id="link-detail" class="mui-scroll">
+					<div id="item1" class="mui-control-content mui-active">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+					<div id="item2" class="mui-control-content">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+					<div id="item3" class="mui-control-content">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+					<div id="item4" class="mui-control-content">
+						<div style="position: relative;">
+							<div class="waiting-box"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/template.js"></script>
+		<script type="text/html" id="template">
+			{{each list}}
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="./get-detail.html" class="detail-page">
+						<div class="goods-name-bar">
+							<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
+						</div>
+						<div class="goods-content">
+							<div class="goods-direction mui-pull-left">
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">Weight</span>
+									<span class="goods-msg">{{$value.gWeight}}</span>
+								</div>
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">From</span>
+									<span class="goods-msg">{{$value.sendAddr}}</span>
+								</div>
+								<div class="goods-bar goods-to-bar mui-ellipsis">
+									<span class="goods-to font-color">To</span>
+									<span class="goods-msg">{{$value.receiveAddr}}</span>
+								</div>
+								<div class="goods-bar goods-comment-bar mui-ellipsis">
+									<span class="goods-comment font-color">Deadline</span>
+									<span class="goods-msg red">{{$value.time}}</span>
+								</div>
+							</div>
+							<div class="goods-rewards-bar mui-pull-right mui-text-center">
+								<div>{{$value.statusDetail}}</div>
+								<div class="goods-rewards">Reward</div>
+								<div class="goods-value">{{$value.money}}</div>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>
+			{{/each}}
+		</script>
+		<!--<script src="../../js/jquery.min.js"></script>-->
+		<script src="../js/utils.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				mui("#scroll-wrapper").scroll();
+				// ajax 获取模板数据
+				getlist();
+				function getlist(){
+					var getorderdata = {
+						"page": 1,
+						"pageSize": 10,
+						"type": "send",
+						"status": 1
+					};
+					var a = 1;
+					mui.ajax(BASEURL + 'order/myGoodList', {
+						type: 'post',
+						data: getorderdata,
+						success: function(data) {
+							var orderdata = {
+								"list": data.res
+							}
+							
+							var html = template("template", orderdata);
+							document.getElementById('item1').innerHTML = html;
+						},
+						error: function(xhr, type, errorThrown) {
+							console.log(type)
+						}
+					})
+				}
+			})
+		</script>
+	</body>
+
+</html>

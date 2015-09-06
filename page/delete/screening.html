@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+    	.scr_arr{
+    		width: 100%;
+    		height: 7.5em;
+			border-bottom: 1px solid silver;
+    		padding: 1.5em 0 0 0.5em;
+    		
+    	}
+    	.scr_arr_div{
+    		width: 5.5em;
+    		height: 1.8em;
+    		line-height: 1.8em;
+    		border: 1px solid silver;
+    		text-align: center;
+    		margin-top: 0.5em;
+    		margin-right:6%;
+    		border-radius: .4em;
+    		float: left;
+    		font-size: 0.8em;
+    	}
+    	.scr_arr_input{
+    		background-color: #efefef;
+    		width: 70%;
+    		height: 1.5em;
+    		margin-left: 1em;
+    	}
+    	.scr_arr_footer{
+    		width: 80%;
+    		height: 2em;
+    		line-height: 2em;
+    		text-align: center;
+    		margin: 1em auto;
+    		background-color: orange;
+    		border: 1px solid silver;
+    		border-radius: .5em;
+    	}
+    	.bor_5{
+    		border-radius: .5em !important;
+    	}
+    	.input_div{
+    		width: 100%;
+    		height: 3em;
+    		line-height: 2.5em;
+    		border-bottom: 1px solid silver;
+    		overflow: hidden;
+    	}
+    	.input_{
+    		width: 70%;
+    		height: 1.5em;
+    	}
+    	.in_bg{
+    		background-color: #efeff4 !important;
+    	}
+    </style>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav" >
+		  <a class="mui-icon mui-action-back mui-icon-left-nav mui-pull-left"></a>
+		  <a class="mui-icon mui-icon-reply mui-pull-right"></a>
+		  <h1 class="mui-title">接单</h1>
+</header>
+<div class="mui-content" style="margin: 0 .5em 0 .5em;">
+	<div class="scr_arr">
+		<span style="display: block;">期望到达时间</span>
+		<div class="scr_arr_div mui-pull-left">
+			<span>12h</span>
+		</div>
+		<div class="scr_arr_div">
+			<span>24h内</span>
+		</div>
+		<div class="scr_arr_div mui-pull-right">
+			<span>3天内</span>
+		</div>
+		<div class="scr_arr_div mui-pull-left">
+			<span>5天内</span>
+		</div>
+		<div class="scr_arr_div">
+			<span>一周内</span>
+		</div>
+		<div class="scr_arr_div mui-pull-right">
+			<span>一周以上</span>
+		</div>
+	</div>
+	<div class="input_div" >
+		<span >出发地</span> &nbsp;&nbsp;&nbsp;
+		<input type="text"  style="width: 70%;border: .5em;height: 1.5em;margin:1em 0 0 0;border: 1px solid silver;" class="bor_5 in_bg" placeholder="输入框"/>
+	</div>
+	<div class="input_div" >
+		<label for="">目的地</label> &nbsp;&nbsp;&nbsp;
+		<input type="text"  style="width: 70%;border: .5em;height: 1.5em;margin: .7em 0 0 0;border: 1px solid silver;" class="bor_5 in_bg" placeholder="输入框"/>
+	</div>
+		<div style="width: 100%;height:7.5em;line-height: 3em;border-bottom: 1px solid silver;overflow: hidden;padding-bottom: .5em;">
+			<span >价格区间</span> &nbsp;&nbsp;
+			<span><input type="text"  style="width: 20%;border: .5em;height: 1.2em;margin:.7em 0 0 0;border: 1px solid silver;" class="bor_5 in_bg" /> - 
+			<span><input type="text"  style="width: 20%;border: .5em;height: 1.2em;margin:.7em 0 0 0;border: 1px solid silver;" class="bor_5 in_bg" /></span></br>
+		     <div class="scr_arr_div">
+		     	<span>0-20元</span>
+		     </div>
+		     <div class="scr_arr_div">20-50元</div>
+		     <div class="scr_arr_div"><span>50-100元</span></div>	
+		     <div class="scr_arr_div"><span>100元以上</span></div>
+		     </div>
+		<div style="width: 100%;height: auto;line-height: 2.5em;border-bottom: 1px solid silver; padding-bottom: .5em;" class="mui-clearfix">
+		<span style="display: block;">重量区间</span>
+		 <div class="scr_arr_div">0-5kg</div>
+		  <div class="scr_arr_div">5-10kg</div>
+		   <div class="scr_arr_div">10-50kg</div>
+		    <div class="scr_arr_div">50kg以上</div>
+		</div>
+</div>
+<footer>
+	<div class="scr_arr_footer mui-clearfix" id="screening_deter">确认</div>
+</footer>
+</body>
+<script>
+	document.getElementById('screening_deter').addEventListener('tap', function() {
+  //打开关于页面
+  mui.openWindow({
+    url: 'index.html', 
+    id:'index'
+  });
+});
+</script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+     <link rel="stylesheet" href="../css/font-awesome.css"/>
+     <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title">我的接单</h1>
+	<a class="mui-icon mui-icon-reply mui-pull-right"></a>
+</header>
+<div class="mui-content">
+	<h1 class="mui-title" style="margin:3em -1.5em 0 0;float: left; ">接单成功！</h1>
+	<div class="success" >
+		<i class="fa fa-check fa-5x" style="margin-left: 0.3em;"></i>
+	</div>
+	<ul class="mui-table-view" style="margin: 0 3em;background-color: #EFEFF4; " >
+		<li class="mui-table-view-cell"  style="border-bottom: 0;"><span class="mui-ellipsis-2">请立即与发单人联系，按时取件，并保持对手机通畅！</span>
+	    </li>
+    </ul>
+    <div class="call_q">
+    	<div class="call_r mui-pull-left jie_pop_s" id="con_person"><span style="margin: 0 0 0 1em;">联系发单人</span></div>
+    	<div class="call_r mui-pull-right jie_pop_s" id="see_details"> <span style="margin:0 0 0 0.4em ;"> </span>查看订单详情</div>
+    </div>
+   <!--弹出框-->
+     <div id="popover_3" class="tan_" style="padding: 1em 0 1em 1em;">
+    	<span style="margin-right: 0.3em;"> <b>电话号码：18883845097 </b> </span><span id="my_cancle"> <i class="fa fa-times fa-2x"></i></span>
+    	<div class="my_pop mui-pull-left" id="my_popl" style="margin-left: 2em;">
+    		<i class="fa fa-comment-o"></i>
+    	</div>
+    	<div class="my_pop mui-pull-left" id="my_popr" style="margin-left: 2em;">
+    		<i class="fa fa-phone"></i>
+    	</div>
+    </div>
+</div>
+</body>
+<script>
+	document.getElementById('see_details').addEventListener('tap', function() {
+  //打开关于页面
+  mui.openWindow({
+    url: 'order_details.html', 
+    id:'order_details.thml'
+  });
+});
+</script>
+</html>

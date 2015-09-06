@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.sysmsg {
+				box-sizing: border-box;
+				position: relative;
+				padding: 10px;
+				margin: 0 10px;
+			}
+			.title {
+				float: left;
+			}
+			.title-time {
+				font-size: 14px;
+				overflow: hidden;
+			}
+			.time {
+				float: right;
+			}
+			.msgcontent {
+				padding: 10px 20px 0 0;
+				font-size: 14px;
+			}
+			.ditail {
+				right: 0;
+				top: 38px;
+				position: absolute;
+			}
+			.warn {
+				position: absolute;
+				width: 10px;
+				height: 10px;
+				top: 0;
+				left: 0;
+				border-radius: 50%;
+				background-color: red;
+			}
+			.check {
+				position: absolute;
+				top: 42px;
+				left: 10px;
+			}
+			.handle {
+				overflow: hidden;
+			}
+			.all,
+			.cancel {
+				font-size: 20px;
+				float: left;
+				height: 40px;
+				width: 50%;
+				line-height: 40px;
+				text-align: center;
+			}
+			html,body,.mui-content{
+				background-color: #FFFFFF;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script id="sysmsg" type="text/html">
+			{{each sysmsg}}
+			<li class="mui-table-view-cell">
+				<div class="mui-slider-right mui-disabled">
+					<a class="mui-btn mui-btn-grey mui-icon mui-icon-trash"></a>
+					<a class="mui-btn mui-btn-yellow mui-icon mui-icon-phone"></a>
+				</div>
+				<div class="mui-slider-handle mui-table">
+					<div class="mui-table-cell">
+						<div class="sysmsg" data-orderid={{$value.oderid}}>
+							{{if $value.isold==true}}
+							<div class="title-time mui-slider-handle">
+								<span class="warn"></span> 
+							{{/if}} 
+							{{if $value.isold==false}}
+								<div class="title-time">
+							{{/if}}
+									<div class="title">{{$value.title}}</div>
+									<div class="time">{{$value.time}}</div>
+								</div>
+								<div class="msgcontent">
+									亲，您的发货订单（<span>{{$value.thing}}</span>）已完成，感谢您对我们的支持！【订单号：<span>{{$value.oderid}}</span>】
+								</div>
+								<span class="ditail mui-icon mui-icon-arrowright"></span>
+							</div>
+						</div>
+					</div>
+			</li>
+			{{/each}}
+		</script>
+		<div class="mui-content" id="pullrefresh">
+			<ul id="OA_task_2" class="mui-table-view"></ul>
+		</div>
+		<script type="text/javascript" src="../js/utils.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/template.js"></script>
+		<script>
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			})
+			var data = {
+					"sysmsg": [{
+						"title": "您的订单有新的进度",
+						"time": "2015-7-24",
+						"thing": "鲜花",
+						"oderid": "946834832",
+						"isold": 1
+					}, {
+						"title": "提示",
+						"time": "2015-7-24",
+						"thing": "西瓜",
+						"oderid": "528287646",
+						"isold": 0
+					}]
+				}
+				//			下拉刷新回调函数   发起ajax请求，返回数据后填充到页面中   最新数据
+
+			function pulldownRefresh() {
+					alert(0);
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				}
+				//			上拉刷新回调函数    访问意图数据
+
+			function pullupRefresh() {
+				alert(1);
+				mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+			}
+			mui.plusReady(function() {
+					var html = template('sysmsg', data);
+					$('#OA_task_2').html(html);
+					$('.sysmsg').on('tap',function(){
+						var id = $(this).data('orderid');
+						var data = {"name":id};
+						openWindow('./orderdetiles.html',data);
+						var od = plus.webview.getWebviewById('orderdetiles');
+						mui.fire(od,'getid');
+					})
+				})
+				//			自定义事件
+			 window.addEventListener('addcheckbox', function() {
+				var handle = $('<div class="handle mui-text-center"><div class="all">全选</div><div class="cancel">取消</div></div>');
+				handle.prependTo('.mui-content');
+				var msg = $('.sysmsg');
+				for (var i = 0; i < msg.length; i++) {
+					var check = $('<input  type="checkbox" class="check"/>');
+					$(msg[i]).css('padding', '10px 10px 10px 40px');
+					$('.msgcontent', $(msg[i])).css('padding-right', '1px')
+					$('.time', $(msg[i])).css('padding-right', '5px')
+					$('.ditail').hide()
+					check.appendTo($(msg[i]));
+				}
+				//			 处理handlea按钮
+				$('.all').on('tap', function() {
+					if (!$('.check').attr('checked')) {
+						$('.check').attr('checked', true)
+					} else {
+						$('.check').removeAttr('checked')
+					}
+				})
+				$('.cancel').on('tap', function() {
+					$('.handle').remove();
+					for (var i = 0; i < msg.length; i++) {
+						$('.check').remove();
+						$(msg[i]).css('padding', '10px');
+						$('.time', $(msg[i])).css('padding-right', '0px')
+						$('.msgcontent', $(msg[i])).css('padding-right', '0px')
+						$('.ditail').show();
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
