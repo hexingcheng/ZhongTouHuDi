@@ -930,9 +930,20 @@
 			window.addEventListener('getdraft', function(eve) {
 				getdata = eve.detail;
 			})
+			
+			var cpage = plus.webview.currentWebview();
+			if(cpage.type == "cancel"){
+				refreshdata();
+			}
+			
+		window.addEventListener("draft:datas", function(eve) {
+			refreshdata();
 		})
-		 window.addEventListener("draft:datas", function(eve) {
-			var iw = $('.addclass').outerWidth()
+		 
+		 
+		// 重新刷新数据显示
+		function refreshdata(){
+		 	var iw = $('.addclass').outerWidth()
 			var datas = JSON.parse(plus.storage.getItem("draft-datas"));
 			console.log(plus.storage.getItem("draft-datas"));
 			$("#gname").val(datas.res.gName); // 商品名
@@ -957,6 +968,8 @@
 					}
 				}
 			}
+		 }
+			
 		})
 	</script>
 

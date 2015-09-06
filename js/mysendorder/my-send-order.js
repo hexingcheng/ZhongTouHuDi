@@ -43,10 +43,10 @@ function pulldownRefresh() {
 				}
 				// 模板渲染
 			var html = template("template", orderdata);
-			if(html==old){
+			if (html == old) {
 				mui.toast('没有最新数据')
 			}
-			if(old.indexOf('none.png')!=-1&&!html){
+			if (old.indexOf('none.png') != -1 && !html) {
 				html = old;
 				mui.toast('没有新数据')
 			}
@@ -84,7 +84,7 @@ function pullupRefresh() {
 			if (!html) {
 				mui.toast('no more')
 			}
-			var str = old+html;
+			var str = old + html;
 			document.getElementById('pullrefreshs').innerHTML = str;
 		}, function(xhr, type, error) {
 			console.log(type)
@@ -111,29 +111,30 @@ mui.plusReady(function() {
 			}
 			sendmsg(data);
 
-			
+
 		})
 		// 委托显示详情界面
-function sendmsg(datas) {
-				myAjax({
-					url: 'order/myGoodList',
-					data: datas,
-					wait: false
-				}, function(data) {
-					var orderdata = {
-							"list": data.res
-						}
-						// 模板渲染
-					var html = template("template", orderdata);
-					if (!html) {
-						html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
+
+	function sendmsg(datas) {
+			myAjax({
+				url: 'order/myGoodList',
+				data: datas,
+				wait: false
+			}, function(data) {
+				var orderdata = {
+						"list": data.res
 					}
-					document.getElementById('pullrefreshs').innerHTML = html;
-				}, function(xhr, type, error) {
-					console.log(type)
-				})
-			}
-	// 详情页面显示跳转代理事件
+					// 模板渲染
+				var html = template("template", orderdata);
+				if (!html) {
+					html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
+				}
+				document.getElementById('pullrefreshs').innerHTML = html;
+			}, function(xhr, type, error) {
+				console.log(type)
+			})
+		}
+		// 详情页面显示跳转代理事件
 	mui("#link-detail").on("tap", "#go-detail", function() {
 		var status = this.getAttribute("data-status");
 		var statusDetail = this.getAttribute("data-detail");
@@ -159,27 +160,27 @@ function sendmsg(datas) {
 		})
 	}
 
-// 发送数据状态显示详情界面信息
-function sendmsg(datas) {
-	myAjax({
-		url: 'order/myGoodList',
-		data: datas,
-		wait: false
-	}, function(data) {
-		var orderdata = {
-				"list": data.res
-			}
-			// 模板渲染
-		var html = template("template", orderdata);
-		if (!html) {
-			html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
+	// 发送数据状态显示详情界面信息
+	function sendmsg(datas) {
+			myAjax({
+				url: 'order/myGoodList',
+				data: datas,
+				wait: false
+			}, function(data) {
+				var orderdata = {
+						"list": data.res
+					}
+					// 模板渲染
+				var html = template("template", orderdata);
+				if (!html) {
+					html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
+				}
+				document.getElementById('pullrefreshs').innerHTML = html;
+			}, function(xhr, type, error) {
+				console.log(type)
+			})
 		}
-		document.getElementById('pullrefreshs').innerHTML = html;
-	}, function(xhr, type, error) {
-		console.log(type)
-	})
-}
-	// 自定义事件刷新列表信息
+		// 自定义事件刷新列表信息
 	window.addEventListener("refresh:data", function() {
 		var ele = document.querySelector(".item-four");
 		mui.trigger(ele, "tap");
@@ -197,4 +198,3 @@ function sendmsg(datas) {
 		mui.trigger(ele, "tap");
 	})
 })
-
