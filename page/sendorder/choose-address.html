@@ -8,11 +8,16 @@
     <link rel="stylesheet" href="common.css"/>
     <script src="../../js/mui.min.js"></script>
     <style>
+    	body {background-color: #fff;}
     	.mui-bar {background-color: #3ba767;}
 		.mui-bar h1,.mui-bar a {color: #FFF;}
 		.mui-content>.mui-table-view:first-child {margin: 0;}
 		.mui-scroll-wrapper {top: 44px;}
-		.mui-media-body {margin-right: 1.5em;}
+		.mui-media-body {position: absolute;left: 3em;right: 3em;top: 10px;bottom: 10px;}
+		.mui-scroll-wrapper {top: 52px;}
+		.show-addr {height: 100%;line-height: 2.5;}
+		#loading-mask {position: absolute;z-index: 998;background: #fff;top: 52px;left: 0;right: 0;bottom: 0;}
+		#loading-box {position: absolute;z-index: 999;width: 100px;height: 100px;left: 50%;margin-left: -50px;top: 50%;margin-top: -50px;}
     </style>
 </head>
 <body>
@@ -24,26 +29,80 @@
 	<div class="mui-content">
 		<div class="mui-scroll-wrapper">
 			<div class="mui-scroll">
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-media">
+				<ul class="mui-table-view" id="addr-list">
+					<!--<li class="mui-table-view-cell mui-media">
 						<div class="mui-navigate-right">
 							<div class="mui-pull-left mui-media-object">
 								<span class="mui-icon mui-icon-location "></span>
 							</div>
 							<div class="mui-media-body">
-								<div class="mui-ellipsis">中国重庆fsdfasdfasdfasdfasdfasdfasd</div>
-								<span class="sub-city mui-h6 mui-ellipsis">重庆市南岸区</span>
+								<div class="show-addr mui-ellipsis">中国重庆fsdfaasdfasf sdf asdf asdfa sdfsdaf asdf dsaf </div>
 							</div>	
 						</div>
-					</li>
+					</li>-->
 				</ul>
 			</div>
 		</div>
 	</div>
+	
+	<!-- 加载中的蒙层 -->
+	<div id="loading-mask"></div>
+	<div id="loading-box">
+		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
+	</div>
+	
+	<script type="text/html" id="template">
+		{{each list}}
+			<li class="mui-table-view-cell mui-media">
+				<div class="mui-navigate-right">
+					<div class="mui-pull-left mui-media-object">
+						<span class="mui-icon mui-icon-location "></span>
+					</div>
+					<div class="mui-media-body" data-jd="{{$value.jd}}" data-wd="{{$value.wd}}" data-addr="{{$value.name}}">
+						<div class="show-addr mui-ellipsis">{{$value.name}}</div>
+					</div>	
+				</div>
+			</li>
+		{{/each}}
+	</script>
+	<script src="../../js/template.js"></script>
+	<script src="../../js/utils.js"></script>
 	<script>
       	mui.init();
       	mui.plusReady(function(){
       		mui(".mui-scroll-wrapper").scroll();
+      		var cpage = plus.webview.currentWebview();
+      		var types = cpage.type;
+      		myAjax({
+      			url : "account/addressList",
+      			wait : false
+      		}, function(data){
+      			if(data.ret == 1){
+	      			var obj = {
+	      				"list" : data.res.addressList
+	      			}
+	      			document.getElementById("addr-list").innerHTML = template("template",obj)
+      			}
+      			document.getElementById("loading-mask").style.display = "none";
+      			document.getElementById("loading-box").style.display = "none";
+      		})
+      		var opener = plus.webview.currentWebview().opener();
+      		mui("#addr-list").on("tap", ".mui-media-body", function(){
+      			var addrs = this.getAttribute("data-addr");
+      			var jds = this.getAttribute("data-jd");
+      			var wds = this.getAttribute("data-wd");
+      			mui.fire(opener, "usual:address", {
+      				type : types,
+      				addr : addrs,
+      				jd : jds,
+      				wd : wds
+      			})
+      			plus.webview.show(opener, "slide-in-left", 200);
+      			setTimeout(function(){
+      				plus.webview.close(cpage, "none", 0);
+      			}, 220)
+      		})
+      		
       	})
     </script>
 </body>

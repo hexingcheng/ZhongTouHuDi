@@ -7,74 +7,108 @@
 		<title></title>
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<script type="text/javascript" charset="utf-8">
-			mui.init();
-		</script>
 		<style>
-				#head{
-			    	height: 52px;
-			    	padding: 0;
-			    	background-color: #41a96b;
-			    }
-			    .myicon{
-		    		height: 52px;
-		    		width: 52px;
-			    }
-			    .myicon img{
-		    		height: 34px;
-		    		width: 34px;
-		    		margin: 9px;
-			    }
-			    #head h1{
-		    		line-height: 52px;
-		    		color: #FFFFFF;
-		    		font-size: 16px;
-			    }
-			    .basicmsg{
-			    	padding: 0 20px;
-			    	background-color: #FFFFFF;
-			    }
-			    .ordername,.orderid{
-			    	height: 50px;
-			    	overflow: hidden;
-			    }
-			    .ordername{
-			    	border-bottom: 2px solid #ddf0e4;
-			    }
-			    .car{
-			    	float: left;
-			    	width: 50px;
-			    	height: 50px;
-			    }
-			    .car img{
-			    	height: 50px;
-			    	width: 50px;
-			    }
-			    .msgs{
-			    	float: left;
-			    	width: 100px;
-			    	height: 50px;
-			    	color: #BEC0C2;
-			    	line-height: 50px;
-			    	padding-left: 10px;
-			    }
-			    .msginfo{
-			    	overflow: hidden;
-			    	height: 50px;
-			    	line-height: 50px;
-			    	color: #565656;
-			    }
-			    .mui-scroll-wrapper{
-			    	top: 52px;
-			    }
-			    .ordertracker{
-			    	margin-top: 3px;
-			    	padding: 0 3px;
-			    	background-color: #FFFFFF;
-			    }
-			    .trackctt{
-			    	border-top: 3px solid #35a461;
-			    }
+			#head {
+				height: 52px;
+				padding: 0;
+				background-color: #41a96b;
+			}
+			.myicon {
+				height: 52px;
+				width: 52px;
+			}
+			.myicon img {
+				height: 34px;
+				width: 34px;
+				margin: 9px;
+			}
+			#head h1 {
+				line-height: 52px;
+				color: #FFFFFF;
+				font-size: 16px;
+			}
+			.basicmsg {
+				padding: 0 20px;
+				background-color: #FFFFFF;
+			}
+			.ordername,
+			.orderid {
+				height: 50px;
+				overflow: hidden;
+			}
+			.ordername {
+				border-bottom: 2px solid #ddf0e4;
+			}
+			.car {
+				float: left;
+				width: 50px;
+				height: 50px;
+			}
+			.car img {
+				height: 50px;
+				width: 50px;
+			}
+			.msgs {
+				float: left;
+				width: 100px;
+				height: 50px;
+				color: #BEC0C2;
+				line-height: 50px;
+				padding-left: 10px;
+			}
+			.msginfo,
+			.msginfo1 {
+				overflow: hidden;
+				height: 50px;
+				line-height: 50px;
+				color: #565656;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				-o-text-overflow: ellipsis;
+			}
+			.mui-scroll-wrapper {
+				top: 52px;
+			}
+			.ordertracker {
+				margin-top: 3px;
+				padding: 0 3px;
+				background-color: #FFFFFF;
+			}
+			.trackctt {
+				border-top: 3px solid #35a461;
+			}
+			.ctttime {
+				font-size: 14px;
+				color: #D1D1D1;
+				text-align: right;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
+			.cttpic {
+				height: 80px;
+				width: 80px;
+				float: left;
+			}
+			.cttpic img{
+				height: 50px;
+				width: 50px;
+				margin: 15px;
+			}
+			.cttdetail {
+				overflow: hidden;
+			}
+			.wrap {
+				position: relative;
+				overflow: hidden;
+			}
+			.main p {
+				padding: 10px 0 0 0;
+				margin: 0;
+				font-size: 14px;
+				color: gray;
+				line-height: 14px;
+			}
 		</style>
 	</head>
 
@@ -91,10 +125,10 @@
 					<div class="basicmsg">
 						<div class="ordername">
 							<div class="car">
-								<img src="../../img/coment.png"/>
+								<img src="../../img/coment.png" />
 							</div>
 							<div class="msgs">Name</div>
-							<div class="msginfo"></div>
+							<div class="msginfo1"></div>
 						</div>
 						<div class="orderid">
 							<div class="car"></div>
@@ -103,10 +137,58 @@
 						</div>
 					</div>
 					<div class="ordertracker">
-						<div class="trackctt"></div>
+						<div class="trackctt" id="trackdetail">
+							
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="../../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/utils.js"></script>
+		<script type="text/javascript" src="../../js/template.js"></script>
+		<script type="text/html" id="ordertracker">
+			{{each msg}}
+			<div class="wrap">
+				<div class="cttpic">
+					<img src="../../img/location.png"/>
+				</div>
+				<div class="cttdetail">
+					<div class="main">
+						<p>{{title}}</p>
+						<p>{{$value.msg}}</p>
+					</div>
+					<div class="ctttime">{{$value.time}}</div>
+				</div>
+			</div>
+			{{/each}}
+		</script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				var c = plus.webview.currentWebview();
+				var id = c.orderid;
+				myAjax({
+					url: 'message/getOrderMsg',
+					wait: false,
+					data: {
+						orderId: id
+					}
+				}, function(data) {
+					console.log(JSON.stringify(data.res))
+					if (data.ret == 1) {
+						$('.msginfo1').text(data.res.title);
+						$('.msginfo').text(data.res.orderId)
+						var list = {
+							"title":data.res.title,
+							"msg": data.res.msgList
+						}
+						var str = template("ordertracker", list);
+						document.getElementById('trackdetail').innerHTML = str
+					}
+				})
+			})
+		</script>
 	</body>
+
 </html>
