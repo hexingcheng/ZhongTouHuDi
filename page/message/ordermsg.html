@@ -8,10 +8,20 @@
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<style>
-			#head {
+			.nav_header{
 				height: 52px;
-				padding: 0;
-				background-color: #41a96b;
+				line-height: 52px;
+				font-size: 16px !important;  
+				text-align: left;
+				color: #fff;
+				background-color: #44ab6d;  
+				box-shadow: none;
+			}
+			.nav_header .left_img{
+				width: 34px;
+				height: 34px;
+				float: left;
+				margin: 9px 9px 9px 0; 
 			}
 			.myicon {
 				height: 52px;
@@ -113,11 +123,9 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav" id="head">
-			<span class="mui-action-back mui-pull-left myicon">
-			<img src="../../img/left.png"/>
-		</span>
-			<h1 class="mui-title">Order Tracker</h1>
+		<header class="mui-bar mui-bar-nav nav_header" >
+			<img src="../../img/left.png" class="mui-action-back left_img"/>
+			<span>Order Tracker</span>
 		</header>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">

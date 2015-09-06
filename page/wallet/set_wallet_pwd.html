@@ -197,7 +197,7 @@
 						pay_pwd.setpay=1;
 						plus.storage.removeItem('personinfo');
 						setstorage('personinfo',JSON.stringify(pay_pwd));
-					
+					openWindow('.')
 				}else if(obj.res==2){
 					mui.toast('老密码验证错误');  
 				}

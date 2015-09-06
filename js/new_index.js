@@ -11,8 +11,8 @@ document.getElementById("trip-plan").addEventListener("tap", function() {
 })
 mui.plusReady(function() {
 		console.log(plus.runtime.appid)
-		//		plus.storage.removeItem('systemmes14714714774')
-		//		plus.storage.removeItem('systemmes25825825885')
+			//		plus.storage.removeItem('systemmes14714714774')
+			//		plus.storage.removeItem('systemmes25825825885')
 		plus.navigator.closeSplashscreen();
 		var net = plus.networkinfo.getCurrentType();
 		if (net != 0 && net != 1) {
@@ -25,6 +25,9 @@ mui.plusReady(function() {
 					timeout: 10000,
 					success: function(data) {
 						if (data.ret == 1) {
+							if (data.res.deliver == 1) {
+								$('#applydeliver').remove();
+							}
 							setstorage('personinfo', JSON.stringify(data.res));
 							getsystemmsg();
 							mui.toast('get personal infomation success')
@@ -56,6 +59,9 @@ mui.plusReady(function() {
 												type: 'post',
 												success: function(data) {
 													if (data.ret == 1) {
+														if (data.res.deliver == 1) {
+															$('#applydeliver').remove();
+														}
 														setstorage('personinfo', JSON.stringify(data.res));
 														getsystemmsg();
 														if (data.res.ptitle) {
@@ -135,17 +141,17 @@ mui.plusReady(function() {
 				openWindow('./page/wallet/my-wallet.html')
 			})
 		})
-		
+
 	})
 	//处理返回键
 
 function getsystemmsg() {
 	myAjax({
 		url: 'message/getMsg',
-		wait:false
+		wait: false
 	}, function(data) {
-		if (data.ret == 1) {   
-			if(data.res.msgList.length){
+		if (data.ret == 1) {
+			if (data.res.msgList.length) {
 				$('#msgtips').attr('src', './img/tips.png');
 			}
 			var personinfo = JSON.parse(getstorage('personinfo')).phone;
@@ -155,7 +161,7 @@ function getsystemmsg() {
 			} else {
 				handlemsg(data);
 			}
-		}else{
+		} else {
 			return;
 		}
 	}, function(xhr, type) {
@@ -268,7 +274,7 @@ mui.back = function() {
 };
 
 //处理菜单键
-mui.menu = function() { 
+mui.menu = function() {
 		if ($('#offCanvasContentScroll').offset().left == 0) {
 			offCanvasWrapper.offCanvas('close');
 		} else {
