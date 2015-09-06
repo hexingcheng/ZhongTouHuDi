@@ -225,7 +225,7 @@
 				height: 100%;
 				position: absolute;
 				z-index: 30;
-				background-color: rgba(0, 0, 0, 0.5);
+				background-color: rgba(0, 0, 0, 1);
 			}
 			.picwraps {
 				position: absolute;
@@ -394,6 +394,10 @@
 			#gvalue {
 				padding: 0;
 			}
+			/*.mui-bar-footer~.mui-content {padding-bottom: 61px;position: relative;}*/
+			#take-photo img {
+				width: 100%;height: 100%;
+			}
 		</style>
 	</head>
 
@@ -477,84 +481,90 @@
 			</ul>
 		</div>
 		<div class="mui-content">
+			<div class="mui-scroll-wrapper">
+				
+				<div class="mui-scroll">
 			<div class="order-content clear">
-				<div class="gName clear hei110" style="background: #FFFFFF;">
-					<div class="wid30 fl hei110 linehei110 colorg">
-						<span class="colorgray myicon"><img src="../../img/host.png"></span>
-					</div>
-					<div class="wid70 paddr10 hei110">
-						<div class="iptwrap mui-input-row">
-							<input type="text" class="linehei68 mui-input-clear" id="gname" placeholder="Name" />
+					<div class="gName clear hei110" style="background: #FFFFFF;">
+						<div class="wid30 fl hei110 linehei110 colorg">
+							<span class="colorgray myicon"><img src="../../img/host.png"></span>
+						</div>
+						<div class="wid70 paddr10 hei110">
+							<div class="iptwrap mui-input-row">
+								<input type="text" class="linehei68 mui-input-clear" id="gname" placeholder="Name" />
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="gap"></div>
-				<div class="gWeight clear">
-					<div class="wid30 fl hei110 linehei110 colorg">
-						<span class="colorgray myicon"><img src="../../img/weight.png"></span>
-					</div>
-					<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
-						<span class="kg-g font-14">Kg</span>
-					</div>
-					<div class="wid50 hei110">
-						<div class="iptwrap mui-input-row">
-							<input type="number" class="linehei68 mui-input-clear" id="gweight" placeholder="Weight" />
+					<div class="gap"></div>
+					<div class="gWeight clear">
+						<div class="wid30 fl hei110 linehei110 colorg">
+							<span class="colorgray myicon"><img src="../../img/weight.png"></span>
+						</div>
+						<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
+							<span class="kg-g font-14">Kg</span>
+						</div>
+						<div class="wid50 hei110">
+							<div class="iptwrap mui-input-row">
+								<input type="number" class="linehei68 mui-input-clear" id="gweight" placeholder="Weight" />
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="gValue clear">
-					<div class="wid30 fl hei110 linehei110 colorg">
-						<span class="colorgray myicon"><img src="../../img/value.png"></span>
-					</div>
-					<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
-						<span class="kg-g font-14">$</span>
-					</div>
-					<div class="wid50 hei110">
-						<div class="iptwrap mui-input-row">
-							<input type="number" class="linehei68 mui-input-clear" id="gvalue" placeholder="Value" />
+					<div class="gValue clear">
+						<div class="wid30 fl hei110 linehei110 colorg">
+							<span class="colorgray myicon"><img src="../../img/value.png"></span>
+						</div>
+						<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
+							<span class="kg-g font-14">$</span>
+						</div>
+						<div class="wid50 hei110">
+							<div class="iptwrap mui-input-row">
+								<input type="number" class="linehei68 mui-input-clear" id="gvalue" placeholder="Value" />
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="info clear" id="info" style="background: #FFFFFF;">
-					<div class="wid30 fl hei110 linehei110 colorg">
-						<span class="colorgray myicon"><img src="../../img/coment.png"></span>
-					</div>
-					<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
-						<span class="kg-g font-14 myicon"><img src="../../img/enter.png"></span>
-					</div>
-					<div class="wid50 hei110">
-						<div class="iptwrap mui-input-row  addline" id="gettext">
-							Comment
+					<div class="info clear" id="info" style="background: #FFFFFF;">
+						<div class="wid30 fl hei110 linehei110 colorg">
+							<span class="colorgray myicon"><img src="../../img/coment.png"></span>
+						</div>
+						<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
+							<span class="kg-g font-14 myicon"><img src="../../img/enter.png"></span>
+						</div>
+						<div class="wid50 hei110">
+							<div class="iptwrap mui-input-row  addline" id="gettext">
+								Comment
+							</div>
 						</div>
 					</div>
+					<div class="gap"></div>
+					<div class="goods-pic">
+						<ul class="mui-table-view clear" id="take-photo">
+							<li class="mui-table-view-cell img-box addmarr" data-index='0'>
+								<a href="#delete" class="picpre pic-img">
+									<span class="mui-icon mui-icon-plusempty addclass"></span>
+									<!--<span class="wids"><img src="../../img/2147de349744915c611f470c84c67f94.jpg" width="100%" height="100%"></span>-->
+								</a>
+							</li>
+							<li class="mui-table-view-cell img-box addmarr" data-index='1'>
+								<a href="#delete" class="picpre pic-img">
+									<span class="mui-icon mui-icon-plusempty addclass"></span>
+								</a>
+							</li>
+							<li class="mui-table-view-cell img-box addmarr" data-index='2'>
+								<a href="#delete" class="picpre pic-img">
+									<span class="mui-icon mui-icon-plusempty addclass"></span>
+								</a>
+							</li>
+							<li class="mui-table-view-cell img-box" data-index='3'>
+								<a href="#delete" class="picpre pic-img">
+									<span class="mui-icon mui-icon-plusempty addclass"></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="pictips" style="background: #FFFFFF;">! please add goods picture to make the order more detail</div>
 				</div>
-				<div class="gap"></div>
-				<div class="goods-pic">
-					<ul class="mui-table-view clear" id="take-photo">
-						<li class="mui-table-view-cell img-box addmarr" data-index='0'>
-							<a href="#delete" class="picpre pic-img">
-								<span class="mui-icon mui-icon-plusempty addclass"></span>
-							</a>
-						</li>
-						<li class="mui-table-view-cell img-box addmarr" data-index='1'>
-							<a href="#delete" class="picpre pic-img">
-								<span class="mui-icon mui-icon-plusempty addclass"></span>
-							</a>
-						</li>
-						<li class="mui-table-view-cell img-box addmarr" data-index='2'>
-							<a href="#delete" class="picpre pic-img">
-								<span class="mui-icon mui-icon-plusempty addclass"></span>
-							</a>
-						</li>
-						<li class="mui-table-view-cell img-box" data-index='3'>
-							<a href="#delete" class="picpre pic-img">
-								<span class="mui-icon mui-icon-plusempty addclass"></span>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="pictips" style="background: #FFFFFF;">! please add goods picture to make the order more detail</div>
 			</div>
+		</div>
 		</div>
 	</body>
 	<script type="text/javascript" src="../../js/utils.js"></script>
@@ -576,7 +586,7 @@
 		}
 		layout();
 		mui.plusReady(function() {
-			mui('#offCanvasSideScroll').scroll();
+//			mui(".mui-scroll-wrapper").scroll();
 			plus.webview.currentWebview().setStyle({
 				scrollIndicator: "none"
 			})
@@ -700,6 +710,7 @@
 							'left': l,
 							'top': t
 						})
+						plus.storage.removeItem("draft-datas");
 					} else {
 						plus.webview.getLaunchWebview().show('slide-in-left');
 						closewebview()
@@ -929,7 +940,7 @@
 			$("#gvalue").val(datas.res.gValue);
 			$("#gettext").val(datas.res.info);
 			getdata.orderId = datas.res.orderId; // 该商品ID
-			var html = "<a href='#delete' class='picpre'><span class='mui-icon mui-icon-plusempty addclass' style='height: " + iw + "px;line-height:" + iw + "px'></span></a>";
+			var html = "<a href='#delete' class='picpre pic-img'><span class='mui-icon mui-icon-plusempty addclass' style='height: " + iw + "px;line-height:" + iw + "px'></span></a>";
 			$(".img-box").html(html);
 			if (datas.res.pics.length > 0) {
 				var n = BASEURL.indexOf('/api/');
@@ -940,7 +951,7 @@
 				if (len > 0) {
 					for (var i = 0; i < len; i++) {
 						var url = per + pic[i].path;
-						var html = '<a  href="#" class="picpre"><span class="wids"><img alt="' + pic[i].id + '" title="' + url + '" height="' + iw + 'px" width="' + iw + 'px" src=' + url + '></span></a>';
+						var html = '<a  href="#" class="picpre pic-img"><span class="wids"><img alt="' + pic[i].id + '" title="' + url + '" height="' + iw + 'px" width="' + iw + 'px" src=' + url + '></span></a>';
 						console.log(html)
 						document.querySelectorAll(".img-box")[i].innerHTML = html;
 					}
