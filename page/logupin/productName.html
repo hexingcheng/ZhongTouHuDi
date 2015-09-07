@@ -7,19 +7,19 @@
     <script src="../../js/mui.js"></script>
     <link href="../../css/mui.css" rel="stylesheet"/>
     <link rel="stylesheet" href="login_new.css" />
+    <link rel="stylesheet" href="../../css/share_main.css" />
 </head>
-<body>
-	<header class="mui-bar mui-bar-nav login_headr">
-		<a class="mui-icon mui-icon-left-nav mui-action-back login_color mui-action-back"></a>
-		<span class="login_title">Sign Up</span>
+<body> 
+	<header class="mui-bar mui-bar-nav nav_header">
+		<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
+		<span >Sign Up</span>
 	</header>
-	<div class="tips mui-hidden">登录中...</div>
 	<div class="mui-content">
 		<div class="login_log">
 			<img src="../../img/log.png" class="big_img" alt="" />
 		    <img src="../../img/along.png" class="small_img" alt="" />
 		</div>
-		<!--输入框-->
+		<!--输入框-->  
 		<div class="login_input_contain">
 			<div class="login_input login_bor_bottom">
 				<img src="../../img/pho.png" class="login_map" alt="" />
@@ -29,7 +29,7 @@
 			</div> 
 			<div class="login_input login_bor_bottom">
 				<img src="../../img/valcode.png" class="login_map" alt=""/>
-				<div class="login_input_get" >
+				<div class="login_input_get"> 
 					<span id="get-code">get code</span>
 					<span id="get-time" style="color: #FFE801;"></span>
 				</div>
@@ -59,8 +59,9 @@
 	    	<span id="signup-agree">I agree with the</span> <a href="" class="log_color">service rules</a>
 	    </div>
 	</div> 
-	<footer class="login_footer" style="background-color: #F2F2F2">
-		<div class="login_button" id="submit-button">submit</div>
+	<div class="tips mui-hidden">登录中...</div>
+	<footer class="mui-bar mui-bar-footer login_bg">
+		<div class="nav_footer" id="submit-button">submit</div>
 	</footer>
 	<script src="../../js/utils.js"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js" ></script>

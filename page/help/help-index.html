@@ -7,10 +7,9 @@
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <script src="../../js/mui.min.js"></script>
     <style>
-    	body{background-color: #fff;}
-		.mui-table-view-cell:after {height: 0;}
-		.mui-table-view-cell>a:not(.mui-btn) {border-bottom: 1px solid #ddd;}
-		.mui-content>.mui-table-view:first-child {margin: 0;}
+body{
+	background-color: #fff;
+}
 .nav_header{
 	height: 52px;
 	line-height: 52px;
@@ -26,53 +25,52 @@
 	float: left;
 	margin: 9px 9px 9px 0; 
 }
-.nav_header .right_img{
-	width: 34px;
-	height: 34px;
-	float: right;
-	margin: 9px 0 9px 9px; 
+.mui-content{
+	padding-top: 38px !important;
 }
-.top_header{
-	margin-top: 9px;
+.help_info .mui-table-view-cell{
+	height: 50px;
+	line-height: 50px;
+	padding: 0 16px;
+	font-size: 14px;
+}
+.help_info img{
+	width: 34px;  
+	height: 34px;
+	margin: 8px 0;
+	float: right;
 }
     </style>
 </head>
 <body>
-	
 	<header class="mui-bar mui-bar-nav nav_header">
 		<img src="../../img/left.png" class="mui-action-back left_img" alt="" />
 		<span>Help</span>
 	</header>
-	<div class="mui-content top_header">
-		<ul class="mui-table-view">
+	<div class="mui-content">
+		<ul class="mui-table-view help_info" >
 			<li class="mui-table-view-cell">
-				<a href="javascript:void(0)" class="mui-navigate-right">
-					FAQ
-				</a>
+				<img src="../../img/right_.png" alt="" />
+				<span>FAQ</span>
 			</li>
 			<li class="mui-table-view-cell">
-				<a href="javascript:void(0)" class="mui-navigate-right">
-					Payment Agreement
-				</a>
+				<img src="../../img/right_.png" alt="" />
+				<span>Payment Agreement</span>
 			</li>
 			<li class="mui-table-view-cell">
-				<a href="javascript:void(0)" class="mui-navigate-right">
-					User Agreement
-				</a>
+				<img src="../../img/right_.png" alt="" />
+				<span>User Agreement</span>
 			</li>
 			<li class="mui-table-view-cell">
-				<a href="javascript:void(0)" class="mui-navigate-right">
-					Registration Agreement
-				</a>
+				<img src="../../img/right_.png" alt="" />
+				<span>Registration Agreement</span>
 			</li>
 			<li class="mui-table-view-cell">
-				<a href="javascript:void(0)" class="mui-navigate-right">
-					About coupon
-				</a>
+				<img src="../../img/right_.png" alt="" />
+				<span>About coupon</span>
 			</li>
 		</ul>
 	</div>
-	
 	<script>
       	mui.init();
     </script>

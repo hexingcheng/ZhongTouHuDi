@@ -147,12 +147,13 @@ img{
    	  			
    	  		}
    	  	var res=obj.res;
+   	  		console.log(JSON.stringify(res));
    	  	if(JSON.stringify(res)){
    	  		$('#familyName').val(res.familyName);
    	  		$('#firsetName').val(res.firstName);
    	  		$('#nation').val(res.nation);
    	  		$('#address').val(res.address);
-   	  		$('#idType').val(res.idType);
+   	  		$('#idType').val(res.idType); 
    	  		$('#identity').val(res.identity);
    	  		$('#armUser').val(res.armUser);
    	  		$('#armPhone').val(res.armPhone);
@@ -170,9 +171,6 @@ img{
    	  },function(type,xhr){
    	  	alert(type.status)
    	  })
-// 	 $('.applyPerson').on('tap',function(){  
-// 	  	openWindow('applyPerson.html');
-// 	  })
 	mui('.mui-content').on('tap','.applyPerson',function(){
 		openWindow('applyPerson.html');
 	})
