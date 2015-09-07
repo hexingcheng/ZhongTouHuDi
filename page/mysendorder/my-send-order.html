@@ -25,6 +25,7 @@
 				<a class="mui-control-item item-four" data-status="4">cancel</a>
 			</div>
 		</div>
+		<script src="../../js/jquery.min.js"></script>
 		<script>
 			mui.init({
 				gestureConfig: {
@@ -48,26 +49,34 @@
 					mui.fire(embed, 'renderdata', param);
 				})
 				
-				// 自定义事件刷新列表信息
-				window.addEventListener("refresh:data", function() {
-					var ele = document.querySelector(".item-four");
-					mui.trigger(ele, "tap");
-				})
-			
 				// 刷新数据显示
-				window.addEventListener("refresh:alldata", function() {
-					var ele = document.querySelector(".item-first");
-					mui.trigger(ele, "tap");
+				window.addEventListener("refresh:alldata", function(eve) {
+					mui.trigger(document.querySelector(".item-first") , "tap");
+					$(".item-first").addClass("mui-active")
+					$(".mui-control-item").not(".item-first").removeClass("mui-active")
 				})
 			
 				// 刷新数据显示
 				window.addEventListener("refresh:comment", function() {
-					var ele = document.querySelector(".item-third");
-					mui.trigger(ele, "tap");
+					mui.trigger(document.querySelector(".item-third") , "tap");
+					$(".item-third").addClass("mui-active")
+					$(".mui-control-item").not(".item-third").removeClass("mui-active")
 				})
 				
+				// 
+				window.addEventListener("refresh:second", function() {
+					mui.trigger(document.querySelector(".item-second") , "tap");
+					$(".item-second").addClass("mui-active")
+					$(".mui-control-item").not(".item-second").removeClass("mui-active")
+				})
+				
+				// 自定义事件刷新列表信息
+				window.addEventListener("refresh:data", function() {
+					mui.trigger(document.querySelector(".item-four") , "tap");
+					$(".item-four").addClass("mui-active")
+					$(".mui-control-item").not(".item-four").removeClass("mui-active")
+				})
 			})
-			
 		</script>
 	</body>
 

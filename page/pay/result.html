@@ -41,7 +41,7 @@
       		// 获取首页webview
       		var main = plus.webview.getLaunchWebview();
 	      	// 获取已经打开的页面，在处理好应用之后需要进行关闭
-	      	var close = ["my-send-order", "mysendorder-detail-transporting", "mysendorder-detail-inform", "mysendorder-detail-finish", "mysendorder-detail-cancel"];
+	      	var close = ["mysendorder/my-send-order", "mysendorder-detail-transporting", "mysendorder-detail-inform", "mysendorder-detail-finish", "mysendorder-detail-cancel"];
 	      	// 获取当前文件需要webview窗口
       		var thispage = plus.webview.currentWebview();
       		
@@ -52,25 +52,23 @@
 	      				plus.webview.close(cupage, "none", 0);
 	      			}
 	      		}
-	      		main.show("slide-in-left", 150)
-	   	      	setTimeout(function(){
-		      		plus.webview.close(thispage, "none", 0);
-	   	      	}, 160)
+	      		plus.webview.show(main, "slide-in-left", 300, function(){
+		   	      	setTimeout(function(){
+			      		plus.webview.close(thispage, "none", 0);
+		   	      	}, 200)
+	      		})
 	      	}, false)
 	      	
 	      	// 返回订单页面
+	      	var order = plus.webview.getWebviewById("mysendorder/my-send-order");
 	      	document.getElementById("order-page").addEventListener("tap", function(){
-	      		mui.openWindow({
-	      			url : "../mysendorder/my-send-order.html",
-	      			id : "my-send-order",
-	      			createNew : true,
-	      			waiting: {
-						autoShow: true,
-						title: '正在加载...',
-						options: {
-							background: '#d1d1d1'
-						}
-					}
+	      		mui.fire(order, "refresh:second",{
+	      			type : "pay-over"
+	      		})
+	      		plus.webview.show(order, "slide-in-left", 300, function(){
+		      		setTimeout(function(){
+		      			plus.webview.close(thispage, "none", 0);
+		      		}, 300)
 	      		})
 	      	}, false)
       	})
