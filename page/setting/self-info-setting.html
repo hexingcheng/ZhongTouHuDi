@@ -152,7 +152,9 @@
 				})
 				mui('.mui-content').on('tap','.mui-table-view-cell',function(){
 					var src = this.getAttribute('data-src');
-					openWindow(src)
+					if(src){
+						openWindow(src);
+					}
 				})
 			})
 		</script>
