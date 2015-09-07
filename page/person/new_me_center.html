@@ -1,59 +1,154 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="new_person.css" />
+		<link rel="stylesheet" href="../../css/share_main.css" />
 		<style>
-			.center_headpic .heade_pic{
-				height: 7em;
-				width: 7em;
-				border-radius: 50%;
-				border: 2px solid #fff;
-				display: inline-block;
-			}
-			.nation_select{
-				width: 70%;
-				height: 80%;
-				z-index: 999;
-				overflow-y: scroll;
-				top: 10%;
-				left: 50%;
-				margin-left: -35%;
-				position: absolute;
-				background-color: white;
-				display: none;
-			} 
-			.select_sex{
+		html,body{
+			height: 100%;
+			width: 100%;
+		}
+		.mui-bar-nav~.mui-content{
+			padding-top: 52px;
+		}
+		.center_headpic{
+			width: 7em;
+			height:7em;
+			position: absolute;
+			bottom:0;
+			left: 50%;
+			z-index: 100;
+			border-radius: 50%;
+			margin-left: -3.5em;
+			margin-bottom: -1.5em;
+		}
+		.center_headpic .heade_pic{
+			height: 6.5em;
+			width: 6.5em;
+			border-radius: 50%;
+			border: 2px solid #fff;
+			display: inline-block;
+		}
+		.center_bg{
+			width: 100%;
+			height:230px;
+			position: relative;
+			background: url(../../img/pic12.jpg) no-repeat;
+			background-size: 100% 100%;
+			margin-top: 52px;
+		}
+		
+		.center_headpic .header_camara{
+			width: 36px;
+			height: 36px;
+			border-radius: 18px;
+			position: absolute;
+			background-color: #fff;
+			bottom: 5px;
+			right: 0;
+		}
+		.center_bg_edit{
+			width: 34px;
+			height: 34px;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+		.header_camara img{
+			width: 34px;
+			height: 34px;
+		}
+		.nation_select{
+			width: 70%;
+			height: 80%;
+			z-index: 999;
+			overflow-y: scroll;
+			top: 10%;
+			left: 50%;
+			margin-left: -35%;
+			position: absolute;
+			background-color: #FFF;
+			display: none;
+		} 
+		.select_sex{
+			width: 100%;
+			height: 50px;
+		}
+	    .select_sex input{
+	    	height: auto; 
+			font-size: 14px; 
+			width: 14px;
+		} 
+		.li_input_s img{
+			width: 34px;
+			height: 34px;
+			margin: 8px;
+		}
+		.edit_hide{
+			display: none;
+		}
+		.center_clear{
+			width: 100%;
+			height: .5em;
+			background-color: #EBEEF4;
+		}
+		.mak{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 500;
+			background-color: rgba(0,0,0,.4);
+		}
+		/**弹出框*/
+		.center_pop{
+			z-index: 502;
+			width:70%;
+			line-height: 2em;
+			overflow: hidden;
+			position: fixed;
+			display: none;
+			padding: .8em;
+			background-color: #fff;
+			top: 50%;
+			margin-top: -10%;
+			left: 50%;
+			margin-left: -35%;    
+		
+		}
+		.center_pop input{
 				width: 100%;
-				height: 50px;
-			}
-		    .select_sex input{
-		    	height: auto; 
-				font-size: 14px; 
-				width: 14px;
-			} 
+				height: 40px;
+				border:0;
+				font-size: 14px;
+				line-height: 14px;
+				margin-bottom:.5em;
+				padding-bottom: 0;
+				border-radius: 0;
+				border-bottom: 2px solid #3FA86A;
+		}
 		</style>
 	</head> 
 
 	<body>
-		<header class="mui-bar mui-bar-nav center_nav">
-			<img src="../../img/left.png" alt="" class="left_img mui-action-back" />
+		<header class="mui-bar mui-bar-nav nav_header">
+			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 			<span>personal</span>
-			<img src="../../img/edit2.1.png" class="center_icon center_edit" alt="" />
-			<img src="../../img/save.png" class="center_icon center_save" alt="" style="display: none;" />
+			<img src="../../img/edit2.1.png" class="header_right_img center_edit" alt="" />
+			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" />
 		</header>
 		<!--蒙版-->
-		<div id="center_popover" class="mui-hidden"></div>
+		<div id="center_popover" class="mui-hidden mak"></div>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<div class="center_bg">
-						<div class="center_headpic " style="padding: 0;border: 0;">
+						<div class="center_headpic">
 							<a href="#gitpic" >
 								<img src="../../img/defualt.png" class="heade_pic"  id="headpic" />
 								<div class="header_camara ">
@@ -66,95 +161,106 @@
 					<div class="center_clear">   
 						<!--中间间隙--> 
 					</div>
-					<div class="center_input has_sex">  
-						<div class="center_divl"><span>family name</span></div>
-						
-						<img src="../../img/edit.png" alt="" class="edit_hide" name="one" />
-						<div class="center_input_div ">
-							<input type="text" id="familyName" disabled="disabled" class="edit_input one " />
-						</div>
-					</div>
-					<div class="center_input ">
-						<div class="center_divl"><span>first name</span></div>
-						<img src="../../img/edit.png" alt="" class="edit_hide" name="two" />
-						<div class="center_input_div">
-							<input type="text" id="firstName" disabled="disabled" class="edit_input two " />
-						</div>   
-					</div>
-					<div class="center_input ">
-						<div class="center_divl"><span>sex</span></div>
-						<img src="../../img/edit.png" alt="" class="edit_hide" name="two" />
-						<div class="center_input_div">
-							<span class="edit_show male sex"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" c /></span>
-							<span class="edit_show female sex"><span class="mui-pull-left">female</span><img src="../../img/female2.png" alt=""  /></span>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<div class="li_left_title">
+								<span>family name</span>
+							</div>
+								<img src="../../img/edit.png" alt="" class="li_right_img edit_hide " name="one" />
+							<div class="li_input_s ">
+								<input type="text" id="familyName" disabled="disabled" class="edit_input one " />
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_left_title">
+								<span>first name</span>
+							</div>
+							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide " name="two" />
+							<div class="li_input_s">
+								<input type="text" id="firstName" disabled="disabled" class=" edit_input two " />
+						  	</div>   
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_left_title">
+								<span>sex</span>
+							</div>
+							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide" name="two" />
+							<div class="li_input_s">
+								<span class="edit_show male sex"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" c /></span>
+								<span class="edit_show female sex"><span class="mui-pull-left">female</span><img src="../../img/female2.png" alt=""  /></span>
 								<div class="select_sex edit_hide" >
 									<input type="radio" name="sex" checked="checked" value="man"  id="person_sex" />
 										<lable>male </lable>
 									<input type="radio" name="sex" />
 										<lable>female </lable>
 							    </div>
-						</div>   
-					</div>
-					<div class="center_clear">
-						<!--中间间隙-->
-					</div>
-					<div class="center_input ">
-						<div class="center_divl"><span>phone</span></div>
-						<div class="center_input_div">
-							<input type="number" disabled="disabled" id="phone" />
-						</div>
-					</div>
-					<div class="center_input ">
-						<div class="center_divl"><span>password</span></div>
-						<img src="../../img/edit.png" alt="" class="edit_hide" name="three" />
-						<div class="center_input_div">
-							<input type="password" value="123456" disabled="disabled" class="edit_input three " id="password" />
-						</div>
-					</div>
-					<div class="center_clear">
-						<!--中间间隙-->  
-					</div>
-					<div class="center_input ">
-						<div class="center_divl"><span>E-mail</span></div>
-						<img src="../../img/edit.png" alt="" class="edit_hide" name="four" />
-						<div class="center_input_div">
-							<input type="text" id="email" disabled="disabled" class="edit_input four" />
-						</div>
-					</div>
-					<div class="center_input " id="nation_select">
-						<div class="center_divl"><span>nationnality</span></div>
-						<img src="../../img/edit.png" alt="" class="edit_hide" name="five" />
-						<div class="center_input_div " id="nation_">
-							<span id="nation"></span>
-						</div>
-					</div>  
-					<div class="center_clear">
-						<!--中间间隙-->
-					</div>
-   
-					<div class="center_input ">
-						<div class="center_divl"><span>credibility</span></div>
-						<div class="center_input_div">
-							<img src="../../img/jiangbei.png" alt="" />
-							<span id="ptitle"></span>
-
-						</div>
-					</div>
-					<div class="center_input" id="open_apply">
-						<div class="center_divl"><span>deliver</span></div>
-						<img src="../../img/enter.png" alt="" />
-						<div class="center_input_div" >
-							<!--<input type="text" class="edit_input" readonly="readonly" id="deliver"/>-->
-						</div>
-					</div>
-					<div class="center_clear">
-						<!--中间间隙-->
-					</div>
-					
-					<div class="center_input" id="wallet_pwd">
-						<img src="../../img/enter.png" alt="" />
-						<div class="center_divl"><span>payword</span></div> 
-					</div>
+							</div>
+						</li>
+					</ul>
+					<div class="center_clear"><!--中间间隙--></div>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<div class="li_left_title">
+								<span>phone</span>
+							</div>
+							<div class="li_input_l">
+								<input type="number" disabled="disabled" id="phone" />
+						    </div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_left_title">
+								<span>password</span>
+							</div>
+							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide" name="three" />
+							<div class="li_input_s">
+								<input type="password" value="123456" disabled="disabled" class="edit_input three " id="password" />
+							</div>
+						</li>
+					</ul>
+					<div class="center_clear"><!--中间间隙--></div>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>E-mail</span></div>
+							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide" name="four" />
+							<div class="li_input_s">
+								<input type="text" id="email" disabled="disabled" class="edit_input four" />
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>nationnality</span></div>
+							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide" name="five" />
+							<div class="li_input_l " id="nation_">
+								<span id="nation"></span>
+						    </div>
+						</li>
+					</ul>
+					<div class="center_clear"><!--中间间隙--></div>
+   					<ul class="mui-table-view">
+   						<li class="mui-table-view-cell">
+   							<div class="li_left_title"><span>credibility</span></div>
+   							<div class="li_input_l">
+								<img src="../../img/jiangbei.png" class="li_left_img" alt="" />
+								<span id="ptitle"></span>
+							</div>
+   						</li>
+   						<li class="mui-table-view-cell" id="open_apply">
+   							<div class="li_left_title"><span>deliver</span></div> 
+   							<img src="../../img/enter.png" class="li_right_img" alt="" />
+   							<div class="li_input_s">
+   								<input type="text" class="edit_input" readonly="readonly" />
+   							</div>
+   						</li>
+   					</ul>
+   					<div class="center_clear"><!--中间间隙--></div>
+   					<ul class="mui-table-view" >
+   						<li class="mui-table-view-cell" id="wallet_pwd">
+   							<div class="li_left_title"><span>payword</span></div> 
+   							<img src="../../img/enter.png" class="li_right_img" alt="" />
+   							<div class="li_input_s">
+   								<input type="text" name="" id="" value="" readonly="readonly"/>
+   							</div>
+   						</li>
+   					</ul>
 				</div>
 			</div>
 		</div>
@@ -163,7 +269,7 @@
 			<div class="input_div">
 				<input type="text" placeholder="请输入密码" id="pop_password" maxlength="20" />
 			</div>
-			<span id="pop_submit"><strong>确定</strong></span>
+			<span id="pop_submit" class="mui-pull-right"><strong>确定</strong></span>
 		</div>
 		<div class="nation_select " id='nation_select_'>
 			 <ul class="mui-table-view">
@@ -244,7 +350,6 @@
 								$('#nation').text(data.nation);
 								$('#phone').val(data.phone);
 								$('#ptitle').text(data.ptitle);
-								alert(data.sex)
 								if (data.sex == 1) {
 									$('.male').css('display', 'block');
 									$('.female').css('display', 'none');
@@ -463,7 +568,7 @@
 			 		openWindow('../applyfor/apply_info.html');  
 			 })
 			 //修改支付密码
-			 $('#wallet_pwd').on('tap',function(){
+			 $('#wallet_pwd').on('tap', function(){
 			 	openWindow('../wallet/set_wallet_pwd.html');
 			 })
 })

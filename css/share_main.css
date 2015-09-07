@@ -1,0 +1,87 @@
+body{
+	background-color: #fff;
+	font-size: 14px;
+	color: #000;
+}
+/*页面nav*/
+.nav_header{
+	height: 52px;
+	line-height: 52px;
+	font-size: 16px;
+	text-align: left;
+	color: #fff;
+	background-color: #44AB6E;
+	box-shadow: none;
+}
+.nav_header .header_left_img{
+	width: 34px;
+	height: 34px;
+	float: left;
+	margin: 9px 9px 9px 0; 
+}  
+.nav_header .header_right_img{
+	width: 34px;
+	height: 34px;
+	float: right;
+	margin: 9px 0 9px 9px; 
+}
+/*foorter nav*/
+.mui-bar-footer{
+	background-color:#fff;
+	height: 64px;
+	position: absolute;  
+}
+.nav_footer{
+	width: 80%;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	color:#fff;
+	background-color: #054859;  
+	margin: 8px auto;  
+	text-align:center;
+}
+/*三列布局*/
+.mui-table-view .mui-table-view-cell{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	padding-top: 0;
+	padding-bottom: 0; 
+}
+.mui-table-view-cell .li_left_title{
+	width: 7em;
+	height: 50px;
+	line-height: 50px; 
+	float: left;
+}
+.mui-table-view .li_right_img{
+	width: 34px;
+	height: 34px;
+	margin: 8px 0;
+	float: right;
+}
+.mui-table-view .li_left_img{
+	width: 34px;
+	height: 34px;
+	margin: 8px 8px 8px 0;
+	float: left;
+}
+.mui-table-view .li_input_s{
+	margin-right: 42px;
+	overflow: hidden;
+	height: 50px;
+}
+.mui-table-view .li_input_l{
+	height: 50px;
+	overflow: hidden;
+}
+.mui-table-view-cell input{
+	width: 100%;
+	height: 50px;
+	padding-left: 0;
+	padding-right: 0;
+	margin-bottom: 0;
+	border: 0;
+	font-size: 14px;
+}
