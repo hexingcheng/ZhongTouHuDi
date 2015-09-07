@@ -7,26 +7,29 @@
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../css/getorder/get-order-comment.css"/>
     <link rel="stylesheet" href="../../css/getorder/get-detail.css"/>
+    <link rel="stylesheet" href="../../css/share_main.css" />
     <script src="../../js/mui.min.js"></script>
     <style>
-    </style>
+    </style> 
 </head>
-<body style="background: #fff;">
+<body >
 	<header class="mui-bar mui-bar-nav nav_header">
 		<img src="../../img/left.png" class="left_img mui-action-back" alt="" />
 		<span>Detail</span>
 	</header>
-	<footer style="height: 64px;" class="mui-bar mui-bar-footer mui-text-center bg-color" id="foot">
-		<button id="markup" class="marks mui-btn button-first">markup</button>
-		<button id="collect" class="cllo mui-btn button-next">collect</button>
+	<footer class="mui-bar mui-bar-footer" id="foot">
+		<div class="nav_footer bg_white">
+			<div id="markup" class="marks left_button" >markup</div>
+			<div id="collect" class="cllo right_button" >collect</div> 
+		</div>
 	</footer>
 	<div id="order-mask" class="mui-hidden"></div>
-		<div id="markups" class="mui-hidden">
+		<div id="markups" class="mui-hidden">  
 		<div class="mak-title">please input the reword!</div>
 		<div class="mak-worn">please input the reword you want to be paid on the order.</div>
 		<div class="borporal">
 			<div class="inner">
-				<input / id="mar-i" placeholder="0.00" type="number">
+				<input  id="mar-i" placeholder="0.00" type="number">
 			</div>
 		</div>
 		<div class="cacu">
@@ -40,71 +43,64 @@
 			</div>
 		</div>
 		<div class="mak-handle">
-			<div id="ok">ok</div>
-			<div id="cancel">cancel</div>
+			<div id="ok" class="mui-pull-left">ok</div>
+			<div id="cancel" class="mui-pull-right">cancel</div>
 		</div>
 	</div>
 	<div class="mui-content">
 		<div class="mui-scroll-wrapper">
 			<div class="mui-scroll">
-				<ul class="mui-table-view mui-grid-view mui-grid-9" id="uls">
-					<li class="mui-table-view-cell mui-col-xs-12">
-						<span class="mui-pull-left title-color mui-text-left name addl15mar">Name</span>
-						<span class="mui-pull-right mui-text-right mui-ellipsis goods-name addr5mar">--</span>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<div class="li_left_title">Name</div>
+						<span class="mui-pull-right goods-name">--</span>
 					</li>
-					<li class="mui-table-view-cell mui-col-xs-6">
-						<span class="mui-pull-left title-color mui-text-left title-padded addl15mar paddding0 addl15mar addlmar">Reward</span>
-						<span class="mui-pull-right">
-							<div class="goods-value-box">
-								<span class="value-color">$</span><span id="goods-value" class="value-color value-size addr5mar">0.00</span>
- 							</div>
-						</span>
-					</li>
-					<li class="mui-table-view-cell mui-col-xs-6">
-						<span class="mui-pull-left title-color mui-text-left title-padded paddding0 addlmar">Weight</span>
-						<span id="goods-weight" class="mui-pull-right title-weight paddding0 addrmar">0kg</span>
-					</li>
-					<li class="mui-table-view-cell mui-col-xs-6" id="tet">
-						<div class="time">Get Time</div>
-						<div id="get-time" class="da">--:--</div>
-					</li>
-					<li class="mui-table-view-cell mui-col-xs-6" id="ret">
-						<div class="time">Deadline</div>
-						<div id="deadline" class="da">--:--</div>
-					</li>
+					<div class="li_row_contain">
+						<li class="mui-table-view-cell left_li_half">
+							<div class="li_left_title mui-pull-left">Reward</div>
+							<span style="color: red;" class="mui-pull-right" id="goods-value">$0.00</span>
+							
+						</li>
+						<li class="mui-table-view-cell right_li_half">
+							<div class="li_left_title mui-pull-left">Weight</div>
+							<span class="mui-pull-right" id="goods-weight">0kg</span>
+						</li>
+					</div>
+					<div class="li_row_contain">
+						<li class="mui-table-view-cell left_li_half li_half_row">
+							<span>Get time</span>
+							<p><span id="get-time">--</span></p>
+						</li>
+						<li class="mui-table-view-cell right_li_half li_half_row">
+							<span>Deadline</span>
+							<p><span id="deadline">--</span></p>
+						</li>
+					</div>
 				</ul>
-				
 				<div class="table-diviver"></div>
 				
 				<ul class="mui-table-view" id="ul2">
-					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width addl15mar">From</span>
-						<span id="sendaddr" class="mui-ellipsis content-length addl15mar">--</span>
+					<li class="mui-table-view-cell">
+						<div class="li_left_title">From</div>
+						<span id="sendaddr" >--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width addl15mar">TO</span>
-						<span id="receiveaddr" class="mui-ellipsis content-length addl15mar">--</span>
+						<div class="li_left_title">TO</div>
+						<span id="receiveaddr" >--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width addl15mar">Value</span>
-						<span id="gvalue" class="mui-ellipsis content-length addl15mar">--</span>
+						<div class="li_left_title">Value</div>
+						<span id="gvalue" >--</span>
 					</li>
 					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width addl15mar">Desc</span>
-						<span id="info" class="mui-ellipsis content-length addl15mar">--</span>
+						<div class="li_left_title">Desc</div>
+						<span id="info">--</span>
 					</li>
 					<div id="picwrap"></div>
 				</ul>
 			</div>
 		</div>
 	</div>
-
-	 <!--加载中的蒙层--> 
-	<!--<div id="loading-mask"></div>
-	<div id="loading-box">
-		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
-	</div>-->
-	
 	<script src="../../js/jquery.min.js" ></script>
 	<script src="../../js/utils.js"></script>
 	<script src="../../js/getorder/get-detail.js"></script>
