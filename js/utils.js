@@ -184,7 +184,7 @@ function openwindowloading(){
 	img.style.border = '0px'
 	div.appendChild(loading);
 	loading.appendChild(img);
-	img.src = './img/loading2.gif'
+	img.src = './loading2.gif'
 	div.style.backgroundColor = "rgba(255,255,255,0.4)";
 	div.style.position = 'absolute';
 	div.style.top = '0px';
