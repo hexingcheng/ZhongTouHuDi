@@ -135,7 +135,7 @@ function openWindow(url, param, ani, time) {
 		openwindowloading()
 		var snum, id;
 		var animationType = ani || 'slide-in-right';
-		var animationTime = time || 150;
+		var animationTime = time || 300;
 		param = param || {};
 		var pnum = url.indexOf('.html');
 		if (url.indexOf('page') != -1) {
@@ -150,6 +150,7 @@ function openWindow(url, param, ani, time) {
 				url: url,
 				extras: param,
 				show: {
+					autoShow: true,
 					aniShow: animationType,
 					duration: animationTime
 				},
@@ -162,7 +163,7 @@ function openWindow(url, param, ani, time) {
 				}
 			})
 		} else {
-			alert(0)
+			alert('system is not ready')
 		}
 		removeloading()
 	}
