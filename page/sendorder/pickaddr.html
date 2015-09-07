@@ -24,7 +24,7 @@
 			}
 			.hand-map {
 				position: absolute;
-				top: 44px;
+				top: 52px;
 				padding: 5px;
 				z-index: 10000;
 			}
@@ -103,12 +103,37 @@
 			#chooseaddr {
 				line-height: 40px;
 			}
+			#head{
+				height: 52px;
+				padding: 0;
+			}
+			.mui-bar-nav~.mui-content{
+				padding-top: 52px;
+			}
+			.new-icon{
+				height: 52px;
+				width: 52px;
+			}
+			.new-icon img{
+				height: 40px;
+				width: 40px;
+				margin: 6px;
+			}
+			#head h1{
+				line-height: 52px;
+				font-size: 16px;
+				text-align: left;
+				padding-left: 20px;
+			}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<header class="mui-bar mui-bar-nav" id="head">
+			<!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+			<span class="new-icon mui-pull-left mui-action-back">
+				<img src="../../img/left.png"/>
+			</span>
 			<h1 class="mui-title">Trip plan</h1>
 		</header>
 	</body>
@@ -122,7 +147,7 @@
 				<div class="clear sear">
 					<div class="fl wid15 hei60 mui-text-center"><span class="mui-icon mui-icon-search linehei40"></span></div>
 					<div class="fl wid85 hei60 addbor">
-						<div id="chooseaddr">查询地址中....</div>
+						<div id="chooseaddr">查询地址中</div>
 					</div>
 				</div>
 				<div class="clear smap">
@@ -141,61 +166,21 @@
 	</div>
 	<script type="text/javascript" src="../../js/jquery.min.js"></script>
 	<script src="../../js/utils.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbxX3v0OCgYabsgQcUjrQlF4rGhlL7-2Y&v=3.exp&language=zh-CN&signed_in=true&libraries=places"></script>
 	<script type="text/javascript" charset="utf-8">
-		mui.init();
-		var mymap
-		function initialize(lat, lng) {
-			mymap = new google.maps.Map(document.getElementById('map-canvas'), {
-				zoom: 17,
-				center: {
-					lat: lat,
-					lng: lng
-				}
-			});
-			var marker = new google.maps.Marker({
-				map: mymap,
-				position: mymap.getCenter()
-			});
-			var geocoder = new google.maps.Geocoder;
-			geocodeLatLng(geocoder, mymap, lat, lng)
-		}
-
-		function geocodeLatLng(geocoder, map, lat, lng) {
-			var latlng = {
-				lat: lat,
-				lng: lng
-			};
-			geocoder.geocode({
-				'location': latlng
-			}, function(results, status) {
-				if (status === google.maps.GeocoderStatus.OK) {
-					if (results[1]) {
-						$('#chooseaddr').text(results[1].formatted_address)
-					} else {
-						alert('No results found');
-					}
-				} else {
-					window.alert('Geocoder failed due to: ' + status);
-				}
-			});
-		}
-		mui.plusReady(function() {
-			var clocation;
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(function(position) {
-					showobj(position.coords)
-					var lat = position.coords.latitude;
-					var lng = position.coords.longitude;
-					initialize(lat, lng)
-				}, function(e) {
-					mui.toast('获取位置信息失败')
-				}, {
-					enableHighAcuracy: true
-				})
-			} else {
-				mui.toast('获取位置信息失败')
+		mui.init({
+			gestureConfig: {
+				doubletap: true
 			}
+		});
+		
+		mui.plusReady(function() {
+			embed = plus.webview.create("./mapcontent.html", "mapcontent", {
+					top: "144px",
+					bottom: "60px"
+			});
+			plus.webview.currentWebview().append(embed);
+			var clocation;
+			
 			document.getElementById('chooseaddr').addEventListener('tap', function() {
 				openWindow('./chooseaddr.html');
 			})
@@ -204,7 +189,7 @@
 				var nextcreate = plus.webview.getWebviewById('create-next');
 				mui.fire(nextcreate, 'getaddrs', {
 					"addrs": myaddr,
-					"mylocation":clocation
+					"mylocation": clocation
 				});
 				plus.webview.currentWebview().close();
 				nextcreate.show('slide-in-left');
@@ -214,7 +199,7 @@
 				$('#chooseaddr').text(addr);
 				clocation = eve.detail.clocation;
 				mymap.setCenter(clocation);
-      			mymap.setZoom(17)
+				mymap.setZoom(17)
 			})
 		})
 	</script>

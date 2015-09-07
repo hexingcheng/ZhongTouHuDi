@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../../js/mui.min.js"></script>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+    <style>
+    	html,body，#map-canvas{
+    		height: 100%;
+    		width: 100%;
+    	}
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbxX3v0OCgYabsgQcUjrQlF4rGhlL7-2Y&v=3.exp&language=zh-CN&signed_in=true&libraries=places"></script>
+    <script src="../../js/utils.js"></script>
+</head>
+<body>
+	<div id="map-canvas">111</div>
+	     <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	var mymap
+		alert(1)
+		function initialize(lat, lng) {
+			mymap = new google.maps.Map(document.getElementById('map-canvas'), {
+				zoom: 17,
+				center: {
+					lat: lat,
+					lng: lng
+				}
+			});
+			alert(lat)
+			var marker = new google.maps.Marker({
+				map: mymap,
+				position: mymap.getCenter()
+			});
+			var geocoder = new google.maps.Geocoder;
+			geocodeLatLng(geocoder, mymap, lat, lng)
+		}
+
+		function geocodeLatLng(geocoder, map, lat, lng) {
+			var latlng = {
+				lat: lat,
+				lng: lng
+			};
+			geocoder.geocode({
+				'location': latlng
+			}, function(results, status) {
+				if (status === google.maps.GeocoderStatus.OK) {
+					if (results[1]) {
+						$('#chooseaddr').text(results[1].formatted_address)
+					} else {
+						alert('No results found');
+					}
+				} else {
+					window.alert('Geocoder failed due to: ' + status);
+				}
+			});
+		}
+      	mui.plusReady(function(){
+      		if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position) {
+					var lat = position.coords.latitude;
+					var lng = position.coords.longitude;
+					initialize(lat, lng)
+				}, function(e) {
+					mui.toast('获取位置信息失败')
+				}, {
+					enableHighAcuracy: true
+				})
+			} else {
+				mui.toast('获取位置信息失败')
+			}
+      	})
+    </script>
+</body>
+</html>

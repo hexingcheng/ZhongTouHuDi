@@ -66,7 +66,7 @@ function innerAjax(options,successcb,errorcb) {
 		type:'post',
 		url:'',
 		data:{},
-		wait:true
+		wait:false
 	};
 	copyobj(options,op);
 	if(op.wait){
@@ -132,34 +132,10 @@ function copyobj(from,to){
 	}
 }
 function openWindow(url, param, ani, time) {
-		var div = document.createElement('div');
-		var loading = document.createElement('div');
-		var img = document.createElement('img');
-		img.style.width = '80px';
-		img.style.height = '80px';
-		loading.style.position = 'absolute';
-		loading.style.top = "50%"
-		loading.style.left = '50%'
-		loading.style.width = '80px'
-		loading.style.height = '80px'
-		loading.style.marginLeft = '-40px'
-		loading.style.marginTop = '-40px'
-		img.style.border = '0px'
-		div.appendChild(loading);
-		loading.appendChild(img);
-		img.src = './img/loading2.gif'
-		div.style.backgroundColor = "rgba(255,255,255,0.4)";
-		div.style.position = 'absolute';
-		div.style.top = '0px';
-		div.style.left = '0px';
-		div.style.right = '0px';
-		div.style.bottom = '0px';
-		div.style.zIndex = 10000;
-		
-		document.getElementsByTagName('body')[0].appendChild(div)
+		openwindowloading()
 		var snum, id;
 		var animationType = ani || 'slide-in-right';
-		var animationTime = time || 150;
+		var animationTime = time || 300;
 		param = param || {};
 		var pnum = url.indexOf('.html');
 		if (url.indexOf('page') != -1) {
@@ -174,6 +150,7 @@ function openWindow(url, param, ani, time) {
 				url: url,
 				extras: param,
 				show: {
+					autoShow: true,
 					aniShow: animationType,
 					duration: animationTime
 				},
@@ -186,14 +163,44 @@ function openWindow(url, param, ani, time) {
 				}
 			})
 		} else {
-			alert(0)
+			alert('system is not ready')
 		}
-		setTimeout(function(){
-			document.getElementsByTagName('body')[0].removeChild(div)
-		},500)
+		removeloading()
 	}
 	// for test
-
+function openwindowloading(){
+	var div = document.createElement('div');
+	div.id = 'openwindowloading'
+	var loading = document.createElement('div');
+	var img = document.createElement('img');
+	img.style.width = '80px';
+	img.style.height = '80px';
+	loading.style.position = 'absolute';
+	loading.style.top = "50%"
+	loading.style.left = '50%'
+	loading.style.width = '80px'
+	loading.style.height = '80px'
+	loading.style.marginLeft = '-40px'
+	loading.style.marginTop = '-40px'
+	img.style.border = '0px'
+	div.appendChild(loading);
+	loading.appendChild(img);
+	img.src = './loading2.gif'
+	div.style.backgroundColor = "rgba(255,255,255,0.4)";
+	div.style.position = 'absolute';
+	div.style.top = '0px';
+	div.style.left = '0px';
+	div.style.right = '0px';
+	div.style.bottom = '0px';
+	div.style.zIndex = 10000;
+	document.getElementsByTagName('body')[0].appendChild(div);
+}
+function removeloading(){
+	var loading = document.getElementById('openwindowloading');
+	setTimeout(function(){
+			document.getElementsByTagName('body')[0].removeChild(loading)
+		},500)
+}
 function openNewWindow(url, param, ani, time) {
 	var snum, id;
 	var animationType = ani || 'slide-in-right';

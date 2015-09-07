@@ -6,14 +6,21 @@ mui.plusReady(function() {
 	var orderid = plus.storage.getItem("my-send-order") || cpage.orderId;
 	
 	sendmsg(orderid);
-
+	
+		// 重新发布
+	var sendorder = plus.webview.getWebviewById("mysendorder/my-send-order") || 
+					plus.webview.getWebviewById("my-send-order") || 
+					plus.webview.currentWebview().opener();
+	
 	// 对不同情况下进行不同的回退功能
 	if(cpage.orderId){
 		mui.back = function(){
-			openWindow("./my-send-order.html");
-			setTimeout(function(){
-				plus.webview.close(cpage, "none", 0);
-			}, 2000)
+			mui.fire(sendorder, "refresh:data")
+			plus.webview.show(sendorder, "slide-in-left", 300,function(){
+				setTimeout(function(){
+					plus.webview.close(cpage, "none", 0);
+				}, 300)
+			})
 		}
 	}
 
@@ -41,10 +48,7 @@ mui.plusReady(function() {
 
 	})
 
-	// 重新发布
-	var sendorder = plus.webview.getWebviewById("mysendorder/my-send-order") || 
-					plus.webview.getWebviewById("my-send-order") || 
-					plus.webview.currentWebview().opener();
+
 	document.getElementById("resend-btn").addEventListener("tap", function() {
 		myAjax({
 			url: "order/release",
@@ -54,12 +58,15 @@ mui.plusReady(function() {
 		}, function(data) {
 			if (data.ret == 1) {
 				mui.toast("发布成功")
-				mui.fire(sendorder, "refresh:data"); 	// 触发自定义事件进行数据的刷新
-				plus.webview.show(sendorder, "slide-in-left", 200);
-				setTimeout(function() {
-					plus.webview.close(cpage, "none", 0)
-				}, 1000)
+			} else if(data.ret == 2){
+				mui.toast("发布失败，检查订单信息")
 			}
+			mui.fire(sendorder, "refresh:alldata")
+			plus.webview.show(sendorder, "slide-in-left", 300,function(){
+				setTimeout(function(){
+					plus.webview.close(cpage, "none", 0);
+				}, 300)
+			})
 		}, function(xhr, type) {
 			console.log(xhr.status);
 		})
@@ -117,19 +124,7 @@ function sendmsg(orderid) {
 
 		// 300毫秒之后清除等待框
 		setTimeout(function() {
-			var lmask = document.getElementById("loading-mask");
-			var lbox = document.getElementById("loading-box");
-			var mcl = lmask.classList;
-			var bcl = lbox.classList;
-			mcl.add("fade-out");
-			bcl.add("fade-out");
-			// 过渡动画结束的时候执行该事件
-			lmask.addEventListener("webkitTransitionEnd", function() {
-				document.getElementById("loading-mask").style.display = "none";
-				document.getElementById("loading-box").style.display = "none";
-				mcl.remove("fade-out");
-				bcl.remove("fade-out");
-			}, false)
+			closeMask();
 		}, 300)
 	}, function(xhr, type) {
 		console.log(type);

@@ -138,7 +138,7 @@
 									plus.storage.removeItem('personinfo')
 								}
 								setstorage('personinfo', JSON.stringify(data.res));
-								console.log(getstorage('personinfo'))
+								console.log(getstorage('personinfo'));
 								var index = plus.webview.getLaunchWebview();
 								mui.fire(index,"setaccount", data.res);
 								setTimeout(function(){
