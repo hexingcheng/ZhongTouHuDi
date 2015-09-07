@@ -16,12 +16,6 @@ input-box input:hover {
 .rang-slider-bar {
 	padding: 1.3em 0;
 }
-.mui-btn.button-first {
-	background-color: #31a25f;
-}
-.mui-btn.button-next {
-	background-color: #ff8474;
-}
 .mui-button-row button {
 	color: #bdbdbd;
 }

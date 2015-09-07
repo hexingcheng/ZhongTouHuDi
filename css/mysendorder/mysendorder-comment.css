@@ -53,6 +53,9 @@ footer.mui-bar {
 }
 footer.mui-bar .mui-btn {
 	top: 0;
+	border: none;
+	outline: none;
+	border-radius: 0;
 }
 .mui-btn.mui-btn-block {
 	padding: 14px 0;

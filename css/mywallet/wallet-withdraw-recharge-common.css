@@ -15,9 +15,15 @@
 	font-size: 1.5em;
 }
 .mui-btn.button-next {
-	background-color: #ff8474;
+	background-color: #06495a;
 	color: #fff;
-	padding: 13px 35%;
+	padding: 14px 0;
+	width: 90%;
+}
+footer.mui-bar .mui-btn {
+	border: none;
+	outline: none;
+	border-radius: 0;
 }
 .amount-label {
 	padding: 0.5em 0 0 0;
@@ -65,7 +71,7 @@
 }
 div.mui-scroll-wrapper {
 	top: 259px;
-	bottom: 3.5em;
+	bottom: 64px;
 }
 #type-container .mui-table-view-cell {
 	padding: 0;

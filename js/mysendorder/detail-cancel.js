@@ -19,13 +19,25 @@ mui.plusReady(function() {
 
 	// 重新编辑
 	document.getElementById("edit-btn").addEventListener("tap", function() {
-		openWindow("../sendorder/createorder.html", {
-			orderId: orderid
+		myAjax({
+			url : "order/goodShow",
+			data : {
+				"orderId": orderid,
+				"type": "send"
+			},
+			wait : false
+		}, function(data){
+			plus.storage.setItem("draft-datas", JSON.stringify(data))
+			openWindow("../sendorder/createorder.html", {
+				type : "cancel"
+			})
+			setTimeout(function() {
+				plus.webview.getWebviewById("mysendorder/my-send-order").close("none", 0);
+				plus.webview.getWebviewById("mysendorder-detail-cancel").close("none", 0);
+				plus.webview.close(cpage, "none", 0)
+			}, 1000)
+			plus.storage.removeItem("my-send-order")
 		})
-		setTimeout(function() {
-			plus.webview.close(cpage, "none", 0)
-		}, 1000)
-		plus.storage.removeItem("my-send-order")
 
 	})
 
