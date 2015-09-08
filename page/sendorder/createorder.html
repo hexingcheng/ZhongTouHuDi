@@ -223,9 +223,15 @@
 			.backmask {
 				width: 100%;
 				height: 100%;
-				position: absolute;
 				z-index: 30;
+			}
+			.presee {
+				position: fixed;
 				background-color: rgba(0, 0, 0, 1);
+			}
+			.backmask {
+				position: absolute;
+				background-color: rgba(0, 0, 0, .5);
 			}
 			.picwraps {
 				position: absolute;
@@ -398,6 +404,9 @@
 			#take-photo img {
 				width: 100%;height: 100%;
 			}
+			.loading-mask {position: absolute;left: 0;top: 52px;bottom: 0;right: 0;z-index: 998;background: rgba(255,255,255,1);}
+			.loading-mask .loading-img {width: 80px;height: 80px;position: absolute;top: 50%;left: 50%;margin-left: -40px;margin-top: -40px;}
+			.loading-mask .loading-img img{width: 100%;height: 100%;}
 		</style>
 	</head>
 
@@ -412,6 +421,13 @@
 		<footer class="mui-bar mui-bar-footer" id="footer">
 			<div class="next-step" id="next">Next Step</div>
 		</footer>
+		
+		<div class="loading-mask mui-hidden">
+			<div class="loading-img">
+				<img src="../../img/loading2.gif"/>
+			</div>
+		</div>
+		
 		<div class="presee mui-hidden">
 			<div class="picwraps">
 				<div class="mui-slider" id="slider">
@@ -682,10 +698,12 @@
 			$('.bycamera').on('tap', function() {
 				bycamera(_this)
 				mui('#delete').popover('toggle')
+				$(".loading-mask").removeClass("mui-hidden");
 			})
 			$('.bygallery').on('tap', function() {
 				bygallery(_this);
 				mui('#delete').popover('toggle')
+				$(".loading-mask").removeClass("mui-hidden");
 			})
 			$('.draft').on('tap', function() {
 				openWindow('./draft.html')
@@ -816,6 +834,9 @@
 							break;
 						}
 					}
+					setTimeout(function(){
+						$(".loading-mask").addClass("mui-hidden");
+					}, 500)
 					$('img', '.wids').css({
 						width: iw,
 						height: iw
@@ -845,6 +866,9 @@
 						height: iw
 					})
 					$(context).remove();
+					setTimeout(function(){
+						$(".loading-mask").addClass("mui-hidden");
+					}, 50)
 				}, function(xhr, type) {
 					console.log("错误信息显示：" + type);
 					errorhandle(type);
@@ -924,7 +948,6 @@
 			}
 			window.addEventListener('getdraftdata', function(eve) {
 				var datas = eve.detail.formdatas;
-				console.log('hehehe')
 				showobj(datas);
 			})
 			window.addEventListener('getdraft', function(eve) {
