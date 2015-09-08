@@ -27,7 +27,7 @@ mui.plusReady(function() {
 		$('#order-mask').addClass('mui-hidden');
 		$('#markups').addClass('mui-hidden');
 	}, false)
-
+  
 	var order = JSON.parse(plus.storage.getItem("order"));
 
 	// 议价弹出层
@@ -121,7 +121,8 @@ mui.plusReady(function() {
 	})
 	
 		// 页面加载时，获取数据
-	refreshdata();
+	refreshdata(); 
+	alert(1)
 	function refreshdata() {
 		myAjax({
 			url: "order/goodShow",
@@ -130,7 +131,8 @@ mui.plusReady(function() {
 				type: "comm"
 			}
 		}, function(data) {
-			showobj(data.res.pics[0]);
+		alert(JSON.stringify(data));    
+//			showobj(data.res.pics[0]);
 			$(".goods-name").html(data.res.gName); // 货物名称
 			$("#goods-value").html(data.res.money); // 价值
 			$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
@@ -141,6 +143,7 @@ mui.plusReady(function() {
 			$("#gvalue").html(data.res.gValue); // value
 			$("#info").html(data.res.info); // 信息描述
 			var pic = data.res.pics;
+			alert(JSON.stringify(data.res.pics))
 			$('.rewrod').text(data.res.money)
 			$('.rel').text(data.res.money)
 			var n = BASEURL.indexOf('/api/');
@@ -148,7 +151,7 @@ mui.plusReady(function() {
 			var len = pic.length;
 			if (len > 0) {
 				for (var i = 0; i < len; i++) {
-					var url = per + pic[i].path;
+					var url = per + pic[i].path;   
 					console.log(url)
 					$('<img class="picture" src="' + url + '">').appendTo('#picwrap');
 				}
