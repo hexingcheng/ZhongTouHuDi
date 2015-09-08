@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css"/>
     <link rel="stylesheet" href="../../fonts/iconfont-star.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/mysendorder/order-comment.css"/>
+    <link rel="stylesheet" href="../../css/share_main.css" />
     <script src="../../js/mui.min.js"></script>
 </head>
 <body>
-	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">Order Comment</h1>
+	<header class="mui-bar mui-bar-nav nav_header">
+		<img src="../../img/left.png" class="mui-action-back header_left_img" alt="" />
+		<span>Order Comment</span>
 	</header>
 	<div class="mui-content">
 		<div class="mui-content-padded">Description evalution</div>
@@ -23,7 +24,7 @@
 					<label>
 						<span class="mui-icon mui-icon-pengyouquan icon-font"></span>
 						<span class="g-name">Name</span>
-					</label>
+					</label>  
 					<div class="mui-pull-left gName mui-ellipsis">Flower</div>
 				</div>
 				<div class="mui-input-row">
@@ -52,8 +53,13 @@
 		</ul>
 	</div>
 	
-	<footer id="footer-cancel" style="height: 64px;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="comment-order" class="mui-btn mui-btn-block">comment</button>
+	<!--<footer id="footer-cancel" style="height: 64px;" class="mui-bar mui-bar-footer mui-text-center bg-color">
+		<button class="mui-btn mui-btn-block">comment</button>
+	</footer>-->
+	<footer class="mui-bar mui-bar-footer">
+		<div class="nav_footer" id="comment-order" >
+			<span>comment</span>
+		</div>
 	</footer>
 	<script src="../../js/utils.js"></script>
     <script src="../../js/mysendorder/order-comment.js"></script>

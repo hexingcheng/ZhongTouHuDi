@@ -1,4 +1,4 @@
-body{
+body,.mui-content{
 	background-color: #fff;
 	font-size: 14px;
 	color: #000;
@@ -6,6 +6,11 @@ body{
 .bg_white{
 	background-color: #fff !important;
 }
+/*header与content**/
+.top_header{
+	margin-top: 8px;
+}
+
 /*页面nav*/
 .nav_header{
 	height: 52px;
@@ -32,6 +37,7 @@ body{
 .mui-bar-footer{
 	background-color:#fff;
 	height: 64px;
+	padding: 0 !important;
 	position: absolute;  
 }
 .mui-bar-footer .nav_footer{

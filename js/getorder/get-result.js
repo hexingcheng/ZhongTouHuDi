@@ -21,7 +21,7 @@ mui.plusReady(function() {
 			plus.webview.currentWebview().close();
 		}, 1000)
 	}, false)
-	$('.button-first').on('tap',function(){
+	$('.left_button').on('tap',function(){
 		plus.webview.getLaunchWebview().show('slide-in-left',200,function(){
 			setTimeout(function(){
 				closeweb();
