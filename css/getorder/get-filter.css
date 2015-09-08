@@ -10,13 +10,13 @@ body {
 	border: none;
 }
 .input-box input:focus,
-input-box input:hover {
+.input-box input:hover {
 	background-color: #ddffeb;
 }
 .rang-slider-bar {
 	padding: 1.3em 0;
 }
-.mui-button-row button {
+/*.mui-button-row button {
 	color: #bdbdbd;
 }
 .mui-button-row button:nth-child(3),
@@ -26,4 +26,44 @@ input-box input:hover {
 .mui-button-row .active-color {
 	color: #35a462;
 	border-color: #37a563;
+}*/
+    	/*foorter nav*/
+
+
+/*foorter nav*/
+.mui-bar-footer{
+	background-color:#fff;
+	height: 64px;
+	position: absolute;  
+}
+.mui-bar-footer .nav_footer{
+	width: 80%;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	color:#fff;
+	background-color: #fff;  
+	margin: 8px auto;  
+	text-align:center;
+}
+.nav_footer .left_button{
+	width: 47%;
+	height: 48px;
+	text-align: center;
+	color: #fff;
+	float: left;
+	background-color: #054859; 
+}
+.nav_footer .mui-btn{
+	padding: 0;
+	top: 0;
+}
+.nav_footer .right_button{
+	width: 47%;
+	height: 48px;
+	line-height: 48px;
+	color: #fff;
+	text-align: center;
+	float: right;
+	background-color: #FC614D;
 }

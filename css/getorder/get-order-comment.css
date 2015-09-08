@@ -102,4 +102,39 @@ footer.mui-bar .mui-btn {
 	height: 25em;
 	background-size: 30% 40%;
 }
-footer.mui-bar {box-shadow: 0 0 1px #40AA53;}
+.mui-bar-footer{
+	background-color:#fff;
+	height: 64px;
+	position: absolute;  
+}
+.mui-bar-footer .nav_footer{
+	width: 80%;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	color:#fff;
+	background-color: #fff;  
+	margin: 8px auto;  
+	text-align:center;
+}
+.nav_footer .left_button{
+	width: 47%;
+	height: 48px;
+	text-align: center;
+	color: #fff;
+	float: left;
+	background-color: #054859; 
+}
+.nav_footer .mui-btn{
+	padding: 0;
+	top: 0;
+}
+.nav_footer .right_button{
+	width: 47%;
+	height: 48px;
+	line-height: 48px;
+	color: #fff;
+	text-align: center;
+	float: right;
+	background-color: #FC614D;
+}
