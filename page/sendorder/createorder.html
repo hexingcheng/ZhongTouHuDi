@@ -524,10 +524,10 @@
 		<div id="delete" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a class="bycamera">拍照</a>
+					<a class="bycamera" data-type="camera">拍照</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a class="bygallery">相册</a>
+					<a class="bygallery" data-type="gallery">相册</a>
 				</li>
 			</ul>
 			<ul class="mui-table-view">
@@ -750,6 +750,7 @@
 			$('.presee').on('tap', function() {
 				$(this).addClass('mui-hidden')
 			})
+			var type = null;
 			$('.bycamera').on('tap', function() {
 				bycamera(_this)
 				mui('#delete').popover('toggle')
@@ -820,6 +821,7 @@
 					dealpic(path, contexts)
 				}, function() {
 					$(contexts).parent().attr('href', "#delete");
+					$(".loading-mask").addClass("mui-hidden");
 				})
 			}
 
@@ -838,9 +840,8 @@
 			}
 
 			function bygallery(context) {
-				$(context).parent().attr('href', "#");
+//				$(context).parent().attr('href', "#");
 				plus.gallery.pick(function(eve) {
-					
 					for (var i = 0, len = eve.files.length; i < len; i++) {
 						(function(i, len) {
 							plus.io.resolveLocalFileSystemURL(eve.files[i], function(entry) {
@@ -860,6 +861,7 @@
 					
 				}, function(e) {
 					$(context).parent().attr('href', "#delete");
+					$(".loading-mask").addClass("mui-hidden");
 				}, {
 					filter: 'image',
 					multiple: true
@@ -898,6 +900,7 @@
 					})
 				}, function(xhr, type) {
 					console.log("错误信息显示：" + type);
+					$(".loading-mask").addClass("mui-hidden");
 					errorhandle(type);
 				})
 			}
