@@ -547,10 +547,10 @@
 		<div id="delete" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a class="bycamera">拍照</a>
+					<a class="bycamera" data-type="camera">拍照</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a class="bygallery">相册</a>
+					<a class="bygallery" data-type="gallery">相册</a>
 				</li>
 			</ul>
 			<ul class="mui-table-view">
@@ -773,6 +773,7 @@
 			$('.presee').on('tap', function() {
 				$(this).addClass('mui-hidden')
 			})
+			var type = null;
 			$('.bycamera').on('tap', function() {
 				bycamera(_this)
 				mui('#delete').popover('toggle')
@@ -843,6 +844,7 @@
 					dealpic(path, contexts)
 				}, function() {
 					$(contexts).parent().attr('href', "#delete");
+					$(".loading-mask").addClass("mui-hidden");
 				})
 			}
 
@@ -861,6 +863,7 @@
 			}
 
 			function bygallery(context) {
+<<<<<<< HEAD
 					$(context).parent().attr('href', "#");
 					plus.gallery.pick(function(eve) {
 						for (var i = 0, len = eve.files.length; i < len; i++) {
@@ -881,6 +884,57 @@
 										})
 								})
 							})(i, len)
+=======
+//				$(context).parent().attr('href', "#");
+				plus.gallery.pick(function(eve) {
+					for (var i = 0, len = eve.files.length; i < len; i++) {
+						(function(i, len) {
+							plus.io.resolveLocalFileSystemURL(eve.files[i], function(entry) {
+								var local = entry.toLocalURL(); // 获取本地地址
+								// 图片压缩处理
+								dealImage(local, {width: 17 * 4,quality: 0.5}, 
+									function(base) {
+										var obj = {
+											path : local,
+											base : base
+										}
+										sendImgData(obj)
+								})
+							})
+						})(i, len)
+					}
+					
+				}, function(e) {
+					$(context).parent().attr('href', "#delete");
+					$(".loading-mask").addClass("mui-hidden");
+				}, {
+					filter: 'image',
+					multiple: true
+				})
+			}
+			
+			// 多张选择照片上传
+			function sendImgData(datas){
+				myAjax({
+					url: "common/file/imgUp",
+					data: {
+						imgName: Math.floor(Math.random() * 1000)+""+(new Date().getTime()) + ".jpg",
+						imgData: datas.base, // base字符串
+						dataLength: datas.base.length // base字符串长度
+					},
+					wait : false
+				}, function(data) {
+					var img = '<span class="wids"><img title=' + datas.path + ' src=' + datas.base + ' alt=' + data.res.fid + '></span>';
+//					console.log(datas.path);
+//					$(context).parent().append(img);
+					var picimg = $("#take-photo").find(".pic-img")
+					for(var i = 0; i < picimg.size(); i++){
+//						console.log(picimg.eq(i).find("img").size())
+						if(picimg.eq(i).find("img").size() == 0){
+							picimg.eq(i).html(img);
+							picimg.eq(i).attr("href", "javascript:void(0);")
+							break;
+>>>>>>> fea6cdf8aa14b6f6518c17143199c4e4e6bd7b92
 						}
 					}, function(e) {
 						$(context).parent().attr('href', "#delete");
@@ -888,6 +942,7 @@
 						filter: 'image',
 						multiple: true
 					})
+<<<<<<< HEAD
 				}
 				// 多张选择照片上传
 
@@ -927,6 +982,16 @@
 				}
 				// 照相获取图片上传
 
+=======
+				}, function(xhr, type) {
+					console.log("错误信息显示：" + type);
+					$(".loading-mask").addClass("mui-hidden");
+					errorhandle(type);
+				})
+			}
+			
+			// 照相获取图片上传
+>>>>>>> fea6cdf8aa14b6f6518c17143199c4e4e6bd7b92
 			function sendData(urls, base, context, path) {
 				var pics
 				myAjax({
