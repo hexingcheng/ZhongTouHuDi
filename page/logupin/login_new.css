@@ -1,13 +1,61 @@
 body{
 	background-color: #EBEEF4 !important;
 }
-.login_headr {
-	width: 100%;
+/*页面nav*/
+.nav_header{
 	height: 52px;
 	line-height: 52px;
 	font-size: 16px;
-	background-color: #33A360;
-	color: white;
+	text-align: left;
+	color: #fff;
+	background-color: #44AB6E;
+	box-shadow: none;
+}
+.nav_header .header_left_img{
+	width: 34px;
+	height: 34px;
+	float: left;
+	margin: 9px 9px 9px 0; 
+}  
+.nav_header .header_right_img{
+	width: 34px;
+	height: 34px;
+	float: right;
+	margin: 9px 0 9px 9px; 
+}
+/*foorter nav*/
+.mui-bar-footer{
+	background-color:#fff;
+	height: 64px;
+	padding: 0 !important;
+	position: absolute;  
+}
+.mui-bar-footer .nav_footer{
+	width: 80%;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	color:#fff;
+	background-color: #054859;  
+	margin: 8px auto;  
+	text-align:center;
+}
+
+.nav_footer .left_button{
+	width: 47%;
+	height: 48px;
+	text-align: center;
+	color: #fff;
+	float: left;
+	background-color: #06495a;
+}
+.nav_footer .right_button{
+	width: 47%;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	float: right;
+	background-color: #fc614d;
 }
 .login_info .login_checkbox_on{
     width: 17px;
@@ -155,16 +203,6 @@ body{
 .login_loginfo{
 	font-size: 16px;
 	color: #034657;
-}
-.login_button {
-	width: 80%;
-	height: 48px;
-	font-size: 16px;
-	line-height: 48px;
-	color: white;
-	margin: 0 auto .2em auto;
-	text-align: center;
-	background-color: #054859;
 }
 .border {
 	border: 1px solid red;
