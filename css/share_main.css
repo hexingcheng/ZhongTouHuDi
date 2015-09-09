@@ -8,9 +8,11 @@ body,.mui-content{
 }
 /*header与content**/
 .top_header{
-	margin-top: 8px;
+	margin-top: -8px;
 }
-
+.font16{
+	font-size: 16px;
+}
 /*页面nav*/
 .nav_header{
 	height: 52px;
@@ -56,7 +58,7 @@ body,.mui-content{
 	text-align: center;
 	color: #fff;
 	float: left;
-	
+	background-color: #06495a;
 }
 .nav_footer .right_button{
 	width: 47%;
@@ -64,6 +66,7 @@ body,.mui-content{
 	line-height: 48px;
 	text-align: center;
 	float: right;
+	background-color: #fc614d;
 }
 /*三列布局*/
 .mui-table-view .mui-table-view-cell{
@@ -100,7 +103,7 @@ body,.mui-content{
 	overflow: hidden;
 }
 .mui-table-view-cell input{
-	width: 100%;
+	width: 100% !important;
 	height: 50px;
 	padding-left: 0;
 	padding-right: 0;

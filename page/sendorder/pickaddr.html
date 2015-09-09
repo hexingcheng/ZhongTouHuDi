@@ -177,7 +177,6 @@
 			});
 			plus.webview.currentWebview().append(embed);
 			var clocation;
-			
 			document.getElementById('chooseaddr').addEventListener('tap', function() {
 				openWindow('./chooseaddr.html');
 			})
@@ -189,14 +188,15 @@
 					"mylocation": clocation
 				});
 				plus.webview.currentWebview().close();
-				nextcreate.show('slide-in-left');
+				nextcreate.show('slide-in-left',300);
 			})
 			window.addEventListener('getaddr', function(eve) {
 				var addr = eve.detail.addr;
 				$('#chooseaddr').text(addr);
-				clocation = eve.detail.clocation;
-				mymap.setCenter(clocation);
-				mymap.setZoom(17)
+				var param = {
+					location:eve.detail.clocation
+				}
+				mui.fire(embed,'changemap',param);
 			})
 		})
 	</script>
