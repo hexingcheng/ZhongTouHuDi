@@ -28,7 +28,7 @@ body{
 	background-color:#fff;
 	height: 64px;
 	padding: 0 !important;
-	position: absolute;  
+	position: fixed;  
 }
 .mui-bar-footer .nav_footer{
 	width: 80%;

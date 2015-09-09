@@ -55,6 +55,7 @@
 		<script type="text/javascript">
 			mui.plusReady(function() {
 				//open findpass address
+				plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
 				$('#log_up').on('tap', function() {
 					openWindow('./productName.html')
 				});
