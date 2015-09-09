@@ -25,7 +25,7 @@
 			}
 			.hand-map {
 				position: absolute;
-				top: 44px;
+				top: 52px;
 				padding: 5px;
 			}
 			.hand-detial {
@@ -91,12 +91,26 @@
 				background-color: #ff8474;
 				color: #fce7e4;
 			}
+			#head{
+				padding: 0;
+			}
+			.icon{
+				width: 52px;
+				height: 52px;
+			}
+			.icon img{
+				height: 40px;
+				width: 40px;
+				margin: 6px;
+			}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<header class="mui-bar mui-bar-nav" id="head">
+			<span class="mui-action-back mui-pull-left icon">
+				<img src="../../img/left.png"/>
+			</span>
 			<h1 class="mui-title">Trip plan</h1>
 		</header>
 		<footer class="mui-bar mui-bar-footer" id="footer">
@@ -106,14 +120,14 @@
 		<div class="mui-content">
 			<div class="hand-map">
 				<div class="hand-detial">
-					<div class="clear sear">
+					<!--<div class="clear sear">
 						<div class="fl wid15 hei60 mui-text-center"><span class="mui-icon mui-icon-location linehei40"></span></div>
 						<div class="fl wid85 hei60 addbor">
 							<div class="mui-input-row">
 								<input placeholder="choose address" class="mui-input-clear" type="text" id="chooseaddr">
 							</div>
 						</div>
-					</div>
+					</div>-->
 					<div class="clear smap">
 						<div class="fl wid15 hei60 mui-text-center"><span class="mui-icon mui-icon-search linehei40"></span></div>
 						<div class="fl wid85 hei60">
@@ -133,17 +147,18 @@
 				var clocation;
 				var input = (document.getElementById('pac-input'));
 				var autocomplete = new google.maps.places.Autocomplete(input);
-				autocomplete.addListener('place_changed', function() {
+				autocomplete.addListener('place_changed', function(e) {
+					showobj(e)
 					var place = autocomplete.getPlace();
 					clocation = place.geometry.location;
 				})
-				document.getElementById('chooseaddr').addEventListener('blur', function() {
-					document.getElementById('pac-input').value = document.getElementById('chooseaddr').value;
-				})
+//				document.getElementById('chooseaddr').addEventListener('blur', function() {
+//					document.getElementById('pac-input').value = document.getElementById('chooseaddr').value;
+//				})
 				document.getElementById('ok').addEventListener('tap',function(){
 					var pad = plus.webview.getWebviewById('pickaddr');
 					mui.fire(pad,'getaddr',{"addr":document.getElementById('pac-input').value,'clocation':clocation});
-					pad.show('slide-in-left')
+					pad.show('slide-in-left',300)
 				})
 			})
 		</script>

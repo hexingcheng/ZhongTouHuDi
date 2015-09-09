@@ -8,31 +8,43 @@
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<style>
-			html,body,#map-canvas{
-		    		height: 100%;
-		    		width: 100%;
-		    	}
-		    	.maploading{
-		    		position: absolute;
-		    		top: 0;
-		    		bottom: 0;
-		    		left: 0;
-		    		right: 0;
-		    		background-color: #FFFFFF;
-		    	}
-		    	.load{
-		    		position: absolute;
-		    		left: 50%;
-		    		top: 50%;
-		    		margin-top: -40px;
-		    		margin-left: -40px;
-		    		width: 80px;
-		    		height: 80px;
-		    	}
-		    	.load img{
-		    		width: 80px;
-		    		height: 80px;
-		    	}
+			html,
+			body,
+			#map-canvas {
+				height: 100%;
+				width: 100%;
+			}
+			.maploading {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: #FFFFFF;
+			}
+			.load {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-top: -40px;
+				margin-left: -40px;
+				width: 80px;
+				height: 80px;
+			}
+			.load img {
+				width: 80px;
+				height: 80px;
+			}
+			.location {
+				position: absolute;
+				width: 72px;
+				height: 72px;
+				left: 50%;
+				top: 50%;
+				margin-left: -36px;
+				margin-top: -36px;
+				z-index: 999;
+			}
 		</style>
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
@@ -44,63 +56,98 @@
 				<img src="../../img/loading2.gif" />
 			</div>
 		</div>
+		<div class="location mui-hidden">
+			<img src="../../img/location.png" />
+		</div>
 		<div id="map-canvas"></div>
+		<script src="../../js/utils.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbxX3v0OCgYabsgQcUjrQlF4rGhlL7-2Y&v=3.exp&language=zh-CN&signed_in=true&libraries=places"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
-		      	var mymap
-				function initialize(lat, lng) {
-					mymap = new google.maps.Map(document.getElementById('map-canvas'), {
-						zoom: 17,
-						center: {
-							lat: lat,
-							lng: lng
-						}
-					});
-					var marker = new google.maps.Marker({
-						map: mymap,
-						position: mymap.getCenter()
-					});
-					var geocoder = new google.maps.Geocoder;
-					geocodeLatLng(geocoder, mymap, lat, lng);
-					$('.maploading').addClass('mui-hidden')
-					alert(12)
-				}
-		
-				function geocodeLatLng(geocoder, map, lat, lng) {
-					var latlng = {
+			var mymap
+
+			function initialize(lat, lng) {
+				mymap = new google.maps.Map(document.getElementById('map-canvas'), {
+					zoom: 17,
+					center: {
 						lat: lat,
 						lng: lng
-					};
-					geocoder.geocode({
-						'location': latlng
+					}
+				});
+				var geocoder = new google.maps.Geocoder;
+				var service = new google.maps.places.PlacesService(mymap)
+				geocodeLatLng(geocoder, mymap, lat, lng);
+				$('.maploading').addClass('mui-hidden');
+				$('.location').removeClass('mui-hidden');
+				google.maps.event.addListener(mymap, 'dragend', function() {
+					var center = mymap.getCenter();
+					var G = center.G;
+					var K = center.K;
+					service.nearbySearch({
+						location: {
+							lat: G,
+							lng: K
+						},
+						radius: 500
 					}, function(results, status) {
-						if (status === google.maps.GeocoderStatus.OK) {
-							if (results[1]) {
-								$('#chooseaddr').text(results[1].formatted_address)
-							} else {
-								alert('No results found');
+						if (status === google.maps.places.PlacesServiceStatus.OK) {
+							var data = {
+								addr: results[1].name                
 							}
-						} else {
-							window.alert('Geocoder failed due to: ' + status);
+							getAddr(data);
 						}
 					});
-				}
-		      	mui.plusReady(function(){
-		      		if (navigator.geolocation) {
-						navigator.geolocation.getCurrentPosition(function(position) {
-							var lat = position.coords.latitude;
-							var lng = position.coords.longitude;
-							initialize(lat, lng)
-						}, function(e) {
-							mui.toast('获取位置信息失败')
-						}, {
-							enableHighAcuracy: true
-						})
+				})
+			}
+
+			function geocodeLatLng(geocoder, map, lat, lng) {
+				var latlng = {
+					lat: lat,
+					lng: lng
+				};
+				geocoder.geocode({
+					'location': latlng
+				}, function(results, status) {
+					if (status === google.maps.GeocoderStatus.OK) {
+						if (results[0]) {
+							showobj(results[0])
+							var data = {
+								addr: results[0].formatted_address, 
+								location:results[0].geometry.location
+							}
+							getAddr(data);
+						} else {
+							alert('No results found');
+						}
 					} else {
-						mui.toast('获取位置信息失败')
+						window.alert('Geocoder failed due to: ' + status);
 					}
-		      	})
+				});
+			}
+
+			function getAddr(data) {
+				var addr = plus.webview.getWebviewById('pickaddr');
+				mui.fire(addr, 'getaddr', data);
+			}
+			mui.plusReady(function() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position) {
+						var lat = position.coords.latitude;
+						var lng = position.coords.longitude;
+						initialize(lat, lng)
+					}, function(e) {
+						mui.toast('获取位置信息失败')
+					}, {
+						enableHighAcuracy: true
+					})
+				} else {
+					mui.toast('获取位置信息失败');
+				}
+				window.addEventListener('changemap',function(eve){
+//					var myLatlng = {lat: -25.363, lng: 131.044}
+//					mymap.panTo(myLatlng)
+				})
+			})
 		</script>
 	</body>
 
