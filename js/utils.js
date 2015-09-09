@@ -192,7 +192,7 @@ function openwindowloading(){
 	div.style.left = '0px';
 	div.style.right = '0px';
 	div.style.bottom = '0px';
-	div.style.zIndex = 10000;
+	div.style.zIndex = 1000;
 	document.getElementsByTagName('body')[0].appendChild(div);
 }
 function removeloading(){
