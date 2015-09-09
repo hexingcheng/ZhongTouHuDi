@@ -179,7 +179,6 @@
 				line-height: 48px;
 				color: #ceefe4;
 			}*/
-			
 			input[type=number] {
 				padding: 0 15px;
 			}
@@ -231,7 +230,7 @@
 				background-color: rgba(0, 0, 0, 1);
 			}
 			.backmask {
-				position: absolute;
+				position: fixed;
 				background-color: rgba(0, 0, 0, .5);
 			}
 			.picwraps {
@@ -300,7 +299,6 @@
 				width: 40px;
 				height: 40px;
 			}*/
-			
 			#head {
 				padding-right: 0px;
 			}
@@ -403,95 +401,74 @@
 				padding: 0;
 			}
 			/*.mui-bar-footer~.mui-content {padding-bottom: 61px;position: relative;}*/
-			
 			#take-photo img {
-				width: 100%;
-				height: 100%;
+				width: 100%;height: 100%;
 			}
-			.loading-mask {
-				position: absolute;
-				left: 0;
-				top: 52px;
-				bottom: 0;
-				right: 0;
-				z-index: 998;
-				background: rgba(255, 255, 255, 1);
-			}
-			.loading-mask .loading-img {
-				width: 80px;
-				height: 80px;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				margin-left: -40px;
-				margin-top: -40px;
-			}
-			.loading-mask .loading-img img {
-				width: 100%;
-				height: 100%;
-			}
+			.loading-mask {position: absolute;left: 0;top: 52px;bottom: 0;right: 0;z-index: 998;background: rgba(255,255,255,1);}
+			.loading-mask .loading-img {width: 80px;height: 80px;position: absolute;top: 50%;left: 50%;margin-left: -40px;margin-top: -40px;}
+			.loading-mask .loading-img img{width: 100%;height: 100%;}
+			
 			/*页面nav*/
-			
-			.nav_header {
-				height: 52px;
-				line-height: 52px;
-				font-size: 16px;
-				text-align: left;
-				color: #fff;
-				background-color: #44AB6E;
-				box-shadow: none;
-			}
-			.nav_header .header_left_img {
-				width: 34px;
-				height: 34px;
-				float: left;
-				margin: 9px 9px 9px 0;
-			}
-			.nav_header .header_right_img {
-				width: 34px;
-				height: 34px;
-				float: right;
-				margin: 9px 0 9px 9px;
-			}
-			/*foorter nav*/
-			
-			.mui-bar-footer {
-				background-color: #fff;
-				height: 64px;
-				padding: 0 !important;
-				position: absolute;
-			}
-			.mui-bar-footer .nav_footer {
-				width: 80%;
-				height: 48px;
-				line-height: 48px;
-				font-size: 16px;
-				color: #fff;
-				background-color: #054859;
-				margin: 8px auto;
-				text-align: center;
-			}
-			.nav_footer .left_button {
-				width: 47%;
-				height: 48px;
-				text-align: center;
-				color: #fff;
-				float: left;
-			}
-			.nav_footer .right_button {
-				width: 47%;
-				height: 48px;
-				line-height: 48px;
-				text-align: center;
-				float: right;
-			}
+.nav_header{
+	height: 52px;
+	line-height: 52px;
+	font-size: 16px;
+	text-align: left;
+	color: #fff;
+	background-color: #44AB6E;
+	box-shadow: none;
+}
+.nav_header .header_left_img{
+	width: 34px;
+	height: 34px;
+	float: left;
+	margin: 9px 9px 9px 0; 
+}  
+.nav_header .header_right_img{
+	width: 34px;
+	height: 34px;
+	float: right;
+	margin: 9px 0 9px 9px; 
+}
+/*foorter nav*/
+.mui-bar-footer{
+	background-color:#fff;
+	height: 64px;
+	padding: 0 !important;
+	position: fixed;  
+}
+.mui-bar-footer .nav_footer{
+	width: 80%;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	color:#fff;
+	background-color: #054859;  
+	margin: 8px auto;  
+	text-align:center;
+}
+.nav_footer .left_button{
+	width: 47%;
+	height: 48px;
+	text-align: center;
+	color: #fff;
+	float: left;
+	
+}
+.nav_footer .right_button{
+	width: 47%;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	float: right;
+}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" class="mui-action-back header_left_img" alt="" />
-			<img src="../../img/draft.png" class="header_right_img" alt="" id="drafticon" />
+			<img src="../../img/draft.png" class="header_right_img draft" alt="" id="drafticon"/>
 			<span>create order</span>
 		</header>
 		<footer class="mui-bar mui-bar-footer">
@@ -499,13 +476,13 @@
 				<span>Next Step</span>
 			</div>
 		</footer>
-
+		
 		<div class="loading-mask mui-hidden">
 			<div class="loading-img">
-				<img src="../../img/loading2.gif" />
+				<img src="../../img/loading2.gif"/>
 			</div>
 		</div>
-
+		
 		<div class="presee mui-hidden">
 			<div class="picwraps">
 				<div class="mui-slider" id="slider">
@@ -567,8 +544,8 @@
 				<li class="mui-table-view-cell">
 					<a>重新选择</a>
 				</li>
-			</ul>
-			<ul class="mui-table-view">
+			</ul>     
+			<ul class="mui-table-view">  
 				<li class="mui-table-view-cell">
 					<a href="#handle"><b>返回</b></a>
 				</li>
@@ -576,89 +553,89 @@
 		</div>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
-
+				
 				<div class="mui-scroll">
-					<div class="order-content clear">
-						<div class="gName clear hei110" style="background: #FFFFFF;">
-							<div class="wid30 fl hei110 linehei110 colorg">
-								<span class="colorgray myicon"><img src="../../img/host.png"></span>
-							</div>
-							<div class="wid70 paddr10 hei110">
-								<div class="iptwrap mui-input-row">
-									<input type="text" class="linehei68 mui-input-clear" id="gname" placeholder="Name" />
-								</div>
+			<div class="order-content clear">
+					<div class="gName clear hei110" style="background: #FFFFFF;">
+						<div class="wid30 fl hei110 linehei110 colorg">
+							<span class="colorgray myicon"><img src="../../img/host.png"></span>
+						</div>
+						<div class="wid70 paddr10 hei110">
+							<div class="iptwrap mui-input-row">
+								<input type="text" class="linehei68 mui-input-clear" id="gname" placeholder="Name" />
 							</div>
 						</div>
-						<div class="gap"></div>
-						<div class="gWeight clear">
-							<div class="wid30 fl hei110 linehei110 colorg">
-								<span class="colorgray myicon"><img src="../../img/weight.png"></span>
-							</div>
-							<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
-								<span class="kg-g font-14">Kg</span>
-							</div>
-							<div class="wid50 hei110">
-								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="gweight" placeholder="Weight" />
-								</div>
-							</div>
-						</div>
-						<div class="gValue clear">
-							<div class="wid30 fl hei110 linehei110 colorg">
-								<span class="colorgray myicon"><img src="../../img/value.png"></span>
-							</div>
-							<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
-								<span class="kg-g font-14">$</span>
-							</div>
-							<div class="wid50 hei110">
-								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="gvalue" placeholder="Value" />
-								</div>
-							</div>
-						</div>
-						<div class="info clear" id="info" style="background: #FFFFFF;">
-							<div class="wid30 fl hei110 linehei110 colorg">
-								<span class="colorgray myicon"><img src="../../img/coment.png"></span>
-							</div>
-							<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
-								<span class="kg-g font-14 myicon"><img src="../../img/enter.png"></span>
-							</div>
-							<div class="wid50 hei110">
-								<div class="iptwrap mui-input-row  addline" id="gettext">
-									Comment
-								</div>
-							</div>
-						</div>
-						<div class="gap"></div>
-						<div class="goods-pic">
-							<ul class="mui-table-view clear" id="take-photo">
-								<li class="mui-table-view-cell img-box addmarr" data-index='0'>
-									<a href="#delete" class="picpre pic-img">
-										<span class="mui-icon mui-icon-plusempty addclass"></span>
-										<!--<span class="wids"><img src="../../img/2147de349744915c611f470c84c67f94.jpg" width="100%" height="100%"></span>-->
-									</a>
-								</li>
-								<li class="mui-table-view-cell img-box addmarr" data-index='1'>
-									<a href="#delete" class="picpre pic-img">
-										<span class="mui-icon mui-icon-plusempty addclass"></span>
-									</a>
-								</li>
-								<li class="mui-table-view-cell img-box addmarr" data-index='2'>
-									<a href="#delete" class="picpre pic-img">
-										<span class="mui-icon mui-icon-plusempty addclass"></span>
-									</a>
-								</li>
-								<li class="mui-table-view-cell img-box" data-index='3'>
-									<a href="#delete" class="picpre pic-img">
-										<span class="mui-icon mui-icon-plusempty addclass"></span>
-									</a>
-								</li>
-							</ul>
-						</div>
-						<div class="pictips" style="background: #FFFFFF;">! please add goods picture to make the order more detail</div>
 					</div>
+					<div class="gap"></div>
+					<div class="gWeight clear">
+						<div class="wid30 fl hei110 linehei110 colorg">
+							<span class="colorgray myicon"><img src="../../img/weight.png"></span>
+						</div>
+						<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
+							<span class="kg-g font-14">Kg</span>
+						</div>
+						<div class="wid50 hei110">
+							<div class="iptwrap mui-input-row">
+								<input type="number" class="linehei68 mui-input-clear" id="gweight" placeholder="Weight" />
+							</div>
+						</div>
+					</div>
+					<div class="gValue clear">
+						<div class="wid30 fl hei110 linehei110 colorg">
+							<span class="colorgray myicon"><img src="../../img/value.png"></span>
+						</div>
+						<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
+							<span class="kg-g font-14">$</span>
+						</div>
+						<div class="wid50 hei110">
+							<div class="iptwrap mui-input-row">
+								<input type="number" class="linehei68 mui-input-clear" id="gvalue" placeholder="Value" />
+							</div>
+						</div>
+					</div>
+					<div class="info clear" id="info" style="background: #FFFFFF;">
+						<div class="wid30 fl hei110 linehei110 colorg">
+							<span class="colorgray myicon"><img src="../../img/coment.png"></span>
+						</div>
+						<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
+							<span class="kg-g font-14 myicon"><img src="../../img/enter.png"></span>
+						</div>
+						<div class="wid50 hei110">
+							<div class="iptwrap mui-input-row  addline" id="gettext">
+								Comment
+							</div>
+						</div>
+					</div>
+					<div class="gap"></div>
+					<div class="goods-pic">
+						<ul class="mui-table-view clear" id="take-photo">
+							<li class="mui-table-view-cell img-box addmarr" data-index='0'>
+								<a href="#delete" class="picpre pic-img">
+									<span class="mui-icon mui-icon-plusempty addclass"></span>
+									<!--<span class="wids"><img src="../../img/2147de349744915c611f470c84c67f94.jpg" width="100%" height="100%"></span>-->
+								</a>
+							</li>
+							<li class="mui-table-view-cell img-box addmarr" data-index='1'>
+								<a href="#delete" class="picpre pic-img">
+									<span class="mui-icon mui-icon-plusempty addclass"></span>
+								</a>
+							</li>
+							<li class="mui-table-view-cell img-box addmarr" data-index='2'>
+								<a href="#delete" class="picpre pic-img">
+									<span class="mui-icon mui-icon-plusempty addclass"></span>
+								</a>
+							</li>
+							<li class="mui-table-view-cell img-box" data-index='3'>
+								<a href="#delete" class="picpre pic-img">
+									<span class="mui-icon mui-icon-plusempty addclass"></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="pictips" style="background: #FFFFFF;">! please add goods picture to make the order more detail</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</body>
 	<script type="text/javascript" src="../../js/utils.js"></script>
@@ -680,25 +657,25 @@
 		}
 		layout();
 		mui.plusReady(function() {
-			//			mui(".mui-scroll-wrapper").scroll();
+//			mui(".mui-scroll-wrapper").scroll();
 			plus.webview.currentWebview().setStyle({
 				scrollIndicator: "none"
 			})
 			document.getElementById('info').addEventListener('tap', function() {
 				var param = {};
-				if ($(this).text() != 'Comment') {
+				if($(this).text()!='Comment'){
 					var texts = $(this).text();
-					if (texts.lastIndexOf('(') != -1) {
+					if(texts.lastIndexOf('(')!=-1){
 						var n = texts.lastIndexOf('(');
-						var ipt = texts.substring(0, n);
+						var ipt = texts.substring(0,n);
 						var choose = texts.substring(n);
 						param.ipt = ipt;
 						param.choose = choose;
-					} else {
+					}else{
 						param.ipt = ipt;
 					}
 				}
-				openWindow('./comment.html', param);
+				openWindow('./comment.html',param);
 			})
 			document.getElementById('next').addEventListener('tap', function() {
 					var name = $.trim($("#gname").val());
@@ -789,7 +766,7 @@
 			})
 			mui.back = function() {
 				var cls = document.querySelector(".presee").classList;
-				if (cls.contains("mui-hidden")) {
+				if(cls.contains("mui-hidden")){
 					if ($('#gname').val()) {
 						getdata.gName = $('#gname').val();
 						getdata.gWeight = $('#gweight').val() || 0;
@@ -809,7 +786,7 @@
 						})
 						plus.storage.removeItem("draft-datas");
 					} else {
-						plus.webview.getLaunchWebview().show('slide-in-left',300);
+						plus.webview.getLaunchWebview().show('slide-in-left');
 						closewebview()
 					}
 				} else {
@@ -863,28 +840,6 @@
 			}
 
 			function bygallery(context) {
-<<<<<<< HEAD
-					$(context).parent().attr('href', "#");
-					plus.gallery.pick(function(eve) {
-						for (var i = 0, len = eve.files.length; i < len; i++) {
-							(function(i, len) {
-								plus.io.resolveLocalFileSystemURL(eve.files[i], function(entry) {
-									var local = entry.toLocalURL(); // 获取本地地址
-									// 图片压缩处理
-									dealImage(local, {
-											width: 17 * 4,
-											quality: 0.5
-										},
-										function(base) {
-											var obj = {
-												path: local,
-												base: base
-											}
-											sendImgData(obj)
-										})
-								})
-							})(i, len)
-=======
 //				$(context).parent().attr('href', "#");
 				plus.gallery.pick(function(eve) {
 					for (var i = 0, len = eve.files.length; i < len; i++) {
@@ -934,55 +889,15 @@
 							picimg.eq(i).html(img);
 							picimg.eq(i).attr("href", "javascript:void(0);")
 							break;
->>>>>>> fea6cdf8aa14b6f6518c17143199c4e4e6bd7b92
 						}
-					}, function(e) {
-						$(context).parent().attr('href', "#delete");
-					}, {
-						filter: 'image',
-						multiple: true
+					}
+					setTimeout(function(){
+						$(".loading-mask").addClass("mui-hidden");
+					}, 500)
+					$('img', '.wids').css({
+						width: iw,
+						height: iw
 					})
-<<<<<<< HEAD
-				}
-				// 多张选择照片上传
-
-			function sendImgData(datas) {
-					myAjax({
-						url: "common/file/imgUp",
-						data: {
-							imgName: Math.floor(Math.random() * 1000) + "" + (new Date().getTime()) + ".jpg",
-							imgData: datas.base, // base字符串
-							dataLength: datas.base.length // base字符串长度
-						},
-						wait: false
-					}, function(data) {
-						var img = '<span class="wids"><img title=' + datas.path + ' src=' + datas.base + ' alt=' + data.res.fid + '></span>';
-						//					console.log(datas.path);
-						//					$(context).parent().append(img);
-						var picimg = $("#take-photo").find(".pic-img")
-						for (var i = 0; i < picimg.size(); i++) {
-							//						console.log(picimg.eq(i).find("img").size())
-							if (picimg.eq(i).find("img").size() == 0) {
-								picimg.eq(i).html(img);
-								picimg.eq(i).attr("href", "javascript:void(0);")
-								break;
-							}
-						}
-						setTimeout(function() {
-							$(".loading-mask").addClass("mui-hidden");
-						}, 500)
-						$('img', '.wids').css({
-							width: iw,
-							height: iw
-						})
-					}, function(xhr, type) {
-						console.log("错误信息显示：" + type);
-						errorhandle(type);
-					})
-				}
-				// 照相获取图片上传
-
-=======
 				}, function(xhr, type) {
 					console.log("错误信息显示：" + type);
 					$(".loading-mask").addClass("mui-hidden");
@@ -991,17 +906,16 @@
 			}
 			
 			// 照相获取图片上传
->>>>>>> fea6cdf8aa14b6f6518c17143199c4e4e6bd7b92
 			function sendData(urls, base, context, path) {
 				var pics
 				myAjax({
 					url: urls,
 					data: {
-						imgName: Math.floor(Math.random() * 1000) + "" + (new Date().getTime()) + ".jpg",
+						imgName: Math.floor(Math.random() * 1000)+""+(new Date().getTime()) + ".jpg",
 						imgData: base, // base字符串
 						dataLength: base.length // base字符串长度
 					},
-					wait: false
+					wait : false
 				}, function(data) {
 					var img = $('<span class="wids"><img title=' + path + ' src=' + base + ' alt=' + data.res.fid + '></span>');
 					$(context).parent().append(img);
@@ -1010,7 +924,7 @@
 						height: iw
 					})
 					$(context).remove();
-					setTimeout(function() {
+					setTimeout(function(){
 						$(".loading-mask").addClass("mui-hidden");
 					}, 50)
 				}, function(xhr, type) {
@@ -1097,42 +1011,46 @@
 			window.addEventListener('getdraft', function(eve) {
 				getdata = eve.detail;
 			})
+			
 			var cpage = plus.webview.currentWebview();
-			if (cpage.type == "cancel") {
+			if(cpage.type == "cancel"){
 				refreshdata();
 			}
-			window.addEventListener("draft:datas", function(eve) {
-					refreshdata();
-				})
-				// 重新刷新数据显示
-
-			function refreshdata() {
-				var iw = $('.addclass').outerWidth()
-				var datas = JSON.parse(plus.storage.getItem("draft-datas"));
-				console.log(plus.storage.getItem("draft-datas"));
-				$("#gname").val(datas.res.gName); // 商品名
-				$("#gweight").val(datas.res.gWeight);
-				$("#gvalue").val(datas.res.gValue);
-				$("#gettext").val(datas.res.info);
-				getdata.orderId = datas.res.orderId; // 该商品ID
-				var html = "<a href='#delete' class='picpre pic-img'><span class='mui-icon mui-icon-plusempty addclass' style='height: " + iw + "px;line-height:" + iw + "px'></span></a>";
-				$(".img-box").html(html);
-				if (datas.res.pics.length > 0) {
-					var n = BASEURL.indexOf('/api/');
-					var per = BASEURL.substring(0, n);
-					var pic = datas.res.pics;
-					var len = pic.length;
-					console.log(JSON.stringify(pic));
-					if (len > 0) {
-						for (var i = 0; i < len; i++) {
-							var url = per + pic[i].path;
-							var html = '<a  href="#" class="picpre pic-img"><span class="wids"><img alt="' + pic[i].id + '" title="' + url + '" height="' + iw + 'px" width="' + iw + 'px" src=' + url + '></span></a>';
-							console.log(html)
-							document.querySelectorAll(".img-box")[i].innerHTML = html;
-						}
+			
+		window.addEventListener("draft:datas", function(eve) {
+			refreshdata();
+		})
+		 
+		 
+		// 重新刷新数据显示
+		function refreshdata(){
+		 	var iw = $('.addclass').outerWidth()
+			var datas = JSON.parse(plus.storage.getItem("draft-datas"));
+			console.log(plus.storage.getItem("draft-datas"));
+			$("#gname").val(datas.res.gName); // 商品名
+			$("#gweight").val(datas.res.gWeight);
+			$("#gvalue").val(datas.res.gValue);
+			$("#gettext").val(datas.res.info);
+			getdata.orderId = datas.res.orderId; // 该商品ID
+			var html = "<a href='#delete' class='picpre pic-img'><span class='mui-icon mui-icon-plusempty addclass' style='height: " + iw + "px;line-height:" + iw + "px'></span></a>";
+			$(".img-box").html(html);
+			if (datas.res.pics.length > 0) {
+				var n = BASEURL.indexOf('/api/');
+				var per = BASEURL.substring(0, n);
+				var pic = datas.res.pics;
+				var len = pic.length;
+				console.log(JSON.stringify(pic));
+				if (len > 0) {
+					for (var i = 0; i < len; i++) {
+						var url = per + pic[i].path;
+						var html = '<a  href="#" class="picpre pic-img"><span class="wids"><img alt="' + pic[i].id + '" title="' + url + '" height="' + iw + 'px" width="' + iw + 'px" src=' + url + '></span></a>';
+						console.log(html)
+						document.querySelectorAll(".img-box")[i].innerHTML = html;
 					}
 				}
 			}
+		 }
+			
 		})
 	</script>
 
