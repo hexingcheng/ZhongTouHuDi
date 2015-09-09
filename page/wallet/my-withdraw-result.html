@@ -5,34 +5,41 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
+    <link rel="stylesheet" href="../../css/share_main.css" />
     <script src="../../js/mui.min.js"></script>
     <style type="text/css">
-    	.success-logo {padding: 6em 0 1.5em 0;}
-    	.mui-btn.button-next {background-color: #06495a;color: #fff;padding: 13px 0;width: 90%;}
-    	footer .mui-btn {border: none;outline: none;border-radius: 0;}
-    	.withdraw-success {color: #219b52;font-size: 1.7em;padding: 0.5em 0;}
-    	.color {color: #ccc;padding: 0.2em 0;}
+    	.result_log{
+    		width: 100px;
+    		height: 100px;
+    		margin:20% auto 20px auto;
+    	}
+    	.result_log img{
+    		width: 100px;  
+    		height: 100px;
+    	}
+    	.success_title{
+    		font-size: 16px;
+    		line-height: 40px;
+    	}
     </style>
 </head>
 <body class="bg-color">
-	<header class="mui-bar mui-bar-nav">
-		<h1 class="mui-title">result</h1>
+	<header class="mui-bar mui-bar-nav nav_header mui-text-center">
+		<span>result</span>
 	</header>
-	<div class="mui-content">
-		<div class="success-logo mui-text-center bg-color">
-			<img src="../../img/success-logo.png" width="25%"/>
+	<div class="mui-content mui-text-center">
+		<div class="result_log">
+			<img src="../../img/success-logo.png" />
 		</div>
-		<div class="withdraw-success mui-text-center bg-color">
-			Withdraw success
-		</div>
-		<div class="mui-text-center bg-color color">your withdrawal application has been</div>
-		<div class="mui-text-center bg-color color">completed, please wait.</div>
+		<p><span class="success_title">Withdraw success</span></p>
+		<p><span>your withdrawal application has been</span></p>
+		<p><span>completed, please wait.</span></p>
 	</div>
-	<footer style="height: 3.5em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="main-page" class="mui-btn button-next">Main Page</button>
+	<footer class="mui-bar mui-bar-footer">
+		<div class="nav_footer" id="main-page">
+			<span>Main Page</span>
+		</div>
 	</footer>
-	
 	<script type="text/javascript" charset="utf-8">
       	mui.init();
       	mui.plusReady(function(){

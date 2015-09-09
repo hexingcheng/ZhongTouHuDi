@@ -10,14 +10,4 @@
 	color: #ccc;
 	padding: 0.2em 0;
 }
-.button-first,#view-order{
-	height: 48px;
-	width: 45%;
-	color: #FFF;
-}
-.button-first{
-	background-color: #06495a;
-}
-#view-order{
-	background-color: #23a0cf;
-}
+

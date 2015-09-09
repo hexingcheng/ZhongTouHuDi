@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="common.css" />
 		<link rel="stylesheet" href="../../css/mui.listpicker.css" />
 		<link rel="stylesheet" href="../../css/mui.dtpicker.css" />
+		<link rel="stylesheet" href="../../css/animation/animation.css"/>
 		<script src="../../js/mui.min.js"></script>
 		<style>
 			* {
@@ -254,6 +255,18 @@
 				top: 52px;
 				bottom: 60px;
 			}
+			#address-mask {display: none; position: absolute;top: 0;bottom: 0;left: 0;right: 0;background: rgba(0,0,0,0.5);z-index: 998;transition: all 500ms ease-in-out;}
+			#address-content {display: none;opacity: 0;position: fixed;top: 50%;bottom: 0;left: 0;right: 0;background: #fff;z-index: 999;}
+			#address-content .address-pre {position: relative;width: 100%;height: 100%;color: #444;}
+			#address-content .show-addr {height: 100%;line-height: 2.5;}
+			#address-content .mui-media-body {position: absolute;left: 3em;right: 1em;}
+			#address-content .mui-table-view-cell {padding: 0 15px;}
+			#address-content .content-scroll {position: absolute;z-index: 1;width: 100%;-webkit-transform: translateZ(0);transform: translateZ(0);-webkit-backface-visibility: hidden;}
+			#address-content .mui-content-padded {padding: 10px;border-bottom: 1px solid #ccc;margin: 0;}
+			#address-content .mui-table-view-cell:after {left: 0;}
+			#address-content .img-box {width: 80px;height: 80px;position: absolute;left: 50%;top: 50%;margin-left: -40px;margin-top: -82px;}
+			#address-content .img-box img {width: 100%;height: 100%;}
+			#addr-list {height: 100%;}
 		</style>
 	</head>
 
@@ -410,14 +423,51 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		<div id="address-mask"></div>
+		<div id="address-content">
+			<div class="address-pre">
+				<div class="mui-content-padded">Commonly used address</div>
+				<ul class="mui-table-view" id="addr-list">
+					<div class="img-box">
+						<img src="../../img/loading2.gif"/>
+					</div>
+					<!--<li class="mui-table-view-cell mui-media">
+						<div class="mui-pull-left mui-media-object">
+							<span class="mui-icon mui-icon-location "></span>
+						</div>
+						<div class="mui-media-body">
+							<div class="show-addr mui-ellipsis">中国重庆fsdfaasdf</div>
+						</div>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+		<script type="text/html" id="template">
+		{{each list}}
+			<li class="mui-table-view-cell mui-media">
+				<div class="mui-pull-left mui-media-object">
+					<span class="mui-icon mui-icon-location"></span>
+				</div>
+				<div class="mui-media-body addr-item" data-jd="{{$value.jd}}" data-wd="{{$value.wd}}" data-addr="{{$value.name}}">
+					<div class="show-addr mui-ellipsis">{{$value.name}}</div>
+				</div>
+			</li>
+		{{/each}}
+		</script>
+		<script src="../../js/template.js"></script>
 		<script type="text/javascript" src="../../js/mui.listpicker.js"></script>
 		<script type="text/javascript" src="../../js/mui.dtpicker.js"></script>
 		<script type="text/javascript" src="../../js/utils.js"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
-		<script type="text/javascript" charset="utf-8">
+		<script>
 			mui.init();
 			mui.plusReady(function() {
 				mui('.mui-scroll-wrapper').scroll()
+				
+				mui("#addr-list").scroll();
+				
 				var getdata = {};
 				getdata.gName = "";
 				getdata.gValue = "";
@@ -440,7 +490,6 @@
 				getdata.insType = "";
 				getdata.status = "";
 				var c = plus.webview.currentWebview();
-				mui('#offCanvasSideScroll').scroll();
 				c.setStyle({
 					scrollIndicator: 'none'
 				})
@@ -703,30 +752,98 @@
 					$("#receiver").val(eve.detail.name);
 					$("#tel").val(eve.detail.tel);
 				})
+				
+				
+				// 获取蒙层节点与内容节点
+				var addrmask = document.getElementById("address-mask");
+				var content = document.getElementById("address-content");
+				// 控制节点显示
+				function show(){
+					addrmask.style.display = "block";
+					content.style.display = "block";
+					content.classList.add("slidein");
+					content.addEventListener("webkitAnimationEnd", innershow);
+					function innershow(){
+						content.style.top = "50%";
+						content.style.opacity = "1";
+						addrmask.style.opacity = "1";
+						if(content.classList.contains("slideout")){
+							content.classList.remove("slideout");
+						}
+						content.removeEventListener("webkitAnimationEnd", innershow);
+					}
+				}
+				// 控制节点隐藏
+				function hide(){
+					content.classList.add("slideout");
+					content.addEventListener("webkitAnimationEnd", innerhide)
+					function innerhide(){
+						content.style.top = "100%";
+						content.style.opacity = "0";
+						content.style.display = "none";
+						addrmask.style.display = "none";
+						if(content.classList.contains("slidein")){
+							content.classList.remove("slidein");
+						}
+						content.removeEventListener("webkitAnimationEnd", innerhide);
+					}
+				}
+				
+				// 数据节点渲染
+				var addresslist = null;
+				var addr = document.getElementById("addr-list");
+				function renderDom(){
+					if(!addresslist){
+						myAjax({
+		      				url : "account/addressList",
+			      			wait : false
+			      		}, function(data){
+			      			if(data.ret == 1){
+			      				addresslist = data.res.addressList;
+				      			var obj = {
+				      				"list" : addresslist
+				      			}
+				      			addr.innerHTML = template("template",obj)
+			      			}
+			      		})
+					} else {
+						var obj = {
+		      				"list" : addresslist
+		      			}
+		      			addr.innerHTML = template("template",obj)
+					}
+				}
 				// 选择常用地址
+				var type = null;
 				document.getElementById("send-address").addEventListener("tap", function(){
-					openWindow("./choose-address.html",{
-						type : "send"
-					})
+					show();
+					renderDom();
+					type = "send";
 				})
 				document.getElementById("receive-address").addEventListener("tap", function(){
-					openWindow("./choose-address.html",{
-						type : "receive"
-					})
+					show();
+					renderDom();
+					type = "reveive";
 				})
-				// 常用地址选择 id="sendaddr" data-addr="北京" data-Jd="10" data-Wd="10"
-				window.addEventListener("usual:address", function(eve){
-					if(eve.detail.type == "send"){
-						$("#sendaddr").attr("data-addr", eve.detail.addr);
-						$("#sendaddr").html(eve.detail.addr);
-						$("#sendaddr").attr("data-Jd", eve.detail.jd);
-						$("#sendaddr").attr("data-Wd", eve.detail.wd);
-					} else if(eve.detail.type == "receive"){
-						$("#getaddr").attr("data-addr", eve.detail.addr);
-						$("#getaddr").html(eve.detail.addr);
-						$("#getaddr").attr("data-Jd", eve.detail.jd);
-						$("#getaddr").attr("data-Wd", eve.detail.wd);
-					}
+				addrmask.addEventListener("tap", function(){
+					hide();
+				})
+				mui("#addr-list").on('tap', ".addr-item", function(){
+					var addrs = this.getAttribute("data-addr");
+	      			var jds = this.getAttribute("data-jd");
+	      			var wds = this.getAttribute("data-wd");
+					if(type == "send"){
+						$("#getaddr").attr("data-addr", addrs);
+						$("#getaddr").html(addrs);
+						$("#getaddr").attr("data-Jd", jds);
+						$("#getaddr").attr("data-Wd", wds);
+					} else if (type == "reveive"){
+						$("#sendaddr").attr("data-addr", addrs);
+						$("#sendaddr").html(addrs);
+						$("#sendaddr").attr("data-Jd", jds);
+						$("#sendaddr").attr("data-Wd", wds);
+	      			}
+					hide();
 				})
 			})
 		</script>
