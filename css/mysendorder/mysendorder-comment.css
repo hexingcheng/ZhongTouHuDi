@@ -61,7 +61,7 @@ footer.mui-bar .mui-btn {
 	padding: 14px 0;
 	background-color: #06495a;
 	color: #fff;
-	width: 90%;margin: 0 auto;
+	width: 80%;margin: 0 auto;
 }
 /* 头部样式  */
 footer.mui-bar {
@@ -81,7 +81,7 @@ footer.mui-bar {
 	text-align: left;
 }
 .mui-bar .mui-title {
-	left: 43px;
+	left: 52px;
 }
 .mui-bar-nav~.mui-content {
 	padding-top: 52px;
@@ -114,6 +114,7 @@ div.mui-scroll-wrapper {
 #phone.tap-active {
 	color: red;
 }
+<<<<<<< HEAD
 .presee {
 	width: 100%;
 	height: 100%;
@@ -156,3 +157,12 @@ div.mui-scroll-wrapper {
 	height: 60px;
 	margin: 10px;
 }
+=======
+
+header .left-icon {
+	width: 34px;
+	height: 34px;
+	float: left;
+	margin: 9px 9px 9px 0;
+}
+>>>>>>> f831a08af33db32498fe197ca7b5c3574b7d6bad

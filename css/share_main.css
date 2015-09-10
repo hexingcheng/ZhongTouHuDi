@@ -2,16 +2,24 @@ body,.mui-content{
 	background-color: #fff;
 	font-size: 14px;
 	color: #000;
+	
 }
 .bg_white{
 	background-color: #fff !important;
 }
+div.muipaddingtop {
+	padding-top: 52px !important;
+}
+.mui-content>.mui-table-view:first-child {margin-top: 0;}
 /*header与content**/
 .top_header{
 	margin-top: -8px;
 }
 .font16{
 	font-size: 16px;
+}
+.mui-bar .mui-btn {
+	top: 0;
 }
 /*页面nav*/
 .nav_header{
@@ -40,7 +48,7 @@ body,.mui-content{
 	background-color:#fff;
 	height: 64px;
 	padding: 0 !important;
-	position: absolute;  
+	position: fixed;  
 }
 .mui-bar-footer .nav_footer{
 	width: 80%;
@@ -51,6 +59,12 @@ body,.mui-content{
 	background-color: #054859;  
 	margin: 8px auto;  
 	text-align:center;
+}
+.mui-bar-footer .nav_footer button {
+	padding: 0;
+	border: none;
+	outline: none;
+	border-radius: 0;
 }
 .nav_footer .left_button{
 	width: 47%;
@@ -65,6 +79,7 @@ body,.mui-content{
 	height: 48px;
 	line-height: 48px;
 	text-align: center;
+	color: #fff;
 	float: right;
 	background-color: #fc614d;
 }
