@@ -79,6 +79,12 @@
 				geocodeLatLng(geocoder, mymap, lat, lng);
 				$('.maploading').addClass('mui-hidden');
 				$('.location').removeClass('mui-hidden');
+				google.maps.event.addListener(mymap, 'dragstart', function() {
+					var data = {
+						addr: '查询中'
+					}
+					getAddr(data);
+				})
 				google.maps.event.addListener(mymap, 'dragend', function() {
 					var center = mymap.getCenter();
 					var G = center.G;
@@ -87,12 +93,13 @@
 						location: {
 							lat: G,
 							lng: K
-						},
+						}, 
 						radius: 500
 					}, function(results, status) {
 						if (status === google.maps.places.PlacesServiceStatus.OK) {
+							showobj(results[1])
 							var data = {
-								addr: results[1].name                
+								addr: results[1].vicinity+results[1].name
 							}
 							getAddr(data);
 						}
@@ -112,8 +119,8 @@
 						if (results[0]) {
 							showobj(results[0])
 							var data = {
-								addr: results[0].formatted_address, 
-								location:results[0].geometry.location
+								addr: results[0].formatted_address,
+								location: results[0].geometry.location
 							}
 							getAddr(data);
 						} else {
@@ -143,9 +150,9 @@
 				} else {
 					mui.toast('获取位置信息失败');
 				}
-				window.addEventListener('changemap',function(eve){
-//					var myLatlng = {lat: -25.363, lng: 131.044}
-//					mymap.panTo(myLatlng)
+				window.addEventListener('changemap', function(eve) {
+					//					var myLatlng = {lat: -25.363, lng: 131.044}
+					//					mymap.panTo(myLatlng)
 				})
 			})
 		</script>

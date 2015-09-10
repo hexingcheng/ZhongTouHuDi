@@ -8,31 +8,24 @@ mui.plusReady(function() {
 	datas.type = c.type;
 
 	var back = mui.back;
-	mui.back = function(){
+	mui.back = function() {
 		if (getstorage('getordertodtl') == 'on') {
-		setstorage('getordertodtl', 'off');
-		openWindow('../../page/getorder/get-order.html');
-	} else {
-		var getorder = plus.webview.getWebviewById('mygetorder/my-get-order')
-		if(getorder){
-			back();
-			}else{
+			setstorage('getordertodtl', 'off');
+			openWindow('../../page/getorder/get-order.html');
+		} else {
+			var getorder = plus.webview.getWebviewById('mygetorder/my-get-order')
+			if (getorder) {
+				back();
+			} else {
 				openWindow('./my-get-order.html')
 			}
 		}
 	}
-//	
-//	setTimeout(function(){
-//		plus.webview.close(c, "none", 0)
-//	}, 300)
-	
-	
-	
-//	showobj(datas)
+
 	myAjax({
 		url: 'order/goodShow',
 		data: datas,
-		wait:false
+		wait: false
 	}, function(data) {
 		status = data.res.status;
 		renderdata(data);
@@ -165,7 +158,21 @@ mui.plusReady(function() {
 		}
 	})
 
-
+	mui('#porel').on('tap', 'img', function() {
+		toverticalcenter()
+		$('.presee').removeClass('mui-hidden')
+		$('.mui-slider-item', '#slider').filter(function(index) {
+			return $('.mui-slider-item', '#slider').eq(index).find('img').attr('src') == '';
+		}).remove();
+		var index = this.index;
+		var gallery = mui('#slider');
+		gallery.slider({
+			interval: 0
+		}).gotoItem(index);
+	})
+	$('.presee').on('tap', function() {
+		$(this).addClass('mui-hidden')
+	})
 	$('.check').on('tap', function() {
 		plus.nativeUI.showWaiting('发送中', {
 			background: '#d1d1d1'
@@ -216,6 +223,14 @@ mui.plusReady(function() {
 		plus.device.dial(t, true);
 	}
 
+	function toverticalcenter() {
+		var item = $('.preimg')
+		var len = item.length;
+		for (var i = 0; i < len; i++) {
+			var t = ($(window).height() - item.eq(i).height()) / 2
+			item.eq(i).css('top', t)
+		}
+	}
 	function renderdata(data) {
 		showobj(data.res)
 		$(".goods-name").html(data.res.gName); // 货物名称
@@ -236,13 +251,16 @@ mui.plusReady(function() {
 			var len = pic.length;
 			for (var i = 0; i < len; i++) {
 				var picurl = pic[i].path;
+				var minurl = pic[i].minPath;
 				var n = BASEURL.indexOf('/a');
 				var perurls = BASEURL.substring(0, n);
 				var imgurl = perurls + picurl;
 				var img = document.createElement('img');
 				img.className = 'picture'
 				img.src = imgurl;
+				img.index = i;
 				document.getElementById('porel').appendChild(img);
+				$('.mui-slider-item', '.mui-slider-group').eq(i).find('img').attr('src', perurls + minurl);
 			}
 		} else {
 			document.getElementById('porel').innerHTML = 'there are no picture in this order~';

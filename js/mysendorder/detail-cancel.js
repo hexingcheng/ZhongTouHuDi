@@ -47,8 +47,21 @@ mui.plusReady(function() {
 		})
 
 	})
-
-
+	mui('#porel').on('tap', 'img', function() {
+		toverticalcenter()
+		$('.presee').removeClass('mui-hidden')
+		$('.mui-slider-item', '#slider').filter(function(index) {
+			return $('.mui-slider-item', '#slider').eq(index).find('img').attr('src') == '';
+		}).remove();
+		var index = this.index;
+		var gallery = mui('#slider');
+		gallery.slider({
+			interval: 0
+		}).gotoItem(index);
+	})
+	$('.presee').on('tap', function() {
+		$(this).addClass('mui-hidden')
+	})
 	document.getElementById("resend-btn").addEventListener("tap", function() {
 		myAjax({
 			url: "order/release",
@@ -73,7 +86,14 @@ mui.plusReady(function() {
 	}, false)
 
 })
-
+function toverticalcenter() {
+		var item = $('.preimg')
+		var len = item.length;
+		for (var i = 0; i < len; i++) {
+			var t = ($(window).height() - item.eq(i).height()) / 2
+			item.eq(i).css('top', t)
+		}
+	}
 // 发送消息显示页面信息
 function sendmsg(orderid) {
 	// 页面加载时，获取数据
@@ -101,18 +121,19 @@ function sendmsg(orderid) {
 		var len = pic.length;
 		var box = document.querySelectorAll(".img-box");
 		if (len > 0) {
-			for (var i = 0; i < box.length; i++) {
-				if(i < len){
-					var url = per + pic[i].path;
-					var html = '<img src=' + url + ' width="100%">';
-					box[i].innerHTML = html;
-				} else {
-					box[i].style.display = "none";
-				}
+			for (var i = 0; i < len; i++) {
+				var picurl = pic[i].path;
+				var minurl = pic[i].minPath;
+				var n = BASEURL.indexOf('/a');
+				var perurls = BASEURL.substring(0, n);
+				var imgurl = perurls + picurl;
+				var img = document.createElement('img');
+				img.className = 'picture'
+				img.src = imgurl;
+				img.index = i;
+				document.getElementById('porel').appendChild(img);
+				$('.mui-slider-item', '.mui-slider-group').eq(i).find('img').attr('src', perurls + minurl);
 			}
-		} else {
-			var that = document.getElementById("last-wrap");
-			that.parentNode.removeChild(that);
 		}
 
 		// 判断是否在议价,显示议价消息链接框
