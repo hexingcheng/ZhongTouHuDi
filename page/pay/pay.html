@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../css/wallet-coment.css"/>
     <script src="../../js/mui.min.js"></script>
     <style type="text/css">
     	.mui-table-view-cell span {display: inline-block;}
@@ -21,14 +20,55 @@
     	.left-logo {background: transparent url(../../img/wallet-logo.png) no-repeat 10px center;background-size: 170% 70%;}
     	.right-logo {background: transparent url(../../img/wallet-logo.png) no-repeat 100% center;margin-right: 0.7em;background-size: 170% 70%;}
     	.use-paypal {position: absolute;left: 3em;right: 3em;top: 0.3em;padding-left: 2em;}
+    	/*页面nav*/
+    	.mui-content>.mui-table-view:first-child {margin-top: 0;}
+    	.mui-bar-nav~.mui-content {padding-top: 52px;}
+.nav_header{
+	height: 52px;
+	line-height: 52px;
+	font-size: 16px;
+	text-align: left;
+	color: #fff;
+	background-color: #44AB6E;
+	box-shadow: none;
+}
+.nav_header .header_left_img{
+	width: 34px;
+	height: 34px;
+	float: left;
+	margin: 9px 9px 9px 0; 
+}  
+.nav_header .header_right_img{
+	width: 34px;
+	height: 34px;
+	float: right;
+	margin: 9px 0 9px 9px; 
+}
+/*foorter nav*/
+.mui-bar-footer{
+	background-color:#fff;
+	height: 64px;
+	padding: 0 !important;
+	position: absolute;  
+}
+.mui-bar-footer .nav_footer{
+	width: 80%;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	color:#fff;
+	background-color: #054859;  
+	margin: 8px auto;  
+	text-align:center;
+}
     </style>
 </head>
 <body class="bg-color">
-	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">Withdraw</h1>
+	<header class="mui-bar mui-bar-nav nav_header">
+		<img src="../../img/left.png" class="header_left_img mui-action-back"/>
+		<span>Withdraw</span>
 	</header>
-	<div class="mui-content">
+	<div class="mui-content muipaddingtop">
 		<ul class="mui-table-view mui-grid-9 mui-grid-view">
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
 				<span class="left-title">Total</span>
@@ -69,8 +109,8 @@
 			</li>
 		</ul>
 	</div>
-	<footer style="height: 3.2em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="next-step" class="mui-btn button-next">Next Step</button>
+	<footer class="mui-bar mui-bar-footer">
+		<div id="next-step" class="nav_footer">Next Step</div>
 	</footer>
 	<script src="../../js/utils.js"></script>
 	<script type="text/javascript">

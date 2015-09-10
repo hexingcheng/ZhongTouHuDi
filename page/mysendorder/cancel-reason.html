@@ -7,13 +7,23 @@
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../css/share_main.css" />
     <script src="../../js/mui.min.js"></script>
+    <style type="text/css">
+    	.mui-table-view-cell:after {left: 0;}
+    	.mui-bar-footer .nav_footer {
+    		line-height: 0;
+    		border-radius: 0;
+    		border: none;
+    		padding: 0;
+    		display: inherit;
+    	}
+    </style>
 </head>
 <body >
 	<header class="mui-bar mui-bar-nav nav_header">
 		<img src="../../img/left.png" class="header_left_img" alt="" />
 		<span>Cancel reason</span>
 	</header>
-	<div class="mui-content">
+	<div class="mui-content muipaddingtop">
 		<ul class="mui-table-view">
 			<li class="mui-table-view-cell mui-radio mui-left">
 				<input name="radio" type="radio" value="不满意此接单人">不满意此接单人
@@ -30,22 +40,20 @@
 		</ul>
 	</div>
 	
-	<footer style="height: 3.5em;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="submit-reason" class="mui-btn mui-btn-block">Submit</button>
-	</footer>
 	<footer class="mui-bar mui-bar-footer" >
-			<div class="nav_footer" id="submit-reason">Submit</div>
+		<button class="nav_footer" id="submit-reason">Submit</button>
 	</footer>
 	<script src="../../js/utils.js"></script>  
     <script>
       	mui.init();  
       	mui.plusReady(function(){
       		var cpage = plus.webview.currentWebview();
-//    		console.log(cpage.orderId)
-//    		console.log(cpage.status)
       		// 提交取消订单原因
-      		var reasonval;
+      		var reasonval, _this;
       		document.getElementById("submit-reason").addEventListener("tap", function(){
+      			_this = this;
+      			_this.setAttribute("disabled", true);
+      			_this.innerHTML = "提交中...";
       			var radio = document.getElementsByName("radio");
       			for(var i = 0; i < radio.length; i++){
       				if(radio[i].checked){
@@ -53,9 +61,10 @@
       				}
       			}
       			if(reasonval){
-//    				console.log(reasonval);
       				cancelorder(cpage.orderId, reasonval, cpage.status);
       			} else {
+      				_this.removeAttribute("disabled");
+      				_this.innerHTML = "Submit";
       				mui.toast("请选择取消发单的原因")
       			}
       		},false)
@@ -94,6 +103,8 @@
 						refresh();
 					}
 				}, function(xhr, type) {
+					_this.innerHTML = "Submit";
+					_this.setAttribute("disabled", false);
 					console.log(xhr.status+":"+type)
 				})
 			}
