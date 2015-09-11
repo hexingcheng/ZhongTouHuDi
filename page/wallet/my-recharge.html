@@ -6,14 +6,23 @@
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
     <link rel="stylesheet" href="../../css/mywallet/wallet-withdraw-recharge-common.css"/>
     <script src="../../js/mui.min.js"></script>
 </head>
 <body class="bg-color">
 	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">Recharge</h1>
+		<div class="left-back mui-pull-left">
+			<img src="../../img/left.png" class="mui-action-back"></img>
+		</div>
+		<h1 class="mui-title mui-text-left">Recharge</h1>
 	</header>
+	<footer class="mui-bar mui-bar-footer mui-text-center">
+		<div class="button-row">
+			<button id="recharge" class="mui-btn button-block">Next Step</button>
+		</div>
+	</footer>
+	
 	<div class="mui-content">
 		<ul class="mui-table-view mui-grid-9 mui-grid-view">
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
@@ -59,9 +68,7 @@
 		</div>
 		
 	</div>
-	<footer style="height: 64px;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="recharge" class="mui-btn button-next">recharge</button>
-	</footer>
+	
 	<script src="../../js/utils.js"></script>
 	<script src="../../js/template.js"></script>
 	<script src="../../js/mywallet/wallet-recharge.js"></script>

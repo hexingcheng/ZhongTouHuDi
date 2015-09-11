@@ -12,22 +12,22 @@
     	.success-logo {padding: 6em 0 1.5em 0;}
     	.withdraw-success {color: #219b52;font-size: 1.7em;padding: 0.5em 0;}
     	.color {color: #ccc;padding: 0.2em 0;}
+    	body {background-color: #fff;}
     </style>
 </head>
-<body class="bg-color">
-	
+<body>
 	<header class="mui-bar mui-bar-nav nav_header mui-text-center">
 		<h1 class="mui-title mui-text-center">Withdraw</h1>
 	</header>
 	
-		<footer class="mui-bar mui-bar-footer mui-text-center">
+	<footer class="mui-bar mui-bar-footer mui-text-center">
 		<div class="button-row">
 			<button id="main-page" class="mui-btn first-button">Main Page</button>
 			<button id="order-page" class="mui-btn second-button" style="background-color: #23A0CF;">View Order</button>
 		</div>
 	</footer>
 	
-	<div class="mui-content muipaddingtop">
+	<div class="mui-content" style="background-color: #fff;">
 		<div class="success-logo mui-text-center bg-color">
 			<img src="../../img/success-logo.png" width="25%"/>
 		</div>
@@ -64,6 +64,7 @@
 	      	
 	      	// 返回订单页面
 	      	var order = plus.webview.getWebviewById("mysendorder/my-send-order");
+      		var transport = plus.webview.getWebviewById("mysendorder-detail-transporting");
 	      	document.getElementById("order-page").addEventListener("tap", function(){
 	      		mui.fire(order, "refresh:second",{
 	      			type : "pay-over"
@@ -71,6 +72,7 @@
 	      		plus.webview.show(order, "slide-in-left", 300, function(){
 		      		setTimeout(function(){
 		      			plus.webview.close(thispage, "none", 0);
+		      			plus.webview.close(transport, "none", 0);
 		      		}, 300)
 	      		})
 	      	}, false)

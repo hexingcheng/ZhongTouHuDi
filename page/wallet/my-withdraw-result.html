@@ -6,6 +6,7 @@
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../css/share_main.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
     <script src="../../js/mui.min.js"></script>
     <style type="text/css">
     	.result_log{
@@ -21,12 +22,22 @@
     		font-size: 16px;
     		line-height: 40px;
     	}
+    	.mui-bar-footer {
+    		padding: 8px 0 !important;
+    	}
     </style>
 </head>
 <body class="bg-color">
 	<header class="mui-bar mui-bar-nav nav_header mui-text-center">
 		<span>result</span>
 	</header>
+	
+	<footer class="mui-bar mui-bar-footer mui-text-center">
+		<div class="button-row">
+			<button class="mui-btn button-block" id="main-page">Main Page</button>
+		</div>
+	</footer>
+	
 	<div class="mui-content mui-text-center">
 		<div class="result_log">
 			<img src="../../img/success-logo.png" />
@@ -35,11 +46,7 @@
 		<p><span>your withdrawal application has been</span></p>
 		<p><span>completed, please wait.</span></p>
 	</div>
-	<footer class="mui-bar mui-bar-footer">
-		<div class="nav_footer" id="main-page">
-			<span>Main Page</span>
-		</div>
-	</footer>
+	
 	<script type="text/javascript" charset="utf-8">
       	mui.init();
       	mui.plusReady(function(){
