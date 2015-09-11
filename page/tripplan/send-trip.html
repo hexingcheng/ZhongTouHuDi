@@ -10,24 +10,11 @@
 		<!--<link rel="stylesheet" type="text/css" href="../../css/app.css" />-->
 		<link href="../../css/mui.listpicker.css" rel="stylesheet" />
 		<link href="../../css/mui.dtpicker.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
 		<style type="text/css">
 			body {background-color: #fff;}
-				.mui-content>.mui-table-view:first-child {margin-top: 0;}
-		    	.mui-bar-nav~.mui-content {padding-top: 52px;}
 		    	.mui-table-view-cell:after {left: 0;}
-		    	header.mui-bar {height: 52px;background-color: #46ac6f;}
-		    	.mui-bar .mui-icon {
-					padding-top: 14px;
-					padding-bottom: 14px;
-					color: #fff;
-				}
 				footer.mui-bar {-webkit-box-shadow: 0 0 1px rgba(0,0,0,.5);box-shadow: 0 0 1px rgba(0,0,0,.5);}
-				.mui-bar .mui-title {
-					left: 43px;
-					color: #fff;
-					height: 52px;
-					line-height: 52px;
-				}
 				.clear-padding {padding: 0;}
 				.input-box {overflow: hidden;padding: 10px 0px 10px 15px;}
 				.label-wrap {width: 5em;padding: 0.5em 0;}
@@ -39,11 +26,7 @@
 				.mui-table-view-cell label {color: #ccc;}
 				.input {left: 6em;position: absolute;right: 65px;}
 				.sub-input {position: absolute;left: 6em;right: 0;}
-				
-				footer.mui-bar {padding: 7px 10px;height: 63px;}
-				footer span {display: inline-block;height: 48px;line-height: 48px;color: #fff;}
-				#ok-btn {background:  #06495a;width: 45%;}
-				#cancel-btn {background: #23A0CF;margin-left: 2%;width: 45%;}
+				#cancel-btn {background: #fc614d;width: 45%;}
 				div.mui-scroll-wrapper {top: 52px;bottom: 60px;}
 				
 				.date-box {padding: 10px 0;color: #aaa;padding-right: 3em;}
@@ -53,9 +36,19 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<span class="left-back mui-pull-left">
+				<img src="../../img/left.png" class="mui-action-back"></img>
+			</span>
 			<h1 class="mui-title mui-text-left">Trip plan</h1>
 		</header>
+		
+		<footer class="mui-bar mui-bar-footer mui-text-center">
+			<div class="button-row">
+				<button id="ok-btn" class="mui-btn first-button">Ok</button>
+				<button id="cancel-btn" class="mui-btn second-button">cancel</button>
+			</div>
+		</footer>
+		
 		
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
@@ -119,12 +112,11 @@
 			</div>
 		</div>
 
-		<footer class="mui-bar mui-bar-footer mui-text-center">
-			<span id="ok-btn">Ok</span>
-			<span id="cancel-btn">cancel</span>
-		</footer>
+		
+		
 		<script src="../../js/mui.listpicker.js"></script>
 		<script src="../../js/mui.dtpicker.js"></script>
+		
 		<script>
 			mui.init();
 			mui.plusReady(function(){

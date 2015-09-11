@@ -9,12 +9,21 @@
     <link rel="stylesheet" href="../../css/mysendorder/mysendorder-detail.css"/>
     <script src="../../js/mui.js"></script>
     <link rel="stylesheet"  href="../../css/mysendorder/detail-finish.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
 </head>
 <body style="background: #fff;">
 	<header class="mui-bar mui-bar-nav">
-		<img src="../../img/left.png" class="mui-action-back mui-pull-left left-icon"/>
+		<div class="left-back mui-pull-left">
+			<img src="../../img/left.png" class="mui-action-back"/>
+		</div>
 		<h1 class="mui-title">Detail</h1>
 	</header>
+	
+	<footer id="footer-cancel" class="mui-bar mui-bar-footer mui-text-center">
+		<div class="button-row">
+			<button id="comment-order" class="mui-btn button-block">comment</button>
+		</div>
+	</footer>
 	
 	<div class="mui-content">
 		<div id="scroll-wrapper" class="mui-scroll-wrapper">
@@ -118,9 +127,7 @@
 		</div>
 	</div>
 	
-	<footer id="footer-cancel" style="height: 64px;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="comment-order" class="mui-btn mui-btn-block">comment</button>
-	</footer>
+	
 
 	<!-- 加载中的蒙层 -->
 	<div id="loading-mask"></div>

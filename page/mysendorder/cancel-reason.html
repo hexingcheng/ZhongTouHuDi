@@ -5,25 +5,28 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../css/share_main.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
     <script src="../../js/mui.min.js"></script>
     <style type="text/css">
     	.mui-table-view-cell:after {left: 0;}
-    	.mui-bar-footer .nav_footer {
-    		line-height: 0;
-    		border-radius: 0;
-    		border: none;
-    		padding: 0;
-    		display: inherit;
-    	}
+    	.mui-table-view-cell {font-size: 14px;}
     </style>
 </head>
 <body >
 	<header class="mui-bar mui-bar-nav nav_header">
-		<img src="../../img/left.png" class="header_left_img" alt="" />
-		<span>Cancel reason</span>
+		<span class="left-back mui-pull-left">
+			<img src="../../img/left.png" class="mui-action-back"></img>
+		</span>
+		<h1 class="mui-title mui-text-left">cancel reason</h1>
 	</header>
-	<div class="mui-content muipaddingtop">
+	
+	<footer class="mui-bar mui-bar-footer" >
+		<div class="button-row">
+			<button class="mui-btn button-block" id="submit-reason">Submit</button>
+		</div>
+	</footer>
+	
+	<div class="mui-content">
 		<ul class="mui-table-view">
 			<li class="mui-table-view-cell mui-radio mui-left">
 				<input name="radio" type="radio" value="不满意此接单人">不满意此接单人
@@ -39,10 +42,6 @@
 			</li>
 		</ul>
 	</div>
-	
-	<footer class="mui-bar mui-bar-footer" >
-		<button class="nav_footer" id="submit-reason">Submit</button>
-	</footer>
 	<script src="../../js/utils.js"></script>  
     <script>
       	mui.init();  

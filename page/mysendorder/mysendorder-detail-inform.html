@@ -7,6 +7,7 @@
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css"/>
     <link rel="stylesheet" href="../../css/mysendorder/mysendorder-detail.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
     <script src="../../js/mui.js"></script>
     <style type="text/css">
     	.mui-table-view:before {height: 0;}
@@ -15,9 +16,17 @@
 </head>
 <body style="background: #fff;">
 	<header class="mui-bar mui-bar-nav">
-		<img src="../../img/left.png" class="mui-action-back mui-pull-left left-icon"/>
+		<span class="left-back mui-pull-left">
+			<img src="../../img/left.png" class="mui-action-back"/>
+		</span>
 		<h1 class="mui-title">Detail</h1>
 	</header>
+	
+	<footer class="mui-bar mui-bar-footer mui-text-center">
+		<div class="button-row">
+			<button id="cancel-order" class="mui-btn button-block" style="background-color: #fc614d;">cancel</button>
+		</div>
+	</footer>
 	
 	<div class="mui-content">
 		<div id="scroll-wrapper" class="mui-scroll-wrapper">
@@ -98,9 +107,7 @@
 		</div>
 	</div>
 	
-	<footer class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="cancel-order" class="mui-btn mui-btn-block" style="background-color: #fc614d;">cancel</button>
-	</footer>
+	
 
 	<!-- 加载中的蒙层 -->
 	<div id="loading-mask"></div>

@@ -9,72 +9,21 @@
 		<link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css" />
 		<link rel="stylesheet" href="../../css/mysendorder/mysendorder-detail.css" />
 		<link rel="stylesheet" href="../../css/mysendorder/detail-transporting.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
 		<script src="../../js/mui.js"></script>
 		<style type="text/css">
 			#deliverer-contact div:nth-child(1) {border: none;}
 			.mui-table-view:before {height: 0;}
 			.mui-table-view:after {height: 0;}
-			.nav_header{
-	height: 52px;
-	line-height: 52px;
-	font-size: 16px;
-	text-align: left;
-	color: #fff;
-	background-color: #44AB6E;
-	box-shadow: none;
-}
-.nav_header .header_left_img{
-	width: 34px;
-	height: 34px;
-	float: left;
-	margin: 9px 9px 9px 0; 
-}
-.mui-bar-footer{
-	background-color:#fff;
-	height: 64px;
-	padding: 0 !important;
-	position: absolute;  
-}
-.mui-bar-footer .nav_footer{
-	width: 80%;
-	height: 48px;
-	line-height: 48px;
-	font-size: 16px;
-	color:#fff;
-	background-color: #054859;  
-	margin: 8px auto;  
-	text-align:center;
-}
-.mui-bar-footer .nav_footer button {
-	padding: 0;
-	border: none;
-	outline: none;
-	border-radius: 0;
-}
-.nav_footer .left_button{
-	width: 47%;
-	height: 48px;
-	text-align: center;
-	color: #fff;
-	float: left;
-	background-color: #06495a;
-}
-.nav_footer .right_button{
-	width: 47%;
-	height: 48px;
-	line-height: 48px;
-	text-align: center;
-	color: #fff;
-	float: right;
-	background-color: #fc614d;
-}
 		</style>
 	</head>
 
 	<body style="background: #fff;">
-		<header class="mui-bar mui-bar-nav nav_header">
-			<img src="../../img/left.png" class="header_left_img mui-action-back"/>
-			<span>Detail</span>
+		<header class="mui-bar mui-bar-nav">
+			<div class="left-back mui-pull-left">
+				<img src="../../img/left.png" class="mui-action-back"/>
+			</div>
+			<h1 class="mui-title">Detail</h1>
 		</header>
 
 		<div class="mui-content">
@@ -179,14 +128,16 @@
 		</div>
 		</div>
 
-		<footer id="footer-cancel" class="mui-bar mui-bar-footer">
+		<footer id="footer-cancel" class="mui-bar mui-bar-footer mui-text-center">
 			<!-- 已付款 status=3 -->
-			<div style="display: none;" id="cancel-order" class="status-3 nav_footer">
-				cancel
+			<div class="button-row status-3" style="display: none;">
+				<button  id="cancel-order" class="mui-btn button-block">cancel</button>
 			</div>
-			<div class="status-2 nav_footer" style="background: #fff;display: none;">
-				<button id="cancel" class="mui-btn left_button" style="background: #fc614d;">cancel</button>
-				<button id="button-pay" class="mui-btn right_button" style="background-color: #23A0CF;">pay</button>
+			<div class="status-2" style="display: none;">
+				<div class="button-row">
+					<button id="cancel" class="mui-btn first-button" style="background: #fc614d;">cancel</button>
+					<button id="button-pay" class="mui-btn second-button" style="background-color: #23A0CF;">pay</button>
+				</div>
 			</div>
 		</footer>
 
