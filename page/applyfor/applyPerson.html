@@ -7,9 +7,10 @@
 		<title></title>
 		<script src="../../js/mui.js"></script>
 		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/share_main.css" />
 		<link rel="stylesheet" href="apply.css" />
 		<style>
-			.apply_header {
+			/*.apply_header {
 				width: 100%;
 				height: 52px;
 				line-height: 52px;
@@ -31,8 +32,8 @@
 			.mui-content .mui-table-view-cell {
 				height: 50px;
 				padding: 0;
-			}
-			.mui-table-view-cell img {
+			}*/
+			/*.mui-table-view-cell img {
 				width: 34px;
 				height: 34px;
 				margin: 8px 7px;
@@ -55,8 +56,8 @@
 				padding-left: 0;
 				padding-right: 0;
 				margin-bottom: 0;
-			}
-			.apply_footer {
+			}*/
+			/*.apply_footer {
 				width: 100%;
 				position: fixed;
 				bottom: 0;
@@ -75,8 +76,8 @@
 			}
 			.mui-content .mui-table-view {
 				margin-top: 1em;
-			}
-			.apply_info {
+			}*/
+			/*.apply_info {
 				overflow: hidden;
 			}
 			.apply_idCard {
@@ -98,7 +99,7 @@
 				text-align: center;
 				line-height: 1em;
 				float: right;
-			}
+			}*/
 			.nation_mark {
 				display: none;
 				position: absolute;
@@ -109,11 +110,9 @@
 				right: 0;
 				bottom: 0;
 			}
-			.apply_idpho {
+			/*.apply_idpho {
 				height: 12em;
 				padding: 0 1em;
-				/*	background-color: #F6F6F6;*/
-				
 				overflow: hidden;
 				text-align: center;
 				margin-right: 3em;
@@ -123,7 +122,7 @@
 				width: 34px;
 				height: 34px;
 				margin: .2em auto;
-			}
+			}*/
 			.nation_select{
 				width: 70%;
 				height: 80%;
@@ -136,23 +135,23 @@
 				background-color: white;
 				display: none;
 			} 		
-			.apply_sex {
+			/*.apply_sex {
 				width: 150px;
 				height: 50px;
 				line-height: 50px;
 				float: right;
 				text-align: center;
-			}
-			.apply_bor_b {
+			}*/
+			/*.apply_bor_b {
 				border-bottom: 1px solid #E3E2E5;
-			}
+			}*/
 			.mui-scroll-wrapper {
 				top: 52px;
 				bottom: 60px;
 			}
-			.mui-content .mui-table-view {
+			/*.mui-content .mui-table-view {
 				margin-top: 0;
-			}
+			}*/
 		</style>
 	</head>
 
@@ -201,31 +200,31 @@
 				
 			</ul>
 		</div>
-		<header class="mui-bar mui-bar-nav apply_header ">
-			<img src="../../img/left.png" alt="" class="left_img mui-action-back" />
+		<header class="mui-bar mui-bar-nav nav_header ">
+			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 			<span>Application For Deliverer</span>
 		</header>
 		<div class="mui-content apply_content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
-					<ul class="mui-table-view">
+					<ul class="mui-table-view top_header">
 						<li class="mui-table-view-divider"> <span>Basic Information</span></li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/name.png" class="mui-pull-left" alt="" />
-							<div class="apply_input_middle">
+							<img src="../../img/name.png" class=" li_left_img" alt="" />
+							<div class="li_input_l">
 								<input type="text" class="apply_input" placeholder="familyName" id="familyName" />
 							</div>
 						</li>
 						  
 						<li class="mui-table-view-cell">
-							<img src="../../img/name.png" class="mui-pull-left" alt="" />
-							<div class="apply_input_middle">
+							<img src="../../img/name.png" class="li_left_img" alt="" />
+							<div class="li_input_l">
 								<input type="text" class="apply_input" placeholder="firstName" id="firsetName" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/name.png" class="mui-pull-left" alt="" />
-							<div class="apply_input_middle">
+							<img src="../../img/name.png" class="li_left_img" alt="" />
+							<div class="li_input_l">
 								<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
 								<lable>man </lable>
 								<input type="radio" name="sex" />
@@ -233,46 +232,46 @@
 							</div>
 						</li>
 						<li class="mui-table-view-cell" id="apply_nation">
-							<img src="../../img/nationality.png" class="mui-pull-left" alt="" />
+							<img src="../../img/nationality.png" class="li_left_img" alt="" />
 							<span id="nation">select nation</span>
 						</li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/4.png" class="mui-pull-left" alt="" />
-							<div class="apply_input_l">
+							<img src="../../img/4.png" class="li_left_img" alt="" />
+							<div class="li_input_l">
 								<input type="text" class="apply_input" placeholder="place of residence" id="apply_place" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell ">
-							<img src="../../img/emergency.png" class="mui-pull-left" alt="" />
-							<img src="../../img/personbg.png" id="choose-contacts" class="mui-pull-right" alt="" />
-							<div class="apply_input_r">
+							<img src="../../img/emergency.png" class="li_left_img" alt="" />
+							<img src="../../img/personbg.png" id="choose-contacts" class="li_right_img" alt="" />
+							<div class="li_input_s">
 								<input type="text" class="apply_input" placeholder="emergency contact " id="apply_emergencyC" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/mobile.png" class="mui-pull-left" alt="" />
-							<div class="apply_input_l">
+							<img src="../../img/mobile.png" class="li_left_img" alt="" />
+							<div class="li_input_l">
 								<input type="number" class="apply_input" placeholder="mobile" id="apply_mobile" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/id.png" class="mui-pull-left" alt="" />
-							<div class="apply_input_l">
+							<img src="../../img/id.png" class=" li_left_img" alt="" />
+							<div class="li_input_l">
 								<input type="number" class="apply_input" placeholder="identity" id="identity" />
 							</div>
 						</li>
 						<!--			<ul class="mui-table-view apply_padding" >-->
 						<li class="mui-table-view-cell" id="select_type">
-							<img src="../../img/id.png" class="mui-pull-left" alt="" />
-							<img src="../../img/down.png" class="mui-pull-right" alt="" />
-							<div class="apply_input_r">
+							<img src="../../img/id.png" class=" li_left_img" alt="" />
+							<img src="../../img/down.png" class=" li_right_img" alt="" />
+							<div class="li_input_s">
 								<input type="text" class="apply_input" placeholder="请选择证件" readonly="readonly" id="select_type_show" />
 							</div>
 						</li>
 						
 						<li class="mui-table-view-cell" style="">
-							<img src="../../img/id.png" class="mui-pull-left" alt="" />
-							<div class="apply_input_r">
+							<img src="../../img/id.png" class=" li_left_img" alt="" />
+							<div class="li_input_l">
 								<input type="number" class="apply_input" placeholder="请输入对应的证件号" id="id_number" />
 							</div>
 						</li>
@@ -280,9 +279,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="apply_footer">
+		<!--<div class="apply_footer">
 			<div class="apply_button" id="apply_submit"><span>Next Step</span></div>
-		</div>
+		</div>-->
+		<footer class="mui-bar mui-bar-footer">
+			<button class="mui-btn nav_footer" id="apply_submit"><span>Next Step</span></button>
+		</footer>
 	</body>
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/utils.js"></script>

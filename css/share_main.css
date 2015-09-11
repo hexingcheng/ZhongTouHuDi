@@ -23,9 +23,7 @@ body,.mui-content{
 .font16{
 	font-size: 16px;
 }
-.mui-bar .mui-btn {
-	top: 0;
-}
+
 /*页面nav*/
 .nav_header{
 	height: 52px;
@@ -56,14 +54,12 @@ body,.mui-content{
 	padding: 0 !important;
 	position: fixed;
 }
-.mui-bar-footer button{
-	position: static;
-	
-}
 .mui-bar-footer .mui-btn{
 	position: static;
 	top: 0;
 	padding: 0;
+	border-radius: 0;
+	box-shadow: none ;
 }
 .mui-bar-footer .nav_footer{
 	width: 80%;
@@ -71,9 +67,11 @@ body,.mui-content{
 	line-height: 48px;
 	font-size: 16px;
 	color:#fff;
-	background-color: #054859;  
+	border: 0;
+	background-color: #06495a;  
 	margin: 8px auto;  
 	margin-left: 10%;
+	margin-right: 10%;
 	text-align:center;
 }
 .nav_footer .left_button{
