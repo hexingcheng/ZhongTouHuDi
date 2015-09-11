@@ -57,7 +57,8 @@
 				//open findpass address
 				plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
 				$('#log_up').on('tap', function() {
-					openWindow('./productName.html')
+					openWindow('./productName.html')  
+					
 				});
 				$('#find_pwd').on('tap', function() {
 					openWindow('./findpassword.html')
@@ -162,7 +163,7 @@
 					var i = plus.webview.getLaunchWebview();
 					mui.fire(i,'msgtips')
 				}
-				$('#submit-button').on('tap', function() {
+				$('#submit-button').on('tap', function() { 
 					checkLogin();
 				});
 				//password可见切换

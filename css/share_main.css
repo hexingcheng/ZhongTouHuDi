@@ -3,12 +3,21 @@ body,.mui-content{
 	font-size: 14px;
 	color: #000;
 }
+/**间隙*/
+.content_clear{
+	width: 100%;
+	height: .5em;
+	background-color: #F7F7F7; 
+}
 .bg_white{
 	background-color: #fff !important;
 }
+.mui-bar-nav~ .mui-content{
+	padding-top: 52px;  
+}
 /*header与content**/
-.top_header{
-	margin-top: -8px;
+.mui-bar-nav~ .mui-content .top_header{
+	margin-top: 0px;
 }
 .font16{
 	font-size: 16px;
@@ -23,6 +32,7 @@ body,.mui-content{
 	background-color: #44AB6E;
 	box-shadow: none;
 }
+
 .nav_header .header_left_img{
 	width: 34px;
 	height: 34px;
@@ -42,6 +52,15 @@ body,.mui-content{
 	padding: 0 !important;
 	position: absolute;  
 }
+.mui-bar-footer button{
+	position: static;
+	
+}
+.mui-bar-footer .mui-btn{
+	position: static;
+	top: 0;
+	padding: 0;
+}
 .mui-bar-footer .nav_footer{
 	width: 80%;
 	height: 48px;
@@ -50,8 +69,10 @@ body,.mui-content{
 	color:#fff;
 	background-color: #054859;  
 	margin: 8px auto;  
+	margin-left: 10%;
 	text-align:center;
 }
+
 .nav_footer .left_button{
 	width: 47%;
 	height: 48px;
