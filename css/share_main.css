@@ -37,7 +37,7 @@ body,.mui-content{
 	box-shadow: none;
 }
 
-.nav_header .header_left_img{
+.nav_header .header_left_img{  
 	width: 34px;
 	height: 34px;
 	float: left;
@@ -76,16 +76,6 @@ body,.mui-content{
 	margin-left: 10%;
 	text-align:center;
 }
-<<<<<<< HEAD
-
-=======
-.mui-bar-footer .nav_footer button {
-	padding: 0;
-	border: none;
-	outline: none;
-	border-radius: 0;
-}
->>>>>>> 094f5df37a9723b5daedcd2004552d195710bc64
 .nav_footer .left_button{
 	width: 47%;
 	height: 48px;
