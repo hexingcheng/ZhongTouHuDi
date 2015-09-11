@@ -71,8 +71,30 @@ mui.plusReady(function() {
 			})
 		}
 	}, false)
-
-
+	function toverticalcenter() {
+		var item = $('.preimg')
+		var len = item.length;
+		for (var i = 0; i < len; i++) {
+			var t = ($(window).height() - item.eq(i).height()) / 2
+			item.eq(i).css('top', t)
+		}
+	}
+mui('#picwrap').on('tap','img',function(){
+	toverticalcenter()
+	var index = this.getAttribute('data-index');
+	$('.presee').removeClass('mui-hidden');
+	$('.mui-slider-item', '#slider').filter(function(index) {
+			return $('.mui-slider-item', '#slider').eq(index).find('img').attr('src') == '';
+		}).remove();
+		var gallery = mui('#slider');
+		gallery.slider({
+			interval: 0
+		}).gotoItem(index);
+	
+})
+	$('.presee').on('tap', function() {
+		$(this).addClass('mui-hidden')
+	})
 	// collect 按钮抢单
 	document.getElementById("collect").addEventListener("tap", function() {
 			if (parseInt(money) < parseInt($('.rel').text())) {
@@ -122,7 +144,6 @@ mui.plusReady(function() {
 	
 		// 页面加载时，获取数据
 	refreshdata(); 
-	alert(1)
 	function refreshdata() {
 		myAjax({
 			url: "order/goodShow",
@@ -131,7 +152,6 @@ mui.plusReady(function() {
 				type: "comm"
 			}
 		}, function(data) {
-		alert(JSON.stringify(data));    
 //			showobj(data.res.pics[0]);
 			$(".goods-name").html(data.res.gName); // 货物名称
 			$("#goods-value").html(data.res.money); // 价值
@@ -143,7 +163,6 @@ mui.plusReady(function() {
 			$("#gvalue").html(data.res.gValue); // value
 			$("#info").html(data.res.info); // 信息描述
 			var pic = data.res.pics;
-			alert(JSON.stringify(data.res.pics))
 			$('.rewrod').text(data.res.money)
 			$('.rel').text(data.res.money)
 			var n = BASEURL.indexOf('/api/');
@@ -151,9 +170,10 @@ mui.plusReady(function() {
 			var len = pic.length;
 			if (len > 0) {
 				for (var i = 0; i < len; i++) {
-					var url = per + pic[i].path;   
-					console.log(url)
-					$('<img class="picture" src="' + url + '">').appendTo('#picwrap');
+					var url = per + pic[i].path; 
+					var minurl = per+pic[i].minPath;
+					$('<img class="picture" src="' + url + '" data-index = "'+i+'">').appendTo('#picwrap');
+					$('.preimg','#slider').eq(i).attr('src',minurl)
 				}
 			}
 

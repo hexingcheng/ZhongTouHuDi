@@ -180,8 +180,6 @@
 
 
 
-
-=======
 #uls li,#ul2 li{
 	padding: 0;
 	height: 50px;
@@ -303,4 +301,40 @@
 .now,.origin{
 	padding-top: 10px;
 }
->>>>>>> 0694bcd3d905405a976feb0e1758d94229ec5190
+.presee {
+	width: 100%;
+	height: 100%;
+	z-index: 30;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.presee {
+	position: fixed;
+	background-color: rgba(0, 0, 0, 1);
+}
+.presee .mui-slider {
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.presee .mui-slider .mui-slider-item {
+	padding: 0 10px;
+	height: 100%;
+	box-sizing: border-box;
+}
+.presee .mui-slider .mui-slider-item a {
+	height: 100%;
+	position: relative;
+}
+.presee .mui-slider .mui-slider-item a img {
+	margin-top: -150px;
+	position: absolute;
+}
+.picwraps {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
