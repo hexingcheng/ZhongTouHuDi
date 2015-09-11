@@ -8,13 +8,86 @@
     <link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css"/>
     <link rel="stylesheet" href="../../css/mysendorder/mysendorder-detail.css"/>
     <script src="../../js/mui.js"></script>
+    <style type="text/css">
+    	.mui-bar-footer{
+	background-color:#fff;
+	height: 64px;
+	padding: 0 !important;
+	position: absolute;  
+}
+.mui-bar-footer .nav_footer{
+	width: 80%;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	color:#fff;
+	background-color: #054859;  
+	margin: 8px auto;  
+	text-align:center;
+}
+.mui-bar-footer .nav_footer button {
+	padding: 0;
+	border: none;
+	outline: none;
+	border-radius: 0;
+}
+.nav_footer .left_button{
+	width: 47%;
+	height: 48px;
+	text-align: center;
+	color: #fff;
+	float: left;
+	background-color: #06495a;
+}
+.nav_footer .right_button{
+	width: 47%;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	color: #fff;
+	float: right;
+	background-color: #fc614d;
+}
+.header_left_img{
+			height: 40px;
+			width: 40px;
+			margin: 6px 6px 6px 0;
+		}
+    </style>
 </head>
 <body style="background: #fff;">
 	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<img src="../../img/left.png" class="mui-action-back header_left_img"/>
 		<h1 class="mui-title">Detail</h1>
 	</header>
-	
+	<div class="presee mui-hidden">
+			<div class="picwraps">
+				<div class="mui-slider" id="slider">
+					<div class="mui-slider-group" id="preseepic">
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	<div class="mui-content">
 		<div id="scroll-wrapper" class="mui-scroll-wrapper">
 			<div class="mui-scroll">
@@ -69,22 +142,8 @@
 						<span id="info" class="mui-ellipsis content-length">--</span>
 					</li>
 					<li id="last-wrap" class="mui-table-view-cell">
-						<div class="porel">
-							<span class="img-box">
-								<span class="mui-icon mui-icon-plusempty"></span>
-							</span>
-							<span class="img-box">
-								<span class="mui-icon mui-icon-plusempty"></span>
-							</span>
-							<span class="img-box">
-								<span class="mui-icon mui-icon-plusempty"></span>
-							</span>
-							<span class="img-box">
-								<span class="mui-icon mui-icon-plusempty"></span>
-							</span>
-							<!--<span class="img-box">
-								<img src="../../img/2147de349744915c611f470c84c67f94.jpg" width="100%"/>
-							</span>-->
+						<div id="porel">
+							 
 						</div>
 					</li>
 				</ul>
@@ -92,11 +151,12 @@
 		</div>
 	</div>
 	
-	<footer style="height: 64px;" class="mui-bar mui-bar-footer mui-text-center bg-color">
-		<button id="edit-btn" class="mui-btn button-first">edit</button>
-		<button id="resend-btn" class="mui-btn button-next">resend</button>
+	<footer class="mui-bar mui-bar-footer">
+		<div class="status-2 nav_footer" style="background: #fff;">
+			<button id="edit-btn" class="mui-btn left_button">edit</button>
+			<button id="resend-btn" class="mui-btn right_button" style="background: #23A0CF;">resend</button>
+		</div>
 	</footer>
-
 	<!-- 加载中的蒙层 -->
 	<div id="loading-mask"></div>
 	<div id="loading-box">

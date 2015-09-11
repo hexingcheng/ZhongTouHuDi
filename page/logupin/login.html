@@ -139,6 +139,9 @@
 								if (getstorage('personinfo')) {
 									plus.storage.removeItem('personinfo')
 								}
+								if (data.res.deliver == 1) {
+									$('#applydeliver').remove();
+								}
 								setstorage('personinfo', JSON.stringify(data.res));
 								console.log(getstorage('personinfo'));
 								var index = plus.webview.getLaunchWebview();

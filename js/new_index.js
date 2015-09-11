@@ -224,7 +224,9 @@ window.addEventListener('dragleft', function(e) {
 	e.detail.gesture.preventDefault();
 });
 $('.infowrap').on('tap', function() {
-	openWindow('./page/person/new_me_center.html');
+	iflogin(function(){
+		openWindow('./page/person/new_me_center.html');
+	})
 })
 window.addEventListener('removehref', function() {
 	$('.pho').attr('src', 'img/defualt.png')
