@@ -47,10 +47,6 @@ header.mui-bar.mui-bar-nav {
 	padding: 14px 0;
 	width: 45%;
 }
-footer.mui-bar {
-	height: 64px;
-	padding: 7px 0;
-}
 footer.mui-bar .mui-btn {
 	top: 0;
 	border: none;

@@ -1,0 +1,81 @@
+/* 冲突掉共有的mui原有样式 */
+
+.mui-content>.mui-table-view:first-child {
+	margin-top: 0;
+}
+.mui-bar-nav~.mui-content {
+	padding-top: 52px;
+}
+.mui-bar .mui-title {
+	left: 52px;
+	right: 52px;
+	color: #fff;
+	height: 52px;
+	line-height: 52px;
+}
+
+header.mui-bar~.mui-content > div.mui-scroll-wrapper {
+	top: 52px;
+}
+footer.mui-bar~.mui-content > .mui-scroll-wrapper {
+	bottom: 64px;
+}
+
+/* 自定义共有样式 */
+header.mui-bar {
+	height: 52px;
+	background-color: #46ac6f;
+	padding: 0;
+}
+header.mui-bar .left-back,
+header.mui-bar .right-icon {
+	padding: 9px;
+	overflow: hidden;
+	display: inline-block;
+	box-sizing: border-box;
+	width: 52px;
+	height: 52px;
+}
+header.mui-bar .left-back img,
+header.mui-bar .right-icon img {
+	width: 34px;
+	height: 34px;
+}
+header.mui-bar~.mui-content {
+	top: 52px;
+}
+footer.mui-bar~.mui-content {
+	bottom: 64px;
+}
+
+/* footer共有样式 */
+footer.mui-bar {
+	padding: 8px 0px;
+	height: 64px;
+}
+footer.mui-bar button.mui-btn {
+	border-radius: 0;
+	border: none;
+	outline: none;
+	padding: 0;
+	top: 0;
+}
+footer.mui-bar .button-row {
+	height: 48px;
+	width: 100%;
+}
+footer.mui-bar .button-row .first-button,
+footer.mui-bar .button-row .second-button {
+	background: #06495a;
+	width: 45%;
+	height: 100%;
+	color: #fff;
+}
+footer.mui-bar .button-row .button-block {
+	background: #06495a;
+	width: 80%;
+	height: 100%;
+	color: #fff;
+	margin: 0 auto;
+	display: inherit;
+}
