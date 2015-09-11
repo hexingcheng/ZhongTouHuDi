@@ -8,14 +8,20 @@
     <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
     <script src="../../js/mui.min.js"></script>
-    <link rel="stylesheet" href="../../css/mywallet/wallet-withdraw-next.css"/>
+    <link rel="stylesheet" href="../../css/share_main.css" />
     <style type="text/css">
-    	.mui-btn.button-ok {background-color: #06495a;color: #fff;padding: 13px 0;width: 90%;margin: 0 auto;}
-    	footer .mui-btn {border: none;outline: none;border-radius: 0;}
+    	body {
+    		background: #fff;
+    	}
+    	.mui-bar-footer {
+    		padding: 8px 0 !important;
+    	}
+    	.mui-bar-footer~.mui-content {
+    		padding-bottom: 0;
+    	}
     </style>
 </head>
 <body class="bg-color">
-	
 	<header class="mui-bar mui-bar-nav">
 		<div class="left-back mui-pull-left">
 			<img src="../../img/left.png" class="mui-action-back"></img>
@@ -30,35 +36,32 @@
 	</footer>
 	
 	<div class="mui-content">
-		<ul class="mui-table-view bg-color">
-			<li class="mui-table-view-cell first-item">
-				<span class="left-icon mui-pull-left"></span>
-				<div class="right-con mui-pull-left">
-					<div class="mui-ellipsis pay-pal">PayPal</div>
-					<div class="mui-ellipsis mui-h5">
-						please input your withdraw account
-					</div>
+		<ul class="mui-table-view top_header">
+			<li class="mui-table-view-cell">
+				<img src="../../img/paypal.png" alt=""  class="li_left_img "/>
+				<div class="li_input_l" style="line-height: 20px;">
+					<span>PayPal</span>
+					<p><span>please input your withdraw account</span></p>
 				</div>
 			</li>
 		</ul>
-		<div class="table-diviver"></div>
-		<ul class="mui-table-view bg-color">
+		<div class="content_clear"><!--中间间隙--></div>
+		<ul class="mui-table-view">
 			<li class="mui-table-view-cell">
-				<label class="mui-pull-left" for=""><img src="../../img/host.png" width="50px" height="50px"/></label>
-				<div class="input-box mui-pull-left">
-					<input type="text" name="name" id="name" value="" placeholder="Name" />
+				<img src="../../img/emergency.png" class="li_left_img" alt="" />
+				<div class="li_input_l">
+					<input type="text" name="" id="name" value="" placeholder="Name"/>
 				</div>
 			</li>
 			<li class="mui-table-view-cell">
-				<label class="mui-pull-left" for=""><img src="../../img/id.png" width="50px" height="50px"/></label>
-				<div class="input-box mui-pull-left">
-					<input type="text" name="toacount" id="to-acount" value="" placeholder="To acount" />
+				<img src="../../img/id.png"  alt=""  class="li_left_img"/>
+				<div class="li_input_l">
+					<input type="text" name="to-acount" id="to-acount" value="" placeholder="To acount"/>
 				</div>
 			</li>
 		</ul>
 	</div>
 	
-		
 	<script src="../../js/utils.js"></script>
 	<script src="../../js/mywallet/wallet-withdraw-next.js"></script>
 </body>

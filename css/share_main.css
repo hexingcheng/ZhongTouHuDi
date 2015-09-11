@@ -4,23 +4,26 @@ body,.mui-content{
 	color: #000;
 	
 }
+/**间隙*/
+.content_clear{
+	width: 100%;
+	height: .5em;
+	background-color: #F7F7F7; 
+}
 .bg_white{
 	background-color: #fff !important;
 }
-div.muipaddingtop {
-	padding-top: 52px !important;
+.mui-bar-nav~ .mui-content{
+	padding-top: 52px;  
 }
-.mui-content>.mui-table-view:first-child {margin-top: 0;}
 /*header与content**/
-.top_header{
-	margin-top: -8px;
+.mui-bar-nav~ .mui-content .top_header{
+	margin-top: 0px;
 }
 .font16{
 	font-size: 16px;
 }
-.mui-bar .mui-btn {
-	top: 0;
-}
+
 /*页面nav*/
 .nav_header{
 	height: 52px;
@@ -31,7 +34,8 @@ div.muipaddingtop {
 	background-color: #44AB6E;
 	box-shadow: none;
 }
-.nav_header .header_left_img{
+
+.nav_header .header_left_img{  
 	width: 34px;
 	height: 34px;
 	float: left;
@@ -50,21 +54,25 @@ div.muipaddingtop {
 	padding: 0 !important;
 	position: fixed;
 }
+.mui-bar-footer .mui-btn{
+	position: static;
+	top: 0;
+	padding: 0;
+	border-radius: 0;
+	box-shadow: none ;
+}
 .mui-bar-footer .nav_footer{
 	width: 80%;
 	height: 48px;
 	line-height: 48px;
 	font-size: 16px;
 	color:#fff;
-	background-color: #054859;  
+	border: 0;
+	background-color: #06495a;  
 	margin: 8px auto;  
+	margin-left: 10%;
+	margin-right: 10%;
 	text-align:center;
-}
-.mui-bar-footer .nav_footer button {
-	padding: 0;
-	border: none;
-	outline: none;
-	border-radius: 0;
 }
 .nav_footer .left_button{
 	width: 47%;

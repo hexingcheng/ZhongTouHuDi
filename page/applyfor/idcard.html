@@ -8,6 +8,7 @@
 		<script src="../../js/mui.js"></script>
 
 		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/share_main.css" />
 		<link rel="stylesheet" href="apply.css" />
 		<style>
 			.nation_content {
@@ -19,10 +20,7 @@
 				top: 52px;
 				bottom: 60px;
 			}
-			#foot{
-				height: 60px;
-				padding: 5px 0;
-			}
+
 		</style>
 	</head>
 
@@ -35,8 +33,8 @@
 		<div class="nation_content">
 			<!--实例蒙版-->
 
-			<header class="mui-bar mui-bar-nav apply_header">
-				<img src="../../img/left.png" alt="" class="left_img mui-action-back" />
+			<header class="mui-bar mui-bar-nav nav_header">
+				<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 				<span>Certificate Authentication</span>
 			</header>
 			<div class="mui-content ">
@@ -93,9 +91,11 @@
 				<a href="#photo"><li class="mui-table-view-cell"><b>取消</b></li></a>
 			</ul>
 		</div>
-		<div class="apply_footer" id="foot">  
-			<div class="id_button apply_button"><span>Done</span></div>
-		</div>
+		<footer class="mui-bar mui-bar-footer">
+			<button class="nav_footer mui-btn id_button" >  
+				<span>Done</span>
+			</button>
+		</footer>
 	</body>
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/comment.js"></script>
