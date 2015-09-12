@@ -177,7 +177,20 @@
 
 
 
-
+#ok{
+	width: 50%;
+	height: 40px;
+	line-height: 40px;text-align: center;
+	background-color: #C4E8DA;
+	color: #26a65b;
+}
+#cancel{
+	width: 50%;
+	height: 40px;
+	line-height: 40px;text-align: center;
+	background-color: #f6ccc2;
+	color: 	#d64541;
+}
 
 
 #uls li,#ul2 li{
