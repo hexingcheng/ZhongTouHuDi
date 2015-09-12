@@ -11,7 +11,27 @@ mui.plusReady(function() {
 	})
 	plus.nativeUI.closeWaiting();
 
-	// 添加选择该递送人\
+	// 取消订单弹出框
+	var options = {
+		height : 150,
+		title : {
+			height : 40,
+			content : ""
+		},
+		main : {
+			content : ""
+		},
+		buttons : [{
+			name : "OK",
+			click : function(){ return true }
+		},{
+			name : "cancel",
+			click : function(){ return true; }
+		}]
+	}
+	
+
+	// 添加选择该递送人
 	var send = plus.webview.getWebviewById("mysendorder/my-send-order")/* || 
 				plus.webview.getWebviewById("my-send-order)*/
 	var cpage = plus.webview.currentWebview();
@@ -19,7 +39,19 @@ mui.plusReady(function() {
 		var uid = this.getAttribute("data-uid");
 		isreceived(function(data){
 			if(data == 1){
-				choosedeliver(uid, orderid);
+				options.height = 180;
+				options.title.content = "选择递送人";
+				options.main.content = "<div>do you want to choose this guy?</div><p>once you choose a guy to send, it can't be undone</p>",
+				options.buttons[0] = {
+					name : "ok",
+					click : function(){
+						choosedeliver(uid, orderid);
+					}
+				}
+				options.buttons[1].name = "cancel";
+				var pop = new Popup(options)
+				pop.show();
+				
 			} else if(data == 2){
 				mui.toast("非发单人,没有权限查看");
 				mui.fire(send, "refresh:alldata");
@@ -29,9 +61,11 @@ mui.plusReady(function() {
 					plus.storage.removeItem("my-send-order")
 				}, 300)
 			} else if(data == 3){
-				// 当前有人抢单后，需要进行发单人提醒该单已经抢单。是否需要支付
-				plus.nativeUI.confirm("当前订单已经被他人抢单，是否进行支付？", function(eve){
-					if(eve.index == 1){
+				options.title.content = "支付提示";
+				options.main.content = "当前订单已经被他人抢单，是否进行支付？",
+				options.buttons[0] = {
+					name : "是",
+					click : function(){
 						openNewWindow("./mysendorder-detail-inform.html", {
 							orderId : orderid,
 							status : status
@@ -41,7 +75,10 @@ mui.plusReady(function() {
 							plus.storage.removeItem("my-send-order")
 						}, 300)
 					}
-				}, "支付提示", ["否", "是"])
+				}
+				options.buttons[1].name = "否";
+				var pop = new Popup(options)
+				pop.show();
 			}
 		})
 	})

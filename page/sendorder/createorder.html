@@ -793,27 +793,6 @@
 				}
 			}
 
-				// 信息验证
-			$('.ok').on('tap', function() {
-//				$('.backmask').addClass('mui-hidden');
-//				$('.backhandle').addClass('mui-hidden');
-//				myAjax({
-//					url: 'order/resOrderByGood',
-//					data: getdata
-//				}, function() {
-//					openNewWindow("./draft.html");
-//					mui.toast('保存草稿成功！');
-//				}, function(xhr, type) {
-//					mui.toast('出错了' + type)
-//				})
-			})
-			$('.cancel').on('tap', function() {
-//				plus.webview.getLaunchWebview().show('slide-in-left');
-//				closewebview();
-			})
-
-
-
 			function closewebview() {
 				if (plus.webview.getWebviewById('sendorder/createorder')) {
 					plus.webview.getWebviewById('sendorder/createorder').close("slide-out-right",200)
