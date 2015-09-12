@@ -10,24 +10,58 @@ header.mui-bar.mui-bar-nav {background-color: #44ab6e;}
 .mui-bar .mui-icon {padding-top: 14px;padding-bottom: 14px;}
 .mui-title {line-height: 52px;text-align: left;}
 .mui-bar .mui-title {left: 43px;}
+.mui-bar-nav~ .mui-content{
+	padding-top: 52px;      
+}
+/*页面nav*/
 .nav_header{
 	height: 52px;
 	line-height: 52px;
 	font-size: 16px;
 	text-align: left;
 	color: #fff;
-	background-color: #44ab6d;
+	background-color: #44AB6E;
 	box-shadow: none;
 }
-.nav_header .left_img{
+body .mui-bar .cancle_bg{
+	background-color: #fc614d;
+}
+.nav_header .header_left_img{  
 	width: 34px;
 	height: 34px;
 	float: left;
 	margin: 9px 9px 9px 0; 
-}
-.nav_header .right_img{
+}  
+.nav_header .header_right_img{
 	width: 34px;
 	height: 34px;
 	float: right;
 	margin: 9px 0 9px 9px; 
+}
+/*foorter nav*/
+.mui-bar-footer{
+	background-color:#fff;
+	height: 64px;
+	padding: 0 !important;
+	position: fixed;
+}
+.mui-bar-footer .mui-btn{
+	position: static;
+	top: 0;
+	padding: 0;
+	border-radius: 0;
+	box-shadow: none ;
+}
+.mui-bar-footer .nav_footer{
+	width: 80%;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	color:#fff;
+	border: 0;
+	background-color: #06495a;  
+	margin: 8px auto;  
+	margin-left: 10%;
+	margin-right: 10%;
+	text-align:center;
 }
