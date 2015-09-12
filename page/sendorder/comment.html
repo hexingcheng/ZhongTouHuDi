@@ -7,22 +7,11 @@
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/share_main.css"/>
 		<script src="../../js/mui.min.js"></script>
 		<style>
 			div.mui-scroll-wrapper {
 				top: 8px;
-			}
-			html,
-			body,
-			.mui-content {
-				background-color: #FFFFFF
-			}
-			.mui-bar {
-				background-color: #3ba767;
-			}
-			.mui-bar a,
-			.mui-bar h1 {
-				color: #FFFFFF
 			}
 			.mui-scroll-wrapper {
 				margin-top: 44px;
@@ -72,11 +61,7 @@
 				font-size: 14px;
 				color: #818384;
 			}
-			#footer {
-				height: 60px;
-				background-color: #FFFFFF;
-				padding: 6px 20px;
-			}
+
 			.next-step {
 				text-align: center;
 				background-color: #3ba767;
@@ -84,9 +69,6 @@
 				height: 100%;
 				line-height: 48px;
 				color: #ceefe4;
-			}
-			.mui-bar {
-				box-shadow: 0 0 1px #D1D1D1;
 			}
 			.mui-scroll {
 				padding: 5px;
@@ -140,12 +122,12 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">Comment</h1>
+		<header class="mui-bar mui-bar-nav nav_header">
+			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
+			<span>Comment</span>
 		</header>
-		<footer class="mui-bar mui-bar-footer" id="footer">
-			<div class="next-step" id="ok">OK</div>
+		<footer class="mui-bar mui-bar-footer">
+			<button class="mui-btn nav_footer" id="ok">ok</button>
 		</footer>
 		<div class="tipsmask mui-hidden">
 			<div class="dialog mui-hidden">
