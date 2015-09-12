@@ -5,50 +5,33 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <title></title>
 <link href="../../css/mui.css" rel="stylesheet"/>
+<link rel="stylesheet" href="../../css/share_main.css" />
 <link rel="stylesheet" href="apply.css" />
 <script src="../../js/mui.js"></script>
 <script src="../../js/utils.js"></script>
 
 <style type="text/css">
-	.sub_log{
-		width: 100px;
-		height: 100px;
-		overflow: hidden;
-		border-radius: 50%;
-		background: url(../../img/success-logo.png) no-repeat;
-		background-size: 100px 100px;
-		background-color: #2A9F59;
-		margin: 30% auto 10% auto;
-	}
-	.submit_title{
-		width: 80%; 
-		margin: 0 auto;
-		text-align: center;
-		overflow: hidden;
-		line-height: 1.5em;
-		
-	}
-	.submit_succ{
-		font-size: 16px;
-		color: #3FA86A;
-	}
+
 </style>
 </head>
 	<body>
-		<header class="mui-bar mui-bar-nav apply_header mui-text-center">
-			<span class="">Submitted</span>
+		<header class="mui-bar mui-bar-nav nav_header mui-text-center">
+			<span >Submitted</span>
 	    </header>
 	    <div class="mui-content">
 	    	<div class="sub_log">
+	    		<img src="../../img/success-logo.png" alt="" />
 	    	</div>
 	    	<div class="submit_title">
 	    		<span class="submit_succ"><strong>Submit success</strong></span>
 	    		<p><span class="fontsize14">your application has submitted, please wait</span></p>
 	    	</div>
 	    </div>
-	    <div class="apply_footer">
-		     <div class="apply_button" id="submit_home"><span>Home page</span></div>
-	    </div>
+	   <footer class="mui-bar mui-bar-footer">
+	   		<button class="mui-btn nav_footer" id="submit_home">
+	   			<span>Home page</span>
+	   		</button>
+	   </footer>
 	    <script src="../../js/jquery.min.js"></script>
 	</body>
 	<script>

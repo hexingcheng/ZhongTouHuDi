@@ -1,8 +1,11 @@
 body,.mui-content{
 	background-color: #fff;
 	font-size: 14px;
-	color: #000;
-	
+	width: 100%;
+	height: 100%;
+}
+.mui-table-view-cell .line_20{
+	line-height: 20px;
 }
 /**间隙*/
 .content_clear{
@@ -81,6 +84,10 @@ body,.mui-content{
 	color: #fff;
 	float: left;
 	background-color: #06495a;
+	border: 0;
+}
+footer .nav_footer .button_bg_rest{
+	background-color: #23A0CF;
 }
 .nav_footer .right_button{
 	width: 47%;
@@ -89,6 +96,7 @@ body,.mui-content{
 	text-align: center;
 	color: #fff;
 	float: right;
+	border: 0;
 	background-color: #fc614d;
 }
 /*三列布局*/
@@ -125,8 +133,9 @@ body,.mui-content{
 	height: 50px;
 	overflow: hidden;
 }
-.mui-table-view-cell input{
-	width: 100% !important;
+
+.mui-table-view .mui-table-view-cell input{
+	width: 100% ;
 	height: 50px;
 	padding-left: 0;
 	padding-right: 0;
@@ -202,4 +211,15 @@ body,.mui-content{
 	bottom: 0;
 	border: 1px solid green;
 }
-
+/*success 提示*/
+.sub_log{
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	border-radius: 50%;
+	margin: 30% auto 10% auto;
+}
+.sub_log img{
+	max-width:100% ;
+	height: auto;
+}

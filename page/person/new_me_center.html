@@ -77,8 +77,9 @@
 		.select_sex{
 			width: 100%;
 			height: 50px;
+			overflow: hidden;
 		}
-	    .select_sex input{
+	    .mui-table-view-cell .select_sex input{
 	    	height: auto; 
 			font-size: 14px; 
 			width: 14px;
@@ -184,10 +185,10 @@
 								<span class="edit_show male sex"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" c /></span>
 								<span class="edit_show female sex"><span class="mui-pull-left">female</span><img src="../../img/female2.png" alt=""  /></span>
 								<div class="select_sex edit_hide" >
+									<lable>male </lable>
 									<input type="radio" name="sex" checked="checked" value="man"  id="person_sex" />
-										<lable>male </lable>
-									<input type="radio" name="sex" />
-										<lable>female </lable>
+									<lable>female </lable> 	
+									<input type="radio" name="sex" />	
 							    </div>
 							</div>
 						</li>
@@ -262,7 +263,7 @@
 		<div class="center_pop">
 			<span id="nav_title"><b>Please input your password</b> </span>
 			<div class="input_div">
-				<input type="text" placeholder="请输入密码" id="pop_password" maxlength="20" />
+				<input type="password" placeholder="请输入密码" id="pop_password" maxlength="20" />
 			</div>
 			<span id="pop_submit" class="mui-pull-right"><strong>确定</strong></span>
 		</div>
@@ -484,7 +485,6 @@
 				var ph = $('#phone').val().trim();
                 var check = $('#person_sex').attr('checked');
 				var sex = (check == 'checked') ? '1' : '2';
-				alert(sex+" "+check+"cycy");   
 				var pwd = $('#password').val().trim();
 				data = {
 					firstName: fin,

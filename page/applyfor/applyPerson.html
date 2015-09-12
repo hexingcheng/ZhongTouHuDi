@@ -8,98 +8,16 @@
 		<script src="../../js/mui.js"></script>
 		<link href="../../css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
-		<link rel="stylesheet" href="apply.css" />
 		<style>
-			/*.apply_header {
-				width: 100%;
-				height: 52px;
-				line-height: 52px;
-				font-size: 16px;
-				color: #FFFFFF;
-				background-color: #2A9F59;
+			
+			 .mui-table-view-cell .select_sex input{
+				height: auto; 
+				font-size: 14px; 
+				width: 14px;
 			}
-			.apply_header:after {
-				box-shadow: none;
-			}
-			.apply_title {
-				margin-left: .6em;
-			}
-			.apply_content {
-				padding: 0.5em;
-				font-size: 14px;
+			.select_sex label{
 				color: silver;
 			}
-			.mui-content .mui-table-view-cell {
-				height: 50px;
-				padding: 0;
-			}*/
-			/*.mui-table-view-cell img {
-				width: 34px;
-				height: 34px;
-				margin: 8px 7px;
-			}
-			.apply_input_r {
-				height: 50px;
-				margin-right: 52px;
-				overflow: hidden;
-			}
-			.apply_input_l {
-				height: 50px;
-				overflow: hidden;
-			}
-			.mui-content .apply_input {
-				width: 100%;
-				height: 50px;
-				overflow: hidden;
-				font-size: 14px;
-				border: 0;
-				padding-left: 0;
-				padding-right: 0;
-				margin-bottom: 0;
-			}*/
-			/*.apply_footer {
-				width: 100%;
-				position: fixed;
-				bottom: 0;
-				overflow: hidden;
-			}
-			.apply_footer .apply_button {
-				width: 80%;
-				height: 48px;
-				line-height: 48px;
-				margin: 0 auto;
-				color: white;
-				font-size: 16px;
-				text-align: center;
-				margin-bottom: .2em;
-				background-color: #054859;
-			}
-			.mui-content .mui-table-view {
-				margin-top: 1em;
-			}*/
-			/*.apply_info {
-				overflow: hidden;
-			}
-			.apply_idCard {
-				overflow: hidden;
-				font-size: 14px;
-				color: silver;
-				border: 1px solid silver;
-			}
-			.apply_idcard_div {
-				width: 95%;
-				height: 12em;
-				overflow: hidden;
-				margin: .2em auto;
-			}
-			.apply_idcard_div .img_div {
-				width: 3em;
-				height: 4em;
-				margin: 4em 0;
-				text-align: center;
-				line-height: 1em;
-				float: right;
-			}*/
 			.nation_mark {
 				display: none;
 				position: absolute;
@@ -110,19 +28,27 @@
 				right: 0;
 				bottom: 0;
 			}
-			/*.apply_idpho {
-				height: 12em;
-				padding: 0 1em;
+			.spplay_select_type{
+				width: 80%;  
+				position: absolute;
+				z-index: 999;  
+				left: 50%;
+			    margin-left:-40%;
+			    top: 50%;
+			    
+			    text-align: center;
+			    margin-top: -40%;
+			/*	display: none;*/
+				color: silver;
 				overflow: hidden;
-				text-align: center;
-				margin-right: 3em;
-				border: 2px solid silver;
+			} 
+			.spplay_select_type ul li{
+				padding: 0;
+				height: 48px;
+				font-size: 14px;
+				line-height: 48px; 
+				color: #000;
 			}
-			.apply_idpho img {
-				width: 34px;
-				height: 34px;
-				margin: .2em auto;
-			}*/
 			.nation_select{
 				width: 70%;
 				height: 80%;
@@ -135,23 +61,11 @@
 				background-color: white;
 				display: none;
 			} 		
-			/*.apply_sex {
-				width: 150px;
-				height: 50px;
-				line-height: 50px;
-				float: right;
-				text-align: center;
-			}*/
-			/*.apply_bor_b {
-				border-bottom: 1px solid #E3E2E5;
-			}*/
+
 			.mui-scroll-wrapper {
 				top: 52px;
 				bottom: 60px;
 			}
-			/*.mui-content .mui-table-view {
-				margin-top: 0;
-			}*/
 		</style>
 	</head>
 
@@ -192,12 +106,11 @@
 		<!--证件选择-->
 		<div class="spplay_select_type mui-popover" id="id_type">
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">学生证</li>
-				<li class="mui-table-view-cell">身份证</li>
-				<li class="mui-table-view-cell">残疾证</li>
-				<li class="mui-table-view-cell">军人证</li>
-				<li class="mui-table-view-cell">驾驶证</li>
-				
+				<li class="mui-table-view-cell mui-text-center">学生证</li>
+				<li class="mui-table-view-cell mui-text-center">身份证</li>
+				<li class="mui-table-view-cell mui-text-center">残疾证</li>
+				<li class="mui-table-view-cell mui-text-center">军人证</li>
+				<li class="mui-table-view-cell mui-text-center">驾驶证</li>
 			</ul>
 		</div>
 		<header class="mui-bar mui-bar-nav nav_header ">
@@ -224,16 +137,19 @@
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/name.png" class="li_left_img" alt="" />
-							<div class="li_input_l">
+							<div class="li_input_l select_sex">
 								<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
-								<lable>man </lable>
-								<input type="radio" name="sex" />
-								<lable>women </lable>
+								<lable style="color: silver;">man </lable>
+								<input  type="radio" name="sex" />
+								<lable style="color: silver;">women </lable>
 							</div>
 						</li>
 						<li class="mui-table-view-cell" id="apply_nation">
 							<img src="../../img/nationality.png" class="li_left_img" alt="" />
-							<span id="nation">select nation</span>
+							<!--<span id="nation">select nation</span>-->
+							<div class="li_input_l" >
+								<input type="text" placeholder="select nation" id="nation" readonly="readonly"/>
+							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/4.png" class="li_left_img" alt="" />
@@ -301,7 +217,7 @@
 			function check_info() { //检测填写情况
 				var v_fam = $('#firsetName').val().trim();
 				var v_fir = $('#familyName').val().trim();
-				var v_nation = $('#nation').text();
+				var v_nation = $('#nation').val();
 				var v_address = $('#apply_place').val().trim();
 				var v_emer = $('#apply_emergencyC').val().trim();
 				var v_mo = $('#apply_mobile').val().trim();
@@ -393,7 +309,7 @@
 			})
 			$('#nation_select_ ul li').on('click', function() {
 				var nation = $(this).text();
-				$('#nation').html(nation);
+				$('#nation').val(nation);
 				$('.nation_mark').css('display', 'none');
 				$('#nation_select_').css('display', 'none');
 			})
