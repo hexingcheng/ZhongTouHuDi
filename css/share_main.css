@@ -7,6 +7,9 @@ body,.mui-content{
 .mui-table-view-cell .line_20{
 	line-height: 20px;
 }
+footer .mui-bar .cancle_bg{
+	background-color: #fc614d;
+}
 /**间隙*/
 .content_clear{
 	width: 100%;
@@ -26,7 +29,12 @@ body,.mui-content{
 .font16{
 	font-size: 16px;
 }
-
+.or_color{
+	color: #fc614d;
+}
+.sil_bg{
+	background-color: #F7F7F7 !important;
+}
 /*页面nav*/
 .nav_header{
 	height: 52px;
@@ -97,7 +105,7 @@ footer .nav_footer .button_bg_rest{
 	color: #fff;
 	float: right;
 	border: 0;
-	background-color: #fc614d;
+	background-color: #23A0CF;
 }
 /*三列布局*/
 .mui-table-view .mui-table-view-cell{
@@ -222,4 +230,13 @@ footer .nav_footer .button_bg_rest{
 .sub_log img{
 	max-width:100% ;
 	height: auto;
+}
+.main_title{
+	font-size: 16px;
+	color:  #41C275;
+	line-height: 52px;
+}
+.main_title_2{
+	font-size: 14px;
+	color: #8F8F94;
 }
