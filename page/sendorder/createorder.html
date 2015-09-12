@@ -8,6 +8,8 @@
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="common.css" />
+		<link rel="stylesheet" href="../../css/common/popup.css"/>
+		<script src="../../js/common/popup.js"></script>
 		<script src="../../js/mui.min.js"></script>
 		<style>
 			* {
@@ -545,6 +547,7 @@
 				<img src="../../img/contact.png"/>
 			</div>
 		</div>
+		
 		<div class="backmask mui-hidden">
 			<div class="backhandle mui-hidden">
 				<div class="draftinfo">
@@ -555,6 +558,7 @@
 				<div class="cancel">cancel</div>
 			</div>
 		</div>
+		
 		<div id="delete" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
@@ -754,24 +758,7 @@
 						mui.toast("name is unkown");
 					}
 				})
-				// 信息验证
-			$('.ok').on('tap', function() {
-				$('.backmask').addClass('mui-hidden');
-				$('.backhandle').addClass('mui-hidden');
-				myAjax({
-					url: 'order/resOrderByGood',
-					data: getdata
-				}, function() {
-					openNewWindow("./draft.html");
-					mui.toast('保存草稿成功！');
-				}, function(xhr, type) {
-					mui.toast('出错了' + type)
-				})
-			})
-			$('.cancel').on('tap', function() {
-				plus.webview.getLaunchWebview().show('slide-in-left');
-				closewebview();
-			})
+			
 
 			function toverticalcenter() {
 				var item = $('.preimg')
@@ -815,6 +802,27 @@
 			$('.draft').on('tap', function() {
 				openWindow('./draft.html')
 			})
+			
+			// 取消订单弹出框
+			var options = {
+				height : 190,
+				title : {
+					height : 40,
+					content : ""
+				},
+				main : {
+					content : ""
+				},
+				buttons : [{
+					name : "OK",
+					click : function(){ return true }
+				},{
+					name : "cancel",
+					click : function(){ return true; }
+				}]
+			}
+			
+			//  返回按钮处理
 			mui.back = function() {
 				var cls = document.querySelector(".presee").classList;
 				if (cls.contains("mui-hidden")) {
@@ -825,10 +833,7 @@
 						getdata.info = $('#gettext').val() || "";
 						getdata.pics = setpicid()
 						getdata.status = 0;
-						console.log(getdata.orderId)
-						showobj(getdata)
-						$('.backmask').removeClass('mui-hidden');
-						$('.backhandle').removeClass('mui-hidden')
+						
 						var l = ($(window).width() - 270) / 2;
 						var t = ($(window).height() - $('.backhandle').height()) / 2;
 						$('.backhandle').css({
@@ -836,6 +841,31 @@
 							'top': t
 						})
 						plus.storage.removeItem("draft-datas");
+						
+						options.title.content = "提示";
+						options.main.content = '<div class="draftinfo">Do you want to add this order to draft?</div><p class="wron">you can use draft orde r to resend</p>';
+						options.buttons[0].click = function(){
+							$('.backmask').addClass('mui-hidden');
+							$('.backhandle').addClass('mui-hidden');
+							myAjax({
+								url: 'order/resOrderByGood',
+								data: getdata
+							}, function() {
+								openNewWindow("./draft.html");
+								mui.toast('保存草稿成功！');
+							}, function(xhr, type) {
+								mui.toast('出错了' + type)
+							})
+						}
+						options.buttons[1].click = function(){
+							plus.webview.getLaunchWebview().show('slide-in-left');
+							closewebview();
+						}
+						var pop = new Popup(options);
+						pop.show();
+//						$('.backmask').removeClass('mui-hidden');
+//						$('.backhandle').removeClass('mui-hidden')
+						
 					} else {
 						plus.webview.getLaunchWebview().show('slide-in-left');
 						closewebview()
@@ -845,21 +875,42 @@
 				}
 			}
 
+				// 信息验证
+			$('.ok').on('tap', function() {
+//				$('.backmask').addClass('mui-hidden');
+//				$('.backhandle').addClass('mui-hidden');
+//				myAjax({
+//					url: 'order/resOrderByGood',
+//					data: getdata
+//				}, function() {
+//					openNewWindow("./draft.html");
+//					mui.toast('保存草稿成功！');
+//				}, function(xhr, type) {
+//					mui.toast('出错了' + type)
+//				})
+			})
+			$('.cancel').on('tap', function() {
+//				plus.webview.getLaunchWebview().show('slide-in-left');
+//				closewebview();
+			})
+
+
+
 			function closewebview() {
 				if (plus.webview.getWebviewById('sendorder/createorder')) {
-					plus.webview.getWebviewById('sendorder/createorder').close()
+					plus.webview.getWebviewById('sendorder/createorder').close("slide-out-right",200)
 				}
 				if (plus.webview.getWebviewById('create-next')) {
-					plus.webview.getWebviewById('create-next').close();
+					plus.webview.getWebviewById('create-next').close("slide-out-right",200);
 				}
 				if (plus.webview.getWebviewById('pickaddr')) {
-					plus.webview.getWebviewById('pickaddr').close();
+					plus.webview.getWebviewById('pickaddr').close("slide-out-right",200);
 				}
 				if (plus.webview.getWebviewById('chooseaddr')) {
-					plus.webview.getWebviewById('chooseaddr').close();
+					plus.webview.getWebviewById('chooseaddr').close("slide-out-right",200);
 				}
 				if (plus.webview.getWebviewById('draft')) {
-					plus.webview.getWebviewById('draft')
+					plus.webview.getWebviewById('draft').close("slide-out-right",200)
 				}
 			}
 
