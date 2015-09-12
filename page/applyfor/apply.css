@@ -1,194 +1,218 @@
-body{
-	font-size: 14px;
-}
-.apply_header{
-	width: 100%;
-	height: 52px;
-	line-height: 52px;
-	font-size: 16px;
-	color: #FFFFFF;
-	background-color: #2A9F59;
-}
-.apply_header:after{
-	box-shadow: none;
-}
-.apply_title{
-	margin-left: .6em;
-}
-.left_img{
-	width: 34px;
-	height: 34px;
-	margin: 9px 9px 9px 0;
-	float: left;
-		}
-.apply_content{
-	padding: 0 .5em;
-	font-size: 14px;
-}
-.apply_prompt{
-	width: 100%;
-	height: 3em;
-	border: 1px solid red;
-	line-height: 4em;
-	padding-left: 1em;
-	color: #B9B9B9;
-}
-.mui-content .mui-table-view-cell{
-	height: 50px;
-	line-height: 50px;
-	padding: 0;
-}
-.mui-table-view-cell img{
-	width: 34px;
-	height: 34px;
-	margin: 8px 7px;
-}
-.apply_input_r{
-	height: 50px;
-	margin-right: 52px; 
-	overflow: hidden;
-}
-.apply_input_middle{
-	height: 50px;
-	overflow: hidden;
-}
-.apply_input_l{
-	height: 50px;
-	overflow: hidden;
-}
-.mui-content .apply_input{
-	width: 100%;
-	height: 50px;
-	overflow: hidden;
-	font-size: 14px;
-	border: 0;
-	padding-left: 0;
-	padding-right: 0;
-	margin-bottom: 0;
-}
-.apply_footer{
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-    overflow: hidden;
-}
-.apply_footer .apply_button{
-	width: 80%;
-	height: 48px;
-	line-height: 48px;
-	margin: 0 auto;
-	color: white;
-	font-size: 16px;
-	text-align: center;
-	margin-bottom: .2em;
-	background-color: #054859;
-}
-.mui-content .mui-table-view{
-	margin-top: 1em;
-}
-.apply_info{
-	overflow: hidden;
-}
-.apply_idCard{
-	overflow: hidden;
-	font-size: 14px;
-	color: silver;
-}
-.apply_idcard_div{
-	width: 88%;
-	height: 25%;
-	overflow: hidden;
-	margin: 4% 5%;  
-}
-.apply_idcard_div .img_div{
-	width: 3em;
-	height: 4em;
-	margin: 4em 0 ;
-	text-align: center;
-	line-height: 1em;
-	float: right;
-}
-.img_div img{
-	width: 34px;
-	height: 34px;
-}
-.apply_idpho{
-	height: 12em;
-/*	padding: 0 1em;*/
-/*	background-color: #F6F6F6;*/
-	overflow: hidden;
-	text-align: center;
-	margin-right: 3.8em;
-	border: 2px solid silver;
-}
-.id_imgcover{
-	display: none;
-	width: 100%;
-	height: 100%;   
-}    
-.apply_idpho .id_img{
-	width: 34px;
-	height: 34px;
-	margin:.2em auto;
-}
-.apply_idpho .text{  
-	text-align: justify;
-	padding: 0 10px;
-}
-.nation_marb{
-	margin-bottom: 6em;
-}
-.nation_marb2{
-	margin-bottom: 8em;
-}
-.apply_padding{
-		margin: 0 .2em;
+/*submit*/
+	.sub_log{
+		width: 100px;
+		height: 100px;
+		overflow: hidden;
+		border-radius: 50%;
+		margin: 30% auto 10% auto;
 	}
-.apply_mark{
-	display: none;
-	z-index: 998;
-/*	overflow-y: none;*/
-	position: absolute;
-	background: rgba(0, 0, 0, .5);
-	top: 0;
-	left: 0;  
-	right: 0;
-	bottom: 0;
-}
-.apply_popover{
-	width: 80%;
-	height: 20em;
-	position: absolute;
-	left:50%;
-	margin-left: -40%;
-	top:50%; 
-	margin-top: -10em;
-	overflow: hidden; 
-	border: 1px solid white;
-}
-.apply_popover img{
-	z-index: 999;
-	width: 100%;
-	height: 20em;
-}
-.spplay_select_type{
-	width: 80%;  
-	position: absolute;
-	z-index: 999;  
-	left: 50%;
-    margin-left:-40%;
-    top: 50%;
-    text-align: center;
-    margin-top: -40%;
-/*	display: none;*/
-	color: silver;
-	overflow: hidden;
-} 
-.spplay_select_type ul li{
-	padding: 0;
-	height: 48px;
-	font-size: 14px;
-	line-height: 48px; 
-	color: #000;
-}
+	.sub_log img{
+		max-width:100% ;
+		height: auto;
+	}
+	.submit_title{
+		width: 80%; 
+		margin: 0 auto;
+		text-align: center;
+		overflow: hidden;
+		line-height: 1.5em;
+		
+	}
+	.submit_succ{
+		font-size: 16px;
+		color: #3FA86A;
+	}
+/*apply_info*/
+	.bell_title{
+		width: 170px;  
+		height: 34px; 
+		margin: auto;
+		line-height: 34px;
+		left: 50%;
+		color: #F7B56A;
+	}
+	.bell_title img{
+		width: 34px;
+		height: 34px;
+	}
+	.mui-table-view .title_{
+		padding: 0;
+		background-color: #F6E1CA;
+	}
+	.ul_mar{
+		margin-top: 9px !important;
+	}
+	.clear_padd{
+		padding: 0 10px !important;
+	}
+	.clear_padd img{
+		width: 30%;
+		height: 50px;
+		margin: 0 auto;
+	}
+	.pic_two{
+		margin-left: 5% !important;
+	}
+	/*application for deliver*/
+	 .mui-table-view-cell .select_sex input{
+		height: auto; 
+		font-size: 14px; 
+		width: 14px;
+	}
+	.select_sex label{
+		color: silver;
+	}
+	.nation_mark {
+		display: none;
+		position: absolute;
+		z-index: 998;
+		background-color: rgba(0, 0, 0, .4);
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	.spplay_select_type{
+		width: 80%;  
+		position: absolute;
+		z-index: 999;  
+		left: 50%;
+	    margin-left:-40%;
+	    top: 50%;
+	    
+	    text-align: center;
+	    margin-top: -40%;
+		color: silver;
+		overflow: hidden;
+	} 
+	.spplay_select_type ul li{
+		padding: 0;
+		height: 48px;
+		font-size: 14px;
+		line-height: 48px; 
+		color: #000;
+	}
+	.nation_select{
+		width: 70%;
+		height: 80%;
+		z-index: 999;
+		overflow-y: scroll;
+		top: 10%;
+		left: 50%;
+		margin-left: -35%;
+		position: absolute;
+		background-color: white;
+		display: none;
+	} 		
 
+	.mui-scroll-wrapper {
+		top: 52px;
+		bottom: 60px;
+	}
+	.nation_content {
+		width: 100%;
+		height: 100%;  
+		overflow: hidden;
+	}
+	.mui-scroll-wrapper {
+		top: 52px;
+		bottom: 60px;
+	}
+	.spplay_select_type{
+		width: 80%;  
+		position: absolute;
+		z-index: 999;  
+		left: 50%;
+	    margin-left:-40%;
+	    top: 50%;
+	    text-align: center;
+	    margin-top: -40%;
+		color: silver;
+		overflow: hidden;
+	} 
+	.spplay_select_type ul li{
+		padding: 0;
+		height: 48px;
+		font-size: 14px;
+		line-height: 48px; 
+		color: #000;
+	}
+	.apply_idCard{
+		overflow: hidden;
+		font-size: 14px;
+		color: silver;
+	}
+	.apply_idcard_div{
+		width: 88%;
+		height: 25%;
+		overflow: hidden;
+		margin: 4% 5%;  
+	}
+	.apply_idcard_div .img_div{
+		width: 3em;
+		height: 4em;
+		margin: 4em 0 ;
+		text-align: center;
+		line-height: 1em;
+		float: right;
+	}
+	.img_div img{
+		width: 34px;
+		height: 34px;
+	}
+	.apply_idpho{
+		height: 12em;
+		overflow: hidden;
+		text-align: center;
+		margin-right: 3.8em;
+		border: 2px solid silver;
+	}
+	.id_imgcover{
+		display: none;
+		width: 100%;
+		height: 100%;   
+	}    
+	.apply_idpho .id_img{
+		width: 34px;
+		height: 34px;
+		margin:.2em auto;
+	}
+	.apply_idpho .text{  
+		text-align: justify;
+		padding: 0 10px;
+	}
+	.nation_marb{
+		margin-bottom: 6em;
+	}
+	.nation_marb2{
+		margin-bottom: 8em;
+	}
+	.apply_padding{
+			margin: 0 .2em;
+		}
+	.apply_mark{
+		display: none;
+		z-index: 998;
+		position: absolute;
+		background: rgba(0, 0, 0, .5);
+		top: 0;
+		left: 0;  
+		right: 0;
+		bottom: 0;
+	}
+	.apply_popover{
+		width: 80%;
+		height: 20em;
+		position: absolute;
+		left:50%;
+		margin-left: -40%;
+		top:50%; 
+		margin-top: -10em;
+		overflow: hidden; 
+		border: 1px solid white;
+	}
+	.apply_popover img{
+		z-index: 999;
+		width: 100%;
+		height: 20em;
+	}

@@ -5,41 +5,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
-    <script src="../../js/mui.min.js"></script>
     <link rel="stylesheet" href="../../css/share_main.css" />
-    <style type="text/css">
-    	body {
-    		background: #fff;
-    	}
-    	.mui-bar-footer {
-    		padding: 8px 0 !important;
-    	}
-    	.mui-bar-footer~.mui-content {
-    		padding-bottom: 0;
-    	}
-    </style>
+    <script src="../../js/mui.min.js"></script>
 </head>
-<body class="bg-color">
-	<header class="mui-bar mui-bar-nav">
-		<div class="left-back mui-pull-left">
-			<img src="../../img/left.png" class="mui-action-back"></img>
-		</div>
-		<h1 class="mui-title mui-text-left">Withdraw</h1>
+<body>
+	<header class="mui-bar mui-bar-nav nav_header">  
+		<img src="../../img/left.png" alt=""  class="header_left_img mui-action-back"/>
+		<span>Withdraw</span>
 	</header>
 	
-	<footer class="mui-bar mui-bar-footer mui-text-center">
-		<div class="button-row">
-			<button id="ok-btn" class="mui-btn button-block">Next Step</button>
-		</div>
+	<footer class="mui-bar mui-bar-footer">
+		<button class="mui-btn nav_footer" id="ok-btn" >Next Step</button>
 	</footer>
 	
 	<div class="mui-content">
 		<ul class="mui-table-view top_header">
 			<li class="mui-table-view-cell">
 				<img src="../../img/paypal.png" alt=""  class="li_left_img "/>
-				<div class="li_input_l" style="line-height: 20px;">
+				<div class="li_input_l line_20" >
 					<span>PayPal</span>
 					<p><span>please input your withdraw account</span></p>
 				</div>
@@ -61,7 +44,6 @@
 			</li>
 		</ul>
 	</div>
-	
 	<script src="../../js/utils.js"></script>
 	<script src="../../js/mywallet/wallet-withdraw-next.js"></script>
 </body>
