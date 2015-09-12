@@ -82,6 +82,7 @@
 	</div>
 	
 	<script src="../../js/utils.js"></script>
+	<script src="../../js/jquery.min.js"></script>
 	<script type="text/javascript">
 		mui.init();
 		mui.plusReady(function(){
@@ -89,28 +90,38 @@
 			var orderid = plus.storage.getItem("my-send-order");
 			// 付款按钮
 			var cpage = plus.webview.currentWebview();
+			$('.right-logo').on('tap',function(){
+				alert($(this).css('background'))
+				if($(this).css('background')){
+					$(this).css({
+					background:'url(../../img/shouyin2.png) no-repeat 10px 0',
+					"background-size":'100% 100%'
+				})
+				}
+			})
 			document.getElementById("next-step").addEventListener("tap", function(){
-				plus.nativeUI.showWaiting("付款中...", {
-					background: '#d1d1d1'
-				})
-				mui.ajax(BASEURL + "pay/temp", {
-					data : {
-						orderId : orderid
-					},
-					type : "post",
-					success : function(data){
-						if(data.ret == 1){
-							plus.nativeUI.closeWaiting();
-							openWindow("./result.html")
-							setTimeout(function(){
-								cpage.close("none", 0)
-							}, 230)
-						}
-					},
-					error : function(xhr, type){
-						console.log(xhr.status);			// 支付接口 404
-					}
-				})
+//				plus.nativeUI.showWaiting("付款中...", {
+//					background: '#d1d1d1'
+//				})
+//				mui.ajax(BASEURL + "pay/temp", {
+//					data : {
+//						orderId : orderid
+//					},
+//					type : "post",
+//					success : function(data){
+//						if(data.ret == 1){
+//							plus.nativeUI.closeWaiting();
+//							openWindow("./result.html")
+//							setTimeout(function(){
+//								cpage.close("none", 0)
+//							}, 230)
+//						}
+//					},
+//					error : function(xhr, type){
+//						console.log(xhr.status);			// 支付接口 404
+//					}
+//				})
+				openWindow('./paypal.html')
 			}, false)
 		})
 	</script>
