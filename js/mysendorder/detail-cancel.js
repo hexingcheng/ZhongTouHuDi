@@ -24,29 +24,59 @@ mui.plusReady(function() {
 		}
 	}
 
+	// 取消订单弹出框
+	var options = {
+		height : 160,
+		title : {
+			height : 40,
+			content : ""
+		},
+		main : {
+			content : ""
+		},
+		buttons : [{
+			name : "OK",
+			click : function(){ return true }
+		},{
+			name : "cancel",
+			click : function(){ return true; }
+		}]
+	}
+
 	// 重新编辑
 	document.getElementById("edit-btn").addEventListener("tap", function() {
-		myAjax({
-			url : "order/goodShow",
-			data : {
-				"orderId": orderid,
-				"type": "send"
-			},
-			wait : false
-		}, function(data){
-			plus.storage.setItem("draft-datas", JSON.stringify(data))
-			openWindow("../sendorder/createorder.html", {
-				type : "cancel"
-			})
-			setTimeout(function() {
-				plus.webview.getWebviewById("mysendorder/my-send-order").close("none", 0);
-				plus.webview.getWebviewById("mysendorder-detail-cancel").close("none", 0);
-				plus.webview.close(cpage, "none", 0)
-			}, 1000)
-			plus.storage.removeItem("my-send-order")
-		})
-
+		options.title.content = "订单修改提示";
+		options.main.content = "您确定要重新修改订单吗？",
+		options.buttons[0] = {
+			name : "OK",
+			click : function(){
+				myAjax({
+					url : "order/goodShow",
+					data : {
+						"orderId": orderid,
+						"type": "send"
+					},
+					wait : false
+				}, function(data){
+					plus.storage.setItem("draft-datas", JSON.stringify(data))
+					openWindow("../sendorder/createorder.html", {
+						type : "cancel"
+					})
+					setTimeout(function() {
+						plus.webview.getWebviewById("mysendorder/my-send-order").close("none", 0);
+						plus.webview.getWebviewById("mysendorder-detail-cancel").close("none", 0);
+						plus.webview.close(cpage, "none", 0)
+					}, 1000)
+					plus.storage.removeItem("my-send-order")
+				})
+			}
+		}
+		options.buttons[1].name = "cancel";
+		var pop = new Popup(options)
+		pop.show();
 	})
+	
+	// 图片预览
 	mui('#porel').on('tap', 'img', function() {
 		toverticalcenter()
 		$('.presee').removeClass('mui-hidden')
@@ -62,29 +92,40 @@ mui.plusReady(function() {
 	$('.presee').on('tap', function() {
 		$(this).addClass('mui-hidden')
 	})
+	
+	// 重新发布
 	document.getElementById("resend-btn").addEventListener("tap", function() {
-		myAjax({
-			url: "order/release",
-			data: {
-				orderId: orderid
+		options.title.content = "订单修改提示";
+		options.main.content = "您确定要重新发布订单吗？",
+		options.buttons[0] = {
+			name : "OK",
+			click : function(){
+				myAjax({
+					url: "order/release",
+					data: {
+						orderId: orderid
+					}
+				}, function(data) {
+					if (data.ret == 1) {
+						mui.toast("发布成功")
+					} else if(data.ret == 2){
+						mui.toast("发布失败，检查订单信息")
+					}
+					mui.fire(sendorder, "refresh:alldata")
+					plus.webview.show(sendorder, "slide-in-left", 300,function(){
+						setTimeout(function(){
+							plus.webview.close(cpage, "none", 0);
+						}, 300)
+					})
+				}, function(xhr, type) {
+					console.log(xhr.status);
+				})
 			}
-		}, function(data) {
-			if (data.ret == 1) {
-				mui.toast("发布成功")
-			} else if(data.ret == 2){
-				mui.toast("发布失败，检查订单信息")
-			}
-			mui.fire(sendorder, "refresh:alldata")
-			plus.webview.show(sendorder, "slide-in-left", 300,function(){
-				setTimeout(function(){
-					plus.webview.close(cpage, "none", 0);
-				}, 300)
-			})
-		}, function(xhr, type) {
-			console.log(xhr.status);
-		})
+		}
+		options.buttons[1].name = "cancel";
+		var pop = new Popup(options)
+		pop.show();
 	}, false)
-
 })
 function toverticalcenter() {
 		var item = $('.preimg')

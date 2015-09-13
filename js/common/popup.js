@@ -10,7 +10,7 @@
 			height: 40,
 			content: "提示",
 			color: "#5f5d5d",
-			background: "#d1d1d1"
+			background: "#06495a"
 		},
 		main: {
 			content: "确定要删除该项？",

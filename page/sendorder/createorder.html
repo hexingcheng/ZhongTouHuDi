@@ -465,7 +465,7 @@
 			</div>
 		</div>
 		
-		<div class="backmask mui-hidden">
+		<!--<div class="backmask mui-hidden">
 			<div class="backhandle mui-hidden">
 				<div class="draftinfo">
 					Do you want to add this order to draft?
@@ -474,7 +474,7 @@
 				<div class="ok">ok</div>
 				<div class="cancel">cancel</div>
 			</div>
-		</div>
+		</div>-->
 		
 		<div id="delete" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
@@ -741,49 +741,46 @@
 			}
 			
 			//  返回按钮处理
+			var pop;
 			mui.back = function() {
 				var cls = document.querySelector(".presee").classList;
+				var leemask = document.getElementById("lee-mask");			// 判断当前蒙层是否存在
+				var leecontent = document.getElementById("lee-content");		
 				if (cls.contains("mui-hidden")) {
 					if ($('#gname').val()) {
-						getdata.gName = $('#gname').val();
-						getdata.gWeight = $('#gweight').val() || 0;
-						getdata.gValue = $('#gvalue').val() || 0;
-						getdata.info = $('#gettext').val() || "";
-						getdata.pics = setpicid()
-						getdata.status = 0;
-						
-						var l = ($(window).width() - 270) / 2;
-						var t = ($(window).height() - $('.backhandle').height()) / 2;
-						$('.backhandle').css({
-							'left': l,
-							'top': t
-						})
-						plus.storage.removeItem("draft-datas");
-						
-						options.title.content = "提示";
-						options.main.content = '<div class="draftinfo">Do you want to add this order to draft?</div><p class="wron">you can use draft orde r to resend</p>';
-						options.buttons[0].click = function(){
-							$('.backmask').addClass('mui-hidden');
-							$('.backhandle').addClass('mui-hidden');
-							myAjax({
-								url: 'order/resOrderByGood',
-								data: getdata
-							}, function() {
-								openNewWindow("./draft.html");
-								mui.toast('保存草稿成功！');
-							}, function(xhr, type) {
-								mui.toast('出错了' + type)
-							})
+						if(!leecontent && !leemask) {			// 如果当前不存在弹出框，执行弹出框效果
+							getdata.gName = $('#gname').val();
+							getdata.gWeight = $('#gweight').val() || 0;
+							getdata.gValue = $('#gvalue').val() || 0;
+							getdata.info = $('#gettext').val() || "";
+							getdata.pics = setpicid()
+							getdata.status = 0;
+							
+							plus.storage.removeItem("draft-datas");
+							
+							options.height = 165;
+							options.title.content = "提示";
+							options.main.content = '<div>Do you want to add this order to draft?</div><p>you can use draft orde r to resend</p>';
+							options.buttons[0].click = function(){
+								myAjax({
+									url: 'order/resOrderByGood',
+									data: getdata
+								}, function() {
+									openNewWindow("./draft.html");
+									mui.toast('保存草稿成功！');
+								}, function(xhr, type) {
+									mui.toast('出错了' + type)
+								})
+							}
+							options.buttons[1].click = function(){
+								plus.webview.getLaunchWebview().show('slide-in-left');
+								closewebview();
+							}
+							pop = new Popup(options);
+							pop.show();
+						} else {			// 如果没有弹出框，就隐藏该弹出框效果
+							pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content"));
 						}
-						options.buttons[1].click = function(){
-							plus.webview.getLaunchWebview().show('slide-in-left');
-							closewebview();
-						}
-						var pop = new Popup(options);
-						pop.show();
-//						$('.backmask').removeClass('mui-hidden');
-//						$('.backhandle').removeClass('mui-hidden')
-						
 					} else {
 						plus.webview.getLaunchWebview().show('slide-in-left');
 						closewebview()
