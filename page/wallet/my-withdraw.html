@@ -6,57 +6,101 @@
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
+<!--    <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>-->
+    <link rel="stylesheet" href="../../css/share_main.css" />
     <link rel="stylesheet" href="../../css/mywallet/wallet-withdraw-recharge-common.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/common/popup.css"/>
     <script src="../../js/common/popup.js"></script>
     <script src="../../js/mui.min.js"></script>
-	<style type="text/css">
-		header.mui-bar~.mui-content > div.mui-scroll-wrapper {
-			top: 259px;
+	<style>
+		.pay{
+			color: #033288;
+		}
+		.pal{
+			color: #0097DC;
+		}
+		.li_title_1{
+			width: auto;
+			height: 20px;
+			margin-top: 10px;
+			overflow: hidden;
+			line-height: 20px;
+			font-size: 14px;
+		}
+		.li_title_2{
+			width: auto;
+			height: 20px;
+			font-size: 14px;
+			overflow: hidden;
+			color: #A9A9A9;
 		}
 	</style>
 </head>
-<body id="body">
-	<header class="mui-bar mui-bar-nav">
-		<div class="left-back mui-pull-left">
-			<img src="../../img/left.png" class="mui-action-back"></img>
-		</div>
-		<h1 class="mui-title mui-text-left">Withdraw</h1>
+<body>
+	<header class="mui-bar mui-bar-nav nav_header">
+		<img src="../../img/left.png" alt="" class="mui-action-back header_left_img" />
+		<span>Withdraw</span>
 	</header>
 	
-	<footer class="mui-bar mui-bar-footer mui-text-center">
-		<div class="button-row">
-			<button id="next-step" class="mui-btn button-block">Next Step</button>
-		</div>
+	<footer class="mui-bar mui-bar-footer ">
+		<button class="mui-btn nav_footer" id="next-step">Next Step</button>
 	</footer>
 	
 	<div class="mui-content">
-		<ul id="withdraw-list" class="mui-table-view mui-grid-9 mui-grid-view">
-			<li class="mui-table-view-cell mui-media mui-col-xs-12">
-				<span class="left-title">Account</span>
-				<span id="account-num" class="right-content">0</span>
+		<ul id="withdraw-list" class="mui-table-view top_header">
+			<li class="mui-table-view-cell ">
+				<!--<span class="left-title">Account</span>-->
+				<div class="li_left_title"><span>Account</span></div>
+				<div class="li_input_l">
+					<span class="mui-pull-right" id="account-num">0</span>
+				</div>
 			</li>
 			<li class="mui-table-view-cell mui-media mui-col-xs-12">
-				<span class="left-title">Your available cash</span>
-				<span class="right-content style-money available-cash">$<span id="available-cash">0.00</span></span>
+				<span class="mui-pull-left">Your available cash</span>
+				<div class="li_input_l">
+					<span class="or_color mui-pull-right">$ <span id="available-cash">0.00</span></span>
+				</div>
 			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3" style="padding: 11px 0px 11px 4px;">
-				<span class="amount-label"><strong>$ </strong>amount</span>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-9" style="padding-left: 0;">
-				<span class="mui-pull-right" style="width: 94%;">
-					<input class="mui-input-clear" type="number" name="amount" id="amount"  placeholder="amount"/>
-				</span>
-			</li>
-			<div class="table-diviver"></div>
-			<li class="mui-table-view-cell mui-media mui-col-xs-12">
-				<div class="mui-text-left">
-				<span>withdraw way</span>
-				<span id="ch-wi-way" class="mui-pull-right mui-icon mui-icon-plus-filled"></span></div>
+			<li class="mui-table-view-cell" >
+				<div class="li_input_l">
+					<input type="number"  placeholder="input money" id="amount"/>
+				</div>
 			</li>
 		</ul>
-		
+		<div class="content_clear"></div>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell" id="ch-wi-way">
+				<!--<div class="li_left_title">
+					<span>withdraw way</span>
+				</div>
+				<div class="li_input_l">
+					<span id="ch-wi-way" class="mui-pull-right "></span>
+				</div>
+				<div class="mui-text-left">
+				<span>withdraw way</span>
+				<span id="ch-wi-way" class="mui-pull-right mui-icon mui-icon-plus-filled"></span></div>-->
+				<div class="li_left_title">
+					<span>提现方式</span>
+				</div>
+				<div class="li_input_l">
+					<img src="../../img/jia2.png" alt="" class="li_right_img" />
+				</div>
+			</li>
+		</ul>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell">
+				<img src="../../img/paypal.png" alt="" class="li_left_img"/>
+				<img src="../../img/shouyin.png" class="li_right_img mui-hidden"/>
+				<img src="../../img/shouyin2.png" alt="" class="li_right_img "/>
+				<div class="li_input_l">
+					<div class="li_title_1">
+						<span>Use <span class="pay">pay</span><span class="pal">pal</span></span>
+					</div>
+					<div class="li_title_2"><span>123456</span></div>
+				</div>
+			</li>
+			
+	</ul>
 		<div class="mui-scroll-wrapper">
 			<div class="mui-scroll">
 				<ul id="type-container" class="mui-table-view mui-grid-view mui-grid-9">
@@ -81,11 +125,11 @@
 		
 	</div>
 	<!-- 加载中的蒙层 -->
-	<div id="loading-mask"></div>
+	<!--<div id="loading-mask"></div>
 	<div id="loading-box">
 		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 	</div>
-	
+	-->
 	
 	<script type="text/html" id="template">
 		{{each list}}
@@ -109,6 +153,7 @@
 				</li>
 			{{/if}}
 		{{/each}}
+		
 	</script>
 	<script src="../../js/utils.js"></script>
 	<script src="../../js/template.js"></script>

@@ -14,7 +14,7 @@ mui.plusReady(function() {
 		var v = parseInt($(this).val()) || 0
 		var or = parseInt($('.rewrod').text());
 		var str = v + or;
-		$('.rel').text(str)
+		$('.rel').text(str);
 	})
 
 	// 隐藏显示层
@@ -43,7 +43,7 @@ mui.plusReady(function() {
 				url: "deliver/bargain",
 				data: {
 					orderId: order.orderid,
-					money: $('.rel').text()
+					money: $('#mar-i').val()
 				}
 			}, function(data) {
 				if (data.ret == 1) {

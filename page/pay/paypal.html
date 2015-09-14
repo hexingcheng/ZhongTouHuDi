@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../../js/mui.min.js"></script>
+    <link href="../../css/mui.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
+    <style>
+		.icon{
+			height: 40px;
+			width: 40px;
+			margin: 6px 6px 6px 0;
+		}
+		.icon img{
+			height: 40px;
+			width: 40px;
+		}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav" id="head">
+		<span class="icon mui-pull-left mui-action-back">
+			<img src="../../img/left.png"/>
+		</span>
+		<h1 class="mui-title">Pay</h1>
+	</header>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	mui.plusReady(function(){
+      		var cid = plus.webview.currentWebview().payid;
+      		var sub = plus.webview.create( 'http://202.202.43.107:8080/paypal/checkout.jsp?rechargeId='+cid, 'paypal', {top:'52px',bottom:'0px'});
+      		plus.webview.currentWebview().append(sub);
+      	})
+    </script>
+</body>
+</html>

@@ -7,9 +7,20 @@ mui.plusReady(function() {
 	var orderid = plus.storage.getItem("my-send-order") || cpage.orderId;
 	// 加载数据
 	sendmsg(orderid);
-	
+	// 取消订单 status=3
+	$("#cancel-order").on("tap", function() {
+			cancelorder(orderid, status);
+		})
+		// 取消订单 status=2
+	$("#cancel").on("tap", function() {
+		cancelorder(orderid, status);
+	})
+	$('#button-pay').attr('data-id',orderid);
+
 	document.getElementById("button-pay").addEventListener("tap", function() {
-		openWindow("../pay/pay.html");
+		var id = this.getAttribute('data-id');
+		var money = this.getAttribute('data-money')
+		openWindow("../pay/pay.html",{orderid:id,money:money});
 	}, false)
 
 	// 当页面是从选择递送人界面打开的时候
@@ -164,6 +175,7 @@ mui.plusReady(function() {
 			var per = BASEURL.substring(0, n);
 			var len = pic.length;
 			var box = document.querySelectorAll(".img-box");
+			$('#button-pay').attr('data-money',data.res.money);
 			if (len > 0) {
 				for (var i = 0; i < len; i++) {
 				var picurl = pic[i].path;
