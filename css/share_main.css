@@ -111,6 +111,7 @@ footer .nav_footer .button_bg_rest{
 .mui-table-view .mui-table-view-cell{
 	height: 50px;
 	line-height: 50px;
+	overflow: hidden;
 	padding-top: 0 !important;
 	padding-bottom: 0; 
 }
@@ -150,6 +151,28 @@ footer .nav_footer .button_bg_rest{
 	margin-bottom: 0;
 	border: 0;
 	font-size: 14px;
+}
+.pay{
+			color: #033288;
+	}
+.pal{
+	color: #0097DC;
+}
+.li_title_1{
+	width: auto;
+	height: 20px;
+	margin-top: 10px;
+	overflow: hidden;
+	line-height: 20px;
+	font-size: 14px;
+}
+.li_title_2{
+	width: auto;
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	overflow: hidden;
+	color: #A9A9A9;
 }
 /*两列布局*/
 .li_row_contain{
@@ -239,4 +262,28 @@ footer .nav_footer .button_bg_rest{
 .main_title_2{
 	font-size: 14px;
 	color: #8F8F94;
+}
+/* 等待加载页面内容  */
+#loading-mask {
+	position: absolute;
+	z-index: 998;
+	background: #fff;
+	top: 52px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+#loading-box {
+	position: absolute;
+	z-index: 999;
+	width: 80px;
+	height: 80px;
+	left: 50%;
+	margin-left: -40px;
+	top: 50%;
+	margin-top: -40px;
+}
+.fade-out {
+	opacity: 0;
+	-webkit-transition: all 500ms ease-out;
 }
