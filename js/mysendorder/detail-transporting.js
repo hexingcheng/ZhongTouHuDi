@@ -7,7 +7,6 @@ mui.plusReady(function() {
 	var orderid = plus.storage.getItem("my-send-order") || cpage.orderId;
 	// 加载数据
 	sendmsg(orderid);
-<<<<<<< HEAD
 	// 取消订单 status=3
 	$("#cancel-order").on("tap", function() {
 			cancelorder(orderid, status);
@@ -17,9 +16,7 @@ mui.plusReady(function() {
 		cancelorder(orderid, status);
 	})
 	$('#button-pay').attr('data-id',orderid);
-=======
-	
->>>>>>> 75f611991e78cec58c216408593e7a766b85ae83
+
 	document.getElementById("button-pay").addEventListener("tap", function() {
 		var id = this.getAttribute('data-id');
 		var money = this.getAttribute('data-money')
