@@ -80,7 +80,6 @@ mui.plusReady(function() {
 		cls.toggle("right-logo-tab");
 		if (cls.contains("right-logo-tab")) {
 			mcid = this.getAttribute("data-mcid");
-			//	      			alert(account + " "+ type)
 			flag = true;
 		} else {
 			flag = false;
@@ -95,33 +94,64 @@ mui.plusReady(function() {
 		openWindow("./my-withdraw-next.html", data);
 	})
 
+	// 弹出框属性
+	var options = {
+		height : 175,
+		title : {
+			height : 40,
+			content : ""
+		},
+		main : {
+			content : ""
+		},
+		buttons : [{
+			name : "OK",
+			click : function(){ return true }
+		},{
+			name : "cancel",
+			click : function(){ return true; }
+		}]
+	}
+
 	// 取现跳转到下一步
+	var pop;		// 弹出框对象
 	document.getElementById("next-step").addEventListener("tap", function() {
 		if (flag && mcid) {
 			var val = document.getElementById("amount").value.trim();
-			var reg = /^([0-9]*.?[0-9]*)$/.exec(val)
-			if (reg[0]) {
-				var divide = parseFloat(reg[0]);
+//			var reg = /^([0-9]*.?[0-9]*)$/.exec(val)
+			if (val) {
+				var divide = parseFloat(val);
 				if (current >= divide) {
-
 					var datas = {
-							money: divide,
-							mcId: mcid
-						}
-						//							console.log("传入后台数据："+JSON.stringify(datas))
-					myAjax({ // 返回 -102 错误提醒
-						url: "wallet/withdraw",
-						data: datas
-					}, function(data) {
-						if (data.ret == 1) {
-							mui.toast("提现成功");
-						} else if (data.ret == 2) {
-							mui.toast("渠道暂停提现");
-						} else {
-							mui.alert("你存在提现在审核，暂时不能再申请提现", "提示")
-						}
-					})
-
+						money: divide,
+						mcId: mcid
+					}
+					// 弹出框样式
+					options.title.content = "输入密码";
+					options.main.content = "<div class='popup-input-wrap'>"+
+												"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>"+
+											"</div>"+
+											"<div class='input-extras'>Forget Your Password?</div>";
+					
+					options.buttons[0]["click"] = function(){
+						// 支付密码验证接口
+						
+						
+						/*myAjax({ // 返回 -102 错误提醒
+							url: "wallet/withdraw",
+							data: datas
+						}, function(data) {
+							if (data.ret == 1) {
+								mui.toast("提现成功");
+							} else if (data.ret == 2) {
+								mui.toast("渠道暂停提现");
+							} else {
+								mui.alert("你存在提现在审核，暂时不能再申请提现", "提示")
+							}
+						})*/
+					}
+					pop = new Popup(options)
+					pop.show();
 				} else {
 					mui.toast("余额不足")
 				}
@@ -132,6 +162,40 @@ mui.plusReady(function() {
 			mui.toast("请选择取现方式");
 		}
 	}, false);
+
+	// 忘记密码
+	var opt = {
+		height : 170,
+		title : {
+			height : 40,
+			content : "please input your password",
+			background : "#fff"
+		},
+		main : {
+			content : "<div class='popup-input-wrap'>"+
+							"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>"+
+						"</div>"
+		},
+		buttons : [{
+			name : "确定",
+			click : function(){
+				alert("nihao");
+			}
+		}]
+	}
+	
+	var popup;
+	mui("body").on("tap", ".input-extras", function(){
+		this.style.color = "red";
+		pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"));
+//		var ch1 = document.getElementById("lee-mask");
+//		var ch2 = document.getElementById("lee-content-wrap");
+//		ch1.parentNode.removeChild(ch1);
+//		ch2.parentNode.removeChild(ch2);
+		
+		popup = new Popup(opt)
+		popup.show();
+	})
 
 
 })

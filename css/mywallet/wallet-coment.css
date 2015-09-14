@@ -81,12 +81,12 @@ div.mui-scroll-wrapper {
 #loading-box {
 	position: absolute;
 	z-index: 999;
-	width: 100px;
-	height: 100px;
+	width: 80px;
+	height: 80px;
 	left: 50%;
-	margin-left: -50px;
+	margin-left: -40px;
 	top: 50%;
-	margin-top: -50px;
+	margin-top: -40px;
 }
 .fade-out {
 	opacity: 0;

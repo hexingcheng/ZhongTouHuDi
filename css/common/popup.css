@@ -89,6 +89,27 @@
 	left: 0;
 	right: 0;
 }
+
+/* input样式框 */
+#lee-content .popup-input-wrap {
+	margin-top: 10px;
+}
+#lee-content .popup-input-wrap .input-withdraw {
+	margin: 0;
+	padding: 0 10px;
+	height: 30px;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	line-height: 30px;
+	font-size: 16px;
+}
+#lee-content .input-extras {
+	margin: 10px;
+	text-align: right;
+	font-size: 14px;
+	color: #CDA;
+}
+
 .fadein {
 	-webkit-animation: fadein 0.2s ease-in-out;
 	animation: fadein 0.2s ease-in-out;
