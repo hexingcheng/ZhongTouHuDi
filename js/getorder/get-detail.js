@@ -154,6 +154,7 @@ mui('#picwrap').on('tap','img',function(){
 		}, function(data) {
 //			showobj(data.res.pics[0]);
 			$(".goods-name").html(data.res.gName); // 货物名称
+			alert(data.res.gName)
 			$("#goods-value").html(data.res.money); // 价值
 			$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
 			$("#get-time").html(data.res.getTime); // 获取时间
