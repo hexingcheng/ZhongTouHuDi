@@ -263,3 +263,27 @@ footer .nav_footer .button_bg_rest{
 	font-size: 14px;
 	color: #8F8F94;
 }
+/* 等待加载页面内容  */
+#loading-mask {
+	position: absolute;
+	z-index: 998;
+	background: #fff;
+	top: 52px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+#loading-box {
+	position: absolute;
+	z-index: 999;
+	width: 80px;
+	height: 80px;
+	left: 50%;
+	margin-left: -40px;
+	top: 50%;
+	margin-top: -40px;
+}
+.fade-out {
+	opacity: 0;
+	-webkit-transition: all 500ms ease-out;
+}
