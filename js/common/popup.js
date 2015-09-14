@@ -13,7 +13,7 @@
 			background: "#06495a"
 		},
 		main: {
-			content: "确定要删除该项？",
+			content: "内容项填写",
 			align: "left",
 			background: "#ff979696",
 			font: "1em",
