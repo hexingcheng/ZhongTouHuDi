@@ -4,10 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<title></title>
-		<link href="../../css/mui.css" rel="stylesheet" />
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/getorder/get-order-comment.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/getorder/get-order.css" />	
 		<style>
@@ -53,8 +52,11 @@
 		</div>
 		<div id="pullrefresh" class="mui-scroll-wrapper">
 			<!--数据列表-->
-			<div class="ordercontents mui-scroll" id="ordercontent">
+			<div class="mui-scroll">
 				<!-- 等待框 -->
+				<div class="ordercontents"  id="ordercontent">
+					
+				</div>
 			</div>
 		</div>
 		<script src="../../js/template.js"></script>
@@ -99,7 +101,6 @@
 			{{/each}}
 		</script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
-		<script src="../../js/mui.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script src="../../js/getorder/get-order.js"></script>
 	</body>
