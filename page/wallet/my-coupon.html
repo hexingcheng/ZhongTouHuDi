@@ -8,17 +8,23 @@
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
     <style type="text/css">
-    	.input-wraper {height: 50px;border-bottom: 1px solid #ccc;padding: 5px;}
+    	.input-wraper {height: 50px;border-bottom: 1px solid #ccc;padding: 5px 10px;}
     	.input-box {width: 75%;}
     	.coupon_sub {width: 23%;padding: 9px 0;margin-left: 2%;border-radius: 0;background-color: #c4ebdd;color: #01a76e;}
-    	header.mui-bar~.mui-content > div.mui-scroll-wrapper {top: 110px;}
+    	header.mui-bar~.mui-content > div.mui-scroll-wrapper {top: 102px;}
     	#input-code {margin: 0;border-radius: 0;}
-    	.coupon_con {padding: 10px 0px 10px 20px;overflow: hidden;background: #e2e2e2;height: 115px;margin: 0 10px;}
+    	.coupon_con {padding: 10px 0px 10px 20px;overflow: hidden;height: 115px;margin: 10px 10px 0 10px;}
+    	.coupon-workable {
+    		background: url(../../img/wallet/coupo2n.png) no-repeat 0 0;
+    		background-size: 100% 100%;
+    	}
+    	.coupon-outofdate {background: url(../../img/wallet/coupon.png) no-repeat 0 0;
+    		background-size: 100% 100%;}
     	.coupon-left {width: 65%;}
     	.main_title {color: #8d8d8d;font-size: 1.5em;padding: 10px 0;}
     	.sub_title {color: #b3b3b3;font-size: 1em;padding: 3px 0;}
     	.sub_date {color: #fab78f;padding: 3px 0;}
-    	.coupon-right {width: 35%;height: 100%;text-align: center;line-height: 100px;border-left: 1px solid #ccc;}
+    	.coupon-right {width: 35%;height: 100%;text-align: center;line-height: 100px;}
     	.log {color: #ff5440;font-size: 1.2em;}
     	.money {color: #ff5440; font-size: 2.5em;}
     </style>
@@ -42,15 +48,27 @@
 		
 		<div class="mui-scroll-wrapper">
 			<div class="mui-scroll">
-				
-				<div class="coupon_con">
+				<!-- workable -->
+				<div class="coupon_con coupon-workable">
 					<div class="coupon-left mui-pull-left">
-						<div class="main_title">Coupon</div>
-						<div class="sub_title">Use it in any service</div>
-						<div class="sub_date">21 Mar 2016</div>
+						<div class="main_title mui-ellipsis">Coupon</div>
+						<div class="sub_title mui-ellipsis">Use it in any service</div>
+						<div class="sub_date mui-ellipsis">21 Mar 2016</div>
 					</div>
 					<div class="coupon-right mui-pull-left">
-						<span class="log">$</span><span class="money">10</span>
+						<span class="log">$</span><span class="money mui-ellipsis">10</span>
+					</div>
+				</div>
+				
+				<!-- out of date -->
+				<div class="coupon_con coupon-outofdate">
+					<div class="coupon-left mui-pull-left">
+						<div class="main_title mui-ellipsis">Coupon</div>
+						<div class="sub_title mui-ellipsis">Use it in any service</div>
+						<div class="sub_date mui-ellipsis">21 Mar 2016</div>
+					</div>
+					<div class="coupon-right mui-pull-left">
+						<span class="log">$</span><span class="money mui-ellipsis">100</span>
 					</div>
 				</div>
 				

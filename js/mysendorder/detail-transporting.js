@@ -7,6 +7,7 @@ mui.plusReady(function() {
 	var orderid = plus.storage.getItem("my-send-order") || cpage.orderId;
 	// 加载数据
 	sendmsg(orderid);
+<<<<<<< HEAD
 	// 取消订单 status=3
 	$("#cancel-order").on("tap", function() {
 			cancelorder(orderid, status);
@@ -15,8 +16,14 @@ mui.plusReady(function() {
 	$("#cancel").on("tap", function() {
 		cancelorder(orderid, status);
 	})
+	$('#button-pay').attr('data-id',orderid);
+=======
+	
+>>>>>>> 75f611991e78cec58c216408593e7a766b85ae83
 	document.getElementById("button-pay").addEventListener("tap", function() {
-		openWindow("../pay/pay.html");
+		var id = this.getAttribute('data-id');
+		var money = this.getAttribute('data-money')
+		openWindow("../pay/pay.html",{orderid:id,money:money});
 	}, false)
 
 	// 当页面是从选择递送人界面打开的时候
@@ -66,7 +73,7 @@ mui.plusReady(function() {
 
 	// 取消订单弹出框
 	var options = {
-		height : 150,
+		height : 160,
 		title : {
 			height : 40,
 			content : ""
@@ -82,32 +89,46 @@ mui.plusReady(function() {
 			click : function(){ return true; }
 		}]
 	}
-
-	// 取消订单函数调用
-	function cancelorder(orderid, sta) {
-		// 在共有属性中添加需要的设置
+	
+	// 取消订单 status=3
+	$("#cancel-order").on("tap", function() {
+		options.height = 180;
 		options.title.content = "取消提示";
-		options.main.content = "您确认要取消此条订单消息吗？",
+		options.main.content = "您确定要取消此条订单信息吗？在付款的阶段取消订单将会扣除50%的报酬给递送人",
 		options.buttons[0] = {
 			name : "OK",
 			click : function(){
 				openWindow("./cancel-reason.html", {
 					orderId: orderid,
-					status: sta
+					status: status
 				})
 			}
 		}
 		options.buttons[1].name = "cancel";
 		var pop = new Popup(options)
 		pop.show();
-//		plus.nativeUI.confirm("您确认要取消此条订单消息吗？", function(eve) {
-//			if (eve.index == 1) {
-				
-//			}
-//		}, "取消提示", ["cancel", "ok"])
-	}
-		// 通过订单号获取数据
-function toverticalcenter() {
+	})
+	
+	// 取消订单 status=2
+	$("#cancel").on("tap", function() {
+		options.title.content = "取消提示";
+		options.main.content = "您确定要取消此条订单信息吗？在付款的阶段取消订单将会扣除10积分",
+		options.buttons[0] = {
+			name : "OK",
+			click : function(){
+				openWindow("./cancel-reason.html", {
+					orderId: orderid,
+					status: status
+				})
+			}
+		}
+		options.buttons[1].name = "cancel";
+		var pop = new Popup(options)
+		pop.show();
+	})
+	
+	// 通过订单号获取数据
+	function toverticalcenter() {
 		var item = $('.preimg')
 		var len = item.length;
 		for (var i = 0; i < len; i++) {
@@ -157,6 +178,7 @@ function toverticalcenter() {
 			var per = BASEURL.substring(0, n);
 			var len = pic.length;
 			var box = document.querySelectorAll(".img-box");
+			$('#button-pay').attr('data-money',data.res.money);
 			if (len > 0) {
 				for (var i = 0; i < len; i++) {
 				var picurl = pic[i].path;

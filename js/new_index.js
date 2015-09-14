@@ -10,9 +10,9 @@ document.getElementById("trip-plan").addEventListener("tap", function() {
 	openWindow("./page/tripplan/send-trip.html");
 })
 mui.plusReady(function() {
-		console.log(plus.runtime.appid)
 			//		plus.storage.removeItem('systemmes14714714774')
 			//		plus.storage.removeItem('systemmes25825825885')
+		setstorage('getsystemmsgtime',(new Date()).getTime());	
 		plus.navigator.closeSplashscreen();
 		var net = plus.networkinfo.getCurrentType();
 		if (net != 0 && net != 1) {
@@ -141,6 +141,9 @@ mui.plusReady(function() {
 				openWindow('./page/wallet/my-wallet.html')
 			})
 		})
+		setInterval(function(){
+			getsystemmsg();
+		},60000)
 
 	})
 	//处理返回键
