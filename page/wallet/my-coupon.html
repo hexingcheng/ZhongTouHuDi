@@ -6,108 +6,60 @@
     <title></title>
     <script src="../../js/mui.min.js"></script>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    
-    <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
-    <link rel="stylesheet" href="../../css/share_main.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
     <style type="text/css">
-    body ,.mui-content{
-    	background-color: #F2F2F2;
-    }
-    	.coupon_sub{
-    		width: 90px;
-    		height: 40px;
-    		border-radius: 5px;
-    		font-size: 16px;
-    		margin: 5px 0;
-    		line-height: 40px;
-    		text-align: center;
-    		background-color: #C4EBDD;
-    		float: right;
-    	}
-    	.mui-table-view-cell .li_input_s{
-    		margin-right: 110px; 
-    	}
-    	.mui-table-view-cell input{
-    		height: 40px;
-    		margin: 5px 0;
-    		padding-left: 10px;
-    		border: 1px solid #C8C5C5 !important;
-    	}
-    	.coupon_con{
-    		width: 96%;
-    		height: 100px;
-    		margin: 0 auto;
-    		margin-top: 5px;
-    		background-color: #fff;
-    	}
-
-    	.coupon_con_right{
-    		width: 120px;
-    		height: 100px;
-    		line-height: 100px;
-    		border: 1px solid green;
-    		float: right;
-    		text-align: center;
-    		color:red;
-    	}
-		.coupon_con_left{
-    		height: 100px;
-    		overflow: hidden;
-    	}
-    	.coupon_con_left_con{
-    		width: 100%;
-    		height: 100px;
-    		font-size: 14px;
-    		border: 1px solid orange;
-    		padding-left: 20px;
-    	}
-    	.coupon_con_left_con .main_title{
-    		width: 100%;
-    		height: 40px;
-    		line-height: 45px;
-    		font-size: 16px;
-    		color: #FFA500;
-    	}
-    	.coupon_con_left_con .next_title{
-    		width: 100%;
-    		height: 25px;
-    		line-height: 30px;
-    		color: #C8C5C5;
-    	}
-    	.next_title~ .next_title{
-    		color: orange !important;
-    	}
-    	
+    	.input-wraper {height: 50px;border-bottom: 1px solid #ccc;padding: 5px;}
+    	.input-box {width: 75%;}
+    	.coupon_sub {width: 23%;padding: 9px 0;margin-left: 2%;border-radius: 0;background-color: #c4ebdd;color: #01a76e;}
+    	header.mui-bar~.mui-content > div.mui-scroll-wrapper {top: 110px;}
+    	#input-code {margin: 0;border-radius: 0;}
+    	.coupon_con {padding: 10px 0px 10px 20px;overflow: hidden;background: #e2e2e2;height: 115px;margin: 0 10px;}
+    	.coupon-left {width: 65%;}
+    	.main_title {color: #8d8d8d;font-size: 1.5em;padding: 10px 0;}
+    	.sub_title {color: #b3b3b3;font-size: 1em;padding: 3px 0;}
+    	.sub_date {color: #fab78f;padding: 3px 0;}
+    	.coupon-right {width: 35%;height: 100%;text-align: center;line-height: 100px;border-left: 1px solid #ccc;}
+    	.log {color: #ff5440;font-size: 1.2em;}
+    	.money {color: #ff5440; font-size: 2.5em;}
     </style>
 </head>
 <body >
-	<header class="mui-bar mui-bar-nav nav_header">
-		<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
-		<span>Coupon</span>
+	
+	<header class="mui-bar mui-bar-nav">
+		<div class="left-back mui-pull-left">
+			<img src="../../img/left.png" class="mui-action-back"></img>
+		</div>
+		<h1 class="mui-title mui-text-left">Coupon</h1>
 	</header>
 	
 	<div class="mui-content">
-		<ul class="mui-table-view">
-			<li class="mui-table-view-cell">
-				<div class="coupon_sub" id="submit-btn">sunbmit</div>
-				<div class="li_input_s">
-					<input type="text" placeholder="input code" id="input-code"/> 
-				</div>
-			</li>
-		</ul>
-		<div class="coupon_con">
-			<div class="coupon_con_right">
-				<span>$</span>
-				<span>10</span>
+		<div class="input-wraper">
+			<div class="input-box mui-pull-left">
+				<input type="text" placeholder="input code" id="input-code"/>
 			</div>
-			<div class="coupon_con_left_con">
-				<div class="main_title">Coupon</div>
-				<div class="next_title">Use it in any service</div>
-				<div class="next_title">21 Mar 2016</div>
+			<button type="button" class="coupon_sub mui-pull-left" id="submit-btn">submit</button>
+		</div>
+		
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				
+				<div class="coupon_con">
+					<div class="coupon-left mui-pull-left">
+						<div class="main_title">Coupon</div>
+						<div class="sub_title">Use it in any service</div>
+						<div class="sub_date">21 Mar 2016</div>
+					</div>
+					<div class="coupon-right mui-pull-left">
+						<span class="log">$</span><span class="money">10</span>
+					</div>
+				</div>
+				
 			</div>
 		</div>
+		
 	</div>
 	<script type="text/html">
+		
 	</script>
 	<script src="../../js/template.js"></script>
 	<script>

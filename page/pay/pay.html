@@ -72,7 +72,7 @@
 			.mui-content>.mui-table-view:first-child {
 				margin-top: 0;
 			}
-			#active{
+			#active {
 				background: url(../../img/shouyin2.png) no-repeat 10px 0;
 				background-size: 100% 100%;
 			}
@@ -111,7 +111,7 @@
 				<li class="mui-table-view-cell mui-media mui-col-xs-12">
 					<div class="paypal-box">
 						<span class="left-logo mui-pull-left"></span>
-						<span class="right-logo mui-pull-right" id="active" data-action = 'yue'></span>
+						<span class="right-logo mui-pull-right" id="active" data-action='yue'></span>
 						<div class="use-paypal">
 							<div style="font-size: 1.2em;padding: 0.3em 0;" class="mui-ellipsis mui-text-left">
 								Use Wallet
@@ -141,13 +141,16 @@
 			mui.init();
 			mui.plusReady(function() {
 				// 定单号
-				var orderid = plus.storage.getItem("my-send-order");
-				// 付款按钮
+				var cid = plus.webview.currentWebview().orderid;
+				var money = plus.webview.currentWebview().money;
+				var orderid = cid;
+				var payid;
+				alert(orderid)
+				alert(money)
 				var cpage = plus.webview.currentWebview();
 				$('.right-logo').on('tap', function() {
-					$('.right-logo').attr('id','');
-					$(this).attr('id','active');
-					
+					$('.right-logo').attr('id', '');
+					$(this).attr('id', 'active');
 				})
 				document.getElementById("next-step").addEventListener("tap", function() {
 					//				plus.nativeUI.showWaiting("付款中...", {
@@ -172,13 +175,38 @@
 					//					}
 					//				})
 					var action = $('.right-logo').filter('#active').attr('data-action')
-					if(action=='yue'){
+					if (action == 'yue') {
 						alert('余额支付');
-					}else if(action=='paypal'){
-						openWindow('./paypal.html');
+						paymoney('2',money,function(){
+							alert(payid)
+						})
+					} else if (action == 'paypal') {
+						paymoney('1',money,function(){
+							openWindow('./paypal.html', {
+								payid: payid
+							});
+						})
 					}
-
 				}, false)
+
+				function paymoney(paytype, paymoney, cb) {
+					myAjax({
+						url: 'pay/save',
+						data: {
+							orderId: orderid,
+							type: paytype,
+							money: paymoney
+						}
+					}, function(data) {
+						alert(data.ret)
+						if (data.ret == 1) {
+							payid = data.res.rechargeId;
+							cb();
+						}
+					}, function(xhr, type) {
+						mui.toast(xhr.status + ":" + type);
+					})
+				}
 			})
 		</script>
 	</body>

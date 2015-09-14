@@ -29,7 +29,8 @@
     <script type="text/javascript" charset="utf-8">
       	mui.init();
       	mui.plusReady(function(){
-      		var sub = plus.webview.create( 'http://www.baidu.com', 'paypal', {top:'52px',bottom:'0px'});
+      		var cid = plus.webview.currentWebview().payid;
+      		var sub = plus.webview.create( 'http://202.202.43.107:8080/paypal/checkout.jsp?rechargeId='+cid, 'paypal', {top:'52px',bottom:'0px'});
       		plus.webview.currentWebview().append(sub);
       	})
     </script>

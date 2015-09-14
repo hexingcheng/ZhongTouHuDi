@@ -15,8 +15,11 @@ mui.plusReady(function() {
 	$("#cancel").on("tap", function() {
 		cancelorder(orderid, status);
 	})
+	$('#button-pay').attr('data-id',orderid);
 	document.getElementById("button-pay").addEventListener("tap", function() {
-		openWindow("../pay/pay.html");
+		var id = this.getAttribute('data-id');
+		var money = this.getAttribute('data-money')
+		openWindow("../pay/pay.html",{orderid:id,money:money});
 	}, false)
 
 	// 当页面是从选择递送人界面打开的时候
@@ -64,19 +67,48 @@ mui.plusReady(function() {
 		}
 	})
 
-
+	// 取消订单弹出框
+	var options = {
+		height : 150,
+		title : {
+			height : 40,
+			content : ""
+		},
+		main : {
+			content : ""
+		},
+		buttons : [{
+			name : "OK",
+			click : function(){ return true }
+		},{
+			name : "cancel",
+			click : function(){ return true; }
+		}]
+	}
 
 	// 取消订单函数调用
 	function cancelorder(orderid, sta) {
-			plus.nativeUI.confirm("您确认要取消此条订单消息吗？", function(eve) {
-				if (eve.index == 1) {
-					openWindow("./cancel-reason.html", {
-						orderId: orderid,
-						status: sta
-					})
-				}
-			}, "取消提示", ["cancel", "ok"])
+		// 在共有属性中添加需要的设置
+		options.title.content = "取消提示";
+		options.main.content = "您确认要取消此条订单消息吗？",
+		options.buttons[0] = {
+			name : "OK",
+			click : function(){
+				openWindow("./cancel-reason.html", {
+					orderId: orderid,
+					status: sta
+				})
+			}
 		}
+		options.buttons[1].name = "cancel";
+		var pop = new Popup(options)
+		pop.show();
+//		plus.nativeUI.confirm("您确认要取消此条订单消息吗？", function(eve) {
+//			if (eve.index == 1) {
+				
+//			}
+//		}, "取消提示", ["cancel", "ok"])
+	}
 		// 通过订单号获取数据
 function toverticalcenter() {
 		var item = $('.preimg')
@@ -128,6 +160,7 @@ function toverticalcenter() {
 			var per = BASEURL.substring(0, n);
 			var len = pic.length;
 			var box = document.querySelectorAll(".img-box");
+			$('#button-pay').attr('data-money',data.res.money);
 			if (len > 0) {
 				for (var i = 0; i < len; i++) {
 				var picurl = pic[i].path;

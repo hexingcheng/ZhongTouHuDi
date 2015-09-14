@@ -10,6 +10,8 @@
 		<link rel="stylesheet" href="../../css/mysendorder/mysendorder-detail.css" />
 		<link rel="stylesheet" href="../../css/mysendorder/detail-transporting.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common/popup.css"/>
+		<script src="../../js/common/popup.js"></script>
 		<script src="../../js/mui.js"></script>
 		<style type="text/css">
 			#deliverer-contact div:nth-child(1) {border: none;}
@@ -144,12 +146,12 @@
 		<footer id="footer-cancel" class="mui-bar mui-bar-footer mui-text-center">
 			<!-- 已付款 status=3 -->
 			<div class="button-row status-3" style="display: none;">
-				<button  id="cancel-order" class="mui-btn button-block">cancel</button>
+				<button  id="cancel-order" class="mui-btn button-block" style="background-color: #fc614d;">cancel</button>
 			</div>
 			<div class="status-2" style="display: none;">
 				<div class="button-row">
 					<button id="cancel" class="mui-btn first-button" style="background: #fc614d;">cancel</button>
-					<button id="button-pay" class="mui-btn second-button" style="background-color: #23A0CF;">pay</button>
+					<button id="button-pay" class="mui-btn second-button" style="background-color: #23A0CF;" data-id='' data-money = ''>pay</button>
 				</div>
 			</div>
 		</footer>
@@ -161,8 +163,6 @@
 		</div>
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
-
 		<script src="../../js/mysendorder/detail-transporting.js"></script>
 	</body>
-
 </html>

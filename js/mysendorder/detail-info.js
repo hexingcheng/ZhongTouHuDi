@@ -7,6 +7,44 @@ mui.plusReady(function() {
 	// 显示数据
 	sendmsg(orderid);
 
+	// 取消订单弹出框
+	var options = {
+		height : 150,
+		title : {
+			height : 40,
+			content : ""
+		},
+		main : {
+			content : ""
+		},
+		buttons : [{
+			name : "OK",
+			click : function(){ return true }
+		},{
+			name : "cancel",
+			click : function(){ return true; }
+		}]
+	}
+	// 取消订单
+	$("#cancel-order").on("tap", function() {
+		// 在共有属性中添加需要的设置
+		options.title.content = "取消提示";
+		options.main.content = "您确认要取消此条订单消息吗？",
+		options.buttons[0] = {
+			name : "OK",
+			click : function(){
+				openWindow("./cancel-reason.html", {
+					orderId: orderid,
+					status:status
+				})
+				plus.storage.removeItem("my-send-order")
+			}
+		}
+		options.buttons[1].name = "cancel";
+		var pop = new Popup(options)
+		pop.show();
+	})
+	
 	// 议价中添加选取递送人
 	$("#msg-warn").on("tap", ".link-btn", function() {
 		myAjax({
@@ -25,8 +63,11 @@ mui.plusReady(function() {
 				mui.toast("非发单人没有权限查看")
 			} else if(data.ret == 3){
 				// 当前有人抢单后，需要进行发单人提醒该单已经抢单。是否需要支付
-				plus.nativeUI.confirm("当前订单已经被他人抢单，是否进行支付？", function(eve){
-					if(eve.index == 1){
+				options.title.content = "支付提示";
+				options.main.content = "当前订单已经被他人抢单，是否进行支付？",
+				options.buttons[0] = {
+					name : "是",
+					click : function(){
 						openNewWindow("./mysendorder-detail-inform.html", {
 							orderId : orderid,
 							status : status
@@ -36,23 +77,14 @@ mui.plusReady(function() {
 							plus.storage.removeItem("my-send-order")
 						}, 300)
 					}
-				}, "支付提示", ["否", "是"])
+				}
+				options.buttons[1].name = "否";
+				var pop = new Popup(options)
+				pop.show();
 			}
 		})
 	})
 	
-	// 取消订单
-	$("#cancel-order").on("tap", function() {
-		plus.nativeUI.confirm("您确认要取消此条订单消息吗？", function(eve){
-			if(eve.index == 1){
-				openWindow("./cancel-reason.html", {
-					orderId: orderid,
-					status:status
-				})
-				plus.storage.removeItem("my-send-order")
-			}
-		}, "取消提示", ["cancel", "ok"])
-	})
 	
 	// 返回首页
 	var cpage = plus.webview.currentWebview();
