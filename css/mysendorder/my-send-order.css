@@ -71,28 +71,28 @@
 }
 .published .statusDetail {
 	color: #ffa619;
-	font-size: 17px;
+	font-size: 16px;
 }
 .successed {
 	border-left: 4px solid #ff8474;
 }
 .successed .statusDetail {
 	color: #ff8474;
-	font-size: 17px;
+	font-size: 16px;
 }
 .transporting {
 	border-left: 4px solid #23a0cf;
 }
 .transporting .statusDetail {
 	color: #23a0cf;
-	font-size: 17px;
+	font-size: 16px;
 }
 .abandonded {
 	border-left: 4px solid #90b900;
 }
 .abandonded .statusDetail {
 	color: #90b900;
-	font-size: 17px;
+	font-size: 16px;
 }
 /* 头部样式  */
 
