@@ -6,130 +6,57 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../css/header-footer.css" />
+		<link rel="stylesheet" href="../../css/share_main.css" />
 		<script src="../../js/mui.min.js"></script>
-		<style type="text/css">
-			.mui-table-view-cell span {
-				display: inline-block;
-			}
-			.left-title {
-				width: 50%;
-				text-align: left;
-				float: left;
-			}
-			.right-content {
-				width: 50%;
-				float: right;
-				text-align: right;
-			}
-			.available-cash {
-				font-size: 1.5em;
-			}
-			.mui-btn.button-next {
-				background-color: #ff8474;
-				color: #fff;
-				padding: 10px 35%;
-			}
-			.amount-label {
-				padding: 0.5em 0 0 0;
-				color: #666;
-			}
-			#amount {
-				margin: 0;
-				border: none;
-				background-color: #ddffeb;
-				width: 100%;
-				border-radius: 9px;
-			}
-			.withdraw-way {
-				padding: 0 0 0.5em 0;
-			}
-			.paypal-box {
-				position: relative;
-			}
-			.paypal-box span {
-				width: 3em;
-				height: 3em;
-			}
-			.left-logo {
-				background: transparent url(../../img/wallet-logo.png) no-repeat 10px center;
-				background-size: 170% 70%;
-			}
-			.right-logo {
-				background: transparent url(../../img/wallet-logo.png) no-repeat 100% center;
-				margin-right: 0.7em;
-				background-size: 170% 70%;
-			}
-			.use-paypal {
-				position: absolute;
-				left: 3em;
-				right: 3em;
-				top: 0.3em;
-				padding-left: 2em;
-			}
-			/*页面nav*/
-			
-			.mui-content>.mui-table-view:first-child {
-				margin-top: 0;
-			}
-			#active {
-				background: url(../../img/shouyin2.png) no-repeat 10px 0;
-				background-size: 100% 100%;
-			}
-		</style>
 	</head>
 
 	<body class="bg-color">
-		<header class="mui-bar mui-bar-nav">
-			<div class="left-back mui-pull-left">
-				<img src="../../img/left.png" class="mui-action-back" />
-			</div>
-			<h1 class="mui-title mui-text-left">Withdraw</h1>
+		<header class="mui-bar mui-bar-nav nav_header">
+			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back"/>
+			<span>Withdraw</span>
 		</header>
 
-		<footer class="mui-bar mui-bar-footer mui-text-center">
-			<div class="button-row">
-				<button id="next-step" class="mui-btn button-block">Next Step</button>
-			</div>
+		<footer class="mui-bar mui-bar-footer">
+			<button class="nav_footer mui-btn" id="next-step">Next Step</button>
 		</footer>
 
-		<div class="mui-content muipaddingtop">
-			<ul class="mui-table-view mui-grid-9 mui-grid-view">
-				<li class="mui-table-view-cell mui-media mui-col-xs-12">
-					<span class="left-title">Total</span>
-					<span class="right-content style-money available-cash">$<span id="available-cash">20.00</span></span>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-12">
-					<span class="left-title">Date</span>
-					<span class="right-content">2015-06-20 18:07</span>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-12">
-					<span class="left-title">Use Coupon</span>
-					<span class="right-content mui-h4">$10.00</span>
-				</li>
-
-				<li class="mui-table-view-cell mui-media mui-col-xs-12">
-					<div class="paypal-box">
-						<span class="left-logo mui-pull-left"></span>
-						<span class="right-logo mui-pull-right" id="active" data-action='yue'></span>
-						<div class="use-paypal">
-							<div style="font-size: 1.2em;padding: 0.3em 0;" class="mui-ellipsis mui-text-left">
-								Use Wallet
-							</div>
-							<p style="color: #777;" class="mui-text-left">you have $300.00 left</p>
-						</div>
+		<div class="mui-content">
+			<ul class="mui-table-view top_header">
+				<li class="mui-table-view-cell ">
+					<div class="li_left_title"><span class="left-title">Total</span></div>
+					<div class="li_input_l">
+						<span class="mui-pull-right">$ <span id="available-cash">20.00</span></span>
 					</div>
 				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-12">
-					<div class="paypal-box">
-						<span class="left-logo mui-pull-left"></span>
-						<span class="right-logo mui-pull-right" data-action='paypal'></span>
-						<div class="use-paypal">
-							<div style="color: #002e86;font-size: 1.2em;padding: 0.3em 0;" class="mui-ellipsis mui-text-left">
-								Use PayPal
-							</div>
-							<p style="color: #777;" class="mui-text-left">go to paypal page</p>
-						</div>
+				<li class="mui-table-view-cell ">
+					<span class="li_left-title">Date</span>
+					<span class="mui-pull-right">2015-06-20 18:07</span>
+				</li>
+				<li class="mui-table-view-cell ">
+					<span class="li_left-title">Use Coupon</span>
+					<span class="mui-pull-right">$10.00</span>  
+				</li>
+
+				<li class="mui-table-view-cell">
+					<div class="li_left_title">
+						<img src="../../img/paypal.png" alt="" class="li_left_img" />
+					</div>
+					<img src="../../img/shouyin.png" alt="" class="li_right_img right-logo"/>
+					<img src="../../img/shouyin2.png" alt="" class="li_right_img mui-hidden right-logo"/>
+					<div class="li_input_s">
+						<div class="li_title_1"> <span>Use <span class="pay">wallet</span></span></div>
+						<div class="li_title_2"> <span>go to wallet</span></div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell ">
+					<div class="li_left_title">
+						<img src="../../img/paypal.png" alt="" class="li_left_img" />
+					</div>
+					<img src="../../img/shouyin.png" alt="" class="li_right_img right-logo"/>
+					<img src="../../img/shouyin2.png" alt="" class="li_right_img mui-hidden right-logo"/>
+					<div class="li_input_s">
+						<div class="li_title_1"><span>Use <span class="Pay">Pay</span><span class="pal">pal</span></span></div>
+						<div class="li_title_2"><span>go to paypal page</span></div>
 					</div>
 				</li>
 			</ul>
@@ -149,8 +76,8 @@
 				alert(money)
 				var cpage = plus.webview.currentWebview();
 				$('.right-logo').on('tap', function() {
-					$('.right-logo').attr('id', '');
-					$(this).attr('id', 'active');
+					$(this).addClass('mui-hidden');
+					$(this).siblings().removeClass('mui-hidden');
 				})
 				document.getElementById("next-step").addEventListener("tap", function() {
 					//				plus.nativeUI.showWaiting("付款中...", {

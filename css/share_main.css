@@ -7,8 +7,8 @@ body,.mui-content{
 .mui-table-view-cell .line_20{
 	line-height: 20px;
 }
-footer .mui-bar .cancle_bg{
-	background-color: #fc614d;
+.mui-bar .cancle_bg{
+	background-color: #fc614d !important;
 }
 /**间隙*/
 .content_clear{
@@ -184,7 +184,7 @@ footer .nav_footer .button_bg_rest{
 	width: 50% !important;
 	height: 50px;
 	line-height: 50px;
-	padding: 0 auto;
+	padding: 0 18px 0 0;
 	font-size: 14px;
 	border-right: 1px solid #c8c7cc;
 	float: left;
@@ -196,7 +196,7 @@ footer .nav_footer .button_bg_rest{
 	width: 50% !important;
 	height: 50px;
 	line-height: 50px;
-	padding: 0 auto;
+	padding: 0 0 0 18px;
 	font-size: 14px;
 	float: right;
 	border-bottom: 1px solid #c8c7cc;

@@ -131,13 +131,13 @@ function sendmsg(orderid) {
 		},
 		wait : false
 	}, function(data) {
-//		console.log(JSON.stringify(data))
+		console.log(JSON.stringify(data))
 		$(".goods-name").html(data.res.gName); // 货物名称
 		$("#goods-value").html(data.res.money); // 价值
 		$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
 		$("#get-time").html(data.res.getTime); // 获取时间
 		$("#deadline").html(data.res.finTime); // 期望时间
-		$("#sendaddr").html(data.res.sendAddr.name); // 发送地
+		$("#sendaddr").text(data.res.sendAddr.name); // 发送地 
 		$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
 		$("#gvalue").html(data.res.gValue); // value
 		$("#info").html(data.res.info); // 信息描述
