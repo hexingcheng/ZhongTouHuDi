@@ -82,9 +82,6 @@ footer.mui-bar {
 .mui-bar-nav~.mui-content {
 	padding-top: 52px;
 }
-div.mui-scroll-wrapper {
-	top: 52px;
-}
 .mui-grid-view.mui-grid-9 .mui-table-view-cell,
 .mui-table-view .mui-table-view-cell {
 	min-height: 50px;
