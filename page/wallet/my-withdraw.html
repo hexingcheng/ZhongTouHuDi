@@ -110,16 +110,33 @@
 							</div>
 						</div>
 					</li>-->
+					<li class="mui-table-view-cell">
+						<div class="mui-slider-right mui-disabled">
+							<a class="mui-btn mui-btn-red">删除</a>
+						</div>
+						<div class="mui-slider-handle paypal" >
+							<img src="../../img/paypal.png" alt="" class="li_left_img"/>
+							<div class="li_right_img shouyin right-logo"></div>
+							<div class="li_input_l">
+								<div class="li_title_1">
+									<span>Use <span class="pay">pay</span><span class="pal">pal</span></span>
+								</div>
+								<div class="li_title_2">
+									<span>{{$value.cardNum.length > 3 ? $value.cardNum.substr(-4) : $value.cardNum}}</span>
+								</div>
+							</div>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</div>
 		
 	</div>
 	<!-- 加载中的蒙层 -->
-	<div id="loading-mask"></div>
+	<!--<div id="loading-mask"></div>
 	<div id="loading-box">
 		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
-	</div>
+	</div>-->
 	
 	<script type="text/html" id="template">
 		{{each list}}

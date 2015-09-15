@@ -7,6 +7,8 @@
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
+		<link rel="stylesheet" href="../../css/common/popup.css"/>
+		<script src="../../js/common/popup.js"></script>
 		<script src="../../js/mui.min.js"></script>
 	</head>
 
@@ -77,32 +79,85 @@
 					$(this).addClass('mui-hidden');
 					$(this).siblings().removeClass('mui-hidden');
 				})
+				
+				// 弹出框属性
+				var options = {
+					height : 175,
+					title : {
+						height : 40,
+						content : ""
+					},
+					main : {
+						content : ""
+					},
+					buttons : []
+				}
+				
+				
+				var pop;
 				document.getElementById("next-step").addEventListener("tap", function() {
-					//				plus.nativeUI.showWaiting("付款中...", {
-					//					background: '#d1d1d1'
-					//				})
-					//				mui.ajax(BASEURL + "pay/temp", {
-					//					data : {
-					//						orderId : orderid
-					//					},
-					//					type : "post",
-					//					success : function(data){
-					//						if(data.ret == 1){
-					//							plus.nativeUI.closeWaiting();
-					//							openWindow("./result.html")
-					//							setTimeout(function(){
-					//								cpage.close("none", 0)
-					//							}, 230)
-					//						}
-					//					},
-					//					error : function(xhr, type){
-					//						console.log(xhr.status);			// 支付接口 404
-					//					}
-					//				})
+									/*plus.nativeUI.showWaiting("付款中...", {
+										background: '#d1d1d1'
+									})
+									mui.ajax(BASEURL + "pay/temp", {
+										data : {
+											orderId : orderid
+										},
+										type : "post",
+										success : function(data){
+											if(data.ret == 1){
+												plus.nativeUI.closeWaiting();
+												openWindow("./result.html")
+												setTimeout(function(){
+													cpage.close("none", 0)
+												}, 230)
+											}
+										},
+										error : function(xhr, type){
+											console.log(xhr.status);			// 支付接口 404
+										}
+									})*/
 					var action = $('.right-logo').filter('#active').attr('data-action')
 					if (action == 'yue') {
 						alert('余额支付');
 						
+						// 弹出框样式
+						pop = null;
+						options.title.content = "输入密码";
+						options.main.content = "<div class='popup-input-wrap'>"+
+													"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>"+
+												"</div>"+
+												"<div class='input-extras'>Forget Your Password?</div>";
+						
+						options.buttons[0] = {
+							name : "OK",
+							click : function(){
+								// 支付密码验证接口
+								
+//								myAjax({ // 返回 -102 错误提醒
+//									url: "wallet/withdraw",
+//									data: datas
+//								}, function(data) {
+//									if (data.ret == 1) {
+//										mui.toast("提现成功");
+//									} else if (data.ret == 2) {
+//										mui.toast("渠道暂停提现");
+//									} else {
+//										mui.alert("你存在提现在审核，暂时不能再申请提现", "提示")
+//									}
+//								})
+							}
+						}
+						
+						
+						options.buttons[1] = {
+							name : "cancel",
+							click : function(){ return true; }
+						}
+						setTimeout(function(){
+							pop = new Popup(options)
+							pop.show();
+						}, 300)
 						
 						paymoney('2',money,function(){
 							alert(payid)
@@ -117,6 +172,36 @@
 						})
 					}
 				}, false)
+
+				// 忘记密码
+				mui("body").on("tap", ".input-extras", function(){
+					this.style.color = "red";
+					pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"));
+					
+					setTimeout(function(){
+						
+						options.title.content = "please input your password";
+						options.main.content = "<div class='popup-input-wrap'>"+
+												"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>"+
+											"</div>";
+						options.buttons[0]["name"] = "Ok";
+						options.buttons[0].click = function(){
+							//  忘记密码接口
+							
+							
+							
+							
+							
+							
+						}
+						if(options.buttons.length == 2){
+							options.buttons.splice(1,1);
+						}
+						pop = new Popup(options)
+						pop.show();
+					}, 400)
+				})
+
 
 				function paymoney(paytype, paymoney, cb) {
 					myAjax({

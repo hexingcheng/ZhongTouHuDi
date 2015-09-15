@@ -109,7 +109,6 @@ mui.plusReady(function() {
 
 	// 取现跳转到下一步
 	var pop;		// 弹出框对象
-	var flag = true;
 	document.getElementById("next-step").addEventListener("tap", function() {
 		if (flag && mcid) {
 			var val = document.getElementById("amount").value.trim();
@@ -182,7 +181,13 @@ mui.plusReady(function() {
 								"</div>";
 			options.buttons[0]["name"] = "Ok";
 			options.buttons[0].click = function(){
-				console.log("ok -------------")
+				//  忘记密码接口
+				
+				
+				
+				
+				
+				
 			}
 			if(options.buttons.length == 2){
 				options.buttons.splice(1,1);
