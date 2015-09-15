@@ -96,6 +96,7 @@
 		   	  var data='';
 		   	  myAjax({url:'account/getDeliverInfo',data:data},function(obj){
 		   	  	var status=obj.ret;
+		   	  	alert(JSON.stringify(status))
 		   	  		if(status==1){
 		   	  			$('#status_info').text('你的审核已成功');
 		   	  		}else if(status==11){ 

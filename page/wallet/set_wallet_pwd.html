@@ -23,8 +23,6 @@
     	.mui-table-view .title_one{
     		color: #F7E489;
     	}
-
-    	footer.mui-bar {box-shadow: 0 0 1px #40AA53;}
     </style>
 </head>
 <body >
@@ -46,13 +44,13 @@
 			<li class="mui-table-view-cell mui-text-center">
 				<span >你正在为<span id="familyName"></span><span id="firstName"></span>账号设置密码</span>
 			</li>
-			<li class="mui-table-view-cell ">
+			<li class="mui-table-view-cell second_show">
 				<img src="../../img/payWord1.png" class="li_left_img" alt="" />
 				<div class="li_input_l">
 					<input type="password" placeholder="oldpassword" id="old_pwd"/>
 				</div>
 			</li>
-			<li class="mui-table-view-cell">
+			<li class="mui-table-view-cell" >
 				<img src="../../img/payWord1.png" class="li_left_img" alt="" />
 				<div class="li_input_l">
 					<input type="password" placeholder="password" id="pwd"/>
@@ -76,6 +74,7 @@
 <script>
 	mui.plusReady(function(){ 
 		var pay_pwd=JSON.parse(getstorage('personinfo')); 
+		console.log(JSON.stringify(pay_pwd));
 			if(pay_pwd.setpay==0){ 
 				$('.second_show').css('display','none');
 			}else{
