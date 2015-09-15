@@ -40,21 +40,11 @@
 		</style>
 	</head>
 	<body>
-		<div class="masks">
-			<div class="loading">
-				<img src="../../img/loading2.gif"/>
-			</div>
-		</div>
-		<div class="load-data" style="display: none;">
-			<div class="loading">
-				<img src="../../img/loading2.gif" width="100%"/>
-			</div>
-		</div>
 		<div id="pullrefresh" class="mui-scroll-wrapper">
 			<!--数据列表-->
 			<div class="mui-scroll">
 				<!-- 等待框 -->
-				<div class="ordercontents"  id="ordercontent">
+				<div class="ordercontents" id="ordercontent">
 					
 				</div>
 			</div>
@@ -100,6 +90,16 @@
 			<div class="content-padded"></div>
 			{{/each}}
 		</script>
+		<div class="masks">
+			<div class="loading">
+				<img src="../../img/loading2.gif"/>
+			</div>
+		</div>
+		<div class="load-data" style="display: none;">
+			<div class="loading">
+				<img src="../../img/loading2.gif" width="100%"/>
+			</div>
+		</div>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script src="../../js/getorder/get-order.js"></script>
