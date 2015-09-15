@@ -145,8 +145,6 @@
 				var money = plus.webview.currentWebview().money;
 				var orderid = cid;
 				var payid;
-				alert(orderid)
-				alert(money)
 				var cpage = plus.webview.currentWebview();
 				$('.right-logo').on('tap', function() {
 					$('.right-logo').attr('id', '');
@@ -177,9 +175,13 @@
 					var action = $('.right-logo').filter('#active').attr('data-action')
 					if (action == 'yue') {
 						alert('余额支付');
+						
+						
 						paymoney('2',money,function(){
 							alert(payid)
 						})
+						
+						
 					} else if (action == 'paypal') {
 						paymoney('1',money,function(){
 							openWindow('./paypal.html', {
@@ -198,7 +200,6 @@
 							money: paymoney
 						}
 					}, function(data) {
-						alert(data.ret)
 						if (data.ret == 1) {
 							payid = data.res.rechargeId;
 							cb();

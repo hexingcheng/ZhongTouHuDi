@@ -67,6 +67,7 @@ header.mui-bar {
 }
 div.mui-scroll-wrapper {
 	top: 52px;
+	background: #fff;
 }
 /* 等待加载页面内容  */
 #loading-mask {
@@ -96,4 +97,7 @@ div.mui-scroll-wrapper {
 footer.mui-bar {
 	-webkit-box-shadow : 0 0 1px #40AA53;
 	box-shadow : 0 0 1px #40AA53;
+}
+.mui-grid-view.mui-grid-9 {
+	background: #fff;
 }
