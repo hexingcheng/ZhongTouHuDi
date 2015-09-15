@@ -148,10 +148,10 @@
 			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" />
 		</header>
 		<!-- 加载中的蒙层 -->
-		<div id="loading-mask"></div>
+		<!--<div id="loading-mask"></div>
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
-		</div>
+		</div>-->
 		<!--蒙版-->
 		<div id="center_popover" class="mui-hidden mak"></div>
 		<div class="mui-content">
@@ -196,8 +196,8 @@
 							</div>
 							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide" name="two" />
 							<div class="li_input_s">
-								<span class="edit_show male sex"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" c /></span>
-								<span class="edit_show female sex"><span class="mui-pull-left">female</span><img src="../../img/female2.png" alt=""  /></span>
+								<span class="edit_show male sex"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt=""/></span>
+								<span class="edit_show female sex mui-hidden "><span class="mui-pull-left">female</span><img src="../../img/female2.png" alt="" class="mui-hidden" /></span>
 								<div class="select_sex edit_hide" >
 									<lable>male </lable>
 									<input type="radio" name="sex" checked="checked" value="man"  id="person_sex" />
@@ -253,12 +253,9 @@
 								<span id="ptitle"></span>
 							</div>
    						</li>
-   						<li class="mui-table-view-cell" id="open_apply">
+   						<li class="mui-table-view-cell" id="open_apply">    
    							<div class="li_left_title"><span>deliver</span></div> 
    							<img src="../../img/enter.png" class="li_right_img" alt="" />
-   							<div class="li_input_s">
-   								<input type="text" class="edit_input" readonly="readonly" />
-   							</div>
    						</li>
    					</ul>
    					<div class="content_clear"><!--中间间隙--></div>
@@ -266,9 +263,6 @@
    						<li class="mui-table-view-cell" id="wallet_pwd">
    							<div class="li_left_title"><span>payword</span></div> 
    							<img src="../../img/enter.png" class="li_right_img" alt="" />
-   							<div class="li_input_s">
-   								<input type="text" name="" id="" value="" readonly="readonly"/>
-   							</div>
    						</li>
    					</ul>
 				</div>
@@ -332,7 +326,13 @@
 		<script src="../../js/comment.js"></script>
 		<script>
 			mui.plusReady(function() {
-				    
+				var data='';
+				var ret="";
+		   	  	myAjax({url:'account/getDeliverInfo',data:data},function(obj){
+		   	  		ret=obj.ret;
+		   	  	},function(xhr,type){
+		   	  		mui.toast(type,status);
+		   	  	})  
 				var d_status='';
 					plus.webview.currentWebview().setStyle({scrollIndicator: 'none'});
 					//调用蒙版
@@ -573,8 +573,12 @@
 			 	$('#nation_select_').css('display','none');
 			 })
 			 //查看申请递送人信息    
-			 $('#open_apply').on('tap',function(){  
+			 $('#open_apply').on('tap',function(){ 
+			 	if(ret==11){
+			 		openWindow('../applyfor/applyPerson.html');
+			 	}else{
 			 		openWindow('../applyfor/apply_info.html');  
+			 	}	
 			 })
 			 //修改支付密码
 			 $('#wallet_pwd').on('tap', function(){
