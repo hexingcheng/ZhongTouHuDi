@@ -258,7 +258,7 @@
 			<span>create order</span>
 		</header>
 		<footer class="mui-bar mui-bar-footer" >
-			<button class="nav_footer mui-btn" id="next">Next Step</button>
+			<button class="nav_footer mui-btn" id="next">Send</button>
 		</footer>
 		<!--<div class="mask mui-hidden"></div>
 		<div class="faorder mui-hidden">发单中</div>-->
@@ -270,7 +270,7 @@
 							<div class="fl widhe">
 								<span class="rewords">
 									Reward
-								</span>
+								</span> 
 							</div>
 							<div class="fr wid10e hei80 linehei tet">
 								<span class="myicon">
@@ -443,9 +443,7 @@
 			mui.init();
 			mui.plusReady(function() {
 				mui('.mui-scroll-wrapper').scroll()
-				
-				mui("#addr-list").scroll();
-				
+							
 				var getdata = {};
 				getdata.gName = "";
 				getdata.gValue = "";
@@ -481,7 +479,7 @@
 						$('#sendaddr').attr('data-Wd', lat)
 						var c = plus.webview.currentWebview();
 						var onOff = true;
-						$('.mui-bbtn').on('tap', function() {
+						$('#next').on('tap', function() {
 							alert(1)
 							var data = JSON.parse(plus.storage.getItem("draft-datas"))
 							if (data && data.res && data.res.orderId) {

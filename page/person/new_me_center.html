@@ -16,21 +16,21 @@
 			padding-top: 52px;
 		}
 		.center_headpic{
-			width: 7em;
-			height:7em;
+			width: 80px;
+			height:80px;
 			position: absolute;
 			bottom:0;
 			left: 50%;
 			z-index: 100;
 			border-radius: 50%;
-			margin-left: -3.5em;
-			margin-bottom: -1.5em;
+			margin-left: -40px;
+			margin-bottom: -20px;
 		}
 		.center_headpic .heade_pic{
-			height: 6.5em;
-			width: 6.5em;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
 			border-radius: 50%;
-			border: 2px solid #fff;
 			display: inline-block;
 		}
 		.center_bg{
@@ -128,6 +128,15 @@
 				border-radius: 0;
 				border-bottom: 2px solid #3FA86A;
 		}
+		.gitpic{
+			height: 80px;
+			width: 80px;
+			display: inline-block;
+			border: 2px solid #fff;
+			border-radius: 50%;
+			overflow: hidden;
+			text-align: center;
+		}
 		</style>
 	</head> 
 
@@ -150,7 +159,7 @@
 				<div class="mui-scroll">
 					<div class="center_bg">
 						<div class="center_headpic">
-							<a href="#gitpic" >
+							<a href="#gitpic"class="gitpic">
 								<img src="../../img/defualt.png" class="heade_pic"  id="headpic" />
 								<div class="header_camara ">
 									<img src="../../img/camera.png" />
