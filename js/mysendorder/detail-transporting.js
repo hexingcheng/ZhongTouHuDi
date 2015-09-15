@@ -7,14 +7,7 @@ mui.plusReady(function() {
 	var orderid = plus.storage.getItem("my-send-order") || cpage.orderId;
 	// 加载数据
 	sendmsg(orderid);
-	// 取消订单 status=3
-	$("#cancel-order").on("tap", function() {
-			cancelorder(orderid, status);
-		})
-		// 取消订单 status=2
-	$("#cancel").on("tap", function() {
-		cancelorder(orderid, status);
-	})
+
 	$('#button-pay').attr('data-id',orderid);
 
 	document.getElementById("button-pay").addEventListener("tap", function() {

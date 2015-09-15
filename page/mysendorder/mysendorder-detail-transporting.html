@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -8,43 +7,106 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css" />
 		<link rel="stylesheet" href="../../css/mysendorder/mysendorder-detail.css" />
-		<link rel="stylesheet" href="../../css/mysendorder/detail-transporting.css"/>
-		<link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
-		<link rel="stylesheet" type="text/css" href="../../css/common/popup.css"/>
+		<link rel="stylesheet" href="../../css/mysendorder/detail-transporting.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common/popup.css" />
+		<link rel="stylesheet" href="../../css/share_main.css" />
 		<script src="../../js/common/popup.js"></script>
 		<script src="../../js/mui.js"></script>
 		<style type="text/css">
-			#deliverer-contact div:nth-child(1) {border: none;}
 			.mui-table-view:before {height: 0;}
-			.mui-table-view:after {height: 0;}
-			body .mui-content{
-				font-size: 14px !important;
+			.mui-table-view-cell:after {height: 0;}
+			.mui-table-view-cell{
+				border-bottom: 1px solid #c8c7cc;
+			}
+			.value-color{
+				color: red;
+				font-size: 16px;
+			}  
+			.header_left_img{
+				height: 40px;
+				width: 40px;
+				margin: 6px 6px 6px 0;
+			}
+			.heade_nav_info{
+				width: 100%;
+				height: 100px;
+				overflow: hidden;
+				padding: 0 18px;
+			}
+			.heade_nav_pic{
+				width: 80px;
+				height: 80px;
+				float: left;
+				margin: 10px 10px 10px 0;
+				overflow: hidden;
+				border-radius: 50%;
+			}
+			.heade_nav_pic img{
+				max-height: 100%;
+				height: auto;
+			}
+			.heade_nav_content{
+				height: 100px;
+				margin-right: 50px;
+				overflow: hidden;
+			}
+			
+			.heade_nav_right{
+				width: 50px;
+				height: 100px;
+				float: right;
+			}
+			.heade_nav_right img{
+				width: 34px;
+				height: 34px;
+				margin: 8px 0;
+			}
+			.heade_nav_content .info{
+				width: 100%;
+				height: 100px;
+			}
+			.nav_title_1{
+				width: 100%;
+				height: 50px;
+				font-size: 14px;
+				line-height: 80px;
+				padding-left: 10px;
+				overflow: hidden;
+			}
+			.nav_title_2{
+				width: 100%;
+				height: 50px;
+				font-size: 14px;
+				line-height: 50px;
+				overflow: hidden;
+			}
+			.nav_title_2 img{
+				width: 34px;
+				height: 34px;
+				margin: 8px 0;
+				float: left;
+				
 			}
 		</style>
 	</head>
 
-	<body style="background: #fff;">
-		<header class="mui-bar mui-bar-nav">
-			<div class="left-back mui-pull-left">
-				<img src="../../img/left.png" class="mui-action-back"/>
-			</div>
-			<h1 class="mui-title">Detail</h1>
+	<body>
+		<header class="mui-bar mui-bar-nav nav_header">
+			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
+			<span>Detail</span>
 		</header>
-		
-		<footer id="footer-cancel" class="mui-bar mui-bar-footer mui-text-center">
+		<footer id="footer-cancel" class="mui-bar mui-bar-footer ">
 			<!-- 已付款 status=3 -->
-			<div class="button-row status-3" style="display: none;">
-				<button  id="cancel-order" class="mui-btn button-block" style="background-color: #fc614d;">cancel</button>
-			</div>
-			<div class="status-2" style="display: none;">
-				<div class="button-row">
-					<button id="cancel" class="mui-btn first-button" style="background: #fc614d;">cancel</button>
-					<button id="button-pay" class="mui-btn second-button" style="background-color: #23A0CF;">pay</button>
-				</div>
+			<button class="nav_footer mui-btn mui-hidden cancle_bg" id="cancel-order">
+				<span>cancel</span>
+			</button>
+			<div class="nav_footer bg_white mui-hidden">
+				<button class="left_button mui-btn cancle_bg" id="cancel">cancel</button>
+				<button class="right_button mui-btn" id="button-pay"> pay</button>
 			</div>
 		</footer>
-		
-<div class="presee mui-hidden">
+
+		<div class="presee mui-hidden">
 			<div class="picwraps">
 				<div class="mui-slider" id="slider">
 					<div class="mui-slider-group" id="preseepic">
@@ -75,97 +137,114 @@
 		<div class="mui-content">
 			<div id="scroll-wrapper" class="mui-scroll-wrapper">
 				<div class="mui-scroll">
-					<ul class="mui-table-view mui-grid-view mui-grid-9">
-						<!-- 第一列显示信息start -->
-						<div class="header-box">
-							<li id="deliverer-img" class="mui-table-view-cell mui-ellipsis mui-col-xs-3">
-								<div class="headimg-box">
-									<img id="head-img" alt="头像" src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%" />
+					<div class="heade_nav_info">
+						<div class="heade_nav_pic">
+							<img src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" alt="" id="head-img" />
+						</div>
+						<div class="heade_nav_right">
+							<img src="../../img/valcode.png" class="mui-pull-right" id="sendmsg" />
+							<img src="../../img/pho.png" alt="" class="mui-pull-right" id="phone" />
+						</div>
+						<div class="heade_nav_content">
+							<div class="info">
+								<div class="nav_title_1">
+									<span class="mui-pull-left" style="font-size: 16px;" id="nickName">何</span>
+									<span class="mui-pull-right" style="font-size: 14px;color: silver;">取货人</span>
 								</div>
-							</li>
-							<li id="deliverer-msg" class="mui-table-view-cell mui-col-xs-5">
-								<div id="nickName" class="deliverer-name mui-text-left mui-ellipsis">匿名</div>
-								<div class="deliverer-honor mui-text-left">
-									<span style="color: #faf713;" class="mui-icon mui-icon-starhalf"></span>
+								<div class="nav_title_2">
+									<!--<img src="../../img/jiangbei.png" alt="" />-->
 									<span id="ptitle">平民等级</span>
+									<span class="mui-pull-right" id="orderCount">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="table-diviver"></div>
+					<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+								<div class="li_left_title"><span>Name</span></div>
+								<div class="li_input_l">
+									<span class="goods-name"></span>
 								</div>
 							</li>
-							<li id="deliverer-num" class="mui-table-view-cell mui-col-xs-2">
-								<div class="send-title">send</div>
-								<div id="orderCount" class="send-num">0</div>
-							</li>
-							<li id="deliverer-contact" class="mui-table-view-cell mui-col-xs-2">
-								<div><span id="sendmsg" data-phone="" class="mui-icon mui-icon-chatbubble-filled"></span></div>
-								<div class="icon-phone"><span id="phone" data-phone="" class="mui-icon mui-icon-phone-filled"></span></div>
-							</li>
-						<!-- 第一列信息显示end -->
-						</div>
-
-						<li class="mui-table-view-cell mui-col-xs-12" style="border-top: none;">
-							<span class="mui-pull-left title-color mui-text-left name">Name</span>
-							<span class="mui-pull-left mui-text-left mui-ellipsis goods-name">--</span>
-						</li>
-						<li class="mui-table-view-cell mui-col-xs-6">
-							<span class="mui-pull-left title-color mui-text-left title-padded">Reward</span>
-							<span class="mui-pull-left">
-								<div class="goods-value-box mui-ellipsis">
-									<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
+							<li class="mui-table-view-cell">
+								<div class="li_row_contain">
+									<div class="left_li_half">
+										<span class="mui-pull-left">Reward</span>
+										<span class="mui-pull-right">
+									<span class="value-color">$</span>
+										<span id="goods-value" class="value-color value-size">0.00</span>
+										</span>
+									</div>
+									<div class="right_li_half">
+										<span class="mui-pull-left">Weight</span>
+										<span id="goods-weight" class="mui-pull-right">0kg</span>
+									</div>
 								</div>
-							</span>
-				</li>
-				<li class="mui-table-view-cell mui-col-xs-6">
-					<span class="mui-pull-left title-color mui-text-left title-padded">Weight</span>
-					<span id="goods-weight" class="mui-pull-left title-weight mui-ellipsis">0kg</span>
-				</li>
-				<li class="mui-table-view-cell mui-col-xs-6">
-					<div class="title-color title-bottom-padded">Get Time</div>
-					<div id="get-time">--:--</div>
-				</li>
-				<li class="mui-table-view-cell mui-col-xs-6">
-					<div class="title-color title-bottom-padded">Deadline</div>
-					<div id="deadline">--:--</div>
-				</li>
-				</ul>
-
-				<div class="table-diviver"></div>
-
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width">Host</span>
-						<span id="host" class="mui-ellipsis content-length">--</span>
-					</li>
-					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width">From</span>
-						<span id="sendaddr" class="mui-ellipsis content-length">--</span>
-					</li>
-					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width">TO</span>
-						<span id="receiveaddr" class="mui-ellipsis content-length">--</span>
-					</li>
-					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width">Value</span>
-						<span id="gvalue" class="mui-ellipsis content-length">--</span>
-					</li>
-					<li class="mui-table-view-cell desc-after">
-						<span class="title-color mui-pull-left title-width">Desc</span>
-						<span id="info" class="mui-ellipsis content-length">--</span>
-					</li>
-					<li id="last-wrap" class="mui-table-view-cell">
-						<div id="porel">
-							
+							</li>
+							<li class="mui-table-view-cell">
+								<div class="li_row_contain">
+									<div class="left_li_half mui-text-center">
+										<div class="li_title_1"><span>Get Time</span></div>
+										<div class="li_title_2"><span id="get-time">--:--</span></div>
+									</div>
+									<div class="right_li_half mui-text-center">
+										<div class="li_title_1"><span>Deadline</span></div>
+										<div class="li_title_2"><span id="deadline">--:--</span></div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div class="content_clear">
+							<!--中间间隙-->
 						</div>
-					</li>
-				</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell desc-after">
+								<div class="li_left_title"><span>Host</span></div>
+								<div class="li_input_l">
+									<span id="host"></span>
+								</div>
+							</li>
+							<li class="mui-table-view-cell">
+								<div class="li_left_title"><span>From</span></div>
+								<div class="li_input_l">
+									<span id="sendaddr"></span>
+								</div>
+							</li>
+							<li class="mui-table-view-cell">
+								<div class="li_left_title"><span>To</span></div>
+								<div class="li_input_l">
+									<span id="receiveaddr"></span>
+								</div>
+							</li>
+							<li class="mui-table-view-cell">
+								<div class="li_left_title"><span>Value</span></div>
+								<div class="li_input_l">
+									<span id="gvalue"></span>
+								</div>
+							</li>
+							<li class="mui-table-view-cell">
+								<div class="li_left_title"><span>Desc</span></div>
+								<div class="li_input_l">
+									<span id="info"></span>
+								</div>
+							</li>
+							<li id="last-wrap" class="mui-table-view-cell">
+								<div id="porel"></div>
+							</li>
+						</ul>
+				</div>
 			</div>
-		</div>
 		</div>
 		<!-- 加载中的蒙层 -->
 		<div id="loading-mask"></div>
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 		</div>
+		
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script src="../../js/mysendorder/detail-transporting.js"></script>
 	</body>
+
 </html>

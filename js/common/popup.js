@@ -47,7 +47,8 @@
 			}
 		}]
 	};
-
+	
+	
 
 	function Popup(options) {
 		if (this instanceof Popup) {
@@ -67,15 +68,15 @@
 			this.mask.id = "lee-mask";
 			this.content = document.createElement("div");
 			this.content.id = "lee-content-wrap";
-			this.content.innerHTML = '<div id="lee-content">\
-												<div class="title"></div>\
-												<div class="content-wrap">\
-												</div>\
-												<div class="footer">\
-													<div class="btn-group">\
-													</div>\
-												</div>\
-											</div>';
+			this.content.innerHTML = '<div id="lee-content">'+
+										'<div class="title"></div>'+
+										'<div class="content-wrap">'+
+										'</div>'+
+										'<div class="footer">'+
+											'<div class="btn-group">'+
+											'</div>'+
+										'</div>'+
+									'</div>';
 			document.body.appendChild(this.mask);
 			document.body.appendChild(this.content);
 		},
@@ -215,10 +216,27 @@
 							if (typeof newopt[name][i] === "object" && !Array.isArray(newopt[name][i])) {
 								if (oldopt[name].length == newopt[name].length) {
 									arguments.callee(oldopt[name][i], newopt[name][i])
-								} else {
-									if (oldopt[name][i]) { // 当传入的参数少于默认参数，移除当前默认参数
-										oldopt[name].splice(i, 1) // 删除当前默认节点对象
+								} else if(newopt[name].length == 1) {
+									oldopt[name].splice(1, 1) // 删除当前默认节点对象
+									arguments.callee(oldopt[name][0], newopt[name][0])
+								} else if (oldopt[name].length == 1 && newopt[name].length == 2) {
+									var temp = newopt[name][1];
+									var demo = {
+										name: "取消",
+										background: "#f6ccc2",
+										color: "#d64541",
+										click: function() {
+											return true;
+										},
+										touchstart: function() {
+											return true;
+										},
+										touchend: function() {
+											return true;
+										}
 									}
+									var tempobj = arguments.callee(demo, temp)
+									oldopt[name].push(tempobj)
 								}
 							}
 						}
@@ -236,6 +254,12 @@
 			for (var name in options) {
 				obj.style[name] = options[name];
 			}
+		},
+		// 深拷贝复制
+		simplyDeepCopy : function(obj){
+			var objstr = JSON.stringify(obj);
+			var temp = JSON.parse(objstr);
+			return temp;
 		}
 	};
 

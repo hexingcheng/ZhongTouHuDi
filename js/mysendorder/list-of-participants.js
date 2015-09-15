@@ -3,7 +3,6 @@ mui.plusReady(function() {
 	mui("#scroll-wrapper").scroll();
 
 	var orderid = plus.storage.getItem("my-send-order");
-	//    		console.log(orderid);
 	sendmsg({
 		page: 1,
 		pageSize: 10,
@@ -103,7 +102,6 @@ mui.plusReady(function() {
 			},
 			wait : false
 		}, function(data){
-//			console.log(JSON.stringify(data))
 			callback(data.ret);
 		}, function(xhr, type){
 			console.log("错误代号："+xhr.status + "    错误类型："+type);
