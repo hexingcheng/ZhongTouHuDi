@@ -5,34 +5,48 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../css/mywallet/wallet-coment.css"/>
-<!--    <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>-->
     <link rel="stylesheet" href="../../css/share_main.css" />
-    <link rel="stylesheet" href="../../css/mywallet/wallet-withdraw-recharge-common.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/common/popup.css"/>
-    <script src="../../js/common/popup.js"></script>
     <script src="../../js/mui.min.js"></script>
 	<style>
-		.pay{
-			color: #033288;
+		div.mui-scroll-wrapper{
+			top: 259px;
 		}
-		.pal{
-			color: #0097DC;
+		.right-logo {
+			background: transparent url(../../img/shouyin.png) no-repeat;
+			background-size: 34px 34px;
 		}
-		.li_title_1{
-			width: auto;
-			height: 20px;
-			margin-top: 10px;
-			overflow: hidden;
-			line-height: 20px;
-			font-size: 14px;
+		.right-logo-tab {
+			background: transparent url(../../img/shouyin2.png) no-repeat;
+			background-size: 34px 34px;
 		}
-		.li_title_2{
-			width: auto;
-			height: 20px;
-			font-size: 14px;
-			overflow: hidden;
-			color: #A9A9A9;
+		.img{
+			width: 34px;
+			height: 34px;
+			margin: 8px 0;
+		}
+		/* 等待加载页面内容  */
+		#loading-mask {
+			position: absolute;
+			z-index: 998;
+			background: #fff;
+			top: 52px;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+		#loading-box {
+			position: absolute;
+			z-index: 999;
+			width: 80px;
+			height: 80px;
+			left: 50%;
+			margin-left: -40px;
+			top: 50%;
+			margin-top: -40px;
+		}
+		.fade-out {
+			opacity: 0;
+			-webkit-transition: all 500ms ease-out;
 		}
 	</style>
 </head>
@@ -70,40 +84,17 @@
 		<div class="content_clear"></div>
 		<ul class="mui-table-view">
 			<li class="mui-table-view-cell" id="ch-wi-way">
-				<!--<div class="li_left_title">
-					<span>withdraw way</span>
-				</div>
-				<div class="li_input_l">
-					<span id="ch-wi-way" class="mui-pull-right "></span>
-				</div>
-				<div class="mui-text-left">
-				<span>withdraw way</span>
-				<span id="ch-wi-way" class="mui-pull-right mui-icon mui-icon-plus-filled"></span></div>-->
 				<div class="li_left_title">
 					<span>提现方式</span>
 				</div>
-				<div class="li_input_l">
-					<img src="../../img/jia2.png" alt="" class="li_right_img" />
-				</div>
-			</li>
-		</ul>
-		<ul class="mui-table-view">
-			<li class="mui-table-view-cell">
-				<img src="../../img/paypal.png" alt="" class="li_left_img"/>
-				<img src="../../img/shouyin.png" class="li_right_img mui-hidden"/>
-				<img src="../../img/shouyin2.png" alt="" class="li_right_img "/>
-				<div class="li_input_l">
-					<div class="li_title_1">
-						<span>Use <span class="pay">pay</span><span class="pal">pal</span></span>
-					</div>
-					<div class="li_title_2"><span>123456</span></div>
-				</div>
+				<img src="../../img/jia2.png" alt="" class="li_right_img" />
+				
 			</li>
 			
-	</ul>
+		</ul>
 		<div class="mui-scroll-wrapper">
 			<div class="mui-scroll">
-				<ul id="type-container" class="mui-table-view mui-grid-view mui-grid-9">
+				<ul id="type-container" class="mui-table-view">
 					<!--<li class="mui-table-view-cell type-paypal mui-media mui-col-xs-12">
 						<div class="mui-slider-right mui-disabled">
 							<a class="mui-btn mui-btn-red">编辑</a>
@@ -130,30 +121,28 @@
 		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 	</div>
 	
-	
 	<script type="text/html" id="template">
 		{{each list}}
-			{{if $value.channel == "paypal"}}
-				<li class="mui-table-view-cell type-paypal mui-media mui-col-xs-12">
-					<div class="mui-slider-right mui-disabled">
-						<a class="mui-btn mui-btn-red edit-account" data-mcid="{{$value.mcId}}">编辑</a>
-					</div>
-					<div class="paypal-box paypal mui-slider-handle" data-mcid="{{$value.mcId}}">
-						<span class="left-logo mui-pull-left"></span>
-						<span class="right-logo mui-pull-right shouyin"></span>
-						<div class="use-paypal">
-							<div style="color: #002e86;font-size: 1.2em;" class="mui-ellipsis mui-text-left">
-								Use PayPal
-							</div>
-							<p style="color: #777;padding-top: 0.2em;" class="mui-text-left">
-								尾号:{{$value.cardNum.length > 3 ? $value.cardNum.substr(-4) : $value.cardNum}}
-							</p>
+		{{if $value.channel == "paypal"}}
+			<li class="mui-table-view-cell">
+				<div class="mui-slider-right mui-disabled">
+					<a class="mui-btn mui-btn-red">删除</a>
+				</div>
+				<div class="mui-slider-handle paypal" >
+					<img src="../../img/paypal.png" alt="" class="li_left_img"/>
+					<div class="li_right_img shouyin right-logo"></div>
+					<div class="li_input_l">
+						<div class="li_title_1">
+							<span>Use <span class="pay">pay</span><span class="pal">pal</span></span>
+						</div>
+						<div class="li_title_2">
+							<span>{{$value.cardNum.length > 3 ? $value.cardNum.substr(-4) : $value.cardNum}}</span>
 						</div>
 					</div>
-				</li>
-			{{/if}}
-		{{/each}}
-		
+				</div>
+			</li>
+        {{/if}}
+	{{/each}}
 	</script>
 	<script src="../../js/utils.js"></script>
 	<script src="../../js/template.js"></script>

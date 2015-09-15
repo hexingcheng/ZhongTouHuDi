@@ -59,8 +59,8 @@
 			right: 0;
 		}
 		.header_camara img{
-			width: 34px;
-			height: 34px;
+			max-width: 100%;
+			height: auto;
 		}
 		.nation_select{
 			width: 70%;
@@ -138,6 +138,11 @@
 			<img src="../../img/edit2.1.png" class="header_right_img center_edit" alt="" />
 			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" />
 		</header>
+		<!-- 加载中的蒙层 -->
+		<div id="loading-mask"></div>
+		<div id="loading-box">
+			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
+		</div>
 		<!--蒙版-->
 		<div id="center_popover" class="mui-hidden mak"></div>
 		<div class="mui-content">
@@ -329,6 +334,8 @@
 						},
 						function(obj) {
 							if (obj.ret == 1) {
+								$('#loading-mask').css('display','none');
+								$('#loading-box').css('display','none');
 								var data = obj.res;
 								var n = BASEURL.indexOf('/a');
 								var imgurl = BASEURL.substring(0, n); 
