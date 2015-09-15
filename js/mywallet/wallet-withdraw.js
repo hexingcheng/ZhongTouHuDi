@@ -86,12 +86,12 @@ mui.plusReady(function() {
 		}
 	})
 
-	// 编辑当前账户
+	// 删除当前账户
 	mui("#type-container").on("tap", ".edit-account", function() {
-		var data = {
-			mcid: this.getAttribute("data-mcid")
-		}
-		openWindow("./my-withdraw-next.html", data);
+		var mcid = this.getAttribute("data-mcid");
+		console.log("删除"+ mcid +"账户")
+		var item = this.parentNode.parentNode;
+		item.parentNode.removeChild(item);
 	})
 
 	// 弹出框属性
@@ -112,7 +112,6 @@ mui.plusReady(function() {
 	document.getElementById("next-step").addEventListener("tap", function() {
 		if (flag && mcid) {
 			var val = document.getElementById("amount").value.trim();
-//			var reg = /^([0-9]*.?[0-9]*)$/.exec(val)
 			if (val) {
 				var divide = parseFloat(val);
 				if (current >= divide) {
@@ -121,7 +120,6 @@ mui.plusReady(function() {
 						mcId: mcid
 					}
 					// 弹出框样式
-					pop = null;
 					options.title.content = "输入密码";
 					options.main.content = "<div class='popup-input-wrap'>"+
 												"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>"+
@@ -133,30 +131,18 @@ mui.plusReady(function() {
 						click : function(){
 							// 支付密码验证接口
 							
-							/*myAjax({ // 返回 -102 错误提醒
-								url: "wallet/withdraw",
-								data: datas
-							}, function(data) {
-								if (data.ret == 1) {
-									mui.toast("提现成功");
-								} else if (data.ret == 2) {
-									mui.toast("渠道暂停提现");
-								} else {
-									mui.alert("你存在提现在审核，暂时不能再申请提现", "提示")
-								}
-							})*/
+							
+							
+							
+							
 						}
 					}
-					
-					
 					options.buttons[1] = {
 						name : "cancel",
 						click : function(){ return true; }
 					}
-					setTimeout(function(){
-						pop = new Popup(options)
-						pop.show();
-					}, 300)
+					pop = new Popup(options)
+					pop.show();
 				} else {
 					mui.toast("余额不足")
 				}
@@ -182,8 +168,6 @@ mui.plusReady(function() {
 			options.buttons[0]["name"] = "Ok";
 			options.buttons[0].click = function(){
 				//  忘记密码接口
-				
-				
 				
 				
 				

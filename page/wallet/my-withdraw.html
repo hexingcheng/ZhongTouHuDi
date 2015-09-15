@@ -6,6 +6,8 @@
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../../css/share_main.css" />
+    <link rel="stylesheet" href="../../css/common/popup.css"/>
+    <script src="../../js/common/popup.js"></script>
     <script src="../../js/mui.min.js"></script>
 	<style>
 		div.mui-scroll-wrapper{
@@ -108,6 +110,23 @@
 							</div>
 						</div>
 					</li>-->
+					<!--<li class="mui-table-view-cell">
+						<div class="mui-slider-right mui-disabled">
+							<a class="mui-btn mui-btn-red">删除</a>
+						</div>
+						<div class="mui-slider-handle paypal" >
+							<img src="../../img/paypal.png" alt="" class="li_left_img"/>
+							<div class="li_right_img shouyin right-logo"></div>
+							<div class="li_input_l">
+								<div class="li_title_1">
+									<span>Use <span class="pay">pay</span><span class="pal">pal</span></span>
+								</div>
+								<div class="li_title_2">
+									<span>{{$value.cardNum.length > 3 ? $value.cardNum.substr(-4) : $value.cardNum}}</span>
+								</div>
+							</div>
+						</div>
+					</li>-->
 				</ul>
 			</div>
 		</div>
@@ -120,26 +139,26 @@
 	
 	<script type="text/html" id="template">
 		{{each list}}
-		{{if $value.channel == "paypal"}}
-			<li class="mui-table-view-cell">
-				<div class="mui-slider-right mui-disabled">
-					<a class="mui-btn mui-btn-red">删除</a>
-				</div>
-				<div class="mui-slider-handle paypal" >
-					<img src="../../img/paypal.png" alt="" class="li_left_img"/>
-					<div class="li_right_img shouyin right-logo"></div>
-					<div class="li_input_l">
-						<div class="li_title_1">
-							<span>Use <span class="pay">pay</span><span class="pal">pal</span></span>
-						</div>
-						<div class="li_title_2">
-							<span>{{$value.cardNum.length > 3 ? $value.cardNum.substr(-4) : $value.cardNum}}</span>
+			{{if $value.channel == "paypal"}}
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red edit-account" data-mcid="{{$value.mcId}}">删除</a>
+					</div>
+					<div class="mui-slider-handle paypal" data-mcid="{{$value.mcId}}">
+						<img src="../../img/paypal.png" alt="" class="li_left_img"/>
+						<div class="li_right_img shouyin right-logo"></div>
+						<div class="li_input_l">
+							<div class="li_title_1">
+								<span>Use <span class="pay">pay</span><span class="pal">pal</span></span>
+							</div>
+							<div class="li_title_2">
+								<span>{{$value.cardNum.length > 3 ? $value.cardNum.substr(-4) : $value.cardNum}}</span>
+							</div>
 						</div>
 					</div>
-				</div>
-			</li>
-        {{/if}}
-	{{/each}}
+				</li>
+	        {{/if}}
+		{{/each}}
 	</script>
 	<script src="../../js/utils.js"></script>
 	<script src="../../js/template.js"></script>
