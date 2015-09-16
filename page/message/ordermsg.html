@@ -29,7 +29,7 @@
 			.car img {
 				height: 34px;
 				width: 34px;
-				margin: 8px 8px 8px 0 ;
+				margin: 8px 8px 8px 0;
 			}
 			.msgs {
 				float: left;
@@ -53,7 +53,6 @@
 				top: 52px;
 			}
 			.ordertracker {
-				margin-top: 3px;
 				padding: 0 3px;
 				background-color: #FFFFFF;
 			}
@@ -73,7 +72,7 @@
 				width: 80px;
 				float: left;
 			}
-			.cttpic img{
+			.cttpic img {
 				height: 50px;
 				width: 50px;
 				margin: 15px;
@@ -94,33 +93,39 @@
 				color: gray;
 				line-height: 14px;
 			}
+			.mui-scroll-wrapper{
+				top: 104px;
+			}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav nav_header" >
-			<img src="../../img/left.png" class="mui-action-back header_left_img"/>
+		<header class="mui-bar mui-bar-nav nav_header">
+			<img src="../../img/left.png" class="mui-action-back header_left_img" />
 			<span>Order Tracker</span>
 		</header>
 		<div class="mui-content">
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<div class="basicmsg">
-						<div class="orderid">
-							<div class="car">
-								<img src="../../img/send1.png" />
-							</div>
-							<div class="msgs">OrderId</div>
-							<div class="msginfo"></div>
-						</div>
+
+			<div class="basicmsg">
+				<div class="orderid">
+					<div class="car">
+						<img src="../../img/send1.png" />
 					</div>
-					<div class="ordertracker">
-						<div class="trackctt" id="trackdetail">
-							
+					<div class="msgs">OrderId</div>
+					<div class="msginfo"></div>
+				</div>
+			</div>
+			<div class="ordertracker">
+
+				<div class="trackctt">
+					<div class="mui-scroll-wrapper">
+						<div class="mui-scroll" id="trackdetail">
 						</div>
 					</div>
 				</div>
+
 			</div>
+
 		</div>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../../js/utils.js"></script>
@@ -129,7 +134,7 @@
 			{{each msg}}
 			<div class="wrap">
 				<div class="cttpic">
-					<img src="../../img/location.png"/>
+					<img src="../../img/location.png" />
 				</div>
 				<div class="cttdetail">
 					<div class="main">
@@ -144,6 +149,7 @@
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui.plusReady(function() {
+				mui('.mui-scroll-wrapper').scroll();
 				var c = plus.webview.currentWebview();
 				var id = c.orderid;
 				myAjax({
@@ -157,12 +163,12 @@
 					if (data.ret == 1) {
 						$('.msginfo').text(data.res.orderId)
 						var list = {
-							"title":data.res.title,
+							"title": data.res.title,
 							"msg": data.res.msgList
 						}
 						var str = template("ordertracker", list);
 						document.getElementById('trackdetail').innerHTML = str;
-						$('.wrap').eq(0).find('img').attr('src','../../img/order2.png')
+						$('.wrap').eq(0).find('img').attr('src', '../../img/order2.png')
 					}
 				})
 			})

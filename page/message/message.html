@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -17,7 +16,7 @@
 			.mui-content {
 				background-color: #F7F7F7;
 			}
-			.nav_header{
+			.nav_header {
 				height: 52px;
 				line-height: 52px;
 				font-size: 16px;
@@ -26,17 +25,17 @@
 				background-color: #44ab6d;
 				box-shadow: none;
 			}
-			.nav_header .left_img{
+			.nav_header .left_img {
 				width: 34px;
 				height: 34px;
 				float: left;
-				margin: 9px 9px 9px 0; 
+				margin: 9px 9px 9px 0;
 			}
-			.nav_header .right_img{
+			.nav_header .right_img {
 				width: 34px;
 				height: 34px;
 				float: right;
-				margin: 9px 0 9px 9px; 
+				margin: 9px 0 9px 9px;
 			}
 			.myicon {
 				height: 40px;
@@ -180,9 +179,9 @@
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav nav_header" >
-			<img src="../../img/left.png" class="left_img mui-action-back"/>
-		   	<img src="../../img/2set-up.png" class="right_img" id="deleteall">
+		<header class="mui-bar mui-bar-nav nav_header">
+			<img src="../../img/left.png" class="left_img mui-action-back" />
+			<img src="../../img/2set-up.png" class="right_img" id="deleteall">
 			<span>message</span>
 		</header>
 		<div class="deletemask mui-hidden">
@@ -198,7 +197,7 @@
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<ul id="msglists" class="mui-table-view">
-						
+
 					</ul>
 				</div>
 			</div>
@@ -207,7 +206,7 @@
 		<script src="../../js/template.js"></script>
 		<script type="text/html" id="msglist">
 			{{each list}}
-			<li class="mui-table-view-cell" data-src='{{$value.type}}' data-id='{{$value.params.id}}'>
+			<li class="mui-table-view-cell" data-src='{{$value.type}}' data-id='{{$value.params.id}}' data-url="$value.params.url">
 				<div class="mui-slider-right mui-disabled">
 					<a class="lefticon colorff34 mui-btn delete" style="padding: 0;" data-time='{{$value.time}}'>
 						<img src="../../img/2deliverorder.png" />
@@ -258,7 +257,7 @@
 					url: 'message/getMsg'
 				}, function(data) {
 					if (data.ret == 1) {
-						console.log(data.res.msgList)
+						console.log('new msg:'+data.res.msgList)
 						var personinfo = JSON.parse(getstorage('personinfo')).phone;
 						var whichperson = 'systemmes' + personinfo
 						if (!getstorage(whichperson)) {
@@ -270,21 +269,29 @@
 							var str = template("msglist", msgdata);
 							$('#msglists').html(str)
 						} else {
-							handlemsg(data);
+							if (data.res.msgList.length) {
+								handlemsg(data);
+							} else {
+								console.log('no new msgs;')
+								var msgdata = {
+									"list": JSON.parse(getstorage(whichperson)).msgList
+								}
+								var str = template("msglist", msgdata);
+								$('#msglists').html(str)
+							}
 						}
 					}
 				}, function(xhr, type) {
 					mui.toast(xhr.status + ":" + type)
 				})
 			})
-			
+
 			function handlemsg(data) {
 				var personinfo = JSON.parse(getstorage('personinfo')).phone;
 				var whichperson = 'systemmes' + personinfo;
 				var old = JSON.parse(getstorage(whichperson));
 				var listArr = old.msgList;
 				var newmsg = data.res.msgList;
-				showobj(data.res.msgList[0])
 				var temp = [];
 				for (var j = 0; j < newmsg.length; j++) {
 					if (newmsg[j].type == 1) {
@@ -316,7 +323,6 @@
 					"list": now
 				}
 				var str = template("msglist", msgdata);
-
 				$('#msglists').html(str);
 			}
 			mui('#msglists').on('tap', '.mui-table-view-cell', function() {

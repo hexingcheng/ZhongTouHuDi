@@ -88,9 +88,9 @@ body,
 	line-height: 40px;
 	text-align: center;
 	float: left;
+	border: 0;
 }
 .check {
-	background-color: yellow;
 	margin-right: 2%;
 }
 .write {
@@ -193,4 +193,14 @@ body,
 	position: absolute;
 	width: 100%;
 	height: 100%;
+}
+.footer .check{
+	margin-top: 10px;
+}
+.footer .write{
+	margin-top: 10px;
+}
+#foot{
+	text-align: center;
+	line-height: 60px;
 }
