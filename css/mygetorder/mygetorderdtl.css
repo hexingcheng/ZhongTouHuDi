@@ -97,10 +97,6 @@ body,
 	background-color: green;
 	margin-left: 2%;
 }
-.load {
-	width: 100px;
-	height: 100px;
-}
 .mui-table-view .mui-table-view-cell {
 	padding: 0 0 0 15px;
 	margin: 0;
