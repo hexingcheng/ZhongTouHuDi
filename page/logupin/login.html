@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
-			<img src="../../img/left.png" class="header_left_img" alt="" />
+			<img src="../../img/left.png" class="muiheader_left_img mui-action-back" alt="" />
 			<span>Sigin In</span>
 		</header>
 		<div class="mui-content">  
@@ -138,9 +138,6 @@
 							if(data.ret===1) {
 								if (getstorage('personinfo')) {
 									plus.storage.removeItem('personinfo')
-								}
-								if (data.res.deliver == 1) {
-									$('#applydeliver').remove();
 								}
 								setstorage('personinfo', JSON.stringify(data.res));
 								console.log(getstorage('personinfo'));

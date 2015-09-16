@@ -93,7 +93,7 @@
 				color: gray;
 				line-height: 14px;
 			}
-			.mui-scroll-wrapper{
+			.mui-scroll-wrapper {
 				top: 104px;
 			}
 		</style>
@@ -148,6 +148,7 @@
 		</script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
+			var role, orderid, forward;
 			mui.plusReady(function() {
 				mui('.mui-scroll-wrapper').scroll();
 				var c = plus.webview.currentWebview();
@@ -159,7 +160,10 @@
 						orderId: id
 					}
 				}, function(data) {
-					console.log(JSON.stringify(data.res))
+					console.log(JSON.stringify(data.res));
+					role = data.res.role;
+					orderid = data.res.orderId;
+					forward = data.res.forward;
 					if (data.ret == 1) {
 						$('.msginfo').text(data.res.orderId)
 						var list = {
@@ -168,11 +172,28 @@
 						}
 						var str = template("ordertracker", list);
 						document.getElementById('trackdetail').innerHTML = str;
-						$('.wrap').eq(0).find('img').attr('src', '../../img/order2.png')
+						$('.wrap').eq(0).find('img').attr('src', '../../img/order2.png');
+						$('.wrap').eq(0).on('tap', function() {
+							console.log(role + "   " + orderid + "  " + forward);
+							if(role=='rece'){
+								if(forward==1){
+									openWindow('../mygetorder/mygetorderdtl',{orderId:orderid,type:'rece'})
+								}else if(forward==2){
+									openWindow('../mygetorder/my-get-order.html')
+								}
+							}else if(role=='send'){
+								if(forward==1){
+									alert('xxxxxx')
+								}else if(forward==2){
+									openWindow('../mysendorder/my-send-order.html')
+								}else if(forward==3){
+									openWindow('../pay/pay.html')
+								}
+							}
+						})
 					}
 				})
 			})
 		</script>
 	</body>
-
 </html>
