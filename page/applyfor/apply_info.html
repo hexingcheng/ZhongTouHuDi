@@ -82,17 +82,17 @@
 						<input type="text" readonly="readonly" id="identity" />
 					</div>
 				</li>
-
-				<li class="mui-table-view-cell clear_padd">
-					<img src="../../img/cbd.jpg" class="mui-pull-left" id="pic_one" />
-					<img src="../../img/cbd.jpg" class="pic_two" id="pic_two" />
-					<img src="../../img/cbd.jpg" class="mui-pull-right" id="pic_three" />
-				</li>
 			</ul>
+			<div class="clear_padd">
+				<img src="" class="mui-pull-left" id="pic_one"/>
+				<img src="" class="pic_two" id="pic_two" />
+				<img src="" class="mui-pull-right" id="pic_three" />
+			</div>
 		</div>
 	</body>
 	<script>
 		mui.plusReady(function(){
+			plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
 		   	  var data='';
 		   	  myAjax({url:'account/getDeliverInfo',data:data},function(obj){
 		   	  	var status=obj.ret;
@@ -101,7 +101,7 @@
 		   	  			$('#status_info').text('你的审核已成功');
 		   	  		}else if(status==11){ 
 		   	  			$('#status_info').text('你还没有提交申请');
-		   	  			$('#title_apply').addClass('applyPerson');  
+//		   	  			$('#title_apply').addClass('applyPerson');  
 		   	  		}else if(status==12){  
 		   	  			$('#status_info').text('你的审核还在审核中');
 		   	  		}else if(status==13){

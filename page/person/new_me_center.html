@@ -148,10 +148,10 @@
 			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" />
 		</header>
 		<!-- 加载中的蒙层 -->
-		<!--<div id="loading-mask"></div>
+		<div id="loading-mask"></div>
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
-		</div>-->
+		</div>
 		<!--蒙版-->
 		<div id="center_popover" class="mui-hidden mak"></div>
 		<div class="mui-content">
@@ -326,13 +326,7 @@
 		<script src="../../js/comment.js"></script>
 		<script>
 			mui.plusReady(function() {
-				var data='';
-				var ret="";
-		   	  	myAjax({url:'account/getDeliverInfo',data:data},function(obj){
-		   	  		ret=obj.ret;
-		   	  	},function(xhr,type){
-		   	  		mui.toast(type,status);
-		   	  	})  
+				var data='';  
 				var d_status='';
 					plus.webview.currentWebview().setStyle({scrollIndicator: 'none'});
 					//调用蒙版
@@ -350,7 +344,7 @@
 								var imgurl = BASEURL.substring(0, n); 
 								
 								var pic = imgurl + data.headPic;
-								
+								$('#nation_').removeClass('nation_');
 								if(data.headPic){
 									$('#headpic').attr('src', pic)
 								}
@@ -480,7 +474,7 @@
 							$('#pop_password').val('');
 							$('.edit_hide').css({'display': 'block'});
 							$('.edit_input').removeAttr('disabled');
-							
+							$('#nation_').addClass('nation_');
 						} else if (obj.ret == 2) {
 							mui.toast('密码错误');
 						}
@@ -562,7 +556,7 @@
 				update();
 			})
 			 //选择国籍
-			 $('#nation_').on('tap',function(){
+			 $('.nation_').on('tap',function(){
 			 	$('#center_popover').removeClass('mui-hidden');
 			 	$('#nation_select_').css('display','block');
 			 })
@@ -574,11 +568,7 @@
 			 })
 			 //查看申请递送人信息    
 			 $('#open_apply').on('tap',function(){ 
-			 	if(ret==11){
 			 		openWindow('../applyfor/applyPerson.html');
-			 	}else{
-			 		openWindow('../applyfor/apply_info.html');  
-			 	}	
 			 })
 			 //修改支付密码
 			 $('#wallet_pwd').on('tap', function(){

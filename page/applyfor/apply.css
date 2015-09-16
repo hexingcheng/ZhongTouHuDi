@@ -20,11 +20,12 @@
 		margin-top: 9px !important;
 	}
 	.clear_padd{
-		padding: 0 10px !important;
+		margin: 10px 10px;
+		overflow: hidden;
 	}
 	.clear_padd img{
 		width: 30%;
-		height: 50px;
+		height: 80px;
 		margin: 0 auto;
 	}
 	.pic_two{

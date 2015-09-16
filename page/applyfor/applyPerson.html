@@ -7,6 +7,7 @@
 		<title></title>
 		<script src="../../js/mui.js"></script>
 		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="apply.css" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
 		<style>
 			
@@ -116,88 +117,103 @@
 			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 			<span>Application For Deliverer</span>
 		</header>
+		<div id="loading-mask"></div>
+		<div id="loading-box">
+			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
+		</div>
 		<div class="mui-content apply_content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<ul class="mui-table-view top_header">
+						<li class="mui-table-view-divider  title_ mui-hidden info" id="title_apply">
+							<div class="bell_title">
+								<img src="../../img/title_bell.png" alt="" />
+								<span class="mui-pull-left" id="status_info"></span>
+							</div>
+						</li>
 						<li class="mui-table-view-divider"> <span>Basic Information</span></li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/name.png" class=" li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="text" class="apply_input" placeholder="familyName" id="familyName" />
+								<input type="text" class="apply_input edit" placeholder="familyName" id="familyName"/> 
 							</div>
 						</li>
 						  
 						<li class="mui-table-view-cell">
 							<img src="../../img/name.png" class="li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="text" class="apply_input" placeholder="firstName" id="firsetName" />
+								<input type="text" class="apply_input edit" placeholder="firstName" id="firsetName" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/name.png" class="li_left_img" alt="" />
+							<img src="../../img/name.png" class="li_left_img " alt="" />
+							<img src="../../img/female2.png" class="li_left_img mui-hidden two"/>
+							<img src="../../img/male2.png" alt="" class="li_left_img mui-hidden one"/>
 							<div class="li_input_l select_sex">
-								<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
-								<lable style="color: silver;">man </lable>
-								<input  type="radio" name="sex" />
-								<lable style="color: silver;">women </lable>
+								<span class="content_chan">
+									<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
+									<lable style="color: silver;">man </lable>
+									<input  type="radio" name="sex" />
+									<lable style="color: silver;">women </lable>
+								</span>
 							</div>
 						</li>
-						<li class="mui-table-view-cell" id="apply_nation">
+						<li class="mui-table-view-cell" >
 							<img src="../../img/nationality.png" class="li_left_img" alt="" />
-							<!--<span id="nation">select nation</span>-->
 							<div class="li_input_l" >
-								<input type="text" placeholder="select nation" id="nation" readonly="readonly"/>
+								<input type="text" placeholder="select nation "  class="edit apply_nation" id="nation" readonly="readonly"/>
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/4.png" class="li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="text" class="apply_input" placeholder="place of residence" id="apply_place" />
+								<input type="text" class="apply_input edit" placeholder="place of residence" id="apply_place" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell ">
 							<img src="../../img/emergency.png" class="li_left_img" alt="" />
 							<img src="../../img/personbg.png" id="choose-contacts" class="li_right_img" alt="" />
 							<div class="li_input_s">
-								<input type="text" class="apply_input" placeholder="emergency contact " id="apply_emergencyC" />
+								<input type="text" class="apply_input edit" placeholder="emergency contact " id="apply_emergencyC" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/mobile.png" class="li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="number" class="apply_input" placeholder="mobile" id="apply_mobile" />
+								<input type="number" class="apply_input edit" placeholder="mobile" id="apply_mobile" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/id.png" class=" li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="number" class="apply_input" placeholder="identity" id="identity" />
+								<input type="number" class="apply_input edit" placeholder="identity" id="identity" >
 							</div>
 						</li>
 						<!--			<ul class="mui-table-view apply_padding" >-->
 						<li class="mui-table-view-cell" id="select_type">
 							<img src="../../img/id.png" class=" li_left_img" alt="" />
-							<img src="../../img/down.png" class=" li_right_img" alt="" />
+							<img src="../../img/down.png" class=" li_right_img content_chan" alt="" />
 							<div class="li_input_s">
-								<input type="text" class="apply_input" placeholder="请选择证件" readonly="readonly" id="select_type_show" />
+								<input type="text" class="apply_input edit" placeholder="请选择证件" readonly="readonly" id="select_type_show" />
 							</div>
 						</li>
 						
 						<li class="mui-table-view-cell" style="">
 							<img src="../../img/id.png" class=" li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="number" class="apply_input" placeholder="请输入对应的证件号" id="id_number" />
+								<input type="number" class="apply_input edit" placeholder="请输入对应的证件号" id="id_number"  />
 							</div>
 						</li>
 					</ul>
+					<div class="clear_padd mui-hidden info">
+						<img src="" class="mui-pull-left" id="pic_one"/>
+						<img src="" class="pic_two" id="pic_two" />
+						<img src="" class="mui-pull-right" id="pic_three" />
+					</div>
 				</div>
 			</div>
 		</div>
-		<!--<div class="apply_footer">
-			<div class="apply_button" id="apply_submit"><span>Next Step</span></div>
-		</div>-->
-		<footer class="mui-bar mui-bar-footer">
+		<footer class="mui-bar mui-bar-footer content_chan" >
 			<button class="mui-btn nav_footer" id="apply_submit"><span>Next Step</span></button>
 		</footer>
 	</body>
@@ -302,7 +318,7 @@
 				$('.nation_mark').css('display', 'none');
 				$('#nation_select_').css('display','none');
 			})
-			$('#apply_nation').on('click', function() {
+			$('.apply_nation').on('click', function() {
 				$('.nation_mark').css('display', 'block');
 				$('#nation_select_').css('display', 'block');
 			})
@@ -324,6 +340,60 @@
 			window.addEventListener("choose:contacts", function(eve){
 				document.getElementById("apply_emergencyC").value = eve.detail.name;
 				document.getElementById("apply_mobile").value = eve.detail.tel;
+			})
+			//info
+			 var data='';
+		   	  myAjax({url:'account/getDeliverInfo',data:data},function(obj){
+		   	  	var status=obj.ret;
+		   	  	if(status==11){
+		   	  		$('#loading-mask').css('display','none');
+		   	  		$('#loading-box').css('display','none');
+		   	  	}else{
+		   	  		$('.info').removeClass('mui-hidden');
+		   	  		$('.edit').attr('readonly','readonly');
+		   	  		$('.content_chan').css('display','none');  
+		   	  		$('#nation').attr('disabled','disabled');
+		   	  		$('#select_type_show').attr('disabled','disabled');
+		   	  		$('#choose-contacts').css('display','none');
+		   	  		if(status==1){
+		   	  			$('#status_info').text('你的审核已成功');
+		   	  		}else if(status==12){  
+		   	  			$('#status_info').text('你的审核还在审核中');
+		   	  		}else if(status==13){
+		   	  			$('#status_info').text('审核失败,请点击重新申请');
+		   	  			$('#title_apply').addClass('applyPerson');
+		   	  		}
+		   	  		$('#loading-mask').css('display','none');
+		   	  		$('#loading-box').css('display','none');
+		   	  	}
+		   	  		
+		   	  	var res=obj.res;
+		   	  	if(JSON.stringify(res)){
+		   	  		$('#familyName').val(res.familyName);
+		   	  		$('#firsetName').val(res.firstName);
+		   	  		$('#nation').val(res.nation);
+		   	  		$('#apply_place').val(res.address);
+		   	  		$('#select_type_show').val(res.idType); 
+		   	  		$('#identity').val(res.identity);
+		   	  		$('#apply_emergencyC').val(res.armUser);
+		   	  		$('#apply_mobile').val(res.armPhone); 
+		   	  		$('#id_number').val(res.creditCard);
+		   	  		var n=BASEURL.indexOf('/a');
+		   	  		var path=BASEURL.substring(0,n);
+		   	  		$('#pic_one').attr('src',path+res.cardPic1.path);
+		   	  		$('#pic_two').attr('src',path+res.cardPic2.path);
+		   	  		$('#pic_three').attr('src',path+res.cardPic3.path);  
+		   	  		if(res.sex==1){
+		   	  			$('.one').removeClass('mui-hidden');
+		   	  		}else{
+		   	  			$('.two').removeClass('mui-hidden');
+		   	  		}
+		   	  	}
+		   	  },function(type,xhr){
+		   	  	alert(type.status)
+		   	  })
+			mui('.mui-content').on('tap','.applyPerson',function(){
+				openWindow('applyPerson.html');
 			})
 		})
 	</script>
