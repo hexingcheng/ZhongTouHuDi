@@ -100,6 +100,9 @@ mui('#picwrap').on('tap','img',function(){
 			if (parseInt(money) < parseInt($('.rel').text())) {
 				alert('余额不足')
 			} else {
+				
+				
+				
 				plus.nativeUI.showWaiting("接单中...", {
 					background: "#ddd"
 				});
