@@ -479,8 +479,10 @@
 						$('#sendaddr').attr('data-Wd', lat)
 						var c = plus.webview.currentWebview();
 						var onOff = true;
+						
 						$('#next').on('tap', function() {
-							alert(1)
+							var $this = $(this);
+							
 							var data = JSON.parse(plus.storage.getItem("draft-datas"))
 							if (data && data.res && data.res.orderId) {
 								getdata.orderId = data.res.orderId;
@@ -509,6 +511,10 @@
 							if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 								if (onOff) {
 									onOff = false
+									// 当信息验证成功后，禁止按钮再次提交
+									$this.attr("disabled", true);
+									$this.html("submit...")
+									
 									myAjax({
 										url: 'order/resOrderByGood',
 										data: getdata
@@ -524,6 +530,8 @@
 										}
 									}, function(xhr, type) {
 										onOff = true;
+										$this.html("Send");
+										$this.attr("disabled", false);
 										console.log(type)
 									})
 								}
