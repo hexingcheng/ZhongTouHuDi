@@ -239,10 +239,10 @@
 						<li class="mui-table-view-cell">
 							<div class="li_left_title"><span>nationnality</span></div>
 							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide" name="five" />
-							<div class="li_input_l " id="nation_">
+							<div class="li_input_l" id="nation_">
 								<span id="nation"></span>
 						    </div>
-						</li>
+						</li>  
 					</ul>
 					<div class="content_clear"><!--中间间隙--></div>
    					<ul class="mui-table-view">
@@ -337,7 +337,7 @@
 						},
 						function(obj) {
 							if (obj.ret == 1) {
-								$('#loading-mask').css('display','none');
+								$('#loading-mask').css('display','none');  
 								$('#loading-box').css('display','none');
 								var data = obj.res;
 								var n = BASEURL.indexOf('/a');
@@ -517,6 +517,7 @@
 						$('.edit_input').attr('disabled', 'disabled');
 						$('.edit_hide').css('display', 'none');
 						$('.edit_show').css('display', 'block');
+						$('#nation_').removeClass('nation_');
 						if (sex == 1) {
 							$('.male').css('display', 'block');
 							$('.female').css('display', 'none');
@@ -556,7 +557,7 @@
 				update();
 			})
 			 //选择国籍
-			 $('.nation_').on('tap',function(){
+			 $('.mui-table-view-cell').on('tap','.nation_',function(){
 			 	$('#center_popover').removeClass('mui-hidden');
 			 	$('#nation_select_').css('display','block');
 			 })

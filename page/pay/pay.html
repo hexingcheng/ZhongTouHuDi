@@ -29,12 +29,12 @@
 				<li class="mui-table-view-cell ">
 					<div class="li_left_title"><span class="left-title">Total</span></div>
 					<div class="li_input_l">
-						<span class="mui-pull-right">$ <span id="available-cash">20.00</span></span>
+						<span class="mui-pull-right">$ <span id="available-cash"></span></span>
 					</div>
 				</li>
-				<li class="mui-table-view-cell ">
-					<span class="li_left-title">Date</span>
-					<span class="mui-pull-right">2015-06-20 18:07</span>
+				<li class="mui-table-view-cell">
+					<span class="li_left-title">orderId</span>
+					<span class="mui-pull-right" id="orderid"></span>
 				</li>
 				<li class="mui-table-view-cell ">
 					<span class="li_left-title">Use Coupon</span>
@@ -75,6 +75,8 @@
 				var orderid = cid;
 				var payid;
 				var cpage = plus.webview.currentWebview();
+				$('#available-cash').text(money);
+				$('#orderid').text(cid)
 				$('.right-logo').on('tap', function() {
 					$('.right-logo').removeClass('active').attr('src','../../img/shouyin.png');
 					$(this).addClass('active').attr('src','../../img/shouyin2.png');
@@ -92,8 +94,6 @@
 					},
 					buttons : []
 				}
-				
-				
 				var pop;
 				document.getElementById("next-step").addEventListener("tap", function() {
 									/*plus.nativeUI.showWaiting("付款中...", {
@@ -119,13 +119,11 @@
 									})*/
 					var action = $('.right-logo').filter('.active').attr('data-action')
 					if (action == 'yue') {
-						alert('余额支付');
-						
 						// 弹出框样式
 						pop = null;
 						options.title.content = "输入密码";
 						options.main.content = "<div class='popup-input-wrap'>"+
-													"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>"+
+													"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw' id = 'pwd'/>"+
 												"</div>"+
 												"<div class='input-extras'>Forget Your Password?</div>";
 						
@@ -134,18 +132,22 @@
 							click : function(){
 								// 支付密码验证接口
 								
-//								myAjax({ // 返回 -102 错误提醒
-//									url: "wallet/withdraw",
-//									data: datas
-//								}, function(data) {
-//									if (data.ret == 1) {
-//										mui.toast("提现成功");
-//									} else if (data.ret == 2) {
-//										mui.toast("渠道暂停提现");
-//									} else {
-//										mui.alert("你存在提现在审核，暂时不能再申请提现", "提示")
-//									}
-//								})
+								myAjax({ // 返回 -102 错误提醒
+									url: "account/checkPayPwd",
+									data: {
+										payPwd:$('#pwd').val()
+									}
+								}, function(data) {
+									if (data.ret == 1) {
+										mui.toast('check success');
+										paymoney('2',money,function(){
+											alert(payid)
+										})
+									} else if (data.ret == 2) {
+										mui.toast('failed');
+										return;
+									}
+								})
 							}
 						}
 						
@@ -159,9 +161,7 @@
 							pop.show();
 						}, 300)
 						
-						paymoney('2',money,function(){
-							alert(payid)
-						})
+						
 						
 						
 					} else if (action == 'paypal') {
