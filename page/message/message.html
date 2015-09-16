@@ -326,6 +326,25 @@
 				$('#msglists').html(str);
 			}
 			mui('#msglists').on('tap', '.mui-table-view-cell', function() {
+				if($('.newmsg',$(this))){
+					var personinfo = JSON.parse(getstorage('personinfo')).phone;
+					var whichperson = 'systemmes' + personinfo;
+					var msginfo = JSON.parse(getstorage(whichperson)).msgList;
+					var id = $(this).attr('data-id');
+					for(var i = 0;i<msginfo.length;i++){
+						if(msginfo[i].type!=1){
+							continue;
+						}
+						if(msginfo[i].params.id==id){
+							msginfo[i].ifnew=0
+						}
+					}
+					var datas = {
+						'msgList':msginfo
+					}
+					setstorage(whichperson, JSON.stringify(datas));
+					$('.newmsg',$(this)).remove();
+				}
 				var type = this.getAttribute('data-src');
 				var id
 				if (Object.prototype.toString.call(this.getAttribute('data-id')) != 'Object Null') {
