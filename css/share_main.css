@@ -159,14 +159,16 @@ footer .nav_footer .button_bg_rest{
 	color: #0097DC;
 }
 .li_title_1{
+	display: block;
 	width: auto;
 	height: 20px;
-	margin-top: 10px;
+	margin-top: 7px;
 	overflow: hidden;
 	line-height: 20px;
 	font-size: 14px;
 }
 .li_title_2{
+	display: block;
 	width: auto;
 	height: 20px;
 	line-height: 20px;

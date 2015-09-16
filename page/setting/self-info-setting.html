@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
+		<link rel="stylesheet" href="../../css/common/popup.css"/>
+		<script src="../../js/common/popup.js"></script>
 		<style>
 			.mui-switch{
 				width: 70px; 
@@ -82,24 +82,49 @@
 //				document.getElementById('about-us').addEventListener('tap', function() {
 //					openWindow('./about-us.html')
 //				})
+
+				// 取消订单弹出框
+				var options = {
+					height : 160,
+					title : {
+						height : 40,
+						content : "退出系统提示"
+					},
+					main : {
+						content : "亲，您确定要退出登录吗？"
+					},
+					buttons : [{
+						name : "确定",
+						click : function(){ return true;}
+					},{
+						name : "取消",
+						click : function(){ return true; }
+					}]
+				}
+
 				document.getElementById('close').addEventListener('tap', function(e) {
-					myAjax({
-						url:'auth/out',
-						type:'get'
-					},function(){
-							console.log('success')
+					
+					options.buttons[0].click = function(){
+						myAjax({
+							url:'auth/out',
+							type:'get'
+						},function(){
 							plus.storage.removeItem('token');
 							var i = plus.webview.getLaunchWebview();
 							mui.fire(i, 'removehref')
 							var i = plus.webview.getLaunchWebview();
-//							mui.fire(i,'closeMenu')
 							i.show('slide-in-left',300);
 							setTimeout(function(){
 								plus.webview.currentWebview().close("none", 0);
 							}, 330)
-					},function(xhr,type){
-						console.log(xhr.status+":"+type)
-					})
+						},function(xhr,type){
+							console.log(xhr.status+":"+type)
+						})
+					}
+					
+					var pop = new Popup(options);
+					pop.show();
+					
 				})
 				mui('.mui-content').on('tap','.mui-table-view-cell',function(){
 					var src = this.getAttribute('data-src');
