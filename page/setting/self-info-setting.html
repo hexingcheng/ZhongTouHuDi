@@ -7,6 +7,7 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
 		<link rel="stylesheet" href="../../css/common/popup.css"/>
+		<script src="../../js/mui.js"></script>
 		<script src="../../js/common/popup.js"></script>
 		<style>
 			.mui-switch{
@@ -68,7 +69,7 @@
 			</ul>
 			<div class="content_clear"></div>
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id="about-us">
 					<img src="../../img/right_.png" alt="" class="li_right_img"/>
 					<span>About</span>
 				</li>
@@ -77,11 +78,10 @@
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script>
-			mui.init();
 			mui.plusReady(function() {
-//				document.getElementById('about-us').addEventListener('tap', function() {
-//					openWindow('./about-us.html')
-//				})
+				document.getElementById('about-us').addEventListener('tap', function() {
+					openWindow('./about-us.html')
+				})
 
 				// 取消订单弹出框
 				var options = {
