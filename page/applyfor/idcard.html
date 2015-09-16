@@ -150,6 +150,7 @@
 								},
 								function(obj) {
 									if (obj.ret == 1) {
+										$("." + fo).attr('src', path).css('display', 'block');
 										if (fo == "one") {
 											plus.storage.setItem('nation_pic1', JSON.stringify(obj.res.fid));
 										} else if (fo == "two") {
@@ -232,7 +233,7 @@
 							plus.storage.removeItem('nation_pic2');  
 							plus.storage.removeItem('nation_pic3');
 						} else {
-							alert(obj.ret + "cycycycy");
+							alert(obj.ret );
 						}
 					}, function(xhr, type) {
 						console.log(xhr.status);

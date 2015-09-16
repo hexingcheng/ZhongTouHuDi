@@ -1,4 +1,5 @@
-var BASEURL = "http://202.202.43.107:8080/api/"
+var BASEURL = "http://202.202.43.107:8080/api/";
+var BASEIMGURL = "http://202.202.43.107:8080";
 //		var BASEURL = "http://192.168.0.100:8080/api/"
 
 function getcamera(successcb, errorcb, option) {
