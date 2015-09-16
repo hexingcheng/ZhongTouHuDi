@@ -1,16 +1,19 @@
 
 /*apply_info*/
 	.bell_title{
-		width: 170px;  
+		display: block;
+		width: auto;
 		height: 34px; 
 		margin: auto;
 		line-height: 34px;
 		left: 50%;
+		overflow: hidden;
 		color: #F7B56A;
 	}
 	.bell_title img{
 		width: 34px;
 		height: 34px;
+		vertical-align: middle;
 	}
 	.mui-table-view .title_{
 		padding: 0;
