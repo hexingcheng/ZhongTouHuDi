@@ -151,7 +151,7 @@ mui.plusReady(function() {
 			},
 			wait: false
 		}, function(data) {
-			//		console.log(JSON.stringify(data))
+//			console.log(JSON.stringify(data))
 			status = data.res.status;
 			$(".goods-name").html(data.res.gName); // 货物名称
 			$("#goods-value").html(data.res.money); // 价值
@@ -196,8 +196,8 @@ mui.plusReady(function() {
 				$(".status-2").css("display", "block");
 			}
 			// sender 递送人信息显示
-			if (data.res.deliver.headPic) { // 头像显示
-				$("#head-img").attr("src", data.res.deliver.headPic);
+			if (data.res.deliver.headpic) { // 头像显示
+				$("#head-img").attr("src", BASEIMGURL + data.res.deliver.headpic);
 			}
 			if (data.res.deliver.nickName) { // 昵称
 				$("#nickName").html(data.res.deliver.nickName);
