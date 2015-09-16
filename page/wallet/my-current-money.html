@@ -20,7 +20,7 @@
 			<div class="left-back mui-pull-left">
 				<img src="../../img/left.png" class="mui-action-back"></img>
 			</div>
-			<h1 class="mui-title mui-text-left">My current money</h1>
+			<h1 class="mui-title mui-text-left">Account balance</h1>
 		</header>
 		<div class="mui-content">
 			<ul id="show-info" class="mui-table-view mui-grid-9 mui-grid-view">
@@ -80,17 +80,17 @@
 		<script id="recodes" type="text/html">
 			{{each list}}
 				<li class="mui-table-view-cell mui-media">
-					{{if $value.value > 0}}
+					{{if $value.type == 11}}
 						<div class="mui-pull-right mui-h3 style-point fixed-money">
 							+{{$value.value}}
 						</div>
-					{{ else }}
+					{{ else if $value.type == 12}}
 						<div class="mui-pull-right mui-h3 style-coupon fixed-money">
 							-{{$value.value}}
 						</div>
 					{{/if}}
 					<div class="mui-media-body">
-						<div class="mui-ellipsis">资金</div>
+						<div class="mui-ellipsis">{{$value.msg}}</div>
 						<p class="mui-ellipsis">{{$value.time}}</p>
 					</div>
 				</li>
