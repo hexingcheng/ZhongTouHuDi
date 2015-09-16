@@ -131,7 +131,6 @@ function sendmsg(orderid) {
 		},
 		wait : false
 	}, function(data) {
-		console.log(JSON.stringify(data))
 		$(".goods-name").html(data.res.gName); // 货物名称
 		$("#goods-value").html(data.res.money); // 价值
 		$("#goods-weight").html(data.res.gWeight + "kg"); // 重量

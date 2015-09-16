@@ -67,3 +67,6 @@ body {
 	float: right;
 	background-color: #FC614D;
 }
+.mui-scroll-wrapper{
+	top: 52px;
+}

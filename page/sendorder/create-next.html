@@ -634,11 +634,16 @@
 					$('#tel').val(datas.res.receiverPhone);
 				}
 				// 返回按钮时进行数据存储
+				var openned = false; 		// 选择常用地址的蒙层是否打开
 				var back = mui.back;
 				mui.back = function() {
-						draftdata();
-						back();
+					if(openned){		// 如果常用地址打开，返回按钮的时候先关闭
+						hide();
+						return;
 					}
+					draftdata();
+					back();
+				}
 					// 获取草稿信息
 				$('.insure').on('tap', function() {
 					if ($('.sure').attr('src') == '../../img/ok.png') {
@@ -735,6 +740,7 @@
 				var content = document.getElementById("address-content");
 				// 控制节点显示
 				function show(){
+					openned = true;
 					addrmask.style.display = "block";
 					content.style.display = "block";
 					content.classList.add("slidein");
@@ -751,6 +757,7 @@
 				}
 				// 控制节点隐藏
 				function hide(){
+					openned = false;
 					content.classList.add("slideout");
 					content.addEventListener("webkitAnimationEnd", innerhide)
 					function innerhide(){
@@ -790,6 +797,7 @@
 					}
 				}
 				// 选择常用地址
+				// 显示常用地址的两种情况
 				var type = null;
 				document.getElementById("send-address").addEventListener("tap", function(){
 					show();
@@ -801,9 +809,16 @@
 					renderDom();
 					type = "reveive";
 				})
+				
+				// 隐藏常用地址的情况
+				// 一，点击蒙层
 				addrmask.addEventListener("tap", function(){
 					hide();
 				})
+				// android点击返回按钮的时候
+				/* 查找 mui.back */
+					
+				// 选择选项后
 				mui("#addr-list").on('tap', ".addr-item", function(){
 					var addrs = this.getAttribute("data-addr");
 	      			var jds = this.getAttribute("data-jd");

@@ -14,7 +14,6 @@
 	<body >
 		<header class="mui-bar mui-bar-nav nav_header">  
 			<img src="../../img/left.png" class="mui-action-back header_left_img" alt="" />
-			<img src="../../img/2set-up.png" class="header_right_img " alt="" id="filter-page"/>
 			<span>Order</span>
 		</header>
 		<div class="mui-content">
@@ -48,9 +47,6 @@
 					param.status = this.getAttribute('data-sta');
 					mui.fire(embed, 'renderdata', param);
 				})
-				document.getElementById("filter-page").addEventListener("tap", function() {
-					openWindow("./get-filter.html")
-				}, false)
 			})
 		</script>
 	</body>
