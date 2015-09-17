@@ -240,6 +240,9 @@ window.addEventListener('closeMenu', function() {
 	offCanvasWrapper.offCanvas('close');
 })
 window.addEventListener('setaccount', function(eve) {
+	if(eve.detail.deliver==1){
+		$('#applydeliver').remove();
+	}
 	if (eve.detail.ptitle) {
 		$('.admira').text(eve.detail.ptitle);
 	}

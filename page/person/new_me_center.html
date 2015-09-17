@@ -152,7 +152,7 @@
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 		</div>-->
-		<!--蒙版-->
+		<!--蒙版-->  
 		<div id="center_popover" class="mui-hidden mak"></div>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
@@ -493,7 +493,8 @@
 				var em = $('#email').val().trim();
 				var nation = $('#nation').text().trim();
 				var ph = $('#phone').val().trim();
-                var check = $('#person_sex').attr('checked');
+                var check = $("#select_sex input[name='sex']:checked").val();
+                alert(check)
 				var sex = (check == 'checked') ? '1' : '2';
 				var pwd = $('#password').val().trim();
 				data = {

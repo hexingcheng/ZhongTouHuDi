@@ -249,9 +249,11 @@
 						for (var i = 0; i < listArr.length; i++) {
 							if (listArr[i].type == 1) {
 								if (newmsg[j].params.id == listArr[i].params.id) {
-									listArr[i] = newmsg[j];
-									listArr[i].ifnew = 1;
-									on = false;
+									listArr.splice(i,1);
+									newmsg[j].ifnew = 1;
+									var t = [];
+									t.push(newmsg[j])
+									t.contact(listArr);
 								}
 							}
 						}
