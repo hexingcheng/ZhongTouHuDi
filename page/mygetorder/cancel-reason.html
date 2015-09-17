@@ -6,6 +6,8 @@
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
+		<link rel="stylesheet" href="../../css/common/popup.css"/>
+		<script src="../../js/common/popup.js"></script>
 		<style>
 			.mask {  
 				position: absolute;
@@ -63,6 +65,7 @@
 			<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
 			<span>Cancel reason</span>
 		</header>
+		
 		<div class="mask mui-hidden"></div> 
 		<div class="cancelget mui-hidden">
 			<div class="info">
@@ -72,6 +75,7 @@
 			<div class="cancel-get-ok">ok</div>
 			<div class="cancel-get-cancel">cancel</div>
 		</div>
+		
 		<div class="mui-content">
 			<ul class="mui-table-view top_header">
 				<li class="mui-table-view-cell mui-radio mui-left">
@@ -91,7 +95,7 @@
 
 		<footer class="mui-bar mui-bar-footer">
 			<button class="nav_footer mui-btn" id="submit-reason">
-				<span>Submit</span>
+				<span id="reason-data">Submit</span>
 			</button>
 		</footer>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
@@ -101,8 +105,27 @@
 			mui.plusReady(function() {
 				var cpage = plus.webview.currentWebview();
 				// 提交取消订单原因
+				var options = {
+					height : 160,
+					title : {
+						height : 40,
+						content : "取消提示"
+					},
+					main : {
+						content : "此操作将取消你的抢单，并扣除积分"
+					},
+					buttons : [{
+						name : "确定",
+						click : function(){ return true }
+					},{
+						name : "取消",
+						click : function(){ return true; }
+					}]
+				}
 				var reasonval;
+				var reasondata = document.getElementById("reason-data");
 				document.getElementById("submit-reason").addEventListener("tap", function() {
+						var that = this;
 						var radio = document.getElementsByName("radio");
 						for (var i = 0; i < radio.length; i++) {
 							if (radio[i].checked) {
@@ -110,20 +133,18 @@
 							}
 						}
 						if (reasonval) {
-							$('.mask').removeClass('mui-hidden');
-							$('.cancelget').removeClass('mui-hidden');
+							options.buttons[0].click = function(){
+								that.setAttribute("disabled", true);
+								reasondata.innerHTML = "Submit...";
+								cancelorder(cpage.orderId, reasonval, cpage.status);
+							}
+							var pop = new Popup(options);
+							pop.show();
 						} else {
 							mui.toast("请选择取消发单的原因")
 						}
 					}, false)
-					// 取消订单
-					mui('body').on('tap','.cancel-get-ok',function(){
-						cancelorder(cpage.orderId, reasonval, cpage.status);
-					})
-					mui('body').on('tap','.cancel-get-cancel',function(){
-						$('.mask').addClass('mui-hidden');
-						$('.cancelget').addClass('mui-hidden');
-					})
+					
 				function cancelorder(orderid, reason, status) {
 					myAjax({
 						url: "order/cancel",
@@ -137,7 +158,7 @@
 							mui.toast("取消成功");
 							var mygetorder = plus.webview.getWebviewById('mygetorder/my-get-order')
 							if (mygetorder) {
-								mygetorder.show('slide-in-left', 200);
+								mygetorder.show('slide-in-left', 300);
 							} else {
 								openWindow('./my-get-order.html')
 							}
