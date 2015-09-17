@@ -7,6 +7,8 @@
 		<title></title>
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/common/popup.css"/>
+		<script src="../../js/common/popup.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 		</script>
@@ -132,49 +134,6 @@
 			.mui-scroll-wrapper {
 				top: 52px;
 			}
-			.deletemask {
-				position: absolute;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				background-color: rgba(0, 0, 0, 0.4);
-				z-index: 99;
-			}
-			.deletetips {
-				width: 270px;
-				height: 112px;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				margin-left: -135px;
-				margin-top: -56px;
-				background-color: #FFFFFF;
-			}
-			.deletetitle {
-				padding: 10px;
-				word-break: break-all;
-			}
-			.handlebtn {
-				margin-top: 20px;
-			}
-			.sure,
-			.cancel {
-				float: left;
-				height: 40px;
-				line-height: 40px;
-				text-align: center;
-				width: 135px;
-				padding: 0;
-				margin: 0;
-				color: #FFFFFF;
-			}
-			.sure {
-				background-color: pink;
-			}
-			.cancel {
-				background-color: #67B168;
-			}
 		</style>
 	</head>
 
@@ -184,15 +143,6 @@
 			<img src="../../img/2set-up.png" class="right_img" id="deleteall">
 			<span>message</span>
 		</header>
-		<div class="deletemask mui-hidden">
-			<div class="deletetips">
-				<div class="deletetitle">this action will delete all the system messages,sure complete ?</div>
-				<div class="handlebtn">
-					<div class="sure">delete all</div>
-					<div class="cancel">cancel</div>
-				</div>
-			</div>
-		</div>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -376,22 +326,45 @@
 				setstorage(whichperson, JSON.stringify(obj));
 				document.getElementById('msglists').removeChild(this.parentNode.parentNode);
 			})
+			 
+			 // 弹出框参数
+			 var options = {
+				height : 160,
+				title : {
+					height : 40,
+					content : "删除提示"
+				},
+				main : {
+					content : "this action will delete all the system messages,sure complete ?"
+				},
+				buttons : [{
+					name : "删除",
+					click : function(){ return true }
+				},{
+					name : "取消",
+					click : function(){ return true; }
+				}]
+			}
+			 
+			 // 删除所有消息提醒
 			 document.getElementById('deleteall').addEventListener('tap', function() {
 				if ($('#msglists').html()) {
-					$('.deletemask').removeClass('mui-hidden')
+					
+					options.buttons[0].click = function(){
+						var personinfo = JSON.parse(getstorage('personinfo')).phone;
+						var whichperson = 'systemmes' + personinfo;
+						plus.storage.removeItem(whichperson);
+						$('#msglists').detach();
+					}
+					
+					var pop = new Popup(options);
+					pop.show();
+					
 				} else {
 					return;
 				}
 			})
-			 $('.deletemask').on('tap', function() {
-				$(this).addClass('mui-hidden')
-			})
-			 $('.sure').on('tap', function() {
-				var personinfo = JSON.parse(getstorage('personinfo')).phone;
-				var whichperson = 'systemmes' + personinfo;
-				plus.storage.removeItem(whichperson);
-				$('#msglists').detach();
-			})
+			 
 		</script>
 	</body>
 
