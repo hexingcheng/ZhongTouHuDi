@@ -38,19 +38,19 @@
 		<div class="mui-content">
 			<ul class="mui-table-view top_header">
 				<li class="mui-table-view-cell">
-					<span>Sound</span>
-					<div class="mui-switch mui-active">
-						<div class="mui-switch-handle"></div>
+					<span>声音</span>
+					<div class="mui-switch mui-active" id="sound_action">
+						<div class="mui-switch-handle" id="sound_switch"></div>
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					Vibrate
-					<div class="mui-switch mui-active">
-						<div class="mui-switch-handle"></div>
+					<span>震动</span>
+					<div class="mui-switch mui-active" id="vibrate_action">
+						<div class="mui-switch-handle" id="vibrate_switch"></div>
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					Push message
+					<span>消息推送</span>
 					<div class="mui-switch mui-active">
 						<div class="mui-switch-handle"></div>
 					</div>
@@ -60,18 +60,18 @@
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell" data-src = '../logupin/findpassword.html'>
 					<img src="../../img/right_.png" class="li_right_img" alt="" />
-					<span>Reset password</span>
+					<span>清除缓存</span>
 				</li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id="about-us">
 					<img src="../../img/right_.png" alt="" class="li_right_img" />
-					<span>Clear cache</span>
+					<span>关于众投互递</span>
 				</li>
 			</ul>
 			<div class="content_clear"></div>
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell" id="about-us">
+				<li class="mui-table-view-cell" id="machine_info">
 					<img src="../../img/right_.png" alt="" class="li_right_img"/>
-					<span>About</span>
+					<span>查看本机信息</span>
 				</li>
 			</ul>
 		</div>
@@ -131,6 +131,33 @@
 					if(src){
 						openWindow(src);
 					}
+				})
+				//查看本机信息
+				function checkMachine(){
+					mui.toast('本机机型'+plus.device.vendor+"屏幕分辨率"+plus.screen.resolutionHeight*plus.screen.scale);
+				}  
+				$('#machine_info').on('tap',function(){
+					checkMachine();
+				})
+				//声音（开关）
+				function sound(){
+					var status=$('#sound_action').hasClass('mui-active');
+					if(status){
+						plus.device.beep(1);
+					}
+				}
+				$('#sound_switch').on('tap',function(){
+					sound()
+				})
+				//震动（开关）
+				function vabrite(){
+					var status=$('#vibrate_action').hasClass('mui-active');
+					if(status){
+						plus.device.vibrate(1000);
+					}
+				}
+				$('#vibrate_switch').on('tap',function(){
+					vabrite();
 				})
 			})
 		</script>
