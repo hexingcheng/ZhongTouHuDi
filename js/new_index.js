@@ -10,9 +10,9 @@ document.getElementById("trip-plan").addEventListener("tap", function() {
 	openWindow("./page/tripplan/send-trip.html");
 })
 mui.plusReady(function() {
-			//		plus.storage.removeItem('systemmes14714714774')
-			//		plus.storage.removeItem('systemmes25825825885')
-		setstorage('getsystemmsgtime',(new Date()).getTime());	
+		//		plus.storage.removeItem('systemmes14714714774')
+		//		plus.storage.removeItem('systemmes25825825885')
+		setstorage('getsystemmsgtime', (new Date()).getTime());
 		plus.navigator.closeSplashscreen();
 		var net = plus.networkinfo.getCurrentType();
 		if (net != 0 && net != 1) {
@@ -26,13 +26,17 @@ mui.plusReady(function() {
 					success: function(data) {
 						if (data.ret == 1) {
 							if (data.res.deliver == 1) {
-								$('#applydeliver').remove();
+								$('#applydeliver').addClass('mui-hidden');
 							}
 							setstorage('personinfo', JSON.stringify(data.res));
 							getsystemmsg();
 							mui.toast('get personal infomation success')
 							if (data.res.ptitle) {
 								$('.admira').text(data.res.ptitle);
+							} else {
+								if ($('#applydeliver').hasClass('mui-hidden')) {
+									$('#applydeliver').removeClass('mui-hidden')
+								}
 							}
 							if (data.res.headPic) {
 								var n = BASEURL.indexOf('/a');
@@ -60,7 +64,11 @@ mui.plusReady(function() {
 												success: function(data) {
 													if (data.ret == 1) {
 														if (data.res.deliver == 1) {
-															$('#applydeliver').remove();
+															$('#applydeliver').addClass('mui-hidden');
+														} else {
+															if ($('#applydeliver').hasClass('mui-hidden')) {
+																$('#applydeliver').removeClass('mui-hidden')
+															}
 														}
 														setstorage('personinfo', JSON.stringify(data.res));
 														getsystemmsg();
@@ -141,9 +149,11 @@ mui.plusReady(function() {
 				openWindow('./page/wallet/my-wallet.html')
 			})
 		})
-		setInterval(function(){
-			getsystemmsg();
-		},60000)
+		if (getstorage('token')) {
+			setInterval(function() {
+				getsystemmsg();
+			}, 6000)
+		}
 
 	})
 	//处理返回键
@@ -227,7 +237,7 @@ window.addEventListener('dragleft', function(e) {
 	e.detail.gesture.preventDefault();
 });
 $('.infowrap').on('tap', function() {
-	iflogin(function(){
+	iflogin(function() {
 		openWindow('./page/person/new_me_center.html');
 	})
 })
@@ -240,8 +250,12 @@ window.addEventListener('closeMenu', function() {
 	offCanvasWrapper.offCanvas('close');
 })
 window.addEventListener('setaccount', function(eve) {
-	if(eve.detail.deliver==1){
-		$('#applydeliver').remove();
+	if (eve.detail.deliver == 1) {
+		$('#applydeliver').addClass('mui-hidden');
+	} else {
+		if ($('#applydeliver').hasClass('mui-hidden')) {
+			$('#applydeliver').removeClass('mui-hidden')
+		}
 	}
 	if (eve.detail.ptitle) {
 		$('.admira').text(eve.detail.ptitle);
