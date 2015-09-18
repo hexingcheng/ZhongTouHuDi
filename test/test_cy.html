@@ -22,14 +22,14 @@
 <input type="button" value="sub" class="one"/>
 	<script type="text/javascript">
 $('.one').on('clik',function(){
-			alert(22)
-//	$("input[name=sex]").each(function(){
-//			    if($(this).attr("cheked")){
-//			        alert("‘选中’");
-//			    }else{  
-//			         alert("‘未选中’");
-//			    }
-//			})
+		function onPlusReady() {
+			// 输入提示信息框
+			plus.ui.pickTime( function ( d ) {
+				alert( d.getHours()() + ":" + d.getMinutes() );
+			}, function ( e ) {
+				alert( "Pick time error: " + e.message );
+			}, {is24Hour:true} );
+	}
 })
 	</script>
 </body>

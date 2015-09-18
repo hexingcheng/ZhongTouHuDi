@@ -122,7 +122,6 @@ body,
 }
 .coloryellow {
 	color: yellow;
-	padding-right: 15px;
 }
 .colorgreen {
 	color: green;
@@ -136,67 +135,4 @@ body,
 }
 .hei30 {
 	margin-top: 10px;
-}
-#porel {
-	/*text-align: center;*/
-	/*line-height: 50px;*/
-	
-	color: #000000
-}
-.picture {
-	display: inline-block;
-	width: 70px;
-	height: 70px;
-	margin: 10px;
-}
-#foot {
-	box-shadow: 0 0 1px #F1F1F1;
-	line-height: 48px;
-}
-.presee {
-	width: 100%;
-	height: 100%;
-	z-index: 30;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-}
-.presee {
-	position: fixed;
-	background-color: rgba(0, 0, 0, 1);
-}
-.presee .mui-slider {
-	width: 80%;
-	height: 100%;
-	margin: 0 auto;
-	overflow: hidden;
-}
-.presee .mui-slider .mui-slider-item {
-	padding: 0 10px;
-	height: 100%;
-	box-sizing: border-box;
-}
-.presee .mui-slider .mui-slider-item a {
-	height: 100%;
-	position: relative;
-}
-.presee .mui-slider .mui-slider-item a img {
-	margin-top: -150px;
-	position: absolute;
-}
-.picwraps {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-.footer .check{
-	margin-top: 10px;
-}
-.footer .write{
-	margin-top: 10px;
-}
-#foot{
-	text-align: center;
-	line-height: 60px;
 }
