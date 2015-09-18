@@ -117,9 +117,12 @@
 								setstorage('token', obj.token);
 								getacountinfo();
 								systemmsg()
-								plus.webview.getLaunchWebview().show('slide-in-left', 200);
+								plus.webview.getLaunchWebview().show('slide-in-left', 300);
 								$('#signup-phone-number').val('');
 								$('#signup-phone-password').val('');
+								setTimeout(function(){
+									plus.webview.currentWebview().close("none", 0)
+								}, 500)
 							} else if (obj.ret == -1) {
 								mui.toast("手机号或密码错误")
 								$("#submit-button").attr("disabled", false)
