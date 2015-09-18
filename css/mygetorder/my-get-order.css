@@ -81,13 +81,13 @@ body {
 .waiting-box {
 	position: absolute;
 	background: #fff url(../../img/loading2.gif) no-repeat center center;
-	width: 100px;
-	height: 100px;
+	width: 80px;
+	height: 80px;
 	background-size: 100% 100%;
 	top: 50%;
 	left: 50%;
-	margin-left: -50px;
-	margin-top: -50px;
+	margin-left: -40px;
+	margin-top: -40px;
 }
 .red {
 	color: #ff8474;

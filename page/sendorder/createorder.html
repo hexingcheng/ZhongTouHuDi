@@ -773,7 +773,8 @@
 								})
 							}
 							options.buttons[1].click = function(){
-								plus.webview.getLaunchWebview().show('slide-in-left');
+								plus.webview.getLaunchWebview().show('slide-in-left', 300);
+								
 								closewebview();
 							}
 							pop = new Popup(options);
@@ -792,19 +793,19 @@
 
 			function closewebview() {
 				if (plus.webview.getWebviewById('sendorder/createorder')) {
-					plus.webview.getWebviewById('sendorder/createorder').close("slide-out-right",200)
+					plus.webview.getWebviewById('sendorder/createorder').close("slide-out-right",300)
 				}
 				if (plus.webview.getWebviewById('create-next')) {
-					plus.webview.getWebviewById('create-next').close("slide-out-right",200);
+					plus.webview.getWebviewById('create-next').close("slide-out-right",300);
 				}
 				if (plus.webview.getWebviewById('pickaddr')) {
-					plus.webview.getWebviewById('pickaddr').close("slide-out-right",200);
+					plus.webview.getWebviewById('pickaddr').close("slide-out-right",300);
 				}
 				if (plus.webview.getWebviewById('chooseaddr')) {
-					plus.webview.getWebviewById('chooseaddr').close("slide-out-right",200);
+					plus.webview.getWebviewById('chooseaddr').close("slide-out-right",300);
 				}
 				if (plus.webview.getWebviewById('draft')) {
-					plus.webview.getWebviewById('draft').close("slide-out-right",200)
+					plus.webview.getWebviewById('draft').close("slide-out-right",300)
 				}
 			}
 
@@ -878,11 +879,8 @@
 						wait: false
 					}, function(data) {
 						var img = '<span class="wids"><img title=' + datas.path + ' src=' + datas.base + ' alt=' + data.res.fid + '></span>';
-						//					console.log(datas.path);
-						//					$(context).parent().append(img);
 						var picimg = $("#take-photo").find(".pic-img")
 						for (var i = 0; i < picimg.size(); i++) {
-							//						console.log(picimg.eq(i).find("img").size())
 							if (picimg.eq(i).find("img").size() == 0) {
 								picimg.eq(i).html(img);
 								picimg.eq(i).attr("href", "javascript:void(0);")
@@ -903,7 +901,6 @@
 					})
 				}
 				// 照相获取图片上传
-
 			function sendData(urls, base, context, path) {
 				var pics
 				myAjax({

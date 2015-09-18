@@ -143,15 +143,10 @@
 			</div>
 		</div>
 		
-		<!--<div class="mask mui-hidden"></div>
-		<div class="dialog mui-hidden">
-			<div class="info">
-				Do you want to remove this order?
-			</div>
-			<p class="wron">once you remove this order it can't be recover'</p>
-			<div class="ok">ok</div>
-			<div class="cancel">cancel</div>
-		</div>-->
+		<div id="loading-mask"></div>
+		<div id="loading-box">
+			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
+		</div>
 		
 		<script src="../../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../../js/template.js"></script>
@@ -199,6 +194,7 @@
 						}
 						var html = template('drafts', draftdata);
 						document.getElementById('content').innerHTML = html;
+						closeMask();
 					},
 					error: function(type) {
 						console.log(type)
@@ -208,7 +204,6 @@
 				
 				// 编辑事件绑定
 				$('#content').on('tap', ".edit", function() {
-					
 					plus.storage.removeItem("draft-datas");
 					var id = $('input', $(this)).get(0).value;
 					var datas = {
@@ -265,7 +260,9 @@
 					$('#content').on('tap', ".remove", function() {
 						self = this;
 						options.buttons[0].click = function(){
-							plus.nativeUI.showWaiting("删除中...");
+							plus.nativeUI.showWaiting("删除中...", {
+								background : "#d1d1d1"
+							});
 							var id = $('input', $(self)).get(0).value;
 							var deletedata = {};
 							deletedata.orderId = id;
