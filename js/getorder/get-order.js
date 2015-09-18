@@ -11,19 +11,17 @@ mui.init({
 	}
 });
 
-mui.plusReady(function(){
-	plus.geolocation.getCurrentPosition(function(pos){
-		
-		/*pos.coords.longitude,pos.coords.latitude*/
-		console.log("   jd:"+pos.coords.longitude+"  wd:"+pos.coords.latitude);
-	
-	
-	}, function(err){
-		console.log(err.code + "  message:" +err.message);
-	},{timeout: 10000})
-})
-
-
+//mui.plusReady(function(){
+//	plus.geolocation.getCurrentPosition(function(pos){
+//		
+//		/*pos.coords.longitude,pos.coords.latitude*/
+//		console.log("   jd:"+pos.coords.longitude+"  wd:"+pos.coords.latitude);
+//		showobj(pos)
+//	
+//	}, function(err){
+//		console.log(err.code + "  message:" +err.message);
+//	},{timeout: 10000,provider:'baidu'})
+//}) 
 
 var whichitem = "time";
 var whichval = "asc";
@@ -82,7 +80,8 @@ function pulldownRefresh() {
 		}, function(e) {
 			mui.toast('获取位置信息失败')
 		}, {
-			enableHighAcuracy: true
+			enableHighAcuracy: true,
+			timeout:1000
 		})
 	} else {
 		mui.toast('获取位置信息失败');
@@ -113,7 +112,7 @@ function pullupRefresh() {
 			var lot = pos.coords.longitude;
 			var lat = pos.coords.latitude;
 			getorderdata.curJd = lot;
-			getorderdata.curWd = lat;
+			getorderdata.curWd = lat; 
 			myAjax({
 				url: 'deliver/goodList',
 				data: getorderdata,
@@ -168,9 +167,11 @@ mui.plusReady(function() {
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			var lot = pos.coords.longitude;
 			var lat = pos.coords.latitude;
-			console.log("jd:"+lot+"   wd:"+lat)
 			getorderdata.curJd = lot;
 			getorderdata.curWd = lat;
+			console.log('html5:'+lot);
+			console.log('html5:'+lat)
+			showobj(pos.coords)
 			myAjax({
 				url: 'deliver/goodList',
 				data: getorderdata,
