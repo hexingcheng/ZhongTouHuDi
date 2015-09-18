@@ -47,6 +47,9 @@
 					param.status = this.getAttribute('data-sta');
 					mui.fire(embed, 'renderdata', param);
 				})
+				mui.back = function(){
+					plus.webview.getLaunchWebview().show('slide-in-left',300)
+				}
 			})
 		</script>
 	</body>
