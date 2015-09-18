@@ -178,6 +178,7 @@
 					mui.fire(i,'msgtips')
 				}
 				$('#submit-button').on('tap', function() { 
+					$('input').blur();
 					checkLogin();
 				});
 				//password可见切换

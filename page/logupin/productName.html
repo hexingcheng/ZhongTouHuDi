@@ -238,6 +238,7 @@
 					//密码可见
 				var submit = document.getElementById('submit-button');
 				submit.addEventListener('tap', function() {
+					$('input').blur();
 					signUp();
 				})
 				//password可见切换

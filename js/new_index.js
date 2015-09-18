@@ -12,6 +12,9 @@ document.getElementById("trip-plan").addEventListener("tap", function() {
 mui.plusReady(function() {
 		//		plus.storage.removeItem('systemmes14714714774')
 		//		plus.storage.removeItem('systemmes25825825885')
+		mui('.mui-slider').slider({
+			interval:'2000'
+		})
 		setstorage('getsystemmsgtime', (new Date()).getTime());
 		plus.navigator.closeSplashscreen();
 		var net = plus.networkinfo.getCurrentType();
@@ -152,7 +155,7 @@ mui.plusReady(function() {
 		if (getstorage('token')) {
 			setInterval(function() {
 				getsystemmsg();
-			}, 6000)
+			}, 60000)
 		}
 
 	})
