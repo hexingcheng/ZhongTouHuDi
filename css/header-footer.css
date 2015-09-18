@@ -67,9 +67,12 @@ footer.mui-bar .button-row {
 footer.mui-bar .button-row .first-button,
 footer.mui-bar .button-row .second-button {
 	background: #06495a;
-	width: 45%;
+	width: 38%;
 	height: 100%;
 	color: #fff;
+}
+footer.mui-bar .button-row .first-button {
+	margin-right: 5%;
 }
 footer.mui-bar .button-row .button-block {
 	background: #06495a;

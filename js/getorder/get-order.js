@@ -11,6 +11,20 @@ mui.init({
 	}
 });
 
+mui.plusReady(function(){
+	plus.geolocation.getCurrentPosition(function(pos){
+		
+		/*pos.coords.longitude,pos.coords.latitude*/
+		console.log("   jd:"+pos.coords.longitude+"  wd:"+pos.coords.latitude);
+	
+	
+	}, function(err){
+		console.log(err.code + "  message:" +err.message);
+	},{timeout: 10000})
+})
+
+
+
 var whichitem = "time";
 var whichval = "asc";
 var allpage = {
@@ -37,6 +51,7 @@ function pulldownRefresh() {
 		"sortType": "time",
 		"sortVal": "asc"
 	};
+	
 	getorderdata.sortType = whichitem;
 	getorderdata.sortVal = whichval;
 	if (navigator.geolocation) {
@@ -153,6 +168,7 @@ mui.plusReady(function() {
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			var lot = pos.coords.longitude;
 			var lat = pos.coords.latitude;
+			console.log("jd:"+lot+"   wd:"+lat)
 			getorderdata.curJd = lot;
 			getorderdata.curWd = lat;
 			myAjax({

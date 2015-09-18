@@ -7,6 +7,13 @@
     <script src="../../js/mui.js"></script>
     <link href="../../css/mui.css" rel="stylesheet"/>
     <link rel="stylesheet" href="login_new.css" />
+    <style type="text/css">
+			footer button {
+				padding: 0;
+				border-radius: 0;
+				border: none;
+			}
+		</style>
 </head>
 <body> 
 	<header class="mui-bar mui-bar-nav nav_header">
@@ -58,12 +65,12 @@
 	    	<span id="signup-agree">I agree with the</span> <a href="" class="log_color">service rules</a>
 	    </div>
 	</div> 
-	<div class="tips mui-hidden">登录中...</div>
-	<footer class="mui-bar mui-bar-footer login_bg">
-		<div class="nav_footer" id="submit-button">submit</div>
+	<!--<div class="tips mui-hidden">登录中...</div>-->
+	<footer class="mui-bar mui-bar-footer login_bg mui-text-center">
+		<button class="nav_footer" id="submit-button">submit</button>
 	</footer>
 	<script src="../../js/utils.js"></script>
-		<script type="text/javascript" src="../../js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../js/jquery.min.js" ></script>
 	<script type="text/javascript">
 		 // 注册验证
 		mui.plusReady(function(){
@@ -94,7 +101,6 @@
 								},function(){
 									mui.toast('请检测网络！');
 								})
-							// ajax发送请求验证信息   【xxx】ip地址及端口号				========================    后台交互数据
 					} else {
 						mui.toast("请正确输入您的手机号码")
 					}
@@ -160,11 +166,13 @@
 								return;
 							}
 							if(!check){
-								mui.toast('请同意先关条例');
+								mui.toast('请同意相关条例');
 								flag=false;
 							}
 							// 传送后台数据
 							if (flag) {
+								$("#submit-button").attr("disabled", true)
+								$("#submit-button").html("submit...");
 								var getcode =$('#signup-valcode').val();
 								var data = {
 									type: 1,
@@ -181,22 +189,30 @@
 										if (obj.token) {
 											setstorage('token', obj.token);
 											getacountinfo(); 
-											plus.webview.getLaunchWebview().show('slide-in-left', 200);
+											plus.webview.getLaunchWebview().show('slide-in-left', 300);
 											setTimeout(function(){
-												plus.webview.currentWebview().close();
+												plus.webview.currentWebview().close("none", 0);
 											},500)
 										}
 										if (obj.ret == -1) {
+											$("#submit-button").attr("disabled", false)
+											$("#submit-button").html("submit");
 											mui.toast("账户已经注册")
 											return ;
 										} else if (obj.ret == -2) {
+											$("#submit-button").attr("disabled", false)
+											$("#submit-button").html("submit");
 											mui.toast("验证码不正确")
 											return;
 										}
 									},function(xhr, type, errorThrown) {
+										$("#submit-button").attr("disabled", false)
+										$("#submit-button").html("submit");
 										console.log(type)
 										errorhandle(type)
 									},function(){
+										$("#submit-button").attr("disabled", false)
+										$("#submit-button").html("submit");
 										mui.toast('请检测网络！');
 									})
 				                }

@@ -8,14 +8,18 @@
 		<script src="../../js/mui.js"></script>
 		<link href="../../css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" href="login_new.css" />
-<!--		<link rel="stylesheet" href="../../css/share_main.css" />-->
-		<script type="text/javascript" charset="utf-8">
-			mui.init();
-		</script>
+		<!--<link rel="stylesheet" href="../../css/share_main.css" />-->
+		<style type="text/css">
+			footer button {
+				padding: 0;
+				border-radius: 0;
+				border: none;
+			}
+		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
-			<img src="../../img/left.png" class="muiheader_left_img mui-action-back" alt="" />
+			<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
 			<span>Sigin In</span>
 		</header>
 		<div class="mui-content">  
@@ -47,8 +51,8 @@
 				<span class="mui-pull-right login_loginfo" id="log_up">log Up</span>
 			</div>
 		</div>
-		<footer class="mui-bar mui-bar-footer login_bg">
-			<div class="nav_footer" id="submit-button">Sign In</div>
+		<footer class="mui-bar mui-bar-footer login_bg mui-text-center">
+			<button class="nav_footer" id="submit-button">Sign In</button>
 		</footer>
 		<script src="../../js/utils.js"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
@@ -90,12 +94,13 @@
 					}
 					// 判断输入是否正确
 					if (flag) {
+						$("#submit-button").attr("disabled", true)
+						$("#submit-button").html("Sign In...");
 						var data = {
-								phone: phonenum,
-								pwd: pwd,
-								type: 1
-							}
-							//		  					var obj = getuserbasicinfo();
+							phone: phonenum,
+							pwd: pwd,
+							type: 1
+						}
 						data.mac = plus.device.imei;
 						data.imsi = plus.device.imsi;
 						data.systemName = plus.device.vendor
@@ -117,9 +122,15 @@
 								$('#signup-phone-password').val('');
 							} else if (obj.ret == -1) {
 								mui.toast("手机号或密码错误")
+								$("#submit-button").attr("disabled", false)
+								$("#submit-button").html("Sign In");
 							} else if (obj.ret == -2) {
 								mui.toast("账户已冻结")
+								$("#submit-button").attr("disabled", false)
+								$("#submit-button").html("Sign In");
 							} else if (obj.ret == -3) {
+								$("#submit-button").attr("disabled", false)
+								$("#submit-button").html("Sign In");
 								mui.toast("验证次数太多稍后再试")
 							}
 						}, function(xhr, type, errorThrown) {

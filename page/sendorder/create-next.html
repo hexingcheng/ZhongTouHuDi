@@ -584,6 +584,7 @@
 						if(type == "start"){
 							that.setAttribute("data-time", rs.value)
 							that.innerHTML = rs.value;
+							that.style.color = "#5d5d5d";
 							startdate = parseInt(rs.value.replace(/-/ig, ''));
 							picker.dispose();
 						} else if(type == "end"){
@@ -592,6 +593,7 @@
 								enddate = end;
 								that.setAttribute("data-time", rs.value)
 								that.innerHTML = rs.value;
+								that.style.color = "#5d5d5d";
 							} else {
 								mui.toast("时间选取错误");
 							}
@@ -616,12 +618,12 @@
 							$('#getaddr').attr('data-Jd', mylocation.K)
 							$('#getaddr').attr('data-Wd', mylocation.G)
 							$('#getaddr').attr('data-addr', addr)
-							$('#getaddr').text(addr).css('color', "#000");
+							$('#getaddr').text(addr).css('color', "#5d5d5d");
 						} else {
 							$('#sendaddr').attr('data-Jd', mylocation.K);
 							$('#sendaddr').attr('data-Wd', mylocation.G);
 							$('#sendaddr').attr('data-addr', addr)
-							$('#sendaddr').text(addr).css('color', "#000")
+							$('#sendaddr').text(addr).css('color', "#5d5d5d")
 						}
 					})
 					// 获取草稿信息
@@ -833,12 +835,12 @@
 	      			var wds = this.getAttribute("data-wd");
 					if(type == "send"){
 						$("#getaddr").attr("data-addr", addrs);
-						$("#getaddr").html(addrs);
+						$("#getaddr").html(addrs).css("color", "#5d5d5d");
 						$("#getaddr").attr("data-Jd", jds);
 						$("#getaddr").attr("data-Wd", wds);
 					} else if (type == "reveive"){
 						$("#sendaddr").attr("data-addr", addrs);
-						$("#sendaddr").html(addrs);
+						$("#sendaddr").html(addrs).css("color", "#5d5d5d");
 						$("#sendaddr").attr("data-Jd", jds);
 						$("#sendaddr").attr("data-Wd", wds);
 	      			}

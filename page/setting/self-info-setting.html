@@ -103,8 +103,9 @@
 				}
 
 				document.getElementById('close').addEventListener('tap', function(e) {
-					
 					options.buttons[0].click = function(){
+						$("#close").attr("disabled", true)
+						$("#close").html("logout...");
 						myAjax({
 							url:'auth/out',
 							type:'get'
@@ -118,6 +119,8 @@
 								plus.webview.currentWebview().close("none", 0);
 							}, 330)
 						},function(xhr,type){
+							$("#close").attr("disabled", false)
+							$("#close").html("logout");
 							console.log(xhr.status+":"+type)
 						})
 					}
