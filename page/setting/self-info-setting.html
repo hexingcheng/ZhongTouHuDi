@@ -79,10 +79,6 @@
 		<script src="../../js/utils.js"></script>
 		<script>
 			mui.plusReady(function() {
-				document.getElementById('about-us').addEventListener('tap', function() {
-					openWindow('./about-us.html')
-				})
-
 				// 取消订单弹出框
 				var options = {
 					height : 160,
@@ -131,6 +127,10 @@
 					if(src){
 						openWindow(src);
 					}
+				})
+				//关于众投互递
+				$('#about-us').on('tap',function(){
+					openWindow('about.html')
 				})
 				//查看本机信息
 				function checkMachine(){
