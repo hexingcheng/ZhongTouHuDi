@@ -106,13 +106,14 @@ mui.plusReady(function() {
 		}
 	}
 mui('#picwrap').on('tap','img',function(){
-	toverticalcenter()
 	var index = this.getAttribute('data-index');
 	$('.presee').removeClass('mui-hidden');
 	$('.mui-slider-item', '#slider').filter(function(index) {
 			return $('.mui-slider-item', '#slider').eq(index).find('img').attr('src') == '';
 		}).remove();
+		toverticalcenter()
 		var gallery = mui('#slider');
+		
 		gallery.slider({
 			interval: 0
 		}).gotoItem(index);

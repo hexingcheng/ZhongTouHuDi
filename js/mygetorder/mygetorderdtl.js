@@ -159,13 +159,14 @@ mui.plusReady(function() {
 	})
 
 	mui('#porel').on('tap', 'img', function() {
-		toverticalcenter()
+		
 		$('.presee').removeClass('mui-hidden')
 		$('.mui-slider-item', '#slider').filter(function(index) {
 			return $('.mui-slider-item', '#slider').eq(index).find('img').attr('src') == '';
 		}).remove();
 		var index = this.index;
 		var gallery = mui('#slider');
+		toverticalcenter()
 		gallery.slider({
 			interval: 0
 		}).gotoItem(index);

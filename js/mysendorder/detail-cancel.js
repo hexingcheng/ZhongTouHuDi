@@ -78,12 +78,13 @@ mui.plusReady(function() {
 	
 	// 图片预览
 	mui('#porel').on('tap', 'img', function() {
-		toverticalcenter()
+		
 		$('.presee').removeClass('mui-hidden')
 		$('.mui-slider-item', '#slider').filter(function(index) {
 			return $('.mui-slider-item', '#slider').eq(index).find('img').attr('src') == '';
 		}).remove();
 		var index = this.index;
+		toverticalcenter()
 		var gallery = mui('#slider');
 		gallery.slider({
 			interval: 0
