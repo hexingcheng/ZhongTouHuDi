@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link rel="stylesheet" href="../../css/mui.css" />
+		<!--<link rel="stylesheet" href="../../css/mygetorder/mygetorderdtl.css"/>-->
     	<link rel="stylesheet" href="../../css/share_main.css" />
 		<script src="../../js/mui.min.js"></script>
 		<style type="text/css">
@@ -91,7 +92,84 @@
 body .mui-scroll-wrapper{
 	bottom: 64px;
 }
-
+html,
+body,
+.mask {
+	width: 100%;
+	height: 100%;
+}
+.mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	z-index: 999;
+}
+.dialog,
+.confirm,
+.inputcode,
+.cancelget {
+	background-color: #FFFFFF;
+	position: absolute;
+	height: 145px;
+	width: 270px;
+	top: 50%;
+	left: 50%;
+	margin-top: -73px;
+	margin-left: -135px;
+	overflow: hidden;
+	word-break: break-all;
+}
+.info {
+	color: #000000;
+	padding: 10px 20px;
+}
+.ok,
+.back,
+.cancelinput,
+.cancel-get-ok {
+	float: left;
+	height: 40px;
+	width: 50%;
+	line-height: 40px;
+	background-color: #c4e8da;
+	text-align: center;
+	color: #029c5d;
+}
+.wron {
+	margin-bottom: 43px;
+	padding: 0 20px;
+}
+.cancels,
+.checks,
+.checkr,
+.cancel-get-cancel {
+	float: left;
+	height: 40px;
+	width: 50%;
+	line-height: 40px;
+	background-color: #f6ccc2;
+	text-align: center;
+	color: #da2a02;
+}
+.check,
+.write {
+	color: #FFFFFF;
+	height: 40px;
+	width: 48%;
+	line-height: 40px;
+	text-align: center;
+	float: left;
+	border: 0;
+}
+.check {
+	margin-right: 2%;
+	background-color: pink;
+}
+.write {
+	background-color: green;
+	margin-left: 2%;
+}
     </style>
 	</head>
 
