@@ -133,43 +133,44 @@ function copyobj(from,to){
 	}
 }
 function openWindow(url, param, ani, time) {
-		openwindowloading()
-		var snum, id;
-		var animationType = ani || 'slide-in-right';
-		var animationTime = time || 300;
-		param = param || {};
-		var pnum = url.indexOf('.html');
-		if (url.indexOf('page') != -1) {
-			snum = url.indexOf('e/') + 1;
-		} else {
-			snum = url.indexOf('/');
-		}
-		id = url.substring(snum + 1, pnum)
-		if (window.plus) {
-			mui.openWindow({
-				id: id,
-				url: url,
-				extras: param,
-				show: {
-					autoShow: true,
-					aniShow: animationType,
-					duration: animationTime
-				},
-				waiting: {
-					autoShow: false,
-					title: '正在加载...',
-					options: {
-						background: '#d1d1d1'
+		openwindowloading(function(){
+			var snum, id;
+			var animationType = ani || 'slide-in-right';
+			var animationTime = time || 300;
+			param = param || {};
+			var pnum = url.indexOf('.html');
+			if (url.indexOf('page') != -1) {
+				snum = url.indexOf('e/') + 1;
+			} else {
+				snum = url.indexOf('/');
+			}
+			id = url.substring(snum + 1, pnum)
+			if (window.plus) {
+				mui.openWindow({
+					id: id,
+					url: url,
+					extras: param,
+					show: {
+						autoShow: true,
+						aniShow: animationType,
+						duration: animationTime
+					},
+					waiting: {
+						autoShow: false,
+						title: '正在加载...',
+						options: {
+							background: '#d1d1d1'
+						}
 					}
-				}
-			})
-		} else {
-			alert('system is not ready')
-		}
-		removeloading()
+				})
+			} else {
+				alert('system is not ready')
+			}
+			removeloading()
+		})
 	}
 	// for test
-function openwindowloading(){
+function openwindowloading(callback){
 	var div = document.createElement('div');
 	div.id = 'openwindowloading'
 	var loading = document.createElement('div');
@@ -194,7 +195,10 @@ function openwindowloading(){
 	div.style.right = '0px';
 	div.style.bottom = '0px';
 	div.style.zIndex = 1000;
-	document.getElementsByTagName('body')[0].appendChild(div);
+	img.onload = function(){
+		document.getElementsByTagName('body')[0].appendChild(div);
+		callback();
+	}
 }
 function removeloading(){
 	var loading = document.getElementById('openwindowloading');

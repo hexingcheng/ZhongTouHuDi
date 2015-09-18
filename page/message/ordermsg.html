@@ -177,7 +177,8 @@
 							console.log(role + "   " + orderid + "  " + forward);
 							if(role=='rece'){
 								if(forward==1){
-									openWindow('../mygetorder/mygetorderdtl',{orderId:orderid,type:'rece'})
+									var param = {orderId:orderid,type:'rece'}
+									openWindow('../mygetorder/mygetorderdtl.html',param)
 								}else if(forward==2){
 									openWindow('../mygetorder/my-get-order.html')
 								}
