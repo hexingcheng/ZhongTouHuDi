@@ -93,13 +93,13 @@
 						location: {
 							lat: G,
 							lng: K
-						}, 
+						},
 						radius: 500
 					}, function(results, status) {
 						if (status === google.maps.places.PlacesServiceStatus.OK) {
 							showobj(results[1])
 							var data = {
-								addr: results[1].vicinity+results[1].name
+								addr: results[1].vicinity + results[1].name
 							}
 							getAddr(data);
 						}
@@ -115,9 +115,10 @@
 				geocoder.geocode({
 					'location': latlng
 				}, function(results, status) {
+					getbasicmsg(results);
 					if (status === google.maps.GeocoderStatus.OK) {
 						if (results[0]) {
-							showobj(results[0])
+//							console.log(JSON.stringify(results[1])); 
 							var data = {
 								addr: results[0].formatted_address,
 								location: results[0].geometry.location
@@ -132,6 +133,15 @@
 				});
 			}
 
+			function getbasicmsg(addrobj) {
+				var addr = [];
+				var len = addrobj.length;
+				for (var i = 0; i < len; i++) {
+					addr.push(addrobj[i].formatted_address); 
+				}
+				console.log(addr.join(',,,')) 
+			}
+
 			function getAddr(data) {
 				var addr = plus.webview.getWebviewById('pickaddr');
 				mui.fire(addr, 'getaddr', data);
@@ -141,7 +151,7 @@
 					navigator.geolocation.getCurrentPosition(function(position) {
 						var lat = position.coords.latitude;
 						var lng = position.coords.longitude;
-						initialize(lat, lng)
+						initialize(lat,lng)
 					}, function(e) {
 						mui.toast('获取位置信息失败')
 					}, {
