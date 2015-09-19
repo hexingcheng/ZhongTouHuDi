@@ -6,9 +6,29 @@ mui.plusReady(function() {
 	var datas = {};
 	datas.orderId = c.orderId;
 	datas.type = c.type;
-
+	
+	var pop;	// 弹出框对象
+	var wirtepopup;		// 写入code的弹出框
+	var checkpopup;		// 重发送验证码弹出框对象
+	var popshowed = false;		// 弹出框是否显示
+	
 	var back = mui.back;
 	mui.back = function() {
+		if(popshowed){
+			if(pop){
+				pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
+				popshowed = false;
+			}
+			if(wirtepopup){
+				wirtepopup.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
+				popshowed = false;
+			}
+			if(checkpopup){
+				checkpopup.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
+				popshowed = false;
+			}
+			return;
+		}
 		if (getstorage('getordertodtl') == 'on') {
 			setstorage('getordertodtl', 'off');
 			openWindow('../../page/getorder/get-order.html');
@@ -21,7 +41,25 @@ mui.plusReady(function() {
 			}
 		}
 	}
-
+	// 弹出框的属性
+	var options = {
+		height : 170,
+		title : {
+			height : 40,
+			content : ""
+		},
+		main : {
+			content : ""
+		},
+		buttons : [{
+			name : "OK",
+			click : function(){ return true }
+		},{
+			name : "cancel",
+			click : function(){ return true; }
+		}]
+	}
+	
 	myAjax({
 		url: 'order/goodShow',
 		data: datas,
@@ -32,102 +70,62 @@ mui.plusReady(function() {
 		mui.toast('当前订单状态：' + data.res.status)
 		$('#loading-mask').addClass('mui-hidden')
 		$('#loading-box').addClass('mui-hidden')
-		if (data.res.status == 1 && data.res.bargain == 1) {
+		if (data.res.status == 1 && data.res.bargain == 1) {		// cancel bargin  取消议价
 			$('.cancel').removeClass('mui-hidden')
+			options.title.content = "取消提示";
+			options.main.content = "您确定要取消改单的议价？"
+			options.buttons[0].click = function(){
+				myAjax({
+					url: 'order/bargainCancel',
+					data: {
+						orderId: c.orderId
+					}
+				}, function(data) {
+					if (data.ret == 1) {
+						openWindow('./my-get-order.html');
+						var getorder = plus.webview.getWebviewById('mygetorder/my-get-order');
+						getorder.show('slide-in-left', 200, function() {
+							mui.fire(getorder, 'fresh')
+						})
+						mui.toast('取消议价成功');
+						c.close();
+					} else if (data.ret == 2) {
+						mui.toast('非法操作')
+					}
+				}, function(xhr, type) {
+					console.log(type)
+				})
+			}
 			$('.marktips').removeClass('mui-hidden');
 			$('.addmoney').text(data.res.bargainMoney + ".0");
 		}
-		if (data.res.status == 2) {
+		if (data.res.status == 2) {				// 待付款
 			$('.cancel').text('cancel');
 			$('.cancel').removeClass('mui-hidden');
 			$('.check').addClass('mui-hidden');
 			$('.write').addClass('mui-hidden');
+			options.title.content = "取消提示";
+			options.main.content = "您确定要取消此条订单消息吗？取消订单将要扣除积分"
+			options.buttons[0].click = function(){
+				var param = {};
+				param.orderId = c.orderId;
+				param.status = status;
+				if (plus.webview.getWebviewById('cancel-reason')) {
+					plus.webview.getWebviewById('cancel-reason').close();
+					openWindow('./cancel-reason.html', param);
+				} else {
+					openWindow('./cancel-reason.html', param);
+				}
+			}
 		}
-		if (data.res.status == 3) {
+		if (data.res.status == 3) {			// 未取货
 			$('.cancel').removeClass('mui-hidden');
 			$('.check').addClass('mui-hidden');
 			$('.write').addClass('mui-hidden');
 			$('.cancel').text('order done');
-		}
-		if (data.res.status == 4) {
-			$('.cancel').addClass('mui-hidden');
-			$('.check').removeClass('mui-hidden');
-			$('.write').removeClass('mui-hidden');
-		}
-		if (data.res.status == 5) {
-			$('#foot').html('暂时没有评论')
-		}
-		if (data.res.status == 6) {
-			$('#foot').html('该订单已完成')
-		}
-	}, function(xhr, type) {
-		console.log(type)
-	})
-
-	$('.cancelinput').on('tap', function() {
-		$('.mask').addClass('mui-hidden');
-		$('.inputcode').addClass('mui-hidden');
-	})
-	$('.write').on('tap', function() {
-		$('.mask').removeClass('mui-hidden');
-		$('.inputcode').removeClass('mui-hidden');
-	})
-	$('.checkr').on('tap', function() {
-		var code = parseInt($('#vacode').val());
-		myAjax({
-			url: 'order/confirmCode',
-			data: {
-				orderId: c.orderId,
-				signCode: code
-			}
-		}, function(data) {
-			if (data.ret == 1) {
-				mui.toast('验证成功');
-				$('.mask').addClass('mui-hidden');
-				$('.inputcode').addClass('mui-hidden');
-				$('#foot').html('暂时没有评论')
-			}
-			if (data.ret == 2) {
-				$('.mask').addClass('mui-hidden');
-				$('.inputcode').addClass('mui-hidden');
-			}
-		}, function(xhr, type) {
-			console.log(type)
-		})
-	})
-	$('.cancels').on('tap', function() {
-		$('.mask').addClass('mui-hidden')
-		$('.dialog').addClass('mui-hidden')
-	})
-	$('.cancel').on('tap', function() {
-		if ($(this).text() == 'cancel bargin') {
-			myAjax({
-				url: 'order/bargainCancel',
-				data: {
-					orderId: c.orderId
-				}
-			}, function(data) {
-				alert(data.ret)
-				if (data.ret == 1) {
-					openWindow('./my-get-order.html');
-					var getorder = plus.webview.getWebviewById('mygetorder/my-get-order');
-					getorder.show('slide-in-left', 200, function() {
-						mui.fire(getorder, 'fresh')
-					})
-					mui.toast('取消议价成功');
-					c.close();
-				} else if (data.ret == 2) {
-					mui.toast('非法操作')
-				}
-			}, function(xhr, type) {
-				console.log(type)
-			})
-		} else if ($(this).text() == 'order done') {
-			$('.mask').removeClass('mui-hidden');
-			$('.dialog').removeClass('mui-hidden')
-			$('.ok').on('tap', function() {
-				$('.mask').addClass('mui-hidden');
-				$('.dialog').addClass('mui-hidden');
+			options.title.content = "确定取货提示";
+			options.main.content = "您确定已经取货了吗？"
+			options.buttons[0].click = function(){
 				plus.nativeUI.showWaiting("确认中", {
 					background: '#d1d1d1'
 				})
@@ -144,22 +142,66 @@ mui.plusReady(function() {
 				}, function(xhr, type) {
 					console.log(type)
 				})
-			})
-		} else if ($(this).text() == 'cancel') {
-			var param = {};
-			param.orderId = c.orderId;
-			param.status = status;
-			if (plus.webview.getWebviewById('cancel-reason')) {
-				plus.webview.getWebviewById('cancel-reason').close();
-				openWindow('./cancel-reason.html', param);
-			} else {
-				openWindow('./cancel-reason.html', param);
 			}
 		}
+		if (data.res.status == 4) {			// 已取货
+			$('.cancel').addClass('mui-hidden');
+			$('.check').removeClass('mui-hidden');
+			$('.write').removeClass('mui-hidden');
+		}
+		if (data.res.status == 5) {
+			$('#foot').html('暂时没有评论')
+		}
+		if (data.res.status == 6) {
+			$('#foot').html('该订单已完成')
+		}
+	}, function(xhr, type) {
+		console.log(type)
 	})
 
+	// 点击按钮第一个按钮的时候弹出弹出框
+	$('.cancel').on('tap', function() {
+		pop = new Popup(options);
+		popshowed = true;
+		pop.show();
+	})
+
+	// 验证码输入弹出框
+	$('.write').on('tap', function() {
+		options.height = 200;
+		options.title.content = "please input pick up code";
+		options.main.content = '<p>input your code from receiver</p><div><input type="text" id="vacode" style="margin: 12px 10%;width: 80%; display: inline-block;" /></div>';
+		options.buttons[0].click = function(){
+			console.log($('#vacode').val())
+			var code = parseInt($('#vacode').val());
+			myAjax({
+				url: 'order/confirmCode',
+				data: {
+					orderId: c.orderId,
+					signCode: code
+				}
+			}, function(data) {
+				if (data.ret == 1) {
+					mui.toast('验证成功');
+					$('.mask').addClass('mui-hidden');
+					$('.inputcode').addClass('mui-hidden');
+					$('#foot').html('暂时没有评论')
+				}
+				if (data.ret == 2) {
+					$('.mask').addClass('mui-hidden');
+					$('.inputcode').addClass('mui-hidden');
+				}
+			}, function(xhr, type) {
+				console.log(type)
+			})
+		}
+		wirtepopup = new Popup(options);
+		popshowed = true;
+		wirtepopup.show();
+	})
+	
+	// 图片预览
 	mui('#porel').on('tap', 'img', function() {
-		
 		$('.presee').removeClass('mui-hidden')
 		$('.mui-slider-item', '#slider').filter(function(index) {
 			return $('.mui-slider-item', '#slider').eq(index).find('img').attr('src') == '';
@@ -174,24 +216,34 @@ mui.plusReady(function() {
 	$('.presee').on('tap', function() {
 		$(this).addClass('mui-hidden')
 	})
+	
+	// 发送验证码
 	$('.check').on('tap', function() {
-		plus.nativeUI.showWaiting('发送中', {
-			background: '#d1d1d1'
-		});
-		myAjax({
-			url: 'order/sendCode',
-			data: {
-				orderId: c.orderId
-			}
-		}, function(data) {
-			if (data.ret == 1) {
-				plus.nativeUI.closeWaiting();
-				$('.mask').removeClass('mui-hidden');
-				$('.confirm').removeClass('mui-hidden')
-			}
-		}, function(xhr, type) {
-			console.log(type)
-		})
+		options.height = 160;
+		options.title.content = "提示";
+		options.main.content = "需要重新发送一次验证码吗？"
+		options.buttons[0].click = function(){
+			plus.nativeUI.showWaiting('发送中', {
+				background: '#d1d1d1'
+			});
+			myAjax({
+				url: 'order/sendCode',
+				data: {
+					orderId: c.orderId
+				}
+			}, function(data) {
+				if (data.ret == 1) {
+					plus.nativeUI.closeWaiting();
+					$('.mask').removeClass('mui-hidden');
+					$('.confirm').removeClass('mui-hidden')
+				}
+			}, function(xhr, type) {
+				console.log(type)
+			})
+		}
+		checkpopup = new Popup(options);
+		popshowed = true;
+		checkpopup.show();
 	})
 
 	$('.back').on('tap', function() {
@@ -233,7 +285,6 @@ mui.plusReady(function() {
 		}
 	}
 	function renderdata(data) {
-		showobj(data.res)
 		$(".goods-name").html(data.res.gName); // 货物名称
 		$("#goods-value").html(data.res.money); // 价值
 		$("#goods-weight").html(data.res.gWeight + "kg"); // 重量

@@ -6,171 +6,169 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link rel="stylesheet" href="../../css/mui.css" />
-		<!--<link rel="stylesheet" href="../../css/mygetorder/mygetorderdtl.css"/>-->
-    	<link rel="stylesheet" href="../../css/share_main.css" />
+		<link rel="stylesheet" href="../../css/share_main.css" />
+		<link rel="stylesheet" href="../../css/common/popup.css" />
 		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common/popup.js"></script>
 		<style type="text/css">
-    	.mui-table-view:before {height: 0;}
-		.mui-table-view-cell:after {height: 0;}
-		.mui-table-view-cell{
-			border-bottom: 1px solid #c8c7cc;
-		}
-		.value-color{
-			color: red;
-			font-size: 16px;
-		}  
-		.mui-scroll-wrapper {
-			padding-top: 52px;
-		}
-		.header_left_img{
-			height: 40px;
-			width: 40px;
-			margin: 6px 6px 6px 0;
-		}
-		#porel {
-	/*text-align: center;*/
-	/*line-height: 50px;*/
-	
-	color: #000000
-}
-.picture {
-	display: inline-block;
-	width: 70px;
-	height: 70px;
-	margin: 10px;
-}
-#foot {
-	box-shadow: 0 0 1px #666;
-	line-height: 48px;
-}
-.presee {
-	width: 100%;
-	height: 100%;
-	z-index: 30;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-}
-.presee {
-	position: fixed;
-	background-color: rgba(0, 0, 0, 1);
-}
-.presee .mui-slider {
-	width: 80%;
-	height: 100%;
-	margin: 0 auto;
-	overflow: hidden;
-}
-.presee .mui-slider .mui-slider-item {
-	padding: 0 10px;
-	height: 100%;
-	box-sizing: border-box;
-}
-.presee .mui-slider .mui-slider-item a {
-	height: 100%;
-	position: relative;
-}
-.presee .mui-slider .mui-slider-item a img {
-	position: absolute;
-}
-.picwraps {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-.footer .check{
-	margin-top: 10px;
-}
-.footer .write{
-	margin-top: 10px;
-}
-#foot{
-	text-align: center;
-	line-height: 64px;
-}
-body .mui-scroll-wrapper{
-	bottom: 64px;
-}
-html,
-body,
-.mask {
-	width: 100%;
-	height: 100%;
-}
-.mask {
-	position: absolute;
-	top: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.4);
-	z-index: 999;
-}
-.dialog,
-.confirm,
-.inputcode,
-.cancelget {
-	background-color: #FFFFFF;
-	position: absolute;
-	height: 145px;
-	width: 270px;
-	top: 50%;
-	left: 50%;
-	margin-top: -73px;
-	margin-left: -135px;
-	overflow: hidden;
-	word-break: break-all;
-}
-.info {
-	color: #000000;
-	padding: 10px 20px;
-}
-.ok,
-.back,
-.cancelinput,
-.cancel-get-ok {
-	float: left;
-	height: 40px;
-	width: 50%;
-	line-height: 40px;
-	background-color: #c4e8da;
-	text-align: center;
-	color: #029c5d;
-}
-.wron {
-	margin-bottom: 43px;
-	padding: 0 20px;
-}
-.cancels,
-.checks,
-.checkr,
-.cancel-get-cancel {
-	float: left;
-	height: 40px;
-	width: 50%;
-	line-height: 40px;
-	background-color: #f6ccc2;
-	text-align: center;
-	color: #da2a02;
-}
-.check,
-.write {
-	color: #FFFFFF;
-	height: 40px;
-	width: 48%;
-	line-height: 40px;
-	text-align: center;
-	float: left;
-	border: 0;
-}
-.check {
-	margin-right: 2%;
-	background-color: pink;
-}
-.write {
-	background-color: green;
-	margin-left: 2%;
-}
-    </style>
+			.mui-table-view:before {height: 0;}
+				.mui-table-view-cell:after {height: 0;}
+				.mui-table-view-cell{
+					border-bottom: 1px solid #c8c7cc;
+				}
+				.value-color{
+					color: red;
+					font-size: 16px;
+				}  
+				.mui-scroll-wrapper {
+					padding-top: 52px;
+				}
+				.header_left_img{
+					height: 40px;
+					width: 40px;
+					margin: 6px 6px 6px 0;
+				}
+				#porel {
+					color: #000000
+				}
+				.picture {
+					display: inline-block;
+					width: 70px;
+					height: 70px;
+					margin: 10px;
+				}
+				#foot {
+					box-shadow: 0 0 1px #666;
+					line-height: 48px;
+				}
+				.presee {
+					width: 100%;
+					height: 100%;
+					z-index: 30;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+				}
+				.presee {
+					position: fixed;
+					background-color: rgba(0, 0, 0, 1);
+				}
+				.presee .mui-slider {
+					width: 80%;
+					height: 100%;
+					margin: 0 auto;
+					overflow: hidden;
+				}
+				.presee .mui-slider .mui-slider-item {
+					padding: 0 10px;
+					height: 100%;
+					box-sizing: border-box;
+				}
+				.presee .mui-slider .mui-slider-item a {
+					height: 100%;
+					position: relative;
+				}
+				.presee .mui-slider .mui-slider-item a img {
+					position: absolute;
+				}
+				.picwraps {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+				}
+				.footer .check{
+					margin-top: 10px;
+				}
+				.footer .write{
+					margin-top: 10px;
+				}
+				#foot{
+					text-align: center;
+					line-height: 64px;
+				}
+				body .mui-scroll-wrapper{
+					bottom: 64px;
+				}
+				html,
+				body,
+				.mask {
+					width: 100%;
+					height: 100%;
+				}
+				.mask {
+					position: absolute;
+					top: 0;
+					left: 0;
+					background-color: rgba(0, 0, 0, 0.4);
+					z-index: 999;
+				}
+				.dialog,
+				.confirm,
+				.inputcode,
+				.cancelget {
+					background-color: #FFFFFF;
+					position: absolute;
+					height: 145px;
+					width: 270px;
+					top: 50%;
+					left: 50%;
+					margin-top: -73px;
+					margin-left: -135px;
+					overflow: hidden;
+					word-break: break-all;
+				}
+				.info {
+					color: #000000;
+					padding: 10px 20px;
+				}
+				.ok,
+				.back,
+				.cancelinput,
+				.cancel-get-ok {
+					float: left;
+					height: 40px;
+					width: 50%;
+					line-height: 40px;
+					background-color: #c4e8da;
+					text-align: center;
+					color: #029c5d;
+				}
+				.wron {
+					margin-bottom: 43px;
+					padding: 0 20px;
+				}
+				.cancels,
+				.checks,
+				.checkr,
+				.cancel-get-cancel {
+					float: left;
+					height: 40px;
+					width: 50%;
+					line-height: 40px;
+					background-color: #f6ccc2;
+					text-align: center;
+					color: #da2a02;
+				}
+				.check,
+				.write {
+					color: #FFFFFF;
+					height: 40px;
+					width: 48%;
+					line-height: 40px;
+					text-align: center;
+					float: left;
+					border: 0;
+				}
+				.check {
+					margin-right: 2%;
+					background-color: pink;
+				}
+				.write {
+					background-color: green;
+					margin-left: 2%;
+				}
+		</style>
 	</head>
 
 	<body>
@@ -178,9 +176,9 @@ body,
 			<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
 			<span>Detail</span>
 		</header>
-		<footer  class="mui-bar mui-bar-footer footer" id="foot">
+		<footer class="mui-bar mui-bar-footer footer" id="foot">
 			<button class="cancel nav_footer mui-btn cancle_bg mui-hidden">cancel bargin</button>
-			<button class="check mui-btn mui-hidden" >resend code</button>
+			<button class="check mui-btn mui-hidden">resend code</button>
 			<button class="write mui-btn mui-hidden">write code</button>
 		</footer>
 		<div class="presee mui-hidden">
@@ -211,7 +209,9 @@ body,
 				</div>
 			</div>
 		</div>
-		<div class="mask mui-hidden">
+
+		<!--<div class="mask mui-hidden">
+
 			<div class="dialog mui-hidden">
 				<div class="info">
 					Make order complete?
@@ -220,6 +220,7 @@ body,
 				<div class="ok">ok</div>
 				<div class="cancels">cancel</div>
 			</div>
+
 			<div class="cancelget mui-hidden">
 				<div class="info">
 					cancel this order?
@@ -228,6 +229,7 @@ body,
 				<div class="cancel-get-ok">ok</div>
 				<div class="cancel-get-cancel">cancel</div>
 			</div>
+
 			<div class="confirm mui-hidden">
 				<div class="info">
 					code send success
@@ -235,15 +237,17 @@ body,
 				<div class="back">back</div>
 				<div class="checks">check</div>
 			</div>
+
 			<div class="inputcode mui-hidden">
 				<div class="info">
 					input your code from receiver
 				</div>
-				<input type="text" id="vacode" style="margin: 12px 10%;width: 80%; display: inline-block;"/>
+				<input type="text" id="vacode" style="margin: 12px 10%;width: 80%; display: inline-block;" />
 				<div class="cancelinput">cancel</div>
 				<div class="checkr">check</div>
 			</div>
-		</div>
+		</div>-->
+
 		<div id="loading-mask">
 			<div id="loading-box">
 				<img src="../../img/loading2.gif" alt="loading" class="load" width="100%" height="100%" />
@@ -256,74 +260,74 @@ body,
 						<span class="addmoney">--</span>
 					</div>
 					<ul class="mui-table-view" id="ul">
-					<li class="mui-table-view-cell">
-						<div class="li_left_title"><span>Name</span></div>
-						<div class="li_input_l">
-							<span class="goods-name"></span>
-						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="li_row_contain">
-							<div class="left_li_half">
-								<span class="mui-pull-left">Reward</span>
-								<span class="mui-pull-right">
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>Name</span></div>
+							<div class="li_input_l">
+								<span class="goods-name"></span>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_row_contain">
+								<div class="left_li_half">
+									<span class="mui-pull-left">Reward</span>
+									<span class="mui-pull-right">
 									<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
-								</span>
+									</span>
+								</div>
+								<div class="right_li_half">
+									<span class="mui-pull-left">Weight</span>
+									<span id="goods-weight" class="mui-pull-right"></span>
+								</div>
 							</div>
-							<div class="right_li_half">
-								<span class="mui-pull-left">Weight</span>
-								<span id="goods-weight" class="mui-pull-right"></span>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_row_contain">
+								<div class="left_li_half mui-text-center">
+									<div class="li_title_1"><span>Get Time</span></div>
+									<div class="li_title_2"><span id="get-time">--:--</span></div>
+								</div>
+								<div class="right_li_half mui-text-center">
+									<div class="li_title_1"><span>Deadline</span></div>
+									<div class="li_title_2"><span id="deadline">--:--</span></div>
+								</div>
 							</div>
-						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="li_row_contain">
-							<div class="left_li_half mui-text-center">
-								<div class="li_title_1"><span>Get Time</span></div>
-								<div class="li_title_2"><span id="get-time">--:--</span></div>
-							</div>
-							<div class="right_li_half mui-text-center">
-								<div class="li_title_1"><span>Deadline</span></div>
-								<div class="li_title_2"><span id="deadline">--:--</span></div>
-							</div>
-						</div>
-					</li>
+						</li>
 					</ul>
-				<div class="content_clear"></div>
+					<div class="content_clear"></div>
 
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell">
-						<div class="li_left_title">Sender</div>
-						<div class="li_input_l">
-							<span id="sender"></span>
-							<img src="../../img/pho.png" alt="" class="li_right_img coloryellow" data-p = "" id="tel"/>
-							<img src="../../img/valcode.png" class="li_right_img" id="msg" data-p = ""/>
-						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="li_left_title"><span>From</span></div>
-						<span id="sendaddr" ></span>
-					</li>
-					<li class="mui-table-view-cell desc-after height50">
-						<div class="li_left_title"><span>Receiver</span></div>
-						<span id="receiver"></span>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="li_left_title"><span>TO</span></div>
-						<span id="receiveaddr"></span>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="li_left_title"><span>Value</span></div>
-						<span id="gvalue"></span>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="li_left_title"><span>Desc</span></div>
-						<span id="info"></span>
-					</li>
-					<div id="porel"></div>
-				</ul>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<div class="li_left_title">Sender</div>
+							<div class="li_input_l">
+								<span id="sender"></span>
+								<img src="../../img/pho.png" alt="" class="li_right_img coloryellow" data-p="" id="tel" />
+								<img src="../../img/valcode.png" class="li_right_img" id="msg" data-p="" />
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>From</span></div>
+							<span id="sendaddr"></span>
+						</li>
+						<li class="mui-table-view-cell desc-after height50">
+							<div class="li_left_title"><span>Receiver</span></div>
+							<span id="receiver"></span>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>TO</span></div>
+							<span id="receiveaddr"></span>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>Value</span></div>
+							<span id="gvalue"></span>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>Desc</span></div>
+							<span id="info"></span>
+						</li>
+						<div id="porel"></div>
+					</ul>
+				</div>
 			</div>
-		</div>
 		</div>
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
