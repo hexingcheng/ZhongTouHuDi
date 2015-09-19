@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../css/mysendorder/mysendorder-comment.css"/>
-    <script src="../../js/mui.min.js"></script>
     <link rel="stylesheet" href="../../css/mysendorder/list-of-participants.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/common/popup.css"/>
+    <script src="../../js/mui.min.js"></script>
     <script src="../../js/common/popup.js"></script>
 </head>
 <body style="background: #fff;">
@@ -24,26 +23,27 @@
 		<div id="scroll-wrapper" class="mui-scroll-wrapper">
 			<div class="mui-scroll">
 				<ul id="choose-sender" class="mui-table-view">
+					
 					<!--<li class="mui-table-view-cell">
 						<div class="img-row mui-pull-left">
 							<div class="headimg-box">
-								<img src="../../img/u=2205791892,1328528914&fm=21&gp=0.jpg" width="100%"/>
+								<img src="../../img/defualt.png" width="100%"/>
 							</div>
 						</div>
 						<div class="name-box mui-pull-left mui-text-center">
 							<div class="deliverer-name mui-text-left mui-ellipsis">Justin Bieber</div>
 							<div class="deliverer-honor mui-text-left">
 								<span style="color: #faf713;" class="mui-icon mui-icon-starhalf"></span>
-								<span class="mui-h5">Adminral</span>
+								<span class="mui-h5 mui-ellipsis">Adminral</span>
 							</div>
 						</div>
 						<div class="order-send mui-pull-left mui-text-center">
 							<p>send</p>
-							<div class="send-num">37</div>
+							<div class="send-num mui-ellipsis">37</div>
 						</div>
 						<div class="order-reward mui-pull-left mui-text-center">
 							<p>reward</p>
-							<div class="reward-money">15.0</div>
+							<div class="reward-money mui-ellipsis">15.0</div>
 						</div>
 						<div class="button-box mui-pull-left mui-text-center">
 							<button class="mui-btn-green mui-btn choose-item" type="button">choose</button>
@@ -79,19 +79,19 @@
 					<div class="deliverer-honor mui-text-left">
 						<span style="color: #faf713;" class="mui-icon mui-icon-starhalf"></span>
 						{{if $value.ptitle == ""}}
-							<span class="mui-h5">平民等级</span>
+							<span class="mui-h5 mui-ellipsis">平民等级</span>
 						{{else}}
-							<span class="mui-h5">{{$value.ptitle}}</span>
+							<span class="mui-h5 mui-ellipsis">{{$value.ptitle}}</span>
 						{{/if}}
 					</div>
 				</div>
 				<div class="order-send mui-pull-left mui-text-center">
 					<p>send</p>
-					<div class="send-num">{{$value.deliverCount}}</div>
+					<div class="send-num mui-ellipsis">{{$value.deliverCount}}</div>
 				</div>
 				<div class="order-reward mui-pull-left mui-text-center">
 					<p>reward</p>
-					<div class="reward-money">{{$value.money}}</div>
+					<div class="reward-money mui-ellipsis">{{$value.money}}</div>
 				</div>
 				<div class="button-box mui-pull-left mui-text-center">
 					<button data-uid="{{$value.uid}}" class="mui-btn-green mui-btn choose-item" type="button">choose</button>

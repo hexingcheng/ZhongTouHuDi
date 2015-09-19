@@ -35,6 +35,8 @@ mui.plusReady(function() {
 				plus.webview.getWebviewById("my-send-order)*/
 	var cpage = plus.webview.currentWebview();
 	mui("#choose-sender").on("tap", ".choose-item", function() {
+		var _this = this;
+		_this.setAttribute("disabled", true);
 		var uid = this.getAttribute("data-uid");
 		isreceived(function(data){
 			if(data == 1){
@@ -48,6 +50,10 @@ mui.plusReady(function() {
 					}
 				}
 				options.buttons[1].name = "cancel";
+				options.buttons[1].click = function(){
+					_this.removeAttribute("disabled");
+					_this.setAttribute("disabled", false);
+				}
 				var pop = new Popup(options)
 				pop.show();
 				
@@ -114,7 +120,7 @@ mui.plusReady(function() {
 			uid: id,
 			orderId : order
 		}
-		console.log(JSON.stringify(datas))
+//		console.log(JSON.stringify(datas))
 		myAjax({
 			url: "order/bargainConfirm",
 			data: datas,
