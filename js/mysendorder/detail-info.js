@@ -46,7 +46,7 @@ mui.plusReady(function() {
 	})
 	
 	// 议价中添加选取递送人
-	$("#msg-warn").on("tap", ".link-btn", function() {
+	$("#msg-warn").on("tap", function() {
 		myAjax({
 			url : "order/bargainList",
 			data : {
@@ -56,7 +56,7 @@ mui.plusReady(function() {
 			},
 			wait : false
 		}, function(data){
-			console.log(JSON.stringify(data))
+//			console.log(JSON.stringify(data))
 			if(data.ret == 1){
 				openWindow("./list-of-participants.html");
 			} else if(data.ret == 2){

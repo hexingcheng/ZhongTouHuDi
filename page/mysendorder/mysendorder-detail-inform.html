@@ -28,6 +28,8 @@
 			width: 40px;
 			margin: 6px 6px 6px 0;
 		}
+		#msg-warn {background: #ddd;color: #00A04F;padding-left: 5px;display: none;}
+		#msg-warn .laba-box {width: 50px;height: 50px;line-height: 50px;}
     </style>
 </head>
 <body >
@@ -70,6 +72,10 @@
 		<div id="scroll-wrapper" class="mui-scroll-wrapper">
 			<div class="mui-scroll">
 				<ul class="mui-table-view">
+					<li id="msg-warn" class="mui-table-view-cell">
+						<span class="laba-box mui-pull-left"><img src="../../img/laba.png" width="100%"/></span>
+						<span class="warn-word">There is an new advice you have not read!</span>
+					</li>
 					<li class="mui-table-view-cell">
 						<div class="li_left_title"><span>Name</span></div>
 						<div class="li_input_l">
