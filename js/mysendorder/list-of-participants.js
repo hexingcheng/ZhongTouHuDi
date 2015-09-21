@@ -31,8 +31,7 @@ mui.plusReady(function() {
 	
 
 	// 添加选择该递送人
-	var send = plus.webview.getWebviewById("mysendorder/my-send-order")/* || 
-				plus.webview.getWebviewById("my-send-order)*/
+	var send = plus.webview.getWebviewById("mysendorder/my-send-order")
 	var cpage = plus.webview.currentWebview();
 	mui("#choose-sender").on("tap", ".choose-item", function() {
 		var _this = this;

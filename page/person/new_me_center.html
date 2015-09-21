@@ -7,6 +7,8 @@
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
+		<link rel="stylesheet" href="../../css/common/popup.css"/>
+		<script src="../../js/common/popup.js"></script>
 		<style>
 		html,body{
 			height: 100%;
@@ -118,15 +120,15 @@
 		
 		}
 		.center_pop input{
-				width: 100%;
-				height: 40px;
-				border:0;
-				font-size: 14px;
-				line-height: 14px;
-				margin-bottom:.5em;
-				padding-bottom: 0;
-				border-radius: 0;
-				border-bottom: 2px solid #3FA86A;
+			width: 100%;
+			height: 40px;
+			border:0;
+			font-size: 14px;
+			line-height: 14px;
+			margin-bottom:.5em;
+			padding-bottom: 0;
+			border-radius: 0;
+			border-bottom: 2px solid #3FA86A;
 		}
 		.gitpic{
 			height: 80px;
@@ -136,6 +138,12 @@
 			border-radius: 50%;
 			overflow: hidden;
 			text-align: center;
+		}
+		.input_div input {
+			border: none;
+			border-bottom: 1px solid #ccc;
+			border-radius: 0;
+			margin-top: 5px;
 		}
 		</style>
 	</head> 
@@ -148,12 +156,12 @@
 			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" />
 		</header>
 		<!-- 加载中的蒙层 -->
-		<!--<div id="loading-mask"></div>
+		<div id="loading-mask"></div>
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
-		</div>-->
+		</div>
 		<!--蒙版-->  
-		<div id="center_popover" class="mui-hidden mak"></div>
+		
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -268,13 +276,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="center_pop">
-			<span id="nav_title"><b>Please input your password</b> </span>
-			<div class="input_div">
-				<input type="password" placeholder="请输入密码" id="pop_password" maxlength="20" />
-			</div>
-			<span id="pop_submit" class="mui-pull-right"><strong>确定</strong></span>
-		</div>
+		
 		<div class="nation_select " id='nation_select_'>
 			 <ul class="mui-table-view">
 			 	<li class="mui-table-view-cell">中国</li>
@@ -330,7 +332,9 @@
 				var d_status='';
 					plus.webview.currentWebview().setStyle({scrollIndicator: 'none'});
 					//调用蒙版
-					mui('.mui-scroll-wrapper').scroll();
+					mui('.mui-scroll-wrapper').scroll({
+						bounce : false
+					});
 					
 					myAjax({
 							url: 'account/info',
@@ -467,8 +471,6 @@
 						data: data
 					}, function(obj) {
 						if (obj.ret == 1) {
-							$('#center_popover').addClass('mui-hidden');
-							$('.center_pop').css('display', 'none');
 							$('.edit_show').css('display', 'none');
 							$('#password').val(pwd);
 							$('#pop_password').val('');
@@ -537,35 +539,56 @@
 					mui.toast(xhr.status);
 				})
 			}
+			
+			// 弹出框属性
+			var options = {
+				height : 180,
+				title : {
+					height : 40,
+					content : ""
+				},
+				main : {
+					content : ""
+				},
+				buttons : [{
+					name : "确定",
+					click : function(){ return true }
+				},{
+					name : "取消",
+					click : function(){ return true; }
+				}]
+			}
+			// 修改密码弹出框
 			$('.center_edit').on('tap', function() {
 				$(this).css('display', 'none');
 				$('.center_save').css('display', 'block');
-				$('#center_popover').removeClass('mui-hidden')
-				$('.center_pop').css('display', 'block');
+				options.title.content = "更改提示";
+				options.main.content = '<span id="nav_title"><b>Please input your password</b>'+
+											'</span><div class="input_div">'+
+											'<input type="password" placeholder="请输入密码" id="pop_password" maxlength="20" />'+
+										'</div>';
+				options.buttons[0].click = function(){
+					update();
+				}
+				options.buttons[1].click = function(){
+					$('.center_edit').css('display', 'block');
+					$('.center_save').css('display', 'none');
+					$('#nation_select_').css('display','none');
+				}
+				var pop = new Popup(options);
+				pop.show();
 			})
-			 $('.center_save').on('tap', function() {
-					save(); //保存
-				})  
-			 $('#center_popover').on('tap', function() {
-				$(this).addClass('mui-hidden')
-				$('.center_pop').css('display', 'none');
-				$('.center_edit').css('display', 'block');
-				$('.center_save').css('display', 'none');
-				$('#nation_select_').css('display','none');
-				
-			})
-			 $('#pop_submit').on('tap', function() {
-				update();
-			})
+			// 保存
+			$('.center_save').on('tap', function() {
+				save(); //保存
+			})  
 			 //选择国籍
 			 $('.mui-table-view-cell').on('tap','.nation_',function(){
-			 	$('#center_popover').removeClass('mui-hidden');
 			 	$('#nation_select_').css('display','block');
 			 })
 			 $('.nation_select ul li').on('tap',function(){ 
 			 	var nation_name=$(this).text();
 			 	$('#nation').text(nation_name);
-			 	$('#center_popover').addClass('mui-hidden');
 			 	$('#nation_select_').css('display','none');
 			 })
 			 //查看申请递送人信息    
