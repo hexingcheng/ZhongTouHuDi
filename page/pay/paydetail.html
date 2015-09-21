@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <style>
+	    body,html{
+	    	padding: 0;
+	    	margin: 0;
+	    }
+    	.content{
+    		background-color: #f7f7f7;
+    		padding: 10px;
+    	}
+    	.orderdetail,.orderpay{
+    		background-color: #FFFFFF;
+    	}
+    	.orderdetail{
+    		height: 80px;
+    		border-bottom-right-radius: 10px;
+    		border-bottom-left-radius: 10px;
+    	}
+    	.orderpay{
+    		border-top: 1px dashed #AAAAAA;
+    		border-top-left-radius: 10px;
+    		border-top-right-radius: 10px;
+    		padding-left: 10px;
+    		padding-right: 10px;
+    	}
+    	.paymenttext,.numbertext,.nametext,.datetext,.detailtext,.styletext{
+    		padding-left: 30px;
+    		height: 40px;
+    		line-height: 40px;
+    		font-size: 14px;
+    		color: #aaaaaa;
+    		width: 100px;
+    		float: left;
+    	}
+    	.paymentvalue,.numbervalue,.namevalue,.datevalue,.detailvalue,.stylevalue{
+    		overflow: hidden;
+    		height: 40px;
+    		line-height: 40px;
+    		padding-right: 30px;
+    		text-align: right;
+    		color: #fe703f;
+    		text-overflow: ellipsis;
+    		font-size: 14px;
+    	}
+    	.paymentacc,.ordernumber,.payname,.paydate,.paydetail,.paystyle{
+    		overflow: hidden;
+    	}
+    	.nametext,.datetext,.detailtext,.styletext{
+    		padding-left: 20px;
+    	}
+    	.numbervalue,.namevalue,.datevalue,.detailvalue,.stylevalue{
+    		padding-right: 20px;
+    		color: #5f5d5d;
+    		font-size: 14px;
+    	}
+    	.payname,.paydate,.paydetail{
+    		border-bottom: 1px solid #f2f2f2;
+    	}
+    	.footer{
+    		box-sizing: border-box;
+    		padding: 10px 20px;
+    		position: absolute;
+    		bottom: 0;
+    		width: 100%;
+    		height: 60px;
+    	}
+    	.sure{
+    		border: 0;
+    		background-color: #06495A;
+    		color: #FFFFFF;
+    		width: 100%;
+    		height: 100%;
+    		font-size: 14px;
+    	}
+    </style>
+</head>
+<body>
+	<div class="content">
+		<div class="orderdetail">
+			<div class="paymentacc">
+				<div class="paymenttext">Payment account</div>
+				<div class="paymentvalue">$<span>20</span></div><!--//物品价格-->
+			</div>
+			<div class="ordernumber">
+				<div class="numbertext">Order number</div>
+				<div class="numbervalue">A33DC8ACFBA1449DB906F0AA4324AD39</div><!--订单号-->		
+			</div>
+		</div>
+		<div class="orderpay">
+			<div class="payname">
+				<div class="nametext">Name</div>
+				<div class="namevalue">
+					paypal
+				</div><!--//支付方式-->
+			</div>
+			<div class="paydate">
+				<div class="datetext">Date</div>
+				<div class="datevalue">111</div><!--//支付日期-->
+			</div>
+			<div class="paydetail">
+				<div class="detailtext">Pay detail</div>
+				<div class="detailvalue"></div><!--支付明细-->
+			</div>
+			<div class="paystyle">
+				<div class="styletext">Pay style</div>
+				<div class="stylevalue"></div><!--支付方式-->
+			</div>
+		</div>
+	</div>
+	<div class="footer" id="footer">
+		<button class="sure">sure</button>
+	</div>
+	<script>
+		var footer = document.getElementById('footer');
+		var btn = footer.getElementsByTagName('button')[0];
+		btn.addEventListener('tap',function(){
+			this.innerHTML = 'submit...';
+			this.checked;
+		})
+	</script>
+</body>
+</html>

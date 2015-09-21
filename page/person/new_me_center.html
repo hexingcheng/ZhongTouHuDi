@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -8,137 +9,137 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
 		<style>
-		html,body{
-			height: 100%;
-			width: 100%;
-		}
-		.mui-bar-nav~.mui-content{
-			padding-top: 52px;
-		}
-		.center_headpic{
-			width: 80px;
-			height:80px;
-			position: absolute;
-			bottom:0;
-			left: 50%;
-			z-index: 100;
-			border-radius: 50%;
-			margin-left: -40px;
-			margin-bottom: -20px;
-		}
-		.center_headpic .heade_pic{
-			height: 100%;
-			width: 100%;
-			overflow: hidden;
-			border-radius: 50%;
-			display: inline-block;
-		}
-		.center_bg{
-			width: 100%;
-			height:230px;
-			position: relative;
-			background: url(../../img/details_3.jpeg) no-repeat;
-			background-size: 100% 100%;
-			margin-top: 52px;
-		}
-		
-		.center_headpic .header_camara{
-			width: 36px;
-			height: 36px;
-			border-radius: 18px;
-			position: absolute;
-			background-color: #fff;
-			bottom: 5px;
-			right: 0;
-		}
-		.center_bg_edit{
-			width: 34px;
-			height: 34px;
-			position: absolute;
-			bottom: 0;
-			right: 0;
-		}
-		.header_camara img{
-			max-width: 100%;
-			height: auto;
-		}
-		.nation_select{
-			width: 70%;
-			height: 80%;
-			z-index: 999;
-			overflow-y: scroll;
-			top: 10%;
-			left: 50%;
-			margin-left: -35%;
-			position: absolute;
-			background-color: #FFF;
-			display: none;
-		} 
-		.select_sex{
-			width: 100%;
-			height: 50px;
-			overflow: hidden;
-		}
-	    .mui-table-view-cell .select_sex input{
-	    	height: auto; 
-			font-size: 14px; 
-			width: 14px;
-		} 
-		.li_input_s img{
-			width: 34px;
-			height: 34px;
-			margin: 8px;
-		}
-		.edit_hide{
-			display: none;
-		}
-		.mak{
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			z-index: 500;
-			background-color: rgba(0,0,0,.4);
-		}
-		/**弹出框*/
-		.center_pop{
-			z-index: 502;
-			width:70%;
-			line-height: 2em;
-			overflow: hidden;
-			position: fixed;
-			display: none;
-			padding: .8em;
-			background-color: #fff;
-			top: 50%;
-			margin-top: -10%;
-			left: 50%;
-			margin-left: -35%;    
-		
-		}
-		.center_pop input{
+			html,body{
+				height: 100%;
 				width: 100%;
-				height: 40px;
-				border:0;
-				font-size: 14px;
-				line-height: 14px;
-				margin-bottom:.5em;
-				padding-bottom: 0;
-				border-radius: 0;
-				border-bottom: 2px solid #3FA86A;
-		}
-		.gitpic{
-			height: 80px;
-			width: 80px;
-			display: inline-block;
-			border: 2px solid #fff;
-			border-radius: 50%;
-			overflow: hidden;
-			text-align: center;
-		}
+			}
+			.mui-bar-nav~.mui-content{
+				padding-top: 52px;
+			}
+			.center_headpic{
+				width: 80px;
+				height:80px;
+				position: absolute;
+				bottom:0;
+				left: 50%;
+				z-index: 100;
+				border-radius: 50%;
+				margin-left: -40px;
+				margin-bottom: -20px;
+			}
+			.center_headpic .heade_pic{
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+				border-radius: 50%;
+				display: inline-block;
+			}
+			.center_bg{
+				width: 100%;
+				height:230px;
+				position: relative;
+				background: url(../../img/details_3.jpeg) no-repeat;
+				background-size: 100% 100%;
+				margin-top: 52px;
+			}
+			
+			.center_headpic .header_camara{
+				width: 36px;
+				height: 36px;
+				border-radius: 18px;
+				position: absolute;
+				background-color: #fff;
+				bottom: 5px;
+				right: 0;
+			}
+			.center_bg_edit{
+				width: 34px;
+				height: 34px;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
+			.header_camara img{
+				max-width: 100%;
+				height: auto;
+			}
+			.nation_select{
+				width: 70%;
+				height: 80%;
+				z-index: 999;
+				overflow-y: scroll;
+				top: 10%;
+				left: 50%;
+				margin-left: -35%;
+				position: absolute;
+				background-color: #FFF;
+				display: none;
+			} 
+			.select_sex{
+				width: 100%;
+				height: 50px;
+				overflow: hidden;
+			}
+		    .mui-table-view-cell .select_sex input{
+		    	height: auto; 
+				font-size: 14px; 
+				width: 14px;
+			} 
+			.li_input_s img{
+				width: 34px;
+				height: 34px;
+				margin: 8px;
+			}
+			.edit_hide{
+				display: none;
+			}
+			.mak{
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				z-index: 500;
+				background-color: rgba(0,0,0,.4);
+			}
+			/**弹出框*/
+			.center_pop{
+				z-index: 502;
+				width:70%;
+				line-height: 2em;
+				overflow: hidden;
+				position: fixed;
+				display: none;
+				padding: .8em;
+				background-color: #fff;
+				top: 50%;
+				margin-top: -10%;
+				left: 50%;
+				margin-left: -35%;    
+			
+			}
+			.center_pop input{
+					width: 100%;
+					height: 40px;
+					border:0;
+					font-size: 14px;
+					line-height: 14px;
+					margin-bottom:.5em;
+					padding-bottom: 0;
+					border-radius: 0;
+					border-bottom: 2px solid #3FA86A;
+			}
+			.gitpic{
+				height: 80px;
+				width: 80px;
+				display: inline-block;
+				border: 2px solid #fff;
+				border-radius: 50%;
+				overflow: hidden;
+				text-align: center;
+			}
 		</style>
-	</head> 
+	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
@@ -152,31 +153,31 @@
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 		</div>-->
-		<!--蒙版-->  
+		<!--蒙版-->
 		<div id="center_popover" class="mui-hidden mak"></div>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<div class="center_bg">
 						<div class="center_headpic">
-							<a href="#gitpic"class="gitpic">
-								<img src="../../img/defualt.png" class="heade_pic"  id="headpic" />
+							<a href="#gitpic" class="gitpic">
+								<img src="../../img/defualt.png" class="heade_pic" id="headpic" />
 								<div class="header_camara ">
 									<img src="../../img/camera.png" />
 								</div>
-							</a> 
+							</a>
 						</div>
-							<img src="../../img/edit3.png" class="center_bg_edit" />
+						<img src="../../img/edit3.png" class="center_bg_edit" />
 					</div>
-					<div class="content_clear">   
-						<!--中间间隙--> 
-					</div>  
+					<div class="content_clear">
+						<!--中间间隙-->
+					</div>
 					<ul class="mui-table-view">
 						<li class="mui-table-view-cell">
 							<div class="li_left_title">
 								<span>family name</span>
 							</div>
-								<img src="../../img/edit.png" alt="" class="li_right_img edit_hide " name="one" />
+							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide " name="one" />
 							<div class="li_input_s ">
 								<input type="text" id="familyName" disabled="disabled" class="edit_input one " />
 							</div>
@@ -188,7 +189,7 @@
 							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide " name="two" />
 							<div class="li_input_s">
 								<input type="text" id="firstName" disabled="disabled" class=" edit_input two " />
-						  	</div>   
+							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<div class="li_left_title">
@@ -196,18 +197,20 @@
 							</div>
 							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide" name="two" />
 							<div class="li_input_s">
-								<span class="edit_show male sex"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt=""/></span>
+								<span class="edit_show male sex"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" /></span>
 								<span class="edit_show female sex mui-hidden "><span class="mui-pull-left">female</span><img src="../../img/female2.png" alt="" class="mui-hidden" /></span>
-								<div class="select_sex edit_hide" >
+								<div class="select_sex edit_hide">
 									<lable>male </lable>
-									<input type="radio" name="sex" checked="checked" value="man"  id="person_sex" />
-									<lable>female </lable> 	
-									<input type="radio" name="sex" />	
-							    </div>
+									<input type="radio" name="sex" checked="checked" value="man" id="person_sex" />
+									<lable>female </lable>
+									<input type="radio" name="sex" />
+								</div>
 							</div>
 						</li>
 					</ul>
-					<div class="content_clear"><!--中间间隙--></div>
+					<div class="content_clear">
+						<!--中间间隙-->
+					</div>
 					<ul class="mui-table-view">
 						<li class="mui-table-view-cell">
 							<div class="li_left_title">
@@ -215,7 +218,7 @@
 							</div>
 							<div class="li_input_l">
 								<input type="number" disabled="disabled" id="phone" />
-						    </div>
+							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<div class="li_left_title">
@@ -227,7 +230,9 @@
 							</div>
 						</li>
 					</ul>
-					<div class="content_clear"><!--中间间隙--></div>
+					<div class="content_clear">
+						<!--中间间隙-->
+					</div>
 					<ul class="mui-table-view">
 						<li class="mui-table-view-cell">
 							<div class="li_left_title"><span>E-mail</span></div>
@@ -241,30 +246,34 @@
 							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide" name="five" />
 							<div class="li_input_l" id="nation_">
 								<span id="nation"></span>
-						    </div>
-						</li>  
+							</div>
+						</li>
 					</ul>
-					<div class="content_clear"><!--中间间隙--></div>
-   					<ul class="mui-table-view">
-   						<li class="mui-table-view-cell">
-   							<div class="li_left_title"><span>credibility</span></div>
-   							<div class="li_input_l">
+					<div class="content_clear">
+						<!--中间间隙-->
+					</div>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>credibility</span></div>
+							<div class="li_input_l">
 								<img src="../../img/jiangbei.png" class="li_left_img" alt="" />
 								<span id="ptitle"></span>
 							</div>
-   						</li>
-   						<li class="mui-table-view-cell" id="open_apply">    
-   							<div class="li_left_title"><span>deliver</span></div> 
-   							<img src="../../img/enter.png" class="li_right_img" alt="" />
-   						</li>
-   					</ul>
-   					<div class="content_clear"><!--中间间隙--></div>
-   					<ul class="mui-table-view" >
-   						<li class="mui-table-view-cell" id="wallet_pwd">
-   							<div class="li_left_title"><span>payword</span></div> 
-   							<img src="../../img/enter.png" class="li_right_img" alt="" />
-   						</li>
-   					</ul>
+						</li>
+						<li class="mui-table-view-cell" id="open_apply">
+							<div class="li_left_title"><span>deliver</span></div>
+							<img src="../../img/enter.png" class="li_right_img" alt="" />
+						</li>
+					</ul>
+					<div class="content_clear">
+						<!--中间间隙-->
+					</div>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell" id="wallet_pwd">
+							<div class="li_left_title"><span>payword</span></div>
+							<img src="../../img/enter.png" class="li_right_img" alt="" />
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -276,35 +285,35 @@
 			<span id="pop_submit" class="mui-pull-right"><strong>确定</strong></span>
 		</div>
 		<div class="nation_select " id='nation_select_'>
-			 <ul class="mui-table-view">
-			 	<li class="mui-table-view-cell">中国</li>
-			 	<li class="mui-table-view-cell">美国</li>
-			 	<li class="mui-table-view-cell">日本</li>
-			 	<li class="mui-table-view-cell">韩国</li>
-			 	<li class="mui-table-view-cell">朝鲜</li>
-			 	<li class="mui-table-view-cell">德国</li>
-			 	<li class="mui-table-view-cell">英国</li>
-			 	<li class="mui-table-view-cell">法国</li>
-			 	<li class="mui-table-view-cell">瑞士</li>
-			 	<li class="mui-table-view-cell">美国</li>
-			 	<li class="mui-table-view-cell">加拿大</li>
-			 	<li class="mui-table-view-cell">意大利</li>
-			 	<li class="mui-table-view-cell">柬埔寨</li>
-			 	<li class="mui-table-view-cell">老挝</li>
-			 	<li class="mui-table-view-cell">泰国</li>
-			 	<li class="mui-table-view-cell">俄罗斯</li>
-			 	<li class="mui-table-view-cell">澳大利亚</li>
-			 	<li class="mui-table-view-cell">巴基斯坦</li>
-			 	<li class="mui-table-view-cell">以色列</li>
-			 	<li class="mui-table-view-cell">缅甸</li>
-			 	<li class="mui-table-view-cell">蒙古</li>
-			 	<li class="mui-table-view-cell">牙买加</li>
-			 	<li class="mui-table-view-cell">印度</li>
-			 	<li class="mui-table-view-cell">非洲</li>
-			 	<li class="mui-table-view-cell">匈牙利</li>
-			 	<li class="mui-table-view-cell">奥地利</li>
-			 	<li class="mui-table-view-cell">瑞士</li>
-			 </ul>  
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">中国</li>
+				<li class="mui-table-view-cell">美国</li>
+				<li class="mui-table-view-cell">日本</li>
+				<li class="mui-table-view-cell">韩国</li>
+				<li class="mui-table-view-cell">朝鲜</li>
+				<li class="mui-table-view-cell">德国</li>
+				<li class="mui-table-view-cell">英国</li>
+				<li class="mui-table-view-cell">法国</li>
+				<li class="mui-table-view-cell">瑞士</li>
+				<li class="mui-table-view-cell">美国</li>
+				<li class="mui-table-view-cell">加拿大</li>
+				<li class="mui-table-view-cell">意大利</li>
+				<li class="mui-table-view-cell">柬埔寨</li>
+				<li class="mui-table-view-cell">老挝</li>
+				<li class="mui-table-view-cell">泰国</li>
+				<li class="mui-table-view-cell">俄罗斯</li>
+				<li class="mui-table-view-cell">澳大利亚</li>
+				<li class="mui-table-view-cell">巴基斯坦</li>
+				<li class="mui-table-view-cell">以色列</li>
+				<li class="mui-table-view-cell">缅甸</li>
+				<li class="mui-table-view-cell">蒙古</li>
+				<li class="mui-table-view-cell">牙买加</li>
+				<li class="mui-table-view-cell">印度</li>
+				<li class="mui-table-view-cell">非洲</li>
+				<li class="mui-table-view-cell">匈牙利</li>
+				<li class="mui-table-view-cell">奥地利</li>
+				<li class="mui-table-view-cell">瑞士</li>
+			</ul>
 		</div>
 		<div id="gitpic" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
@@ -317,7 +326,8 @@
 			</ul>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a href="#gitpic" id="trigger"><b>取消</b></a> <a href="../applyfor/apply_info.html"></a>
+					<a href="#gitpic" id="trigger"><b>取消</b></a>
+					<a href="../applyfor/apply_info.html"></a>
 				</li>
 			</ul>
 		</div>
@@ -552,7 +562,6 @@
 				$('.center_edit').css('display', 'block');
 				$('.center_save').css('display', 'none');
 				$('#nation_select_').css('display','none');
-				
 			})
 			 $('#pop_submit').on('tap', function() {
 				update();

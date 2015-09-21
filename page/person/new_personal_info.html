@@ -183,6 +183,60 @@
 			margin-top: 1em;
 			font-size: 16px;
 		}
+		.comment-wrap {
+			overflow: hidden;
+		}
+		.comment-pic {
+			float: left;
+			width: 80px;
+			height: 80px;
+		}
+		.comment-pic img {
+			height: 50px;
+			width: 50px;
+			margin: 15px;
+			border-radius: 50%;
+		}
+		.comment-ctt {
+			padding-top: 20px;
+			font-size: 14px;
+			overflow: hidden;
+			position: relative;
+		}
+		.comment-ptitle-time {
+			position: absolute;
+			right: 0;
+			top: 0;
+			padding-top: 15px;
+			width: 120px;
+		}
+		.comment-info {
+			font-size: 13px;
+			color: #D1D1D1;
+		}
+		.comment-class {
+			padding-left: 40px;
+			float: left;
+			width: 40px;
+			height: 40px;
+		}
+		.comment-class img {
+			height: 40px;
+			width: 40px;
+		}
+		.comment-title {
+			font-size: 14px;
+			text-align: right;
+			padding-top: 10px;
+			padding-right: 15px;
+			overflow: hidden;
+		}
+		.comment-time {
+			font-size: 12px;
+			text-align: left;
+			padding: 0;
+			margin: 0;
+		}
 	</style>
 
 	<body>
@@ -205,37 +259,31 @@
 					<span class="person_t">name</span>
 					<img src="../../img/1096072.png" alt="" />
 					<div class="input_con">
-						<input type="text" />
+						<input type="text" id="name" />
 					</div>
 				</div>
 				<div class="person_input">
 					<span class="person_t">phone</span>
 					<div class="input_con">
-						<input type="text" />
+						<input type="text" id="phone" />
 					</div>
 				</div>
 				<div class="person_input">
 					<span class="person_t">E-mail</span>
 					<div class="input_con">
-						<input type="text" />
+						<input type="text" id='email' />
 					</div>
 				</div>
 				<div class="person_input input_shadow">
 					<span class="person_t">credibility</span>
 					<img src="../../img/jiangbei.png" alt="" class="person_p" />
-					<span class="person_ptitle"></span>
-				</div>
-				<div class="comment ">
-					<span>comment</span>
-				</div>
-				<div>
-					<div class="mui-scroll-wrapper">
-						<div class="mui-scroll" id="info_templates">
-
-						</div>
-					</div>
+					<span class="person_ptitle" id="ptitle"></span>
 				</div>
 			</div>
+			<div class="comment ">
+				<span>comment</span>
+			</div>
+			<div id="info_templates"></div>
 		</div>
 		<script src="../../js/template.js"></script>
 		<script src="../../js/jquery.min.js"></script>
@@ -243,20 +291,26 @@
 		<div class="person_info" id="info_template">
 			<script id="info" type="text/html">
 				{{each result}}
-				<div class="personnal_info">
-					<div class="personnal_headpic">
-						<img src=imgurl+{{$value.headPic}} alt="" />
+				<div class="comment-wrap">
+				<div class="comment-pic">
+					<img src="../../img/defualt.png" class="headpic" data-pic = "{{$value.headPic}}"/>
+				</div>
+				<div class="comment-ctt">
+					<div class="comment-name-info">
+						<div class="comment-name">{{$value.name}}</div>
+						<div class="comment-info">{{$value.info}}</div>
 					</div>
-					<div class="personal_ptitle">
-						<span class="ptitle">{{$value.score}}</span>
-						<img src="../../img/jiangbei.png" alt="" />
-						<p><span class="person_time">{{$value.time}}</span></p>
-					</div>
-					<div class="personal_title">
-						<span class="person_name">{{$value.name}}r</span>
-						<p><span class="evaluate" style="line-height: .5em;">{{$value.info}}</span></p>
+					<div class="comment-ptitle-time">
+						<div class="comment-ptitle">
+							<div class="comment-class">
+								<img src="../../img/gift.png" />
+							</div>
+							<div class="comment-title">{{$value.score}}</div>
+						</div>
+						<div class="comment-time">{{$value.time}}</div>
 					</div>
 				</div>
+			</div>
 				{{/each}}
 			</script>
 		</div>
@@ -269,18 +323,58 @@
 					page: 1,
 					pageSize: 10
 				}
+				getaccount();
+
+				function getaccount() {
+					myAjax({
+						url: 'account/info',
+						data: {
+							uid: id
+						}
+					}, function(data) {
+						console.log(JSON.stringify(data))
+						if (data.ret == 1) {
+							var picurl = BASEIMGURL + data.res.headPic;
+							var name = data.res.firstName + " " + data.res.familyName;
+							var email = data.res.email;
+							var credi = data.res.ptitle;
+							var phone = data.res.phone;
+							if (name) {
+								$('#name').val(name);
+							}
+							if (phone) {
+								$('#phone').val(phone);
+							}
+							if (email) {
+								$('#email').val(email);
+							}
+							if (credi) {
+								$('#ptitle').text(credi);
+							}
+							if (data.res.headPic) {
+								$('.person_headpic').css('background', 'url(' + picurl + ') no-repeat')
+							}
+						}
+					})
+				}
 				myAjax({
 					url: 'account/evaluateList',
 					data: data
 				}, function(obj) {
 					console.log(JSON.stringify(obj))
 					var n = BASEURL.indexOf('/a');
-					var imgurl = BASEURL.substring(0, n);
-					var data = obj.res;
+					var data = {
+						"result":obj.res
+					};
 					html = template('info', data);
 					document.getElementById('info_templates').innerHTML = html;
+//					var head = BASEIMGURL+$('.headpic').attr('data-pic');
+					for(var i = 0;i<$('.headpic').length;i++){
+						var head = BASEIMGURL+$('.headpic').eq(i).attr('data-pic');
+						$('.headpic').eq(i).attr('src',head);
+					}
 				}, function(xhr, type) {
-					mui.toast(xhr.status + ":" + type)
+					mui.toast(xhr.status + ":" + type);
 				})
 			})
 		</script>

@@ -118,7 +118,7 @@
 					getbasicmsg(results);
 					if (status === google.maps.GeocoderStatus.OK) {
 						if (results[0]) {
-//							console.log(JSON.stringify(results[1])); 
+							console.log(JSON.stringify(results[1])); 
 							var data = {
 								addr: results[0].formatted_address,
 								location: results[0].geometry.location
