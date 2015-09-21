@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="person.css" />
+	</head>
+	<style>
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+		.person_nav {
+			width: 100%;
+			height: 52px;
+			padding: 0 10px;
+			line-height: 52px;
+			background-color: #3FA86A;
+			color: white;
+		}
+		.person_nav img { 
+			width: 34px;
+			height: 34px
+			margin: 9px 9px 9px 0;
+			float: left;
+		}
+		.person_bg {
+			width: 100%;
+			height: 40%;
+			position: relative;
+			background: url(../../img/details2.jpeg) no-repeat;
+			background-size: 100% 100%;
+		}
+		.person_headpic {
+			width: 90px;
+			height: 90px;
+			background: url(../../img/defualt.png) no-repeat;
+			background-size: 90px 90px;
+			border-radius: 45px;
+			position: absolute;
+			left: 50%;
+			margin-left: -45px;
+			bottom: 0;
+			margin-bottom: -1em;
+		}
+		.person_sex {
+			width: 2em;
+			height: 2em;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			border-radius: 1em;
+			background-color: white;
+		}
+		.person_sex img {
+			width: 34px;
+			height: 34px;
+		}
+		.person_input_con {
+			margin-top: .5em;
+			width: 100%;
+			overflow: hidden;
+			background-color: #fff;
+		}
+		.person_input {
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			font-size: 14px;
+			border-bottom: 1px solid silver;
+			overflow: hidden;
+		}
+		.person_input .person_t {
+			display: block;
+			width: 75px;
+			float: left;
+			height: 50px;
+			margin-left: 1em;
+			line-height: 50px;
+		}
+		.person_input img {
+			width: 34px;
+			height: 34px;
+			margin: 8px 0;
+			margin-right: 1em;
+			float: right;
+		}
+		.person_input .input_con {
+			margin-right: 50px;
+			height: 50px;
+			overflow: hidden;
+		}
+		.input_con input {
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			font-size: 14px;
+			margin-bottom: 0;
+			border: 0;
+			border-radius: 0;
+		}
+		.person_input .person_p {
+			width: 34px;
+			height: 34px;
+			margin: 8px 0;
+			float: left;
+		}
+		.person_ptitle {
+			color: #A9A9BB;
+		}
+		.comment {
+			width: 100%;
+			height: 1.5em;
+			padding-left: .5em;
+			line-height: 1.5em;
+			font-size: 14px;
+			background-color: #F2F2F2;
+			color: #A9A9BB;
+		}
+		.input_shadow {
+			box-shadow: 8px 10px 8px #888;
+		}
+		.person_info {
+			width: 100%;
+			overflow: hidden;
+			margin-bottom: .3em;
+		}
+		.personnal_info {
+			width: 100%;
+			overflow: hidden;
+			background-color: #fff;
+			border: 1px solid green;
+		}
+		.personnal_headpic {
+			width: 4em;
+			height: 4em;
+			float: left;
+			border-radius: 2em;
+			background-size: 4em 4em;
+			margin: .5em;
+			overflow: hidden;
+		}
+		.personnal_headpic img {
+			width: 4em;
+			height: 4em;
+			border-radius: 2em;
+		}
+		.personal_ptitle {
+			width: 130px;
+			height: 6em;
+			padding-right: 1em;
+			float: right;
+			font-size: 14px;
+		}
+		.personal_ptitle .ptitle {
+			font-size: 16px;
+			float: right;
+			line-height: 50px;
+		}
+		.personal_ptitle .person_time {
+			font-size: 12px;
+			float: right;
+			line-height: 4em;
+		}
+		.personal_ptitle img {
+			width: 34px;
+			height: 34px;
+			margin: 8px;
+			float: right;
+		}
+		.personal_title {
+			margin-right: 5em;
+			padding-left: .5em;
+			overflow: hidden;
+		}
+		.personal_title .person_name {
+			display: block;
+			margin-top: 1em;
+			font-size: 16px;
+		}
+		.comment-wrap {
+			overflow: hidden;
+		}
+		.comment-pic {
+			float: left;
+			width: 80px;
+			height: 80px;
+		}
+		.comment-pic img {
+			height: 50px;
+			width: 50px;
+			margin: 15px;
+			border-radius: 50%;
+		}
+		.comment-ctt {
+			padding-top: 20px;
+			font-size: 14px;
+			overflow: hidden;
+			position: relative;
+		}
+		.comment-ptitle-time {
+			position: absolute;
+			right: 0;
+			top: 0;
+			padding-top: 15px;
+			width: 120px;
+		}
+		.comment-info {
+			font-size: 13px;
+			color: #D1D1D1;
+		}
+		.comment-class {
+			padding-left: 40px;
+			float: left;
+			width: 40px;
+			height: 40px;
+		}
+		.comment-class img {
+			height: 40px;
+			width: 40px;
+		}
+		.comment-title {
+			font-size: 14px;
+			text-align: right;
+			padding-top: 10px;
+			padding-right: 15px;
+			overflow: hidden;
+		}
+		.comment-time {
+			font-size: 12px;
+			text-align: left;
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav person_nav">
+			<img src="../../img/left.png" alt="" />
+			<span>person</span>
+		</header>
+		<div class="mui-content">
+			<div class="person_bg">
+				<div class="person_headpic">
+					<div class="person_sex">
+						<img src="../../img/female.png" alt="" style="display:none;" />
+						<img src="../../img/male2.png" alt="" />
+					</div>
+				</div>
+			</div>
+			<!--输入框-->
+			<div class="person_input_con">
+				<div class="person_input">
+					<span class="person_t">name</span>
+					<img src="../../img/1096072.png" alt="" />
+					<div class="input_con">
+						<input type="text" id="name" />
+					</div>
+				</div>
+				<div class="person_input">
+					<span class="person_t">phone</span>
+					<div class="input_con">
+						<input type="text" id="phone" />
+					</div>
+				</div>
+				<div class="person_input">
+					<span class="person_t">E-mail</span>
+					<div class="input_con">
+						<input type="text" id='email' />
+					</div>
+				</div>
+				<div class="person_input input_shadow">
+					<span class="person_t">credibility</span>
+					<img src="../../img/jiangbei.png" alt="" class="person_p" />
+					<span class="person_ptitle" id="ptitle"></span>
+				</div>
+			</div>
+			<div class="comment ">
+				<span>comment</span>
+			</div>
+			<div id="info_templates"></div>
+		</div>
+		<script src="../../js/template.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/utils.js"></script>
+		<div class="person_info" id="info_template">
+			<script id="info" type="text/html">
+				{{each result}}
+				<div class="comment-wrap">
+				<div class="comment-pic">
+					<img src="../../img/defualt.png" class="headpic" data-pic = "{{$value.headPic}}"/>
+				</div>
+				<div class="comment-ctt">
+					<div class="comment-name-info">
+						<div class="comment-name">{{$value.name}}</div>
+						<div class="comment-info">{{$value.info}}</div>
+					</div>
+					<div class="comment-ptitle-time">
+						<div class="comment-ptitle">
+							<div class="comment-class">
+								<img src="../../img/gift.png" />
+							</div>
+							<div class="comment-title">{{$value.score}}</div>
+						</div>
+						<div class="comment-time">{{$value.time}}</div>
+					</div>
+				</div>
+			</div>
+				{{/each}}
+			</script>
+		</div>
+		<script>
+			mui.plusReady(function() {
+				var cpage = plus.webview.currentWebview();
+				var id = cpage.uid;
+				data = {
+					uid: id,
+					page: 1,
+					pageSize: 10
+				}
+				getaccount();
+
+				function getaccount() {
+					myAjax({
+						url: 'account/info',
+						data: {
+							uid: id
+						}
+					}, function(data) {
+						console.log(JSON.stringify(data))
+						if (data.ret == 1) {
+							var picurl = BASEIMGURL + data.res.headPic;
+							var name = data.res.firstName + " " + data.res.familyName;
+							var email = data.res.email;
+							var credi = data.res.ptitle;
+							var phone = data.res.phone;
+							if (name) {
+								$('#name').val(name);
+							}
+							if (phone) {
+								$('#phone').val(phone);
+							}
+							if (email) {
+								$('#email').val(email);
+							}
+							if (credi) {
+								$('#ptitle').text(credi);
+							}
+							if (data.res.headPic) {
+								$('.person_headpic').css('background', 'url(' + picurl + ') no-repeat')
+							}
+						}
+					})
+				}
+				myAjax({
+					url: 'account/evaluateList',
+					data: data
+				}, function(obj) {
+					console.log(JSON.stringify(obj))
+					var n = BASEURL.indexOf('/a');
+					var data = {
+						"result":obj.res
+					};
+					html = template('info', data);
+					document.getElementById('info_templates').innerHTML = html;
+//					var head = BASEIMGURL+$('.headpic').attr('data-pic');
+					for(var i = 0;i<$('.headpic').length;i++){
+						var head = BASEIMGURL+$('.headpic').eq(i).attr('data-pic');
+						$('.headpic').eq(i).attr('src',head);
+					}
+				}, function(xhr, type) {
+					mui.toast(xhr.status + ":" + type);
+				})
+			})
+		</script>
+	</body>
+	<script>
+	</script>
+
+</html>
