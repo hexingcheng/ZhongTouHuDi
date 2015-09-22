@@ -8,144 +8,144 @@
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
-		<link rel="stylesheet" href="../../css/common/popup.css"/>
+		<link rel="stylesheet" href="../../css/common/popup.css" />
 		<script src="../../js/common/popup.js"></script>
 		<style>
-		html,body{
-			height: 100%;
-			width: 100%;
-		}
-		.mui-bar-nav~.mui-content{
-			padding-top: 52px;
-		}
-		.center_headpic{
-			width: 80px;
-			height:80px;
-			position: absolute;
-			bottom:0;
-			left: 50%;
-			z-index: 100;
-			border-radius: 50%;
-			margin-left: -40px;
-			margin-bottom: -20px;
-		}
-		.center_headpic .heade_pic{
-			height: 100%;
-			width: 100%;
-			overflow: hidden;
-			border-radius: 50%;
-			display: inline-block;
-		}
-		.center_bg{
-			width: 100%;
-			height:230px;
-			position: relative;
-			background: url(../../img/details_3.jpeg) no-repeat;
-			background-size: 100% 100%;
-			margin-top: 52px;
-		}
-		
-		.center_headpic .header_camara{
-			width: 36px;
-			height: 36px;
-			border-radius: 18px;
-			position: absolute;
-			background-color: #fff;
-			bottom: 5px;
-			right: 0;
-		}
-		.center_bg_edit{
-			width: 34px;
-			height: 34px;
-			position: absolute;
-			bottom: 0;
-			right: 0;
-		}
-		.header_camara img{
-			max-width: 100%;
-			height: auto;
-		}
-		.nation_select{
-			width: 70%;
-			height: 80%;
-			z-index: 999;
-			overflow-y: scroll;
-			top: 10%;
-			left: 50%;
-			margin-left: -35%;
-			position: absolute;
-			background-color: #FFF;
-			display: none;
-		} 
-		.select_sex{
-			width: 100%;
-			height: 50px;
-			overflow: hidden;
-		}
-	    .mui-table-view-cell .select_sex input{
-	    	height: auto; 
-			font-size: 14px; 
-			width: 14px;
-		} 
-		.li_input_s img{
-			width: 34px;
-			height: 34px;
-			margin: 8px;
-		}
-		.edit_hide{
-			display: none;
-		}
-		.mak{
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			z-index: 500;
-			background-color: rgba(0,0,0,.4);
-		}
-		/**弹出框*/
-		.center_pop{
-			z-index: 502;
-			width:70%;
-			line-height: 2em;
-			overflow: hidden;
-			position: fixed;
-			display: none;
-			padding: .8em;
-			background-color: #fff;
-			top: 50%;
-			margin-top: -10%;
-			left: 50%;
-			margin-left: -35%;    
-		
-		}
-		.center_pop input{
-			width: 100%;
-			height: 40px;
-			border:0;
-			font-size: 14px;
-			line-height: 14px;
-			margin-bottom:.5em;
-			padding-bottom: 0;
-			border-radius: 0;
-			border-bottom: 2px solid #3FA86A;
-		}
-		.gitpic{
-			height: 80px;
-			width: 80px;
-			display: inline-block;
-			border: 2px solid #fff;
-			border-radius: 50%;
-			overflow: hidden;
-			text-align: center;
-		}
-		.input_div input {
-			border: none;
-			border-bottom: 1px solid #ccc;
-			border-radius: 0;
-			margin-top: 5px;
-		}
+			html,
+			body {
+				height: 100%;
+				width: 100%;
+			}
+			.mui-bar-nav~.mui-content {
+				padding-top: 52px;
+			}
+			.center_headpic {
+				width: 80px;
+				height: 80px;
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				z-index: 100;
+				border-radius: 50%;
+				margin-left: -40px;
+				margin-bottom: -20px;
+			}
+			.center_headpic .heade_pic {
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+				border-radius: 50%;
+				display: inline-block;
+			}
+			.center_bg {
+				width: 100%;
+				height: 230px;
+				position: relative;
+				background: url(../../img/details_3.jpeg) no-repeat;
+				background-size: 100% 100%;
+				margin-top: 52px;
+			}
+			.center_headpic .header_camara {
+				width: 36px;
+				height: 36px;
+				border-radius: 18px;
+				position: absolute;
+				background-color: #fff;
+				bottom: 5px;
+				right: 0;
+			}
+			.center_bg_edit {
+				width: 34px;
+				height: 34px;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
+			.header_camara img {
+				max-width: 100%;
+				height: auto;
+			}
+			.nation_select {
+				width: 70%;
+				height: 80%;
+				z-index: 999;
+				overflow-y: scroll;
+				top: 10%;
+				left: 50%;
+				margin-left: -35%;
+				position: absolute;
+				background-color: #FFF;
+				display: none;
+			}
+			.select_sex {
+				width: 100%;
+				height: 50px;
+				overflow: hidden;
+			}
+			.mui-table-view-cell .select_sex input {
+				height: auto;
+				font-size: 14px;
+				width: 14px;
+			}
+			.li_input_s img {
+				width: 34px;
+				height: 34px;
+				margin: 8px;
+			}
+			.edit_hide {
+				display: none;
+			}
+			.mak {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				z-index: 500;
+				background-color: rgba(0, 0, 0, .4);
+			}
+			/**弹出框*/
+			
+			.center_pop {
+				z-index: 502;
+				width: 70%;
+				line-height: 2em;
+				overflow: hidden;
+				position: fixed;
+				display: none;
+				padding: .8em;
+				background-color: #fff;
+				top: 50%;
+				margin-top: -10%;
+				left: 50%;
+				margin-left: -35%;
+			}
+			.center_pop input {
+				width: 100%;
+				height: 40px;
+				border: 0;
+				font-size: 14px;
+				line-height: 14px;
+				margin-bottom: .5em;
+				padding-bottom: 0;
+				border-radius: 0;
+				border-bottom: 2px solid #3FA86A;
+			}
+			.gitpic {
+				height: 80px;
+				width: 80px;
+				display: inline-block;
+				border: 2px solid #fff;
+				border-radius: 50%;
+				overflow: hidden;
+				text-align: center;
+			}
+			.input_div input {
+				border: none;
+				border-bottom: 1px solid #ccc;
+				border-radius: 0;
+				margin-top: 5px;
+			}
 		</style>
 	</head>
 
@@ -159,10 +159,10 @@
 		<!-- 加载中的蒙层 -->
 		<div id="loading-mask"></div>
 		<div id="loading-box">
-			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
+			<img src="../../img/loading2.gif" alt="loading" width="100%" />
 		</div>
-		<!--蒙版-->  
-		
+		<!--蒙版-->
+
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -285,7 +285,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="nation_select " id='nation_select_'>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">中国</li>
@@ -338,124 +338,123 @@
 		<script src="../../js/comment.js"></script>
 		<script>
 			mui.plusReady(function() {
-				var data='';  
-				var d_status='';
-					plus.webview.currentWebview().setStyle({scrollIndicator: 'none'});
-					//调用蒙版
-					mui('.mui-scroll-wrapper').scroll({
-						bounce : false
-					});
-					
-					myAjax({
-							url: 'account/info',
-						},
-						function(obj) {
-							if (obj.ret == 1) {
-								$('#loading-mask').css('display','none');  
-								$('#loading-box').css('display','none');
-								var data = obj.res;
-								var n = BASEURL.indexOf('/a');
-								var imgurl = BASEURL.substring(0, n); 
-								
-								var pic = imgurl + data.headPic;
-								$('#nation_').removeClass('nation_');
-								if(data.headPic){
-									$('#headpic').attr('src', pic)
-								}
-								$('#familyName').val(data.familyName);
-								$('#firstName').val(data.firstName);
-								$('#email').val(data.email);
-								$('#nation').text(data.nation);
-								$('#phone').val(data.phone);
-								$('#ptitle').text(data.ptitle);
-								if (data.sex == 1) {
-									$('.male').css('display', 'block');
-									$('.female').css('display', 'none');
-								} else {
-									$('.female').css('display', 'block');
-									$('.male').css('display', 'none');
-								}
+				var data = '';
+				var d_status = '';
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
+				//调用蒙版
+				mui('.mui-scroll-wrapper').scroll({
+					bounce: false
+				});
+				myAjax({
+						url: 'account/info',
+					},
+					function(obj) {
+						if (obj.ret == 1) {
+							$('#loading-mask').css('display', 'none');
+							$('#loading-box').css('display', 'none');
+							var data = obj.res;
+							var n = BASEURL.indexOf('/a');
+							var imgurl = BASEURL.substring(0, n);
+							var pic = imgurl + data.headPic;
+							$('#nation_').removeClass('nation_');
+							if (data.headPic) {
+								$('#headpic').attr('src', pic)
 							}
-						},
-						function() {
-							alert('shibaile');
-						})
-					$('#bycamera').on('tap',function(){
-						
-						bycamera()
-						mui('#gitpic').popover('toggle');
-					})  
-					$('#bygallery').on('tap',function(){  
-						
-						bygallery(); 
-						mui('#gitpic').popover('toggle');
-					})
-					function bycamera() {
-						var camera = plus.camera.getCamera();
-						var res = camera.supportedImageResolutions[0];
-						var fmt = camera.supportedImageFormats[0];
-						camera.captureImage(function(path) {
-							dealpic(path);
-						})
-						
-					};
-					//图片压缩
-					function dealpic(path) {
-							plus.io.resolveLocalFileSystemURL(path, function(entry) {
-								var local = entry.toLocalURL();
-								path = plus.io.convertLocalFileSystemURL(path);
-//								$('.center_headpic').css('background', 'url(' + path + ')'); //得到头像
-								dealImage(local, {
-//									width: 17 * 4,
-									quality: 1
-								}, function(base) {
-									console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
-									data = {
-										imgName: Math.floor(Math.random() * 100000) + ".jpg",
-										imgData: base // base字符串
-									}
-									myAjax({
-											url: "common/file/imgUp",
-											data: data
-										},
-										function(obj) {
-											if (obj.ret == 1) {
-												data = {
-													fid: obj.res.fid
-												}
-												var head = obj.res.path;
-												var n = BASEURL.indexOf('/a');
-												var headpicurl = BASEURL.substring(0, n);
-												//头像上传
-												myAjax({
-													url: 'account/setHeadPic',
-													data: data
-												}, function(obj) {
-													if (obj.ret == 1) {
-														var p = headpicurl+head; 
-														$('#headpic').attr('src', p);
-														var i = plus.webview.getLaunchWebview();
-														mui.fire(i,'setaccount',{headPic:head})
-													} else {
-														mui.toast('图片上传至服务器存在问题');
-													}
-												}, function(xhr, type) {
-													mui.toast(xhr.status);
-													
-												})
-											} else {
-												mui.toast('请先登录在操作！');
-											}
-										},
-										function(xhr, type) {
-											console.log(xhr.status);
-										})
-								})
-							})
+							$('#familyName').val(data.familyName);
+							$('#firstName').val(data.firstName);
+							$('#email').val(data.email);
+							$('#nation').text(data.nation);
+							$('#phone').val(data.phone);
+							$('#ptitle').text(data.ptitle);
+							if (data.sex == 1) {
+								$('.male').css('display', 'block');
+								$('.female').css('display', 'none');
+							} else {
+								$('.female').css('display', 'block');
+								$('.male').css('display', 'none');
+							}
 						}
-						//bg galary
+					},
+					function(xhr, type) {
+						mui.toast(xhr.status + ":" + type)
+					})
+				$('#bycamera').on('tap', function() {
+					bycamera()
+					mui('#gitpic').popover('toggle');
+				})
+				$('#bygallery').on('tap', function() {
+					bygallery();
+					mui('#gitpic').popover('toggle');
+				})
 
-					function bygallery() {
+				function bycamera() {
+					var camera = plus.camera.getCamera();
+					var res = camera.supportedImageResolutions[0];
+					var fmt = camera.supportedImageFormats[0];
+					camera.captureImage(function(path) {
+						dealpic(path);
+					})
+				};
+				//图片压缩
+				function dealpic(path) {
+						plus.io.resolveLocalFileSystemURL(path, function(entry) {
+							var local = entry.toLocalURL();
+							path = plus.io.convertLocalFileSystemURL(path);
+							//								$('.center_headpic').css('background', 'url(' + path + ')'); //得到头像
+							dealImage(local, {
+								//									width: 17 * 4,
+								quality: 1
+							}, function(base) {
+								console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
+								data = {
+									imgName: Math.floor(Math.random() * 100000) + ".jpg",
+									imgData: base // base字符串
+								}
+								myAjax({
+										url: "common/file/imgUp",
+										data: data
+									},
+									function(obj) {
+										if (obj.ret == 1) {
+											data = {
+												fid: obj.res.fid
+											}
+											var head = obj.res.path;
+											var n = BASEURL.indexOf('/a');
+											var headpicurl = BASEURL.substring(0, n);
+											//头像上传
+											myAjax({
+												url: 'account/setHeadPic',
+												data: data
+											}, function(obj) {
+												if (obj.ret == 1) {
+													var p = headpicurl + head;
+													$('#headpic').attr('src', p);
+													var i = plus.webview.getLaunchWebview();
+													mui.fire(i, 'setaccount', {
+														headPic: head
+													})
+												} else {
+													mui.toast('图片上传至服务器存在问题');
+												}
+											}, function(xhr, type) {
+												mui.toast(xhr.status);
+											})
+										} else {
+											mui.toast('请先登录在操作！');
+										}
+									},
+									function(xhr, type) {
+										console.log(xhr.status);
+									})
+							})
+						})
+					}
+					//bg galary
+
+				function bygallery() {
 						plus.gallery.pick(function(path) {
 							dealpic(path);
 						}, function(e) {
@@ -466,150 +465,182 @@
 							multiple: false
 						})
 					}
-				
-				//编辑信息
-			var token = '';
+					//编辑信息
+				var token = '';
 
-			function update() {
-				var pwd = $('#pop_password').val();
-				if (pwd) {
-					data = {
-						pwd: pwd
-					}
-					myAjax({
-						url: 'account/updateSet',
-						data: data
-					}, function(obj) {
-						if (obj.ret == 1) {
-							$('.edit_show').css('display', 'none');
-							$('#password').val(pwd);
-							$('#pop_password').val('');
-							$('.edit_hide').css({'display': 'block'});
-							$('.edit_input').removeAttr('disabled');
-							$('#nation_').addClass('nation_');
-						} else if (obj.ret == 2) {
-							mui.toast('密码错误');
+				function update() {
+					var pwd = $('#pop_password').val();
+					if (pwd) {
+						data = {
+							pwd: pwd
 						}
-						token = obj.res.token;
-					}, function(xhr, type) {
-						alert(xhr.status);
-					})
-				} else {
-					mui.toast('请输入密码');
-				}
-			}
-
-			function save() {
-				var fn = $('#familyName').val().trim();
-				var fin = $('#firstName').val().trim();
-				var em = $('#email').val().trim();
-				var nation = $('#nation').text().trim();
-				var ph = $('#phone').val().trim();
-                var check = $("#select_sex input[name='sex']:checked").val();
-                alert(check)
-				var sex = (check == 'checked') ? '1' : '2';
-				var pwd = $('#password').val().trim();
-				data = {
-					firstName: fin,
-					familyName: fn,
-					email: em,
-					nation: nation,
-					phone: ph,
-					pwd: pwd,
-					token: token,
-					sex:sex
-				}
-				myAjax({
-					url: 'account/updateSave',
-					data: data
-				}, function(obj) {
-					if (obj.ret == 1) {
-						mui.toast('保存成功');
-						$('.center_save').css('display', 'none');
-						$('.center_edit').css('display', 'block');
-						$('.edit_input').attr('disabled', 'disabled');
-						$('.edit_hide').css('display', 'none');
-						$('.edit_show').css('display', 'block');
-						$('#nation_').removeClass('nation_');
-						if (sex == 1) {
-							$('.male').css('display', 'block');
-							$('.female').css('display', 'none');
-						} else {
-							$('.female').css('display', 'block');
-							$('.male').css('display', 'none');
-						}
-						var i = plus.webview.getLaunchWebview();
-						mui.fire(i,'setaccount',data)
-					} else if (obj.ret == 2) {
-						mui.toast('保存失败');
+						myAjax({
+							url: 'account/updateSet',
+							data: data
+						}, function(obj) {
+							if (obj.ret == 1) {
+								$('.edit_show').css('display', 'none');
+								$('#password').val(pwd);
+								$('#pop_password').val('');
+								$('.edit_hide').css({
+									'display': 'block'
+								});
+								$('.edit_input').removeAttr('disabled');
+								$('#nation_').addClass('nation_');
+							} else if (obj.ret == 2) {
+								mui.toast('密码错误');
+								$('.center_edit').css('display', 'block');
+								$('.center_save').css('display', 'none');
+								$('#nation_select_').css('display', 'none');
+							}
+							token = obj.res.token;
+						}, function(xhr, type) {
+							alert(xhr.status);
+						})
 					} else {
-						mui.toast('服务器出现问题');
+						mui.toast('请输入密码');
 					}
-				}, function(xhr, type) {
-					mui.toast(xhr.status);
+				}
+
+				function save(cb) {
+						var fn = $('#familyName').val().trim();
+						var fin = $('#firstName').val().trim();
+						var em = $('#email').val().trim();
+						var nation = $('#nation').text().trim();
+						var ph = $('#phone').val().trim();
+						var check = $("#select_sex input[name='sex']:checked").val();
+						var sex = (check == 'checked') ? '1' : '2';
+						var pwd = $('#password').val().trim();
+						data = {
+							firstName: fin,
+							familyName: fn,
+							email: em,
+							nation: nation,
+							phone: ph,
+							pwd: pwd,
+							token: token,
+							sex: sex
+						}
+						myAjax({
+							url: 'account/updateSave',
+							data: data
+						}, function(obj) {
+							if (obj.ret == 1) {
+								mui.toast('保存成功');
+								$('.center_save').css('display', 'none');
+								$('.center_edit').css('display', 'block');
+								$('.edit_input').attr('disabled', 'disabled');
+								$('.edit_hide').css('display', 'none');
+								$('.edit_show').css('display', 'block');
+								$('#nation_').removeClass('nation_');
+								if (sex == 1) {
+									$('.male').css('display', 'block');
+									$('.female').css('display', 'none');
+								} else {
+									$('.female').css('display', 'block');
+									$('.male').css('display', 'none');
+								}
+								var i = plus.webview.getLaunchWebview();
+								mui.fire(i, 'setaccount', data);
+								setTimeout(function(){
+									cb && cb();
+								},300)
+							} else if (obj.ret == 2) {
+								mui.toast('保存失败');
+							} else {
+								mui.toast('服务器出现问题');
+							}
+						}, function(xhr, type) {
+							mui.toast(xhr.status);
+						})
+					}
+					// 弹出框属性
+				var options = {
+						height: 180,
+						title: {
+							height: 40,
+							content: ""
+						},
+						main: {
+							content: ""
+						},
+						buttons: [{
+							name: "确定",
+							click: function() {
+								return true
+							}
+						}, {
+							name: "取消",
+							click: function() {
+								return true;
+							}
+						}]
+					}
+					// 修改密码弹出框
+				$('.center_edit').on('tap', function() {
+						$(this).css('display', 'none');
+						$('.center_save').css('display', 'block');
+						options.title.content = "更改提示";
+						options.main.content = '<span id="nav_title"><b>Please input your password</b>' +
+							'</span><div class="input_div">' +
+							'<input type="password" placeholder="请输入密码" id="pop_password" maxlength="20" />' +
+							'</div>';
+						options.buttons[0].click = function() {
+							update();
+						}
+						options.buttons[1].click = function() {
+							$('.center_edit').css('display', 'block');
+							$('.center_save').css('display', 'none');
+							$('#nation_select_').css('display', 'none');
+						}
+						var pop = new Popup(options);
+						pop.show();
+					})
+					// 保存
+				$('.center_save').on('tap', function() {
+						save(); //保存
+					})
+					//选择国籍
+				$('.mui-table-view-cell').on('tap', '.nation_', function() {
+					$('#nation_select_').css('display', 'block');
 				})
-			}
-			
-			// 弹出框属性
-			var options = {
-				height : 180,
-				title : {
-					height : 40,
-					content : ""
-				},
-				main : {
-					content : ""
-				},
-				buttons : [{
-					name : "确定",
-					click : function(){ return true }
-				},{
-					name : "取消",
-					click : function(){ return true; }
-				}]
-			}
-			// 修改密码弹出框
-			$('.center_edit').on('tap', function() {
-				$(this).css('display', 'none');
-				$('.center_save').css('display', 'block');
-				options.title.content = "更改提示";
-				options.main.content = '<span id="nav_title"><b>Please input your password</b>'+
-											'</span><div class="input_div">'+
-											'<input type="password" placeholder="请输入密码" id="pop_password" maxlength="20" />'+
-										'</div>';
-				options.buttons[0].click = function(){
-					update();
+				$('.nation_select ul li').on('tap', function() {
+						var nation_name = $(this).text();
+						$('#nation').text(nation_name);
+						$('#nation_select_').css('display', 'none');
+					})
+					//查看申请递送人信息    
+				$('#open_apply').on('tap', function() {
+						openWindow('../applyfor/applyPerson.html');
+					})
+					//修改支付密码
+				$('#wallet_pwd').on('tap', function() {
+					openWindow('../wallet/set_wallet_pwd.html');
+				})
+				mui.back = function() {
+					alert($('.center_save').css('display'))
+					if ($('.center_save').css('display') == 'block') {
+						options.height = 160;
+						options.title.content = "保存";
+						options.main.content = '是否需要保存';
+						options.buttons[0].click = function() {
+							save(function() {
+								plus.webview.getLaunchWebview().show('slide-in-left', 300);
+								setTimeout(function() {
+									plus.webview.currentWebview().close();
+								}, 1000)
+							});
+						}
+						var dailog = new Popup(options);
+						dailog.show();
+					} else {
+						plus.webview.getLaunchWebview().show('slide-in-left', 300);
+						setTimeout(function() {
+							plus.webview.currentWebview().close();
+						}, 1000)
+					}
 				}
-				options.buttons[1].click = function(){
-					$('.center_edit').css('display', 'block');
-					$('.center_save').css('display', 'none');
-					$('#nation_select_').css('display','none');
-				}
-				var pop = new Popup(options);
-				pop.show();
 			})
-			// 保存
-			$('.center_save').on('tap', function() {
-				save(); //保存
-			})  
-			 //选择国籍
-			 $('.mui-table-view-cell').on('tap','.nation_',function(){
-			 	$('#nation_select_').css('display','block');
-			 })
-			 $('.nation_select ul li').on('tap',function(){ 
-			 	var nation_name=$(this).text();
-			 	$('#nation').text(nation_name);
-			 	$('#nation_select_').css('display','none');
-			 })
-			 //查看申请递送人信息    
-			 $('#open_apply').on('tap',function(){ 
-			 		openWindow('../applyfor/applyPerson.html');
-			 })
-			 //修改支付密码
-			 $('#wallet_pwd').on('tap', function(){
-			 	openWindow('../wallet/set_wallet_pwd.html');
-			 })
-})
 		</script>
 	</body>
 
