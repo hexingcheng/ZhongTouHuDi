@@ -11,137 +11,6 @@
 		<link rel="stylesheet" href="../../css/common/popup.css"/>
 		<script src="../../js/common/popup.js"></script>
 		<style>
-<<<<<<< HEAD
-			html,body{
-				height: 100%;
-				width: 100%;
-			}
-			.mui-bar-nav~.mui-content{
-				padding-top: 52px;
-			}
-			.center_headpic{
-				width: 80px;
-				height:80px;
-				position: absolute;
-				bottom:0;
-				left: 50%;
-				z-index: 100;
-				border-radius: 50%;
-				margin-left: -40px;
-				margin-bottom: -20px;
-			}
-			.center_headpic .heade_pic{
-				height: 100%;
-				width: 100%;
-				overflow: hidden;
-				border-radius: 50%;
-				display: inline-block;
-			}
-			.center_bg{
-				width: 100%;
-				height:230px;
-				position: relative;
-				background: url(../../img/details_3.jpeg) no-repeat;
-				background-size: 100% 100%;
-				margin-top: 52px;
-			}
-			
-			.center_headpic .header_camara{
-				width: 36px;
-				height: 36px;
-				border-radius: 18px;
-				position: absolute;
-				background-color: #fff;
-				bottom: 5px;
-				right: 0;
-			}
-			.center_bg_edit{
-				width: 34px;
-				height: 34px;
-				position: absolute;
-				bottom: 0;
-				right: 0;
-			}
-			.header_camara img{
-				max-width: 100%;
-				height: auto;
-			}
-			.nation_select{
-				width: 70%;
-				height: 80%;
-				z-index: 999;
-				overflow-y: scroll;
-				top: 10%;
-				left: 50%;
-				margin-left: -35%;
-				position: absolute;
-				background-color: #FFF;
-				display: none;
-			} 
-			.select_sex{
-				width: 100%;
-				height: 50px;
-				overflow: hidden;
-			}
-		    .mui-table-view-cell .select_sex input{
-		    	height: auto; 
-				font-size: 14px; 
-				width: 14px;
-			} 
-			.li_input_s img{
-				width: 34px;
-				height: 34px;
-				margin: 8px;
-			}
-			.edit_hide{
-				display: none;
-			}
-			.mak{
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				z-index: 500;
-				background-color: rgba(0,0,0,.4);
-			}
-			/**弹出框*/
-			.center_pop{
-				z-index: 502;
-				width:70%;
-				line-height: 2em;
-				overflow: hidden;
-				position: fixed;
-				display: none;
-				padding: .8em;
-				background-color: #fff;
-				top: 50%;
-				margin-top: -10%;
-				left: 50%;
-				margin-left: -35%;    
-			
-			}
-			.center_pop input{
-					width: 100%;
-					height: 40px;
-					border:0;
-					font-size: 14px;
-					line-height: 14px;
-					margin-bottom:.5em;
-					padding-bottom: 0;
-					border-radius: 0;
-					border-bottom: 2px solid #3FA86A;
-			}
-			.gitpic{
-				height: 80px;
-				width: 80px;
-				display: inline-block;
-				border: 2px solid #fff;
-				border-radius: 50%;
-				overflow: hidden;
-				text-align: center;
-			}
-=======
 		html,body{
 			height: 100%;
 			width: 100%;
@@ -277,7 +146,6 @@
 			border-radius: 0;
 			margin-top: 5px;
 		}
->>>>>>> e47055d1874e73a4ca9fafdfedc17dd50014d934
 		</style>
 	</head>
 
@@ -292,15 +160,9 @@
 		<div id="loading-mask"></div>
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
-<<<<<<< HEAD
-		</div>-->
-		<!--蒙版-->
-		<div id="center_popover" class="mui-hidden mak"></div>
-=======
 		</div>
 		<!--蒙版-->  
 		
->>>>>>> e47055d1874e73a4ca9fafdfedc17dd50014d934
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -544,8 +406,8 @@
 								path = plus.io.convertLocalFileSystemURL(path);
 //								$('.center_headpic').css('background', 'url(' + path + ')'); //得到头像
 								dealImage(local, {
-									width: 17 * 4,
-									quality: 0.5
+//									width: 17 * 4,
+									quality: 1
 								}, function(base) {
 									console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
 									data = {
@@ -710,23 +572,6 @@
 			$('.center_edit').on('tap', function() {
 				$(this).css('display', 'none');
 				$('.center_save').css('display', 'block');
-<<<<<<< HEAD
-				$('#center_popover').removeClass('mui-hidden')
-				$('.center_pop').css('display', 'block');
-			})
-			 $('.center_save').on('tap', function() {
-					save(); //保存
-				})  
-			 $('#center_popover').on('tap', function() {
-				$(this).addClass('mui-hidden')
-				$('.center_pop').css('display', 'none');
-				$('.center_edit').css('display', 'block');
-				$('.center_save').css('display', 'none');
-				$('#nation_select_').css('display','none');
-			})
-			 $('#pop_submit').on('tap', function() {
-				update();
-=======
 				options.title.content = "更改提示";
 				options.main.content = '<span id="nav_title"><b>Please input your password</b>'+
 											'</span><div class="input_div">'+
@@ -742,7 +587,6 @@
 				}
 				var pop = new Popup(options);
 				pop.show();
->>>>>>> e47055d1874e73a4ca9fafdfedc17dd50014d934
 			})
 			// 保存
 			$('.center_save').on('tap', function() {
