@@ -13,7 +13,7 @@ mui.plusReady(function() {
 		//		plus.storage.removeItem('systemmes14714714774')
 		//		plus.storage.removeItem('systemmes25825825885')
 		mui('.mui-slider').slider({
-			interval:'2000'
+			interval: '2000'
 		})
 		setstorage('getsystemmsgtime', (new Date()).getTime());
 		plus.navigator.closeSplashscreen();
@@ -152,11 +152,12 @@ mui.plusReady(function() {
 				openWindow('./page/wallet/my-wallet.html')
 			})
 		})
-		if (getstorage('token')) {
-			setInterval(function() {
+
+		setInterval(function() {
+			if (getstorage('token')) {
 				getsystemmsg();
-			}, 60000)
-		}
+			}
+		}, 60000)
 
 	})
 	//处理返回键

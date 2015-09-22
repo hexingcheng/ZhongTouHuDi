@@ -225,8 +225,8 @@ mui('#picwrap').on('tap','img',function(){
 			var len = pic.length;
 			if (len > 0) {
 				for (var i = 0; i < len; i++) {
-					var url = per + pic[i].path; 
-					var minurl = per+pic[i].minPath;
+					var url = per + pic[i].minPath; 
+					var minurl = per+pic[i].path;
 					$('<img class="picture" src="' + url + '" data-index = "'+i+'">').appendTo('#picwrap');
 					$('.preimg','#slider').eq(i).attr('src',minurl)
 				}

@@ -20,7 +20,6 @@
 			body,
 			.mui-content,
 			#offCanvasSideScroll,
-			.mui-scroll,
 			.order-content {
 				height: 100%;
 				width: 100%;
@@ -59,10 +58,6 @@
 			}
 			.icon-wenjian:before {
 				content: "\e600";
-			}
-			.mui-scroll-wrapper {
-				margin-top: 44px;
-				margin-bottom: 60px;
 			}
 			.fl {
 				float: left;
@@ -243,7 +238,8 @@
 				position: absolute;
 			}
 			div.mui-scroll-wrapper {
-				top: 8px;
+				top: 52px;
+				bottom: 64px;
 			}
 			.myicon {
 				display: block;
@@ -411,6 +407,9 @@
 			.rechoosepic{
 				position: absolute;
 				right: 0;
+			}
+			.mui-bar-footer~.mui-content{
+				padding-bottom: 64px;
 			}
 		</style>
 	</head>
@@ -845,8 +844,8 @@
 									var local = entry.toLocalURL(); // 获取本地地址
 									// 图片压缩处理
 									dealImage(local, {
-											width: 17 * 4,
-											quality: 0.5
+//											width: 17 * 4,
+											quality: 1
 										},
 										function(base) {
 											var obj = {
@@ -878,7 +877,7 @@
 						},
 						wait: false
 					}, function(data) {
-						var img = '<span class="wids"><img title=' + datas.path + ' src=' + datas.base + ' alt=' + data.res.fid + '></span>';
+						var img = '<span class="wids"><img title=' + datas.path + ' src=' + datas.path + ' alt=' + data.res.fid + '></span>';
 						var picimg = $("#take-photo").find(".pic-img")
 						for (var i = 0; i < picimg.size(); i++) {
 							if (picimg.eq(i).find("img").size() == 0) {
@@ -943,8 +942,8 @@
 				for (var k = 0; k < 4; k++) {
 					inner += '<div class="mui-slider-item"><a href="javascript:void(0)"><img src="" class="preimg"></a></div>';
 				}
-				$('#preseepic').html(inner)
 				$('.presee').removeClass('mui-hidden');
+				$('#preseepic').html(inner)
 				var haspic = $('.picpre');
 				var removeArr = [];
 				for (var i = 0; i < 4; i++) {
@@ -964,6 +963,7 @@
 				gallery.slider({
 					interval: 0
 				}).gotoItem(ind);
+				
 			})
 
 			function dealImage(path, obj, callback) {
