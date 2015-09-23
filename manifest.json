@@ -102,7 +102,7 @@
 			"description": "原生对象"
 		},
 		"Messaging": {},
-		"Push": {}
+		"Push": {},"Statistic":{}
 	},
 	"plus": {
 		"splashscreen": {

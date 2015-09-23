@@ -8,7 +8,7 @@
     <link href="../../css/mui.listpicker.css" rel="stylesheet" />
 	<link href="../../css/mui.dtpicker.css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
-    <script src="../../js/mui.min.js"></script>
+    <script src="../../js/mui.js"></script>
     <style type="text/css">
     	#cancel-btn {background: #fc614d;}
     	.inner-wrap {margin: 10px;border: 1px solid #ddd;}
@@ -37,6 +37,8 @@
     	.add-line {margin-left: 45px;color: #aaa;margin-right: 50px;}
     	.text-num {padding-bottom: 5px;}
     	#remain-text {padding: 0 5px;}
+    	.date-box, .address-box {padding: 10px 15px;color: #aaa;}
+    	#info {color: #666;}
     </style>
 </head>
 <body>
@@ -62,17 +64,17 @@
 					<ul class="mui-table-view">
 						<!-- 选择地址 -->
 						<li class="mui-table-view-cell fixed-padding">
-							<div class="container-item">
+							<div class="container-item" id="pick-address">
 								<div class="icon-wrap">
 									<div class="icon-item icon-one"><img src="../../img/order2.png" width="100%"/></div>
 									<div class="icon-item icon-two"><img src="../../img/creat1.png" width="100%"/></div>
 									<div class="icon-item icon-three"><img src="../../img/4.png" width="100%"/></div>
 								</div>
 								<div class="item-one">
-									<input type="text" name="startplace" id="start-place" value="" placeholder="起始地址" />
+									<div class="address-box" data-type="origin">起始地址</div>
 								</div>
 								<div class="item-two">
-									<input type="text" name="endplace" id="end-place" value="" placeholder="目的地址" />
+									<div class="address-box" data-type="destination">目的地址</div>
 								</div>
 							</div>
 						</li>
@@ -81,31 +83,24 @@
 							<li class="mui-table-view-cell">
 								<div class="add-address">
 									<div class="icon-item"><img src="../../img/jia2.png" width="100%" height="100%"/></div>
-									<div class="title-plain">添加途径地</div>
-								</div>
-							</li>
-							<li class="mui-table-view-cell">
-								<div class="add-address">
-									<div class="icon-item"><img src="../../img/by-the-way.png" width="100%" height="100%"/></div>
-									<div class="remove-button mui-pull-right"><button class="mui-btn mui-btn-link">删除</button></div>
-									<div class="add-line">添加路径</div>
+									<div class="title-plain" id="add-wayline">添加途径地</div>
 								</div>
 							</li>
 						</div>
 						
 						<!-- 选择日期 -->
 						<li class="mui-table-view-cell fixed-padding">
-							<div class="container-item">
+							<div class="container-item" id="dalegate">
 								<div class="icon-wrap">
 									<div class="icon-item icon-one"><img src="../../img/time1.png" width="100%"/></div>
 									<div class="icon-item icon-two"><img src="../../img/creat1.png" width="100%"/></div>
 									<div class="icon-item icon-three"><img src="../../img/time5.png" width="100%"/></div>
 								</div>
 								<div class="item-one">
-									<input type="text" name="starttime" id="start-time" value="" placeholder="开始时间" />
+									<div class="date-box" data-type="start" id="start-date">开始时间</div>
 								</div>
 								<div class="item-two">
-									<input type="text" name="endtime" id="end-time" value="" placeholder="截止日期" />
+									<div class="date-box" data-type="end" id="end-date">截止日期</div>
 								</div>
 							</div>
 						</li>
@@ -113,7 +108,7 @@
 						<!-- 描述信息 -->
 						<li class="mui-table-view-cell fixed-textarea">
 							<div class="textarea-wrap">
-								<textarea id="info" rows="5" placeholder="请输入描述信息"></textarea>
+								<textarea id="info" rows="5" placeholder="请输入描述信息" maxlength="50"></textarea>
 							</div>
 							<div class="text-num mui-h6 mui-text-right">
 								最多输入<span id="remain-text">50</span>字
@@ -127,6 +122,7 @@
 	
 	<script src="../../js/mui.listpicker.js"></script>
 	<script src="../../js/mui.dtpicker.js"></script>
+	<script src="../../js/utils.js"></script>
 	<script>
 	  	mui.init();
 	  	mui.ready(function(){
@@ -134,6 +130,122 @@
 	  			bounce : false
 	  		})
 	  		
+	  		// 选择起始地址与目的地址
+	  		mui("#pick-address").on("tap", ".address-box", function(){
+	  			var types = this.getAttribute("data-type");
+	  			console.log(types)
+	  			openWindow("../sendorder/pickaddr.html", {
+	  				type : types
+	  			});
+	  		})
+	  		
+	  		
+	  		
+	  		// 添加路线
+	  		var template = '<div class="add-address">'+
+									'<div class="icon-item"><img src="../../img/by-the-way.png" width="100%" height="100%"/></div>'+
+									'<div class="remove-button mui-pull-right"><button class="mui-btn mui-btn-link delete-btn">删除</button></div>'+
+									'<div class="add-line">添加路径</div>'+
+								'</div>';
+			var tripline = document.getElementById("trip-line");
+	  		document.getElementById("add-wayline").addEventListener("tap", function(){
+	  			var oli = document.createElement("li");
+	  			oli.className = "mui-table-view-cell";
+	  			oli.innerHTML = template;
+	  			tripline.appendChild(oli);
+	  		})
+	  		
+	  		// 删除途径地
+	  		mui("#trip-line").on("tap", ".delete-btn", function(){
+	  			var parent = this.parentNode.parentNode.parentNode;
+	  			parent.parentNode.removeChild(parent);
+	  		})
+	  		
+	  		// 选择途径地
+	  		var index;
+	  		var all = document.querySelectorAll(".add-line");
+	  		mui("#trip-line").on("tap", ".add-line", function(){
+	  			this.classList.add("has");
+	  			for(var i = 0; i < all.length; i++){
+	  				if(all[i].classList.contains("has")){
+	  					index = i;
+	  					all[i].classList.remove("has");
+	  					break;
+	  				}
+	  			}
+	  			console.log(index);
+	  			openWindow("../sendorder/pickaddr.html");
+	  		})
+	  		
+	  		// 选择时间
+	  		var year = new Date().getFullYear();
+			var options = {
+				"type":"hour",
+				"customData":{
+					"h":[{
+							"text":"上午",
+							"value":"上午"
+						},{
+							"text":"下午",
+							"value":"下午"
+						},{
+							"text":"晚上",
+							"value":"晚上"
+						}]
+				},
+				"labels":["年", "月", "日", "时段"],
+				"beginYear" : year,
+				"endYear" : year + 3
+			}
+			// 选择日期
+			var startdate, enddate;
+			mui("#dalegate").on("tap", ".date-box", function(){
+				var that = this;
+				var type = that.getAttribute("data-type");
+				if(type == "end"){
+					var text = document.getElementById("start-date").innerText;
+					if(text == "开始时间"){
+						mui.toast("请先选择起始时间")
+						return false;
+					}
+				}
+				var picker = new mui.DtPicker(options);
+				picker.show(function(rs) {
+					if(type == "start"){
+						that.innerHTML = rs.value;
+						startdate = parseInt(rs.value.replace(/-/ig, ''));
+						document.getElementById("end-date").innerHTML = "截止日期";
+						picker.dispose();
+					} else if(type == "end"){
+						var end = parseInt(rs.value.replace(/-/ig, ''));
+						if(end >= startdate){
+							enddate = end;
+							that.innerHTML = rs.value;
+						} else {
+							mui.toast("时间选取错误");
+						}
+					}
+				});
+			})
+			
+			// 描述信息提示剩余可输入字符
+			var timer;
+			var last = 0;
+			var remain = document.getElementById("remain-text");
+			var all = parseInt(remain.innerHTML);
+			document.getElementById("info").addEventListener("focus", function(){
+				var that = this;
+				timer = setInterval(function(){
+					if(last != that.value.length){
+						remain.innerHTML = all - that.value.length;
+					}
+					last = that.value.length;
+				}, 300)
+			})
+			document.getElementById("info").addEventListener("blur", function(){
+				clearInterval(timer);
+			})
+			
 	  	})
 	</script>
 </body>
