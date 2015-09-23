@@ -10,8 +10,7 @@
 		<link rel="stylesheet" href="apply.css" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
 		<style>
-			
-			 .mui-table-view-cell .select_sex input{
+			.mui-table-view-cell .select_sex input{
 				height: auto; 
 				font-size: 14px; 
 				width: 14px;
@@ -38,7 +37,6 @@
 			    top: 50%;
 			    text-align: center;
 			    margin-top: -25%;
-			/*	display: none;*/
 				color: silver;
 				overflow: hidden;
 			} 
@@ -213,7 +211,7 @@
 				</div>
 			</div>
 		</div>
-		<footer class="mui-bar mui-bar-footer content_chan" >  
+		<footer class="mui-bar mui-bar-footer content_chan" id="footer">  
 			<button class="mui-btn nav_footer" id="apply_submit"><span>Next Step</span></button>
 		</footer>
 	</body>
@@ -224,7 +222,9 @@
 			plus.webview.currentWebview().setStyle({
 				scrollIndicator: 'none'
 			});
-			mui('.mui-scroll-wrapper').scroll();
+			mui('.mui-scroll-wrapper').scroll({
+				bounce : false,
+			});
 			var flag = true;
 			$('#apply_submit').on('tap',function(){
 				check_info();
@@ -357,7 +357,9 @@
 		   	  		$('#choose-contacts').css('display','none');
 		   	  		if(status==1){
 		   	  			$('#status_info').text('你的审核已成功');
-		   	  		}else if(status==12){  
+		   	  		}else if(status==12){
+		   	  			$("#footer").css("display", "none")
+		   	  			$(".mui-scroll-wrapper").css("bottom",0)
 		   	  			$('#status_info').text('你的审核还在审核中');
 		   	  		}else if(status==13){
 		   	  			$('#status_info').text('审核失败,请点击重新申请');
