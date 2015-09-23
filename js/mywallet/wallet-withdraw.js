@@ -8,7 +8,7 @@ mui.plusReady(function() {
 
 	// 解析当前用户信息
 	var info = JSON.parse(plus.storage.getItem("personinfo"));
-	if(info){
+	if (info) {
 		document.getElementById("account-num").innerHTML = info.phone;
 	} else {
 		mui.toast("当前未登陆");
@@ -18,7 +18,7 @@ mui.plusReady(function() {
 	myAjax({
 		url: "wallet/money",
 		data: {},
-		wait : false
+		wait: false
 	}, function(data) {
 		cash.innerHTML = current = data.res.money;
 	}, function(xhr, type) {
@@ -43,7 +43,7 @@ mui.plusReady(function() {
 		myAjax({
 			url: "wallet/moneyChannelList",
 			data: {},
-			wait : false
+			wait: false
 		}, function(data) {
 			//	      			console.log(JSON.stringify(data));
 			var obj = {
@@ -52,11 +52,11 @@ mui.plusReady(function() {
 			var html = template("template", obj);
 			//	      			console.log(html)
 			document.getElementById("type-container").innerHTML = html;
-			
-			setTimeout(function(){
+
+			setTimeout(function() {
 				closeMask();
 			}, 50)
-			
+
 		}, function(xhr, type) {
 			console.log("错误代号：" + xhr.status + "    错误类型:" + type);
 		})
@@ -89,26 +89,28 @@ mui.plusReady(function() {
 	// 删除当前账户
 	mui("#type-container").on("tap", ".edit-account", function() {
 		var mcid = this.getAttribute("data-mcid");
-		console.log("删除"+ mcid +"账户")
+		console.log("删除" + mcid + "账户")
 		var item = this.parentNode.parentNode;
 		item.parentNode.removeChild(item);
+		
+		//删除提现账户接口
 	})
 
 	// 弹出框属性
 	var options = {
-		height : 175,
-		title : {
-			height : 40,
-			content : ""
+		height: 175,
+		title: {
+			height: 40,
+			content: ""
 		},
-		main : {
-			content : ""
+		main: {
+			content: ""
 		},
-		buttons : []
+		buttons: []
 	}
 
 	// 取现跳转到下一步
-	var pop;		// 弹出框对象
+	var pop; // 弹出框对象
 	document.getElementById("next-step").addEventListener("tap", function() {
 		if (flag && mcid) {
 			var val = document.getElementById("amount").value.trim();
@@ -116,30 +118,49 @@ mui.plusReady(function() {
 				var divide = parseFloat(val);
 				if (current >= divide) {
 					var datas = {
-						money: divide,
-						mcId: mcid
-					}
-					// 弹出框样式
+							money: divide,
+							mcId: mcid
+						}
+						// 弹出框样式
 					options.title.content = "输入密码";
-					options.main.content = "<div class='popup-input-wrap'>"+
-												"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>"+
-											"</div>"+
-											"<div class='input-extras'>Forget Your Password?</div>";
-					
+					options.main.content = "<div class='popup-input-wrap'>" +
+						"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw' id = 'input-withdraw'/>" +
+						"</div>" +
+						"<div class='input-extras'>Forget Your Password?</div>";
+
 					options.buttons[0] = {
-						name : "OK",
-						click : function(){
+						name: "OK",
+						click: function() {
 							// 支付密码验证接口
-							
-							
-							
-							
-							
+							var pwd = document.getElementById('input-withdraw').value;
+							myAjax({url:'account/checkPayPwd',data:{payPwd:pwd}},function(data){
+								if(data.ret == 1){
+									mui.toast('密码验证成功');
+									myAjax({url:'wallet/withdraw',data:datas},function(data){
+										if(data.ret==1){
+											mui.toast('请求成功')
+										}else if(data.ret==2){
+											mui.toast('渠道暂停提现')
+										}else if(data.ret==3){
+											mui.toast('你存在提现在审核，暂时不能再申请提现')
+										}
+									},function(xhr,type){
+										
+									})
+								}else if (data.ret==2){
+									mui.toast('验证失败');
+									return true;
+								}
+							},function(xhr,type){
+								
+							})
 						}
 					}
 					options.buttons[1] = {
-						name : "cancel",
-						click : function(){ return true; }
+						name: "cancel",
+						click: function() {
+							return true;
+						}
 					}
 					pop = new Popup(options)
 					pop.show();
@@ -155,26 +176,26 @@ mui.plusReady(function() {
 	}, false);
 
 	// 忘记密码
-	mui("body").on("tap", ".input-extras", function(){
+	mui("body").on("tap", ".input-extras", function() {
 		this.style.color = "red";
 		pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"));
-		
-		setTimeout(function(){
-			
+
+		setTimeout(function() {
+
 			options.title.content = "please input your password";
-			options.main.content = "<div class='popup-input-wrap'>"+
-									"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>"+
-								"</div>";
+			options.main.content = "<div class='popup-input-wrap'>" +
+				"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>" +
+				"</div>";
 			options.buttons[0]["name"] = "Ok";
-			options.buttons[0].click = function(){
+			options.buttons[0].click = function() {
 				//  忘记密码接口
-				
-				
-				
-				
+
+
+
+
 			}
-			if(options.buttons.length == 2){
-				options.buttons.splice(1,1);
+			if (options.buttons.length == 2) {
+				options.buttons.splice(1, 1);
 			}
 			pop = new Popup(options)
 			pop.show();
