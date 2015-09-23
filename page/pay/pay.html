@@ -96,31 +96,11 @@
 				}
 				var pop;
 				document.getElementById("next-step").addEventListener("tap", function() {
-									/*plus.nativeUI.showWaiting("付款中...", {
-										background: '#d1d1d1'
-									})
-									mui.ajax(BASEURL + "pay/temp", {
-										data : {
-											orderId : orderid
-										},
-										type : "post",
-										success : function(data){
-											if(data.ret == 1){
-												plus.nativeUI.closeWaiting();
-												openWindow("./result.html")
-												setTimeout(function(){
-													cpage.close("none", 0)
-												}, 230)
-											}
-										},
-										error : function(xhr, type){
-											console.log(xhr.status);			// 支付接口 404
-										}
-									})*/
 					var action = $('.right-logo').filter('.active').attr('data-action')
 					if (action == 'yue') {
 						// 弹出框样式
 						pop = null;
+						options.height = 185;
 						options.title.content = "输入密码";
 						options.main.content = "<div class='popup-input-wrap'>"+
 													"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw' id = 'pwd'/>"+
@@ -177,7 +157,7 @@
 					pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"));
 					
 					setTimeout(function(){
-						
+						options.height = 175;
 						options.title.content = "please input your password";
 						options.main.content = "<div class='popup-input-wrap'>"+
 												"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>"+

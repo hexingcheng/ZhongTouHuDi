@@ -56,7 +56,12 @@ mui.plusReady(function() {
 			click : function(){ return true }
 		},{
 			name : "cancel",
-			click : function(){ return true; }
+			click : function(){ 
+				pop = null;
+				checkpopup = null;
+				wirtepopup = null;
+				popshowed = false;
+			}
 		}]
 	}
 	

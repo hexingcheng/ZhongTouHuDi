@@ -10,14 +10,14 @@
 			height: 40,
 			content: "提示",
 			color: "#5f5d5d",
-			background: "#06495a"
+			background: "#fff"
 		},
 		main: {
 			content: "内容项填写",
 			align: "left",
-			background: "#ff979696",
-			font: "1em",
-			color: "#000"
+			background: "#fff",
+			font: "16px",
+			color: "#aaa"
 		},
 		buttons: [{
 			name: "确定",

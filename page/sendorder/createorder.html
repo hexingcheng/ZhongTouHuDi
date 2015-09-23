@@ -100,7 +100,7 @@
 				height: 34px;
 			}
 			.iptwrap input {
-				font-size: 14px;
+				font-size: 16px;
 				border: 0;
 				color: #5d5d5d;
 				margin: 0;
@@ -261,7 +261,7 @@
 				padding-left: 15px;
 			}
 			.addline {
-				font-size: 14px;
+				font-size: 16px;
 				line-height: 34px;
 				color: #acacac;
 			}
@@ -418,7 +418,7 @@
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" class="mui-action-back header_left_img" alt="" />
 			<img src="../../img/draft.png" class="header_right_img draft" alt="" id="drafticon" />
-			<span>create order</span>
+			<span>创建订单</span>
 		</header>
 		<footer class="mui-bar mui-bar-footer">
 			<button class="mui-btn nav_footer" id="next">
@@ -724,7 +724,7 @@
 				height : 190,
 				addmaskevent : true,
 				title : {
-					height : 40,
+					height : 45,
 					content : ""
 				},
 				main : {
@@ -757,9 +757,9 @@
 							
 							plus.storage.removeItem("draft-datas");
 							
-							options.height = 165;
+							options.height = 160;
 							options.title.content = "提示";
-							options.main.content = '<div>Do you want to add this order to draft?</div><p>you can use draft orde r to resend</p>';
+							options.main.content = 'you can use draft orde r to resend';
 							options.buttons[0].click = function(){
 								myAjax({
 									url: 'order/resOrderByGood',
