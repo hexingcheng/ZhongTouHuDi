@@ -40,7 +40,7 @@ body,.mui-content{
 .nav_header{
 	height: 52px;
 	line-height: 52px;
-	font-size: 16px;
+	font-size: 20px;
 	text-align: left;
 	color: #fff;
 	background-color: #26a65b;
@@ -151,7 +151,7 @@ footer .nav_footer .button_bg_rest{
 	padding-right: 0;
 	margin-bottom: 0;
 	border: 0;
-	font-size: 14px;
+	font-size: 16px;
 }
 .pay{
 			color: #033288;
@@ -166,14 +166,14 @@ footer .nav_footer .button_bg_rest{
 	margin-top: 7px;
 	overflow: hidden;
 	line-height: 20px;
-	font-size: 14px;
+	font-size: 16px;
 }
 .li_title_2{
 	display: block;
 	width: auto;
 	height: 20px;
 	line-height: 20px;
-	font-size: 14px;
+	font-size: 16px;
 	overflow: hidden;
 	color: #A9A9A9;
 }
@@ -188,7 +188,7 @@ footer .nav_footer .button_bg_rest{
 	height: 50px;
 	line-height: 50px;
 	padding: 0 18px 0 0;
-	font-size: 14px;
+	font-size: 16px;
 	border-right: 1px solid #c8c7cc;
 	float: left;
 }
@@ -200,7 +200,7 @@ footer .nav_footer .button_bg_rest{
 	height: 50px;
 	line-height: 50px;
 	padding: 0 0 0 18px;
-	font-size: 14px;
+	font-size: 16px;
 	float: right;
 	border-bottom: 1px solid #c8c7cc;
 }  
@@ -215,7 +215,7 @@ footer .nav_footer .button_bg_rest{
 	position: absolute;
 	top: 50%; 
 /*	margin-top: -20%;*/
-	font-size: 14px;
+	font-size: 16px;
 	left: 50%;
 	z-index: 999;
 	margin-left: -135px;
@@ -263,7 +263,7 @@ footer .nav_footer .button_bg_rest{
 	line-height: 52px;
 }
 .main_title_2{
-	font-size: 14px;
+	font-size: 16px;
 	color: #8F8F94;
 }
 /*蒙层*/

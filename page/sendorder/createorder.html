@@ -255,7 +255,7 @@
 				padding-right: 15px;
 			}
 			.font-14 {
-				font-size: 14px;
+				font-size: 16px;
 			}
 			.addpad {
 				padding-left: 15px;
@@ -265,17 +265,6 @@
 				line-height: 34px;
 				color: #acacac;
 			}
-			/*.drafticon {
-				display: block;
-				margin: 6px;
-				width: 40px;
-				height: 40px;
-			}
-			.drafticon img {
-				width: 40px;
-				height: 40px;
-			}*/
-			
 			#head {
 				padding-right: 0px;
 			}
@@ -332,7 +321,7 @@
 				padding: 0 15px;
 				word-break: break-all;
 				color: #acacac;
-				font-size: 14px;
+				font-size: 16px;
 			}
 			.gName .info {
 				background-color: #FFFFFF;
@@ -511,7 +500,7 @@
 					<div class="order-content clear">
 						<div class="gName clear hei110" style="background: #FFFFFF;">
 							<div class="wid30 fl hei110 linehei110 colorg">
-								<span class="colorgray myicon"><img src="../../img/host.png"></span>
+								<span class="colorgray myicon"><img src="../../img/weight.png"></span>
 							</div>
 							<div class="wid70 paddr10 hei110">
 								<div class="iptwrap mui-input-row">
@@ -654,6 +643,8 @@
 					var value = parseInt($.trim($("#gvalue").val()));
 					var info = $.trim($('#gettext').text());
 					if (validate()) { // 验证成功
+						$("#next").attr("disabled", true);
+						$("#next").html("next...");
 						var param = {
 							gName: name,
 							gWeight: weight,
@@ -773,7 +764,6 @@
 							}
 							options.buttons[1].click = function(){
 								plus.webview.getLaunchWebview().show('slide-in-left', 300);
-								
 								closewebview();
 							}
 							pop = new Popup(options);
@@ -1004,6 +994,8 @@
 				showobj(datas);
 			})
 			window.addEventListener('getdraft', function(eve) {
+				$("#next").attr("disabled", false);
+				$("#next").html("Next Step");
 				getdata = eve.detail;
 			})
 			var cpage = plus.webview.currentWebview();
@@ -1011,10 +1003,9 @@
 				refreshdata();
 			}
 			window.addEventListener("draft:datas", function(eve) {
-					refreshdata();
-				})
-				// 重新刷新数据显示
-
+				refreshdata();
+			})
+			// 重新刷新数据显示
 			function refreshdata() {
 				var iw = $('.addclass').outerWidth()
 				var datas = JSON.parse(plus.storage.getItem("draft-datas"));
@@ -1042,6 +1033,7 @@
 					}
 				}
 			}
+			
 		})
 	</script>
 
