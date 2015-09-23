@@ -43,7 +43,7 @@ mui.plusReady(function() {
 	}
 	// 弹出框的属性
 	var options = {
-		height : 170,
+		height : 160,
 		title : {
 			height : 40,
 			content : ""
@@ -173,9 +173,9 @@ mui.plusReady(function() {
 
 	// 验证码输入弹出框
 	$('.write').on('tap', function() {
-		options.height = 200;
+		options.height = 190;
 		options.title.content = "please input pick up code";
-		options.main.content = '<p>input your code from receiver</p><div><input type="text" id="vacode" style="margin: 12px 10%;width: 80%; display: inline-block;" /></div>';
+		options.main.content = '<div>input your code from receiver<div><div><input type="text" id="vacode" placeholder="请输入验证码"/></div>';
 		options.buttons[0].click = function(){
 			console.log($('#vacode').val())
 			var code = parseInt($('#vacode').val());
@@ -224,7 +224,7 @@ mui.plusReady(function() {
 	
 	// 发送验证码
 	$('.check').on('tap', function() {
-		options.height = 160;
+		options.height = 150;
 		options.title.content = "提示";
 		options.main.content = "需要重新发送一次验证码吗？"
 		options.buttons[0].click = function(){
