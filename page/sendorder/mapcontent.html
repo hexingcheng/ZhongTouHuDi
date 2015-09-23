@@ -114,13 +114,16 @@
 				};
 				geocoder.geocode({
 					'location': latlng
-				}, function(results, status) {
+				}, function(results, status) { 
+					console.log(JSON.stringify(results)); 
 					getbasicmsg(results);
 					if (status === google.maps.GeocoderStatus.OK) {
+						for(var k = 0;k<results.length;k++){
+							console.log(JSON.stringify(results[k]));
+						}
 						if (results[0]) {
-							console.log(JSON.stringify(results[1])); 
 							var data = {
-								addr: results[0].formatted_address,
+								addr: results[0].formatted_address, 
 								location: results[0].geometry.location
 							}
 							getAddr(data);
@@ -134,17 +137,19 @@
 			}
 
 			function getbasicmsg(addrobj) {
-				var addr = [];
+//				var addr = [];
 				var len = addrobj.length;
 				for (var i = 0; i < len; i++) {
-					addr.push(addrobj[i].formatted_address); 
+//					addr.push(addrobj[i].formatted_address);
+					
 				}
-				console.log(addr.join(',,,')) 
+//				console.log(addr.join(',,,')) 
+				
 			}
 
 			function getAddr(data) {
 				var addr = plus.webview.getWebviewById('pickaddr');
-				mui.fire(addr, 'getaddr', data);
+				mui.fire(addr, 'getaddr', data); 
 			}
 			mui.plusReady(function() {
 				if (navigator.geolocation) {
@@ -161,11 +166,10 @@
 					mui.toast('获取位置信息失败');
 				}
 				window.addEventListener('changemap', function(eve) {
-					//var myLatlng = {lat: -25.363, lng: 131.044}
+					//var myLatlng = {lat: -25.363, lng: 131.044};
 					//mymap.panTo(myLatlng)
 				})
 			})
 		</script>
 	</body>
-
 </html>
