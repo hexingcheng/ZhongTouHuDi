@@ -95,17 +95,7 @@
 			.edit_hide {
 				display: none;
 			}
-			.mak {
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				z-index: 500;
-				background-color: rgba(0, 0, 0, .4);
-			}
 			/**弹出框*/
-			
 			.center_pop {
 				z-index: 502;
 				width: 70%;
@@ -157,12 +147,12 @@
 			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" />
 		</header>
 		<!-- 加载中的蒙层 -->
-		<div id="loading-mask"></div>
+		<div id="loading-mask" class="mui-hidden"></div>
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%" />
 		</div>
 		<!--蒙版-->
-
+		<div class="content_mask mui-hidden"></div>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -205,8 +195,8 @@
 							</div>
 							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide" name="two" />
 							<div class="li_input_s">
-								<span class="edit_show male sex"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" /></span>
-								<span class="edit_show female sex mui-hidden "><span class="mui-pull-left">female</span><img src="../../img/female2.png" alt="" class="mui-hidden" /></span>
+								<span class="edit_show male sex mui-hidden"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" /></span>
+								<span class="edit_show female sex mui-hidden"><span class="mui-pull-left">female</span><img src="../../img/female2.png" alt="" /></span>
 								<div class="select_sex edit_hide">
 									<lable>male </lable>
 									<input type="radio" name="sex" checked="checked" value="man" id="person_sex" />
@@ -261,7 +251,7 @@
 						<!--中间间隙-->
 					</div>
 					<ul class="mui-table-view">
-						<li class="mui-table-view-cell">
+						<li class="mui-table-view-cell" id="info">
 							<div class="li_left_title"><span>credibility</span></div>
 							<div class="li_input_l">
 								<img src="../../img/jiangbei.png" class="li_left_img" alt="" />
@@ -369,11 +359,9 @@
 							$('#phone').val(data.phone);
 							$('#ptitle').text(data.ptitle);
 							if (data.sex == 1) {
-								$('.male').css('display', 'block');
-								$('.female').css('display', 'none');
+								$('.male').removeClass('mui-hidden');
 							} else {
-								$('.female').css('display', 'block');
-								$('.male').css('display', 'none');
+								$('.female').removeClass('mui-hidden');
 							}
 						}
 					},
@@ -508,8 +496,8 @@
 						var em = $('#email').val().trim();
 						var nation = $('#nation').text().trim();
 						var ph = $('#phone').val().trim();
-						var check = $("#select_sex input[name='sex']:checked").val();
-						var sex = (check == 'checked') ? '1' : '2';
+						var check = $("#person_sex").prop("checked");
+						var sex = (check ==true) ? '1' : '2';
 						var pwd = $('#password').val().trim();
 						data = {
 							firstName: fin,
@@ -534,11 +522,11 @@
 								$('.edit_show').css('display', 'block');
 								$('#nation_').removeClass('nation_');
 								if (sex == 1) {
-									$('.male').css('display', 'block');
-									$('.female').css('display', 'none');
+									$('.male').removeClass('mui-hidden');
+									$('.female').addClass('mui-hidden');
 								} else {
-									$('.female').css('display', 'block');
-									$('.male').css('display', 'none');
+									$('.female').removeClass('mui-hidden');
+									$('.male').addClass('mui-hidden');
 								}
 								var i = plus.webview.getLaunchWebview();
 								mui.fire(i, 'setaccount', data);
@@ -603,22 +591,24 @@
 					//选择国籍
 				$('.mui-table-view-cell').on('tap', '.nation_', function() {
 					$('#nation_select_').css('display', 'block');
+					$('.content_mask').removeClass('mui-hidden');
 				})
 				$('.nation_select ul li').on('tap', function() {
 						var nation_name = $(this).text();
 						$('#nation').text(nation_name);
 						$('#nation_select_').css('display', 'none');
+						$('.content_mask').addClass('mui-hidden');
 					})
 					//查看申请递送人信息    
-				$('#open_apply').on('tap', function() {
-						openWindow('../applyfor/applyPerson.html');
+				$('#open_apply').on('tap', function() { 
+						openWindow('../applyfor/applyPerson.html');  
 					})
 					//修改支付密码
 				$('#wallet_pwd').on('tap', function() {
 					openWindow('../wallet/set_wallet_pwd.html');
 				})
 				mui.back = function() {
-					alert($('.center_save').css('display'))
+//					alert($('.center_save').css('display'))
 					if ($('.center_save').css('display') == 'block') {
 						options.height = 160;
 						options.title.content = "保存";
@@ -632,7 +622,7 @@
 							});
 						}
 						var dailog = new Popup(options);
-						dailog.show();
+						dailog.show();  
 					} else {
 						plus.webview.getLaunchWebview().show('slide-in-left', 300);
 						setTimeout(function() {
@@ -640,8 +630,10 @@
 						}, 1000)
 					}
 				}
+				$('#info').on('tap',function(){
+					openWindow('new_personal_info.html')
+				})
 			})
-		</script>
+		</script>   
 	</body>
-
 </html>
