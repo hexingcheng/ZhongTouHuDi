@@ -7,6 +7,7 @@
 		<title></title>
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/share_main.css" />
 		<link rel="stylesheet" href="person.css" />
 	</head>
 	<style>
@@ -31,7 +32,7 @@
 		}
 		.person_bg {
 			width: 100%;
-			height: 40%;
+			height: 30%;
 			position: relative;
 			background: url(../../img/details2.jpeg) no-repeat;
 			background-size: 100% 100%;
@@ -43,6 +44,7 @@
 			background-size: 90px 90px;
 			border-radius: 45px;
 			position: absolute;
+			z-index: 500;
 			left: 50%;
 			margin-left: -45px;
 			bottom: 0;
@@ -60,12 +62,6 @@
 		.person_sex img {
 			width: 34px;
 			height: 34px;
-		}
-		.person_input_con {
-			margin-top: .5em;
-			width: 100%;
-			overflow: hidden;
-			background-color: #fff;
 		}
 		.person_input {
 			width: 100%;
@@ -240,49 +236,60 @@
 	</style>
 
 	<body>
-		<header class="mui-bar mui-bar-nav person_nav">
-			<img src="../../img/left.png" alt="" />
+		<header class="mui-bar mui-bar-nav nav_header">
+			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back"/>
 			<span>person</span>
 		</header>
 		<div class="mui-content">
 			<div class="person_bg">
 				<div class="person_headpic">
 					<div class="person_sex">
-						<img src="../../img/female.png" alt="" style="display:none;" />
-						<img src="../../img/male2.png" alt="" />
+						<img src="../../img/female.png" class="mui-hidden" />
+						<img src="../../img/male2.png" />
 					</div>
 				</div>
 			</div>
 			<!--输入框-->
-			<div class="person_input_con">
-				<div class="person_input">
-					<span class="person_t">name</span>
-					<img src="../../img/1096072.png" alt="" />
-					<div class="input_con">
-						<input type="text" id="name" />
+			<div class="content_clear"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<div class="li_left_title">
+						<span>name</span>
 					</div>
-				</div>
-				<div class="person_input">
-					<span class="person_t">phone</span>
-					<div class="input_con">
-						<input type="text" id="phone" />
+					<img src="../../img/nationality.png" alt="" class="li_right_img"/>
+					<div class="li_input_s">
+						<span id="name" ></span>
 					</div>
-				</div>
-				<div class="person_input">
-					<span class="person_t">E-mail</span>
-					<div class="input_con">
-						<input type="text" id='email' />
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="li_left_title">
+						<span>phone</span>
 					</div>
-				</div>
-				<div class="person_input input_shadow">
-					<span class="person_t">credibility</span>
-					<img src="../../img/jiangbei.png" alt="" class="person_p" />
-					<span class="person_ptitle" id="ptitle"></span>
-				</div>
-			</div>
+					<div class="li_input_l">
+						<span id="phone"></span>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="li_left_title">
+						<span>E-mail</span>
+					</div>
+					<div class="li_input_l">
+						<span id='email'></span>
+					</div>
+				</li>
+				<li class="mui-table-view-cell">
+					<div class="li_left_title">
+						<span>credibility</span>
+					</div>
+					<span id="ptitle"></span>
+					<img src="../../img/jiangbei.png" alt="" class="li_left_img"/> 
+				</li>
+				
+			</ul>
 			<div class="comment ">
 				<span>comment</span>
 			</div>
+
 			<div id="info_templates"></div>
 		</div>
 		<script src="../../js/template.js"></script>
@@ -340,13 +347,13 @@
 							var credi = data.res.ptitle;
 							var phone = data.res.phone;
 							if (name) {
-								$('#name').val(name);
+								$('#name').text(name);
 							}
 							if (phone) {
-								$('#phone').val(phone);
+								$('#phone').text(phone);
 							}
 							if (email) {
-								$('#email').val(email);
+								$('#email').text(email);
 							}
 							if (credi) {
 								$('#ptitle').text(credi);
@@ -376,6 +383,7 @@
 				}, function(xhr, type) {
 					mui.toast(xhr.status + ":" + type);
 				})
+				
 			})
 		</script>
 	</body>

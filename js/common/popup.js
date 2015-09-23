@@ -55,7 +55,7 @@
 			this.args = util.extend(defaults, options);
 			this.renderNode() // 渲染节点
 			this.renderAttr() // 渲染属性值
-			this.maskevent();	// 给mask添加时间蒙层
+			this.maskevent(); // 给mask添加时间蒙层
 		} else {
 			new Popup(options);
 		}
