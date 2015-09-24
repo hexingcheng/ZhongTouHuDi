@@ -115,6 +115,7 @@ footer .nav_footer .button_bg_rest{
 	overflow: hidden;
 	padding-top: 0 !important;
 	padding-bottom: 0; 
+	color: #000;
 }
 .mui-table-view-cell .li_left_title{
 	width: 7em;
