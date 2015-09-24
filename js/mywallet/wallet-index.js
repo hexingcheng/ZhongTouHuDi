@@ -13,7 +13,7 @@ mui.plusReady(function() {
 		data: {},
 		wait : false
 	}, function(data) {
-				console.log(JSON.stringify(data))
+//				console.log(JSON.stringify(data))
 		money.innerHTML = data.res.money;
 		point.innerHTML = data.res.point;
 		coupon.innerHTML = data.res.coupon;

@@ -69,5 +69,23 @@ mui.plusReady(function() {
 			mui.toast("未填写评价信息")
 		}
 	})
+	
+	// 描述信息提示剩余可输入字符
+	var timer;
+	var last = 0;
+	var remain = document.getElementById("words");
+	var all = parseInt(remain.innerHTML);
+	document.getElementById("info").addEventListener("focus", function(){
+		var that = this;
+		timer = setInterval(function(){
+			if(last != that.value.length){
+				remain.innerHTML = all - that.value.length;
+			}
+			last = that.value.length;
+		}, 300)
+	})
+	document.getElementById("info").addEventListener("blur", function(){
+		clearInterval(timer);
+	})
 
 })

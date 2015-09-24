@@ -78,10 +78,10 @@
 					height: 100%;
 				}
 				.footer .check{
-					margin-top: 10px;
+					
 				}
 				.footer .write{
-					margin-top: 10px;
+					
 				}
 				#foot{
 					text-align: center;
@@ -176,6 +176,12 @@
 					text-align: center;
 					border-bottom:1px solid #D1D1D1;
 				}
+				#vacode {
+					border: none;
+					border-bottom: 1px solid #aaa;
+					margin-top: 10px;
+					padding: 10px 5px;
+				}
 		</style>
 	</head>
 
@@ -186,9 +192,12 @@
 		</header>
 		<footer class="mui-bar mui-bar-footer footer" id="foot">
 			<button class="cancel nav_footer mui-btn cancle_bg mui-hidden">cancel bargin</button>
-			<button class="check mui-btn mui-hidden">resend code</button>
-			<button class="write mui-btn mui-hidden">write code</button>
+			<div class="nav_footer bg_white">
+				<button class="check mui-btn left_button mui-hidden">resend code</button>
+				<button class="write mui-btn right_button mui-hidden">write code</button>
+			</div>
 		</footer>
+		
 		<div class="presee mui-hidden">
 			<div class="picwraps">
 				<div class="mui-slider" id="slider">
