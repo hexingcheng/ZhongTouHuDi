@@ -10,7 +10,10 @@
 		<link rel="stylesheet" href="apply.css" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
 		<style>
-			
+			html,body{
+				height: 100%;
+				width: 100%;
+			}
 			 .mui-table-view-cell .select_sex input{
 				height: auto; 
 				font-size: 14px; 
@@ -66,6 +69,47 @@
 				top: 52px;
 				bottom: 60px;
 			}
+			.presee {
+				width: 100%;
+				height: 100%;
+				z-index: 1000;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+			.presee {
+				position: fixed;
+				background-color: rgba(0, 0, 0, 1);
+			}
+			.picwraps{
+				width: 100%;
+				height: 100%;
+			}
+			.mui-slider-group{
+				height: 100%;
+				width: 100%;
+			}
+			.presee .picwraps .mui-slider {
+				width: 80%;
+				height: 100%;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			.presee .mui-slider .mui-slider-item {
+				padding: 0 10px;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+			}
+			.presee .mui-slider .mui-slider-item a {
+				height: 100%;
+				width: 100%;
+				position: relative;
+			}
+			.presee .mui-slider .mui-slider-item a img {
+				position: absolute;
+			}
 		</style>
 	</head>
 
@@ -120,6 +164,29 @@
 		<div id="loading-mask"></div>
 		<div id="loading-box">  
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
+		</div>
+			<div class="presee mui-hidden">
+			<div class="picwraps"> 
+				<div class="mui-slider" id="slider">
+					<div class="mui-slider-group" id="preseepic">
+						<div class="mui-slider-item" >
+							<a href="javascript:void(0)">
+								<img src="" class="preimg pic_one">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="../../img/2147de349744915c611f470c84c67f94.jpg" class="preimg pic_two_">  
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg pic_three">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="mui-content apply_content">
 			<div class="mui-scroll-wrapper">
@@ -205,14 +272,15 @@
 							</div>
 						</li>
 					</ul>
-					<div class="clear_padd mui-hidden info">
+					<div class="clear_padd mui-hidden info " id="porel">
 						<img src="" class="mui-pull-left" id="pic_one"/>
-						<img src="" class="pic_two" id="pic_two" />
+						<img src="" class="pic_two " id="pic_two" />
 						<img src="" class="mui-pull-right" id="pic_three" />
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		<footer class="mui-bar mui-bar-footer content_chan" >  
 			<button class="mui-btn nav_footer" id="apply_submit"><span>Next Step</span></button>
 		</footer>
@@ -358,7 +426,7 @@
 		   	  		if(status==1){
 		   	  			$('#status_info').text('你的审核已成功');
 		   	  		}else if(status==12){  
-		   	  			$('#status_info').text('你的审核还在审核中');
+		   	  			$('#status_info').text('你的文件还在审核中');
 		   	  		}else if(status==13){
 		   	  			$('#status_info').text('审核失败,请点击重新申请');
 		   	  			$('#title_apply').addClass('applyPerson');
@@ -380,6 +448,10 @@
 		   	  		$('#id_number').val(res.creditCard);
 		   	  		var n=BASEURL.indexOf('/a');
 		   	  		var path=BASEURL.substring(0,n);
+		   	  		console.log(JSON.stringify(res));
+		   	  		$('.pic_one').attr('src',path+res.cardPic1.minPath);
+		   	  		$('.pic_two_').attr('src',path+res.cardPic2.minPath);
+		   	  		$('.pic_three').attr('src',path+res.cardPic3.minPath);
 		   	  		$('#pic_one').attr('src',path+res.cardPic1.path);
 		   	  		$('#pic_two').attr('src',path+res.cardPic2.path);
 		   	  		$('#pic_three').attr('src',path+res.cardPic3.path);  
@@ -395,6 +467,27 @@
 			mui('.mui-content').on('tap','.applyPerson',function(){
 				openWindow('applyPerson.html');
 			})
+				// 图片预览
+	mui('#porel').on('tap','img', function() {
+		$('.presee').removeClass('mui-hidden');
+		var index = $(this).index();
+		toverticalcenter();
+		var gallery = mui('#slider');
+		gallery.slider({
+			interval: 0
+		}).gotoItem(index);
+	})
+	function toverticalcenter() {
+		var item = $('.preimg')
+		var len = item.length;
+		for (var i = 0; i < len; i++) {
+			var t = ($(window).height() - item.eq(i).height()) / 2
+			item.eq(i).css('top', t)
+		}
+	}
+		$('.presee').on('tap', function() {
+			$(this).addClass('mui-hidden')
+		})
 		})
 	</script>
 </html>

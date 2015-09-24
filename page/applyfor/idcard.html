@@ -17,7 +17,7 @@
 		</div>
 		<div class="nation_content">
 			<!--实例蒙版-->
-
+		
 			<header class="mui-bar mui-bar-nav nav_header">
 				<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 				<span>Certificate Authentication</span>
@@ -81,6 +81,11 @@
 				<span>Done</span>
 			</button>
 		</footer>
+	<div id="loading-mask" class="mui-hidden" style="background-color: transparent;">
+		<div id="loading-box" >
+			<img src="../../img/loading2.gif" alt="loading" width="100%" />
+		</div>
+	</div>
 	</body>
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/comment.js"></script>
@@ -92,21 +97,22 @@
 			$('.deal_marb').addClass('nation_marb');
 		})
 		 $('.case').on('tap', function() {
-			var ca = $(this).attr('name');
-			var a_src = $("." + ca).attr('src');
+//			var ca = $(this).attr('name');
+//			var a_src = $("." + ca).attr('src');
 			$('.apply_mark').css('display', 'block');
-			$('.deal_marb').removeClass('nation_marb');
-			if (a_src) {
-				$('.case_show').attr('src', a_src);
-			} else {
-				$('.case_show').attr('src', "../../img/cbd.jpg");
-			}
+//			$('.deal_marb').removeClass('nation_marb');
+//			if (a_src) {
+//				$('.case_show').attr('src', a_src);
+//			} else {
+//				$('.case_show').attr('src', "../../img/cbd.jpg");
+//			}
 		})
 		 mui.plusReady(function() {
 			plus.webview.currentWebview().setStyle({
 				scrollIndicator: 'none'
 			});
 			var fo='';
+			$('.id_imgcover').attr('src','');//清除缓存图片        
 			mui('.mui-scroll-wrapper').scroll();
 			$('.photo_').on('tap', function() {
 				fo=$(this).attr('name');
@@ -122,6 +128,7 @@
 				mui('#photo').popover('toggle');
 			})
 			function bycamera(context) {
+				
 				var camera = plus.camera.getCamera();
 				var res = camera.supportedImageResolutions[0];
 				var fmt = camera.supportedImageFormats[0];
@@ -133,14 +140,12 @@
 			function dealpic(path, context) {
 					plus.io.resolveLocalFileSystemURL(path, function(entry) {
 						var local = entry.toLocalURL();
-						path = plus.io.convertLocalFileSystemURL(path);
-						$("." + fo).attr('src', path).css('display', 'block');
-						dealImage(local, {
-							width: 17 * 4,
-							quality: 0.5
+						$('#loading-mask').removeClass('mui-hidden');//loadding
+						dealImage(local, {  
+							quality: 0.8
 						}, function(base) {
 							console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
-							data = {
+							data = {  
 								imgName: Math.floor(Math.random() * 100000) + ".jpg",
 								imgData: base // base字符串
 							}
@@ -149,6 +154,7 @@
 									data: data
 								},
 								function(obj) {
+									console.log(11);
 									if (obj.ret == 1) {
 										$("." + fo).attr('src', path).css('display', 'block');
 										if (fo == "one") {
@@ -158,13 +164,20 @@
 										} else if (fo == "three") {
 											plus.storage.setItem('nation_pic3', JSON.stringify(obj.res.fid));
 										}
+										path = plus.io.convertLocalFileSystemURL(path);
+										$("." + fo).attr('src', path).css('display', 'block');
+//										console.log(22);
+										$('#loading-mask').addClass('mui-hidden');  
 									} else {
 										mui.toast('请先登录在操作！');
+										
 									}
 								},
 								function(xhr, type) {
 									console.log(xhr.status);
-								}, function() {
+									$('#loading-mask').addClass('mui-hidden'); 
+									mui.toast('请再次上传');
+								}, function() {  
 									alert("qingdenglu")
 								})
 						})
@@ -173,6 +186,7 @@
 				//bg galary
 
 			function bygallery(context) {
+				
 				plus.gallery.pick(function(path) {
 					dealpic(path, context);
 				}, function(e) {
@@ -182,6 +196,7 @@
 					filter: 'image',
 					multiple: false
 				})
+			
 			}
 			var flag = true;
 			var add_data;
