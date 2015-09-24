@@ -38,7 +38,7 @@ function pulldownRefresh() {
 	var getorderdata = {
 		"page": 1,
 		"pageSize": 10,
-		"curAddr": "重庆",
+		"curAddr": "重庆市南岸区",
 		"curJd": "",
 		"curWd": "",
 		"sendAddr": "",
@@ -47,7 +47,8 @@ function pulldownRefresh() {
 		"prices": ",",
 		"weights": ",",
 		"sortType": "time",
-		"sortVal": "asc"
+		"sortVal": "asc",
+		"reqTime":getcurrenttime()
 	};
 	
 	getorderdata.sortType = whichitem;
@@ -101,7 +102,8 @@ function pullupRefresh() {
 		"prices": ",",
 		"weights": ",",
 		"sortType": "time",
-		"sortVal": "asc"
+		"sortVal": "asc",
+		"reqTime":getcurrenttime()
 	};
 	getorderdata.sortType = whichitem;
 	getorderdata.sortVal = whichval;
@@ -161,7 +163,8 @@ mui.plusReady(function() {
 		"prices": ",",
 		"weights": ",",
 		"sortType": "time",
-		"sortVal": "asc"
+		"sortVal": "asc",
+		"reqTime":getcurrenttime()
 	};
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(pos) {
@@ -276,4 +279,7 @@ mui.plusReady(function() {
 			var href = this.getAttribute('data-href')
 			openWindow(href); // 打开详情页面信息显示
 		})
+	window.addEventListener('fresh',function(){
+		pulldownRefresh();
+	})
 })

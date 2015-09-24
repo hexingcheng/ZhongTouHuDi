@@ -326,7 +326,7 @@
 									</span>
 								</div>
 								<div class="hei80 linehei hidden addborb">
-									<div id="getaddr" data-addr="重庆" data-Jd="106.60111939165672" data-Wd="29.53408157290842" class="font-14 pd0">Pickup Address</div>
+									<div id="getaddr" data-addr="重庆市南岸区黄桷垭" data-Jd="106.60111939165672" data-Wd="29.53408157290842" class="font-14 pd0">Pickup Address</div>
 								</div>
 							</div>
 							<div class="clear">
@@ -339,7 +339,7 @@
 									</span>
 								</div>
 								<div class="hei80 linehei hidden">
-									<div id="sendaddr" data-addr="北京" data-Jd="10" data-Wd="10" class="font-14 pd0">Receive address</div>
+									<div id="sendaddr" data-addr="重庆市南岸区茶园" data-Jd="106.60111939165600" data-Wd="29.53408157290800" class="font-14 pd0">Receive address</div>
 								</div>
 							</div>
 							<div class="down">
@@ -482,7 +482,6 @@
 						
 						$('#next').on('tap', function() {
 							var $this = $(this);
-							
 							var data = JSON.parse(plus.storage.getItem("draft-datas"))
 							if (data && data.res && data.res.orderId) {
 								getdata.orderId = data.res.orderId;
@@ -510,7 +509,7 @@
 							showobj(getdata)
 							if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
 								if (onOff) {
-									onOff = false
+									onOff = false;
 									// 当信息验证成功后，禁止按钮再次提交
 									$this.attr("disabled", true);
 									$this.html("submit...")

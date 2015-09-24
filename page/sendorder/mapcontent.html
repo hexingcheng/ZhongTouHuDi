@@ -138,10 +138,17 @@
 
 			function getbasicmsg(addrobj) {
 //				var addr = [];
+				var addr = ['','',''];
 				var len = addrobj.length;
 				for (var i = 0; i < len; i++) {
 //					addr.push(addrobj[i].formatted_address);
-					
+					var address_components = addrobj[i].address_components;
+					var leng = address_components.length;
+					for(var j = 0;j<leng;j++){
+						if(address_components[j].style.indexOf('country')!=-1){
+							addr+=address_components[j].long_name;
+						}
+					}
 				}
 //				console.log(addr.join(',,,')) 
 				
