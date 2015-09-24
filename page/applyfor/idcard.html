@@ -143,6 +143,7 @@
 						$('#loading-mask').removeClass('mui-hidden');//loadding
 						dealImage(local, {  
 							quality: 0.8
+
 						}, function(base) {
 							console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
 							data = {  
