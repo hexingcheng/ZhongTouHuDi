@@ -8,6 +8,13 @@
 		<link rel="stylesheet" href="../../css/share_main.css" />
 		<link rel="stylesheet" href="apply.css" />
 		<script src="../../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				gestureConfig:{
+				 doubletap: true, //默认为false
+				}
+			})
+		</script>
 	</head>
 	<body>
 		<div class="apply_mark">
@@ -22,16 +29,42 @@
 				<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 				<span>Certificate Authentication</span>
 			</header>
+			<div class="presee mui-hidden" id="show_pic_">
+			<div class="picwraps"> 
+				<div class="mui-slider" id="slider">
+					<div class="mui-slider-group" id="preseepic">
+						<div class="mui-slider-item" >
+							<a href="javascript:void(0)">
+								<img src="" class="preimg pic_one">
+							</a>
+						</div>
+						<div class="mui-slider-item" >
+							<a href="javascript:void(0)">
+								<img src="" class="preimg pic_two_">  
+							</a>
+						</div>
+						<div class="mui-slider-item" >
+							<a href="javascript:void(0)">
+								<img src="" class="preimg pic_three">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 			<div class="mui-content ">
 				<div class="mui-scroll-wrapper">
 					<div class="mui-scroll">
+						<div class="title_info">
+							<span>请按照<span id="id_type">**</span>规则上传照片</span>
+						</div>
 						<div class="apply_idCard">
-							<div class="apply_idcard_div">
+							<div class="apply_idcard_div" >
 								<div class="img_div">
 									<img src="../../img/case.png" alt="" class="case" name="one" />
 									<span>case</span>
 								</div>
-								<div class="apply_idpho photo_" name="one">
+								<div class="apply_idpho photo_" name="one" >
 									<img src="" class="one id_imgcover" />
 									<img src="../../img/camera.png" class="id_img" alt="" />
 									<p>Holding Certificate For Obverse</p>
@@ -108,11 +141,32 @@
 //			}
 		})
 		 mui.plusReady(function() {
+//		 	$('.id_imgcover').attr('src','');//清除缓存图片    
+		 	//图片预览
+		 	$('.id_imgcover').on('tap',function(){
+		 		$('#show_pic_').removeClass('mui-hidden');
+		 		toverticalcenter();
+		 	})
+		 	$('#show_pic_').on('tap',function(){
+		 		$(this).addClass('mui-hidden');
+		 	})
+		 
+		 	function toverticalcenter() {
+				var item = $('.preimg')
+				var len = item.length;
+				for (var i = 0; i < len; i++) {
+					var t = ($(window).height() - item.eq(i).height()) / 2
+					item.eq(i).css('top', t)
+				}
+			}
 			plus.webview.currentWebview().setStyle({
 				scrollIndicator: 'none'
 			});
+			//获取证件类型
+		    var id_type=plus.storage.getItem("id_type"); 
+		        $('#id_type').text(id_type);
 			var fo='';
-			$('.id_imgcover').attr('src','');//清除缓存图片        
+			    
 			mui('.mui-scroll-wrapper').scroll();
 			$('.photo_').on('tap', function() {
 				fo=$(this).attr('name');
@@ -155,19 +209,21 @@
 									data: data
 								},
 								function(obj) {
-									console.log(11);
+									path = plus.io.convertLocalFileSystemURL(path);
 									if (obj.ret == 1) {
 										$("." + fo).attr('src', path).css('display', 'block');
 										if (fo == "one") {
 											plus.storage.setItem('nation_pic1', JSON.stringify(obj.res.fid));
+											$('.pic_one').attr('src', path);
 										} else if (fo == "two") {
 											plus.storage.setItem('nation_pic2', JSON.stringify(obj.res.fid));
+											$('.pic_two_').attr('src', path);
 										} else if (fo == "three") {
+											$('.pic_three').attr('src', path);
 											plus.storage.setItem('nation_pic3', JSON.stringify(obj.res.fid));
 										}
-										path = plus.io.convertLocalFileSystemURL(path);
+										
 										$("." + fo).attr('src', path).css('display', 'block');
-//										console.log(22);
 										$('#loading-mask').addClass('mui-hidden');  
 									} else {
 										mui.toast('请先登录在操作！');
@@ -177,7 +233,7 @@
 								function(xhr, type) {
 									console.log(xhr.status);
 									$('#loading-mask').addClass('mui-hidden'); 
-									mui.toast('请再次上传');
+									mui.toast('请再次上传');  
 								}, function() {  
 									alert("qingdenglu")
 								})
@@ -242,6 +298,7 @@
 							plus.storage.removeItem('nation_pic1');
 							plus.storage.removeItem('nation_pic2');
 							plus.storage.removeItem('nation_pic3');
+							plus.storage.removeItem('id_type');
 							openWindow("submitted.html");
 						} else if (obj.ret == 2) {
 							mui.toast('你已申请,请勿重复申请！');

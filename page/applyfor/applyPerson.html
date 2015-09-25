@@ -41,15 +41,14 @@
 			    top: 50%;
 			    text-align: center;
 			    margin-top: -25%;
-				color: silver;
 				overflow: hidden;
 			} 
-			.spplay_select_type ul li{
-				padding: 0;
+			.spplay_select_type .mui-table-view li{
 				height: 48px;
 				font-size: 14px;
-				line-height: 48px; 
-				color: #000;
+				line-height: 48px;   
+				color:  #5f5d5d;
+				background-color: #EEE;
 			}
 			.nation_select{
 				width: 70%;
@@ -60,55 +59,17 @@
 				left: 50%;
 				margin-left: -35%;
 				position: absolute;
-				background-color: white;
 				display: none;
 			} 		
-
+			.nation_select .mui-table-view li{
+				color:  #5f5d5d;
+				background-color: #EEE;
+			}
 			.mui-scroll-wrapper {
 				top: 52px;
 				bottom: 60px;
 			}
-			.presee {
-				width: 100%;
-				height: 100%;
-				z-index: 1000;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-			}
-			.presee {
-				position: fixed;
-				background-color: rgba(0, 0, 0, 1);
-			}
-			.picwraps{
-				width: 100%;
-				height: 100%;
-			}
-			.mui-slider-group{
-				height: 100%;
-				width: 100%;
-			}
-			.presee .picwraps .mui-slider {
-				width: 80%;
-				height: 100%;
-				margin: 0 auto;
-				overflow: hidden;
-			}
-			.presee .mui-slider .mui-slider-item {
-				padding: 0 10px;
-				width: 100%;
-				height: 100%;
-				box-sizing: border-box;
-			}
-			.presee .mui-slider .mui-slider-item a {
-				height: 100%;
-				width: 100%;
-				position: relative;
-			}
-			.presee .mui-slider .mui-slider-item a img {
-				position: absolute;
-			}
+			
 		</style>
 	</head>
 
@@ -147,13 +108,13 @@
 			 </ul>  
 		</div>
 		<!--证件选择-->
-		<div class="spplay_select_type mui-popover" id="id_type">
+		<div class="spplay_select_type mui-popover" id="id_type" >
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell mui-text-center">学生证</li>
-				<li class="mui-table-view-cell mui-text-center">身份证</li>
-				<li class="mui-table-view-cell mui-text-center">残疾证</li>
-				<li class="mui-table-view-cell mui-text-center">军人证</li>
-				<li class="mui-table-view-cell mui-text-center">驾驶证</li>
+				<li class="mui-table-view-cell mui-text-left">学生证</li>
+				<li class="mui-table-view-cell mui-text-left">身份证</li>
+				<li class="mui-table-view-cell mui-text-left">残疾证</li>
+				<li class="mui-table-view-cell mui-text-left">军人证</li>
+				<li class="mui-table-view-cell mui-text-left">驾驶证</li>
 			</ul>
 		</div>
 		<header class="mui-bar mui-bar-nav nav_header ">
@@ -175,7 +136,7 @@
 						</div>
 						<div class="mui-slider-item">
 							<a href="javascript:void(0)">
-								<img src="../../img/2147de349744915c611f470c84c67f94.jpg" class="preimg pic_two_">  
+								<img src="" class="preimg pic_two_">  
 							</a>
 						</div>
 						<div class="mui-slider-item">
@@ -213,14 +174,15 @@
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/gender.png" class="li_left_img " alt="" />
-							<img src="../../img/female2.png" class="li_left_img mui-hidden two"/>
-							<img src="../../img/male2.png" alt="" class="li_left_img mui-hidden one"/>
+							<span class="mui-hidden two"><span class="mui-pull-left">female</span><img src="../../img/female2.png" class="li_left_img  "/></span>
+							<span class="mui-hidden  one"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" class="li_left_img "/></span>
 							<div class="li_input_l select_sex">
 								<span class="content_chan">
-									<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
 									<lable style="color: silver;">man </lable>
+									<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
+									&nbsp;&nbsp;<lable style="color: silver;">women </lable>
 									<input  type="radio" name="sex" />
-									<lable style="color: silver;">women </lable>
+									
 								</span>
 							</div>
 						</li>
@@ -255,7 +217,6 @@
 								<input type="number" class="apply_input edit" placeholder="identity" id="identity" >
 							</div>
 						</li>
-						<!--			<ul class="mui-table-view apply_padding" >-->
 						<li class="mui-table-view-cell" id="select_type">
 							<img src="../../img/id2.png" class=" li_left_img" alt="" />
 							<img src="../../img/down.png" class=" li_right_img content_chan" alt="" />
@@ -279,7 +240,7 @@
 				</div>
 			</div>
 		</div>
-		<footer class="mui-bar mui-bar-footer content_chan" id="footer">  
+		<footer class="mui-bar mui-bar-footer content_chan" id="footer" >  
 			<button class="mui-btn nav_footer" id="apply_submit"><span>Next Step</span></button>
 		</footer>
 	</body>
@@ -305,10 +266,11 @@
 				var v_emer = $('#apply_emergencyC').val().trim();
 				var v_mo = $('#apply_mobile').val().trim();
 				var v_idtT=$('#select_type_show').val().trim();
+					plus.storage.setItem('id_type',v_idtT);
 				var v_identity = $('#identity').val().trim();
-				var check = $('#person_sex').attr('checked');
-				var sex = (check == 'checked') ? '1' : '2';
-				var id_nu = $('#id_number').val().trim();
+				var check = $('#person_sex').prop('checked');
+				var sex = (check == true) ? '1' : '2';
+				var id_nu = $('#id_number').val().trim();  
 				var car_info_status = plus.storage.getItem('carInfoSta'); //得到carInfo的资料填写情况
 				if (true) {
 					if (!v_fam) {
@@ -426,13 +388,14 @@
 		   	  		if(status==1){
 		   	  			$('#status_info').text('你的审核已成功');
 		   	  		}else if(status==12){
-		   	  			$("#footer").css("display", "none")
+		   	  			
 		   	  			$(".mui-scroll-wrapper").css("bottom",0)
 		   	  			$('#status_info').text('你的审核还在审核中');
 		   	  		}else if(status==13){
 		   	  			$('#status_info').text('审核失败,请点击重新申请');
 		   	  			$('#title_apply').addClass('applyPerson');
 		   	  		}
+		   	  		$("#footer").css("display", "none");
 		   	  		$('#loading-mask').css('display','none');
 		   	  		$('#loading-box').css('display','none');
 		   	  	}
@@ -457,9 +420,9 @@
 		   	  		$('#pic_two').attr('src',path+res.cardPic2.path);
 		   	  		$('#pic_three').attr('src',path+res.cardPic3.path);  
 		   	  		if(res.sex==1){
-		   	  			$('.one').removeClass('mui-hidden');
-		   	  		}else{
 		   	  			$('.two').removeClass('mui-hidden');
+		   	  		}else{
+		   	  			$('.one').removeClass('mui-hidden');
 		   	  		}
 		   	  	}
 		   	  },function(type,xhr){
@@ -489,7 +452,7 @@
 		$('.presee').on('tap', function() {
 			$(this).addClass('mui-hidden')
 		})
-		})
+})
 	</script>
 </html>
 
