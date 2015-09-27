@@ -10,6 +10,20 @@
 		<script src="../../js/mui.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script src="../../js/jquery.min.js"></script>
+		<style >
+			.show_pic{
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: rgba(0,0,0,.5);
+			}
+			.show_pic img{
+				max-width: 100%;
+				height: auto;
+			}
+		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header ">
@@ -88,6 +102,8 @@
 				<img src="" class="pic_two" id="pic_two" />
 				<img src="" class="mui-pull-right" id="pic_three" />
 			</div>
+			<!--图片预览-->
+			<div class="show_pic"></div>
 		</div>
 	</body>
 	<script>
@@ -108,7 +124,7 @@
 		   	  			$('#status_info').text('审核失败,请点击重新申请');
 		   	  			$('#title_apply').addClass('applyPerson');
 		   	  			
-		   	  		}
+		   	  		}    
 		   	  	var res=obj.res;
 		   	  	if(JSON.stringify(res)){
 		   	  		$('#familyName').val(res.familyName);

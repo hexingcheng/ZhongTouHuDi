@@ -1,18 +1,29 @@
-
+body .mui-content{
+	background-color: #F7F7F7;
+} 
+.title_info{
+	width: 100%;
+	height: 48px;
+	text-align: center;
+	line-height: 48px;
+	color: #26A65B;  
+	font-size: 16px;
+	}
 /*apply_info*/
 	.bell_title{
 		display: block;
 		width: auto;
-		height: 34px; 
+		height: 48px; 
 		margin: auto;
-		line-height: 34px;
+		line-height: 48px;
 		left: 50%;
 		overflow: hidden;
-		color: #F7B56A;
+		color: #5f5d5d;
 	}
 	.bell_title img{
 		width: 34px;
 		height: 34px;
+		margin: 7px;
 		vertical-align: middle;
 	}
 	.mui-table-view .title_{
@@ -41,9 +52,9 @@
 		width: 14px;
 	}
 	.select_sex label{
-		color: silver;
+		color: #5f5d5d;
 	}
-	.nation_mark {
+	/*.nation_mark {
 		display: none;
 		position: absolute;
 		z-index: 998;
@@ -52,8 +63,8 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-	}
-	.spplay_select_type{
+	}*/
+	/*.spplay_select_type{
 		width: 80%;  
 		position: absolute;
 		z-index: 999;  
@@ -63,17 +74,10 @@
 	    
 	    text-align: center;
 	    margin-top: -40%;
-		color: silver;
+		color: #5f5d5d;
 		overflow: hidden;
-	} 
-	.spplay_select_type ul li{
-		padding: 0;
-		height: 48px;
-		font-size: 14px;
-		line-height: 48px; 
-		color: #000;
-	}
-	.nation_select{
+	} */
+	/*.nation_select{
 		width: 70%;
 		height: 80%;
 		z-index: 999;
@@ -82,9 +86,9 @@
 		left: 50%;
 		margin-left: -35%;
 		position: absolute;
-		background-color: white;
+		background-color: #fff;
 		display: none;
-	} 		
+	} 		*/
 
 	.mui-scroll-wrapper {
 		top: 52px;
@@ -99,7 +103,7 @@
 		top: 52px;
 		bottom: 60px;
 	}
-	.spplay_select_type{
+	/*.spplay_select_type{
 		width: 80%;  
 		position: absolute;
 		z-index: 999;  
@@ -108,24 +112,23 @@
 	    top: 50%;
 	    text-align: center;
 	    margin-top: -40%;
-		color: silver;
+		color: #5f5d5d;
 		overflow: hidden;
 	} 
 	.spplay_select_type ul li{
-		padding: 0;
 		height: 48px;
 		font-size: 14px;
 		line-height: 48px; 
 		color: #000;
-	}
+	}*/
 	.apply_idCard{
 		overflow: hidden;
 		font-size: 14px;
-		color: silver;
+		color: #5f5d5d;
 	}
 	.apply_idcard_div{
-		width: 88%;
-		height: 25%;
+		width: 90%;
+		height: 25%; 
 		overflow: hidden;
 		margin: 4% 5%;  
 	}
@@ -142,11 +145,16 @@
 		height: 34px;
 	}
 	.apply_idpho{
-		height: 12em;
+		height: 190px;
 		overflow: hidden;
 		text-align: center;
 		margin-right: 3.8em;
-		border: 2px solid silver;
+		background-color: #fff; 
+		border: 1px solid silver;    
+	}
+	.apply_idpho p{
+		color: #bec0c2;
+		font-size: 16px;
 	}
 	.id_imgcover{
 		display: none;
@@ -196,4 +204,46 @@
 		z-index: 999;
 		width: 100%;
 		height: 20em;
+	}
+	/*图片预览*/
+	.presee {
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	.presee {
+		position: fixed;
+		background-color: rgba(0, 0, 0, 1);
+	}
+	.picwraps{
+		width: 100%;
+		height: 100%;
+	}
+	.mui-slider-group{
+		height: 100%;
+		width: 100%;
+	}
+	.presee .picwraps .mui-slider {
+		width: 80%;
+		height: 100%;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+	.presee .mui-slider .mui-slider-item {
+		padding: 0 10px;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
+	}
+	.presee .mui-slider .mui-slider-item a {
+		height: 100%;
+		width: 100%;
+		position: relative;
+	}
+	.presee .mui-slider .mui-slider-item a img {
+		position: absolute;
 	}

@@ -10,7 +10,11 @@
 		<link rel="stylesheet" href="apply.css" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
 		<style>
-			.mui-table-view-cell .select_sex input{
+			html,body{
+				height: 100%;
+				width: 100%;
+			}
+			 .mui-table-view-cell .select_sex input{
 				height: auto; 
 				font-size: 14px; 
 				width: 14px;
@@ -37,15 +41,14 @@
 			    top: 50%;
 			    text-align: center;
 			    margin-top: -25%;
-				color: silver;
 				overflow: hidden;
 			} 
-			.spplay_select_type ul li{
-				padding: 0;
+			.spplay_select_type .mui-table-view li{
 				height: 48px;
 				font-size: 14px;
-				line-height: 48px; 
-				color: #000;
+				line-height: 48px;   
+				color:  #5f5d5d;
+				background-color: #EEE;
 			}
 			.nation_select{
 				width: 70%;
@@ -56,14 +59,17 @@
 				left: 50%;
 				margin-left: -35%;
 				position: absolute;
-				background-color: white;
 				display: none;
 			} 		
-
+			.nation_select .mui-table-view li{
+				color:  #5f5d5d;
+				background-color: #EEE;
+			}
 			.mui-scroll-wrapper {
 				top: 52px;
 				bottom: 60px;
 			}
+			
 		</style>
 	</head>
 
@@ -102,22 +108,45 @@
 			 </ul>  
 		</div>
 		<!--证件选择-->
-		<div class="spplay_select_type mui-popover" id="id_type">
+		<div class="spplay_select_type mui-popover" id="id_type" >
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell mui-text-center">学生证</li>
-				<li class="mui-table-view-cell mui-text-center">身份证</li>
-				<li class="mui-table-view-cell mui-text-center">残疾证</li>
-				<li class="mui-table-view-cell mui-text-center">军人证</li>
-				<li class="mui-table-view-cell mui-text-center">驾驶证</li>
+				<li class="mui-table-view-cell mui-text-left">学生证</li>
+				<li class="mui-table-view-cell mui-text-left">身份证</li>
+				<li class="mui-table-view-cell mui-text-left">残疾证</li>
+				<li class="mui-table-view-cell mui-text-left">军人证</li>
+				<li class="mui-table-view-cell mui-text-left">驾驶证</li>
 			</ul>
 		</div>
 		<header class="mui-bar mui-bar-nav nav_header ">
 			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 			<span>Application For Deliverer</span>
 		</header>
-		<div id="loading-mask"></div>
+		<div id="loading-mask" ></div>
 		<div id="loading-box">  
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
+		</div>
+			<div class="presee mui-hidden">
+			<div class="picwraps"> 
+				<div class="mui-slider" id="slider">
+					<div class="mui-slider-group" id="preseepic">
+						<div class="mui-slider-item" >
+							<a href="javascript:void(0)">
+								<img src="" class="preimg pic_one">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg pic_two_">  
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg pic_three">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="mui-content apply_content">
 			<div class="mui-scroll-wrapper">
@@ -131,65 +160,65 @@
 						</li>
 						<li class="mui-table-view-divider"> <span>Basic Information</span></li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/name.png" class=" li_left_img" alt="" />
+							<img src="../../img/first-name.png" class=" li_left_img" alt="" />
 							<div class="li_input_l">
 								<input type="text" class="apply_input edit" placeholder="familyName" id="familyName"/> 
 							</div>
 						</li>
 						  
 						<li class="mui-table-view-cell">
-							<img src="../../img/name.png" class="li_left_img" alt="" />
+							<img src="../../img/lastname.png" class="li_left_img" alt="" />
 							<div class="li_input_l">
 								<input type="text" class="apply_input edit" placeholder="firstName" id="firsetName" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/name.png" class="li_left_img " alt="" />
-							<img src="../../img/female2.png" class="li_left_img mui-hidden two"/>
-							<img src="../../img/male2.png" alt="" class="li_left_img mui-hidden one"/>
+							<img src="../../img/gender.png" class="li_left_img " alt="" />
+							<span class="mui-hidden two"><span class="mui-pull-left">female</span><img src="../../img/female2.png" class="li_left_img  "/></span>
+							<span class="mui-hidden  one"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" class="li_left_img "/></span>
 							<div class="li_input_l select_sex">
 								<span class="content_chan">
-									<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
 									<lable style="color: silver;">man </lable>
+									<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
+									&nbsp;&nbsp;<lable style="color: silver;">women </lable>
 									<input  type="radio" name="sex" />
-									<lable style="color: silver;">women </lable>
+									
 								</span>
 							</div>
 						</li>
 						<li class="mui-table-view-cell" >
-							<img src="../../img/nationality.png" class="li_left_img" alt="" />
+							<img src="../../img/nationality2.png" class="li_left_img" alt="" />
 							<div class="li_input_l" >
 								<input type="text" placeholder="select nation "  class="edit apply_nation" id="nation" readonly="readonly"/>
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/4.png" class="li_left_img" alt="" />
+							<img src="../../img/address.png" class="li_left_img" alt="" />
 							<div class="li_input_l">
 								<input type="text" class="apply_input edit" placeholder="place of residence" id="apply_place" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell ">
-							<img src="../../img/emergency.png" class="li_left_img" alt="" />
-							<img src="../../img/personbg.png" id="choose-contacts" class="li_right_img" alt="" />
+							<img src="../../img/emergency2.png" class="li_left_img" alt="" />
+							<img src="../../img/contact2.png" id="choose-contacts" class="li_right_img" alt="" />
 							<div class="li_input_s">
 								<input type="text" class="apply_input edit" placeholder="emergency contact " id="apply_emergencyC" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/mobile.png" class="li_left_img" alt="" />
+							<img src="../../img/pho2.png" class="li_left_img" alt="" />
 							<div class="li_input_l">
 								<input type="number" class="apply_input edit" placeholder="mobile" id="apply_mobile" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
-							<img src="../../img/id.png" class=" li_left_img" alt="" />
+							<img src="../../img/credit.png" class=" li_left_img" alt="" />
 							<div class="li_input_l">
 								<input type="number" class="apply_input edit" placeholder="identity" id="identity" >
 							</div>
 						</li>
-						<!--			<ul class="mui-table-view apply_padding" >-->
 						<li class="mui-table-view-cell" id="select_type">
-							<img src="../../img/id.png" class=" li_left_img" alt="" />
+							<img src="../../img/id2.png" class=" li_left_img" alt="" />
 							<img src="../../img/down.png" class=" li_right_img content_chan" alt="" />
 							<div class="li_input_s">
 								<input type="text" class="apply_input edit" placeholder="请选择证件" readonly="readonly" id="select_type_show" />
@@ -197,21 +226,21 @@
 						</li>
 						
 						<li class="mui-table-view-cell" style="">
-							<img src="../../img/id.png" class=" li_left_img" alt="" />
+							<img src="../../img/EDIT22.png" class=" li_left_img" alt="" />
 							<div class="li_input_l">
 								<input type="number" class="apply_input edit" placeholder="请输入对应的证件号" id="id_number"  />
 							</div>
 						</li>
 					</ul>
-					<div class="clear_padd mui-hidden info">
+					<div class="clear_padd mui-hidden info " id="porel">
 						<img src="" class="mui-pull-left" id="pic_one"/>
-						<img src="" class="pic_two" id="pic_two" />
+						<img src="" class="pic_two " id="pic_two" />
 						<img src="" class="mui-pull-right" id="pic_three" />
 					</div>
 				</div>
 			</div>
 		</div>
-		<footer class="mui-bar mui-bar-footer content_chan" id="footer">  
+		<footer class="mui-bar mui-bar-footer content_chan" id="footer" >  
 			<button class="mui-btn nav_footer" id="apply_submit"><span>Next Step</span></button>
 		</footer>
 	</body>
@@ -237,10 +266,11 @@
 				var v_emer = $('#apply_emergencyC').val().trim();
 				var v_mo = $('#apply_mobile').val().trim();
 				var v_idtT=$('#select_type_show').val().trim();
+					plus.storage.setItem('id_type',v_idtT);
 				var v_identity = $('#identity').val().trim();
-				var check = $('#person_sex').attr('checked');
-				var sex = (check == 'checked') ? '1' : '2';
-				var id_nu = $('#id_number').val().trim();
+				var check = $('#person_sex').prop('checked');
+				var sex = (check == true) ? '1' : '2';
+				var id_nu = $('#id_number').val().trim();  
 				var car_info_status = plus.storage.getItem('carInfoSta'); //得到carInfo的资料填写情况
 				if (true) {
 					if (!v_fam) {
@@ -358,13 +388,14 @@
 		   	  		if(status==1){
 		   	  			$('#status_info').text('你的审核已成功');
 		   	  		}else if(status==12){
-		   	  			$("#footer").css("display", "none")
+		   	  			
 		   	  			$(".mui-scroll-wrapper").css("bottom",0)
 		   	  			$('#status_info').text('你的审核还在审核中');
 		   	  		}else if(status==13){
 		   	  			$('#status_info').text('审核失败,请点击重新申请');
 		   	  			$('#title_apply').addClass('applyPerson');
 		   	  		}
+		   	  		$("#footer").css("display", "none");
 		   	  		$('#loading-mask').css('display','none');
 		   	  		$('#loading-box').css('display','none');
 		   	  	}
@@ -382,13 +413,16 @@
 		   	  		$('#id_number').val(res.creditCard);
 		   	  		var n=BASEURL.indexOf('/a');
 		   	  		var path=BASEURL.substring(0,n);
+		   	  		$('.pic_one').attr('src',path+res.cardPic1.minPath);
+		   	  		$('.pic_two_').attr('src',path+res.cardPic2.minPath);
+		   	  		$('.pic_three').attr('src',path+res.cardPic3.minPath);
 		   	  		$('#pic_one').attr('src',path+res.cardPic1.path);
 		   	  		$('#pic_two').attr('src',path+res.cardPic2.path);
 		   	  		$('#pic_three').attr('src',path+res.cardPic3.path);  
 		   	  		if(res.sex==1){
-		   	  			$('.one').removeClass('mui-hidden');
-		   	  		}else{
 		   	  			$('.two').removeClass('mui-hidden');
+		   	  		}else{
+		   	  			$('.one').removeClass('mui-hidden');
 		   	  		}
 		   	  	}
 		   	  },function(type,xhr){
@@ -397,7 +431,28 @@
 			mui('.mui-content').on('tap','.applyPerson',function(){
 				openWindow('applyPerson.html');
 			})
+				// 图片预览
+	mui('#porel').on('tap','img', function() {
+		$('.presee').removeClass('mui-hidden');
+		var index = $(this).index();
+		toverticalcenter();
+		var gallery = mui('#slider');
+		gallery.slider({
+			interval: 0
+		}).gotoItem(index);
+	})
+	function toverticalcenter() {
+		var item = $('.preimg')
+		var len = item.length;
+		for (var i = 0; i < len; i++) {
+			var t = ($(window).height() - item.eq(i).height()) / 2
+			item.eq(i).css('top', t)
+		}
+	}
+		$('.presee').on('tap', function() {
+			$(this).addClass('mui-hidden')
 		})
+})
 	</script>
 </html>
 
