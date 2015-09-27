@@ -69,6 +69,9 @@
 				width: 40px;
 				margin: 6px;
 			}
+			.pac-container{
+				left: -50px;
+			}
 		</style>
 	</head>
 
@@ -118,9 +121,6 @@
 					var place = autocomplete.getPlace();
 					clocation = place.geometry.location;
 				})
-//				document.getElementById('chooseaddr').addEventListener('blur', function() {
-//					document.getElementById('pac-input').value = document.getElementById('chooseaddr').value;
-//				})
 				document.getElementById('ok').addEventListener('tap',function(){
 					var pad = plus.webview.getWebviewById('pickaddr');
 					mui.fire(pad,'getaddr',{"addr":document.getElementById('pac-input').value,'clocation':clocation});

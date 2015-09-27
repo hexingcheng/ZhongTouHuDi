@@ -143,10 +143,10 @@
 			window.addEventListener('getaddr', function(eve) {
 				var addr = eve.detail.addr;
 				$('#chooseaddr').text(addr);
+				clocation = eve.detail.location;
 				var param = {
 					location:eve.detail.clocation
 				}
-				mui.fire(embed,'changemap',param);
 			})
 		})
 	</script>

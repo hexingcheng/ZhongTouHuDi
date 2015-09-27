@@ -322,6 +322,20 @@ function closeMask(){
 		bcl.remove("fade-out");
 	}, false)
 }
+function getcurrenttime(){
+	var d = new Date();
+	var m = d.getMonth()-0+1;
+	var nm = m<10?('0'+m):m;
+	var da = d.getDate();
+	var nd = da<10?('0'+d):da;
+	var h = d.getHours();
+	var nh = h<10?('0'+h):h;
+	var mi = d.getMinutes();
+	var nmi = mi<10?('0'+mi):mi;
+	var s = d.getSeconds();
+	var ns = s<10?('0'+s):s;
+	return d.getFullYear()+"-"+nm+"-"+nd+" "+nh+":"+mi+":"+ns;
+}
 //function getmsgs() {
 //	myAjax({
 //		url: 'message/getMsg'
