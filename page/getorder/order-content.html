@@ -8,7 +8,8 @@
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/getorder/get-order-comment.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/getorder/get-order.css" />	
+		<link rel="stylesheet" type="text/css" href="../../css/getorder/get-order.css" />
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbxX3v0OCgYabsgQcUjrQlF4rGhlL7-2Y&v=3.exp&language=zh-CN&signed_in=true&libraries=places"></script>
 		<style>
 			html,body,.mui-content{
 				background-color: #FFFFFF;
@@ -37,16 +38,17 @@
 				width: 100%;
 				height: 100%;
 			}
+			.mui-scroll{
+				min-height: 100%;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="pullrefresh" class="mui-scroll-wrapper">
 			<!--数据列表-->
-			<div class="mui-scroll">
+			<div class="mui-scroll ordercontents" id="ordercontent">
 				<!-- 等待框 -->
-				<div class="ordercontents" id="ordercontent">
-					
-				</div>
+				
 			</div>
 		</div>
 		<script src="../../js/template.js"></script>

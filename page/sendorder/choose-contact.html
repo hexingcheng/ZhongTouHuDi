@@ -100,7 +100,9 @@
 				var obj = {
 					list: contact
 				}
-				var html = template("template", obj);
+				if(contact){
+					var html = template("template", obj);
+				}
 				document.getElementById("contact-list").innerHTML = html;
 				var val = {}
 					// 联系人选择列表

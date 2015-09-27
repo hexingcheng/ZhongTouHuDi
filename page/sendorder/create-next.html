@@ -326,7 +326,7 @@
 									</span>
 								</div>
 								<div class="hei80 linehei hidden addborb">
-									<div id="getaddr" data-addr="重庆市南岸区黄桷垭" data-Jd="106.60111939165672" data-Wd="29.53408157290842" class="font-14 pd0">Pickup Address</div>
+									<div id="getaddr" data-addr="" data-Jd="" data-Wd="" class="font-14 pd0">Pickup Address</div>
 								</div>
 							</div>
 							<div class="clear">
@@ -339,7 +339,7 @@
 									</span>
 								</div>
 								<div class="hei80 linehei hidden">
-									<div id="sendaddr" data-addr="重庆市南岸区茶园" data-Jd="106.60111939165600" data-Wd="29.53408157290800" class="font-14 pd0">Receive address</div>
+									<div id="sendaddr" data-addr="" data-Jd="" data-Wd="" class="font-14 pd0">Receive address</div>
 								</div>
 							</div>
 							<div class="down">
@@ -512,7 +512,7 @@
 									// 当信息验证成功后，禁止按钮再次提交
 									$this.attr("disabled", true);
 									$this.html("submit...")
-									
+									showobj(getdata);
 									myAjax({
 										url: 'order/resOrderByGood',
 										data: getdata
@@ -621,7 +621,7 @@
 							$('#sendaddr').attr('data-Jd', mylocation.K);
 							$('#sendaddr').attr('data-Wd', mylocation.G);
 							$('#sendaddr').attr('data-addr', addr)
-							$('#sendaddr').text(addr).css('color', "#5d5d5d")
+							$('#sendaddr').text(addr).css('color', "#5d5d5d");
 						}
 					})
 					// 获取草稿信息
@@ -692,18 +692,20 @@
 					}
 					// 选择发送者联系方式
 				document.getElementById("sender-contact").addEventListener("tap", function() {
-					findContact();
+					findContact(function(){
+						openWindow("./choose-contact.html");
+					});
 					setstorage("order-type", "sender");
-					openWindow("./choose-contact.html");
 				}, false)
 				document.getElementById("receiver-contact").addEventListener("tap", function() {
-						findContact();
+						findContact(function(){
+							openWindow("./choose-contact.html");
+						});
 						setstorage("order-type", "receiver");
-						openWindow("./choose-contact.html");
 					}, false)
 					// 查询联系人列表
 
-				function findContact() {
+				function findContact(cb) {
 					plus.contacts.getAddressBook(plus.contacts.ADDRESSBOOK_PHONE, function(addressbook) {
 						addressbook.find(["displayName", "phoneNumbers"], function(contacts) {
 							var lists = [];
@@ -722,7 +724,9 @@
 								}
 							}
 							//							console.log(JSON.stringify(lists))
+							
 							plus.storage.setItem("contacts", JSON.stringify(lists));
+							cb&&cb();
 						}, function(err) {
 							console.log("查找错误 :" + err.message);
 						}, {

@@ -74,7 +74,7 @@
 						lng: lng
 					}
 				});
-				var geocoder = new google.maps.Geocoder;
+				var geocoder = new google.maps.Geocoder();
 				var service = new google.maps.places.PlacesService(mymap)
 				geocodeLatLng(geocoder, mymap, lat, lng);
 				$('.maploading').addClass('mui-hidden');
@@ -89,21 +89,23 @@
 					var center = mymap.getCenter();
 					var G = center.G;
 					var K = center.K;
-					service.nearbySearch({
-						location: {
-							lat: G,
-							lng: K
-						},
-						radius: 500
-					}, function(results, status) {
-						if (status === google.maps.places.PlacesServiceStatus.OK) {
-							showobj(results[1])
+					geocoder.geocode({
+					'location': center
+				}, function(results, status) { 
+					if (status === google.maps.GeocoderStatus.OK) {
+						if (results[0]) {
 							var data = {
-								addr: results[1].vicinity + results[1].name
+								addr: results[0].formatted_address, 
+								location: results[0].geometry.location
 							}
 							getAddr(data);
+						} else {
+							alert('No results found');
 						}
-					});
+					} else {
+						window.alert('Geocoder failed due to: ' + status);
+					}
+				});
 				})
 			}
 
@@ -115,12 +117,8 @@
 				geocoder.geocode({
 					'location': latlng
 				}, function(results, status) { 
-					console.log(JSON.stringify(results)); 
 					getbasicmsg(results);
 					if (status === google.maps.GeocoderStatus.OK) {
-						for(var k = 0;k<results.length;k++){
-							console.log(JSON.stringify(results[k]));
-						}
 						if (results[0]) {
 							var data = {
 								addr: results[0].formatted_address, 
@@ -137,7 +135,6 @@
 			}
 
 			function getbasicmsg(addrobj) {
-//				var addr = [];
 				var addr = ['','',''];
 				var len = addrobj.length;
 				for (var i = 0; i < len; i++) {
@@ -145,16 +142,19 @@
 					var address_components = addrobj[i].address_components;
 					var leng = address_components.length;
 					for(var j = 0;j<leng;j++){
-						if(address_components[j].style.indexOf('country')!=-1){
-							addr+=address_components[j].long_name;
+						if(address_components[j].types.indexOf('country')!=-1){
+							addr[0] = address_components[j].long_name;
+						}else if(address_components[j].types.indexOf('locality')!=-1){
+							addr[1] = address_components[j].long_name;
+						}else if(address_components[j].types.indexOf('sublocality')!=-1){
+							addr[2] = address_components[j].long_name;
 						}
 					}
 				}
-//				console.log(addr.join(',,,')) 
-				
+				return addr.join('');				
 			}
 
-			function getAddr(data) {
+			function getAddr(data) { 
 				var addr = plus.webview.getWebviewById('pickaddr');
 				mui.fire(addr, 'getaddr', data); 
 			}
@@ -163,7 +163,7 @@
 					navigator.geolocation.getCurrentPosition(function(position) {
 						var lat = position.coords.latitude;
 						var lng = position.coords.longitude;
-						initialize(lat,lng)
+						initialize(lat,lng);
 					}, function(e) {
 						mui.toast('获取位置信息失败')
 					}, {
