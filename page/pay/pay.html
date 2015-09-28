@@ -7,16 +7,19 @@
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
-		<link rel="stylesheet" href="../../css/common/popup.css"/>
+		<link rel="stylesheet" href="../../css/common/popup.css" />
 		<script src="../../js/common/popup.js"></script>
 		<script src="../../js/mui.min.js"></script>
 		<style>
-			.mui-table-view-cell:after {left: 0;}
+			.mui-table-view-cell:after {
+				left: 0;
+			}
 		</style>
 	</head>
+
 	<body class="bg-color">
 		<header class="mui-bar mui-bar-nav nav_header">
-			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back"/>
+			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 			<span>Withdraw</span>
 		</header>
 
@@ -24,7 +27,7 @@
 			<button class="nav_footer mui-btn" id="next-step">Next Step</button>
 		</footer>
 
-		<div class="mui-content">      
+		<div class="mui-content">
 			<ul class="mui-table-view top_header" id="ul">
 				<li class="mui-table-view-cell ">
 					<div class="li_left_title"><span class="left-title">Total</span></div>
@@ -38,16 +41,17 @@
 				</li>
 				<li class="mui-table-view-cell ">
 					<span class="li_left-title">Use Coupon</span>
-					<span class="mui-pull-right">$10.00</span>  
+					<span class="mui-pull-right">$10.00</span>
 				</li>
 
 				<li class="mui-table-view-cell">
 					<div class="li_left_title">
 						<img src="../../img/wallet3.png" alt="" class="li_left_img" />
 					</div>
-					<img src="../../img/shouyin2.png" alt="" class="li_right_img right-logo active" data-action='yue'/>
+					<img src="../../img/shouyin2.png" alt="" class="li_right_img right-logo active" data-action='yue' />
 					<div class="li_input_s">
-						<div class="li_title_1"> <span>Use <span class="pay">wallet</span></span></div>
+						<div class="li_title_1"> <span>Use <span class="pay">wallet</span></span>
+						</div>
 						<div class="li_title_2"> <span>go to wallet</span></div>
 					</div>
 				</li>
@@ -55,9 +59,10 @@
 					<div class="li_left_title">
 						<img src="../../img/paypal.png" alt="" class="li_left_img" />
 					</div>
-					<img src="../../img/shouyin.png" alt="" class="li_right_img right-logo" data-action = 'paypal'/>
+					<img src="../../img/shouyin.png" alt="" class="li_right_img right-logo" data-action='paypal' />
 					<div class="li_input_s">
-						<div class="li_title_1"><span>Use <span class="Pay">Pay</span><span class="pal">pal</span></span></div>
+						<div class="li_title_1"><span>Use <span class="Pay">Pay</span><span class="pal">pal</span></span>
+						</div>
 						<div class="li_title_2"><span>go to paypal page</span></div>
 					</div>
 				</li>
@@ -78,108 +83,93 @@
 				$('#available-cash').text(money);
 				$('#orderid').text(cid)
 				$('.right-logo').on('tap', function() {
-					$('.right-logo').removeClass('active').attr('src','../../img/shouyin.png');
-					$(this).addClass('active').attr('src','../../img/shouyin2.png');
-				})
-				
-				// 弹出框属性
+						$('.right-logo').removeClass('active').attr('src', '../../img/shouyin.png');
+						$(this).addClass('active').attr('src', '../../img/shouyin2.png');
+					})
+					// 弹出框属性
 				var options = {
-					height : 175,
-					title : {
-						height : 40,
-						content : ""
+					height: 175,
+					title: {
+						height: 40,
+						content: ""
 					},
-					main : {
-						content : ""
+					main: {
+						content: ""
 					},
-					buttons : []
+					buttons: []
 				}
 				var pop;
 				document.getElementById("next-step").addEventListener("tap", function() {
-					var action = $('.right-logo').filter('.active').attr('data-action')
-					if (action == 'yue') {
-						// 弹出框样式
-						pop = null;
-						options.height = 185;
-						options.title.content = "输入密码";
-						options.main.content = "<div class='popup-input-wrap'>"+
-													"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw' id = 'pwd'/>"+
-												"</div>"+
-												"<div class='input-extras'>Forget Your Password?</div>";
-						
-						options.buttons[0] = {
-							name : "OK",
-							click : function(){
-								// 支付密码验证接口
-								
-								myAjax({ // 返回 -102 错误提醒
-									url: "account/checkPayPwd",
-									data: {
-										payPwd:$('#pwd').val()
-									}
-								}, function(data) {
-									if (data.ret == 1) {
-										mui.toast('check success');
-										paymoney('2',money,function(){
-											alert(payid)
-										})
-									} else if (data.ret == 2) {
-										mui.toast('failed');
-										return;
-									}
-								})
+						var action = $('.right-logo').filter('.active').attr('data-action')
+						if (action == 'yue') {
+							// 弹出框样式
+							pop = null;
+							options.height = 185;
+							options.title.content = "输入密码";
+							options.main.content = "<div class='popup-input-wrap'>" +
+								"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw' id = 'pwd'/>" +
+								"</div>" +
+								"<div class='input-extras'>Forget Your Password?</div>";
+							options.buttons[0] = {
+								name: "OK",
+								click: function() {
+									// 支付密码验证接口
+									myAjax({ // 返回 -102 错误提醒
+										url: "account/checkPayPwd",
+										data: {
+											payPwd: $('#pwd').val()
+										}
+									}, function(data) {
+										if (data.ret == 1) {
+											mui.toast('check success');
+											paymoney('2', money, function() {
+												mui.toast(payid);
+												openWindow('./result.html');
+											})
+										} else if (data.ret == 2) {
+											mui.toast('failed');
+											return;
+										}
+									})
+								}
 							}
+							options.buttons[1] = {
+								name: "cancel",
+								click: function() {
+									return true;
+								}
+							}
+							pop = new Popup(options)
+							pop.show();
+						} else if (action == 'paypal') {
+							paymoney('1', money, function() {
+								openWindow('./paypal.html', {
+									payid: payid
+								});
+							})
 						}
-						
-						
-						options.buttons[1] = {
-							name : "cancel",
-							click : function(){ return true; }
-						}
-						pop = new Popup(options)
-						pop.show();
-						
-						
-						
-						
-					} else if (action == 'paypal') {
-						paymoney('1',money,function(){
-							openWindow('./paypal.html', {
-								payid: payid
-							});
-						})
-					}
-				}, false)
-
-				// 忘记密码
-				mui("body").on("tap", ".input-extras", function(){
+					}, false)
+					// 忘记密码
+				mui("body").on("tap", ".input-extras", function() {
 					this.style.color = "red";
 					pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"));
-					
-					setTimeout(function(){
+					setTimeout(function() {
 						options.height = 175;
 						options.title.content = "please input your password";
-						options.main.content = "<div class='popup-input-wrap'>"+
-												"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>"+
-											"</div>";
+						options.main.content = "<div class='popup-input-wrap'>" +
+							"<input type='password' maxlength='20' placeholder='please enter your password' class='input-withdraw'/>" +
+							"</div>";
 						options.buttons[0]["name"] = "Ok";
-						options.buttons[0].click = function(){
+						options.buttons[0].click = function() {
 							//  忘记密码接口
-							
-							
-							
-							
-							
-							
 						}
-						if(options.buttons.length == 2){
-							options.buttons.splice(1,1);
+						if (options.buttons.length == 2) {
+							options.buttons.splice(1, 1);
 						}
 						pop = new Popup(options)
 						pop.show();
 					}, 330)
 				})
-
 
 				function paymoney(paytype, paymoney, cb) {
 					myAjax({
