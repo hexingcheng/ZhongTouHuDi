@@ -103,8 +103,7 @@ mui.plusReady(function() {
 			}
 			$('.marktips').removeClass('mui-hidden');
 			$('.addmoney').text(data.res.bargainMoney + ".0");
-		}
-		if (data.res.status == 2) {				// 待付款
+		}else if (data.res.status == 2) {				// 待付款
 			$('.cancel').text('cancel');
 			$('.cancel').removeClass('mui-hidden');
 			$('.check').addClass('mui-hidden');
@@ -122,8 +121,7 @@ mui.plusReady(function() {
 					openWindow('./cancel-reason.html', param);
 				}
 			}
-		}
-		if (data.res.status == 3) {			// 未取货
+		}else if (data.res.status == 3) {			// 未取货
 			$('.cancel').removeClass('mui-hidden');
 			$('.check').addClass('mui-hidden');
 			$('.write').addClass('mui-hidden');
@@ -148,16 +146,13 @@ mui.plusReady(function() {
 					console.log(type)
 				})
 			}
-		}
-		if (data.res.status == 4) {			// 已取货
+		}else if (data.res.status == 4) {			// 已取货
 			$('.cancel').addClass('mui-hidden');
 			$('.check').removeClass('mui-hidden');
 			$('.write').removeClass('mui-hidden');
-		}
-		if (data.res.status == 5) {
+		}else if (data.res.status == 5) {
 			$('#foot').html('暂时没有评论')
-		}
-		if (data.res.status == 6) {
+		}else if (data.res.status == 6) {
 			$('#foot').html('该订单已完成')
 		}
 	}, function(xhr, type) {

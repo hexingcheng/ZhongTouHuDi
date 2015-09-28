@@ -45,6 +45,7 @@ mui.plusReady(function() {
 
 	// 重新编辑
 	document.getElementById("edit-btn").addEventListener("tap", function() {
+		options.height = 160;
 		options.title.content = "订单修改提示";
 		options.main.content = "您确定要重新修改订单吗？",
 		options.buttons[0] = {
@@ -67,7 +68,6 @@ mui.plusReady(function() {
 						plus.webview.getWebviewById("mysendorder-detail-cancel").close("none", 0);
 						plus.webview.close(cpage, "none", 0)
 					}, 1000)
-					plus.storage.removeItem("my-send-order")
 				})
 			}
 		}
@@ -96,6 +96,7 @@ mui.plusReady(function() {
 	
 	// 重新发布
 	document.getElementById("resend-btn").addEventListener("tap", function() {
+		options.height = 160;
 		options.title.content = "订单修改提示";
 		options.main.content = "您确定要重新发布订单吗？",
 		options.buttons[0] = {

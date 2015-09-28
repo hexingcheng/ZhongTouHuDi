@@ -65,9 +65,6 @@ footer.mui-bar {
 	box-shadow : 0 0 1px #40AA53;
 	background-color: #fff;
 }
-.mui-bar {
-	height: 52px;
-}
 .mui-bar .mui-icon {
 	padding-top: 14px;
 	padding-bottom: 14px;

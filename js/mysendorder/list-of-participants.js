@@ -1,8 +1,10 @@
 mui.init();
 mui.plusReady(function() {
 	mui("#scroll-wrapper").scroll();
-
-	var orderid = plus.storage.getItem("my-send-order");
+	var cpage = plus.webview.currentWebview();
+	var orderid = cpage.orderid;
+	var orderdetail = plus.webview.getWebviewById("order-detail");
+//	var orderid = plus.storage.getItem("my-send-order");
 	sendmsg({
 		page: 1,
 		pageSize: 10,
@@ -39,9 +41,9 @@ mui.plusReady(function() {
 		var uid = this.getAttribute("data-uid");
 		isreceived(function(data){
 			if(data == 1){
-				options.height = 180;
+				options.height = 160;
 				options.title.content = "选择递送人";
-				options.main.content = "<div>do you want to choose this guy?</div><p>once you choose a guy to send, it can't be undone</p>",
+				options.main.content = "once you choose a guy to send, it can't be undone",
 				options.buttons[0] = {
 					name : "ok",
 					click : function(){
@@ -65,19 +67,25 @@ mui.plusReady(function() {
 					plus.storage.removeItem("my-send-order")
 				}, 300)
 			} else if(data == 3){
+				options.height = 150;
 				options.title.content = "支付提示";
 				options.main.content = "当前订单已经被他人抢单，是否进行支付？",
 				options.buttons[0] = {
 					name : "是",
 					click : function(){
-						openNewWindow("./mysendorder-detail-inform.html", {
+						/*openNewWindow("./mysendorder-detail-inform.html", {
 							orderId : orderid,
 							status : status
 						})
 						setTimeout(function(){
 							plus.webview.currentWebview().close();
-							plus.storage.removeItem("my-send-order")
-						}, 300)
+						}, 300)*/
+						mui.fire(orderdetail, "refresh:page", {
+							orderid :  orderid
+						})
+						orderdetail.show("slide-in-left", 300, function(){
+							plus.webview.close(cpage, "none", 0);
+						})
 					}
 				}
 				options.buttons[1].name = "否";
@@ -119,7 +127,7 @@ mui.plusReady(function() {
 			uid: id,
 			orderId : order
 		}
-//		console.log(JSON.stringify(datas))
+		console.log(JSON.stringify(datas))
 		myAjax({
 			url: "order/bargainConfirm",
 			data: datas,
@@ -127,19 +135,19 @@ mui.plusReady(function() {
 		}, function(data) {
 			if (data.ret == 1) {
 				mui.toast("选择递送人成功");
-				openWindow("./mysendorder-detail-transporting.html", {
-					orderId : orderid
+				mui.fire(orderdetail, "refresh:page", {
+					orderid :  orderid
 				})
-				setTimeout(function() {
+				orderdetail.show("slide-in-left", 300, function(){
 					plus.webview.close(cpage, "none", 0);
-				}, 2000)
+				})
 			} else if (data.ret == 2) {
 				mui.toast("非法操作");
 			} else if (data.ret == 3) {
 				mui.toast("订单已接单");
 			}
 		}, function(xhr, type) {
-			console.log(type)
+			console.log(xhr.status + "  "+type)
 		})
 	}
 
@@ -149,6 +157,7 @@ mui.plusReady(function() {
 			url: "order/bargainList",
 			data: datas
 		}, function(data) {
+//			console.log(JSON.stringify(data))
 			var obj = {
 				list: data.res
 			}

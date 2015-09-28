@@ -30,13 +30,16 @@
 	<script type="text/javascript" charset="utf-8">
       	mui.init();
       	mui.plusReady(function(){
+      		var cpage = plus.webview.currentWebview();
+      		var orderid = cpage.orderid || plus.storage.getItem("my-send-order");
 			document.getElementById('main-page').addEventListener('tap',function(){
 				plus.webview.getLaunchWebview().show('slide-in-left',200);
 				closeweb();
 			})
 			document.getElementById('order-page').addEventListener('tap',function(){
-				console.log(plus.storage.getItem("my-send-order"))
-				openNewWindow('../mysendorder/mysendorder-detail-inform.html', {
+				console.log(orderid)
+				openNewWindow('../mysendorder/order-detail.html', {
+					orderid : orderid,
 					type : "createorder"
 				});
 				closeweb();
