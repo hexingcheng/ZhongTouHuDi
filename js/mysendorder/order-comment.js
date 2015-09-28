@@ -30,20 +30,19 @@ mui.plusReady(function() {
 		delivery = index;
 		pin.innerHTML = index == 1 ? "bad" : index == 2 ? "slow" : index == 3 ? "genral" : index == 4 ? "well" : "very";
 	})
-
 	// 对评价按钮的添加事件		bad slow genral well very well
 	var send = plus.webview.getWebviewById("mysendorder/my-send-order") || plus.webview.getWebviewById("my-send-order");
-	var finish = plus.webview.getWebviewById("mysendorder-detail-finish");
 	var cpage = plus.webview.currentWebview();
+	var finish = plus.webview.currentWebview().opener();
+	console.log(cpage.orderid)
 	document.getElementById("comment-order").addEventListener("tap", function() {
 		var inf = document.getElementById("info").value.trim();
 		if (inf) {
 			var datas = {
-				orderId: plus.storage.getItem("my-send-order"),
+				orderId: cpage.orderid,
 				info: inf,
 				score: delivery
 			}
-
 			// ajax发送数据
 			myAjax({
 				url: "order/evaluate",
@@ -53,7 +52,7 @@ mui.plusReady(function() {
 					mui.toast("评价成功");
 					mui.fire(send, "refresh:comment")
 					setTimeout(function() {
-						plus.webview.show(send, "slide-in-left", 200)
+						plus.webview.show(send, "slide-in-left", 300)
 						setTimeout(function(){
 							plus.webview.close(finish, "none", 0)
 							plus.webview.close(cpage, "none", 0)

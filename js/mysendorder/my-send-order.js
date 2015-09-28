@@ -135,8 +135,8 @@ mui.plusReady(function() {
 			})
 		}
 		// 详情页面显示跳转代理事件
-	mui("#link-detail").on("tap", "#go-detail", function() {
-		var status = this.getAttribute("data-status");
+	mui("#link-detail").on("tap", ".detail-page", function() {
+		/*var status = this.getAttribute("data-status");
 		var statusDetail = this.getAttribute("data-detail");
 		// 储存订单号
 		plus.storage.setItem("my-send-order", this.getAttribute("data-orderid"));
@@ -148,7 +148,10 @@ mui.plusReady(function() {
 			openWindow("./mysendorder-detail-finish.html");
 		} else if (status === "4") {
 			openWindow("./mysendorder-detail-cancel.html");
-		}
+		}*/
+		openWindow("./order-detail.html", {
+			orderId : this.getAttribute("data-orderid")
+		});	
 	})
 
 	// 返回首页

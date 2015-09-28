@@ -11,9 +11,20 @@
 		<script src="../../js/common/popup.js"></script>
 		<script src="../../js/mui.min.js"></script>
 		<style>
+<<<<<<< HEAD
 			.mui-table-view-cell:after {
 				left: 0;
 			}
+=======
+			.mui-table-view-cell:after {left: 0;}
+			.orderid-wrap {float: left;
+width: 112px;
+height: 50px;}
+			.orderid-box {height: 50px;
+position: absolute;
+left: 112px;
+right: 0;}
+>>>>>>> bcfc5e63b703500423490867202564407730519f
 		</style>
 	</head>
 
@@ -36,8 +47,8 @@
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					<span class="li_left-title">orderId</span>
-					<span class="mui-pull-right" id="orderid"></span>
+					<div class="orderid-wrap"><span class="left-title">orderId</span></div>
+					<div class="orderid-box mui-text-right mui-ellipsis" id="orderid"></div>
 				</li>
 				<li class="mui-table-view-cell ">
 					<span class="li_left-title">Use Coupon</span>
@@ -75,13 +86,14 @@
 			mui.init();
 			mui.plusReady(function() {
 				// 定单号
-				var cid = plus.webview.currentWebview().orderid;
-				var money = plus.webview.currentWebview().money;
-				var orderid = cid;
-				var payid;
 				var cpage = plus.webview.currentWebview();
+				var cid = cpage.orderid;
+				var money = cpage.money;
+				var orderid = cid;
+				console.log(orderid +"   "+ money)
+				var payid;
 				$('#available-cash').text(money);
-				$('#orderid').text(cid)
+				$('#orderid').html(orderid)
 				$('.right-logo').on('tap', function() {
 						$('.right-logo').removeClass('active').attr('src', '../../img/shouyin.png');
 						$(this).addClass('active').attr('src', '../../img/shouyin2.png');

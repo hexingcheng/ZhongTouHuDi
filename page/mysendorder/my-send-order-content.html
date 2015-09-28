@@ -8,9 +8,6 @@
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/mysendorder/my-send-order.css" />
-		<script type="text/javascript" charset="utf-8">
-			mui.init();
-		</script>
 	</head>
 	<body>
 			<div id="pullrefresh" class="mui-scroll-wrapper">
@@ -29,13 +26,13 @@
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
 					{{if $value.statusDetail == 11 || $value.statusDetail == 32 || $value.statusDetail == 22 || $value.status == 4}}
-					<a id="go-detail" href="./get-detail.html" class="detail-page published" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+					<a href="./get-detail.html" class="detail-page published" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
 					{{else if $value.statusDetail == 21 || $value.statusDetail == 31}}
-						<a id="go-detail" href="./get-detail.html" class="detail-page transporting" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+						<a href="./get-detail.html" class="detail-page transporting" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
 					{{else if $value.statusDetail == 12}}
-						<a id="go-detail" href="./get-detail.html" class="detail-page successed" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+						<a href="./get-detail.html" class="detail-page successed" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
 					{{else if $value.statusDetail == 13}}
-						<a id="go-detail" href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
+						<a href="./get-detail.html" class="detail-page abandonded" data-orderid="{{$value.orderId}}" data-status="{{$value.status}}" data-detail="{{$value.statusDetail}}">
 					{{/if}}
 						<div class="goods-name-bar">
 							<span class="goods-name mui-pull-left mui-ellipsis">{{$value.gName}}</span>
