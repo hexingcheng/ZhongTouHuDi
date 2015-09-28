@@ -11,20 +11,26 @@
 		<script src="../../js/common/popup.js"></script>
 		<script src="../../js/mui.min.js"></script>
 		<style>
-<<<<<<< HEAD
+			/*<<<<<<< HEAD
+						.mui-table-view-cell:after {
+							left: 0;
+						}
+			=======*/
+			
 			.mui-table-view-cell:after {
 				left: 0;
 			}
-=======
-			.mui-table-view-cell:after {left: 0;}
-			.orderid-wrap {float: left;
-width: 112px;
-height: 50px;}
-			.orderid-box {height: 50px;
-position: absolute;
-left: 112px;
-right: 0;}
->>>>>>> bcfc5e63b703500423490867202564407730519f
+			.orderid-wrap {
+				float: left;
+				width: 112px;
+				height: 50px;
+			}
+			.orderid-box {
+				height: 50px;
+				position: absolute;
+				left: 112px;
+				right: 0;
+			}
 		</style>
 	</head>
 
@@ -90,7 +96,7 @@ right: 0;}
 				var cid = cpage.orderid;
 				var money = cpage.money;
 				var orderid = cid;
-				console.log(orderid +"   "+ money)
+				console.log(orderid + "   " + money)
 				var payid;
 				$('#available-cash').text(money);
 				$('#orderid').html(orderid)
