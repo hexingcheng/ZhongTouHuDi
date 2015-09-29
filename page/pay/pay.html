@@ -180,6 +180,7 @@
 						options.buttons[0]["name"] = "Ok";
 						options.buttons[0].click = function() {
 							//  忘记密码接口
+							mui.toast('忘记密码接口')
 						}
 						if (options.buttons.length == 2) {
 							options.buttons.splice(1, 1);
@@ -200,6 +201,10 @@
 					}, function(data) {
 						if (data.ret == 1) {
 							payid = data.res.rechargeId;
+							if(data.res.rechargeId){
+								payid = data.res.rechargeId;
+							}
+							console.log(JSON.stringify(data))
 							cb();
 						}
 					}, function(xhr, type) {

@@ -137,6 +137,7 @@ mui.plusReady(function() {
 				lat: lat,
 				lng: lot
 			}
+			alert(center.lat)
 			geocoder.geocode({
 				'location': center
 			}, function(results, status) {
