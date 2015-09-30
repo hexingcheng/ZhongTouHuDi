@@ -115,13 +115,13 @@ footer .nav_footer .button_bg_rest{
 	overflow: hidden;
 	padding-top: 0 !important;
 	padding-bottom: 0; 
-	color: #5f5d5d;
 }
 .mui-table-view-cell .li_left_title{
 	width: 7em;
 	height: 50px;
 	line-height: 50px; 
 	float: left;
+	color: #bec0c2;
 }
 .mui-table-view .li_right_img{
 	width: 34px;
@@ -143,6 +143,7 @@ footer .nav_footer .button_bg_rest{
 .mui-table-view .li_input_l{
 	height: 50px;
 	overflow: hidden;
+	color: #5f5d5d;
 }
 
 .mui-table-view .mui-table-view-cell input{
@@ -167,7 +168,8 @@ footer .nav_footer .button_bg_rest{
 	margin-top: 7px;
 	overflow: hidden;
 	line-height: 20px;
-	font-size: 16px;
+	font-size: 14px;
+	color: #9e9e9e;
 }
 .li_title_2{
 	display: block;
@@ -176,22 +178,26 @@ footer .nav_footer .button_bg_rest{
 	line-height: 20px;
 	font-size: 16px;
 	overflow: hidden;
-	color: #A9A9A9;
+	color: #ff535353;
 }
 /*两列布局*/
-.li_row_contain{
+.li_row_contain {
 	width: 100%;
 	height: 50px;
 	overflow: hidden;
 }
-.mui-table-view .left_li_half{
+.mui-table-view .left_li_half {
 	width: 50% !important;
 	height: 50px;
 	line-height: 50px;
 	padding: 0 18px 0 0;
 	font-size: 16px;
-	border-right: 1px solid #c8c7cc;
+	border-right: 1px solid #e8e8e8;
 	float: left;
+}
+.mui-table-view .left_li_half > span.mui-pull-left,
+.mui-table-view .right_li_half > span.mui-pull-left {
+	color: #bec0c2;
 }
 .mui-table-view .left_li_halfa:after{
 	height: 0;
@@ -203,7 +209,7 @@ footer .nav_footer .button_bg_rest{
 	padding: 0 0 0 18px;
 	font-size: 16px;
 	float: right;
-	border-bottom: 1px solid #c8c7cc;
+	border-bottom: 1px solid #e8e8e8;
 }  
 .mui-table-view .li_half_row{
 	line-height: 25px !important;
@@ -300,4 +306,27 @@ footer .nav_footer .button_bg_rest{
 .fade-out {
 	opacity: 0;
 	-webkit-transition: all 500ms ease-out;
+}
+
+#date-ctrl {
+	height: 72px;
+}
+#date-ctrl .left_li_half {
+	height: 72px;
+}
+#date-ctrl .right_li_half {
+	height: 72px;
+}
+#date-ctrl  .li_title_1,
+#date-ctrl  .li_title_2 {
+	margin-top: 0;
+	height: 36px;
+	line-height: 36px;
+}
+.li_row_contain {
+	height: 72px;
+}
+#date-ctrl .li_title_1 span,
+#date-ctrl .li_title_2 span {
+	display: block;
 }

@@ -13,7 +13,7 @@
     	.mui-table-view:before {height: 0;}
 		.mui-table-view-cell:after {height: 0;}
 		.mui-table-view-cell{
-			border-bottom: 1px solid #c8c7cc;
+			border-bottom: 1px solid #e8e8e8;
 		}
 		.value-color{
 			color: red;
@@ -28,7 +28,7 @@
 			width: 40px;
 			margin: 6px 6px 6px 0;
 		}
-		#msg-warn {background: #ddd;color: #00A04F;padding-left: 5px;display: none;}
+		#msg-warn {background: #fffff3e5;color: #f39800;padding-left: 5px;display: none;}
 		#msg-warn .laba-box {width: 50px;height: 50px;line-height: 50px;}
 		.heade_nav_info {
 			width: 100%;
@@ -118,7 +118,16 @@
 		.tel-info img {
 			width: 35px;height: 35px;
 		}
-    </style>
+		.goods-name {
+			float: left;
+			width: 80%;
+			color: #5f5d5d;
+		}
+		.goods-status {
+			color: #f39800;
+			width: 20%;
+		}
+   </style>
 </head>
 <body>
 	
@@ -217,7 +226,8 @@
 					<li class="mui-table-view-cell">
 						<div class="li_left_title"><span>Name</span></div>
 						<div class="li_input_l">
-							<span class="goods-name"></span>
+							<span class="goods-name">1</span>
+							<span class="goods-status mui-pull-left mui-text-center">status</span>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
@@ -234,7 +244,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="mui-table-view-cell">
+					<li class="mui-table-view-cell" id="date-ctrl">
 						<div class="li_row_contain">
 							<div class="left_li_half mui-text-center">
 								<div class="li_title_1"><span>Get Time</span></div>
@@ -252,7 +262,7 @@
 					<li class="mui-table-view-cell">
 						<div class="li_left_title"><span>From</span></div>
 						<div class="li_input_l">
-							<span id="sendaddr"></span>
+							<span id="sendaddr">from</span>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
@@ -262,13 +272,13 @@
 						</div>
 						<div class="li_left_title"><span>发货人</span></div>
 						<div class="li_input_l">
-							<span id="sender"></span>
+							<span id="sender">sender</span>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
 						<div class="li_left_title"><span>to</span></div>
 						<div class="li_input_l">
-							<span id="receiveaddr"></span>
+							<span id="receiveaddr">to</span>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
@@ -278,19 +288,19 @@
 						</div>
 						<div class="li_left_title"><span>签收人</span></div>
 						<div class="li_input_l">
-							<span id="receiver"></span>
+							<span id="receiver">receiver</span>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
 						<div class="li_left_title"><span>Value</span></div>
 						<div class="li_input_l">
-							<span id="gvalue"></span>
+							<span id="gvalue">value</span>
 						</div>
 					</li>
 					<li class="mui-table-view-cell">
 						<div class="li_left_title"><span>Desc</span></div>
 						<div class="li_input_l">
-							<span id="info"></span>
+							<span id="info">desc</span>
 						</div>
 					</li>
 					
@@ -699,29 +709,37 @@
       			var bargain = data.res.bargain;
       			if(status == 1){		// 接单中，议价中
       				$("#cancel-order").css("display", "block")
-      				if(bargain == 1){	
+      				if(bargain == 1){
 						$("#msg-warn").css("display", "block")
-						cancelstatus = "议价中"
+						cancelstatus = "议价中";
+						$(".goods-status").text("议价中");
       				} else {
-      					cancelstatus = "接单中"
+      					cancelstatus = "接单中";
+      					$(".goods-status").text("接单中");
       				}
       			} else if (status == -1){		// 取消
       				$("#canceled").css("display", "block");
+      				$(".goods-status").text("已取消");
       			} else if (status == 2){		// 待付款
       				$("#obligation").css("display","block");
       				$("#sender-info").css("display", "block");
       				$('#button-pay').attr('data-money',data.res.money);
+      				$(".goods-status").text("待付款");
       			} else {
       				$("#sender-info").css("display", "block");
       				if(status == 3){		// 未取货
       					$("#cancel-order").css("display", "block");
+      					$(".goods-status").text("未取货");
       					cancelstatus = "未取货"
       				} else if (status == 4){		// 已取货
       					$("#takengoods").css("display", "block");
+      					$(".goods-status").text("已取货");
       				} else if (status == 5){		// 未评价
       					$("#comment-order").css("display", "block");
+      					$(".goods-status").text("未评价");
       				} else if(status == 6){		// 已评价
       					$("#evaluated").css("display", "block");
+      					$(".goods-status").text("已评价");
       				}
       			}
       		}
