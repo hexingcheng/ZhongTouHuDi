@@ -1,4 +1,3 @@
-xian
 /**
  * 图片压缩，默认同比例压缩
  * @param {Object} path
@@ -68,7 +67,7 @@ function delPhotoMsg(delobj, cb){
 //					console.log("原始文件大小：" + file.size / 1024 +"KB   filename:"+file.name);
 					origin(file.size, file.name);
 				})
-			})
+			})  
 		})
 		
 		function origin(filesize, filename){

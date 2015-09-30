@@ -138,7 +138,8 @@ mui.plusReady(function() {
 		options.main.content = "请问你是否抢单？"
 		options.buttons[0].click = function() {
 			if (parseInt(money) < parseInt(value)) {
-				mui.toast('余额不足')
+				mui.toast('余额不足');
+				openWindow('../wallet/my-recharge.html')
 			} else {
 				plus.nativeUI.showWaiting("接单中", {
 					background: "#d1d1d1"
