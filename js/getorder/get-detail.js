@@ -51,6 +51,7 @@ mui.plusReady(function() {
 		options.buttons[0].click = function() {
 			if (parseInt(money) < parseInt($('.rel').text())) {
 				mui.toast('余额不足')
+				openWindow('../wallet/my-recharge.html')
 			} else {
 				plus.nativeUI.showWaiting("议价中...", {
 					background: "#ddd"
@@ -74,6 +75,7 @@ mui.plusReady(function() {
 						panel.style.display = "none";
 					} else if (data.ret == 4) {
 						mui.toast('您还不是递送人')
+						openWindow('../applyfor/applyPerson.html')
 					} else if (data.ret == 5) {
 						mui.toast('不能接自己的单')
 					} else if (data.ret == 6) {
