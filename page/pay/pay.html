@@ -37,7 +37,7 @@
 	<body class="bg-color">
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
-			<span>Withdraw</span>
+			<span>Pay order</span>
 		</header>
 
 		<footer class="mui-bar mui-bar-footer">
@@ -118,6 +118,8 @@
 				}
 				var pop;
 				document.getElementById("next-step").addEventListener("tap", function() {
+						this.innerHTML = 'waiting';
+						this.setAttribute('checked',true)
 						var action = $('.right-logo').filter('.active').attr('data-action')
 						if (action == 'yue') {
 							// 弹出框样式
@@ -187,7 +189,7 @@
 						}
 						pop = new Popup(options)
 						pop.show();
-					}, 330)
+					}, 330) 
 				})
 
 				function paymoney(paytype, paymoney, cb) {
