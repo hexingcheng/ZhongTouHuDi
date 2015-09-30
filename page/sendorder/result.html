@@ -33,15 +33,23 @@
       		var cpage = plus.webview.currentWebview();
       		var orderid = cpage.orderid || plus.storage.getItem("my-send-order");
 			document.getElementById('main-page').addEventListener('tap',function(){
-				plus.webview.getLaunchWebview().show('slide-in-left',200);
+				plus.webview.getLaunchWebview().show('slide-in-left',300);
 				closeweb();
 			})
+			var detail = plus.webview.getWebviewById("order-detail");
 			document.getElementById('order-page').addEventListener('tap',function(){
 				console.log(orderid)
-				openNewWindow('../mysendorder/order-detail.html', {
-					orderid : orderid,
-					type : "createorder"
-				});
+				if(detail){
+					mui.fire(detail, "refresh:page", {
+						orderid : orderid
+					})
+					detail.show("slide-in-right", 300);
+				} else {
+					openWindow('../mysendorder/order-detail.html', {
+						orderId : orderid,
+						type : "createorder"
+					});
+				}
 				closeweb();
 			})
 			function closeweb(){

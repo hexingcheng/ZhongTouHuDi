@@ -10,6 +10,10 @@
     <style type="text/css">
     	.mui-table-view-cell:after {left: 0;}
     	.mui-table-view-cell {font-size: 14px;}
+    	.mui-radio input[type=radio]:checked:before {color: #26a65b;}
+    	.mui-radio input[type=radio]:before {color: #26a65b;font-size: 22px;}
+    	.mui-table-view-cell.mui-radio input[type=radio] {top: 13px;}
+    	.mui-table-view .mui-table-view-cell input {height: 22px;width: 22px;}
     </style>
 </head>
 <body >
@@ -81,6 +85,7 @@
 				}, function(data) {
 					if (data.ret == 1) {
 						mui.toast("取消成功");
+						console.log(JSON.stringify(detail) +"    "+ orderid)
 						if( detail ){
 							mui.fire(detail, "refresh:page", {
 								orderid : orderid

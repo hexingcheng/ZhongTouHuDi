@@ -137,24 +137,24 @@
 	</header>
 	<footer id="footer-cancel" class="mui-bar mui-bar-footer ">
 		<!-- 5 待评价 -->
-		<button id="comment-order" class="mui-btn nav_footer">comment</button>
+		<button id="comment-order" class="mui-btn nav_footer origin-style">comment</button>
 		<!-- status 1 bargain 1 议价中  status 1 bargain 0  接单中   3 未取货-->
 		<button class="nav_footer mui-btn cancle_bg" id="cancel-order">cancel</button>
 		
 		<!-- 6 已评价 -->
-		<div class="commented" id="evaluated">已评价</div>
+		<div class="commented origin-style" id="evaluated">已评价</div>
 		
 		<!-- 4 已取货 -->
-		<div class="transporting" id="takengoods">运送中</div>
+		<div class="transporting origin-style" id="takengoods">运送中</div>
 		
 		<!-- 2 待付款 -->
-		<div class="nav_footer bg_white" id="obligation">
+		<div class="nav_footer bg_white origin-style" id="obligation">
 			<button class="right_button mui-btn" id="button-pay">pay</button>
 			<button class="left_button mui-btn cancle_bg" id="cancel">cancel</button>
 		</div>
 		
 		<!-- -1 已取消 -->
-		<div class="nav_footer bg_white" id="canceled">
+		<div class="nav_footer bg_white origin-style" id="canceled">
 			<button class="left_button mui-btn" id="edit-btn" ><span>edit</span></button>
 			<button class="right_button mui-btn" id="resend-btn"><span>resend</span></button>
 		</div>
@@ -304,7 +304,9 @@
 						</div>
 					</li>
 					
-					<div id="porel"></div>
+					<div id="porel">
+						
+					</div>
 					
 				</ul>
 				
@@ -329,8 +331,34 @@
       		var orderid = cpage.orderId;		// 当前订单号
       		var sta;
       		var cancelstatus; 		// 点击取消按钮时处理的三个状态 议价中，接单中，未取货
+      		var type = cpage.type;			// 从哪里跳转过来的，进行返回键的设置
       		// 调用函数渲染页面数据
       		sendmsg(orderid)
+      		
+      		// 对返回按钮的处理
+      		var orderpage = plus.webview.getWebviewById("mysendorder/my-send-order");
+      		var back = mui.back;
+      		mui.back = function(){		// 1,2 refresh:alldata  3,4 refresh:second  5,6 refresh:comment -1 refresh:data
+      			if(type = "createorder"){
+      				plus.webview.getLaunchWebview().show("slide-in-left", 300);
+      			}
+      			if(sta == 1 || sta == 2){
+      				refreshData("refresh:alldata")
+      			} else if(sta == 3 || sta == 4){
+      				refreshData("refresh:second")
+      			} else if(sta == 5 || sta == 6){
+      				refreshData("refresh:comment")
+      			} else if(sta == -1){
+      				refreshData("refresh:data")
+      			}
+      			setTimeout(function(){
+      				cpage.close("none", 0);
+      			}, 300)
+      		}
+      		function refreshData(event){
+      			mui.fire(orderpage, event);
+      			orderpage.show("slide-in-left", 300);
+      		}
       		
       		/* *
       		 *	info信息显示 （接单中， 议价中）
@@ -353,6 +381,7 @@
 					click : function(){ return true; }
 				}]
 			}
+			
 			// 取消订单
 			$("#cancel-order").on("tap", function() {
 				if(cancelstatus == "接单中" || cancelstatus == "议价中"){
@@ -390,6 +419,7 @@
 					pop.show();
 				}
 			})
+			
       		// 议价中添加选取递送人
 			$("#msg-warn").on("tap", function() {
 				myAjax({
@@ -570,12 +600,9 @@
 							} else if(data.ret == 2){
 								mui.toast("发布失败，检查订单信息")
 							}
-							mui.fire(sendorder, "refresh:alldata")
-							plus.webview.show(sendorder, "slide-in-left", 300,function(){
-								setTimeout(function(){
-									plus.webview.close(cpage, "none", 0);
-								}, 300)
-							})
+							$("#loading-mask").css("display", "block");
+			      			$("#loading-box").css("display", "block");
+			      			sendmsg(orderid);
 						}, function(xhr, type) {
 							console.log(xhr.status);
 						})
@@ -589,6 +616,9 @@
       		// 自定义事件触发该页面刷新
       		window.addEventListener("refresh:page", function(eve){
       			var id = eve.detail.orderid;
+      			$("#loading-mask").css("display", "block");
+      			$("#loading-box").css("display", "block");
+      			document.getElementById("cancel-order").style.display = "none";
       			sendmsg(id);
       		})
       		
@@ -625,6 +655,7 @@
 					sta = data.res.status;	// 当前状态
 					
 					// 图片渲染
+					document.getElementById('porel').innerHTML = ""; 	// 清空图片区域所有内容
 					var pic = data.res.pics;
 					var n = BASEURL.indexOf('/api/');
 					var per = BASEURL.substring(0, n);
@@ -645,7 +676,10 @@
 							$('.mui-slider-item', '.mui-slider-group').eq(i).find('img').attr('src', perurls + minurl);
 						}
 					}
-			
+					
+					// 清空样式
+					clearStyle();
+					
 					// 判断是否在议价,显示议价消息链接框
 					controller(data)
 					
@@ -662,6 +696,11 @@
 					console.log(type);
 				})
 			}
+      		
+      		// 清除样式
+      		function clearStyle(){
+      			$(".origin-style").css("display", "none");
+      		}
       		
       		// 渲染发送人，接收人信息
       		function senderReceiverInfo(data){
