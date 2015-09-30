@@ -30,33 +30,7 @@ body{
 	padding: 0 !important;
 	position: fixed;  
 }
-.mui-bar-footer .nav_footer{
-	width: 80%;
-	height: 48px;
-	line-height: 48px;
-	font-size: 16px;
-	color:#fff;
-	background-color: #054859;  
-	margin: 8px auto;  
-	text-align:center;
-}
 
-.nav_footer .left_button{
-	width: 47%;
-	height: 48px;
-	text-align: center;
-	color: #fff;
-	float: left;
-	background-color: #06495a;
-}
-.nav_footer .right_button{
-	width: 47%;
-	height: 48px;
-	line-height: 48px;
-	text-align: center;
-	float: right;
-	background-color: #fc614d;
-}
 .login_info .login_checkbox_on{
     width: 17px;
     height: 17px;
@@ -202,7 +176,7 @@ body{
 }
 .login_loginfo{
 	font-size: 16px;
-	color: #034657;
+	color: #808080;
 }
 .border {
 	border: 1px solid red;

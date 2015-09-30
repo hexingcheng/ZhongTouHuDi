@@ -7,13 +7,7 @@
     <script src="../../js/mui.js"></script>
     <link href="../../css/mui.css" rel="stylesheet"/>
     <link rel="stylesheet" href="login_new.css" />
-    <style type="text/css">
-			footer button {
-				padding: 0;
-				border-radius: 0;
-				border: none;
-			}
-		</style>
+    <link rel="stylesheet" href="../../css/share_main.css" />     
 </head>
 <body> 
 	<header class="mui-bar mui-bar-nav nav_header">
@@ -31,14 +25,14 @@
 				<img src="../../img/pho.png" class="login_map" alt="" />
 				<div class="input_div">
 				    <input type="tel" class="login_input_" id="signup-phone-number" placeholder="phone number"/>
-				</div>
+				</div>  
 			</div> 
 			<div class="login_input login_bor_bottom">
 				<img src="../../img/valcode.png" class="login_map" alt=""/>
 				<div class="login_input_get"> 
-					<span id="get-code">get code</span>
-					<span id="get-time" style="color: #FFE801;"></span>
-				</div>
+					<span id="get-code" style="color:#808080">get code</span>
+					<span id="get-time" style="color: #26a65b;"></span>
+				</div>  
 				<div class="input_div">
 				    <input type="tel" class="mui-pull-left login_input_"  id="signup-valcode" placeholder="valcode"/>
 				</div>
@@ -53,21 +47,14 @@
 			        <input type="password" class="mui-pull-left pwd login_input_" id="signup-pwd"   placeholder="password"/>
 			    </div>
 			</div>
-			<!--<div class="login_input ">
-				<img src="../../img/confirm.png" class="login_map" alt="" />
-				<div class="input_div_">
-					<input type="password" class="login_input_" id="signup-com-pwd" placeholder="confirm password" />
-				</div>
-			</div>-->
 		</div> 
 	    <div class="login_info">    
 	    	<div class="login_checkbox"><input type="checkbox" id="signup-agree" checked="checked" /></div>
-	    	<span id="signup-agree">I agree with the</span> <a href="" class="log_color">service rules</a>
+	    	<span id="signup-agree" style="color: #808080;">I agree with the</span> <a href="" style="color: #26a65b;">service rules</a>
 	    </div>
 	</div> 
-	<!--<div class="tips mui-hidden">登录中...</div>-->
-	<footer class="mui-bar mui-bar-footer login_bg mui-text-center">
-		<button class="nav_footer" id="submit-button">submit</button>
+	<footer class="mui-bar mui-bar-footer ">  
+		<button class="nav_footer mui-btn" id="submit-button">submit</button>
 	</footer>
 	<script src="../../js/utils.js"></script>
 	<script type="text/javascript" src="../../js/jquery.min.js" ></script>
@@ -133,7 +120,7 @@
 								mui.toast('请输入手机号');
 								flag=false;
 								return;
-								
+								 
 							}
 							// 手机验证码验证
 							if(code){
