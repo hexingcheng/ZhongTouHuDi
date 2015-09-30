@@ -53,14 +53,14 @@
 			        <input type="password" class="mui-pull-left pwd login_input_" id="signup-pwd"   placeholder="password"/>
 			    </div>
 			</div>
-			<div class="login_input ">
+			<!--<div class="login_input ">
 				<img src="../../img/confirm.png" class="login_map" alt="" />
 				<div class="input_div_">
 					<input type="password" class="login_input_" id="signup-com-pwd" placeholder="confirm password" />
 				</div>
-			</div>
-		</div>
-	    <div class="login_info" style="margin-bottom: 5em;">
+			</div>-->
+		</div> 
+	    <div class="login_info">    
 	    	<div class="login_checkbox"><input type="checkbox" id="signup-agree" checked="checked" /></div>
 	    	<span id="signup-agree">I agree with the</span> <a href="" class="log_color">service rules</a>
 	    </div>
@@ -114,8 +114,6 @@
 					var pnum = $("#signup-phone-number").val().trim();
 					// 注册的密码
 					var pwd = $("#signup-pwd").val().trim();
-					// 确定密码
-					var compwd = $("#signup-com-pwd").val().trim();
 					// 手机验证码
 					var code = $("#signup-valcode").val().trim();
 					// 确定规则
@@ -141,7 +139,7 @@
 							if(code){
 									if (!(/^[0-9]{6,6}$/.test(code))) {
 										mui.toast("手机验证码输入有误");
-										flag = false;
+										flag = false;  
 										return;
 									}
 							}else{
@@ -149,18 +147,7 @@
 								flag=false;
 								return;
 							}
-							if(pwd){
-								if(compwd){
-										if ( !(pwd == compwd)) {
-											mui.toast("密码两次输入有误")
-											flag = false;
-										}
-									}else{
-										mui.toast('请输入确认密码');
-										flag=false;
-										return;
-									}
-							}else{
+							if(!pwd){
 								mui.toast('请输入密码');
 								flag=false;
 								return;

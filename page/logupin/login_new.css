@@ -88,17 +88,17 @@ body{
 .login_title {
 	margin-left: .6em;
 }
-.login_log {
-	width: 6em;
+.login_log {  
+	width: 5em;
 	height: 8.5em;
 	overflow: hidden;
-	margin: 3em auto 3em auto;
+	margin: 4em auto 3em auto;
 	color: #06495A;
 	text-align: center;
 }
 .login_log .big_img {
-	width: 6em;
-	height: 6em;
+	width: 5em;
+	height: 5em;
 	float: left;
 	margin-bottom:0;
 }
