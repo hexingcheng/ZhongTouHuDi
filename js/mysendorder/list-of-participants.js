@@ -35,9 +35,10 @@ mui.plusReady(function() {
 	// 添加选择该递送人
 	var send = plus.webview.getWebviewById("mysendorder/my-send-order")
 	var cpage = plus.webview.currentWebview();
-	mui("#choose-sender").on("tap", ".choose-item", function() {
-		var _this = this;
-		_this.setAttribute("disabled", true);
+	var $this;
+	$("#choose-sender").on("tap", ".choose-item", function() {
+		$this = $(this);
+		$this.attr("disabled", true);
 		var uid = this.getAttribute("data-uid");
 		isreceived(function(data){
 			if(data == 1){
@@ -147,6 +148,7 @@ mui.plusReady(function() {
 				mui.toast("订单已接单");
 			}
 		}, function(xhr, type) {
+			$this.attr("disabled", false);
 			console.log(xhr.status + "  "+type)
 		})
 	}

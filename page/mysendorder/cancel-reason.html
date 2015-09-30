@@ -69,6 +69,7 @@
       		// 取消订单
       		var send = plus.webview.getWebviewById("mysendorder/my-send-order") ||
       					plus.webview.getWebviewById("my-send-order");
+      		var detail = plus.webview.getWebviewById("order-detail");
 			function cancelorder(orderid ,reason, status){
 				myAjax({
 					url: "order/cancel",
@@ -80,9 +81,16 @@
 				}, function(data) {
 					if (data.ret == 1) {
 						mui.toast("取消成功");
-						openWindow("./mysendorder-detail-cancel.html", {
-							orderId : orderid
-						})
+						if( detail ){
+							mui.fire(detail, "refresh:page", {
+								orderid : orderid
+							})
+							detail.show("slide-in-left", 300);
+						} else {
+							openWindow("./order-detail.html", {
+								orderId : orderid
+							})
+						}
 						setTimeout(function(){
 							plus.webview.close(cpage, "none", 0);
 						}, 2000)

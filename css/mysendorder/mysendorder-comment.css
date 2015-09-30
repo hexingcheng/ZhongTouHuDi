@@ -81,8 +81,7 @@ footer.mui-bar {
 }
 .mui-grid-view.mui-grid-9 .mui-table-view-cell,
 .mui-table-view .mui-table-view-cell {
-	min-height: 50px;
-	padding: 11px 18px;
+	padding: 0px 18px;
 }
 .title-color {
 	color: #ccc;
