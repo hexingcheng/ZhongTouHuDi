@@ -9,44 +9,88 @@
 		<link href="../../css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" href="login_new.css" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
+		<style>
+		.login_log {
+			width: 5em;
+			height: 8.5em;
+			overflow: hidden;
+			margin: 4em auto 3em auto;
+			color: #06495A;
+			text-align: center;
+		}
+		.login_log .big_img {
+			width: 5em;
+			height: 5em;
+			float: left;
+			margin-bottom: 0;
+		}
+		.login_log .small_img {
+			width: 5em;
+			height: 2.5em;
+			margin: 0 auto;
+		}
+		.li_left_contain{
+			width: 75px;
+			height: 30px;
+			margin: 9px 0;
+			border-left: 1px solid #e8e8e8;
+			float: right;
+		}
+		.li_left_contain div{
+			width: 75px;
+			height: 100%;  
+			text-align: right;
+			line-height: 30px;
+		}
+		.container_div{
+			width: 50px;
+			height: 50px;
+			overflow: hidden;
+			float: right;
+		}
+		</style>
 	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
 			<span>Sigin In</span>
 		</header>
-		<div class="mui-content">  
-			<div class="login_log">
-				<img src="../../img/log.png" class="big_img" alt="" />
-				<img src="../../img/along.png" class="small_img" alt="" />
-			</div>
-			<!--输入框-->
-			<div class="login_input_contain">
-				<div class="login_input login_bor_bottom">
-					<img src="../../img/pho.png" class="login_map" alt="" />
-					<div class="input_div_">
-						<input type="tel" class="login_input_" id="signup-phone-number" placeholder="phone number" />
+		<footer class="mui-bar mui-bar-footer">
+			<button class="nav_footer mui-btn" id="submit-button">Log on</button>
+		</footer>
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="login_log">
+						<img src="../../img/log.png" class="big_img" alt="" />
+						<img src="../../img/along.png" class="small_img" alt="" />
+					</div>
+					<!--输入框-->
+					<ul class="mui-table-view" style="margin: auto 1%;">
+						<li class="mui-table-view-cell">
+							<img src="../../img/pho.png" class="li_left_img" alt="" />
+							<div class="li_input_l">
+								<input type="number" placeholder="phone number" id="signup-phone-number" />
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<img src="../../img/password.png" class="li_left_img" />
+							<div class="container_div login_eye_show">
+								<img src="../../img/eye.png" alt="" class="li_right_img eye_one "/>
+								<img src="../../img/1182351.png" alt="" class="li_right_img eye_two mui-hidden"/>
+							</div>  
+							<div class="li_input_s">
+								<input type="password"  id="signup-phone-password" placeholder="password" class="pwd"/>
+							</div>  
+						</li>
+					</ul>
+					<div class="login_info">
+						<span>forget password? </span> <span style="color: #26a65b;" id="find_pwd"> click me</span>
+						<strong><span class="mui-pull-right" id="log_up" style="color: #808080;">Sign up</span></strong>
 					</div>
 				</div>
-				<div class="login_input">
-					<img src="../../img/valcode.png" class="login_map" alt="" />
-					<div class="login_change login_eye_show">
-						<img src="../../img/eye.png" class="eye_one" alt="">
-						<img src="../../img/1182351.png" class="eye_two" />
-					</div>
-					<div class="input_div">
-						<input type="password" class="mui-pull-left pwd login_input_" id="signup-phone-password" placeholder="password" />
-					</div>
-				</div>
-			</div>
-			<div class="login_info">
-				<span>forget password? </span> <span style="color: #26a65b;" id="find_pwd"> click me</span>
-				<strong><span class="mui-pull-right" id="log_up" style="color: #808080;">Sign up</span></strong>
 			</div>
 		</div>
-		<footer class="mui-bar mui-bar-footer">
-			<button class="nav_footer mui-btn" id="submit-button">Sign In</button>
-		</footer>
 		<script src="../../js/utils.js"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript">
@@ -139,15 +183,14 @@
 				}
     
 				function getacountinfo() {
-					mui.ajax(BASEURL + 'account/info', {
-						type: 'post',
-						success: function(data) {
+					myAjax({url:'account/info',
+							data:''
+				},function(data) {
 							if(data.ret===1) {
 								if (getstorage('personinfo')) {
 									plus.storage.removeItem('personinfo')
 								}
 								setstorage('personinfo', JSON.stringify(data.res));
-								console.log(getstorage('personinfo'));
 								var index = plus.webview.getLaunchWebview();
 								mui.fire(index,"setaccount", data.res);
 								setTimeout(function(){
@@ -155,17 +198,14 @@
 								},500)
 							}else{
 								mui.toast('获取基础信息失败'+data.ret)
-								console.log('获取基础信息失败'+data.ret)
 								setTimeout(function(){
 									plus.webview.currentWebview().close();
 								},500)
 							}
-						},
-						error: function(xhr, type) {
+						},function(xhr, type) {
 							console.log(xhr.status + ":" + type);
 						}
-					})
-				}
+					)}
 				function systemmsg(){
 					var i = plus.webview.getLaunchWebview();
 					mui.fire(i,'msgtips')
@@ -173,7 +213,7 @@
 				$('#submit-button').on('tap', function() { 
 					$('input').blur();
 					checkLogin();
-				});
+				});  
 				//password可见切换
 				$('.login_eye_show').on('tap', function() {
 					var show = $('.pwd').attr('type');
