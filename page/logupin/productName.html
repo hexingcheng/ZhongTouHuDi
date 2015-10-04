@@ -6,7 +6,7 @@
     <title></title>
     <script src="../../js/mui.js"></script>
     <link href="../../css/mui.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="login_new.css" />
+<!--    <link rel="stylesheet" href="login_new.css" />-->
     <link rel="stylesheet" href="../../css/share_main.css" /> 
     <style>
 	.login_log {
@@ -47,12 +47,32 @@
 		overflow: hidden;
 		float: right;
 	}
+	.login_info {
+		width: 90%;
+		height: 3em;
+		line-height: 3em;
+		font-size: 14px;
+		color: #A9A9A9;
+		margin: 0 auto;
+	}
+	.login_checkbox{
+		margin-right: .5em;  
+	    margin-top: 4px;
+	    float: left; 
+	    overflow: hidden;
+    }
+    .login_checkbox input{
+    	height: 1em;
+    	width: 1em;  
+    	background-color: #FFF;
+    	border-radius: 2px;
+    }
     </style>
 </head>
 <body> 
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
-			<span>Find My Password</span>
+			<span>Sign up</span>
 		</header>
 		<footer class="mui-bar mui-bar-footer">
 			<button class="nav_footer mui-btn" id="submit-button">submit</button>
@@ -265,16 +285,16 @@
 					signUp();
 				})
 				//password可见切换
-				$('.login_eye_show').on('tap',function(){
-                	var show=$('.pwd').attr('type');
-					if(show=="password"){
-						$('.pwd').attr('type','text');
-						$('.eye_one').css('display','none');
-						$('.eye_two').css('display','block');
-					}else{
-						$('.pwd').attr('type','password');
-						$('.eye_one').css('display','block');
-						$('.eye_two').css('display','none');
+				$('.login_eye_show').on('tap', function() {
+					var show = $('.pwd').attr('type');
+					if (show == "password") {
+						$('.pwd').attr('type', 'text');
+						$('.eye_one').addClass('mui-hidden');
+						$('.eye_two').removeClass('mui-hidden');
+					} else {
+						$('.pwd').attr('type', 'password');
+						$('.eye_one').removeClass('mui-hidden');
+						$('.eye_two').addClass('mui-hidden');
 					}
 				})
 		//时间函数  
