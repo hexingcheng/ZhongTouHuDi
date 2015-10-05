@@ -1,4 +1,3 @@
-xian
 /**
  * 图片压缩，默认同比例压缩
  * @param {Object} path
