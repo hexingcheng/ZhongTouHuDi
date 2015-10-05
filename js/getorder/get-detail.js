@@ -53,9 +53,9 @@ mui.plusReady(function() {
 				mui.toast('余额不足')
 				openWindow('../wallet/my-recharge.html')
 			} else {
-				plus.nativeUI.showWaiting("议价中...", {
-					background: "#ddd"
-				});
+//				plus.nativeUI.showWaiting("议价中...", {
+//					background: "#ddd"
+//				});
 				myAjax({
 					url: "deliver/bargain",
 					data: {
