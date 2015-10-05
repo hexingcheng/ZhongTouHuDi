@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="../../js/mui.js"></script>
-    <link href="../../css/mui.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="login_new.css" />
-    <link rel="stylesheet" href="../../css/share_main.css" /> 
-</head>  
-<body> 
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.js"></script>
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="login_new.css" />
+		<link rel="stylesheet" href="../../css/share_main.css" />
+	</head>
+
+	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
 			<span>Sign up</span>
@@ -18,7 +20,7 @@
 			<button class="nav_footer mui-btn" id="submit-button">submit</button>
 		</footer>
 		<div class="tips mui-hidden">登录中...</div>
-	<div class="mui-content">
+		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<div class="login_log">
@@ -26,42 +28,44 @@
 						<img src="../../img/along.png" class="small_img" alt="" />
 					</div>
 					<!--输入框-->
-					<ul class="mui-table-view" style="margin: auto 1%;">
+					<ul class="mui-table-view" style="margin: auto 2%;">
 						<li class="mui-table-view-cell">
 							<img src="../../img/pho.png" class="li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="number" placeholder="phone number" id="signup-phone-number"/>
+								<input type="number" placeholder="phone number" id="signup-phone-number" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/valcode.png" class="li_left_img" alt="" />
 							<div class="li_left_contain">
 								<div id="get-code">
-									<span  style="color: #808080;">get code</span>
+									<span style="color: #808080;">get code</span>
 								</div>
 								<div id="get-time" class="mui-text-center">
-									<span  style="color: #26a65b;"></span>
+									<span style="color: #26a65b;"></span>
 								</div>
 							</div>
 							<div class="li_input_sx">
-								<input type="text"  placeholder="valcode" id="signup-valcode" />
+								<input type="text" placeholder="valcode" id="signup-valcode" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/password.png" class="li_left_img" />
 							<div class="container_div login_eye_show">
-								<img src="../../img/eye.png" alt="" class="li_right_img eye_one "/>
-								<img src="../../img/1182351.png" alt="" class="li_right_img eye_two mui-hidden"/>
-							</div>  
+								<img src="../../img/eye.png" alt="" class="li_right_img eye_one " />
+								<img src="../../img/1182351.png" alt="" class="li_right_img eye_two mui-hidden" />
+							</div>
 							<div class="li_input_s">
-								<input type="password"  id="signup-pwd" placeholder="password" class="pwd"/>
-							</div>  
+								<input type="password" id="signup-pwd" placeholder="password" class="pwd" />
+							</div>
 						</li>
 					</ul>
-					 <div class="login_info">    
-				    	<div class="login_checkbox"><input type="checkbox" id="signup-agree" checked="checked" /></div>
-				    	<span id="signup-agree" style="color: #808080;">I agree with the</span> <a href="" style="color: #26a65b;">service rules</a>
-				    </div>
+					<div class="login_info">
+						<div class="login_checkbox">
+							<input type="checkbox" id="signup-agree" checked="checked" />
+						</div>
+						<span id="signup-agree" style="color: #808080;">I agree with the</span> <a href="" style="color: #26a65b;">service rules</a>
+					</div>
 				</div>
 			</div>
 	   </div>     
@@ -76,7 +80,7 @@
 				})
 				plus.webview.currentWebview().setStyle({scrollIndicator:'none'});//移除页面的滚动条
 				// 根据手机号，获取验证码
-			$("#get-code").on("tap", function(e) {
+				$("#get-code").on("tap", function(e) {
 					var pnum = $("#signup-phone-number").val().trim();
 					// 手机号码验证正则
 					var reph = /^[0-9]{6,12}$/;
@@ -84,30 +88,31 @@
 					if (reph.test(pnum)) {
 						time();
 						var codedata = {
-							phone: pnum,
-							type:"1"
-						}
-//						alert(codedata.phone)
-                        myAjax({url:"auth/getDynCode",data:codedata},function(data) {
-									if (data.ret == 1) { //获得验证码成功
-										
-										$('#signup-valcode').val(data.code);
-									} else if (data.ret == -1) {
-										mui.toast("注册账户已存在！")
-									$('#signup-phone-number').val("");
-									}
-								},function(xhr, type, errorThrown) {
-									errorhandle(type);
-								},function(){
-									mui.toast('请检测网络！');
-								})
+								phone: pnum,
+								type: "1"
+							}
+						myAjax({
+							url: "auth/getDynCode",
+							data: codedata
+						}, function(data) {
+							if (data.ret == 1) { //获得验证码成功
+								$('#signup-valcode').val(data.code);
+							} else if (data.ret == -1) {
+								mui.toast("注册账户已存在！")
+								$('#signup-phone-number').val("");
+							}
+						}, function(xhr, type, errorThrown) {
+							errorhandle(type);
+						}, function() {
+							mui.toast('请检测网络！');
+						})
 					} else {
 						mui.toast("请正确输入您的手机号码")
 					}
 					e.preventDefault();
 				})
 
-				function signUp() { 
+				function signUp() {
 					// 注册的电话号码
 					var reph = /^[0-9]{6,12}$/;
 					var repw = /^[\\.a-zA-Z0-9_]{6}$/;
@@ -119,144 +124,147 @@
 					// 确定规则
 					var check = $("#signup-agree").prop('checked');
 					var flag = true; // 判断是否验证是否成功
-						if(true){
-							
-							// 手机号码验证
-							if(pnum){
-								
-								if (!reph.test(pnum)) {
-									mui.toast("手机号输入有误");
-									flag = false;
+					if (true) {
+						// 手机号码验证
+						if (pnum) {
+							if (!reph.test(pnum)) {
+								mui.toast("手机号输入有误");
+								flag = false;
+								return;
+							}
+						} else {
+							mui.toast('请输入手机号');
+							flag = false;
+							return;
+						}
+						// 手机验证码验证
+						if (code) {
+							if (!(/^[0-9]{6,6}$/.test(code))) {
+								mui.toast("手机验证码输入有误");
+								flag = false;
+								return;
+							}
+						} else {
+							mui.toast('请输入验证码');
+							flag = false;
+							return;
+						}
+						if (!pwd) {
+							mui.toast('请输入密码');
+							flag = false;
+							return;
+						}
+						if (!check) {
+							mui.toast('请同意相关条例');
+							flag = false;
+						}
+						// 传送后台数据
+						if (flag) {
+							$("#submit-button").attr("disabled", true)
+							$("#submit-button").html("submit...");
+							var getcode = $('#signup-valcode').val();
+							var data = {
+								type: 1,
+								phone: pnum,
+								code: getcode,
+								pwd: pwd
+							}
+							data.mac = plus.device.imei;
+							data.imsi = plus.device.imsi;
+							data.systemName = plus.device.vendor
+							data.systemVersion = plus.device.model;
+							myAjax({
+								url: "auth/reg",
+								data: data
+							}, function(obj) {
+								if (obj.token) {
+									setstorage('token', obj.token);
+									getacountinfo();
+									plus.webview.getLaunchWebview().show('slide-in-left', 300);
+									setTimeout(function() {
+										plus.webview.currentWebview().close("none", 0);
+									}, 500)
+								}
+								if (obj.ret == -1) {
+									$("#submit-button").attr("disabled", false)
+									$("#submit-button").html("submit");
+									mui.toast("账户已经注册")
+									return;
+								} else if (obj.ret == -2) {
+									$("#submit-button").attr("disabled", false)
+									$("#submit-button").html("submit");
+									mui.toast("验证码不正确")
 									return;
 								}
-							}else{
-								mui.toast('请输入手机号');
-								flag=false;
-								return;
-								 
-							}
-							// 手机验证码验证
-							if(code){
-									if (!(/^[0-9]{6,6}$/.test(code))) {
-										mui.toast("手机验证码输入有误");
-										flag = false;  
-										return;
-									}
-							}else{
-								mui.toast('请输入验证码');
-								flag=false;
-								return;
-							}
-							if(!pwd){
-								mui.toast('请输入密码');
-								flag=false;
-								return;
-							}
-							if(!check){
-								mui.toast('请同意相关条例');
-								flag=false;
-							}
-							// 传送后台数据
-							if (flag) {
-								$("#submit-button").attr("disabled", true)
-								$("#submit-button").html("submit...");
-								var getcode =$('#signup-valcode').val();
-								var data = {
-									type: 1,
-									phone: pnum,
-									code: getcode,
-									pwd: pwd 
-								}
-								data.mac = plus.device.imei;
-								data.imsi = plus.device.imsi;
-								data.systemName = plus.device.vendor
-								data.systemVersion = plus.device.model;
-								myAjax({url: "auth/reg",data:data},function(obj) {
-										if (obj.token) {
-											setstorage('token', obj.token);
-											getacountinfo(); 
-											plus.webview.getLaunchWebview().show('slide-in-left', 300);
-											setTimeout(function(){
-												plus.webview.currentWebview().close("none", 0);
-											},500)
-										}
-										if (obj.ret == -1) {
-											$("#submit-button").attr("disabled", false)
-											$("#submit-button").html("submit");
-											mui.toast("账户已经注册")
-											return ;
-										} else if (obj.ret == -2) {
-											$("#submit-button").attr("disabled", false)
-											$("#submit-button").html("submit");
-											mui.toast("验证码不正确")
-											return;
-										}
-									},function(xhr, type, errorThrown) {
-										$("#submit-button").attr("disabled", false)
-										$("#submit-button").html("submit");
-										console.log(type)
-										errorhandle(type)
-									},function(){
-										$("#submit-button").attr("disabled", false)
-										$("#submit-button").html("submit");
-										mui.toast('请检测网络！');
-									})
-				                }
-							} 
-                   }
-				function getacountinfo() {
-					mui.ajax(BASEURL + 'account/info', {
-						type: 'post',
-						success: function(data) {
-							mui.toast('获取初始账户信息成功');
-							if(getstorage('personinfo')){
-								plus.storage.removeItem('personinfo')
-							}
-							setstorage('personinfo',JSON.stringify(data.res));
-							var i = plus.webview.getLaunchWebview();
-							mui.fire(i,'setaccount',data.res);
-						},
-						error:function(xhr,type){
-							console.log(xhr.status+":"+type);
+							}, function(xhr, type, errorThrown) {
+								$("#submit-button").attr("disabled", false)
+								$("#submit-button").html("submit");
+								console.log(type)
+								errorhandle(type)
+							}, function() {
+								$("#submit-button").attr("disabled", false)
+								$("#submit-button").html("submit");
+								mui.toast('请检测网络！');
+							})
 						}
-					})
+					}
 				}
+
+				function getacountinfo() {
+						mui.ajax(BASEURL + 'account/info', {
+							type: 'post',
+							success: function(data) {
+								mui.toast('获取初始账户信息成功');
+								if (getstorage('personinfo')) {
+									plus.storage.removeItem('personinfo')
+								}
+								setstorage('personinfo', JSON.stringify(data.res));
+								var i = plus.webview.getLaunchWebview();
+								mui.fire(i, 'setaccount', data.res);
+							},
+							error: function(xhr, type) {
+								console.log(xhr.status + ":" + type);
+							}
+						})
+					}
 					//密码可见
 				var submit = document.getElementById('submit-button');
-				submit.addEventListener('tap', function() {  
-					$('input').blur();
-					signUp();
-				})
-				//password可见切换
+				submit.addEventListener('tap', function() {
+						$('input').blur();
+						signUp();
+					})
+					//password可见切换
 				$('.login_eye_show').on('tap', function() {
-					var show = $('.pwd').attr('type');
-					if (show == "password") {
-						$('.pwd').attr('type', 'text');
-						$('.eye_one').addClass('mui-hidden');
-						$('.eye_two').removeClass('mui-hidden');
-					} else {
-						$('.pwd').attr('type', 'password');
-						$('.eye_one').removeClass('mui-hidden');
-						$('.eye_two').addClass('mui-hidden');
+						var show = $('.pwd').attr('type');
+						if (show == "password") {
+							$('.pwd').attr('type', 'text');
+							$('.eye_one').addClass('mui-hidden');
+							$('.eye_two').removeClass('mui-hidden');
+						} else {
+							$('.pwd').attr('type', 'password');
+							$('.eye_one').removeClass('mui-hidden');
+							$('.eye_two').addClass('mui-hidden');
+						}
+					})
+					//时间函数  
+
+				function time() {
+					$('#get-code').css('display', 'none');
+					$('#get-time').css('display', 'block');
+					var a = 60;
+					b = function() {
+						a--;
+						$('#get-time').html(a);
+						if (a == 0) {
+							$('#get-code').css('display', 'block');
+							$('#get-time').css('display', 'none');
+						}
 					}
-				})
-		//时间函数  
-		function time(){
-		  	$('#get-code').css('display','none');
-		  	$('#get-time').css('display','block');
-			  	var a=60;
-			  	b=function(){
-			  		a--;
-			  	    $('#get-time').html(a);
-		  		if(a==0){
-		  			$('#get-code').css('display','block');
-		  			$('#get-time').css('display','none');
-		  		}
-			  	}
-			  	    set=setInterval('b()',1000);
-			  	setTimeout("clearInterval(set)",61000);
-		  }
-	})
-</script>
-</body>
+					set = setInterval('b()', 1000);
+					setTimeout("clearInterval(set)", 61000);
+				}
+			})
+		</script>
+	</body>
+
 </html>
