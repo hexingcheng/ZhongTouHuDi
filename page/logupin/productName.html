@@ -68,16 +68,17 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		</div>
-		<script src="../../js/utils.js"></script>
-		<script type="text/javascript" src="../../js/jquery.min.js"></script>
-		<script type="text/javascript">
-			 // 注册验证
-			mui.plusReady(function() {
-				plus.webview.currentWebview().setStyle({
-					scrollIndicator: 'none'
-				}); //移除页面的滚动条
+	   </div>     
+  </div>       
+	<script src="../../js/utils.js"></script>
+	<script type="text/javascript" src="../../js/jquery.min.js" ></script>
+	<script type="text/javascript">
+		 // 注册验证
+		mui.plusReady(function(){
+				mui('.mui-scroll-wrapper').scroll({
+					indicators: false
+				})
+				plus.webview.currentWebview().setStyle({scrollIndicator:'none'});//移除页面的滚动条
 				// 根据手机号，获取验证码
 				$("#get-code").on("tap", function(e) {
 					var pnum = $("#signup-phone-number").val().trim();
@@ -90,7 +91,6 @@
 								phone: pnum,
 								type: "1"
 							}
-							//						alert(codedata.phone)
 						myAjax({
 							url: "auth/getDynCode",
 							data: codedata

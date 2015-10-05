@@ -63,3 +63,9 @@
     	background-color: #FFF;
     	border-radius: 2px;
     }
+    .mui-bar-footer{
+    	position: absolute;
+    }
+	.mui-scroll-wrapper{
+		bottom: 64px;
+	}
