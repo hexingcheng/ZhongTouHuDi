@@ -16,7 +16,7 @@
 			<span>Sigin In</span>
 		</header>
 		<footer class="mui-bar mui-bar-footer">
-			<button class="nav_footer mui-btn" id="submit-button">Log on</button>
+			<button class="nav_footer mui-btn" id="submit-button">Log In</button>
 		</footer>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
@@ -56,6 +56,9 @@
 		<script type="text/javascript">
 			mui.plusReady(function() {
 				//open findpass address
+				mui('.mui-scroll-wrapper').scroll({
+					indicators: false
+				});
 				plus.webview.currentWebview().setStyle({
 					scrollIndicator: 'none'
 				});
