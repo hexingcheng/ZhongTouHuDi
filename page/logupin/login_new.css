@@ -1,187 +1,71 @@
-body{
-	background-color: #EBEEF4 !important;
+/*线条*/
+.mui-table-view-cell:after{
+	left: 0;  
 }
-/*页面nav*/
-.nav_header{
-	height: 52px;
-	line-height: 52px;
-	font-size: 16px;
-	text-align: left;
-	color: #fff;
-	background-color: #44AB6E;
-	box-shadow: none;
+.mui-scroll{
+	margin-bottom: 3em;
 }
-.nav_header .header_left_img{
-	width: 34px;
-	height: 34px;
-	float: left;
-	margin: 9px 9px 9px 0; 
-}  
-.nav_header .header_right_img{
-	width: 34px;
-	height: 34px;
-	float: right;
-	margin: 9px 0 9px 9px; 
-}
-/*foorter nav*/
-.mui-bar-footer{
-	background-color:#fff;
-	height: 64px;
-	padding: 0 !important;
-	position: fixed;  
-}
-
-.login_info .login_checkbox_on{
-    width: 17px;
-    height: 17px;
-    border: 1px solid #31A25F;
-    float: left;
-    margin-top: 1em;
-    margin-right: .5em;
-    background-color: white;
-}
-.login_chan_map{
-    background:url(../../img/creat1.png);
-    background-position: 0 14px;
-}
-.tips {
-	width: 100%;
-	position: absolute;
-	left: 0;
-	z-index: 11;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.2);
-	color: #FFFFFF;
-	padding-top: 50%;
-	font-size: 30px;
-	text-align: center;
-}
-.login_color {
-	color: white;
-}
-.login_title {
-	margin-left: .6em;
-}
-.login_log {  
-	width: 5em;
-	height: 8.5em;
-	overflow: hidden;
-	margin: 4em auto 3em auto;
-	color: #06495A;
-	text-align: center;
-}
-.login_log .big_img {
-	width: 5em;
-	height: 5em;
-	float: left;
-	margin-bottom:0;
-}
-.login_log .small_img {
-	width: 5em;
-	height: 2.5em;
-	margin: 0 auto;
-}
-.login_input_contain {
-	width: 98%;
-	padding: 0 .4em;
-	overflow: hidden;
-	margin: 0 auto;
-	background-color: white;
-}
-.login_input {
-	width: 100%;
-	height: 50px;
-	border: 0;
-	overflow: hidden;
-}
-.login_input .login_map {
-	width: 34px;
-	height:34px;
-	margin:8px 5px;
-	float: left;
-}
- .login_input .login_input_{
-	height: 50px;
-	width:100%;
-	margin-bottom: 0;
-	padding-left: 0;
-	padding-right: 0;
-	font-size: 14px;
-	border: 0;
-	overflow: hidden;
-}
-.input_div{
-	height: 50px;
-	margin-right: 70px;
-	overflow: hidden;	
-}
-.input_div_{
-	height: 50px;
-	overflow: hidden;	
-}
-.login_bor_bottom {
-	border-bottom: 1px solid #EFEFF4;
-}
-.login_info input{
-    		width: 18px;
-    		height: 18px;
-    	}
- .login_input_get{
-      	width: 70px;
-      	height: 30px;
-      	line-height:30px;
-      	font-size: 14px;   
-      	margin:10px 0;
-      	color: #6D6B6B;
-      	border-left: 1px solid #EFEFF4;
-      	text-align: center;
-      	float: right;
-      }
-.login_input .login_change {
-	width: 40px;
-	height: 40px;
-	overflow: hidden; 
-	margin:5px 0;
-	float: right;
-}
-.login_change .eye_one{
-	width: 34px;
-	height: 34px;
-	margin: .3em;
-/*	margin: 8 auto 0 auto;*/
-}
-.login_change .eye_two{
-	width: 34px;
-	height: 34px;
-	margin: .3em;
-}
-.login_checkbox{
-    width: 20px;
-    height: 30px;
-    margin-top: 5px;
-    float: left;
-    margin-right: 5px;
-    overflow: hidden;
-    	}
-.login_info {
-	width: 90%;
-	height: 3em;
-	line-height: 3em;
-	font-size: 14px;
-	color: #A9A9A9;
-	margin: 0 auto;
-}
-.login_bg {
-	background-color: #EBEEF4 !important;
-}
-.login_loginfo{
-	font-size: 16px;
-	color: #808080;
-}
-.border {
-	border: 1px solid red;
-}
-.mui-scroll-wrapper{
-	top: 52px;
-	bottom: 60px;
-}
+.login_log {
+		width: 5em;
+		height: 8.5em;
+		overflow: hidden;
+		margin: 7em auto 3em auto;
+		color: #06495A;
+		text-align: center;
+	}   
+	.login_log .big_img {
+		width: 5em;
+		height: 5em;
+		float: left;
+		margin-bottom: 0;
+	}
+	.login_log .small_img {
+		width: 5em;
+		height: 2.5em;
+		margin: 0 auto;
+	}
+	.li_left_contain{
+		width: 75px;
+		height: 30px;
+		margin: 9px 0;
+		border-left: 1px solid #e8e8e8;
+		float: right;
+	}
+	.li_left_contain div{
+		width: 75px;
+		height: 100%;  
+		text-align: right;
+		line-height: 30px;
+	}
+	.container_div{
+		width: 50px;
+		height: 50px;
+		overflow: hidden;
+		float: right;
+	}
+	.login_info {
+		width: 90%;
+		height: 3em;
+		line-height: 3em;
+		font-size: 14px;
+		color: #A9A9A9;
+		margin: 0 auto;
+	}
+	.login_checkbox{
+		margin-right: .5em;  
+	    margin-top: 4px;
+	    float: left; 
+	    overflow: hidden;
+    }
+    .login_checkbox input{
+    	height: 1em;
+    	width: 1em;  
+    	background-color: #FFF;
+    	border-radius: 2px;
+    }
+    .mui-bar-footer{
+    	position: absolute;
+    }
+	.mui-scroll-wrapper{
+		bottom: 64px;
+	}

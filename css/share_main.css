@@ -126,7 +126,7 @@ footer .nav_footer .button_bg_rest{
 	height: 50px;
 	line-height: 50px; 
 	float: left;
-	color: #bec0c2;
+	color: #ff454545;
 }
 .mui-table-view .li_right_img{
 	width: 34px;
@@ -142,6 +142,11 @@ footer .nav_footer .button_bg_rest{
 }
 .mui-table-view .li_input_s{
 	margin-right: 42px;
+	overflow: hidden;
+	height: 50px;
+}
+.mui-table-view .li_input_sx{
+	margin-right: 70px;
 	overflow: hidden;
 	height: 50px;
 }

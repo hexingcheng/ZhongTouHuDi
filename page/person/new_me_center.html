@@ -141,7 +141,7 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
-			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
+			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />  
 			<span>personal</span>
 			<img src="../../img/edit2.1.png" class="header_right_img center_edit" alt="" />
 			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" />
@@ -604,8 +604,7 @@
 						$('.content_mask').addClass('mui-hidden');
 					})
 					//查看申请递送人信息    
-				$('.open_apply').on('tap','.mui-table-view',function() {
-					console.log(123)
+				$('#open_apply').on('tap',function() {
 						openWindow('../applyfor/applyPerson.html');  
 					})
 					//修改支付密码

@@ -15,53 +15,61 @@
 			<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
 			<span>Sigin In</span>
 		</header>
-		<div class="mui-content">  
-			<div class="login_log">
-				<img src="../../img/log.png" class="big_img" alt="" />
-				<img src="../../img/along.png" class="small_img" alt="" />
-			</div>
-			<!--输入框-->
-			<div class="login_input_contain">
-				<div class="login_input login_bor_bottom">
-					<img src="../../img/pho.png" class="login_map" alt="" />
-					<div class="input_div_">
-						<input type="tel" class="login_input_" id="signup-phone-number" placeholder="phone number" />
+		<footer class="mui-bar mui-bar-footer">
+			<button class="nav_footer mui-btn" id="submit-button">Log In</button>
+		</footer>
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="login_log">
+						<img src="../../img/log.png" class="big_img" alt="" />
+						<img src="../../img/along.png" class="small_img" alt="" />
+					</div>
+					<!--输入框-->
+					<ul class="mui-table-view" style="margin: auto 2%;">
+						<li class="mui-table-view-cell">
+							<img src="../../img/pho.png" class="li_left_img" alt="" />
+							<div class="li_input_l">
+								<input type="number" placeholder="phone number" id="signup-phone-number" />
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<img src="../../img/password.png" class="li_left_img" />
+							<div class="container_div login_eye_show">
+								<img src="../../img/eye.png" alt="" class="li_right_img eye_one " />
+								<img src="../../img/1182351.png" alt="" class="li_right_img eye_two mui-hidden" />
+							</div>
+							<div class="li_input_s">
+								<input type="password" id="signup-phone-password" placeholder="password" class="pwd" />
+							</div>
+						</li>
+					</ul>
+					<div class="login_info">
+						<span>forget password? </span> <span style="color: #26a65b;" id="find_pwd"> click me</span>
+						<strong><span class="mui-pull-right" id="log_up" style="color: #808080;">Sign up</span></strong>
 					</div>
 				</div>
-				<div class="login_input">
-					<img src="../../img/valcode.png" class="login_map" alt="" />
-					<div class="login_change login_eye_show">
-						<img src="../../img/eye.png" class="eye_one" alt="">
-						<img src="../../img/1182351.png" class="eye_two" />
-					</div>
-					<div class="input_div">
-						<input type="password" class="mui-pull-left pwd login_input_" id="signup-phone-password" placeholder="password" />
-					</div>
-				</div>
-			</div>
-			<div class="login_info">
-				<span>forget password? </span> <span style="color: #26a65b;" id="find_pwd"> click me</span>
-				<strong><span class="mui-pull-right" id="log_up" style="color: #808080;">Sign up</span></strong>
 			</div>
 		</div>
-		<footer class="mui-bar mui-bar-footer">
-			<button class="nav_footer mui-btn" id="submit-button">Sign In</button>
-		</footer>
 		<script src="../../js/utils.js"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script type="text/javascript">
 			mui.plusReady(function() {
 				//open findpass address
-				plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
+				mui('.mui-scroll-wrapper').scroll({
+					indicators: false
+				});
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
 				$('#log_up').on('tap', function() {
-					openWindow('./productName.html')  
-					
+					openWindow('./productName.html')
 				});
 				$('#find_pwd').on('tap', function() {
 					openWindow('./findpassword.html')
 				});
 				var reph = /^[0-9]{6,12}$/;
-				var repw = /^[\\.a-zA-Z0-9_]{3,}$/;
+				var repw = /^[\\.a-zA-Z0-9_]{3,}$/;  
 
 				function checkLogin() {
 					var phonenum = $('#signup-phone-number').val().trim();
@@ -98,7 +106,6 @@
 						data.imsi = plus.device.imsi;
 						data.systemName = plus.device.vendor
 						data.systemVersion = plus.device.model;
-						
 						// 登录时发送的ajax请求
 						myAjax({
 							url: "auth/login",
@@ -113,7 +120,7 @@
 								plus.webview.getLaunchWebview().show('slide-in-left', 300);
 								$('#signup-phone-number').val('');
 								$('#signup-phone-password').val('');
-								setTimeout(function(){
+								setTimeout(function() {
 									plus.webview.currentWebview().close("none", 0)
 								}, 500)
 							} else if (obj.ret == -1) {
@@ -131,46 +138,43 @@
 							}
 						}, function(xhr, type, errorThrown) {
 							console.log(xhr.status)
-
 						}, function() {
 							mui.toast("没有网络！");
 						})
 					}
 				}
-    
+
 				function getacountinfo() {
-					mui.ajax(BASEURL + 'account/info', {
-						type: 'post',
-						success: function(data) {
-							if(data.ret===1) {
-								if (getstorage('personinfo')) {
-									plus.storage.removeItem('personinfo')
-								}
-								setstorage('personinfo', JSON.stringify(data.res));
-								console.log(getstorage('personinfo'));
-								var index = plus.webview.getLaunchWebview();
-								mui.fire(index,"setaccount", data.res);
-								setTimeout(function(){
-									plus.webview.currentWebview().close();
-								},500)
-							}else{
-								mui.toast('获取基础信息失败'+data.ret)
-								console.log('获取基础信息失败'+data.ret)
-								setTimeout(function(){
-									plus.webview.currentWebview().close();
-								},500)
+					myAjax({
+						url: 'account/info',
+						data: ''
+					}, function(data) {
+						if (data.ret === 1) {
+							if (getstorage('personinfo')) {
+								plus.storage.removeItem('personinfo')
 							}
-						},
-						error: function(xhr, type) {
-							console.log(xhr.status + ":" + type);
+							setstorage('personinfo', JSON.stringify(data.res));
+							var index = plus.webview.getLaunchWebview();
+							mui.fire(index, "setaccount", data.res);
+							setTimeout(function() {
+								plus.webview.currentWebview().close();
+							}, 500)
+						} else {
+							mui.toast('获取基础信息失败' + data.ret)
+							setTimeout(function() {
+								plus.webview.currentWebview().close();
+							}, 500)
 						}
+					}, function(xhr, type) {
+						console.log(xhr.status + ":" + type);
 					})
 				}
-				function systemmsg(){
+
+				function systemmsg() {
 					var i = plus.webview.getLaunchWebview();
-					mui.fire(i,'msgtips')
+					mui.fire(i, 'msgtips')
 				}
-				$('#submit-button').on('tap', function() { 
+				$('#submit-button').on('tap', function() {
 					$('input').blur();
 					checkLogin();
 				});
