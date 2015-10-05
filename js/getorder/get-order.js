@@ -252,4 +252,10 @@ mui.plusReady(function() {
 	window.addEventListener('fresh', function() {
 		pulldownRefresh();
 	})
+	
+	// 点击页面切换的时候，进行切换页面等待窗口
+	window.addEventListener("waiting", function(){
+		var waithtml = '<div class="data-wait">数据加载中...</div>';
+		$('#ordercontent').html(waithtml);
+	})
 })

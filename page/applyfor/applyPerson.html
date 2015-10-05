@@ -121,10 +121,10 @@
 			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 			<span>Application For Deliverer</span>
 		</header>
-		<!--<div id="loading-mask" ></div>
+		<div id="loading-mask" ></div>
 		<div id="loading-box">  
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
-		</div>-->
+		</div>
 			<div class="presee mui-hidden">
 			<div class="picwraps"> 
 				<div class="mui-slider" id="slider">
@@ -387,8 +387,8 @@
 		   	  		$('#choose-contacts').css('display','none');
 		   	  		if(status==1){
 		   	  			$('#status_info').text('你的审核已成功');
+		   	  			$(".mui-scroll-wrapper").css("bottom", 0)
 		   	  		}else if(status==12){
-		   	  			
 		   	  			$(".mui-scroll-wrapper").css("bottom",0)
 		   	  			$('#status_info').text('你的审核还在审核中');
 		   	  		}else if(status==13){

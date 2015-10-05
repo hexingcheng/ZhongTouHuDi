@@ -20,6 +20,8 @@
 			.mui-table-view .left_li_half {border-right: 1px solid #ddd;}
 			.rewrod, .rel {color: red;margin-left: 5px;}
 			body, html, .mui-content {background-color: #fff;}
+			.mui-table-view-cell .li_left_title {width: 85px;}
+			.right-plain {display: block;margin-left: 85px;}
 		</style>
 	</head>
 	<body>
@@ -126,20 +128,20 @@
 
 					<ul class="mui-table-view" id="ul2">
 						<li class="mui-table-view-cell">
-							<div class="li_left_title addl15mar">From</div>
-							<span id="sendaddr">--</span>
+							<div class="li_left_title addl15mar mui-pull-left">起始地</div>
+							<span id="sendaddr" class="right-plain mui-ellipsis">--</span>
 						</li>
 						<li class="mui-table-view-cell desc-after">
-							<div class="li_left_title addl15mar">TO</div>
-							<span id="receiveaddr">--</span>
+							<div class="li_left_title addl15mar mui-pull-left">终止地</div>
+							<span id="receiveaddr" class="right-plain mui-ellipsis">--</span>
 						</li>
 						<li class="mui-table-view-cell desc-after">
-							<div class="li_left_title addl15mar">Value</div>
-							<span id="gvalue">--</span>
+							<div class="li_left_title addl15mar mui-pull-left">价值</div>
+							<span id="gvalue" class="right-plain mui-ellipsis">--</span>
 						</li>
 						<li class="mui-table-view-cell desc-after">
-							<div class="li_left_title addl15mar">Desc</div>
-							<span id="info">--</span>
+							<div class="li_left_title addl15mar mui-pull-left">描述</div>
+							<span id="info" class="right-plain mui-ellipsis">--</span>
 						</li>
 						<div id="picwrap"></div>
 					</ul>

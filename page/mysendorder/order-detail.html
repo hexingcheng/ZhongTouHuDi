@@ -220,9 +220,9 @@
 				
 				<ul class="mui-table-view">
 					<!-- 11 议价中  显示 -->
-					<li id="msg-warn" class="mui-table-view-cell">
+					<li id="msg-warn" class="mui-table-view-cell lee-need-active">
 						<span class="laba-box mui-pull-left"><img src="../../img/laba.png" width="100%"/></span>
-						<span class="warn-word">There is an new advice you have not read!</span>
+						<span class="warn-word">您有个新消息！</span>
 					</li>
 					
 					<li class="mui-table-view-cell">
@@ -618,9 +618,17 @@
       		// 自定义事件触发该页面刷新
       		window.addEventListener("refresh:page", function(eve){
       			var id = eve.detail.orderid;
+      			var $msgwarn = $("#msg-warn");
+      			var $cancelorder = $("#cancel-order");
       			$("#loading-mask").css("display", "block");
       			$("#loading-box").css("display", "block");
-      			document.getElementById("cancel-order").style.display = "none";
+      			console.log(sta + " bargain:"+  cancelstatus);
+      			if(sta == 1 && cancelstatus == "议价中"){
+      				$msgwarn.css("display", "none");
+      			}
+      			if($cancelorder.css("display") == "block"){
+      				$cancelorder.css("display", "none")
+      			}
       			sendmsg(id);
       		})
       		
