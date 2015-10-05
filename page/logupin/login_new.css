@@ -1,3 +1,10 @@
+/*线条*/
+.mui-table-view-cell:after{
+	left: 0;  
+}
+.mui-scroll{
+	margin-bottom: 3em;
+}
 .login_log {
 		width: 5em;
 		height: 8.5em;

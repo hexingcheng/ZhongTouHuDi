@@ -7,9 +7,9 @@
 		<title></title>
 		<script src="../../js/mui.js"></script>
 		<link href="../../css/mui.css" rel="stylesheet" />
-        <link rel="stylesheet" href="login_new.css" />
+		<link rel="stylesheet" href="login_new.css" />
 		<link rel="stylesheet" href="../../css/share_main.css" />
-	</head>  
+	</head>
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
@@ -36,12 +36,12 @@
 						<li class="mui-table-view-cell">
 							<img src="../../img/password.png" class="li_left_img" />
 							<div class="container_div login_eye_show">
-								<img src="../../img/eye.png" alt="" class="li_right_img eye_one "/>
-								<img src="../../img/1182351.png" alt="" class="li_right_img eye_two mui-hidden"/>
-							</div>  
+								<img src="../../img/eye.png" alt="" class="li_right_img eye_one " />
+								<img src="../../img/1182351.png" alt="" class="li_right_img eye_two mui-hidden" />
+							</div>
 							<div class="li_input_s">
-								<input type="password"  id="signup-phone-password" placeholder="password" class="pwd"/>
-							</div>  
+								<input type="password" id="signup-phone-password" placeholder="password" class="pwd" />
+							</div>
 						</li>
 					</ul>
 					<div class="login_info">
@@ -56,16 +56,17 @@
 		<script type="text/javascript">
 			mui.plusReady(function() {
 				//open findpass address
-				plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
+				plus.webview.currentWebview().setStyle({
+					scrollIndicator: 'none'
+				});
 				$('#log_up').on('tap', function() {
-					openWindow('./productName.html')  
-					
+					openWindow('./productName.html')
 				});
 				$('#find_pwd').on('tap', function() {
 					openWindow('./findpassword.html')
 				});
 				var reph = /^[0-9]{6,12}$/;
-				var repw = /^[\\.a-zA-Z0-9_]{3,}$/;
+				var repw = /^[\\.a-zA-Z0-9_]{3,}$/;  
 
 				function checkLogin() {
 					var phonenum = $('#signup-phone-number').val().trim();
@@ -102,7 +103,6 @@
 						data.imsi = plus.device.imsi;
 						data.systemName = plus.device.vendor
 						data.systemVersion = plus.device.model;
-						
 						// 登录时发送的ajax请求
 						myAjax({
 							url: "auth/login",
@@ -117,7 +117,7 @@
 								plus.webview.getLaunchWebview().show('slide-in-left', 300);
 								$('#signup-phone-number').val('');
 								$('#signup-phone-password').val('');
-								setTimeout(function(){
+								setTimeout(function() {
 									plus.webview.currentWebview().close("none", 0)
 								}, 500)
 							} else if (obj.ret == -1) {
@@ -135,45 +135,46 @@
 							}
 						}, function(xhr, type, errorThrown) {
 							console.log(xhr.status)
-
 						}, function() {
 							mui.toast("没有网络！");
 						})
 					}
 				}
-    
+
 				function getacountinfo() {
-					myAjax({url:'account/info',
-							data:''
-				},function(data) {
-							if(data.ret===1) {
-								if (getstorage('personinfo')) {
-									plus.storage.removeItem('personinfo')
-								}
-								setstorage('personinfo', JSON.stringify(data.res));
-								var index = plus.webview.getLaunchWebview();
-								mui.fire(index,"setaccount", data.res);
-								setTimeout(function(){
-									plus.webview.currentWebview().close();
-								},500)
-							}else{
-								mui.toast('获取基础信息失败'+data.ret)
-								setTimeout(function(){
-									plus.webview.currentWebview().close();
-								},500)
+					myAjax({
+						url: 'account/info',
+						data: ''
+					}, function(data) {
+						if (data.ret === 1) {
+							if (getstorage('personinfo')) {
+								plus.storage.removeItem('personinfo')
 							}
-						},function(xhr, type) {
-							console.log(xhr.status + ":" + type);
+							setstorage('personinfo', JSON.stringify(data.res));
+							var index = plus.webview.getLaunchWebview();
+							mui.fire(index, "setaccount", data.res);
+							setTimeout(function() {
+								plus.webview.currentWebview().close();
+							}, 500)
+						} else {
+							mui.toast('获取基础信息失败' + data.ret)
+							setTimeout(function() {
+								plus.webview.currentWebview().close();
+							}, 500)
 						}
-					)}
-				function systemmsg(){
-					var i = plus.webview.getLaunchWebview();
-					mui.fire(i,'msgtips')
+					}, function(xhr, type) {
+						console.log(xhr.status + ":" + type);
+					})
 				}
-				$('#submit-button').on('tap', function() { 
+
+				function systemmsg() {
+					var i = plus.webview.getLaunchWebview();
+					mui.fire(i, 'msgtips')
+				}
+				$('#submit-button').on('tap', function() {
 					$('input').blur();
 					checkLogin();
-				});  
+				});
 				//password可见切换
 				$('.login_eye_show').on('tap', function() {
 					var show = $('.pwd').attr('type');
