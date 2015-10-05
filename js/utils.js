@@ -336,6 +336,17 @@ function getcurrenttime(){
 	var ns = s<10?('0'+s):s;
 	return d.getFullYear()+"-"+nm+"-"+nd+" "+nh+":"+mi+":"+ns;
 }
+
+// 解决部分手机number类型的时候不出现placeholder属性值
+function fixedNum(selector){
+	$(selector).on("focus", function(){
+		$(this).attr("type", "number");
+	})
+	$(selector).on("blur", function(){
+		$(this).attr("type", "text");
+	})
+}
+
 //function getmsgs() {
 //	myAjax({
 //		url: 'message/getMsg'
