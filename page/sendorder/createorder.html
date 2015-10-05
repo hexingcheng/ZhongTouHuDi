@@ -518,7 +518,7 @@
 							</div>
 							<div class="wid50 hei110">
 								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="gweight" placeholder="Weight" />
+									<input type="text" class="linehei68 mui-input-clear" id="gweight" placeholder="Weight" />
 								</div>
 							</div>
 						</div>
@@ -531,7 +531,7 @@
 							</div>
 							<div class="wid50 hei110">
 								<div class="iptwrap mui-input-row">
-									<input type="number" class="linehei68 mui-input-clear" id="gvalue" placeholder="Value" />
+									<input type="text" class="linehei68 mui-input-clear" id="gvalue" placeholder="Value" />
 								</div>
 							</div>
 						</div>
@@ -580,8 +580,8 @@
 			</div>
 		</div>
 	</body>
-	<script type="text/javascript" src="../../js/utils.js"></script>
 	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/utils.js"></script>
 	<script type="text/javascript" charset="utf-8">
 		mui.init();
 		var getdata = {};
@@ -606,6 +606,11 @@
 			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
 				picindex = event.detail.slideNumber;
 			})
+			
+			// 重量与价值
+			fixedNum("#gweight");
+			fixedNum("#gvalue");
+			
 			$('.rechoosepic').on('tap',function(e){
 				var src = $('.mui-slider-item').eq(picindex).find('img').attr('src');
 				$('.mui-slider-item').eq(picindex).remove();

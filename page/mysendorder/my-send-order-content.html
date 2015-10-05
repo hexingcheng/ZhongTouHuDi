@@ -39,15 +39,15 @@
 						</div>
 						<div class="goods-content">
 							<div class="goods-direction mui-pull-left">
-								<div class="goods-bar goods-from-bar">
+								<div class="goods-bar goods-from-bar mui-ellipsis">
 									<span class="goods-from font-color">From</span>
 									<span class="goods-msg mui-ellipsis">{{$value.sendAddr}}</span>
 								</div>
-								<div class="goods-bar goods-to-bar">
+								<div class="goods-bar goods-to-bar mui-ellipsis">
 									<span class="goods-to font-color">To</span>
 									<span class="goods-msg mui-ellipsis">{{$value.receiveAddr}}</span>
 								</div>
-								<div class="goods-bar goods-comment-bar">
+								<div class="goods-bar goods-comment-ba mui-ellipsisr">
 									<span class="goods-comment font-color">
 										{{$value.statusDetail == 11 ? "发布时间" : $value.statusDetail == 12 ? "接单时间" : $value.statusDetail == 13 ? "发布时间" : 
 										$value.statusDetail == 21 ? "付款时间" : $value.statusDetail == 22 ? "取货时间" : $value.statusDetail == 31 ? "签单时间" : $value.statusDetail == 32 ? "评价时间" : "取消时间"}}
