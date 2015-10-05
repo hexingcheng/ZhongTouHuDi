@@ -67,7 +67,7 @@ function delPhotoMsg(delobj, cb){
 //					console.log("原始文件大小：" + file.size / 1024 +"KB   filename:"+file.name);
 					origin(file.size, file.name);
 				})
-			})
+			})  
 		})
 		
 		function origin(filesize, filename){

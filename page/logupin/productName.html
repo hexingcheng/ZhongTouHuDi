@@ -7,68 +7,65 @@
     <script src="../../js/mui.js"></script>
     <link href="../../css/mui.css" rel="stylesheet"/>
     <link rel="stylesheet" href="login_new.css" />
-    <style type="text/css">
-			footer button {
-				padding: 0;
-				border-radius: 0;
-				border: none;
-			}
-		</style>
-</head>
+    <link rel="stylesheet" href="../../css/share_main.css" /> 
+</head>  
 <body> 
-	<header class="mui-bar mui-bar-nav nav_header">
-		<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
-		<span >Sign Up</span>
-	</header>
+		<header class="mui-bar mui-bar-nav nav_header">
+			<img src="../../img/left.png" class="header_left_img mui-action-back" alt="" />
+			<span>Sign up</span>
+		</header>
+		<footer class="mui-bar mui-bar-footer">
+			<button class="nav_footer mui-btn" id="submit-button">submit</button>
+		</footer>
+		<div class="tips mui-hidden">登录中...</div>
 	<div class="mui-content">
-		<div class="login_log">
-			<img src="../../img/log.png" class="big_img" alt="" />
-		    <img src="../../img/along.png" class="small_img" alt="" />
-		</div>
-		<!--输入框-->  
-		<div class="login_input_contain">
-			<div class="login_input login_bor_bottom">
-				<img src="../../img/pho.png" class="login_map" alt="" />
-				<div class="input_div">
-				    <input type="tel" class="login_input_" id="signup-phone-number" placeholder="phone number"/>
-				</div>
-			</div> 
-			<div class="login_input login_bor_bottom">
-				<img src="../../img/valcode.png" class="login_map" alt=""/>
-				<div class="login_input_get"> 
-					<span id="get-code">get code</span>
-					<span id="get-time" style="color: #FFE801;"></span>
-				</div>
-				<div class="input_div">
-				    <input type="tel" class="mui-pull-left login_input_"  id="signup-valcode" placeholder="valcode"/>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<div class="login_log">
+						<img src="../../img/log.png" class="big_img" alt="" />
+						<img src="../../img/along.png" class="small_img" alt="" />
+					</div>
+					<!--输入框-->
+					<ul class="mui-table-view" style="margin: auto 1%;">
+						<li class="mui-table-view-cell">
+							<img src="../../img/pho.png" class="li_left_img" alt="" />
+							<div class="li_input_l">
+								<input type="number" placeholder="phone number" id="signup-phone-number"/>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<img src="../../img/valcode.png" class="li_left_img" alt="" />
+							<div class="li_left_contain">
+								<div id="get-code">
+									<span  style="color: #808080;">get code</span>
+								</div>
+								<div id="get-time" class="mui-text-center">
+									<span  style="color: #26a65b;"></span>
+								</div>
+							</div>
+							<div class="li_input_sx">
+								<input type="text"  placeholder="valcode" id="signup-valcode" />
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<img src="../../img/password.png" class="li_left_img" />
+							<div class="container_div login_eye_show">
+								<img src="../../img/eye.png" alt="" class="li_right_img eye_one "/>
+								<img src="../../img/1182351.png" alt="" class="li_right_img eye_two mui-hidden"/>
+							</div>  
+							<div class="li_input_s">
+								<input type="password"  id="signup-pwd" placeholder="password" class="pwd"/>
+							</div>  
+						</li>
+					</ul>
+					 <div class="login_info">    
+				    	<div class="login_checkbox"><input type="checkbox" id="signup-agree" checked="checked" /></div>
+				    	<span id="signup-agree" style="color: #808080;">I agree with the</span> <a href="" style="color: #26a65b;">service rules</a>
+				    </div>
 				</div>
 			</div>
-			<div class="login_input login_bor_bottom">
-				<img src="../../img/password.png" class="login_map" alt=""/>
-				<div class="login_change login_eye_show" >
-					<img src="../../img/eye.png" class="eye_one" alt="" >  
-					<img src="../../img/1182351.png" class="eye_two" />
-				</div> 
-				<div class="input_div">
-			        <input type="password" class="mui-pull-left pwd login_input_" id="signup-pwd"   placeholder="password"/>
-			    </div>
-			</div>
-			<!--<div class="login_input ">
-				<img src="../../img/confirm.png" class="login_map" alt="" />
-				<div class="input_div_">
-					<input type="password" class="login_input_" id="signup-com-pwd" placeholder="confirm password" />
-				</div>
-			</div>-->
-		</div> 
-	    <div class="login_info">    
-	    	<div class="login_checkbox"><input type="checkbox" id="signup-agree" checked="checked" /></div>
-	    	<span id="signup-agree">I agree with the</span> <a href="" class="log_color">service rules</a>
-	    </div>
-	</div> 
-	<!--<div class="tips mui-hidden">登录中...</div>-->
-	<footer class="mui-bar mui-bar-footer login_bg mui-text-center">
-		<button class="nav_footer" id="submit-button">submit</button>
-	</footer>
+	   </div>     
+  </div>       
 	<script src="../../js/utils.js"></script>
 	<script type="text/javascript" src="../../js/jquery.min.js" ></script>
 	<script type="text/javascript">
@@ -133,7 +130,7 @@
 								mui.toast('请输入手机号');
 								flag=false;
 								return;
-								
+								 
 							}
 							// 手机验证码验证
 							if(code){
@@ -165,8 +162,7 @@
 									type: 1,
 									phone: pnum,
 									code: getcode,
-									pwd: pwd,
-									repwd: compwd
+									pwd: pwd 
 								}
 								data.mac = plus.device.imei;
 								data.imsi = plus.device.imsi;
@@ -224,21 +220,21 @@
 				}
 					//密码可见
 				var submit = document.getElementById('submit-button');
-				submit.addEventListener('tap', function() {
+				submit.addEventListener('tap', function() {  
 					$('input').blur();
 					signUp();
 				})
 				//password可见切换
-				$('.login_eye_show').on('tap',function(){
-                	var show=$('.pwd').attr('type');
-					if(show=="password"){
-						$('.pwd').attr('type','text');
-						$('.eye_one').css('display','none');
-						$('.eye_two').css('display','block');
-					}else{
-						$('.pwd').attr('type','password');
-						$('.eye_one').css('display','block');
-						$('.eye_two').css('display','none');
+				$('.login_eye_show').on('tap', function() {
+					var show = $('.pwd').attr('type');
+					if (show == "password") {
+						$('.pwd').attr('type', 'text');
+						$('.eye_one').addClass('mui-hidden');
+						$('.eye_two').removeClass('mui-hidden');
+					} else {
+						$('.pwd').attr('type', 'password');
+						$('.eye_one').removeClass('mui-hidden');
+						$('.eye_two').addClass('mui-hidden');
 					}
 				})
 		//时间函数  

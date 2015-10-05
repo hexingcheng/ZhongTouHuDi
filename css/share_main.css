@@ -1,10 +1,15 @@
-body,.mui-content{
-	background-color: #fff;
+html,body,.mui-content{
+	background-color: #f2f2f2;
 	font-size: 16px;
 	width: 100%;
 	height: 100%;
 	color: #5f5d5d;
 }
+/*统一输入框（placeholder）color*/
+*::-webkit-input-placeholder { /* WebKit browsers */
+    color: #acabab;
+}
+
 .mui-table-view-cell .line_20{
 	line-height: 20px;
 }
@@ -15,7 +20,7 @@ body,.mui-content{
 .content_clear{
 	width: 100%;
 	height: .5em;
-	background-color: #f7f5f5; 
+	background-color: #e8e8e8; 
 }
 .bg_white{
 	background-color: #fff !important;
@@ -121,7 +126,7 @@ footer .nav_footer .button_bg_rest{
 	height: 50px;
 	line-height: 50px; 
 	float: left;
-	color: #bec0c2;
+	color: #ff454545;
 }
 .mui-table-view .li_right_img{
 	width: 34px;
@@ -140,6 +145,11 @@ footer .nav_footer .button_bg_rest{
 	overflow: hidden;
 	height: 50px;
 }
+.mui-table-view .li_input_sx{
+	margin-right: 70px;
+	overflow: hidden;
+	height: 50px;
+}
 .mui-table-view .li_input_l{
 	height: 50px;
 	overflow: hidden;
@@ -153,6 +163,7 @@ footer .nav_footer .button_bg_rest{
 	padding-right: 0;
 	margin-bottom: 0;
 	border: 0;
+	color:#5f5d5d;
 	font-size: 16px;
 }
 .pay{
@@ -287,7 +298,7 @@ footer .nav_footer .button_bg_rest{
 #loading-mask {
 	position: absolute;
 	z-index: 998;
-	background: #fff;
+	background: #fff; 
 	top: 52px;
 	left: 0;
 	right: 0;
@@ -302,6 +313,10 @@ footer .nav_footer .button_bg_rest{
 	margin-left: -40px;
 	top: 50%;
 	margin-top: -40px;
+}
+#loading-box  img{
+	max-width: 100%;
+	min-width: 100%; 
 }
 .fade-out {
 	opacity: 0;
