@@ -11,21 +11,34 @@ mui.plusReady(function() {
 	var wirtepopup;		// 写入code的弹出框
 	var checkpopup;		// 重发送验证码弹出框对象
 	var popshowed = false;		// 弹出框是否显示
+	var resend = null;
 	
 	var back = mui.back;
 	mui.back = function() {
 		if(popshowed){
 			if(pop){
-				pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
-				popshowed = false;
+				if(!document.getElementById("lee-mask")){
+					back();
+				} else {
+					pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
+					popshowed = false;
+				}
 			}
 			if(wirtepopup){
-				wirtepopup.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
-				popshowed = false;
+				if(!document.getElementById("lee-mask")){
+					back();
+				} else {
+					wirtepopup.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
+					popshowed = false;
+				}
 			}
 			if(checkpopup){
-				checkpopup.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
-				popshowed = false;
+				if(!document.getElementById("lee-mask")){
+					back();
+				} else {
+					checkpopup.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
+					popshowed = false;
+				}
 			}
 			return;
 		}
@@ -226,6 +239,7 @@ mui.plusReady(function() {
 			plus.nativeUI.showWaiting('发送中', {
 				background: '#d1d1d1'
 			});
+			resend = true;
 			myAjax({
 				url: 'order/sendCode',
 				data: {
