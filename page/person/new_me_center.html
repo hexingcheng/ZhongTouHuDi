@@ -395,7 +395,7 @@
 							//								$('.center_headpic').css('background', 'url(' + path + ')'); //得到头像
 							dealImage(local, {
 								//									width: 17 * 4,
-								quality: 1
+								quality: 0.6
 							}, function(base) {
 								console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
 								data = {
@@ -440,7 +440,7 @@
 										console.log(xhr.status);
 									})
 							})
-						})
+						})  
 					}
 					//bg galary
 
