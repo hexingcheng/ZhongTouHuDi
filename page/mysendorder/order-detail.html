@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../css/share_main.css" />
     <link rel="stylesheet" type="text/css" href="../../css/common/popup.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/mysendorder/mysendorder-comment.css"/>
+    <link rel="stylesheet" href="../../css/share_main.css" />
     <script src="../../js/common/popup.js"></script>
     <style type="text/css">
     	.mui-table-view:before {height: 0;}
@@ -95,6 +95,7 @@
 		#obligation,
 		#canceled,
 		#takengoods {display: none;}
+		#sender-info {background: #fff;}
 		.commented,
 		.transporting {
 			font-weight: bold;
@@ -102,6 +103,7 @@
 			line-height: 65px;
 			color: green;
 		}
+		
 		.mui-table-view .li_input_l {
 			height: 50px;
 			overflow: hidden;
@@ -205,8 +207,8 @@
 					<div class="heade_nav_content">
 						<div class="info">
 							<div class="nav_title_1">
-								<span class="mui-pull-left" style="font-size: 16px;" id="nickName">何</span>
-								<span class="mui-pull-right" style="font-size: 14px;color: silver;">取货人</span>
+								<span class="mui-pull-left" style="font-size: 16px;" id="nickName">name</span>
+								<span class="mui-pull-right" style="font-size: 14px;color: silver;">deliver</span>
 							</div>
 							<div class="nav_title_2">
 								<span id="ptitle">平民等级</span>
@@ -313,7 +315,7 @@
 			</div>
 		</div>
 	</div>
-				
+	
 	<div id="loading-mask"></div>
 	<div id="loading-box">
 		<img src="../../img/loading2.gif" alt="loading" width="100%"/>

@@ -4,7 +4,7 @@ jQuery(function() {
 	var time = "";
 	var reword = "";
 	var weight = "";
-	$('.range-reward').jRange({
+	/*$('.range-reward').jRange({
 		from: 0,
 		to: 50,
 		step: 1,
@@ -29,7 +29,7 @@ jQuery(function() {
 		onstatechange: function() {
 			weight = $('#weight').val();
 		}
-	});
+	});*/
 	$(".mui-button-row").on("tap", "button", function() {
 		time = $(this).attr('data-time')
 		$(".mui-button-row").find("button").removeClass("active-color");
@@ -38,7 +38,7 @@ jQuery(function() {
 
 	// 取消按钮
 	document.getElementById("cancel").addEventListener("tap", function() {
-		//				mui.back();
+		//mui.back();
 	}, false)
 
 	// ok 按钮

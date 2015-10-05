@@ -215,7 +215,6 @@ mui.plusReady(function() {
 				type: "comm"
 			}
 		}, function(data) {
-			alert(data.ret)
 			if (data.ret == 1) {
 				$(".goods-name").html(data.res.gName); // 货物名称
 				$("#goods-value").html(data.res.money); // 价值
