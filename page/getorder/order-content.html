@@ -9,7 +9,6 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/getorder/get-order-comment.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/getorder/get-order.css" />
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbxX3v0OCgYabsgQcUjrQlF4rGhlL7-2Y&v=3.exp&language=zh-CN&signed_in=true&libraries=places"></script>
 		<style>
 			html,body,.mui-content{
 				background-color: #FFFFFF;
@@ -62,15 +61,15 @@
 						</div>
 						<div class="goods-content">
 							<div class="goods-direction mui-pull-left">
-								<div class="goods-bar goods-from-bar mui-ellipsis">
+								<div class="goods-bar goods-from-bar">
 									<span class="goods-from font-color">From</span>
-									<span class="goods-msg">{{$value.sendAddr}}</span>
+									<span class="goods-msg mui-ellipsis">{{$value.sendAddr}}</span>
 								</div>
-								<div class="goods-bar goods-to-bar mui-ellipsis">
+								<div class="goods-bar goods-to-bar">
 									<span class="goods-to font-color">To</span>
-									<span class="goods-msg">{{$value.receiveAddr}}</span>
+									<span class="goods-msg mui-ellipsis">{{$value.receiveAddr}}</span>
 								</div>
-								<div class="goods-bar goods-comment-bar mui-ellipsis">
+								<div class="goods-bar goods-comment-bar">
 									<span class="goods-comment font-color">finTime</span>
 									<span class="goods-msg red">{{$value.finTime}}</span>
 								</div>
@@ -102,6 +101,7 @@
 				<img src="../../img/loading2.gif" width="100%"/>
 			</div>
 		</div>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbxX3v0OCgYabsgQcUjrQlF4rGhlL7-2Y&v=3.exp&language=zh-CN&signed_in=true&libraries=places"></script>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script src="../../js/getorder/get-order.js"></script>

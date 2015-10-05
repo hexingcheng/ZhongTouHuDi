@@ -53,9 +53,9 @@ mui.plusReady(function() {
 				mui.toast('余额不足')
 				openWindow('../wallet/my-recharge.html')
 			} else {
-				plus.nativeUI.showWaiting("议价中...", {
-					background: "#ddd"
-				});
+//				plus.nativeUI.showWaiting("议价中...", {
+//					background: "#ddd"
+//				});
 				myAjax({
 					url: "deliver/bargain",
 					data: {
@@ -161,7 +161,7 @@ mui.plusReady(function() {
 						mui.toast("其他人已接单");
 					} else if (data.ret == 4) {
 						mui.toast("需要递送人身份");
-						openWindow("../applyfor/apply_info.html")
+						openWindow("../applyfor/applyPerson.html")
 						setTimeout(function() {
 							if (open) {
 								plus.webview.close(open, "none", 0)
@@ -215,7 +215,6 @@ mui.plusReady(function() {
 				type: "comm"
 			}
 		}, function(data) {
-			alert(data.ret)
 			if (data.ret == 1) {
 				$(".goods-name").html(data.res.gName); // 货物名称
 				$("#goods-value").html(data.res.money); // 价值

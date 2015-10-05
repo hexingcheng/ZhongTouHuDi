@@ -13,12 +13,13 @@
 		<script src="../../js/common/popup.js"></script>
 		<script src="../../js/mui.min.js"></script>
 		<style>
-		.mui-table-view-cell:after {left: 0;}
-		.mui-table-view .right_li_half {padding: 0 18px;}
-		.mui-table-view .left_li_half {padding: 0 18px;}
-		.mui-table-view .right_li_half {border-bottom: 1px solid #ddd;}
-		.mui-table-view .left_li_half {border-right: 1px solid #ddd;}
-		.rewrod, .rel {color: red;margin-left: 5px;}
+			.mui-table-view-cell:after {left: 0;}
+			.mui-table-view .right_li_half {padding: 0 18px;}
+			.mui-table-view .left_li_half {padding: 0 18px;}
+			.mui-table-view .right_li_half {border-bottom: 0;}
+			.mui-table-view .left_li_half {border-right: 1px solid #ddd;}
+			.rewrod, .rel {color: red;margin-left: 5px;}
+			body, html, .mui-content {background-color: #fff;}
 		</style>
 	</head>
 	<body>
@@ -94,28 +95,32 @@
 						<li class="mui-table-view-cell">
 							<div class="li_left_title">Name</div>
 							<div class="li_input_l"><span class="mui-pull-right goods-name">--</span></div>
-							
 						</li>
-						<div class="li_row_contain">
-							<li class="mui-table-view-cell left_li_half">
-								<span class="mui-pull-left">Reward</span>
-								<span style="color: red;" class="mui-pull-right" id="goods-value">$0.00</span>
-							</li>
-							<li class="mui-table-view-cell right_li_half">
-								<span class="mui-pull-left">Weight</span>
-								<span class="mui-pull-right" id="goods-weight">0kg</span>
-							</li>
-						</div>
-						<div class="li_row_contain">
-							<li class="mui-table-view-cell left_li_half li_half_row">
-								<span>Get time</span>
-								<p><span id="get-time">--</span></p>
-							</li>
-							<li class="mui-table-view-cell right_li_half li_half_row">
-								<span>Deadline</span>
-								<p><span id="deadline">--</span></p>
-							</li>
-						</div>
+						
+						<li class="mui-table-view-cell">
+							<div class="li_row_contain">
+								<div class="left_li_half">
+									<span class="mui-pull-left">Reward</span>
+									<span style="color: red;" class="mui-pull-right" id="goods-value">$0.00</span>
+								</div>
+								<div class="right_li_half">
+									<span class="mui-pull-left">Weight</span>
+									<span class="mui-pull-right" id="goods-weight">0kg</span>
+								</div>
+							</div>
+						</li>
+						<li class="mui-table-view-cell" id="date-ctrl">
+							<div class="li_row_contain">
+								<div class="left_li_half mui-text-center">
+									<div class="li_title_1"><span>Get Time</span></div>
+									<div class="li_title_2"><span id="get-time">--:--</span></div>
+								</div>
+								<div class="right_li_half mui-text-center">
+									<div class="li_title_1"><span>Deadline</span></div>
+									<div class="li_title_2"><span id="deadline">--:--</span></div>
+								</div>
+							</div>
+						</li>
 					</ul>
 					<div class="table-diviver"></div>
 
