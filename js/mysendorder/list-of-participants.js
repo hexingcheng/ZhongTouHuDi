@@ -139,7 +139,7 @@ mui.plusReady(function() {
 				mui.fire(orderdetail, "refresh:page", {
 					orderid :  orderid
 				})
-				orderdetail.show("slide-in-left", 300, function(){
+				orderdetail.show("slide-in-left", 350, function(){
 					plus.webview.close(cpage, "none", 0);
 				})
 			} else if (data.ret == 2) {

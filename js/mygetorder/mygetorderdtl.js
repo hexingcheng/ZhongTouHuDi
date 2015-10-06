@@ -85,7 +85,7 @@ mui.plusReady(function() {
 	}, function(data) {
 		status = data.res.status;
 		renderdata(data);
-		mui.toast('当前订单状态：' + data.res.status)
+//		mui.toast('当前订单状态：' + data.res.status)
 		$('#loading-mask').addClass('mui-hidden')
 		$('#loading-box').addClass('mui-hidden')
 		if (data.res.status == 1 && data.res.bargain == 1) {		// cancel bargin  取消议价
@@ -250,6 +250,7 @@ mui.plusReady(function() {
 					plus.nativeUI.closeWaiting();
 					$('.mask').removeClass('mui-hidden');
 					$('.confirm').removeClass('mui-hidden')
+					mui.toast("消息发送成功");
 				}
 			}, function(xhr, type) {
 				console.log(type)

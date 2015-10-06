@@ -40,8 +40,10 @@
 				mui('#segmentedControl').on('tap', '.mui-control-item', function() {
 					if (mui.os.ios) {
 						embed.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+						mui.fire(embed, "waiting")
 					} else {
 						embed.evalJS('mui.scrollTo(0, 100)');
+						mui.fire(embed, "waiting")
 					}
 					var param = {};
 					param.status = this.getAttribute('data-sta');

@@ -9,7 +9,7 @@ mui.plusReady(function() {
 		height: 220,
 		title: {
 			height: 40,
-			content: "please input the reword"
+			content: ""
 		},
 		main: {
 			content: ''
@@ -28,30 +28,41 @@ mui.plusReady(function() {
 	}
 
 	// 显示markup弹出层
+	var pop;
 	var order = JSON.parse(plus.storage.getItem("order"));
 	var getoderpage = plus.webview.getWebviewById("getorder/get-order");
 	document.getElementById("markup").addEventListener("tap", function() {
 		options.height = 220;
+		options.title.content = "please input the reword";
 		options.main.content = '<div class="mak-worn">please input the reword you want to be paid on the order.</div>' +
-			'<div class="borporal">' +
-			'<div class="inner">' +
-			'<input id="mar-i" placeholder="0.00" type="number">' +
-			'</div>' +
-			'</div>' +
-			'<div class="cacu">' +
-			'<div class="origin">' +
-			'<span>oringin</span>' +
-			'<span class="rewrod">' + reword + '</span>' +
-			'</div>' +
-			'<div class="now">' +
-			'<span>real</span>' +
-			'<span class="rel"></span>' +
-			'</div>' +
-			'</div>';
+								'<div class="borporal">' +
+								'<div class="inner">' +
+								'<input id="mar-i" placeholder="0.00" type="number">' +
+								'</div>' +
+								'</div>' +
+								'<div class="cacu">' +
+								'<div class="origin">' +
+								'<span>oringin</span>' +
+								'<span class="rewrod">' + reword + '</span>' +
+								'</div>' +
+								'<div class="now">' +
+								'<span>real</span>' +
+								'<span class="rel"></span>' +
+								'</div>' +
+								'</div>';
 		options.buttons[0].click = function() {
 			if (parseInt(money) < parseInt($('.rel').text())) {
-				mui.toast('余额不足')
-				openWindow('../wallet/my-recharge.html')
+				pop = null;
+				setTimeout(function(){
+					options.height = 155;
+					options.title.content = "充值提示";
+					options.main.content = "当前用户余额不足，是否对当先用户进行充值？";
+					options.buttons[0].click = function(){
+						openWindow('../wallet/my-recharge.html')
+					}
+					pop = new Popup(options);
+					pop.show();
+				}, 400)
 			} else {
 //				plus.nativeUI.showWaiting("议价中...", {
 //					background: "#ddd"
@@ -74,8 +85,18 @@ mui.plusReady(function() {
 						mask.style.display = "none";
 						panel.style.display = "none";
 					} else if (data.ret == 4) {
-						mui.toast('您还不是递送人')
-						openWindow('../applyfor/applyPerson.html')
+						pop = null;
+						setTimeout(function(){
+							options.height = 155;
+							options.title.content = "申请提示";
+							options.main.content = "您还未申请递送人身份，是否需要进行申请？";
+							options.buttons[0].click = function(){
+								openWindow('../applyfor/applyPerson.html')
+							}
+							pop = new Popup(options);
+							pop.show();
+						}, 400)
+						
 					} else if (data.ret == 5) {
 						mui.toast('不能接自己的单')
 					} else if (data.ret == 6) {
@@ -90,7 +111,7 @@ mui.plusReady(function() {
 			}
 		}
 
-		var pop = new Popup(options)
+		pop = new Popup(options)
 		pop.show();
 
 	}, false)

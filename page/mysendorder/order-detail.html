@@ -215,9 +215,27 @@
 						<div class="heade_nav_pic">
 							<img src="../../img/defualt.png" alt="" id="head-img" />
 						</div>
+<<<<<<< HEAD
 						<div class="heade_nav_right">
 							<img src="../../img/xinxi.png" class="mui-pull-right" id="sendmsg" />
 							<img src="../../img/dianhua.png" alt="" class="mui-pull-right" id="phone" />
+=======
+					</div>
+				</div>
+				
+				<ul class="mui-table-view">
+					<!-- 11 议价中  显示 -->
+					<li id="msg-warn" class="mui-table-view-cell lee-need-active">
+						<span class="laba-box mui-pull-left"><img src="../../img/laba.png" width="100%"/></span>
+						<span class="warn-word">您有个新消息！</span>
+					</li>
+					
+					<li class="mui-table-view-cell">
+						<div class="li_left_title"><span>Name</span></div>
+						<div class="li_input_l">
+							<span class="goods-name">1</span>
+							<span class="goods-status mui-pull-left mui-text-center">status</span>
+>>>>>>> 5868c1e1c08f729fef05add2eb62bece9a1817b3
 						</div>
 						<div class="heade_nav_content">
 							<div class="info">
@@ -708,10 +726,50 @@
 							console.log(type);
 						})
 					}
+<<<<<<< HEAD
 					// 清除样式
 
 				function clearStyle() {
 						$(".origin-style").css("display", "none");
+=======
+				}
+				options.buttons[1].name = "cancel";
+				var pop = new Popup(options)
+				pop.show();
+			}, false)
+      		
+      		// 自定义事件触发该页面刷新
+      		window.addEventListener("refresh:page", function(eve){
+      			var id = eve.detail.orderid;
+      			var $msgwarn = $("#msg-warn");
+      			var $cancelorder = $("#cancel-order");
+      			$("#loading-mask").css("display", "block");
+      			$("#loading-box").css("display", "block");
+      			console.log(sta + " bargain:"+  cancelstatus);
+      			if(sta == 1 && cancelstatus == "议价中"){
+      				$msgwarn.css("display", "none");
+      			}
+      			if($cancelorder.css("display") == "block"){
+      				$cancelorder.css("display", "none")
+      			}
+      			sendmsg(id);
+      		})
+      		
+      		//  发送数据渲染页面
+      		function sendmsg(orderid) {
+				// 页面加载时，获取数据
+				myAjax({
+					url: "order/goodShow",
+					data: {
+						orderId: orderid,
+						type: "send"
+					},
+					wait : false
+				}, function(data) {
+					if(data.ret == 0){
+						mui.toast("业务操作失败");
+						return;
+>>>>>>> 5868c1e1c08f729fef05add2eb62bece9a1817b3
 					}
 					// 渲染发送人，接收人信息
 
