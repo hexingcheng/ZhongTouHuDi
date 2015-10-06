@@ -143,6 +143,13 @@
 				text-align: right;
 				width: 30%;
 			}
+			.deliver-info {overflow: hidden;}
+			.head-img-box {width: 80px;height: 80px;border-radius: 50%;overflow: hidden;margin: 10px 15px;}
+			.tel-msg {width: 40px;margin: 10px 15px 10px 0;height: 80px;}
+			.info-box {position: absolute;top: 0;left: 110px;right: 55px;height: 80px;margin: 10px 0;}
+			.name-bar {height: 40px;line-height: 40px;font-size: 18px;color: #74CE2C;}
+			.ptitle-bar {height: 40px;line-height: 40px;color: #aaa;font-size: 14px;}
+			#divice-line {width: 100%;height: 10px;background: #E8E8E8;}
 		</style>
 	</head>
 
@@ -206,28 +213,37 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<div class="mui-content">
 			<div id="scroll-wrapper" class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<!-- 12 待付款  21 未取货 22 已取货 31 待评价 32 已评价 -->
-					<div class="heade_nav_info" id="sender-info">
-						<div class="heade_nav_pic">
-							<img src="../../img/defualt.png" alt="" id="head-img" />
+					<div class="deliver-info" id="sender-info" style="display: block;">
+						<div class="head-img-box mui-pull-left">
+							<img src="../../img/details.jpeg" alt="" id="head-img" width="100%" height="100%"/>
+							<!--defualt.png-->
 						</div>
-<<<<<<< HEAD
-						<div class="heade_nav_right">
-							<img src="../../img/xinxi.png" class="mui-pull-right" id="sendmsg" />
-							<img src="../../img/dianhua.png" alt="" class="mui-pull-right" id="phone" />
-=======
+						<div class="info-box">
+							<div class="name-bar mui-ellipsis">
+								<span id="nickName">name</span>
+							</div>
+							<div class="ptitle-bar mui-ellipsis">
+								<span id="ptitle">平民等级</span>
+								<!--<span class="mui-pull-right" id="orderCount">0</span>-->
+							</div>
+						</div>
+						<div class="tel-msg mui-pull-right">
+							<img src="../../img/xinxi.png" class="mui-pull-right" id="sendmsg" width="100%"/>
+							<img src="../../img/dianhua.png" alt="" class="mui-pull-right" id="phone" width="100%"/>
+						</div>
 					</div>
-				</div>
-				
+					<div id="divice-line" style="display: none;"></div>
+					
 				<ul class="mui-table-view">
 					<!-- 11 议价中  显示 -->
 					<li id="msg-warn" class="mui-table-view-cell lee-need-active">
 						<span class="laba-box mui-pull-left"><img src="../../img/laba.png" width="100%"/></span>
-						<span class="warn-word">您有个新消息！</span>
+						<span class="warn-word">您有一条新消息!</span>
 					</li>
 					
 					<li class="mui-table-view-cell">
@@ -235,139 +251,97 @@
 						<div class="li_input_l">
 							<span class="goods-name">1</span>
 							<span class="goods-status mui-pull-left mui-text-center">status</span>
->>>>>>> 5868c1e1c08f729fef05add2eb62bece9a1817b3
 						</div>
-						<div class="heade_nav_content">
-							<div class="info">
-								<div class="nav_title_1">
-									<span class="mui-pull-left" style="font-size: 16px;" id="nickName">name</span>
-									<span class="mui-pull-right" style="font-size: 14px;color: silver;">deliver</span>
-								</div>
-								<div class="nav_title_2">
-									<span id="ptitle">平民等级</span>
-									<span class="mui-pull-right" id="orderCount">0</span>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<ul class="mui-table-view">
-						<!-- 11 议价中  显示 -->
-						<li id="msg-warn" class="mui-table-view-cell">
-							<span class="laba-box mui-pull-left"><img src="../../img/laba.png" width="100%"/></span>
-							<span class="warn-word">There is an new advice you have not read!</span>
-						</li>
-
-						<li class="mui-table-view-cell">
-							<div class="li_left_title"><span>Name</span></div>
-							<div class="li_input_l">
-								<span class="goods-name">1</span>
-								<span class="goods-status mui-pull-left mui-text-center">status</span>
-							</div>
-						</li>
-						<li class="mui-table-view-cell">
-							<div class="li_row_contain">
-								<div class="left_li_half">
-									<span class="mui-pull-left">Reward</span>
-									<span class="mui-pull-right">
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="li_row_contain">
+							<div class="left_li_half">
+								<span class="mui-pull-left">Reward</span>
+								<span class="mui-pull-right">
 									<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
-									</span>
-								</div>
-								<div class="right_li_half">
-									<span class="mui-pull-left">Weight</span>
-									<span id="goods-weight" class="mui-pull-right">0kg</span>
-								</div>
+								</span>
 							</div>
-						</li>
-						<li class="mui-table-view-cell" id="date-ctrl">
-							<div class="li_row_contain">
-								<div class="left_li_half mui-text-center">
-									<div class="li_title_1"><span style="color: #656363;">Get Time</span></div>
-									<div class="li_title_2"><span id="get-time">--:--</span></div>
-								</div>
-								<div class="right_li_half mui-text-center">
-									<div class="li_title_1"><span style="color: #656363;">Deadline</span></div>
-									<div class="li_title_2"><span id="deadline">--:--</span></div>
-								</div>
+							<div class="right_li_half">
+								<span class="mui-pull-left">Weight</span>
+								<span id="goods-weight" class="mui-pull-right">0kg</span>
 							</div>
-						</li>
-					</ul>
-					<div class="content_clear">
-						<!--中间缝隙-->
-					</div>
-					<ul class="mui-table-view">
-						<!--<li class="mui-table-view-cell">
+						</div>
+					</li>
+					<li class="mui-table-view-cell" id="date-ctrl">
+						<div class="li_row_contain">
+							<div class="left_li_half mui-text-center">
+								<div class="li_title_1"><span>Get Time</span></div>
+								<div class="li_title_2"><span id="get-time">--:--</span></div>
+							</div>
+							<div class="right_li_half mui-text-center">
+								<div class="li_title_1"><span>Deadline</span></div>
+								<div class="li_title_2"><span id="deadline">--:--</span></div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="content_clear"><!--中间缝隙--></div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
 						<div class="li_left_title"><span>From</span></div>
 						<div class="li_input_l mui-ellipsis">
-							<span id="sendaddr">from</span>
+							<span id="sendaddr mui-ellipsis">from</span>
 						</div>
-					</li>-->
-						<div class="l_content">
-							<div class="l_left_title"><span>From</span></div>
-							<div class="l_right_content">
-								<span id="sendaddr">-- </span>
-							</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="tel-info mui-pull-right" id="from">
+							<img src="../../img/xinxi.png" id="from-msg"/>
+							<img src="../../img/dianhua.png" id="from-phone"/>
 						</div>
-						<li class="mui-table-view-cell">
-							<div class="tel-info mui-pull-right" id="from">
-								<img src="../../img/xinxi.png" id="from-msg" />
-								<img src="../../img/dianhua.png" id="from-phone" />
-							</div>
-							<div class="li_left_title"><span>发货人</span></div>
-							<div class="li_input_l">
-								<span id="sender">sender</span>
-							</div>
-						</li>
-						<!--<li class="mui-table-view-cell">
+						<div class="li_left_title"><span>发货人</span></div>
+						<div class="li_input_l">
+							<span id="sender">sender</span>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
 						<div class="li_left_title"><span>to</span></div>
 						<div class="li_input_l mui-ellipsis">
-							<span id="receiveaddr ">to</span>
+							<span id="receiveaddr mui-ellipsis">to</span>
 						</div>
-					</li>-->
-						<div class="l_content">
-							<div class="l_left_title"><span>To</span></div>
-							<div class="l_right_content">
-								<span id="receiveaddr ">-- </span>
-							</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="tel-info mui-pull-right" id="to">
+							<img src="../../img/xinxi.png" id="to-msg"/>
+							<img src="../../img/dianhua.png" id="to-phone"/>
 						</div>
-						<li class="mui-table-view-cell">
-							<div class="tel-info mui-pull-right" id="to">
-								<img src="../../img/xinxi.png" id="to-msg" />
-								<img src="../../img/dianhua.png" id="to-phone" />
-							</div>
-							<div class="li_left_title"><span>签收人</span></div>
-							<div class="li_input_l">
-								<span id="receiver">receiver</span>
-							</div>
-						</li>
-						<li class="mui-table-view-cell">
-							<div class="li_left_title"><span>Value</span></div>
-							<div class="li_input_l">
-								<span id="gvalue">value</span>
-								<span>$</span>
-							</div>
-						</li>
-						<li class="mui-table-view-cell">
-							<div class="li_left_title"><span>Desc</span></div>
-							<div class="li_input_l">
-								<span id="info">desc</span>
-							</div>
-						</li>
-
-						<div id="porel">
-
+						<div class="li_left_title"><span>签收人</span></div>
+						<div class="li_input_l">
+							<span id="receiver">receiver</span>
 						</div>
-
-					</ul>
-
-				</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="li_left_title"><span>Value</span></div>
+						<div class="li_input_l">
+							<span id="gvalue">value</span>
+						</div>
+					</li>
+					<li class="mui-table-view-cell">
+						<div class="li_left_title"><span>Desc</span></div>
+						<div class="li_input_l">
+							<span id="info">desc</span>
+						</div>
+					</li>
+					
+					<div id="porel">
+						
+					</div>
+					
+				</ul>
+				
 			</div>
 		</div>
-
-	<div id="loading-mask"></div>
+	</div>
+	
+	<!--<div id="loading-mask"></div>
 	<div id="loading-box">
 		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
-	</div>
+	</div>-->
+	
 		<script src="../../js/mui.js"></script>
 		<script src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
@@ -726,53 +700,11 @@
 							console.log(type);
 						})
 					}
-<<<<<<< HEAD
 					// 清除样式
-
 				function clearStyle() {
 						$(".origin-style").css("display", "none");
-=======
-				}
-				options.buttons[1].name = "cancel";
-				var pop = new Popup(options)
-				pop.show();
-			}, false)
-      		
-      		// 自定义事件触发该页面刷新
-      		window.addEventListener("refresh:page", function(eve){
-      			var id = eve.detail.orderid;
-      			var $msgwarn = $("#msg-warn");
-      			var $cancelorder = $("#cancel-order");
-      			$("#loading-mask").css("display", "block");
-      			$("#loading-box").css("display", "block");
-      			console.log(sta + " bargain:"+  cancelstatus);
-      			if(sta == 1 && cancelstatus == "议价中"){
-      				$msgwarn.css("display", "none");
-      			}
-      			if($cancelorder.css("display") == "block"){
-      				$cancelorder.css("display", "none")
-      			}
-      			sendmsg(id);
-      		})
-      		
-      		//  发送数据渲染页面
-      		function sendmsg(orderid) {
-				// 页面加载时，获取数据
-				myAjax({
-					url: "order/goodShow",
-					data: {
-						orderId: orderid,
-						type: "send"
-					},
-					wait : false
-				}, function(data) {
-					if(data.ret == 0){
-						mui.toast("业务操作失败");
-						return;
->>>>>>> 5868c1e1c08f729fef05add2eb62bece9a1817b3
 					}
 					// 渲染发送人，接收人信息
-
 				function senderReceiverInfo(data) {
 						if (data.res.sender) {
 							$("#sender").html(data.res.sender);
@@ -802,9 +734,9 @@
 							if (data.res.deliver.ptitle) { // 等级
 								$("#ptitle").html(data.res.deliver.ptitle);
 							}
-							if (data.res.deliver.orderCount) { // 接单数量
-								$("#orderCount").html(data.res.deliver.orderCount);
-							}
+//							if (data.res.deliver.orderCount) { // 接单数量
+//								$("#orderCount").html(data.res.deliver.orderCount);
+//							}
 							if (data.res.deliver.phone) { // 电话号码
 								$("#phone").attr("data-phone", data.res.deliver.phone);
 								$("#sendmsg").attr("data-phone", data.res.deliver.phone);
@@ -832,10 +764,12 @@
 					} else if (status == 2) { // 待付款
 						$("#obligation").css("display", "block");
 						$("#sender-info").css("display", "block");
+						$("#divice-line").css("display", "block");
 						$('#button-pay').attr('data-money', data.res.money);
 						$(".goods-status").text("待付款");
 					} else {
 						$("#sender-info").css("display", "block");
+						$("#divice-line").css("display", "block");
 						if (status == 3) { // 未取货
 							$("#cancel-order").css("display", "block");
 							$(".goods-status").text("未取货");

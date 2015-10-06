@@ -159,8 +159,26 @@ mui.plusReady(function() {
 		options.main.content = "请问你是否抢单？"
 		options.buttons[0].click = function() {
 			if (parseInt(money) < parseInt(value)) {
-				mui.toast('余额不足');
-				openWindow('../wallet/my-recharge.html')
+				pop = null;
+				setTimeout(function(){
+					options.height = 155;
+					options.title.content = "充值提示";
+					options.main.content = "当前用户余额不足，是否对当先用户进行充值？";
+					options.buttons[0].click = function(){
+						openWindow('../wallet/my-recharge.html')
+					}
+					pop = new Popup(options);
+					pop.show();
+					
+					setTimeout(function() {
+						if (open) {
+							plus.webview.close(open, "none", 0)
+						}
+						if (opener) {
+							plus.webview.close(opener, "none", 0)
+						}
+					}, 300)
+				}, 400)
 			} else {
 				plus.nativeUI.showWaiting("接单中", {
 					background: "#d1d1d1"
@@ -181,16 +199,26 @@ mui.plusReady(function() {
 					} else if (data.ret == 3) {
 						mui.toast("其他人已接单");
 					} else if (data.ret == 4) {
-						mui.toast("需要递送人身份");
-						openWindow("../applyfor/applyPerson.html")
-						setTimeout(function() {
-							if (open) {
-								plus.webview.close(open, "none", 0)
+						pop = null;
+						setTimeout(function(){
+							options.height = 155;
+							options.title.content = "申请提示";
+							options.main.content = "您还未申请递送人身份，是否需要进行申请？";
+							options.buttons[0].click = function(){
+								openWindow('../applyfor/applyPerson.html')
 							}
-							if (opener) {
-								plus.webview.close(opener, "none", 0)
-							}
-						}, 300)
+							pop = new Popup(options);
+							pop.show();
+							
+							setTimeout(function() {
+								if (open) {
+									plus.webview.close(open, "none", 0)
+								}
+								if (opener) {
+									plus.webview.close(opener, "none", 0)
+								}
+							}, 300)
+						}, 400)
 					} else if (data.ret == 5) {
 						mui.toast("不能接自己的单");
 					} else if (data.ret == 6) {
