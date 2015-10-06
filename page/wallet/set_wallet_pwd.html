@@ -136,27 +136,39 @@
 		    }
 		
 		  	if(flag){
-			data={newPwd:pwd,oldPwd:old_pwd} 
-			myAjax({url:'account/setPayPwd',data:data},function(obj){
-				if(obj.ret==1){
-					mui.toast('成功'); 
-						$('.second_show').css('display','block');
-						$('#pwd').val('');
-						$('#comf_pwd').val('');
-						pay_pwd.setpay=1;
-						plus.storage.removeItem('personinfo');
-						setstorage('personinfo',JSON.stringify(pay_pwd));
-						mui.back();
-				}else if(obj.res==2){
-					mui.toast('密码验证错误');
+		  		$('#submit').attr("disabled", true);
+				$('#submit').html("提交中...");
+				data = {
+					newPwd:pwd,
+					oldPwd:old_pwd
 				}
-			},function(xhr,type){
-				mui.toast(type.satus);
-			});
-  		}
-	}
+				myAjax({
+					url:'account/setPayPwd',
+					data:data
+				},function(obj){
+					if(obj.ret==1){
+						mui.toast('成功'); 
+							$('.second_show').css('display','block');
+							$('#pwd').val('');
+							$('#comf_pwd').val('');
+							pay_pwd.setpay=1;
+							plus.storage.removeItem('personinfo');
+							setstorage('personinfo',JSON.stringify(pay_pwd));
+							mui.back();
+					}else if(obj.ret == 2){
+						mui.toast('密码验证错误');
+						$('#submit').attr("disabled", false);
+						$('#submit').html("确定");
+					}
+				},function(xhr,type){
+					mui.toast(type.satus);
+					$('#submit').attr("disabled", false);
+					$('#submit').html("确定");
+				});
+  			}
+		}
 	$('#submit').on('tap',function(){
-		check(); 
+		check();
 	})
 })
 </script>
