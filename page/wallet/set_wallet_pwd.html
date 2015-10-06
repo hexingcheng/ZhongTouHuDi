@@ -133,7 +133,7 @@
 			data={newPwd:pwd,oldPwd:old_pwd} 
 			myAjax({url:'account/setPayPwd',data:data},function(obj){
 				alert(JSON.stringify(obj)+'cycycy');
-				if(obj.ret==1){
+				if(obj.ret==1){ 
 					mui.toast('成功'); 
 						$('.second_show').css('display','block');
 						$('#pwd').val('');
@@ -142,8 +142,8 @@
 						plus.storage.removeItem('personinfo');
 						setstorage('personinfo',JSON.stringify(pay_pwd));
 						mui.back();
-				}else if(obj.res==2){
-					mui.toast('老密码验证错误');  
+				}else if(obj.ret==2){
+					mui.toast('旧密码验证错误');  
 				}
 			},function(xhr,type){
 				mui.toast(type.satus);

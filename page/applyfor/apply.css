@@ -54,73 +54,14 @@ body .mui-content{
 	.select_sex label{
 		color: #5f5d5d;
 	}
-	/*.nation_mark {
-		display: none;
-		position: absolute;
-		z-index: 998;
-		background-color: rgba(0, 0, 0, .4);
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-	}*/
-	/*.spplay_select_type{
-		width: 80%;  
-		position: absolute;
-		z-index: 999;  
-		left: 50%;
-	    margin-left:-40%;
-	    top: 50%;
-	    
-	    text-align: center;
-	    margin-top: -40%;
-		color: #5f5d5d;
-		overflow: hidden;
-	} */
-	/*.nation_select{
-		width: 70%;
-		height: 80%;
-		z-index: 999;
-		overflow-y: scroll;
-		top: 10%;
-		left: 50%;
-		margin-left: -35%;
-		position: absolute;
-		background-color: #fff;
-		display: none;
-	} 		*/
-
 	.mui-scroll-wrapper {
 		top: 52px;
-		bottom: 60px;
 	}
 	.nation_content {
 		width: 100%;
 		height: 100%;  
 		overflow: hidden;
 	}
-	.mui-scroll-wrapper {
-		top: 52px;
-		bottom: 60px;
-	}
-	/*.spplay_select_type{
-		width: 80%;  
-		position: absolute;
-		z-index: 999;  
-		left: 50%;
-	    margin-left:-40%;
-	    top: 50%;
-	    text-align: center;
-	    margin-top: -40%;
-		color: #5f5d5d;
-		overflow: hidden;
-	} 
-	.spplay_select_type ul li{
-		height: 48px;
-		font-size: 14px;
-		line-height: 48px; 
-		color: #000;
-	}*/
 	.apply_idCard{
 		overflow: hidden;
 		font-size: 14px;

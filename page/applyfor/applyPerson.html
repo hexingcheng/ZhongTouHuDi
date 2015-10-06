@@ -65,11 +65,16 @@
 				color:  #5f5d5d;
 				background-color: #EEE;
 			}
-			.mui-scroll-wrapper {
-				top: 52px;
-				bottom: 60px;
+			input[disabled]{
+				opacity: 1;
+				color: #5f5d5d !important; 
 			}
-			
+			.mui-table-view .mui-table-cell span,label{
+				color: #5f5d5d;
+			}
+			/*.mui-scroll-wrapper .mui-scroll{
+				height: 100%; 
+			}*/
 		</style>
 	</head>
 
@@ -121,11 +126,14 @@
 			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 			<span>Application For Deliverer</span>
 		</header>
+		<footer class="mui-bar mui-bar-footer content_chan" id="footer" >  
+			<button class="mui-btn nav_footer" id="apply_submit"><span>Next Step</span></button>
+		</footer>
 		<div id="loading-mask" ></div>
 		<div id="loading-box">  
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 		</div>
-			<div class="presee mui-hidden">
+			<div class="presee mui-hidden">    
 			<div class="picwraps"> 
 				<div class="mui-slider" id="slider">
 					<div class="mui-slider-group" id="preseepic">
@@ -150,8 +158,8 @@
 		</div>
 		<div class="mui-content apply_content">
 			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<ul class="mui-table-view top_header">
+				<div class="mui-scroll" >
+					<ul class="mui-table-view ">
 						<li class="mui-table-view-divider  title_  mui-text-center info mui-hidden" id="title_apply">
 							<div class="bell_title">
 								<span><img src="../../img/title_bell.png" alt="" /></span> 
@@ -174,13 +182,13 @@
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/gender.png" class="li_left_img " alt="" />
-							<span class="mui-hidden two"><span class="mui-pull-left">female</span><img src="../../img/female2.png" class="li_left_img  "/></span>
-							<span class="mui-hidden  one"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" class="li_left_img "/></span>
-							<div class="li_input_l select_sex">
+							<span class="mui-hidden two"><span class="mui-pull-left" >female</span><img src="../../img/female2.png" class="li_left_img  "/></span>
+							<span class="mui-hidden  one"><span class="mui-pull-left" >male</span><img src="../../img/male2.png" alt="" class="li_left_img "/></span>
+							<div class="li_input_l select_sex"> 
 								<span class="content_chan">
-									<lable style="color: silver;">man </lable>
+									<lable >man </lable>
 									<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
-									&nbsp;&nbsp;<lable style="color: silver;">women </lable>
+									&nbsp;&nbsp;<lable >women </lable>
 									<input  type="radio" name="sex" />
 									
 								</span>
@@ -240,9 +248,7 @@
 				</div>
 			</div>
 		</div>
-		<footer class="mui-bar mui-bar-footer content_chan" id="footer" >  
-			<button class="mui-btn nav_footer" id="apply_submit"><span>Next Step</span></button>
-		</footer>
+		
 	</body>
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/utils.js"></script>

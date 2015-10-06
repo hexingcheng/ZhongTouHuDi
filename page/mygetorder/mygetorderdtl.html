@@ -183,7 +183,13 @@
 					margin-top: 10px;
 					padding: 10px 5px;
 				}
-				.mui-table-view-cell {border-bottom: 1px solid #E8E8E8;}
+				.mui-table-view-cell {
+					border-bottom: 1px solid #E8E8E8;
+					
+				}
+				.mui-table-view .mui-table-view-cell{
+					word-wrap: break-word; 
+				}
 		</style>
 	</head>
 
@@ -198,7 +204,7 @@
 				<button class="check mui-btn left_button mui-hidden">resend code</button>
 				<button class="write mui-btn right_button mui-hidden">write code</button>
 			</div>
-		</footer>
+		</footer> 
 		
 		<div class="presee mui-hidden">
 			<div class="picwraps">
@@ -228,45 +234,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!--<div class="mask mui-hidden">
-
-			<div class="dialog mui-hidden">
-				<div class="info">
-					Make order complete?
-				</div>
-				<p class="wron">this action will complete order.</p>
-				<div class="ok">ok</div>
-				<div class="cancels">cancel</div>
-			</div>
-
-			<div class="cancelget mui-hidden">
-				<div class="info">
-					cancel this order?
-				</div>
-				<p class="wron">此操作将取消你的抢单，并扣除积分</p>
-				<div class="cancel-get-ok">ok</div>
-				<div class="cancel-get-cancel">cancel</div>
-			</div>
-
-			<div class="confirm mui-hidden">
-				<div class="info">
-					code send success
-				</div>
-				<div class="back">back</div>
-				<div class="checks">check</div>
-			</div>
-
-			<div class="inputcode mui-hidden">
-				<div class="info">
-					input your code from receiver
-				</div>
-				<input type="text" id="vacode" style="margin: 12px 10%;width: 80%; display: inline-block;" />
-				<div class="cancelinput">cancel</div>
-				<div class="checkr">check</div>
-			</div>
-		</div>-->
-
 		<div id="loading-mask">
 			<div id="loading-box">
 				<img src="../../img/loading2.gif" alt="loading" class="load" width="100%" height="100%" />
@@ -297,17 +264,18 @@
 								<div class="right_li_half">
 									<span class="mui-pull-left">Weight</span>
 									<span id="goods-weight" class="mui-pull-right"></span>
+									
 								</div>
 							</div>
 						</li>
 						<li class="mui-table-view-cell" id="date-ctrl">
 							<div class="li_row_contain">
 								<div class="left_li_half mui-text-center">
-									<div class="li_title_1"><span>Get Time</span></div>
+									<div class="li_title_1" style="color: #656363;"><span>Get Time</span></div>
 									<div class="li_title_2"><span id="get-time">--:--</span></div>
 								</div>
 								<div class="right_li_half mui-text-center">
-									<div class="li_title_1"><span>Deadline</span></div>
+									<div class="li_title_1" style="color: #656363;"><span>Deadline</span></div>
 									<div class="li_title_2"><span id="deadline">--:--</span></div>
 								</div>
 							</div>
@@ -324,21 +292,33 @@
 								<img src="../../img/xinxi.png" alt="" class="li_right_img coloryellow" data-p="" id="tel" />
 							</div>
 						</li>
-						<li class="mui-table-view-cell">
-							<div class="li_left_title"><span>From</span></div>
-							<span id="sendaddr"></span>
-						</li>
+						<!--<li class="mui-table-view-cell break-wrap">
+							<div class="li_left_title"><span>Fromd</span></div>
+							<span id="sendaddr"></span> 
+						</li>-->
+						<div class="l_content">
+							<div class="l_left_title"><span>From</span></div>
+							<div class="l_right_content">
+								<span id="sendaddr">--</span>
+							</div>
+						</div>
 						<li class="mui-table-view-cell desc-after height50">
 							<div class="li_left_title"><span>Receiver</span></div>
 							<span id="receiver"></span>
 						</li>
-						<li class="mui-table-view-cell">
+						<!--<li class="mui-table-view-cell">  
 							<div class="li_left_title"><span>TO</span></div>
 							<span id="receiveaddr"></span>
-						</li>
+						</li>-->    
+						<div class="l_content">
+							<div class="l_left_title"><span>TO</span></div>
+							<div class="l_right_content">
+								<span id="receiveaddr">--</span>
+							</div>
+						</div>
 						<li class="mui-table-view-cell">
 							<div class="li_left_title"><span>Value</span></div>
-							<span id="gvalue"></span>
+							<span id="gvalue"></span><span>$</span>
 						</li>
 						<li class="mui-table-view-cell">
 							<div class="li_left_title"><span>Desc</span></div>
