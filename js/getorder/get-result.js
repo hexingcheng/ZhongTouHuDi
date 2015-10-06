@@ -22,11 +22,10 @@ mui.plusReady(function() {
 		}, 1000)
 	}, false)
 	$('.left_button').on('tap',function(){
-		plus.webview.getLaunchWebview().show('slide-in-left',200,function(){
-			setTimeout(function(){
+		plus.webview.getLaunchWebview().show('slide-in-left',300)
+		setTimeout(function(){
 				closeweb();
 			},1000)
-		})
 	})
 	function closeweb(){
 		var pages = ["get-filter", "get-detail","getorder/get-order"];
