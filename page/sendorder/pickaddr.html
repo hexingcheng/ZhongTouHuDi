@@ -45,13 +45,20 @@
 			.wid85 {
 				width: 85%;
 			}
-			.sear .mui-input-clear,
+			.mui-input-clear,
 			.smap .mui-input-clear {
 				margin: 0;
 				padding: 0;
-				height: 39px;
+				height: 40px;
 				border: 0;
 				width: 100%;
+			}
+			.sear {
+				width: 100%;
+				margin: 0;
+				padding: 0;
+				border: 0;
+				position: relative;
 			}
 			.hei60 {
 				height: 40px;
@@ -71,11 +78,36 @@
 				width: 100%;
 				height: 100%;
 			}
+			#chooseaddrs {
+				padding-left: 40px;
+				height: 40px;
+				overflow: hidden;
+			}
 			#chooseaddr {
 				line-height: 40px;
 			}
-
-
+			.icon {
+				width: 40px;
+				position: absolute;
+				top: 50%;
+				margin-top: -20px;
+				left: 0;
+				z-index: 2000;
+			}
+			.icon img {
+				height: 40px;
+				width: 40px;
+				display: block;
+			}
+			.addrs {
+				height: 40px;
+				width: 40px;
+			}
+			.addrs img {
+				height: 40px;
+				width: 40px;
+				display: block;
+			}
 		</style>
 	</head>
 
@@ -94,15 +126,21 @@
 	<div class="mui-content">
 		<div class="hand-map">
 			<div class="hand-detial">
-				<div class="clear sear">
-					<div class="fl wid15 hei60 mui-text-center"><span class="mui-icon mui-icon-search linehei40"></span></div>
-					<div class="fl wid85 hei60 addbor">
-						<div id="chooseaddr">查询地址中</div>
+				<div class="sear">
+					<div class="wid15 hei60 mui-text-center icon">
+						<img src="../../img/find1.png" />
+					</div>
+					<div class="addbor">
+						<div id="chooseaddrs">
+							<span id="chooseaddr">查询地址中</span>
+						</div>
 					</div>
 				</div>
 				<div class="clear smap">
-					<div class="fl wid15 hei60 mui-text-center"><span class="mui-icon mui-icon-map linehei40"></span></div>
-					<div class="fl wid85 hei60">
+					<div class="fl wid15 hei60 mui-text-center addrs">
+						<img src="../../img/detail-address.png" />
+					</div>
+					<div class="fl hei60">
 						<div class="mui-input-row">
 							<input placeholder="detail address" class="mui-input-clear" type="text" id="detail">
 						</div>
@@ -117,18 +155,27 @@
 		mui.init({
 			gestureConfig: {
 				doubletap: true
-			}
+			},
+			preloadPages: [{
+				url: './chooseaddr.html',
+				id: 'chooseaddr'
+			}]
 		});
-		
 		mui.plusReady(function() {
 			embed = plus.webview.create("./mapcontent.html", "mapcontent", {
-					top: "144px",
-					bottom: "60px"
+				top: "144px",
+				bottom: "60px"
 			});
 			plus.webview.currentWebview().append(embed);
 			var clocation;
 			document.getElementById('chooseaddr').addEventListener('tap', function() {
-				openWindow('./chooseaddr.html');
+				var addr = plus.webview.getWebviewById('chooseaddr');
+				if (addr) {
+					plus.webview.getWebviewById('chooseaddr').show('slide-in-right',300);
+					mui.fire(addr, 'clearinput')
+				}else{
+					openWindow('./chooseaddr.html')
+				}
 			})
 			document.getElementById('ok').addEventListener('tap', function() {
 				var myaddr = $('#chooseaddr').text() + $("#detail").val();
@@ -138,17 +185,46 @@
 					"mylocation": clocation
 				});
 				plus.webview.currentWebview().close();
-				nextcreate.show('slide-in-left',300);
+				nextcreate.show('slide-in-left', 300);
 			})
 			window.addEventListener('getaddr', function(eve) {
 				var addr = eve.detail.addr;
-				$('#chooseaddr').text(addr);
+				var w = $(window).width() - 50;
+				var textlen = addr.length * 12;
+				if (textlen > w) {
+					$('#chooseaddr').css({
+						'line-height': '20px'
+					})
+				} else {
+					$('#chooseaddr').css({
+						'line-height': '40px'
+					})
+				}
+				$('#chooseaddr').text(addr)
 				clocation = eve.detail.location;
-				console.log(JSON.stringify(clocation))
 				var param = {
-					location:eve.detail.clocation
+					location: eve.detail.clocation
 				}
 			})
+			mui.back = function(){
+				var creatnext = plus.webview.getWebviewById('create-next');
+				if(creatnext){
+					creatnext.show('slide-in-left',300)
+				}else{
+					mui.back();
+				}
+				setTimeout(function(){
+					closeweb()
+				},1000);
+			}
+			function closeweb(){
+				var web = ['chooseaddr','pickaddr'];
+				for(var i = 0;i<web.length;i++){
+					if(plus.webview.getWebviewById(web[i])){
+						plus.webview.getWebviewById(web[i]).close();
+					}
+				}
+			}
 		})
 	</script>
 

@@ -11,7 +11,7 @@ mui.init({
 	}
 });
 var geocoder = new google.maps.Geocoder();
-var whichitem = "time"; 
+var whichitem = "time";
 var whichval = "asc";
 var allpage = {
 	"time": 1,
@@ -127,59 +127,50 @@ mui.plusReady(function() {
 	};
 	mui('.mui-scroll-wrapper').scroll();
 	opener = plus.webview.getWebviewById("getorder/get-order");
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(pos) {
-			var lot = pos.coords.longitude;
-			var lat = pos.coords.latitude;
-			getorderdata.curJd = lot;
-			getorderdata.curWd = lat;
-			var center = {
-				lat: lat,
-				lng: lot
-			}
-			geocoder.geocode({
-				'location': center
-			}, function(results, status) {
-				if (status === google.maps.GeocoderStatus.OK) {
-					if (results[1]) {
-						currentaddr = getorderdata.curAddr = results[1].formatted_address;
-						currentjd = getorderdata.curJd = results[1].geometry.location.L
-						currentwd = getorderdata.curWd = results[1].geometry.location.H;
-						myAjax({
-							url: 'deliver/goodList',
-							data: getorderdata,
-							wait: false
-						}, function(data) {
-							var orderdata = {
-									"list": data.res
-								}
-								// 模板渲染
-							var html = template("template", orderdata);
-							if (!html) {
-								html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
-							}
-							$('#ordercontent').html(html);
-							$('.masks').addClass('mui-hidden')
-						}, function(xhr, type, errorThrown) {
-							console.log(type)
-						})
-					} else {
-						alert('No results found');
-					}
-				} else {
-					window.alert('Geocoder failed due to: ' + status);
-				}
-			});
-		}, function(e) {
-			mui.toast('获取位置信息失败')
-		}, {
-			enableHighAcuracy: true
-		})
-	} else {
-		mui.toast('获取位置信息失败')
+	//修改
+	if(!plus.storage.getItem('longitude')&&plus.storage.getItem('latitude')){
+		getlatlng();
 	}
-
-
+	getorderdata.curJd = plus.storage.getItem('longitude')-0;
+	getorderdata.curWd = plus.storage.getItem('latitude')-0;
+	var center = {
+		lat:getorderdata.curWd,
+		lng: getorderdata.curJd
+	}
+	geocoder.geocode({
+		'location': center
+	}, function(results, status) {
+		if (status === google.maps.GeocoderStatus.OK) {
+			if (results[1]) {
+				currentaddr = getorderdata.curAddr = results[1].formatted_address;
+				currentjd = getorderdata.curJd = results[1].geometry.location.L
+				currentwd = getorderdata.curWd = results[1].geometry.location.H;
+				myAjax({
+					url: 'deliver/goodList',
+					data: getorderdata,
+					wait: false
+				}, function(data) {
+					var orderdata = {
+							"list": data.res
+						}
+						// 模板渲染
+					var html = template("template", orderdata);
+					if (!html) {
+						html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
+					}
+					$('#ordercontent').html(html);
+					$('.masks').addClass('mui-hidden')
+				}, function(xhr, type, errorThrown) {
+					console.log(type)
+				})
+			} else {
+				alert('No results found');
+			}
+		} else {
+			window.alert('Geocoder failed due to: ' + status);
+		}
+	});
+	//修改结束
 	window.addEventListener('renderdata', function(eve) {
 			var getorderdata = {
 				"page": 1,

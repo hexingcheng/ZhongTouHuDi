@@ -1012,7 +1012,7 @@
 			})
 			// 重新刷新数据显示
 			function refreshdata() {
-				var iw = $('.addclass').outerWidth()
+				var iw = $('.addmarr').outerWidth()
 				var datas = JSON.parse(plus.storage.getItem("draft-datas"));
 				console.log(plus.storage.getItem("draft-datas"));
 				$("#gname").val(datas.res.gName); // 商品名
@@ -1031,8 +1031,7 @@
 					if (len > 0) {
 						for (var i = 0; i < len; i++) {
 							var url = per + pic[i].minPath;
-							var html = '<a  href="#" class="picpre pic-img"><span class="wids"><img alt="' + pic[i].id + '" title="' + url + '" height="' + iw + 'px" width="' + iw + 'px" src=' + url + '></span></a>';
-							console.log(html)
+							var html = '<a  href="#" class="picpre pic-img"><span class="wids"><img alt="' + pic[i].id + '" title="' + url + '" style="height: ' + iw + 'px" src=' + url + '></span></a>';
 							document.querySelectorAll(".img-box")[i].innerHTML = html;
 						}
 					}
