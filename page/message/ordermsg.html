@@ -184,7 +184,10 @@
 								}
 							}else if(role=='send'){
 								if(forward==1){
-									alert('xxxxxx')
+									var param = {
+										orderId:orderid
+									}
+									openWindow('../mysendorder/order-detail.html',param)
 								}else if(forward==2){
 									openWindow('../mysendorder/my-send-order.html')
 								}else if(forward==3){
