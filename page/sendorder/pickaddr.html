@@ -184,8 +184,10 @@
 					"addrs": myaddr,
 					"mylocation": clocation
 				});
-				plus.webview.currentWebview().close();
 				nextcreate.show('slide-in-left', 300);
+				setTimeout(function(){
+					plus.webview.currentWebview().close();
+				},2000)
 			})
 			window.addEventListener('getaddr', function(eve) {
 				var addr = eve.detail.addr;
