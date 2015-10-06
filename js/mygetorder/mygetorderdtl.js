@@ -138,7 +138,7 @@ mui.plusReady(function() {
 			$('.cancel').removeClass('mui-hidden');
 			$('.check').addClass('mui-hidden');
 			$('.write').addClass('mui-hidden');
-			$('.cancel').text('order done');
+			$('.cancel').text('已取货');
 			options.title.content = "确定取货提示";
 			options.main.content = "您确定已经取货了吗？"
 			options.buttons[0].click = function(){

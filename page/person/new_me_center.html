@@ -39,7 +39,7 @@
 			}
 			.center_bg {
 				width: 100%;
-				height: 230px;
+				height: 10em;
 				position: relative;
 				background: url(../../img/details_3.jpeg) no-repeat;
 				background-size: 100% 100%;
@@ -136,6 +136,9 @@
 				border-radius: 0;
 				margin-top: 5px;
 			}
+			.mui-table-view-cell .li_left_title{
+				width: 6em;
+			}
 		</style>
 	</head>
 
@@ -177,7 +180,7 @@
 							</div>
 							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide " name="one" />
 							<div class="li_input_s ">
-								<input type="text" id="familyName" disabled="disabled" class="edit_input one " />
+								<input type="text" id="familyName" disabled="disabled" class="edit_input one" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
@@ -395,7 +398,7 @@
 							//								$('.center_headpic').css('background', 'url(' + path + ')'); //得到头像
 							dealImage(local, {
 								//									width: 17 * 4,
-								quality: 1
+								quality: 0.6
 							}, function(base) {
 								console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
 								data = {
@@ -440,7 +443,7 @@
 										console.log(xhr.status);
 									})
 							})
-						})
+						})  
 					}
 					//bg galary
 

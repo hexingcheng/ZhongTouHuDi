@@ -6,7 +6,7 @@ html,body,.mui-content{
 	color: #5f5d5d;
 }
 /*统一输入框（placeholder）color*/
-*::-webkit-input-placeholder { /* WebKit browsers */
+*::-webkit-input-placeholder {  
     color: #acabab;
 }
 
@@ -107,7 +107,7 @@ footer .nav_footer .button_bg_rest{
 	width: 47%;
 	height: 48px;
 	line-height: 48px;
-	text-align: center;
+	text-align: center;  
 	color: #fff;
 	float: right;
 	border: 0;
@@ -117,15 +117,17 @@ footer .nav_footer .button_bg_rest{
 .mui-table-view .mui-table-view-cell{
 	height: 50px;
 	line-height: 50px;
+	
 	overflow: hidden;
 	padding-top: 0 !important;
 	padding-bottom: 0; 
 }
 .mui-table-view-cell .li_left_title{
-	width: 7em;
+	width: 5em;
 	height: 50px;
 	line-height: 50px; 
 	float: left;
+	font-size: 1em;
 	color: #ff454545;
 }
 .mui-table-view .li_right_img{
@@ -164,11 +166,16 @@ footer .nav_footer .button_bg_rest{
 	margin-bottom: 0;
 	border: 0;
 	color:#5f5d5d;
+	opacity: 1;
 	font-size: 16px;
 }
+.mui-table-view .mui-table-view-cell input[disabled]{
+	opacity: 1;
+	color: black !important;
+}
 .pay{
-			color: #033288;
-	}
+	color: #033288;
+	} 
 .pal{
 	color: #0097DC;
 }
@@ -208,7 +215,7 @@ footer .nav_footer .button_bg_rest{
 }
 .mui-table-view .left_li_half > span.mui-pull-left,
 .mui-table-view .right_li_half > span.mui-pull-left {
-	color: #bec0c2;
+	color: #656363;
 }
 .mui-table-view .left_li_halfa:after{
 	height: 0;
@@ -344,4 +351,24 @@ footer .nav_footer .button_bg_rest{
 #date-ctrl .li_title_1 span,
 #date-ctrl .li_title_2 span {
 	display: block;
+}
+/*多行布局*/
+.l_content{
+	border-bottom: 1px solid #e8e8e8;
+	line-height: 50px;
+	position: relative;
+	padding: 10px 15px;
+}
+.l_left_title{ 
+	width: 5em;
+	height: 50px;
+	line-height: 50px;
+	position: absolute;
+	top: 50%;
+	margin-top: -25px;
+}
+.l_right_content{
+	overflow: hidden; 
+	margin-left: 5em;
+	line-height: 30px;
 }

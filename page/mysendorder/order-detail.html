@@ -1,220 +1,225 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <link href="../../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../../css/common/popup.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/mysendorder/mysendorder-comment.css"/>
-    <link rel="stylesheet" href="../../css/share_main.css" />
-    <script src="../../js/common/popup.js"></script>
-    <style type="text/css">
-    	.mui-table-view:before {height: 0;}
-		.mui-table-view-cell:after {height: 0;}
-		.mui-table-view-cell{
-			border-bottom: 1px solid #e8e8e8;
-		}
-		.value-color{
-			color: red;
-			font-size: 16px;
-		}  
-		.mui-scroll-wrapper {
-			top: 52px;
-			bottom: 65px;
-		}
-		.header_left_img{
-			height: 40px;
-			width: 40px;
-			margin: 6px 6px 6px 0;
-		}
-		#msg-warn {background: #fffff3e5;color: #f39800;padding-left: 5px;display: none;}
-		#msg-warn .laba-box {width: 50px;height: 50px;line-height: 50px;}
-		.heade_nav_info {
-			width: 100%;
-			height: 100px;
-			overflow: hidden;
-			padding: 0 18px;
-		}
-		.heade_nav_pic {
-			width: 80px;
-			height: 80px;
-			float: left;
-			margin: 10px 10px 10px 0;
-			overflow: hidden;
-			border-radius: 50%;
-		}
-		.heade_nav_pic img {
-			width: 100%;
-			height: 100%;
-		}
-		.heade_nav_content {
-			height: 100px;
-			margin-right: 50px;
-			overflow: hidden;
-		}
-		.heade_nav_right {
-			width: 50px;
-			height: 100px;
-			float: right;
-		}
-		.heade_nav_right img {
-			width: 34px;
-			height: 34px;
-			margin: 8px 0;
-		}
-		.heade_nav_content .info {
-			width: 100%;
-			height: 100px;
-		}
-		.nav_title_1 {
-			width: 100%;
-			height: 50px;
-			font-size: 14px;
-			line-height: 80px;
-			padding-left: 10px;
-			overflow: hidden;
-		}
-		.nav_title_2 {
-			width: 100%;
-			height: 50px;
-			font-size: 14px;
-			line-height: 50px;
-			overflow: hidden;
-		}
-		.nav_title_2 img {
-			width: 34px;
-			height: 34px;
-			margin: 8px 0;
-			float: left;
-		}
-		#sender-info,
-		#comment-order,
-		#cancel-order,
-		#evaluated,
-		#obligation,
-		#canceled,
-		#takengoods {display: none;}
-		#sender-info {background: #fff;}
-		.commented,
-		.transporting {
-			font-weight: bold;
-			text-align: center;
-			line-height: 65px;
-			color: green;
-		}
-		
-		.mui-table-view .li_input_l {
-			height: 50px;
-			overflow: hidden;
-		}
-		.mui-table-view-cell .li_left_title {
-			width: 65px;
-		}
-		.tel-info ~  .li_input_l{
-			margin-right: 90px;
-		}
-		.tel-info {
-			height: 50px;padding-top: 5px;width: 80px;
-		}
-		.tel-info img {
-			width: 35px;height: 35px;
-		}
-		.goods-name {
-			float: left;
-			width: 80%;
-			color: #5f5d5d;
-		}
-		.goods-status {
-			color: #f39800;
-			width: 20%;
-		}
-   </style>
-</head>
-<body>
-	
-	<header class="mui-bar mui-bar-nav nav_header">
-		<img src="../../img/left.png" alt="" class="header_left_img mui-action-back"/>
-		<span>Detail</span>
-	</header>
-	<footer id="footer-cancel" class="mui-bar mui-bar-footer ">
-		<!-- 5 待评价 -->
-		<button id="comment-order" class="mui-btn nav_footer origin-style">comment</button>
-		<!-- status 1 bargain 1 议价中  status 1 bargain 0  接单中   3 未取货-->
-		<button class="nav_footer mui-btn cancle_bg" id="cancel-order">cancel</button>
-		
-		<!-- 6 已评价 -->
-		<div class="commented origin-style" id="evaluated">已评价</div>
-		
-		<!-- 4 已取货 -->
-		<div class="transporting origin-style" id="takengoods">运送中</div>
-		
-		<!-- 2 待付款 -->
-		<div class="nav_footer bg_white origin-style" id="obligation">
-			<button class="right_button mui-btn" id="button-pay">pay</button>
-			<button class="left_button mui-btn cancle_bg" id="cancel">cancel</button>
-		</div>
-		
-		<!-- -1 已取消 -->
-		<div class="nav_footer bg_white origin-style" id="canceled">
-			<button class="left_button mui-btn" id="edit-btn" ><span>edit</span></button>
-			<button class="right_button mui-btn" id="resend-btn"><span>resend</span></button>
-		</div>
-	</footer>
-	
-	<!-- 图片预览 -->
-	<div class="presee mui-hidden">
-		<div class="picwraps">
-			<div class="mui-slider" id="slider">
-				<div class="mui-slider-group" id="preseepic">
-					<div class="mui-slider-item">
-						<a href="javascript:void(0)">
-							<img src="" class="preimg">
-						</a>
-					</div>
-					<div class="mui-slider-item">
-						<a href="javascript:void(0)">
-							<img src="" class="preimg">
-						</a>
-					</div>
-					<div class="mui-slider-item">
-						<a href="javascript:void(0)">
-							<img src="" class="preimg">
-						</a>
-					</div>
-					<div class="mui-slider-item">
-						<a href="javascript:void(0)">
-							<img src="" class="preimg">
-						</a>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/common/popup.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mysendorder/mysendorder-comment.css" />
+		<link rel="stylesheet" href="../../css/share_main.css" />
+		<script src="../../js/common/popup.js"></script>
+		<style type="text/css">
+			.mui-table-view:before {
+				height: 0;
+			}
+			.mui-table-view-cell:after {
+				height: 0;
+			}
+			.mui-table-view-cell {
+				border-bottom: 1px solid #e8e8e8;
+			}
+			.value-color {
+				color: red;
+				font-size: 16px;
+			}
+			.mui-scroll-wrapper {
+				top: 52px;
+				bottom: 65px;
+			}
+			.header_left_img {
+				height: 40px;
+				width: 40px;
+				margin: 6px 6px 6px 0;
+			}
+			#msg-warn {
+				background: #fffff3e5;
+				color: #f39800;
+				padding-left: 5px;
+				display: none;
+			}
+			#msg-warn .laba-box {
+				width: 50px;
+				height: 50px;
+				line-height: 50px;
+			}
+			.heade_nav_info {
+				width: 100%;
+				height: 100px;
+				overflow: hidden;
+				padding: 0 18px;
+			}
+			.heade_nav_pic {
+				width: 80px;
+				height: 80px;
+				float: left;
+				margin: 10px 10px 10px 0;
+				overflow: hidden;
+				border-radius: 50%;
+			}
+			.heade_nav_pic img {
+				width: 100%;
+				height: 100%;
+			}
+			.heade_nav_content {
+				height: 100px;
+				margin-right: 50px;
+				overflow: hidden;
+			}
+			.heade_nav_right {
+				width: 50px;
+				height: 100px;
+				float: right;
+			}
+			.heade_nav_right img {
+				width: 34px;
+				height: 34px;
+				margin: 8px 0;
+			}
+			.heade_nav_content .info {
+				width: 100%;
+				height: 100px;
+			}
+			.nav_title_1 {
+				width: 100%;
+				height: 50px;
+				font-size: 14px;
+				line-height: 80px;
+				padding-left: 10px;
+				overflow: hidden;
+			}
+			.nav_title_2 {
+				width: 100%;
+				height: 50px;
+				font-size: 14px;
+				line-height: 50px;
+				overflow: hidden;
+			}
+			.nav_title_2 img {
+				width: 34px;
+				height: 34px;
+				margin: 8px 0;
+				float: left;
+			}
+			#sender-info,
+			#comment-order,
+			#cancel-order,
+			#evaluated,
+			#obligation,
+			#canceled,
+			#takengoods {
+				display: none;
+			}
+			#sender-info {
+				background: #fff;
+			}
+			.commented,
+			.transporting {
+				font-weight: bold;
+				text-align: center;
+				line-height: 65px;
+				color: green;
+			}
+			.tel-info ~ .li_input_l {
+				margin-right: 90px;
+			}
+			.tel-info {
+				height: 50px;
+				padding-top: 5px;
+				width: 80px;
+			}
+			.tel-info img {
+				width: 35px;
+				height: 35px;
+			}
+			.goods-name {
+				float: left;
+				width: 70%;
+				color: #5f5d5d;
+			}
+			.goods-status {
+				color: #f39800;
+				text-align: right;
+				width: 30%;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header class="mui-bar mui-bar-nav nav_header">
+			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
+			<span>Detail</span>
+		</header>
+		<footer id="footer-cancel" class="mui-bar mui-bar-footer " >
+			<!-- 5 待评价 -->
+			<button id="comment-order" class="mui-btn nav_footer origin-style">comment</button>
+			<!-- status 1 bargain 1 议价中  status 1 bargain 0  接单中   3 未取货-->
+			<button class="nav_footer mui-btn cancle_bg" id="cancel-order">cancel</button>
+
+			<!-- 6 已评价 -->
+			<div class="commented origin-style" id="evaluated">已评价</div>
+
+			<!-- 4 已取货 -->
+			<div class="transporting origin-style" id="takengoods">运送中</div>
+
+			<!-- 2 待付款 -->
+			<div class="nav_footer bg_white origin-style" id="obligation">
+				<button class="right_button mui-btn" id="button-pay">pay</button>
+				<button class="left_button mui-btn cancle_bg" id="cancel">cancel</button>
+			</div>
+
+			<!-- -1 已取消 -->
+			<div class="nav_footer bg_white origin-style" id="canceled">
+				<button class="left_button mui-btn" id="edit-btn"><span>edit</span></button>
+				<button class="right_button mui-btn" id="resend-btn"><span>resend</span></button>
+			</div>
+		</footer>
+
+		<!-- 图片预览 -->
+		<div class="presee mui-hidden">
+			<div class="picwraps">
+				<div class="mui-slider" id="slider">
+					<div class="mui-slider-group" id="preseepic">
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)">
+								<img src="" class="preimg">
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<div class="mui-content">
-		<div id="scroll-wrapper" class="mui-scroll-wrapper">
-			<div class="mui-scroll">
-				<!-- 12 待付款  21 未取货 22 已取货 31 待评价 32 已评价 -->
-				<div class="heade_nav_info" id="sender-info">
-					<div class="heade_nav_pic">
-						<img src="../../img/defualt.png" alt="" id="head-img" />
-					</div>
-					<div class="heade_nav_right">
-						<img src="../../img/xinxi.png" class="mui-pull-right" id="sendmsg" />
-						<img src="../../img/dianhua.png" alt="" class="mui-pull-right" id="phone" />
-					</div>
-					<div class="heade_nav_content">
-						<div class="info">
-							<div class="nav_title_1">
-								<span class="mui-pull-left" style="font-size: 16px;" id="nickName">name</span>
-								<span class="mui-pull-right" style="font-size: 14px;color: silver;">deliver</span>
-							</div>
-							<div class="nav_title_2">
-								<span id="ptitle">平民等级</span>
-								<span class="mui-pull-right" id="orderCount">0</span>
-							</div>
+
+		<div class="mui-content">
+			<div id="scroll-wrapper" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!-- 12 待付款  21 未取货 22 已取货 31 待评价 32 已评价 -->
+					<div class="heade_nav_info" id="sender-info">
+						<div class="heade_nav_pic">
+							<img src="../../img/defualt.png" alt="" id="head-img" />
 						</div>
+<<<<<<< HEAD
+						<div class="heade_nav_right">
+							<img src="../../img/xinxi.png" class="mui-pull-right" id="sendmsg" />
+							<img src="../../img/dianhua.png" alt="" class="mui-pull-right" id="phone" />
+=======
 					</div>
 				</div>
 				
@@ -230,385 +235,503 @@
 						<div class="li_input_l">
 							<span class="goods-name">1</span>
 							<span class="goods-status mui-pull-left mui-text-center">status</span>
+>>>>>>> 5868c1e1c08f729fef05add2eb62bece9a1817b3
 						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="li_row_contain">
-							<div class="left_li_half">
-								<span class="mui-pull-left">Reward</span>
-								<span class="mui-pull-right">
+						<div class="heade_nav_content">
+							<div class="info">
+								<div class="nav_title_1">
+									<span class="mui-pull-left" style="font-size: 16px;" id="nickName">name</span>
+									<span class="mui-pull-right" style="font-size: 14px;color: silver;">deliver</span>
+								</div>
+								<div class="nav_title_2">
+									<span id="ptitle">平民等级</span>
+									<span class="mui-pull-right" id="orderCount">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<ul class="mui-table-view">
+						<!-- 11 议价中  显示 -->
+						<li id="msg-warn" class="mui-table-view-cell">
+							<span class="laba-box mui-pull-left"><img src="../../img/laba.png" width="100%"/></span>
+							<span class="warn-word">There is an new advice you have not read!</span>
+						</li>
+
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>Name</span></div>
+							<div class="li_input_l">
+								<span class="goods-name">1</span>
+								<span class="goods-status mui-pull-left mui-text-center">status</span>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_row_contain">
+								<div class="left_li_half">
+									<span class="mui-pull-left">Reward</span>
+									<span class="mui-pull-right">
 									<span class="value-color">$</span><span id="goods-value" class="value-color value-size">0.00</span>
-								</span>
+									</span>
+								</div>
+								<div class="right_li_half">
+									<span class="mui-pull-left">Weight</span>
+									<span id="goods-weight" class="mui-pull-right">0kg</span>
+								</div>
 							</div>
-							<div class="right_li_half">
-								<span class="mui-pull-left">Weight</span>
-								<span id="goods-weight" class="mui-pull-right">0kg</span>
+						</li>
+						<li class="mui-table-view-cell" id="date-ctrl">
+							<div class="li_row_contain">
+								<div class="left_li_half mui-text-center">
+									<div class="li_title_1"><span style="color: #656363;">Get Time</span></div>
+									<div class="li_title_2"><span id="get-time">--:--</span></div>
+								</div>
+								<div class="right_li_half mui-text-center">
+									<div class="li_title_1"><span style="color: #656363;">Deadline</span></div>
+									<div class="li_title_2"><span id="deadline">--:--</span></div>
+								</div>
 							</div>
-						</div>
-					</li>
-					<li class="mui-table-view-cell" id="date-ctrl">
-						<div class="li_row_contain">
-							<div class="left_li_half mui-text-center">
-								<div class="li_title_1"><span>Get Time</span></div>
-								<div class="li_title_2"><span id="get-time">--:--</span></div>
-							</div>
-							<div class="right_li_half mui-text-center">
-								<div class="li_title_1"><span>Deadline</span></div>
-								<div class="li_title_2"><span id="deadline">--:--</span></div>
-							</div>
-						</div>
-					</li>
-				</ul>
-				<div class="content_clear"><!--中间缝隙--></div>
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell">
+						</li>
+					</ul>
+					<div class="content_clear">
+						<!--中间缝隙-->
+					</div>
+					<ul class="mui-table-view">
+						<!--<li class="mui-table-view-cell">
 						<div class="li_left_title"><span>From</span></div>
 						<div class="li_input_l mui-ellipsis">
-							<span id="sendaddr mui-ellipsis">from</span>
+							<span id="sendaddr">from</span>
 						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="tel-info mui-pull-right" id="from">
-							<img src="../../img/xinxi.png" id="from-msg"/>
-							<img src="../../img/dianhua.png" id="from-phone"/>
+					</li>-->
+						<div class="l_content">
+							<div class="l_left_title"><span>From</span></div>
+							<div class="l_right_content">
+								<span id="sendaddr">-- </span>
+							</div>
 						</div>
-						<div class="li_left_title"><span>发货人</span></div>
-						<div class="li_input_l">
-							<span id="sender">sender</span>
-						</div>
-					</li>
-					<li class="mui-table-view-cell">
+						<li class="mui-table-view-cell">
+							<div class="tel-info mui-pull-right" id="from">
+								<img src="../../img/xinxi.png" id="from-msg" />
+								<img src="../../img/dianhua.png" id="from-phone" />
+							</div>
+							<div class="li_left_title"><span>发货人</span></div>
+							<div class="li_input_l">
+								<span id="sender">sender</span>
+							</div>
+						</li>
+						<!--<li class="mui-table-view-cell">
 						<div class="li_left_title"><span>to</span></div>
 						<div class="li_input_l mui-ellipsis">
-							<span id="receiveaddr mui-ellipsis">to</span>
+							<span id="receiveaddr ">to</span>
 						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="tel-info mui-pull-right" id="to">
-							<img src="../../img/xinxi.png" id="to-msg"/>
-							<img src="../../img/dianhua.png" id="to-phone"/>
+					</li>-->
+						<div class="l_content">
+							<div class="l_left_title"><span>To</span></div>
+							<div class="l_right_content">
+								<span id="receiveaddr ">-- </span>
+							</div>
 						</div>
-						<div class="li_left_title"><span>签收人</span></div>
-						<div class="li_input_l">
-							<span id="receiver">receiver</span>
+						<li class="mui-table-view-cell">
+							<div class="tel-info mui-pull-right" id="to">
+								<img src="../../img/xinxi.png" id="to-msg" />
+								<img src="../../img/dianhua.png" id="to-phone" />
+							</div>
+							<div class="li_left_title"><span>签收人</span></div>
+							<div class="li_input_l">
+								<span id="receiver">receiver</span>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>Value</span></div>
+							<div class="li_input_l">
+								<span id="gvalue">value</span>
+								<span>$</span>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="li_left_title"><span>Desc</span></div>
+							<div class="li_input_l">
+								<span id="info">desc</span>
+							</div>
+						</li>
+
+						<div id="porel">
+
 						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="li_left_title"><span>Value</span></div>
-						<div class="li_input_l">
-							<span id="gvalue">value</span>
-						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="li_left_title"><span>Desc</span></div>
-						<div class="li_input_l">
-							<span id="info">desc</span>
-						</div>
-					</li>
-					
-					<div id="porel">
-						
-					</div>
-					
-				</ul>
-				
+
+					</ul>
+
+				</div>
 			</div>
 		</div>
-	</div>
-	
+
 	<div id="loading-mask"></div>
 	<div id="loading-box">
 		<img src="../../img/loading2.gif" alt="loading" width="100%"/>
 	</div>
-	
-    <script src="../../js/mui.js"></script>
-    <script src="../../js/jquery.min.js" ></script>
-	<script src="../../js/utils.js"></script>
-	<script>
-      	mui.init();
-      	mui.plusReady(function(){
-      		mui(".mui-scroll-wrapper").scroll();
-      		
-      		var cpage = plus.webview.currentWebview();
-      		var orderid = cpage.orderId;		// 当前订单号
-      		var sta;
-      		var cancelstatus; 		// 点击取消按钮时处理的三个状态 议价中，接单中，未取货
-      		var type = cpage.type;			// 从哪里跳转过来的，进行返回键的设置
-      		// 调用函数渲染页面数据
-      		sendmsg(orderid)
-      		
-      		// 对返回按钮的处理
-      		var orderpage = plus.webview.getWebviewById("mysendorder/my-send-order");
-      		var back = mui.back;
-      		mui.back = function(){		// 1,2 refresh:alldata  3,4 refresh:second  5,6 refresh:comment -1 refresh:data
-      			if(type = "createorder"){
-      				plus.webview.getLaunchWebview().show("slide-in-left", 300);
-      			}
-      			if(sta == 1 || sta == 2){
-      				refreshData("refresh:alldata")
-      			} else if(sta == 3 || sta == 4){
-      				refreshData("refresh:second")
-      			} else if(sta == 5 || sta == 6){
-      				refreshData("refresh:comment")
-      			} else if(sta == -1){
-      				refreshData("refresh:data")
-      			}
-      			setTimeout(function(){
-      				cpage.close("none", 0);
-      			}, 300)
-      		}
-      		function refreshData(event){
-      			mui.fire(orderpage, event);
-      			orderpage.show("slide-in-left", 300);
-      		}
-      		
-      		/* *
-      		 *	info信息显示 （接单中， 议价中）
-      		 * */
-      		// 取消订单弹出框
-			var options = {
-				height : 150,
-				title : {
-					height : 40,
-					content : ""
-				},
-				main : {
-					content : ""
-				},
-				buttons : [{
-					name : "OK",
-					click : function(){ return true }
-				},{
-					name : "cancel",
-					click : function(){ return true; }
-				}]
-			}
-			
-			// 取消订单
-			$("#cancel-order").on("tap", function() {
-				if(cancelstatus == "接单中" || cancelstatus == "议价中"){
-					// 在共有属性中添加需要的设置
-					options.height = 150;
-					options.title.content = "取消提示";
-					options.main.content = "您确认要取消此条订单消息吗？",
-					options.buttons[0] = {
-						name : "OK",
-						click : function(){
-							openWindow("./cancel-reason.html", {
-								orderId : orderid,
-								status : sta
-							})
-						}
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/utils.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				mui(".mui-scroll-wrapper").scroll();
+				var cpage = plus.webview.currentWebview();
+				var orderid = cpage.orderId; // 当前订单号
+				var sta;
+				var cancelstatus; // 点击取消按钮时处理的三个状态 议价中，接单中，未取货
+				var type = cpage.type; // 从哪里跳转过来的，进行返回键的设置
+				// 调用函数渲染页面数据
+				sendmsg(orderid)
+					// 对返回按钮的处理
+				var orderpage = plus.webview.getWebviewById("mysendorder/my-send-order");
+				var back = mui.back;
+				mui.back = function() { // 1,2 refresh:alldata  3,4 refresh:second  5,6 refresh:comment -1 refresh:data
+					if (type = "createorder") {
+						plus.webview.getLaunchWebview().show("slide-in-left", 300);
 					}
-					options.buttons[1].name = "cancel";
-					var pop = new Popup(options)
-					pop.show();
-				} else if(cancelstatus == "未取货"){
-					options.height = 180;
-					options.title.content = "取消提示";
-					options.main.content = "您确定要取消此条订单信息吗？在付款的阶段取消订单将会扣除50%的报酬给递送人",
-					options.buttons[0] = {
-						name : "OK",
-						click : function(){
-							openWindow("./cancel-reason.html", {
-								orderId: orderid,
-								status: status
-							})
-						}
+					if (sta == 1 || sta == 2) {
+						refreshData("refresh:alldata")
+					} else if (sta == 3 || sta == 4) {
+						refreshData("refresh:second")
+					} else if (sta == 5 || sta == 6) {
+						refreshData("refresh:comment")
+					} else if (sta == -1) {
+						refreshData("refresh:data")
 					}
-					options.buttons[1].name = "cancel";
-					var pop = new Popup(options)
-					pop.show();
+					setTimeout(function() {
+						cpage.close("none", 0);
+					}, 300)
 				}
-			})
-			
-      		// 议价中添加选取递送人
-			$("#msg-warn").on("tap", function() {
-				myAjax({
-					url : "order/bargainList",
-					data : {
-						page : 1,
-						pageSize : 3,
-						orderId : orderid
-					},
-					wait : false
-				}, function(data){
-					if(data.ret == 1){
-						openWindow("./list-of-participants.html", {
-							orderid : orderid
-						});
-					} else if(data.ret == 2){
-						mui.toast("非发单人没有权限查看")
-					} else if(data.ret == 3){
-						// 当前有人抢单后，需要进行发单人提醒该单已经抢单。是否需要支付
-						options.height = 150;
-						options.title.content = "支付提示";
-						options.main.content = "当前订单已经被他人抢单，是否进行支付？",
-						options.buttons[0] = {
-							name : "是",
-							click : function(){
-								sendmsg(orderid);
+
+				function refreshData(event) {
+						mui.fire(orderpage, event);
+						orderpage.show("slide-in-left", 300);
+					}
+					/* *
+					 *	info信息显示 （接单中， 议价中）
+					 * */
+					// 取消订单弹出框
+				var options = {
+						height: 150,
+						title: {
+							height: 40,
+							content: ""
+						},
+						main: {
+							content: ""
+						},
+						buttons: [{
+							name: "OK",
+							click: function() {
+								return true
 							}
+						}, {
+							name: "cancel",
+							click: function() {
+								return true;
+							}
+						}]
+					}
+					// 取消订单
+				$("#cancel-order").on("tap", function() {
+						if (cancelstatus == "接单中" || cancelstatus == "议价中") {
+							// 在共有属性中添加需要的设置
+							options.height = 150;
+							options.title.content = "取消提示";
+							options.main.content = "您确认要取消此条订单消息吗？",
+								options.buttons[0] = {
+									name: "OK",
+									click: function() {
+										openWindow("./cancel-reason.html", {
+											orderId: orderid,
+											status: sta
+										})
+									}
+								}
+							options.buttons[1].name = "cancel";
+							var pop = new Popup(options)
+							pop.show();
+						} else if (cancelstatus == "未取货") {
+							options.height = 180;
+							options.title.content = "取消提示";
+							options.main.content = "您确定要取消此条订单信息吗？在付款的阶段取消订单将会扣除50%的报酬给递送人",
+								options.buttons[0] = {
+									name: "OK",
+									click: function() {
+										openWindow("./cancel-reason.html", {
+											orderId: orderid,
+											status: status
+										})
+									}
+								}
+							options.buttons[1].name = "cancel";
+							var pop = new Popup(options)
+							pop.show();
 						}
-						options.buttons[1].name = "否";
-						var pop = new Popup(options)
-						pop.show();
-					}
-				})
-			})
-      		
-      		// 待付款中	
-      		$('#button-pay').attr('data-id',orderid);   // 支付按钮处理
-      		
-			document.getElementById("button-pay").addEventListener("tap", function() {
-				var id = this.getAttribute('data-id');
-				var money = this.getAttribute('data-money')
-//				console.log(id +"  "+ money)
-				openWindow("../pay/pay.html",{
-					orderid:id,
-					money:money
-				});
-			}, false)
-      		$("#cancel").on("tap", function() {			// 待付款中的取消按钮处理
-      			options.height = 160;
-				options.title.content = "取消提示";
-				options.main.content = "您确定要取消此条订单信息吗？在付款的阶段取消订单将会扣除10积分",
-				options.buttons[0] = {
-					name : "OK",
-					click : function(){
-						openWindow("./cancel-reason.html", {
-							orderId: orderid,
-							status: status
-						})
-					}
-				}
-				options.buttons[1].name = "cancel";
-				var pop = new Popup(options)
-				pop.show();
-			})
-      		
-      		// 给递送人发信息打电话
-      		postmessage("sendmsg");
-      		telphone("phone");
-      		
-      		// 给发货人发信息打电话
-      		postmessage("from-msg");
-      		telphone("from-phone");
-      		
-      		// 给签收人发信息打电话
-      		postmessage("to-msg");
-      		telphone("to-phone");
-      		
-      		// 发信息功能
-      		function postmessage(selector){
-      			document.getElementById(selector).addEventListener("tap", function() {
-					var phonenum = this.getAttribute("data-phone");
-					var msg = plus.messaging.createMessage(plus.messaging.TYPE_SMS);
-					msg.to = [phonenum];
-					msg.body = '';
-					plus.messaging.sendMessage(msg);
-				})
-      		}
-			// 打电话功能函数
-			function telphone(selector){
-				document.getElementById(selector).addEventListener("tap", function() {
-					var phonenum = this.getAttribute("data-phone");
-					plus.device.dial(phonenum, true);
-				})
-			}
-			
-      		
-      		// 图片预览
-      		function toverticalcenter() {
-				var item = $('.preimg')
-				var len = item.length;
-				for (var i = 0; i < len; i++) {
-					var t = ($(window).height() - item.eq(i).height()) / 2
-					item.eq(i).css('top', t)
-				}
-			}
-			mui('#porel').on('tap', 'img', function() {
-				$('.presee').removeClass('mui-hidden')
-				$('.mui-slider-item', '#slider').filter(function(index) {
-					return $('.mui-slider-item', '#slider').eq(index).find('img').attr('src') == '';
-				}).remove();
-				var index = this.index;
-				toverticalcenter()
-				var gallery = mui('#slider');
-				gallery.slider({
-					interval: 0
-				}).gotoItem(index);
-			})
-			$('.presee').on('tap', function() {
-				$(this).addClass('mui-hidden')
-			})
-      		
-      		// 评论按钮
-			document.getElementById("comment-order").addEventListener("tap", function() {
-				openWindow("./order-comment.html", {
-					orderid : orderid
-				});
-			}, false);
-      		
-      		// 取消订单后的处理
-      		
-      		// 重新编辑
-			document.getElementById("edit-btn").addEventListener("tap", function() {
-				options.height = 160;
-				options.title.content = "订单修改提示";
-				options.main.content = "您确定要重新修改订单吗？",
-				options.buttons[0] = {
-					name : "OK",
-					click : function(){
+					})
+					// 议价中添加选取递送人
+				$("#msg-warn").on("tap", function() {
 						myAjax({
-							url : "order/goodShow",
-							data : {
-								"orderId": orderid,
-								"type": "send"
-							},
-							wait : false
-						}, function(data){
-							plus.storage.setItem("draft-datas", JSON.stringify(data))
-							openWindow("../sendorder/createorder.html", {
-								type : "cancel"
-							})
-							setTimeout(function() {
-								plus.webview.close(cpage, "none", 0)
-							}, 1000)
-						})
-					}
-				}
-				options.buttons[1].name = "cancel";
-				var pop = new Popup(options)
-				pop.show();
-			})
-			
-			// 重新发布
-			document.getElementById("resend-btn").addEventListener("tap", function() {
-				options.height = 160;
-				options.title.content = "订单修改提示";
-				options.main.content = "您确定要重新发布订单吗？",
-				options.buttons[0] = {
-					name : "OK",
-					click : function(){
-						myAjax({
-							url: "order/release",
+							url: "order/bargainList",
 							data: {
+								page: 1,
+								pageSize: 3,
 								orderId: orderid
-							}
+							},
+							wait: false
 						}, function(data) {
 							if (data.ret == 1) {
-								mui.toast("发布成功")
-							} else if(data.ret == 2){
-								mui.toast("发布失败，检查订单信息")
+								openWindow("./list-of-participants.html", {
+									orderid: orderid
+								});
+							} else if (data.ret == 2) {
+								mui.toast("非发单人没有权限查看")
+							} else if (data.ret == 3) {
+								// 当前有人抢单后，需要进行发单人提醒该单已经抢单。是否需要支付
+								options.height = 150;
+								options.title.content = "支付提示";
+								options.main.content = "当前订单已经被他人抢单，是否进行支付？",
+									options.buttons[0] = {
+										name: "是",
+										click: function() {
+											sendmsg(orderid);
+										}
+									}
+								options.buttons[1].name = "否";
+								var pop = new Popup(options)
+								pop.show();
 							}
-							$("#loading-mask").css("display", "block");
-			      			$("#loading-box").css("display", "block");
-			      			sendmsg(orderid);
-						}, function(xhr, type) {
-							console.log(xhr.status);
+						})
+					})
+					// 待付款中	
+				$('#button-pay').attr('data-id', orderid); // 支付按钮处理
+				document.getElementById("button-pay").addEventListener("tap", function() {
+					var id = this.getAttribute('data-id');
+					var money = this.getAttribute('data-money')
+						//				console.log(id +"  "+ money)
+					openWindow("../pay/pay.html", {
+						orderid: id,
+						money: money
+					});
+				}, false)
+				$("#cancel").on("tap", function() { // 待付款中的取消按钮处理
+						options.height = 160;
+						options.title.content = "取消提示";
+						options.main.content = "您确定要取消此条订单信息吗？在付款的阶段取消订单将会扣除10积分",
+							options.buttons[0] = {
+								name: "OK",
+								click: function() {
+									openWindow("./cancel-reason.html", {
+										orderId: orderid,
+										status: status
+									})
+								}
+							}
+						options.buttons[1].name = "cancel";
+						var pop = new Popup(options)
+						pop.show();
+					})
+					// 给递送人发信息打电话
+				postmessage("sendmsg");
+				telphone("phone");
+				// 给发货人发信息打电话
+				postmessage("from-msg");
+				telphone("from-phone");
+				// 给签收人发信息打电话
+				postmessage("to-msg");
+				telphone("to-phone");
+				// 发信息功能
+				function postmessage(selector) {
+						document.getElementById(selector).addEventListener("tap", function() {
+							var phonenum = this.getAttribute("data-phone");
+							var msg = plus.messaging.createMessage(plus.messaging.TYPE_SMS);
+							msg.to = [phonenum];
+							msg.body = '';
+							plus.messaging.sendMessage(msg);
 						})
 					}
+					// 打电话功能函数
+
+				function telphone(selector) {
+						document.getElementById(selector).addEventListener("tap", function() {
+							var phonenum = this.getAttribute("data-phone");
+							plus.device.dial(phonenum, true);
+						})
+					}
+					// 图片预览
+
+				function toverticalcenter() {
+					var item = $('.preimg')
+					var len = item.length;
+					for (var i = 0; i < len; i++) {
+						var t = ($(window).height() - item.eq(i).height()) / 2
+						item.eq(i).css('top', t)
+					}
+				}
+				mui('#porel').on('tap', 'img', function() {
+					$('.presee').removeClass('mui-hidden')
+					$('.mui-slider-item', '#slider').filter(function(index) {
+						return $('.mui-slider-item', '#slider').eq(index).find('img').attr('src') == '';
+					}).remove();
+					var index = this.index;
+					toverticalcenter()
+					var gallery = mui('#slider');
+					gallery.slider({
+						interval: 0
+					}).gotoItem(index);
+				})
+				$('.presee').on('tap', function() {
+						$(this).addClass('mui-hidden')
+					})
+					// 评论按钮
+				document.getElementById("comment-order").addEventListener("tap", function() {
+					openWindow("./order-comment.html", {
+						orderid: orderid
+					});
+				}, false);
+				// 取消订单后的处理
+				// 重新编辑
+				document.getElementById("edit-btn").addEventListener("tap", function() {
+						options.height = 160;
+						options.title.content = "订单修改提示";
+						options.main.content = "您确定要重新修改订单吗？",
+							options.buttons[0] = {
+								name: "OK",
+								click: function() {
+									myAjax({
+										url: "order/goodShow",
+										data: {
+											"orderId": orderid,
+											"type": "send"
+										},
+										wait: false
+									}, function(data) {
+										plus.storage.setItem("draft-datas", JSON.stringify(data))
+										openWindow("../sendorder/createorder.html", {
+											type: "cancel"
+										})
+										setTimeout(function() {
+											plus.webview.close(cpage, "none", 0)
+										}, 1000)
+									})
+								}
+							}
+						options.buttons[1].name = "cancel";
+						var pop = new Popup(options)
+						pop.show();
+					})
+					// 重新发布
+				document.getElementById("resend-btn").addEventListener("tap", function() {
+						options.height = 160;
+						options.title.content = "订单修改提示";
+						options.main.content = "您确定要重新发布订单吗？",
+							options.buttons[0] = {
+								name: "OK",
+								click: function() {
+									myAjax({
+										url: "order/release",
+										data: {
+											orderId: orderid
+										}
+									}, function(data) {
+										if (data.ret == 1) {
+											mui.toast("发布成功")
+										} else if (data.ret == 2) {
+											mui.toast("发布失败，检查订单信息")
+										}
+										$("#loading-mask").css("display", "block");
+										$("#loading-box").css("display", "block");
+										sendmsg(orderid);
+									}, function(xhr, type) {
+										console.log(xhr.status);
+									})
+								}
+							}
+						options.buttons[1].name = "cancel";
+						var pop = new Popup(options)
+						pop.show();
+					}, false)
+					// 自定义事件触发该页面刷新
+				window.addEventListener("refresh:page", function(eve) {
+						var id = eve.detail.orderid;
+						$("#loading-mask").css("display", "block");
+						$("#loading-box").css("display", "block");
+						document.getElementById("cancel-order").style.display = "none";
+						sendmsg(id);
+					})
+					//  发送数据渲染页面
+
+				function sendmsg(orderid) {
+						// 页面加载时，获取数据
+						myAjax({
+							url: "order/goodShow",
+							data: {
+								orderId: orderid,
+								type: "send"
+							},
+							wait: false
+						}, function(data) {
+							if (data.ret == 0) {
+								mui.toast("业务操作失败");
+								return;
+							}
+							console.log(JSON.stringify(data));
+							$(".goods-name").html(data.res.gName); // 货物名称
+							$("#goods-value").html(data.res.money); // 价值
+							$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
+							$("#get-time").html(data.res.getTime); // 获取时间
+							$("#deadline").html(data.res.finTime); // 期望时间
+							$("#sendaddr").text(data.res.sendAddr.name); // 发送地 
+							$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
+							$("#gvalue").html(data.res.gValue); // value
+							$("#info").html(data.res.info); // 信息描述
+							/* *
+							 * status : 1		bargain 0 接单中  1议价中
+							 * 	2   待付款	3   未取货	4   已取货	5   未评价	6   已评价 	-1  已取消
+							 * */
+							sta = data.res.status; // 当前状态
+							// 图片渲染
+							document.getElementById('porel').innerHTML = ""; // 清空图片区域所有内容
+							var pic = data.res.pics;
+							var n = BASEURL.indexOf('/api/');
+							var per = BASEURL.substring(0, n);
+							var len = pic.length;
+							var box = document.querySelectorAll(".img-box");
+							if (len > 0) {
+								for (var i = 0; i < len; i++) {
+									var picurl = pic[i].path;
+									var minurl = pic[i].minPath;
+									var n = BASEURL.indexOf('/a');
+									var perurls = BASEURL.substring(0, n);
+									var imgurl = perurls + picurl;
+									var img = document.createElement('img');
+									img.className = 'picture'
+									img.src = imgurl;
+									img.index = i;
+									document.getElementById('porel').appendChild(img);
+									$('.mui-slider-item', '.mui-slider-group').eq(i).find('img').attr('src', perurls + minurl);
+								}
+							}
+							// 清空样式
+							clearStyle();
+							// 判断是否在议价,显示议价消息链接框
+							controller(data)
+								// 电话号码的渲染节点对象属性
+							deliverinfo(data)
+								// 发货人，签收人
+							senderReceiverInfo(data)
+								// 300毫秒之后清除等待框
+							closeMask();
+						}, function(xhr, type) {
+							console.log(type);
+						})
+					}
+<<<<<<< HEAD
+					// 清除样式
+
+				function clearStyle() {
+						$(".origin-style").css("display", "none");
+=======
 				}
 				options.buttons[1].name = "cancel";
 				var pop = new Popup(options)
@@ -646,154 +769,91 @@
 					if(data.ret == 0){
 						mui.toast("业务操作失败");
 						return;
+>>>>>>> 5868c1e1c08f729fef05add2eb62bece9a1817b3
 					}
-					console.log(JSON.stringify(data));
-					$(".goods-name").html(data.res.gName); // 货物名称
-					$("#goods-value").html(data.res.money); // 价值
-					$("#goods-weight").html(data.res.gWeight + "kg"); // 重量
-					$("#get-time").html(data.res.getTime); // 获取时间
-					$("#deadline").html(data.res.finTime); // 期望时间
-					$("#sendaddr").text(data.res.sendAddr.name); // 发送地 
-					$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
-					$("#gvalue").html(data.res.gValue); // value
-					$("#info").html(data.res.info); // 信息描述
-					
-					/* *
-					 * status : 1		bargain 0 接单中  1议价中 
-					 * 	2   待付款	3   未取货	4   已取货	5   未评价	6   已评价 	-1  已取消
-					 * */
-					sta = data.res.status;	// 当前状态
-					
-					// 图片渲染
-					document.getElementById('porel').innerHTML = ""; 	// 清空图片区域所有内容
-					var pic = data.res.pics;
-					var n = BASEURL.indexOf('/api/');
-					var per = BASEURL.substring(0, n);
-					var len = pic.length;
-					var box = document.querySelectorAll(".img-box");
-					if (len > 0) {
-						for (var i = 0; i < len; i++) {
-							var picurl = pic[i].path;
-							var minurl = pic[i].minPath;
-							var n = BASEURL.indexOf('/a');
-							var perurls = BASEURL.substring(0, n);
-							var imgurl = perurls + picurl;
-							var img = document.createElement('img');
-							img.className = 'picture'
-							img.src = imgurl;
-							img.index = i;
-							document.getElementById('porel').appendChild(img);
-							$('.mui-slider-item', '.mui-slider-group').eq(i).find('img').attr('src', perurls + minurl);
+					// 渲染发送人，接收人信息
+
+				function senderReceiverInfo(data) {
+						if (data.res.sender) {
+							$("#sender").html(data.res.sender);
+						}
+						if (data.res.senderPhone) {
+							$("#from-msg").attr("data-phone", data.res.senderPhone);
+							$("#from-phone").attr("data-phone", data.res.senderPhone);
+						}
+						if (data.res.receiver) {
+							$("#receiver").html(data.res.receiver);
+						}
+						if (data.res.receiverPhone) {
+							$("#to-msg").attr("data-phone", data.res.receiverPhone);
+							$("#to-phone").attr("data-phone", data.res.receiverPhone);
 						}
 					}
-					
-					// 清空样式
-					clearStyle();
-					
-					// 判断是否在议价,显示议价消息链接框
-					controller(data)
-					
-					// 电话号码的渲染节点对象属性
-					deliverinfo(data)
-					
-					// 发货人，签收人
-					senderReceiverInfo(data)
-					
-					// 300毫秒之后清除等待框
-					closeMask();
-					
-				}, function(xhr, type) {
-					console.log(type);
-				})
-			}
-      		
-      		// 清除样式
-      		function clearStyle(){
-      			$(".origin-style").css("display", "none");
-      		}
-      		
-      		// 渲染发送人，接收人信息
-      		function senderReceiverInfo(data){
-      			if (data.res.sender) {
-      				$("#sender").html(data.res.sender);
+					// 渲染递送人信息显示
+
+				function deliverinfo(data) {
+						if (data.res.deliver) {
+							if (data.res.deliver.headpic) { // 头像显示
+								$("#head-img").attr("src", BASEIMGURL + data.res.deliver.headpic);
+							}
+							if (data.res.deliver.nickName) { // 昵称
+								$("#nickName").html(data.res.deliver.nickName);
+							}
+							if (data.res.deliver.ptitle) { // 等级
+								$("#ptitle").html(data.res.deliver.ptitle);
+							}
+							if (data.res.deliver.orderCount) { // 接单数量
+								$("#orderCount").html(data.res.deliver.orderCount);
+							}
+							if (data.res.deliver.phone) { // 电话号码
+								$("#phone").attr("data-phone", data.res.deliver.phone);
+								$("#sendmsg").attr("data-phone", data.res.deliver.phone);
+							}
+						}
+					}
+					// 根据当前状态控制窗口中的控件显示隐藏
+
+				function controller(data) {
+					var status = data.res.status;
+					var bargain = data.res.bargain;
+					if (status == 1) { // 接单中，议价中
+						$("#cancel-order").css("display", "block")
+						if (bargain == 1) {
+							$("#msg-warn").css("display", "block")
+							cancelstatus = "议价中";
+							$(".goods-status").text("议价中");
+						} else {
+							cancelstatus = "接单中";
+							$(".goods-status").text("接单中");
+						}
+					} else if (status == -1) { // 取消
+						$("#canceled").css("display", "block");
+						$(".goods-status").text("已取消");
+					} else if (status == 2) { // 待付款
+						$("#obligation").css("display", "block");
+						$("#sender-info").css("display", "block");
+						$('#button-pay').attr('data-money', data.res.money);
+						$(".goods-status").text("待付款");
+					} else {
+						$("#sender-info").css("display", "block");
+						if (status == 3) { // 未取货
+							$("#cancel-order").css("display", "block");
+							$(".goods-status").text("未取货");
+							cancelstatus = "未取货"
+						} else if (status == 4) { // 已取货
+							$("#takengoods").css("display", "block");
+							$(".goods-status").text("已取货");
+						} else if (status == 5) { // 未评价
+							$("#comment-order").css("display", "block");
+							$(".goods-status").text("未评价");
+						} else if (status == 6) { // 已评价
+							$("#evaluated").css("display", "block");
+							$(".goods-status").text("已评价");
+						}
+					}
 				}
-      			if (data.res.senderPhone) {
-      				$("#from-msg").attr("data-phone", data.res.senderPhone);
-      				$("#from-phone").attr("data-phone", data.res.senderPhone);
-				}
-      			if (data.res.receiver) {
-      				$("#receiver").html(data.res.receiver);
-				}
-      			if (data.res.receiverPhone) {
-      				$("#to-msg").attr("data-phone", data.res.receiverPhone);
-      				$("#to-phone").attr("data-phone", data.res.receiverPhone);
-				}
-      		}
-      		
-      		// 渲染递送人信息显示
-      		function deliverinfo(data){
-      			if(data.res.deliver){
-      				if (data.res.deliver.headpic) { // 头像显示
-						$("#head-img").attr("src", BASEIMGURL + data.res.deliver.headpic);
-					}
-					if (data.res.deliver.nickName) { // 昵称
-						$("#nickName").html(data.res.deliver.nickName);
-					}
-					if (data.res.deliver.ptitle) { // 等级
-						$("#ptitle").html(data.res.deliver.ptitle);
-					}
-					if (data.res.deliver.orderCount) { // 接单数量
-						$("#orderCount").html(data.res.deliver.orderCount);
-					}
-					if (data.res.deliver.phone) { // 电话号码
-						$("#phone").attr("data-phone", data.res.deliver.phone);
-						$("#sendmsg").attr("data-phone", data.res.deliver.phone);
-					}
-      			}
-      		}
-      		
-      		// 根据当前状态控制窗口中的控件显示隐藏
-      		function controller(data){
-      			var status = data.res.status;
-      			var bargain = data.res.bargain;
-      			if(status == 1){		// 接单中，议价中
-      				$("#cancel-order").css("display", "block")
-      				if(bargain == 1){
-						$("#msg-warn").css("display", "block")
-						cancelstatus = "议价中";
-						$(".goods-status").text("议价中");
-      				} else {
-      					cancelstatus = "接单中";
-      					$(".goods-status").text("接单中");
-      				}
-      			} else if (status == -1){		// 取消
-      				$("#canceled").css("display", "block");
-      				$(".goods-status").text("已取消");
-      			} else if (status == 2){		// 待付款
-      				$("#obligation").css("display","block");
-      				$("#sender-info").css("display", "block");
-      				$('#button-pay').attr('data-money',data.res.money);
-      				$(".goods-status").text("待付款");
-      			} else {
-      				$("#sender-info").css("display", "block");
-      				if(status == 3){		// 未取货
-      					$("#cancel-order").css("display", "block");
-      					$(".goods-status").text("未取货");
-      					cancelstatus = "未取货"
-      				} else if (status == 4){		// 已取货
-      					$("#takengoods").css("display", "block");
-      					$(".goods-status").text("已取货");
-      				} else if (status == 5){		// 未评价
-      					$("#comment-order").css("display", "block");
-      					$(".goods-status").text("未评价");
-      				} else if(status == 6){		// 已评价
-      					$("#evaluated").css("display", "block");
-      					$(".goods-status").text("已评价");
-      				}
-      			}
-      		}
-      		
-      	})
-    </script>
-</body>
+			})
+		</script>
+	</body>
+
 </html>
