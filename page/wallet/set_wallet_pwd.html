@@ -23,6 +23,8 @@
     	.mui-table-view .title_one{
     		color: #F7E489;
     	}
+    	html,body, .mui-content {background-color: #fff;}
+    	.mui-table-view-cell:after {left: 0;}
     </style>
 </head>
 <body >
@@ -32,9 +34,9 @@
 	</header>
 	<div class="mui-content muipaddingtop">
 		<ul class="mui-table-view top_header">
-			<li class="mui-table-view-cell wallet_title">
+			<li class="mui-table-view-cell">
 				<img src="../../img/wallet3.png" class="li_left_img" alt="" />   
-				<div class="li_input_l wallet_title">
+				<div class="li_input_l">
 					<span class="li_title_1">Set wallet password</span>
 					<span class="li_title_2">please input your pay password</span>
 				</div>
@@ -136,7 +138,6 @@
 		  	if(flag){
 			data={newPwd:pwd,oldPwd:old_pwd} 
 			myAjax({url:'account/setPayPwd',data:data},function(obj){
-				alert(JSON.stringify(obj)+'cycycy');
 				if(obj.ret==1){
 					mui.toast('成功'); 
 						$('.second_show').css('display','block');
@@ -147,14 +148,14 @@
 						setstorage('personinfo',JSON.stringify(pay_pwd));
 						mui.back();
 				}else if(obj.res==2){
-					mui.toast('老密码验证错误');  
+					mui.toast('密码验证错误');
 				}
 			},function(xhr,type){
 				mui.toast(type.satus);
 			});
   		}
 	}
-	$('#submit').on('tap',function(){  
+	$('#submit').on('tap',function(){
 		check(); 
 	})
 })
