@@ -397,8 +397,10 @@
 					}
 				}
 				function refreshData(event) {
-						mui.fire(orderpage, event);
-						orderpage.show("slide-in-left", 300);
+						if(orderpage){
+							mui.fire(orderpage, event);
+							orderpage.show("slide-in-left", 300);
+						}
 					}
 					/* *
 					 *	info信息显示 （接单中， 议价中）
