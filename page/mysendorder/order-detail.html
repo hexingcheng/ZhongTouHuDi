@@ -384,10 +384,18 @@
 						refreshData("refresh:data")
 					}
 					setTimeout(function() {
+						closeweb();
 						cpage.close("none", 0);
-					}, 300)
+					}, 1000)
 				}
-
+				function closeweb(){
+					var web = ['message/message','ordermsg']
+					for(var i = 0;i<web.length;i++){
+						if(plus.webview.getWebviewById(web[i])){
+							plus.webview.getWebviewById(web[i]).close();
+						}
+					}
+				}
 				function refreshData(event) {
 						mui.fire(orderpage, event);
 						orderpage.show("slide-in-left", 300);
