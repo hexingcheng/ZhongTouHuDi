@@ -158,7 +158,7 @@ mui.plusReady(function() {
 				getsystemmsg();
 			}
 		}, 60000)
-
+		getlatlng();
 	})
 	//处理返回键
 
@@ -177,7 +177,7 @@ function getsystemmsg() {
 				setstorage(whichperson, JSON.stringify(data.res));
 			} else {
 				handlemsg(data);
-			}
+			} 
 		} else {
 			return;
 		}

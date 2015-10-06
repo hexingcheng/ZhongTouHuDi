@@ -346,7 +346,25 @@ function fixedNum(selector){
 		$(this).attr("type", "text");
 	})
 }
-
+function getlatlng(success){
+	if(navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(function(pos){
+			//存储经纬度信息
+			var lat = pos.coords.latitude+"";
+			var lng = pos.coords.longitude+"";
+			plus.storage.setItem('latitude',lat)
+			plus.storage.setItem('longitude',lng)
+			console.log('获取当前位置成功lat:'+plus.storage.getItem('latitude')+',lng:'+plus.storage.getItem('longitude'));
+			success&&success(pos);
+		},function(e){
+			mui.toast('获取当前位置信息失败')
+		},{ 
+			enableHighAcuracy: true
+		})
+	}else{
+		mui.toast('您的手机不支持定位功能')
+	}
+}
 //function getmsgs() {
 //	myAjax({
 //		url: 'message/getMsg'

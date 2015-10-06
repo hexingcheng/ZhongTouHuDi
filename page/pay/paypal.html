@@ -26,12 +26,31 @@
 		</span>
 		<h1 class="mui-title">Pay Detail Order</h1>
 	</header>
+	<script type="text/javascript" src="../../js/utils.js" ></script>
     <script type="text/javascript" charset="utf-8">
       	mui.init();
       	mui.plusReady(function(){
+      		getAllwebview();
       		var cid = plus.webview.currentWebview().payid;
       		var sub = plus.webview.create( 'http://202.202.43.107:8080/api/paypal/pay?rechargeId='+cid, 'paypal', {top:'52px',bottom:'0px'});
       		plus.webview.currentWebview().append(sub);
+      		mui.back = function(){
+      			var mysendorder = plus.webview.getWebviewById('mysendorder/my-send-order');
+      			if(mysendorder){
+      				mysendorder.show('slide-in-left',300);
+      				setTimeout(function(){
+      					closeweb()
+      				},1000)
+      			}
+      		}
+      		function closeweb(){
+      			var web = ['mygetorderdtl','pay/pay','paypal'];
+      			for(var i = 0;i<web.length;i++){
+      				if(plus.webview.getWebviewById(web[i])){
+      					plus.webview.getWebviewById(web[i]).close();
+      				}
+      			}
+      		}
       	})
     </script>
 </body>

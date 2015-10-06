@@ -57,7 +57,7 @@
 			</div>
 		</div>
 		<div class="location mui-hidden">
-			<img src="../../img/location.png" />
+			<img src="../../img/order2.png" />
 		</div>
 		<div id="map-canvas"></div>
 		<script src="../../js/utils.js"></script>
@@ -153,28 +153,23 @@
 				}
 				return addr.join('');				
 			}
-
 			function getAddr(data) { 
 				var addr = plus.webview.getWebviewById('pickaddr');
 				mui.fire(addr, 'getaddr', data); 
 			}
 			mui.plusReady(function() {
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(function(position) {
-						var lat = position.coords.latitude;
-						var lng = position.coords.longitude;
-						initialize(lat,lng);
-					}, function(e) {
-						mui.toast('获取位置信息失败')
-					}, {
-						enableHighAcuracy: true
-					})
-				} else {
-					mui.toast('获取位置信息失败');
+				if(!plus.storage.getItem('longitude')&&plus.storage.getItem('latitude')){
+					getlatlng();
 				}
+				var lat = plus.storage.getItem('latitude')-0;
+				var lng = plus.storage.getItem('longitude')-0;
+				initialize(lat,lng);
 				window.addEventListener('changemap', function(eve) {
-					//var myLatlng = {lat: -25.363, lng: 131.044};
-					//mymap.panTo(myLatlng)
+					var param = {
+						lat:eve.detail.G-0,
+						lng:eve.detail.K-0
+					}
+					mymap.setCenter(param)
 				})
 			})
 		</script>

@@ -44,11 +44,20 @@
 			}
 			.sear .mui-input-clear,
 			.smap .mui-input-clear {
+				position: relative;
 				margin: 0;
 				padding: 0;
 				height: 39px;
 				border: 0;
 				width: 100%;
+			}
+			.posab{
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				top: 5px;
+				left: 5px;
+				z-index: 100;
 			}
 			.hei60 {
 				height: 40px;
@@ -69,9 +78,24 @@
 				margin: 6px;
 			}
 			.pac-container{
-				margin-left: -53px;
 				margin-top: 5px;
 			} 
+			.pac-item{
+				height: 55px;
+				line-height: 55px;
+			}
+			.pac-icon{
+				display: inline-block;
+				vertical-align: middle;
+				margin-bottom: 6px;
+			}
+			#pac-input{
+				width: 100%;
+				padding-left: 50px;
+			}
+			.w100{
+				width: 100%;
+			}
 		</style>
 	</head>
 
@@ -80,26 +104,12 @@
 			<img src="../../img/left.png" alt="" class="mui-action-back header_left_img" />
 			<span>Trip plan</span>
 		</header>
-		<footer class="mui-bar mui-bar-footer">
-			<div class="nav_footer bg_white">
-				<button class="mui-btn left_button" id="ok">ok</button>
-				<button class="mui-btn right_button" id='cancel'>cancel</button>
-			</div>
-		</footer>
 		<div class="mui-content">
 			<div class="hand-map">
 				<div class="hand-detial">
-					<!--<div class="clear sear">
-						<div class="fl wid15 hei60 mui-text-center"><span class="mui-icon mui-icon-location linehei40"></span></div>
-						<div class="fl wid85 hei60 addbor">
-							<div class="mui-input-row">
-								<input placeholder="choose address" class="mui-input-clear" type="text" id="chooseaddr">
-							</div>
-						</div>
-					</div>-->
 					<div class="clear smap">
-						<div class="mui-pull-left wid15 hei60 mui-text-center"><span class="mui-icon mui-icon-search linehei40"></span></div>
-						<div class="mui-pull-left wid85 hei60">
+						<div class="wid15 hei60 mui-text-center posab"><span class="mui-icon mui-icon-search linehei40"></span></div>
+						<div class="mui-pull-left hei60 w100">
 							<div class="mui-input-row">
 								<input placeholder="detail address" class="mui-input-clear" id="pac-input" type="text">
 							</div>
@@ -113,31 +123,33 @@
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui.plusReady(function() {
-				var clocation = {};;
+				var clocation = {};
 				var input = (document.getElementById('pac-input'));
 				var autocomplete = new google.maps.places.Autocomplete(input);
 				if (autocomplete) {
-					alert(autocomplete)
 					autocomplete.addListener('place_changed', function(e) {
 						var place = autocomplete.getPlace();
 						console.log(JSON.stringify(place.geometry))
-						clocation.K = place.geometry.location.L;
-						clocation.G = place.geometry.location.H;
+						clocation.K = place.geometry.location.L-0;
+						clocation.G = place.geometry.location.H-0;
+						var pad = plus.webview.getWebviewById('pickaddr');
+						console.log(JSON.stringify(clocation));
+						mui.fire(pad, 'getaddr', {
+							"addr": document.getElementById('pac-input').value,
+							'location': clocation
+						});
+						pad.show('slide-in-left', 300);
+						var mapcontent = plus.webview.getWebviewById('mapcontent');
+						mui.fire(mapcontent,'changemap',clocation)
 					})
 				}else{
 					mui.toast('google map is not ready')
 				} 
-				document.getElementById('ok').addEventListener('tap', function() {
-					var pad = plus.webview.getWebviewById('pickaddr');
-					console.log(JSON.stringify(clocation));
-					mui.fire(pad, 'getaddr', {
-						"addr": document.getElementById('pac-input').value,
-						'location': clocation
-					});
-					pad.show('slide-in-left', 300)
-				})
-				document.getElementById('cancel').addEventListener('tap',function(){
-					mui.back();
+				window.addEventListener('clearinput',function(){
+					var ipt = document.getElementById('pac-input');
+					if(ipt.value){
+						ipt.value = '';
+					}
 				})
 			})
 		</script>
