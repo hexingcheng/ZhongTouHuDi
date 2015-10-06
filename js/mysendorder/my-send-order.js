@@ -31,6 +31,7 @@ function pulldownRefresh() {
 	sendmsg(data)
 
 	function sendmsg(data) {
+		document.getElementById('pullrefreshs').innerHTML = "";
 		myAjax({
 			url: 'order/myGoodList',
 			data: data,
@@ -39,8 +40,8 @@ function pulldownRefresh() {
 			plus.nativeUI.closeWaiting();
 			mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			var orderdata = {
-					"list": data.res
-				}
+				"list": data.res
+			}
 				// 模板渲染
 			var html = template("template", orderdata);
 			if (html == old) {
@@ -165,23 +166,29 @@ mui.plusReady(function() {
 
 	// 发送数据状态显示详情界面信息
 	function sendmsg(datas) {
-			myAjax({
-				url: 'order/myGoodList',
-				data: datas,
-				wait: false
-			}, function(data) {
-				var orderdata = {
-						"list": data.res
-					}
-					// 模板渲染
-				var html = template("template", orderdata);
-				if (!html) {
-					html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
+		myAjax({
+			url: 'order/myGoodList',
+			data: datas,
+			wait: false
+		}, function(data) {
+			var orderdata = {
+					"list": data.res
 				}
-				document.getElementById('pullrefreshs').innerHTML = html;
-			}, function(xhr, type, error) {
-				console.log(type)
-			})
-		}
+				// 模板渲染
+			var html = template("template", orderdata);
+			if (!html) {
+				html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
+			}
+			document.getElementById('pullrefreshs').innerHTML = html;
+		}, function(xhr, type, error) {
+			console.log(type)
+		})
+	}
+	
+	// 点击页面切换的时候，进行切换页面等待窗口
+	window.addEventListener("waiting", function(){
+		var waithtml = '<div class="data-wait">数据加载中...</div>';
+		$('#pullrefreshs').html(waithtml);
+	})
 
 })

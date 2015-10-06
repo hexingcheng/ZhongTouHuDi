@@ -9,9 +9,9 @@
     <script src="../../js/mui.min.js"></script>
     <style>
     	.forgat_pwd{
-    		font-size: 14px;
+    		font-size: 1em;
     		line-height: 40px;
-    		color: #44AB6E;
+    		color: #44AB6E; 
     		margin-right: 15px;
     	}
     	.second_show{
@@ -23,6 +23,8 @@
     	.mui-table-view .title_one{
     		color: #F7E489;
     	}
+    	html,body, .mui-content {background-color: #fff;}
+    	.mui-table-view-cell:after {left: 0;}
     </style>
 </head>
 <body >
@@ -32,17 +34,17 @@
 	</header>
 	<div class="mui-content muipaddingtop">
 		<ul class="mui-table-view top_header">
-			<li class="mui-table-view-cell wallet_title">
+			<li class="mui-table-view-cell">
 				<img src="../../img/wallet3.png" class="li_left_img" alt="" />   
 				<div class="li_input_l wallet_title">
-					<span class="li_title_1">Set wallet password</span>
+					<span class="li_title_1" style="color: #26a65b;">Set wallet password</span>
 					<span class="li_title_2">please input your pay password</span>
 				</div>
 			</li>
 		</ul>
 		<ul class="mui-table-view">
 			<li class="mui-table-view-cell mui-text-center">
-				<span >你正在为<span id="familyName"></span><span id="firstName"></span>账号设置密码</span>
+				<span >你正在为<span id="phone" style="color: #26a65b;"></span>账号设置密码</span>
 			</li>
 			<li class="mui-table-view-cell second_show">
 				<img src="../../img/payWord1.png" class="li_left_img" alt="" />
@@ -74,24 +76,20 @@
 <script>
 	mui.plusReady(function(){ 
 		var pay_pwd=JSON.parse(getstorage('personinfo')); 
-		console.log(JSON.stringify(pay_pwd));
 			if(pay_pwd.setpay==0){   
 				$('.second_show').css('display','none');
 			}else{
 				$('.second_show').css('display','block');
 			} 
-			$('#firstName').text(pay_pwd.firstName);  
-			$('#familyName').text(pay_pwd.familyName);
+			$('#phone').text(pay_pwd.phone);
 	function check(){
 		//支付密码修改
-		
 		var pwd=$('#pwd').val().trim();
 		var flag=true;
 		var old_pwd=$('#old_pwd').val().trim();
 		var pwd=$('#pwd').val().trim();
 		var comf_pwd=$('#comf_pwd').val().trim();
 		    if(pay_pwd.setpay==0){
-		    	  
 		    	if(!pwd){
 		    		mui.toast('请输入新密码');
 		    		flag=false;
@@ -134,28 +132,39 @@
 		    }
 		
 		  	if(flag){
-			data={newPwd:pwd,oldPwd:old_pwd} 
-			myAjax({url:'account/setPayPwd',data:data},function(obj){
-				alert(JSON.stringify(obj)+'cycycy');
-				if(obj.ret==1){
-					mui.toast('成功'); 
-						$('.second_show').css('display','block');
-						$('#pwd').val('');
-						$('#comf_pwd').val('');
-						pay_pwd.setpay=1;
-						plus.storage.removeItem('personinfo');
-						setstorage('personinfo',JSON.stringify(pay_pwd));
-						mui.back();
-				}else if(obj.res==2){
-					mui.toast('老密码验证错误');  
+		  		$('#submit').attr("disabled", true);
+				$('#submit').html("提交中...");
+				data = {
+					newPwd:pwd,
+					oldPwd:old_pwd
 				}
-			},function(xhr,type){
-				mui.toast(type.satus);
-			});
-  		}
-	}
-	$('#submit').on('tap',function(){  
-		check(); 
+				myAjax({
+					url:'account/setPayPwd',
+					data:data
+				},function(obj){
+					if(obj.ret==1){
+						mui.toast('成功'); 
+							$('.second_show').css('display','block');
+							$('#pwd').val('');
+							$('#comf_pwd').val('');
+							pay_pwd.setpay=1;
+							plus.storage.removeItem('personinfo');
+							setstorage('personinfo',JSON.stringify(pay_pwd));
+							mui.back();
+					}else if(obj.ret == 2){
+						mui.toast('密码验证错误');
+						$('#submit').attr("disabled", false);
+						$('#submit').html("确定");
+					}
+				},function(xhr,type){
+					mui.toast(type.satus);
+					$('#submit').attr("disabled", false);
+					$('#submit').html("确定");
+				});
+  			}
+		}
+	$('#submit').on('tap',function(){
+		check();
 	})
 })
 </script>

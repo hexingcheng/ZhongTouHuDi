@@ -40,6 +40,7 @@
 			.mui-scroll{
 				min-height: 100%;
 			}
+			.data-wait {font-weight: bold;color: green;width: 100%;text-align: center;height: 200px;line-height: 200px;}
 		</style>
 	</head>
 	<body>
@@ -47,7 +48,11 @@
 			<!--数据列表-->
 			<div class="mui-scroll ordercontents" id="ordercontent">
 				<!-- 等待框 -->
-				
+				<div class="masks">
+					<div class="loading">
+						<img src="../../img/loading2.gif"/>
+					</div>
+				</div>
 			</div>
 		</div>
 		<script src="../../js/template.js"></script>
@@ -91,11 +96,6 @@
 			<div class="content-padded"></div>
 			{{/each}}
 		</script>
-		<div class="masks">
-			<div class="loading">
-				<img src="../../img/loading2.gif"/>
-			</div>
-		</div>
 		<div class="load-data" style="display: none;">
 			<div class="loading">
 				<img src="../../img/loading2.gif" width="100%"/>

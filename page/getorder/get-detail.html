@@ -14,12 +14,16 @@
 		<script src="../../js/mui.min.js"></script>
 		<style>
 			.mui-table-view-cell:after {left: 0;}
-			.mui-table-view .right_li_half {padding: 0 18px;}
-			.mui-table-view .left_li_half {padding: 0 18px;}
 			.mui-table-view .right_li_half {border-bottom: 0;}
-			.mui-table-view .left_li_half {border-right: 1px solid #ddd;}
 			.rewrod, .rel {color: red;margin-left: 5px;}
+<<<<<<< HEAD
+			body, html, .mui-content {background-color: #fff;} 
+
+=======
 			body, html, .mui-content {background-color: #fff;}
+			.mui-table-view-cell .li_left_title {width: 85px;}
+			.right-plain {display: block;margin-left: 85px;}
+>>>>>>> 5868c1e1c08f729fef05add2eb62bece9a1817b3
 		</style>
 	</head>
 	<body>
@@ -29,11 +33,10 @@
 		</header>
 		<footer class="mui-bar mui-bar-footer" id="foot">
 			<div class="nav_footer bg_white">
-				<div id="markup" class="marks left_button">markup</div>
-				<div id="collect" class="cllo right_button">collect</div>
+				<button id="markup" class="marks left_button">markup</button>
+				<button id="collect" class="cllo right_button">collect</button>
 			</div>
-		</footer>
-		
+		</footer>   
 		<div class="presee mui-hidden">
 			<div class="picwraps">
 				<div class="mui-slider" id="slider">
@@ -62,32 +65,6 @@
 				</div>
 			</div>
 		</div>
-		
-		<!--<div id="order-mask" class="mui-hidden"></div>
-		<div id="markups" class="mui-hidden">
-			<div class="mak-title">please input the reword!</div>
-			<div class="mak-worn">please input the reword you want to be paid on the order.</div>
-			<div class="borporal">
-				<div class="inner">
-					<input id="mar-i" placeholder="0.00" type="number">
-				</div>
-			</div>
-			<div class="cacu">
-				<div class="origin">
-					<span>oringin</span>
-					<span class="rewrod"></span>
-				</div>
-				<div class="now">
-					<span>real</span>
-					<span class="rel"></span>
-				</div>
-			</div>
-			<div class="mak-handle">
-				<div id="ok" class="mui-pull-left">ok</div>
-				<div id="cancel" class="mui-pull-right">cancel</div>
-			</div>
-		</div>-->
-		
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -97,55 +74,89 @@
 							<div class="li_input_l"><span class="mui-pull-right goods-name">--</span></div>
 						</li>
 						
+						
 						<li class="mui-table-view-cell">
 							<div class="li_row_contain">
 								<div class="left_li_half">
 									<span class="mui-pull-left">Reward</span>
-									<span style="color: red;" class="mui-pull-right" id="goods-value">$0.00</span>
+									<span style="color: red;" class="mui-pull-right">$</span>
+									<span style="color: red;" class="mui-pull-right" id="goods-value">0.00</span> 
 								</div>
 								<div class="right_li_half">
-									<span class="mui-pull-left">Weight</span>
+									<span class="mui-pull-left">Weight</span>  
 									<span class="mui-pull-right" id="goods-weight">0kg</span>
 								</div>
 							</div>
 						</li>
-						<li class="mui-table-view-cell" id="date-ctrl">
+						<li class="mui-table-view-cell" id="date-ctrl">  
 							<div class="li_row_contain">
 								<div class="left_li_half mui-text-center">
-									<div class="li_title_1"><span>Get Time</span></div>
+									<div class="li_title_1"><span style="color: #656363;">Get Time</span></div>
 									<div class="li_title_2"><span id="get-time">--:--</span></div>
-								</div>
+								</div> 
 								<div class="right_li_half mui-text-center">
-									<div class="li_title_1"><span>Deadline</span></div>
+									<div class="li_title_1"><span style="color: #656363;">Deadline</span></div>
 									<div class="li_title_2"><span id="deadline">--:--</span></div>
 								</div>
-							</div>
+							</div>   
 						</li>
 					</ul>
 					<div class="table-diviver"></div>
 
 					<ul class="mui-table-view" id="ul2">
-						<li class="mui-table-view-cell">
-							<div class="li_left_title addl15mar">From</div>
-							<span id="sendaddr">--</span>
-						</li>
-						<li class="mui-table-view-cell desc-after">
-							<div class="li_left_title addl15mar">TO</div>
+<<<<<<< HEAD
+						<!--<li class="mui-table-view-cell ">
+							<div class="li_left_title addl15mar hhalf">From</div>
+							<div class="li_input_l word_break">
+								<span id="sendaddr"></span>
+							</div>
+						</li>-->
+						<div class="l_content">
+							<div class="l_left_title"><span>From</span></div>
+							<div class="l_right_content">
+								<span id="sendaddr">--</span>
+							</div>
+						</div>
+						<div class="l_content">
+							<div class="l_left_title"><span>To</span></div>
+							<div class="l_right_content">
+								<span id="receiveaddr">--</span>
+							</div>
+						</div>
+						<!--<li class="mui-table-view-cell desc-after word_break">
+							<div class="li_left_title addl15mar hhalf">TO</div>
 							<span id="receiveaddr">--</span>
-						</li>
+						</li>-->
 						<li class="mui-table-view-cell desc-after">
 							<div class="li_left_title addl15mar">Value</div>
-							<span id="gvalue">--</span>
+							<span id="gvalue"></span><span >$</span> 
 						</li>
-						<li class="mui-table-view-cell desc-after">
+						<li class="mui-table-view-cell desc-after word_break">
 							<div class="li_left_title addl15mar">Desc</div>
 							<span id="info">--</span>
+=======
+						<li class="mui-table-view-cell">
+							<div class="li_left_title addl15mar mui-pull-left">起始地</div>
+							<span id="sendaddr" class="right-plain mui-ellipsis">--</span>
+						</li>
+						<li class="mui-table-view-cell desc-after">
+							<div class="li_left_title addl15mar mui-pull-left">终止地</div>
+							<span id="receiveaddr" class="right-plain mui-ellipsis">--</span>
+						</li>
+						<li class="mui-table-view-cell desc-after">
+							<div class="li_left_title addl15mar mui-pull-left">价值</div>
+							<span id="gvalue" class="right-plain mui-ellipsis">--</span>
+						</li>
+						<li class="mui-table-view-cell desc-after">
+							<div class="li_left_title addl15mar mui-pull-left">描述</div>
+							<span id="info" class="right-plain mui-ellipsis">--</span>
+>>>>>>> 5868c1e1c08f729fef05add2eb62bece9a1817b3
 						</li>
 						<div id="picwrap"></div>
 					</ul>
 				</div>
 			</div>
-		</div>
+		</div>  
 		<!--加载中的蒙层-->
 		<div id="loading-mask"></div>
 		<div id="loading-box">

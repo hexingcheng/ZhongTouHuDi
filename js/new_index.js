@@ -50,6 +50,8 @@ mui.plusReady(function() {
 							if (data.res.firstName && data.res.familyName) {
 								var name = data.res.familyName + " " + data.res.firstName
 								$('.myname').text(name);
+							}else{
+								$('.myname').text(data.res.phone);
 							}
 						}
 						if (data.ret == -101) {
@@ -82,11 +84,14 @@ mui.plusReady(function() {
 															var n = BASEURL.indexOf('/a');
 															var u = BASEURL.substring(0, n);
 															var picurl = u + data.res.headPic;
-															$('.pho').attr('src', picurl)
+															$('.pho').attr('src', picurl);
+															console.log(12)
 														}
 														if (data.res.firstName && data.res.familyName) {
 															var name = data.res.familyName + " " + data.res.firstName
 															$('.myname').text(name);
+														}else{
+															$('.myname').text(data.res.phone);
 														}
 													}
 												}
