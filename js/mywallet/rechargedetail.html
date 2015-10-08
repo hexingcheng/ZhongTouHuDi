@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style>
+			#head {
+				background-color: #3BA767;
+			}
+			#head a {
+				color: #FFFFFF;
+			}
+			#head h1 {
+				padding-left: 10px;
+				color: #FFFFFF;
+				text-align: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" id="head">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">Recharge Detail</h1>
+		</header>
+		<script>
+			mui.plusReady(function() {
+				var c = plus.webview.currentWebview();
+				var rid = c.orderid;
+				var sub = plus.webview.create('http://202.202.43.107:8080/api/paypal/pay?rechargeId=' + rid, 'recharge', {
+					top: '44px',
+					bottom: '0px'
+				});
+				sub.appendJsFile('../../js/mui.min.js');
+				sub.appendJsFile('../../js/backtolist.js');
+				c.append(sub);
+			})
+		</script>
+	</body>
+
+</html>

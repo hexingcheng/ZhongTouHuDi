@@ -258,10 +258,6 @@
 							}else{
 								$('.nodata').removeClass('mui-hidden')
 							}
-//							var msgdata = {
-//								"list": JSON.parse(getstorage(whichperson)).msgList
-//							}
-//							var str = template("msglist", msgdata);
 							$('#msglists').html(str)
 						} else {
 							if (data.res.msgList.length) {
@@ -364,7 +360,9 @@
 						orderid: id
 					}
 					openWindow('./ordermsg.html', param);
-				} else if (type == 2) {} else {
+				} else if (type == 2) {
+					//活动
+				} else {
 					return;
 				}
 			})
