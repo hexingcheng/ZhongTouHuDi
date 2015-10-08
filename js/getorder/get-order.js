@@ -137,14 +137,22 @@ mui.plusReady(function() {
 		lat:getorderdata.curWd,
 		lng: getorderdata.curJd
 	}
+	console.log(JSON.stringify(center))
 	geocoder.geocode({
 		'location': center
 	}, function(results, status) {
 		if (status === google.maps.GeocoderStatus.OK) {
 			if (results[1]) {
 				currentaddr = getorderdata.curAddr = results[1].formatted_address;
-				currentjd = getorderdata.curJd = results[1].geometry.location.L
-				currentwd = getorderdata.curWd = results[1].geometry.location.H;
+				console.log()
+				if(results[0].geometry.location){
+					currentjd = getorderdata.curJd = results[0].geometry.location[Object.keys(results[0].geometry.location)[1]]
+					currentwd = getorderdata.curWd = results[0].geometry.location[Object.keys(results[0].geometry.location)[0]];
+				}else{
+					currentjd = getorderdata.curJd; 
+					currentwd = getorderdata.curWd;
+				}
+				console.log(JSON.stringify(getorderdata))
 				myAjax({
 					url: 'deliver/goodList',
 					data: getorderdata,

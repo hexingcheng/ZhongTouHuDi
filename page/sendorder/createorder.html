@@ -777,29 +777,14 @@
 							pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content"));
 						}
 					} else {
-						plus.webview.getLaunchWebview().show('slide-in-left');
-						closewebview()
+						plus.webview.getLaunchWebview().show('slide-in-left',300);
+						setTimeout(function(){
+							var web = ['draft','chooseaddr','pickaddr','create-next','sendorder/createorder'];
+							closeweb(web);
+						},1000)
 					}
 				} else {
 					cls.add("mui-hidden")
-				}
-			}
-
-			function closewebview() {
-				if (plus.webview.getWebviewById('sendorder/createorder')) {
-					plus.webview.getWebviewById('sendorder/createorder').close("slide-out-right",300)
-				}
-				if (plus.webview.getWebviewById('create-next')) {
-					plus.webview.getWebviewById('create-next').close("slide-out-right",300);
-				}
-				if (plus.webview.getWebviewById('pickaddr')) {
-					plus.webview.getWebviewById('pickaddr').close("slide-out-right",300);
-				}
-				if (plus.webview.getWebviewById('chooseaddr')) {
-					plus.webview.getWebviewById('chooseaddr').close("slide-out-right",300);
-				}
-				if (plus.webview.getWebviewById('draft')) {
-					plus.webview.getWebviewById('draft').close("slide-out-right",300)
 				}
 			}
 

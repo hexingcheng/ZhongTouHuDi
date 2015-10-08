@@ -7,7 +7,7 @@
 		<title></title>
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="../../css/common/popup.css"/>
+		<link rel="stylesheet" href="../../css/common/popup.css" />
 		<script src="../../js/common/popup.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
@@ -134,15 +134,51 @@
 			.mui-scroll-wrapper {
 				top: 52px;
 			}
+			.h100 {
+				height: 100%;
+			}
+			.nodata{
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+			.picwrap{
+				width: 80px;
+				height: 100px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -50px;
+				margin-left: -40px;
+			}
+			.picwrap img{
+				width: 80px;
+				height: 80px;
+			}
+			.msgtips{
+				width: 80px;
+				text-align: center;
+				font-size: 12px;
+				height: 20px;
+				line-height: 20px;
+			}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" class="left_img mui-action-back" />
-			<img src="../../img/2set-up.png" class="right_img" id="deleteall">
+			<img src="../../img/trash.png" class="right_img" id="deleteall">
 			<span>message</span>
 		</header>
+		<div class="nodata mui-hidden">
+			<div class="picwrap">
+				<img src="../../img/none.png">
+				<div class="msgtips">no datas</div>
+			</div>
+		</div>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -157,11 +193,11 @@
 			{{each list}}
 			<li class="mui-table-view-cell" data-src='{{$value.type}}' data-id='{{$value.params.id}}' data-url="$value.params.url">
 				<div class="mui-slider-right mui-disabled">
-					<a class="lefticon colorff34 mui-btn delete" style="padding: 0;" data-time='{{$value.time}}'>
-						<img src="../../img/2deliverorder.png" />
+					<a class="lefticon colorff34 mui-btn delete h100" style="padding: 0;" data-time='{{$value.time}}'>
+						<img src="../../img/trash.png" />
 					</a>
 				</div>
-				<div class="mui-slider-handle mui-table">
+				<div class="mui-slider-handle mui-table gethei">
 					<div class="mui-table-cell">
 						<div class="msgctt">
 							<div class="mainpic">
@@ -198,6 +234,7 @@
 		<script type="text/javascript" src="../../js/utils.js"></script>
 		<script>
 			mui.plusReady(function(systemmes) {
+//				plus.storage.removeItem('systemmes25825825885');
 				mui('.mui-scroll-wrapper').scroll();
 				plus.webview.currentWebview().setStyle({
 					scrollIndicator: 'none'
@@ -206,16 +243,25 @@
 					url: 'message/getMsg'
 				}, function(data) {
 					if (data.ret == 1) {
-						console.log('new msg:'+data.res.msgList)
+						console.log('new msg:' + data.res.msgList)
 						var personinfo = JSON.parse(getstorage('personinfo')).phone;
 						var whichperson = 'systemmes' + personinfo
+						console.log('当前用户：'+whichperson);
 						if (!getstorage(whichperson)) {
 							setstorage(whichperson, JSON.stringify(data.res));
 							console.log(getstorage(whichperson))
-							var msgdata = {
-								"list": JSON.parse(getstorage(whichperson)).msgList
+							if(data.res.msgList){
+								var msgdata = {
+									"list": JSON.parse(getstorage(whichperson)).msgList
+								}
+								var str = template("msglist", msgdata);
+							}else{
+								$('.nodata').removeClass('mui-hidden')
 							}
-							var str = template("msglist", msgdata);
+//							var msgdata = {
+//								"list": JSON.parse(getstorage(whichperson)).msgList
+//							}
+//							var str = template("msglist", msgdata);
 							$('#msglists').html(str)
 						} else {
 							if (data.res.msgList.length) {
@@ -225,10 +271,22 @@
 								var msgdata = {
 									"list": JSON.parse(getstorage(whichperson)).msgList
 								}
+								if(!msgdata.list.length){
+									$('.nodata').removeClass('mui-hidden')
+								}
 								var str = template("msglist", msgdata);
 								$('#msglists').html(str)
 							}
 						}
+					}else{
+						mui.toast('获取消息失败');
+					}
+					var len = $('.mui-table-view-cell').length;
+					for (var q = 0; q < len; q++) {
+						var h = $('.gethei').eq(q).height();
+						$('.h100').eq(q).height(h).css({
+							'line-height': h + 'px'
+						})
 					}
 				}, function(xhr, type) {
 					mui.toast(xhr.status + ":" + type)
@@ -248,7 +306,7 @@
 						for (var i = 0; i < listArr.length; i++) {
 							if (listArr[i].type == 1) {
 								if (newmsg[j].params.id == listArr[i].params.id) {
-									listArr.splice(i,1);
+									listArr.splice(i, 1);
 									newmsg[j].ifnew = 1;
 									var t = [];
 									t.push(newmsg[j])
@@ -277,24 +335,24 @@
 				$('#msglists').html(str);
 			}
 			mui('#msglists').on('tap', '.mui-table-view-cell', function() {
-				if($('.newmsg',$(this))){
+				if ($('.newmsg', $(this))) {
 					var personinfo = JSON.parse(getstorage('personinfo')).phone;
 					var whichperson = 'systemmes' + personinfo;
 					var msginfo = JSON.parse(getstorage(whichperson)).msgList;
 					var id = $(this).attr('data-id');
-					for(var i = 0;i<msginfo.length;i++){
-						if(msginfo[i].type!=1){
+					for (var i = 0; i < msginfo.length; i++) {
+						if (msginfo[i].type != 1) {
 							continue;
 						}
-						if(msginfo[i].params.id==id){
-							msginfo[i].ifnew=0
+						if (msginfo[i].params.id == id) {
+							msginfo[i].ifnew = 0
 						}
 					}
 					var datas = {
-						'msgList':msginfo
+						'msgList': msginfo
 					}
 					setstorage(whichperson, JSON.stringify(datas));
-					$('.newmsg',$(this)).remove();
+					$('.newmsg', $(this)).remove();
 				}
 				var type = this.getAttribute('data-src');
 				var id
@@ -311,51 +369,53 @@
 				}
 			})
 			 mui('#msglists').on('tap', '.delete', function() {
-				var time = this.getAttribute('data-time');
-				var personinfo = JSON.parse(getstorage('personinfo')).phone;
-				var whichperson = 'systemmes' + personinfo
-				var old = JSON.parse(getstorage(whichperson));
-				var listArr = old.msgList;
-				for (var i = 0; i < listArr.length; i++) {
-					if (listArr[i].time == time) {
-						listArr.splice(i, 1);
+					var time = this.getAttribute('data-time');
+					var personinfo = JSON.parse(getstorage('personinfo')).phone;
+					var whichperson = 'systemmes' + personinfo
+					var old = JSON.parse(getstorage(whichperson));
+					var listArr = old.msgList;
+					for (var i = 0; i < listArr.length; i++) {
+						if (listArr[i].time == time) {
+							listArr.splice(i, 1);
+						}
 					}
+					var obj = {
+						'msgList': listArr
+					}
+					setstorage(whichperson, JSON.stringify(obj));
+					document.getElementById('msglists').removeChild(this.parentNode.parentNode);
+				})
+				// 弹出框参数
+			var options = {
+					height: 160,
+					title: {
+						height: 40,
+						content: "删除提示"
+					},
+					main: {
+						content: "this action will delete all the system messages,sure complete ?"
+					},
+					buttons: [{
+						name: "删除",
+						click: function() {
+							return true
+						}
+					}, {
+						name: "取消",
+						click: function() {
+							return true;
+						}
+					}]
 				}
-				var obj = {
-					'msgList': listArr
-				}
-				setstorage(whichperson, JSON.stringify(obj));
-				document.getElementById('msglists').removeChild(this.parentNode.parentNode);
-			})
-			 
-			 // 弹出框参数
-			 var options = {
-				height : 160,
-				title : {
-					height : 40,
-					content : "删除提示"
-				},
-				main : {
-					content : "this action will delete all the system messages,sure complete ?"
-				},
-				buttons : [{
-					name : "删除",
-					click : function(){ return true }
-				},{
-					name : "取消",
-					click : function(){ return true; }
-				}]
-			}
-			 
-			 // 删除所有消息提醒
-			 document.getElementById('deleteall').addEventListener('tap', function() {
+				// 删除所有消息提醒
+			document.getElementById('deleteall').addEventListener('tap', function() {
 				if ($('#msglists').html()) {
-					
-					options.buttons[0].click = function(){
+					options.buttons[0].click = function() {
 						var personinfo = JSON.parse(getstorage('personinfo')).phone;
 						var whichperson = 'systemmes' + personinfo;
 						plus.storage.removeItem(whichperson);
 						$('#msglists').detach();
+						$('.nodata').removeClass('mui-hidden')
 					}
 					var pop = new Popup(options);
 					pop.show();
@@ -363,7 +423,6 @@
 					return;
 				}
 			})
-			 
 		</script>
 	</body>
 

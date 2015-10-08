@@ -162,32 +162,39 @@
 			}]
 		});
 		mui.plusReady(function() {
+			var c = plus.webview.currentWebview();
+			var from = c.type;
+			alert(from);
 			embed = plus.webview.create("./mapcontent.html", "mapcontent", {
 				top: "144px",
 				bottom: "60px"
 			});
-			plus.webview.currentWebview().append(embed);
+			c.append(embed);
 			var clocation;
 			document.getElementById('chooseaddr').addEventListener('tap', function() {
 				var addr = plus.webview.getWebviewById('chooseaddr');
 				if (addr) {
-					plus.webview.getWebviewById('chooseaddr').show('slide-in-right',300);
+					plus.webview.getWebviewById('chooseaddr').show('slide-in-right', 300);
 					mui.fire(addr, 'clearinput')
-				}else{
+				} else {
 					openWindow('./chooseaddr.html')
 				}
 			})
 			document.getElementById('ok').addEventListener('tap', function() {
 				var myaddr = $('#chooseaddr').text() + $("#detail").val();
-				var nextcreate = plus.webview.getWebviewById('create-next');
-				mui.fire(nextcreate, 'getaddrs', {
-					"addrs": myaddr,
-					"mylocation": clocation
-				});
-				nextcreate.show('slide-in-left', 300);
-				setTimeout(function(){
+				if (from) {
+					alert(1)
+				} else {
+					var nextcreate = plus.webview.getWebviewById('create-next');
+					mui.fire(nextcreate, 'getaddrs', {
+						"addrs": myaddr,
+						"mylocation": clocation
+					});
+					nextcreate.show('slide-in-left', 300);
+				}
+				setTimeout(function() {
 					plus.webview.currentWebview().close();
-				},2000)
+				}, 2000)
 			})
 			window.addEventListener('getaddr', function(eve) {
 				var addr = eve.detail.addr;
@@ -208,21 +215,22 @@
 					location: eve.detail.clocation
 				}
 			})
-			mui.back = function(){
+			mui.back = function() {
 				var creatnext = plus.webview.getWebviewById('create-next');
-				if(creatnext){
-					creatnext.show('slide-in-left',300)
-				}else{
+				if (creatnext) {
+					creatnext.show('slide-in-left', 300)
+				} else {
 					mui.back();
 				}
-				setTimeout(function(){
+				setTimeout(function() {
 					closeweb()
-				},1000);
+				}, 1000);
 			}
-			function closeweb(){
-				var web = ['chooseaddr','pickaddr'];
-				for(var i = 0;i<web.length;i++){
-					if(plus.webview.getWebviewById(web[i])){
+
+			function closeweb() {
+				var web = ['chooseaddr', 'pickaddr'];
+				for (var i = 0; i < web.length; i++) {
+					if (plus.webview.getWebviewById(web[i])) {
 						plus.webview.getWebviewById(web[i]).close();
 					}
 				}
