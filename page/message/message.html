@@ -8,6 +8,7 @@
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/common/popup.css"/>
+<!--		<link rel="stylesheet" href="../../css/share_main.css" />-->
 		<script src="../../js/common/popup.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
@@ -134,7 +135,32 @@
 			.mui-scroll-wrapper {
 				top: 52px;
 			}
-		</style>
+			/* 等待加载页面内容  */
+			#loading-mask {
+				position: absolute;
+				z-index: 998;
+				background: #fff; 
+				top: 52px;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+			#loading-box{
+				position: absolute;
+				z-index: 999;
+				width: 5em; 
+				height: 5em;
+				left: 50%;
+				overflow: hidden; 
+				margin-left: -40px;
+				top: 50%;
+				margin-top: -40px;
+			}
+			#loading-box  img{
+				height: 5em;
+				width: 5em;  
+			}
+</style>
 	</head>
 
 	<body>
@@ -150,6 +176,11 @@
 					</ul>
 				</div>
 			</div>
+		</div>
+		<!-- 加载中的蒙层 -->
+		<div id="loading-mask"></div>
+		<div id="loading-box">
+			<img src="../../img/loading2.gif" alt="loading" width="100%" />
 		</div>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script src="../../js/template.js"></script>
@@ -229,7 +260,10 @@
 								$('#msglists').html(str)
 							}
 						}
+						$('#loading-mask').css('display','none');
+						$('#loading-box').css('display','none');
 					}
+				
 				}, function(xhr, type) {
 					mui.toast(xhr.status + ":" + type)
 				})

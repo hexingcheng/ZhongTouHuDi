@@ -139,9 +139,29 @@
 			.mui-table-view-cell .li_left_title{
 				width: 6em;
 			}
+			.main_mask{
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0; 
+				z-index: 100; 
+				background-color: transparent;
+			}
+			.loading-box {
+				position: absolute;
+				z-index: 999;
+				width: 5em; 
+				height: 5em;
+				left: 50%;
+				overflow: hidden; 
+				margin-left: -40px;
+				top: 50%;
+				margin-top: -40px;
+			}
 		</style>
 	</head>
-
+ 
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />  
@@ -150,10 +170,15 @@
 			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" />
 		</header>
 		<!-- 加载中的蒙层 -->
-		<div id="loading-mask"></div>
+		<!--<div id="loading-mask"></div>
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%" />
-		</div>
+		</div>-->
+		<div class="main_mask mui-hidden" id="main_mark"> 
+			<div class="loading-box"> 
+			<img src="../../img/loading2.gif" alt="loading" width="100%" />
+			</div>
+		</div>  
 		<!--蒙版-->
 		<div class="content_mask mui-hidden"></div>
 		<div class="mui-content">
@@ -387,6 +412,7 @@
 					var res = camera.supportedImageResolutions[0];
 					var fmt = camera.supportedImageFormats[0];
 					camera.captureImage(function(path) {
+						$('#main_mark').removeClass('mui-hidden');
 						dealpic(path);
 					})
 				};
@@ -424,7 +450,8 @@
 											}, function(obj) {
 												if (obj.ret == 1) {
 													var p = headpicurl + head;
-													$('#headpic').attr('src', p);
+													$('#headpic').attr('src', p); 
+													$('#main_mark').addClass('mui-hidden');
 													var i = plus.webview.getLaunchWebview();
 													mui.fire(i, 'setaccount', {
 														headPic: head
@@ -449,6 +476,7 @@
 
 				function bygallery() {
 						plus.gallery.pick(function(path) {
+							$('#main_mark').removeClass('mui-hidden');
 							dealpic(path);
 						}, function(e) {
 							mui.toast('选择图片失败' + e)
@@ -536,7 +564,7 @@
 									$('.male').addClass('mui-hidden');
 								}
 								var i = plus.webview.getLaunchWebview();
-								mui.fire(i, 'setaccount', data);
+								mui.fire(i, 'setaccount', obj);
 								setTimeout(function(){
 									cb && cb();
 								},300)
