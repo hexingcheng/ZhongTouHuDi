@@ -34,7 +34,7 @@ function pulldownRefresh(){
 			wait: wait
 		}, function(data) {
 			var orderdata = {
-				"list": data.res
+				"list": data.res.orderList
 			}
 			plus.nativeUI.closeWaiting();
 			var html = template("template", orderdata);
@@ -67,7 +67,7 @@ function pullupRefresh(){
 			wait: wait
 		}, function(data) {
 			var orderdata = {
-				"list": data.res
+				"list": data.res.orderList
 			}
 			var html = template("template", orderdata);
 			if (!html) {
@@ -112,7 +112,7 @@ mui.plusReady(function() {
 			wait: false
 		}, function(data) {
 			var orderdata = {
-				"list": data.res
+				"list": data.res.orderList
 			}
 			var html = template("template", orderdata);
 			if (!html) {

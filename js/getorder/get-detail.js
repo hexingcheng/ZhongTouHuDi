@@ -77,7 +77,8 @@ mui.plusReady(function() {
 					if (data.ret == 1) {
 						plus.nativeUI.closeWaiting();
 						openWindow('./get-result.html', {
-							orderId: order.orderid
+							orderId: order.orderid,
+							'types':'议价'
 						});
 					} else if (data.ret == 2) {
 						plus.nativeUI.closeWaiting();
@@ -192,7 +193,8 @@ mui.plusReady(function() {
 					plus.nativeUI.closeWaiting();
 					if (data.ret == 1) {
 						openWindow("./get-result.html", {
-							orderId: order.orderid
+							orderId: order.orderid,
+							types:'接单'
 						});
 					} else if (data.ret == 2) {
 						mui.toast("此单已不存在");

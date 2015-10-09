@@ -32,6 +32,8 @@
       	mui.plusReady(function(){
       		var cid = plus.webview.currentWebview().payid;
       		var sub = plus.webview.create( 'http://202.202.43.107:8080/api/paypal/pay?rechargeId='+cid, 'paypal', {top:'52px',bottom:'0px'});
+      		sub.appendJsFile('../../js/mui.min.js');
+      		sub.appendJsFile('../../js/backtolist.js');
       		plus.webview.currentWebview().append(sub);
       		mui.back = function(){
       			var mysendorder = plus.webview.getWebviewById('mysendorder/my-send-order');

@@ -50,7 +50,7 @@ mui.plusReady(function() {
 							if (data.res.firstName && data.res.familyName) {
 								var name = data.res.familyName + " " + data.res.firstName
 								$('.myname').text(name);
-							}else{
+							} else {
 								$('.myname').text(data.res.phone);
 							}
 						}
@@ -90,7 +90,7 @@ mui.plusReady(function() {
 														if (data.res.firstName && data.res.familyName) {
 															var name = data.res.familyName + " " + data.res.firstName
 															$('.myname').text(name);
-														}else{
+														} else {
 															$('.myname').text(data.res.phone);
 														}
 													}
@@ -182,7 +182,7 @@ function getsystemmsg() {
 				setstorage(whichperson, JSON.stringify(data.res));
 			} else {
 				handlemsg(data);
-			} 
+			}
 		} else {
 			return;
 		}
@@ -321,7 +321,13 @@ document.getElementById('chat-info').addEventListener('tap', function() {
 })
 document.getElementById('hlep-son').addEventListener('tap', function() {
 	iflogin(function() {
-		openWindow('./page/sendorder/createorder.html');
+		var create = plus.webview.getWebviewById('sendorder/createorder');
+		if (create) {
+			create.reload();
+
+		} else {
+			openWindow('./page/sendorder/createorder.html');
+		}
 	})
 })
 document.getElementById('i-will').addEventListener('tap', function() {

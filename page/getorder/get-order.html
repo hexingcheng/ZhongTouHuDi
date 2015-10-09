@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -9,30 +10,31 @@
 		<link rel="stylesheet" type="text/css" href="../../css/getorder/get-order.css" />
 		<script src="../../js/mui.min.js"></script>
 	</head>
+
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" class="left_img mui-action-back" alt="" />
-			<img src="../../img/2set-up.png" class="right_img" id="filter-page"/>
+			<img src="../../img/2set-up.png" class="right_img" id="filter-page" />
 			<span>Order</span>
 		</header>
 		<div class="mui-content">
 			<div id="segmentedControl" class="mui-segmented-control" style="border-bottom: 1px solid #D1D1D1;">
-				<a class="mui-control-item mui-active" data-sort="time" data-desc="asc" data-num = "0">Latest
+				<a class="mui-control-item mui-active" data-sort="time" data-desc="asc" data-num="0">Latest
 				<span class="sort-icon">
 					<img src="../../img/turn-up.png"/>
 				</span>
 				</a>
-				<a class="mui-control-item" data-sort="dist" data-desc="asc" data-num = "0">Distance
+				<a class="mui-control-item" data-sort="dist" data-desc="asc" data-num="0">Distance
 				<span class="sort-icon">
 					<img src="../../img/turn-up.png"/>
 				</span>
 				</a>
-				<a class="mui-control-item" data-sort="price" data-desc="asc" data-num = "0">reward
+				<a class="mui-control-item" data-sort="price" data-desc="asc" data-num="0">reward
 				<span class="sort-icon">
 					<img src="../../img/turn-up.png"/>
 				</span>
 				</a>
-				<a class="mui-control-item" data-sort="weight" data-desc="asc" data-num = "0">weight
+				<a class="mui-control-item" data-sort="weight" data-desc="asc" data-num="0">weight
 				<span class="sort-icon">
 					<img src="../../img/turn-up.png"/>
 				</span>
@@ -63,12 +65,12 @@
 					}
 					var status = Number($(this).attr('data-num'));
 					var num = ++status;
-					$(this).attr('data-num',num);
-					if(status % 2 == 0){
-						$(this).find('img').attr('src','../../img/turn-up.png');
+					$(this).attr('data-num', num);
+					if (status % 2 == 0) {
+						$(this).find('img').attr('src', '../../img/turn-up.png');
 						$(this).attr('data-desc', "asc");
-					}else{
-						$(this).find('img').attr('src','../../img/turn-down.png')
+					} else {
+						$(this).find('img').attr('src', '../../img/turn-down.png')
 						$(this).attr('data-desc', 'desc')
 					}
 					var param = {};
@@ -92,14 +94,14 @@
 				param.sortVal = $('.mui-control-item').filter('.mui-active').attr('data-desc');
 				mui.fire(embed, 'renderdata', param)
 			})
-			mui.back = function() {
-				var index = plus.webview.getLaunchWebview();
-				index.show("slide-in-left", 300)
-				setTimeout(function() {
-					plus.webview.currentWebview().close("none", 0);
-				}, 1000)
-			}
-			
+//			 mui.back = function() {
+//				var index = plus.webview.getLaunchWebview();
+//				index.show("slide-in-left",300, function() {
+//					setTimeout(function() {
+//						plus.webview.currentWebview().close();
+//					}, 1000)
+//				})
+//			}
 		</script>
 	</body>
 

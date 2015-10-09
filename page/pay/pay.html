@@ -28,7 +28,6 @@
 			html, body, .mui-content {background-color: #fff;}
 		</style>
 	</head>
-
 	<body class="bg-color">
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
@@ -137,12 +136,16 @@
 									}, function(data) {
 										if (data.ret == 1) {
 											mui.toast('check success');
+											document.getElementById("next-step").innerHTML = 'sure';
+											document.getElementById("next-step").setAttribute('checked',false)
 											paymoney('2', money, function() {
 												mui.toast(payid);
 												openWindow('./result.html');
 											})
 										} else if (data.ret == 2) {
-											mui.toast('failed');
+											mui.toast('密码错误');
+											document.getElementById("next-step").innerHTML = 'sure';
+											document.getElementById("next-step").setAttribute('checked',false)
 											return;
 										}
 									})
@@ -197,12 +200,11 @@
 						}
 					}, function(data) {
 						if (data.ret == 1) {
-							payid = data.res.rechargeId;
-							if(data.res.rechargeId){
+							if(data.res&&data.res.rechargeId){
 								payid = data.res.rechargeId;
 							}
 							console.log(JSON.stringify(data))
-							cb();
+							cb&&cb();
 						}
 					}, function(xhr, type) {
 						mui.toast(xhr.status + ":" + type);

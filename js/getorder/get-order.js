@@ -128,30 +128,38 @@ mui.plusReady(function() {
 	mui('.mui-scroll-wrapper').scroll();
 	opener = plus.webview.getWebviewById("getorder/get-order");
 	//修改
-	if(!plus.storage.getItem('longitude')&&plus.storage.getItem('latitude')){
+	if (!plus.storage.getItem('longitude') && plus.storage.getItem('latitude')) {
 		getlatlng();
 	}
-	getorderdata.curJd = plus.storage.getItem('longitude')-0;
-	getorderdata.curWd = plus.storage.getItem('latitude')-0;
+	getorderdata.curJd = plus.storage.getItem('longitude') - 0;
+	getorderdata.curWd = plus.storage.getItem('latitude') - 0;
 	var center = {
-		lat:getorderdata.curWd,
+		lat: getorderdata.curWd,
 		lng: getorderdata.curJd
 	}
+	console.log(JSON.stringify(center))
 	geocoder.geocode({
 		'location': center
 	}, function(results, status) {
 		if (status === google.maps.GeocoderStatus.OK) {
 			if (results[1]) {
 				currentaddr = getorderdata.curAddr = results[1].formatted_address;
-				currentjd = getorderdata.curJd = results[1].geometry.location.L
-				currentwd = getorderdata.curWd = results[1].geometry.location.H;
+				console.log()
+				if (results[0].geometry.location) {
+					currentjd = getorderdata.curJd = results[0].geometry.location[Object.keys(results[0].geometry.location)[1]]
+					currentwd = getorderdata.curWd = results[0].geometry.location[Object.keys(results[0].geometry.location)[0]];
+				} else {
+					currentjd = getorderdata.curJd;
+					currentwd = getorderdata.curWd;
+				}
+				console.log(JSON.stringify(getorderdata))
 				myAjax({
-					url: 'deliver/goodList',
+					url: 'deliver/goodList', 
 					data: getorderdata,
 					wait: false
 				}, function(data) {
 					var orderdata = {
-							"list": data.res
+							"list": data.res.orderList 
 						}
 						// 模板渲染
 					var html = template("template", orderdata);
@@ -214,7 +222,7 @@ mui.plusReady(function() {
 					data: getorderdata
 				}, function(data) {
 					var orderdata = {
-							"list": data.res
+							"list": data.res.orderList
 						}
 						// 模板渲染
 					var html = template("template", orderdata);
@@ -243,9 +251,9 @@ mui.plusReady(function() {
 	window.addEventListener('fresh', function() {
 		pulldownRefresh();
 	})
-	
+
 	// 点击页面切换的时候，进行切换页面等待窗口
-	window.addEventListener("waiting", function(){
+	window.addEventListener("waiting", function() {
 		var waithtml = '<div class="data-wait">数据加载中...</div>';
 		$('#ordercontent').html(waithtml);
 	})

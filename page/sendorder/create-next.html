@@ -570,6 +570,7 @@
 				// 
 				var startdate, enddate;
 				mui("#dalegate").on("tap", ".gettimes", function(){
+					$('input').blur();
 					var that = this;
 					var type = that.getAttribute("data-type");
 					if(type == "end"){

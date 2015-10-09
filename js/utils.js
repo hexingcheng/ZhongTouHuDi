@@ -365,6 +365,14 @@ function getlatlng(success){
 		mui.toast('您的手机不支持定位功能')
 	}
 }
+function closeweb(webarr){
+	var len = webarr.length;
+	for(var i = 0, web = plus.webview.getWebviewById(webarr[i]);i<len;i++){
+		if(web){
+			web.close()
+		}
+	}
+}
 //function getmsgs() {
 //	myAjax({
 //		url: 'message/getMsg'

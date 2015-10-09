@@ -119,7 +119,7 @@
 			</div>
 		</div>
 	</div>
-	
+	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/mui.listpicker.js"></script>
 	<script src="../../js/mui.dtpicker.js"></script>
 	<script src="../../js/utils.js"></script>
@@ -200,6 +200,8 @@
 			// 选择日期
 			var startdate, enddate;
 			mui("#dalegate").on("tap", ".date-box", function(){
+				$('input').blur()
+				$('textarea').blur();
 				var that = this;
 				var type = that.getAttribute("data-type");
 				if(type == "end"){

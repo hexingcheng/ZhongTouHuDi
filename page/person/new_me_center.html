@@ -374,8 +374,7 @@
 						if (obj.ret == 1) {
 							$('#loading-mask').css('display', 'none');
 							$('#loading-box').css('display', 'none');
-							var data = obj.res;
-							console.log(JSON.stringify(data))
+							var data = obj.res; 
 							var n = BASEURL.indexOf('/a');
 							var imgurl = BASEURL.substring(0, n);
 							var pic = imgurl + data.headPic;
@@ -393,7 +392,7 @@
 								$('.male').removeClass('mui-hidden');
 							} else {
 								$('.female').removeClass('mui-hidden');
-							}
+							} 
 						}
 					},
 					function(xhr, type) {
@@ -436,7 +435,7 @@
 										url: "common/file/imgUp",
 										data: data
 									},
-									function(obj) {
+									function(obj) { 
 										if (obj.ret == 1) {
 											data = {
 												fid: obj.res.fid
