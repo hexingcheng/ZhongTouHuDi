@@ -38,9 +38,9 @@
 				z-index: 999;  
 				left: 50%;
 			    margin-left:-40%;
-			    top: 50%;
+			    top: 40%;
 			    text-align: center;
-			    margin-top: -25%;
+			    margin-top: -20%;
 				overflow: hidden;
 			} 
 			.spplay_select_type .mui-table-view li{
@@ -72,9 +72,10 @@
 			.mui-table-view .mui-table-cell span,label{
 				color: #5f5d5d;
 			}
-			/*.mui-scroll-wrapper .mui-scroll{
-				height: 100%; 
-			}*/
+			.mar_bottom{
+				width: 100%;
+				height: 70px;
+			}
 		</style>
 	</head>
 
@@ -232,19 +233,20 @@
 								<input type="text" class="apply_input edit" placeholder="请选择证件" readonly="readonly" id="select_type_show" />
 							</div>
 						</li>
-						
-						<li class="mui-table-view-cell" style="">
+						<li class="mui-table-view-cell">
 							<img src="../../img/EDIT22.png" class=" li_left_img" alt="" />
 							<div class="li_input_l">
 								<input type="number" class="apply_input edit" placeholder="请输入对应的证件号" id="id_number"  />
 							</div>
-						</li>
+						</li> 
+						
 					</ul>
 					<div class="clear_padd mui-hidden info " id="porel">
 						<img src="" class="mui-pull-left" id="pic_one"/>
 						<img src="" class="pic_two " id="pic_two" />
 						<img src="" class="mui-pull-right" id="pic_three" />
 					</div>
+					<div class="mar_bottom"></div>
 				</div>
 			</div>
 		</div>

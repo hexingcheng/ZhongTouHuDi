@@ -188,3 +188,7 @@ body .mui-content{
 	.presee .mui-slider .mui-slider-item a img {
 		position: absolute;
 	}
+	.mar_bottom{
+		width: 100%;
+		height: 70px;
+	}
