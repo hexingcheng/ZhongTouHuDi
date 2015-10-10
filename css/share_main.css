@@ -306,8 +306,8 @@ footer .nav_footer .button_bg_rest{
 	position: absolute;
 	z-index: 998;
 	background: #fff; 
-/*	top: 52px;*/
-	top:0;
+	top: 52px;
+	/*top:0;*/
 	left: 0;
 	right: 0;
 	bottom: 0;
