@@ -8,13 +8,6 @@
 		<link rel="stylesheet" href="../../css/share_main.css" />
 		<link rel="stylesheet" href="apply.css" />
 		<script src="../../js/mui.js"></script>
-		<script type="text/javascript">
-			mui.init({
-				gestureConfig:{
-				 doubletap: true, //默认为false
-				}
-			})
-		</script>
 	</head>
 	<body>
 		<div class="apply_mark">
@@ -83,7 +76,7 @@
 									<p class="text">[holding certificate nearer to the front of the camera, filming the chest above. fous the certificate above fonts and pictures clearly visible]</p>
 								</div>
 							</div>
-							<div class="apply_idcard_div deal_marb">
+							<div class="apply_idcard_div deal_marb" style="margin-bottom: 70px;">
 								<div class="img_div">
 									<img src="../../img/case.png" class="case" alt="" name="three" />
 									<span>case</span>
@@ -95,6 +88,7 @@
 									<p class="text">[holding certificate nearer to the front of the camera, filming the chest above. fous the certificate above fonts and pictures clearly visible]</p>
 								</div>
 							</div>
+							<div class="mar_bottom"></div> 
 						</div>
 					</div>
 				</div>
@@ -110,7 +104,7 @@
 			</ul>
 		</div>
 		<footer class="mui-bar mui-bar-footer">
-			<button class="nav_footer mui-btn id_button" >  
+			<button class="nav_footer mui-btn id_button" id="id_button">  
 				<span>Done</span>
 			</button>
 		</footer>
@@ -179,14 +173,16 @@
 				var fmt = camera.supportedImageFormats[0];
 				var _this = context;
 				camera.captureImage(function(path) {
+					$('#loading-mask').removeClass('mui-hidden');//loadding
 					dealpic(path, _this);
 				})
 			}
 			function dealpic(path, context) {
 					plus.io.resolveLocalFileSystemURL(path, function(entry) {
 						var local = entry.toLocalURL();
-						$('#loading-mask').removeClass('mui-hidden');//loadding
-						dealImage(local, {  
+						
+						dealImage(local, { 
+							width:17*8,
 							quality: 0.6
 
 						}, function(base) {
@@ -215,14 +211,14 @@
 										}
 										
 										$("." + fo).attr('src', path).css('display', 'block');
-										$('#loading-mask').addClass('mui-hidden');  
+										$('#loading-mask').addClass('mui-hidden'); 
 									} else {
 										mui.toast('请先登录在操作！');
 										
 									}
 								},
 								function(xhr, type) {
-									console.log(xhr.status);
+//									console.log(xhr.status);
 									$('#loading-mask').addClass('mui-hidden'); 
 									mui.toast('请再次上传');  
 								}, function() {  
@@ -236,6 +232,7 @@
 			function bygallery(context) {
 				
 				plus.gallery.pick(function(path) {
+					$('#loading-mask').removeClass('mui-hidden');//loadding
 					dealpic(path, context);
 				}, function(e) {
 					mui.toast('选择图片失败' + e)
@@ -298,14 +295,17 @@
 							plus.storage.removeItem('nation_pic3');
 						} else {
 							alert(obj.ret );
-						}
+						} 
 					}, function(xhr, type) {
 						console.log(xhr.status);
+						
 					})
 				}
+					
+				
 			}
-			$('.id_button').on('tap', function() {
-				checke();
+			$('#id_button').on('tap', function() {
+				checke();  
 			})
 		});
 	</script>

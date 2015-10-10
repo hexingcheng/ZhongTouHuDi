@@ -11,7 +11,7 @@ body .mui-content{
 	}
 /*apply_info*/
 	.bell_title{
-		display: block;
+		/*display: block;*/
 		width: auto;
 		height: 48px; 
 		margin: auto;
@@ -19,12 +19,15 @@ body .mui-content{
 		left: 50%;
 		overflow: hidden;
 		color: #5f5d5d;
+		text-align: center;
+		vertical-align:middle;
 	}
 	.bell_title img{
+		display: inline;
 		width: 34px;
 		height: 34px;
-		margin: 7px;
-		vertical-align: middle;
+		margin-right: -20px; 
+		margin: 7px auto;
 	}
 	.mui-table-view .title_{
 		padding: 0;
@@ -187,4 +190,8 @@ body .mui-content{
 	}
 	.presee .mui-slider .mui-slider-item a img {
 		position: absolute;
+	}
+	.mar_bottom{
+		width: 100%;
+		height: 70px;
 	}

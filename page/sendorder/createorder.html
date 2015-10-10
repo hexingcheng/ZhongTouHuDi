@@ -589,6 +589,7 @@
 		getdata.gValue = "";
 		getdata.pics = "";
 		getdata.info = "";
+		getdata.money = 0
 		var picindex = 0;
 
 		function layout() {
@@ -736,6 +737,7 @@
 				}
 				//  返回按钮处理
 			var pop;
+			var back = mui.back;
 			mui.back = function() {
 				var cls = document.querySelector(".presee").classList;
 				var leemask = document.getElementById("lee-mask"); // 判断当前蒙层是否存在
@@ -754,26 +756,28 @@
 							options.title.content = "提示";
 							options.main.content = 'you can use draft orde r to resend';
 							options.buttons[0].click = function() {
+								console.log(JSON.stringify(getdata))
 								myAjax({
 									url: 'order/resOrderByGood',
 									data: getdata
-								}, function() {
-									plus.webview.getLaunchWebview().show('slide-in-left', 300)
-									var webs = ['draft', 'create-next', 'pickaddr', 'chooseaddr','sendorder/createorder']
-									setTimeout(function() {
-										closeweb(webs)
-									}, 1000)
-									mui.toast('保存草稿成功！');
+								}, function(data) {
+									if (data.ret == 1) {
+										back()
+										mui.toast('保存草稿成功！');
+									}else{
+										mui.toast(data.ret+":保存草稿失败")
+									}
 								}, function(xhr, type) {
 									mui.toast('出错了' + type)
 								})
 							}
 							options.buttons[1].click = function() {
-								plus.webview.getLaunchWebview().show('slide-in-left', 300);
-								var webs = ['draft', 'create-next', 'pickaddr', 'chooseaddr','sendorder/createorder']
-									setTimeout(function() {
-										closeweb(webs)
-									}, 1000)
+//								plus.webview.getLaunchWebview().show('slide-in-left', 300);
+//								var webs = ['draft', 'create-next', 'pickaddr', 'chooseaddr', 'sendorder/createorder']
+//								setTimeout(function() {
+//									closeweb(webs)
+//								}, 1000)
+								back();
 							}
 							pop = new Popup(options);
 							pop.show();
@@ -781,19 +785,21 @@
 							pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content"));
 						}
 					} else {
-						plus.webview.getLaunchWebview().show('slide-in-left', 300)
-						var webs = ['draft', 'create-next', 'pickaddr', 'chooseaddr']
-						setTimeout(function() {
-							closeweb(webs)
-						}, 1000)
+//						plus.webview.getLaunchWebview().show('slide-in-left', 300)
+//						var webs = ['draft', 'create-next', 'pickaddr', 'chooseaddr']
+//						setTimeout(function() {
+//							closeweb(webs)
+//						}, 1000)
+						back()
 					}
 				} else {
 					cls.add("mui-hidden")
 				}
 			}
-			window.addEventListener('clear',function(){
+			window.addEventListener('clear', function() {
 				plus.webview.currentWebview().reload()
 			})
+
 			function bycamera(contexts) {
 				$(contexts).parent().attr('href', "#");
 				var camera = plus.camera.getCamera();

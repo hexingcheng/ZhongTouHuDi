@@ -53,7 +53,7 @@ function pulldownRefresh() {
 		dom.style.display = "none";
 		mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 		var orderdata = {
-				"list": data.res
+				"list": data.res.orderList
 			}
 			// 模板渲染
 		var html = template("template", orderdata);
@@ -93,7 +93,7 @@ function pullupRefresh() {
 	}, function(data) {
 		mui('#pullrefresh').pullRefresh().endPullupToRefresh()
 		var orderdata = {
-				"list": data.res
+				"list": data.res.orderList
 			}
 			// 模板渲染
 		var html = template("template", orderdata);

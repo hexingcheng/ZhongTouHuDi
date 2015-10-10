@@ -12,16 +12,16 @@
 		<style>
 			html,body{
 				height: 100%;
-				width: 100%;
+				width: 100%;  
 			}
-			 .mui-table-view-cell .select_sex input{
+			 /*.mui-table-view-cell .select_sex input{
 				height: auto; 
 				font-size: 14px; 
 				width: 14px;
 			}
 			.select_sex label{
 				color: silver;
-			}
+			}*/
 			.nation_mark {
 				display: none;
 				position: absolute;
@@ -38,9 +38,9 @@
 				z-index: 999;  
 				left: 50%;
 			    margin-left:-40%;
-			    top: 50%;
+			    top: 40%;
 			    text-align: center;
-			    margin-top: -25%;
+			    margin-top: -20%;
 				overflow: hidden;
 			} 
 			.spplay_select_type .mui-table-view li{
@@ -65,16 +65,54 @@
 				color:  #5f5d5d;
 				background-color: #EEE;
 			}
-			input[disabled]{
+			input[disabled],input[type=text]{
 				opacity: 1;
 				color: #5f5d5d !important; 
 			}
 			.mui-table-view .mui-table-cell span,label{
 				color: #5f5d5d;
 			}
-			/*.mui-scroll-wrapper .mui-scroll{
-				height: 100%; 
-			}*/
+			.mar_bottom{
+				width: 100%;
+				height: 70px;
+			}
+			.mui-popover{
+				background-color: rgba(0,0,0,.4);
+			}
+			.select_sex{
+				position: absolute;
+				z-index: 999;
+				height: 9.7em;
+				width: 80%;
+				top: 50%;
+				margin-top: -5em;  
+				left: 50%;
+				margin-left: -40%;
+				line-height:3em;
+				color: #5f5d5d;
+				background-color: #fff; 
+			}
+			.select_sex ul,.select_sex li{
+				background-color: #fff;
+			}
+			.select_sex ul:after{
+				width: 0;
+			}
+			.select_sex ul .mui-table-view-cell:after{
+				width: 0;
+				
+			}
+			.mui-scroll-wrapper .mui-table-view-cell {
+				border-left: 1px solid #c8c7cc; 
+				border-right: 1px solid #c8c7cc; 
+			}
+			.mui-scroll-wrapper .info_edit{
+				margin: 0 2%;
+			}   
+			.mui-table-view .mui-table-view-cell:after{
+				left: 5px;
+				right: 5px;
+			}
 		</style>
 	</head>
 
@@ -122,6 +160,19 @@
 				<li class="mui-table-view-cell mui-text-left">驾驶证</li>
 			</ul>
 		</div>
+			<div class="select_sex mui-popover" id="select_sex">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell"> <strong style="color: black;">请选择性别</strong></li> 
+					<li class="mui-table-view-cell">
+						<img src="../../img/male2.png" alt="" class="li_left_img" />
+						<span>男</span>
+					</li>
+					<li class="mui-table-view-cell">
+						<img src="../../img/female2.png" alt="" class="li_left_img"/>
+						<span>女</span>
+					</li>
+				</ul>
+			</div>
 		<header class="mui-bar mui-bar-nav nav_header ">
 			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
 			<span>Application For Deliverer</span>
@@ -129,10 +180,10 @@
 		<footer class="mui-bar mui-bar-footer content_chan" id="footer" >  
 			<button class="mui-btn nav_footer" id="apply_submit"><span>Next Step</span></button>
 		</footer>
-		<div id="loading-mask" ></div>
+		<!--<div id="loading-mask" ></div> 
 		<div id="loading-box">  
 			<img src="../../img/loading2.gif" alt="loading" width="100%"/>
-		</div>
+		</div>-->
 			<div class="presee mui-hidden">
 			<div class="picwraps"> 
 				<div class="mui-slider" id="slider">
@@ -156,95 +207,102 @@
 				</div>
 			</div>
 		</div>
-		<div class="mui-content apply_content">
+		<div class="mui-content ">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll" >
 					<ul class="mui-table-view ">
-						<li class="mui-table-view-divider  title_  mui-text-center info mui-hidden" id="title_apply">
-							<div class="bell_title">
-								<span><img src="../../img/title_bell.png" alt="" /></span> 
-								<span id="status_info" >dsadas</span>
+						<li class="mui-table-view-divider  title_  mui-text-center info " id="title_apply">
+							<div class="bell_title"> 
+								<span><img src="../../img/title_bell.png" alt="" /></span>
+								<span id="status_info" style="color: #FC9B29;">dsadas</span> 
 							</div>
 						</li>
-						<li class="mui-table-view-divider"> <span>Basic Information</span></li>
+						</ul>
+						<ul class="mui-table-view info_edit"> 
+						<li class="mui-table-view-divider"> <span>基本信息</span></li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/first-name.png" class=" li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="text" class="apply_input edit" placeholder="familyName" id="familyName"/> 
+								<input type="text" class="apply_input edit" placeholder="姓" id="familyName"/> 
 							</div>
 						</li>
 						  
 						<li class="mui-table-view-cell">
 							<img src="../../img/lastname.png" class="li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="text" class="apply_input edit" placeholder="firstName" id="firsetName" />
+								<input type="text" class="apply_input edit" placeholder="名" id="firsetName" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/gender.png" class="li_left_img " alt="" />
-							<span class="mui-hidden two"><span class="mui-pull-left" >female</span><img src="../../img/female2.png" class="li_left_img  "/></span>
-							<span class="mui-hidden  one"><span class="mui-pull-left" >male</span><img src="../../img/male2.png" alt="" class="li_left_img "/></span>
-							<div class="li_input_l select_sex"> 
-								<span class="content_chan">
-									<lable >man </lable>
+							<span class="mui-hidden two"><span class="mui-pull-left" >女</span></span>
+							<span class="mui-hidden  one"><span class="mui-pull-left" >男</span></span>
+							<div class="li_input_l "> 
+								<!--<span class="content_chan">
+									<lable >男 </lable>
 									<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
-									&nbsp;&nbsp;<lable >women </lable>
+									&nbsp;&nbsp;<lable >女 </lable>
 									<input  type="radio" name="sex" />
 									
-								</span>
+								</span>-->
+								<input type="text" placeholder="性别" class="content_chan" id="person_sex" readonly="readonly"/> 
 							</div>
 						</li>
 						<li class="mui-table-view-cell" >
 							<img src="../../img/nationality2.png" class="li_left_img" alt="" />
 							<div class="li_input_l" >
-								<input type="text" placeholder="select nation "  class="edit apply_nation" id="nation" readonly="readonly"/>
+								<input type="text" placeholder="国籍 "  class="edit apply_nation" id="nation" readonly="readonly"/>
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/address.png" class="li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="text" class="apply_input edit" placeholder="place of residence" id="apply_place" />
+								<input type="text" class="apply_input edit" placeholder="常住地" id="apply_place" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell ">
 							<img src="../../img/emergency2.png" class="li_left_img" alt="" />
 							<img src="../../img/contact2.png" id="choose-contacts" class="li_right_img" alt="" />
 							<div class="li_input_s">
-								<input type="text" class="apply_input edit" placeholder="emergency contact " id="apply_emergencyC" />
+								<input type="text" class="apply_input edit" placeholder="紧急联系人 " id="apply_emergencyC" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/pho2.png" class="li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="number" class="apply_input edit" placeholder="mobile" id="apply_mobile" />
+								<input type="number" class="apply_input edit" placeholder="手机" id="apply_mobile" />
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
 							<img src="../../img/credit.png" class=" li_left_img" alt="" />
 							<div class="li_input_l">
-								<input type="number" class="apply_input edit" placeholder="identity" id="identity" >
+								<input type="number" class="apply_input edit" placeholder="信用卡号" id="identity" >
 							</div>
 						</li>
-						<li class="mui-table-view-cell" id="select_type">
+						</ul>
+						<ul class="mui-table-view">
+							<li class="mui-table-view-divider"> <span>认证信息</span></li>
+						<li class="mui-table-view-cell" >
 							<img src="../../img/id2.png" class=" li_left_img" alt="" />
 							<img src="../../img/down.png" class=" li_right_img content_chan" alt="" />
 							<div class="li_input_s">
-								<input type="text" class="apply_input edit" placeholder="请选择证件" readonly="readonly" id="select_type_show" />
+								<input type="text" class="apply_input edit" placeholder="认证信息" readonly="readonly" id="select_type_show" />
 							</div>
 						</li>
-						
-						<li class="mui-table-view-cell" style="">
+						<li class="mui-table-view-cell">
 							<img src="../../img/EDIT22.png" class=" li_left_img" alt="" />
 							<div class="li_input_l">
 								<input type="number" class="apply_input edit" placeholder="请输入对应的证件号" id="id_number"  />
 							</div>
-						</li>
+						</li> 
+						
 					</ul>
 					<div class="clear_padd mui-hidden info " id="porel">
 						<img src="" class="mui-pull-left" id="pic_one"/>
 						<img src="" class="pic_two " id="pic_two" />
 						<img src="" class="mui-pull-right" id="pic_three" />
 					</div>
+					<div class="mar_bottom"></div>
 				</div>
 			</div>
 		</div>
@@ -274,8 +332,8 @@
 				var v_idtT=$('#select_type_show').val().trim();
 					plus.storage.setItem('id_type',v_idtT);
 				var v_identity = $('#identity').val().trim();
-				var check = $('#person_sex').prop('checked');
-				var sex = (check == true) ? '1' : '2';
+				var check = $('#person_sex').val();
+				var sex = (check == "男") ? '1' : '2';
 				var id_nu = $('#id_number').val().trim();  
 				var car_info_status = plus.storage.getItem('carInfoSta'); //得到carInfo的资料填写情况
 				if (true) {
@@ -350,6 +408,14 @@
 				 mui('#id_type').popover('toggle');
 				
 			})
+			document.querySelector("#person_sex").addEventListener("tap", function() {
+				mui('#select_sex').popover('toggle');
+			})
+			$('#select_sex ul li').on('tap',function(){
+				var text=$(this).text().trim()
+				$('#person_sex').val(text);
+				mui('.select_sex').popover('toggle');
+			})
 			document.querySelector(".nation_mark").addEventListener("click", function() {
 				$('.nation_mark').css('display', 'none');
 				$('#nation_select_').css('display','none');
@@ -364,7 +430,7 @@
 				$('.nation_mark').css('display', 'none');
 				$('#nation_select_').css('display', 'none');
 			})
-			$('#select_type').on('tap', function() {
+			$('#select_type_show').on('tap', function() {
 				mui('#id_type').popover('toggle');
 			})
 			
@@ -396,7 +462,7 @@
 		   	  			$(".mui-scroll-wrapper").css("bottom", 0)
 		   	  		}else if(status==12){
 		   	  			$(".mui-scroll-wrapper").css("bottom",0)
-		   	  			$('#status_info').text('你的审核还在审核中');
+		   	  			$('#status_info').text('你的资料还在审核中');
 		   	  		}else if(status==13){
 		   	  			$('#status_info').text('审核失败,请点击重新申请');
 		   	  			$('#title_apply').addClass('applyPerson');
