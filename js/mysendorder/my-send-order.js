@@ -75,6 +75,7 @@ function pullupRefresh() {
 			data: datas,
 			wait: false
 		}, function(data) {
+			console.log(JSON.stringify(data))
 			mui('#pullrefresh').pullRefresh().endPullupToRefresh()
 			var orderdata = {
 					"list": data.res.orderList

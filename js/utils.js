@@ -173,6 +173,9 @@ function openWindow(url, param, ani, time) {
 	}
 	// for test
 function openwindowloading(callback){
+//	var otherload = document.getElementById("loading-mask");
+//	var show = otherload ? getComputedStyle(otherload, 0)["display"] : false;
+//	console.log(show);
 	
 	if(!document.getElementById("openwindowloading")){
 		var div = document.createElement('div');
