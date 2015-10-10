@@ -73,10 +73,11 @@ body {
 	display: inline-block;
 	width: 25%;
 	border-left: 1px solid #e8e8e8;
-	padding: 8px 0 17px 10px;
+	padding: 0px 0 0px 10px;
+	margin-top: -4px;
 }
 .goods-rewards {
-	padding: 0.6em 0;
+	padding: 5px 0;
 }
 .waiting-box {
 	position: absolute;

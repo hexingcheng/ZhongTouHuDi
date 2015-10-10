@@ -19,9 +19,9 @@ var whichpage = {
 
 function pulldownRefresh() {
 	var old = document.getElementById('pullrefreshs').innerHTML;
-	plus.nativeUI.showWaiting('刷新中', {
-		background: '#d1d1d1'
-	})
+//	plus.nativeUI.showWaiting('刷新中', {
+//		background: '#d1d1d1'
+//	})
 	var data = {
 		"page": 1,
 		"pageSize": 10,
@@ -37,7 +37,7 @@ function pulldownRefresh() {
 			data: data,
 			wait: false
 		}, function(data) {
-			plus.nativeUI.closeWaiting();
+//			plus.nativeUI.closeWaiting();
 			mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 			var orderdata = {
 				"list": data.res.orderList

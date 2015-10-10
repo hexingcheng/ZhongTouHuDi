@@ -73,55 +73,57 @@ function innerAjax(options,successcb,errorcb) {
 	if(op.wait){
 		plus.nativeUI.showWaiting('请求中',{background:"#d1d1d1"})
 	}
-	mui.ajax(BASEURL + op.url, {
-		type: op.type,
-		data: op.data,
-		success: function(data) {
-			if(op.wait){
-				plus.nativeUI.closeWaiting();
-			}
-			if (data.ret == 1) {
-				successcb(data);
-			} else if (data.ret == -101) {
-				if(getstorage('token')){
-					var token = getstorage('token');
-					mui.ajax(BASEURL+'auth/activate',{
-						type:'post',
-						data:{
-							token:token
-						},
-						success:function(data){
-							if(data.ret==1){
-								innerAjax(options,successcb,errorcb);
-							}else if(data.ret==-1){
-								mui.toast('身份校验异常,请重新登录');
-								mui.ajax(BASEURL+'auth/out',{
-									type:'get',
-									success:function(){
-										openWindow('./page/logupin/login.html')
-									}
-								})
-							}
-						}
-					})
-				} else {
-					openWindow('./page/logupin/login.html');
-				}
-			} else{
+//	openwindowloading(function(){
+		mui.ajax(BASEURL + op.url, {
+			type: op.type,
+			data: op.data,
+			success: function(data) {
 				if(op.wait){
-					plus.nativeUI.closeWaiting()
+					plus.nativeUI.closeWaiting();
 				}
-				successcb(data);
-
+				if (data.ret == 1) {
+					successcb(data);
+				} else if (data.ret == -101) {
+					if(getstorage('token')){
+						var token = getstorage('token');
+						mui.ajax(BASEURL+'auth/activate',{
+							type:'post',
+							data:{
+								token:token
+							},
+							success:function(data){
+								if(data.ret==1){
+									innerAjax(options,successcb,errorcb);
+								}else if(data.ret==-1){
+									mui.toast('身份校验异常,请重新登录');
+									mui.ajax(BASEURL+'auth/out',{
+										type:'get',
+										success:function(){
+											openWindow('./page/logupin/login.html')
+										}
+									})
+								}
+							}
+						})
+					} else {
+						openWindow('./page/logupin/login.html');
+					}
+				} else{
+					if(op.wait){
+						plus.nativeUI.closeWaiting()
+					}
+					successcb(data);
+				}
+			},
+			error: function(xhr,type){
+				if(op.wait){
+					plus.nativeUI.closeWaiting();
+				}
+				errorcb(xhr,type)
 			}
-		},
-		error: function(xhr,type){
-			if(op.wait){
-				plus.nativeUI.closeWaiting();
-			}
-			errorcb(xhr,type)
-		}
-	})
+		})
+//		removeloading()
+//	});
 }
 function copyobj(from,to){
 	for(var i in from){
@@ -133,7 +135,7 @@ function copyobj(from,to){
 	}
 }
 function openWindow(url, param, ani, time) {
-		openwindowloading(function(){
+//		openwindowloading(function(){
 			var snum, id;
 			var animationType = ani || 'slide-in-right';
 			var animationTime = time || 300;
@@ -166,45 +168,48 @@ function openWindow(url, param, ani, time) {
 			} else {
 				alert('system is not ready')
 			}
-			removeloading()
-		})
+//			removeloading()
+//		})
 	}
 	// for test
 function openwindowloading(callback){
-	var div = document.createElement('div');
-	div.id = 'openwindowloading'
-	var loading = document.createElement('div');
-	var img = document.createElement('img');
-	img.style.width = '80px';
-	img.style.height = '80px';
-	loading.style.position = 'absolute';
-	loading.style.top = "50%"
-	loading.style.left = '50%'
-	loading.style.width = '80px'
-	loading.style.height = '80px'
-	loading.style.marginLeft = '-40px'
-	loading.style.marginTop = '-40px'
-	img.style.border = '0px'
-	div.appendChild(loading);
-	loading.appendChild(img);
-	img.src = './loading2.gif'
-	div.style.backgroundColor = "rgba(255,255,255,0.4)";
-	div.style.position = 'absolute';
-	div.style.top = '0px';
-	div.style.left = '0px';
-	div.style.right = '0px';
-	div.style.bottom = '0px';
-	div.style.zIndex = 1000;
-	img.onload = function(){
-		document.getElementsByTagName('body')[0].appendChild(div);
-		callback();
+	
+	if(!document.getElementById("openwindowloading")){
+		var div = document.createElement('div');
+		div.id = 'openwindowloading'
+		var loading = document.createElement('div');
+		var img = document.createElement('img');
+		img.style.width = '80px';
+		img.style.height = '80px';
+		loading.style.position = 'absolute';
+		loading.style.top = "50%"
+		loading.style.left = '50%'
+		loading.style.width = '80px'
+		loading.style.height = '80px'
+		loading.style.marginLeft = '-40px'
+		loading.style.marginTop = '-40px'
+		img.style.border = '0px'
+		div.appendChild(loading);
+		loading.appendChild(img);
+		img.src = './loading2.gif'
+		div.style.backgroundColor = "rgba(255,255,255,0.4)";
+		div.style.position = 'absolute';
+		div.style.top = '0px';
+		div.style.left = '0px';
+		div.style.right = '0px';
+		div.style.bottom = '0px';
+		div.style.zIndex = 1000;
+		img.onload = function(){
+			document.getElementsByTagName('body')[0].appendChild(div);
+			callback();
+		}
 	}
 }
 function removeloading(){
 	var loading = document.getElementById('openwindowloading');
 	setTimeout(function(){
-			document.getElementsByTagName('body')[0].removeChild(loading)
-		},500)
+		document.getElementsByTagName('body')[0].removeChild(loading)
+	},500)
 }
 function openNewWindow(url, param, ani, time) {
 	var snum, id;

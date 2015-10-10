@@ -170,26 +170,28 @@ mui.plusReady(function() {
 	//处理返回键
 
 function getsystemmsg() {
-	myAjax({
-		url: 'message/getMsg',
-		wait: false
-	}, function(data) {
-		if (data.ret == 1) {
-			if (data.res.msgList.length) {
-				$('#msgtips').attr('src', './img/tips.png');
-			}
-			var personinfo = JSON.parse(getstorage('personinfo')).phone;
-			var whichperson = 'systemmes' + personinfo;
-			if (!getstorage(whichperson)) {
-				setstorage(whichperson, JSON.stringify(data.res));
+	mui.ajax(BASEURL + 'message/getMsg', {
+		data : {},
+		timeout : 20000,
+		success :　function(data) {
+			if (data.ret == 1) {
+				if (data.res.msgList.length) {
+					$('#msgtips').attr('src', './img/tips.png');
+				}
+				var personinfo = JSON.parse(getstorage('personinfo')).phone;
+				var whichperson = 'systemmes' + personinfo;
+				if (!getstorage(whichperson)) {
+					setstorage(whichperson, JSON.stringify(data.res));
+				} else {
+					handlemsg(data);
+				}
 			} else {
-				handlemsg(data);
+				return;
 			}
-		} else {
-			return;
+		},
+		error : function(xhr, type) {
+			mui.toast(xhr.status + ":" + type)
 		}
-	}, function(xhr, type) {
-		mui.toast(xhr.status + ":" + type)
 	})
 }
 
