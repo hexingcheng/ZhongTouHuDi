@@ -21,14 +21,17 @@
 		<script>
 			mui.plusReady(function() {
 				var c = plus.webview.currentWebview();
-				var sj = c.sj
-				var sw = c.sw
-				var rj = c.rj
-				var rw = c.rw
+				var param = {
+					sj: c.sj,
+					sw: c.sw,
+					rj: c.rj,
+					rw: c.rw
+				}
+				console.log(JSON.stringify(param))
 				embed = plus.webview.create("./gidemap.html", "gidemap", {
 					top: "52px",
 					bottom: "0px"
-				});
+				},param);
 				c.append(embed);
 			})
 		</script>

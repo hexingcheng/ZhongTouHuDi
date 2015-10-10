@@ -75,7 +75,6 @@ mui.plusReady(function() {
 					}
 				}, function(data) {
 					if (data.ret == 1) {
-						plus.nativeUI.closeWaiting();
 						openWindow('./get-result.html', {
 							orderId: order.orderid,
 							'types':'议价'

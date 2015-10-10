@@ -358,7 +358,7 @@ mui.plusReady(function() {
 			sj:this.getAttribute('data-sj'),
 			sw:this.getAttribute('data-sw'),
 			rj:this.getAttribute('data-rj'),
-			rw:this.getAttribute('data-wj')
+			rw:this.getAttribute('data-rw')
 		}
 		openWindow('../map/gide.html',param)
 	})
