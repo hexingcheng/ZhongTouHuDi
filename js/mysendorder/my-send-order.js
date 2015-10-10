@@ -67,6 +67,7 @@ function pullupRefresh() {
 		"status": status
 	}
 	data.page = ++whichpage[whichstatus]
+	console.log(JSON.stringify(data))
 	sendmsg(data)
 
 	function sendmsg(datas) {
