@@ -133,7 +133,7 @@ function copyobj(from,to){
 	}
 }
 function openWindow(url, param, ani, time) {
-		openwindowloading(function(){
+//		openwindowloading(function(){
 			var snum, id;
 			var animationType = ani || 'slide-in-right';
 			var animationTime = time || 300;
@@ -166,8 +166,8 @@ function openWindow(url, param, ani, time) {
 			} else {
 				alert('system is not ready')
 			}
-			removeloading()
-		})
+//			removeloading()
+//		})
 	}
 	// for test
 function openwindowloading(callback){
