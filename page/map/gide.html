@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../../js/mui.min.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/share_main.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav nav_header">
+			<img class="mui-action-back header_left_img" src="../../img/left.png">
+			<span class="">Gide Map</span>
+		</header>
+		<script>
+			mui.plusReady(function() {
+				var c = plus.webview.currentWebview();
+				var param = {
+					sj: c.sj,
+					sw: c.sw,
+					rj: c.rj,
+					rw: c.rw
+				}
+				console.log(JSON.stringify(param))
+				embed = plus.webview.create("./gidemap.html", "gidemap", {
+					top: "52px",
+					bottom: "0px"
+				},param);
+				c.append(embed);
+			})
+		</script>
+	</body>
+
+</html>

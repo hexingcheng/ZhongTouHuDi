@@ -6,70 +6,72 @@ mui.plusReady(function() {
 	var datas = {};
 	datas.orderId = c.orderId;
 	datas.type = c.type;
-	
-	var pop;	// 弹出框对象
-	var wirtepopup;		// 写入code的弹出框
-	var checkpopup;		// 重发送验证码弹出框对象
-	var popshowed = false;		// 弹出框是否显示
+
+	var pop; // 弹出框对象
+	var wirtepopup; // 写入code的弹出框
+	var checkpopup; // 重发送验证码弹出框对象
+	var popshowed = false; // 弹出框是否显示
 	var resend = null;
-	
+
 	var back = mui.back;
 	mui.back = function() {
-		if(popshowed){
-			if(pop){
-				if(!document.getElementById("lee-mask")){
-					back();
-				} else {
-					pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
-					popshowed = false;
+			if (popshowed) {
+				if (pop) {
+					if (!document.getElementById("lee-mask")) {
+						back();
+					} else {
+						pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
+						popshowed = false;
+					}
 				}
-			}
-			if(wirtepopup){
-				if(!document.getElementById("lee-mask")){
-					back();
-				} else {
-					wirtepopup.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
-					popshowed = false;
+				if (wirtepopup) {
+					if (!document.getElementById("lee-mask")) {
+						back();
+					} else {
+						wirtepopup.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
+						popshowed = false;
+					}
 				}
-			}
-			if(checkpopup){
-				if(!document.getElementById("lee-mask")){
-					back();
-				} else {
-					checkpopup.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
-					popshowed = false;
+				if (checkpopup) {
+					if (!document.getElementById("lee-mask")) {
+						back();
+					} else {
+						checkpopup.hide(document.getElementById("lee-mask"), document.getElementById("lee-content-wrap"))
+						popshowed = false;
+					}
 				}
+				return;
 			}
-			return;
-		}
-		if (getstorage('getordertodtl') == 'on') {
-			setstorage('getordertodtl', 'off');
-			openWindow('../../page/getorder/get-order.html');
-		} else {
-			var getorder = plus.webview.getWebviewById('mygetorder/my-get-order')
-			if (getorder) {
-				back();
+			if (getstorage('getordertodtl') == 'on') {
+				setstorage('getordertodtl', 'off');
+				openWindow('../../page/getorder/get-order.html');
 			} else {
-				openWindow('./my-get-order.html')
+				var getorder = plus.webview.getWebviewById('mygetorder/my-get-order')
+				if (getorder) {
+					back();
+				} else {
+					openWindow('./my-get-order.html')
+				}
 			}
 		}
-	}
-	// 弹出框的属性
+		// 弹出框的属性
 	var options = {
-		height : 160,
-		title : {
-			height : 40,
-			content : ""
+		height: 160,
+		title: {
+			height: 40,
+			content: ""
 		},
-		main : {
-			content : ""
+		main: {
+			content: ""
 		},
-		buttons : [{
-			name : "OK",
-			click : function(){ return true }
-		},{
-			name : "cancel",
-			click : function(){ 
+		buttons: [{
+			name: "OK",
+			click: function() {
+				return true
+			}
+		}, {
+			name: "cancel",
+			click: function() {
 				pop = null;
 				checkpopup = null;
 				wirtepopup = null;
@@ -77,22 +79,23 @@ mui.plusReady(function() {
 			}
 		}]
 	}
-	
+
 	myAjax({
 		url: 'order/goodShow',
 		data: datas,
 		wait: false
 	}, function(data) {
 		status = data.res.status;
+		console.log(JSON.stringify(data))
 		renderdata(data);
-//		mui.toast('当前订单状态：' + data.res.status)
+		//		mui.toast('当前订单状态：' + data.res.status)
 		$('#loading-mask').addClass('mui-hidden')
 		$('#loading-box').addClass('mui-hidden')
-		if (data.res.status == 1 && data.res.bargain == 1) {		// cancel bargin  取消议价
+		if (data.res.status == 1 && data.res.bargain == 1) { // cancel bargin  取消议价
 			$('.cancel').removeClass('mui-hidden')
 			options.title.content = "取消提示";
 			options.main.content = "您确定要取消改单的议价？"
-			options.buttons[0].click = function(){
+			options.buttons[0].click = function() {
 				myAjax({
 					url: 'order/bargainCancel',
 					data: {
@@ -116,14 +119,14 @@ mui.plusReady(function() {
 			}
 			$('.marktips').removeClass('mui-hidden');
 			$('.addmoney').text(data.res.bargainMoney + ".0");
-		}else if (data.res.status == 2) {				// 待付款
+		} else if (data.res.status == 2) { // 待付款
 			$('.cancel').text('cancel');
 			$('.cancel').removeClass('mui-hidden');
 			$('.check').addClass('mui-hidden');
 			$('.write').addClass('mui-hidden');
 			options.title.content = "取消提示";
 			options.main.content = "您确定要取消此条订单消息吗？取消订单将要扣除积分"
-			options.buttons[0].click = function(){
+			options.buttons[0].click = function() {
 				var param = {};
 				param.orderId = c.orderId;
 				param.status = status;
@@ -134,14 +137,14 @@ mui.plusReady(function() {
 					openWindow('./cancel-reason.html', param);
 				}
 			}
-		}else if (data.res.status == 3) {			// 未取货
+		} else if (data.res.status == 3) { // 未取货
 			$('.cancel').removeClass('mui-hidden');
 			$('.check').addClass('mui-hidden');
 			$('.write').addClass('mui-hidden');
 			$('.cancel').text('已取货');
 			options.title.content = "确定取货提示";
 			options.main.content = "您确定已经取货了吗？"
-			options.buttons[0].click = function(){
+			options.buttons[0].click = function() {
 				plus.nativeUI.showWaiting("确认中", {
 					background: '#d1d1d1'
 				})
@@ -159,13 +162,13 @@ mui.plusReady(function() {
 					console.log(type)
 				})
 			}
-		}else if (data.res.status == 4) {			// 已取货
+		} else if (data.res.status == 4) { // 已取货
 			$('.cancel').addClass('mui-hidden');
 			$('.check').removeClass('mui-hidden');
 			$('.write').removeClass('mui-hidden');
-		}else if (data.res.status == 5) {
+		} else if (data.res.status == 5) {
 			$('#foot').html('暂时没有评论')
-		}else if (data.res.status == 6) {
+		} else if (data.res.status == 6) {
 			$('#foot').html('该订单已完成')
 		}
 	}, function(xhr, type) {
@@ -184,7 +187,7 @@ mui.plusReady(function() {
 		options.height = 190;
 		options.title.content = "please input pick up code";
 		options.main.content = '<div>input your code from receiver<div><div><input type="text" id="vacode" placeholder="请输入验证码"/></div>';
-		options.buttons[0].click = function(){
+		options.buttons[0].click = function() {
 			console.log($('#vacode').val())
 			var code = parseInt($('#vacode').val());
 			myAjax({
@@ -212,7 +215,7 @@ mui.plusReady(function() {
 		popshowed = true;
 		wirtepopup.show();
 	})
-	
+
 	// 图片预览
 	mui('#porel').on('tap', 'img', function() {
 		$('.presee').removeClass('mui-hidden')
@@ -229,13 +232,13 @@ mui.plusReady(function() {
 	$('.presee').on('tap', function() {
 		$(this).addClass('mui-hidden')
 	})
-	
+
 	// 发送验证码
 	$('.check').on('tap', function() {
 		options.height = 150;
 		options.title.content = "提示";
 		options.main.content = "需要重新发送一次验证码吗？"
-		options.buttons[0].click = function(){
+		options.buttons[0].click = function() {
 			plus.nativeUI.showWaiting('发送中', {
 				background: '#d1d1d1'
 			});
@@ -279,6 +282,14 @@ mui.plusReady(function() {
 		var t = $(this).attr('data-p');
 		dial(t)
 	})
+	$('#rmsg').on('tap', function() {
+		var p = $('#msg').attr('data-p')
+		sms(p)
+	})
+	$('#rtel').on('tap', function() {
+		var t = $(this).attr('data-p');
+		dial(t)
+	})
 
 	function sms(tel) {
 		var msg = plus.messaging.createMessage(plus.messaging.TYPE_SMS);
@@ -299,6 +310,7 @@ mui.plusReady(function() {
 			item.eq(i).css('top', t)
 		}
 	}
+
 	function renderdata(data) {
 		$(".goods-name").html(data.res.gName); // 货物名称
 		$("#goods-value").html(data.res.money); // 价值
@@ -312,7 +324,15 @@ mui.plusReady(function() {
 		$('#sender').text(data.res.sender);
 		$('#receiver').text(data.res.receiver)
 		$('#msg').attr('data-p', data.res.senderPhone);
-		$("#tel").attr('data-p', data.res.senderPhone)
+		$("#tel").attr('data-p', data.res.senderPhone);
+		$('#rmsg').attr('data-p', data.res.receiverPhone);
+		$('#rtel').attr('data-p', data.res.receiverPhone);
+		for(var k = 0;k<$('.l_content').length;k++){
+			$('.l_content').eq(k).attr('data-sj',data.res.sendAddr.jd)
+			$('.l_content').eq(k).attr('data-sw',data.res.sendAddr.wd)
+			$('.l_content').eq(k).attr('data-rj',data.res.receiveAddr.jd)
+			$('.l_content').eq(k).attr('data-rw',data.res.receiveAddr.wd)
+		}
 		if (data.res.pics.length) {
 			var pic = data.res.pics;
 			var len = pic.length;
@@ -330,7 +350,16 @@ mui.plusReady(function() {
 				$('.mui-slider-item', '.mui-slider-group').eq(i).find('img').attr('src', perurls + minurl);
 			}
 		} else {
-			document.getElementById('porel').innerHTML = 'there are no picture in this order~';
+			document.getElementById('porel').innerHTML = '';
 		}
 	}
+	mui('.mui-table-view').on('tap', '.l_content', function() {
+		var param = {
+			sj:this.getAttribute('data-sj'),
+			sw:this.getAttribute('data-sw'),
+			rj:this.getAttribute('data-rj'),
+			rw:this.getAttribute('data-rw')
+		}
+		openWindow('../map/gide.html',param)
+	})
 })

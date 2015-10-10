@@ -10,14 +10,13 @@ mui.init({
 		}
 	}
 });
-var whichstatus;
+var whichstatus=1;
 var whichpage  = {
 	"1":1,
 	"2":1,
 	"3":1
 };
 function pulldownRefresh(){
-	plus.nativeUI.showWaiting('刷新中',{background:'#d1d1d1'});
 	getlist(whichstatus,false)
 	function getlist(status,wait) {
 		wait = wait||false;
@@ -28,6 +27,7 @@ function pulldownRefresh(){
 			"type": "rece",
 			"status": status
 		};
+		console.log(JSON.stringify(getorderdata))
 		myAjax({
 			url: 'order/myGoodList',
 			data: getorderdata,
@@ -36,7 +36,6 @@ function pulldownRefresh(){
 			var orderdata = {
 				"list": data.res.orderList
 			}
-			plus.nativeUI.closeWaiting();
 			var html = template("template", orderdata);
 			if (!html) {
 				mui.toast('没有新数据')
@@ -52,22 +51,27 @@ function pullupRefresh(){
 	var p = ++whichpage[whichstatus]
 	getlist(whichstatus,false,p)
 	var old = $('#pullrefreshs').html()
-	function getlist(status,wait,whichpage) {
+	function getlist(status,wait,whichpages) {
 		wait = wait||false;
 		var status = status || 1
 		var getorderdata = {
-			"page": whichpage,
+			"page": whichpages,
 			"pageSize": 10,
 			"type": "rece",
 			"status": status
 		};
+		console.log("hhe"+JSON.stringify(getorderdata))
 		myAjax({
 			url: 'order/myGoodList',
 			data: getorderdata,
 			wait: wait
 		}, function(data) {
+			console.log(JSON.stringify(data))
 			var orderdata = {
 				"list": data.res.orderList
+			}
+			if(!data.res.orderList.length){
+				whichpage[status]--
 			}
 			var html = template("template", orderdata);
 			if (!html) {
@@ -111,6 +115,7 @@ mui.plusReady(function() {
 			data: getorderdata,
 			wait: false
 		}, function(data) {
+			console.log(JSON.stringify(data))
 			var orderdata = {
 				"list": data.res.orderList
 			}

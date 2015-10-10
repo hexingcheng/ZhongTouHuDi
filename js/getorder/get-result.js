@@ -4,6 +4,7 @@ mui.plusReady(function() {
 	var id = c.orderId;
 	var types = c.types;
 	document.getElementById('types').innerHTML = types;
+	document.getElementById('type').innerHTML = types;
 	// 返回get-order接单首页界面
 	document.getElementById("view-order").addEventListener("tap", function() {
 		setstorage('getordertodtl','on');

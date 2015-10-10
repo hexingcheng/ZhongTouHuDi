@@ -190,6 +190,23 @@
 				.mui-table-view .mui-table-view-cell{
 					word-wrap: break-word; 
 				}
+				.rightenter{
+					position: absolute;
+					right: 20px;
+					height: 50px;
+					width: 50px;
+					margin-top: -25px;
+					top: 50%;
+					right: 0px;
+				}
+				.rightenter img{
+					width: 50px;
+					height: 50px;
+					display: block;
+				}
+				.l_right_content{
+					padding-right: 10px;
+				}
 		</style>
 	</head>
 
@@ -204,8 +221,8 @@
 				<button class="check mui-btn left_button mui-hidden">resend code</button>
 				<button class="write mui-btn right_button mui-hidden">write code</button>
 			</div>
-		</footer> 
-		
+		</footer>
+
 		<div class="presee mui-hidden">
 			<div class="picwraps">
 				<div class="mui-slider" id="slider">
@@ -264,7 +281,7 @@
 								<div class="right_li_half">
 									<span class="mui-pull-left">Weight</span>
 									<span id="goods-weight" class="mui-pull-right"></span>
-									
+
 								</div>
 							</div>
 						</li>
@@ -288,8 +305,8 @@
 							<div class="li_left_title">Sender</div>
 							<div class="li_input_l">
 								<span id="sender"></span>
-								<img src="../../img/dianhua.png" class="li_right_img" id="msg" data-p="" />
-								<img src="../../img/xinxi.png" alt="" class="li_right_img coloryellow" data-p="" id="tel" />
+								<img src="../../img/dianhua.png" class="li_right_img" data-p="" id="tel" />
+								<img src="../../img/xinxi.png" alt="" class="li_right_img coloryellow" data-p="" id="msg"/>
 							</div>
 						</li>
 						<!--<li class="mui-table-view-cell break-wrap">
@@ -301,19 +318,29 @@
 							<div class="l_right_content">
 								<span id="sendaddr">--</span>
 							</div>
+							<div class="rightenter">
+								<img src="../../img/enter.png" />
+							</div>
 						</div>
 						<li class="mui-table-view-cell desc-after height50">
 							<div class="li_left_title"><span>Receiver</span></div>
-							<span id="receiver"></span>
+							<div class="li_input_l">
+								<span id="receiver"></span>
+								<img src="../../img/dianhua.png" class="li_right_img"  data-p="" id="rtel"/>
+								<img src="../../img/xinxi.png" alt="" class="li_right_img coloryellow" data-p=""  id="rmsg"/>
+							</div>
 						</li>
 						<!--<li class="mui-table-view-cell">  
 							<div class="li_left_title"><span>TO</span></div>
 							<span id="receiveaddr"></span>
-						</li>-->    
+						</li>-->
 						<div class="l_content">
 							<div class="l_left_title"><span>TO</span></div>
 							<div class="l_right_content">
 								<span id="receiveaddr">--</span>
+							</div>
+							<div class="rightenter">
+								<img src="../../img/enter.png" />
 							</div>
 						</div>
 						<li class="mui-table-view-cell">
