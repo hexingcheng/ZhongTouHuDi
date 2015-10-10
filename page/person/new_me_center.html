@@ -139,28 +139,53 @@
 			.mui-table-view-cell .li_left_title{
 				width: 6em;
 			}
+			.main_mask{
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0; 
+				z-index: 100; 
+				background-color: transparent;
+			}
+			.loading-box {
+				position: absolute;
+				z-index: 999;
+				width: 5em; 
+				height: 5em;
+				left: 50%;
+				overflow: hidden; 
+				margin-left: -40px;
+				top: 50%;
+				margin-top: -40px;
+			}
 		</style>
 	</head>
-
+ 
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
 			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />  
 			<span>personal</span>
-			<img src="../../img/edit2.1.png" class="header_right_img center_edit" alt="" />
-			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" />
+			<img src="../../img/edit2.1.png" class="header_right_img center_edit" alt="" id="center_edit"/>
+			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" id="center_save"/>
 		</header>
 		<!-- 加载中的蒙层 -->
 		<div id="loading-mask"></div>
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%" />
 		</div>
+		<div class="main_mask mui-hidden" id="main_mark"> 
+			<div class="loading-box"> 
+			<img src="../../img/loading2.gif" alt="loading" width="100%" />
+			</div>
+		</div>  
 		<!--蒙版-->
 		<div class="content_mask mui-hidden"></div>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
 					<div class="center_bg">
-						<div class="center_headpic">
+						<div class="center_headpic" id="center_headpic">
 							<a href="#gitpic" class="gitpic">
 								<img src="../../img/defualt.png" class="heade_pic" id="headpic" />
 								<div class="header_camara ">
@@ -341,7 +366,7 @@
 				//调用蒙版
 				mui('.mui-scroll-wrapper').scroll({
 					bounce: false
-				});
+				}); 
 				myAjax({
 						url: 'account/info',
 					},
@@ -349,7 +374,7 @@
 						if (obj.ret == 1) {
 							$('#loading-mask').css('display', 'none');
 							$('#loading-box').css('display', 'none');
-							var data = obj.res;
+							var data = obj.res; 
 							var n = BASEURL.indexOf('/a');
 							var imgurl = BASEURL.substring(0, n);
 							var pic = imgurl + data.headPic;
@@ -367,40 +392,41 @@
 								$('.male').removeClass('mui-hidden');
 							} else {
 								$('.female').removeClass('mui-hidden');
-							}
+							} 
 						}
 					},
 					function(xhr, type) {
 						mui.toast(xhr.status + ":" + type)
 					})
-				$('#bycamera').on('tap', function() {
+				document.querySelector('#bycamera').addEventListener('tap',function(){ 
 					bycamera()
 					mui('#gitpic').popover('toggle');
 				})
-				$('#bygallery').on('tap', function() {
+				document.querySelector('#bygallery').addEventListener('tap', function() {
 					bygallery();
 					mui('#gitpic').popover('toggle');
 				})
 
-				function bycamera() {
+				function bycamera() { 
 					var camera = plus.camera.getCamera();
 					var res = camera.supportedImageResolutions[0];
 					var fmt = camera.supportedImageFormats[0];
 					camera.captureImage(function(path) {
+						$('#main_mark').removeClass('mui-hidden');
 						dealpic(path);
 					})
 				};
 				//图片压缩
-				function dealpic(path) {
+				function dealpic(path) { 
 						plus.io.resolveLocalFileSystemURL(path, function(entry) {
 							var local = entry.toLocalURL();
 							path = plus.io.convertLocalFileSystemURL(path);
-							//								$('.center_headpic').css('background', 'url(' + path + ')'); //得到头像
+//						$('.center_headpic').css('background', 'url(' + path + ')'); //得到头像 
 							dealImage(local, {
-								//									width: 17 * 4,
-								quality: 0.6
+								width: 17 * 6, 
+								quality: 0.9
 							}, function(base) {
-								console.log("压缩后：" + base.length * 0.8 / 1024 + "KB");
+								console.log("压缩后：" + base.length / 1024 + "KB");
 								data = {
 									imgName: Math.floor(Math.random() * 100000) + ".jpg",
 									imgData: base // base字符串
@@ -409,22 +435,23 @@
 										url: "common/file/imgUp",
 										data: data
 									},
-									function(obj) {
+									function(obj) { 
 										if (obj.ret == 1) {
 											data = {
 												fid: obj.res.fid
 											}
 											var head = obj.res.path;
-											var n = BASEURL.indexOf('/a');
-											var headpicurl = BASEURL.substring(0, n);
+//											var n = BASEURL.indexOf('/a');
+//											var headpicurl = BASEURL.substring(0, n);
 											//头像上传
 											myAjax({
 												url: 'account/setHeadPic',
 												data: data
 											}, function(obj) {
-												if (obj.ret == 1) {
-													var p = headpicurl + head;
-													$('#headpic').attr('src', p);
+												if (obj.ret == 1) {  
+//													var p = headpicurl + head;
+													$('#headpic').attr('src', path); 
+													$('#main_mark').addClass('mui-hidden');
 													var i = plus.webview.getLaunchWebview();
 													mui.fire(i, 'setaccount', {
 														headPic: head
@@ -449,6 +476,7 @@
 
 				function bygallery() {
 						plus.gallery.pick(function(path) {
+							$('#main_mark').removeClass('mui-hidden');
 							dealpic(path);
 						}, function(e) {
 							mui.toast('选择图片失败' + e)
@@ -536,7 +564,7 @@
 									$('.male').addClass('mui-hidden');
 								}
 								var i = plus.webview.getLaunchWebview();
-								mui.fire(i, 'setaccount', data);
+								mui.fire(i, 'setaccount', obj);
 								setTimeout(function(){
 									cb && cb();
 								},300)
