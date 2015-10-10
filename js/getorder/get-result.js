@@ -3,6 +3,7 @@ mui.plusReady(function() {
 	var c = plus.webview.currentWebview();
 	var id = c.orderId;
 	var types = c.types;
+	alert(types)
 	document.getElementById('types').innerHTML = types;
 	document.getElementById('type').innerHTML = types;
 	// 返回get-order接单首页界面
