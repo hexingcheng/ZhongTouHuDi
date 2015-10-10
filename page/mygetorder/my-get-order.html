@@ -49,13 +49,15 @@
 					param.status = this.getAttribute('data-sta');
 					mui.fire(embed, 'renderdata', param);
 				})
+				var back = mui.back
 				mui.back = function(){
-					plus.webview.getLaunchWebview().show('slide-in-left',300,function(){
-						closewebview();
-					});
+//					plus.webview.getLaunchWebview().show('slide-in-left',300,function(){
+//						closewebview();
+//					});
+					back()
 				}
 				function closewebview(){
-					var views = ['message/message','mygetorder/mygetorderdtl','ordermsg','my-get-order'];
+					var views = ['message/message','mygetorder/mygetorderdtl','ordermsg','mygetorder/my-get-order'];
 					for(var i = 0;i<views.length;i++){
 						if(plus.webview.getWebviewById(views[i])){
 							plus.webview.getWebviewById(views[i]).close();
