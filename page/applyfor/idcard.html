@@ -218,7 +218,7 @@
 									}
 								},
 								function(xhr, type) {
-									console.log(xhr.status);
+//									console.log(xhr.status);
 									$('#loading-mask').addClass('mui-hidden'); 
 									mui.toast('请再次上传');  
 								}, function() {  
@@ -276,7 +276,6 @@
 					cardPic3: pic3
 				}
 				var  add_data = $.extend(data_one, data_2); //将前后对象进行合并  
-				console.log(JSON.stringify(add_data));
 				if (flag) {
 					myAjax({
 						url: "account/applyDeliver",  
