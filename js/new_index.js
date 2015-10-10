@@ -112,9 +112,11 @@ mui.plusReady(function() {
 					error: function(xhr, type) {
 						mui.toast(xhr.status + ":" + type);
 						if (type == 'timeout') {
+							plus.storage.removeItem('token')
 							mui.toast('超时')
 						}
 						if (type == 'abort') {
+							plus.storage.removeItem('token')
 							mui.toast('访问被禁止')
 						}
 					}
@@ -324,7 +326,6 @@ document.getElementById('hlep-son').addEventListener('tap', function() {
 		var create = plus.webview.getWebviewById('sendorder/createorder');
 		if (create) {
 			create.reload();
-
 		} else {
 			openWindow('./page/sendorder/createorder.html');
 		}
