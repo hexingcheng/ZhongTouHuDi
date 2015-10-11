@@ -8,16 +8,13 @@
 		<script src="../../js/mui.min.js"></script>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/mysendorder/my-send-order.css" />
-		<style type="text/css">
-			.data-wait {font-weight: bold;color: green;width: 100%;text-align: center;height: 200px;line-height: 200px;}
-		</style>
 	</head>
 	<body>
 			<div id="pullrefresh" class="mui-scroll-wrapper">
 				<div id="link-detail"  class="mui-scroll">
 					<div id="pullrefreshs">
 						<!-- 等待框 -->
-						<div style="position: relative;">
+						<div style="position: relative;" id="loading-mask">
 							<div class="waiting-box"></div>
 						</div>
 						<!--<ul class="mui-table-view">

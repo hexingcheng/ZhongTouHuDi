@@ -73,7 +73,7 @@ function innerAjax(options,successcb,errorcb) {
 	if(op.wait){
 		plus.nativeUI.showWaiting('请求中',{background:"#d1d1d1"})
 	}
-//	openwindowloading(function(){
+	openwindowloading(function(){
 		mui.ajax(BASEURL + op.url, {
 			type: op.type,
 			data: op.data,
@@ -83,6 +83,7 @@ function innerAjax(options,successcb,errorcb) {
 				}
 				if (data.ret == 1) {
 					successcb(data);
+					removeloading()
 				} else if (data.ret == -101) {
 					if(getstorage('token')){
 						var token = getstorage('token');
@@ -100,6 +101,7 @@ function innerAjax(options,successcb,errorcb) {
 										type:'get',
 										success:function(){
 											openWindow('./page/logupin/login.html')
+											removeloading()
 										}
 									})
 								}
@@ -107,12 +109,14 @@ function innerAjax(options,successcb,errorcb) {
 						})
 					} else {
 						openWindow('./page/logupin/login.html');
+						removeloading()
 					}
 				} else{
 					if(op.wait){
 						plus.nativeUI.closeWaiting()
 					}
 					successcb(data);
+					removeloading()
 				}
 			},
 			error: function(xhr,type){
@@ -120,10 +124,11 @@ function innerAjax(options,successcb,errorcb) {
 					plus.nativeUI.closeWaiting();
 				}
 				errorcb(xhr,type)
+				removeloading()
 			}
 		})
-//		removeloading()
-//	});
+		
+	});
 }
 function copyobj(from,to){
 	for(var i in from){
@@ -173,11 +178,26 @@ function openWindow(url, param, ani, time) {
 	}
 	// for test
 function openwindowloading(callback){
-//	var otherload = document.getElementById("loading-mask");
-//	var show = otherload ? getComputedStyle(otherload, 0)["display"] : false;
-//	console.log(show);
+	var otherload = document.getElementById("loading-mask");
+	var preload = document.getElementById("openwindowloading");
+	var show = otherload ? getComputedStyle(otherload, 0)["display"] : "none";
 	
-	if(!document.getElementById("openwindowloading")){
+	var fixedtop = 52;
+	
+	if(window.plus){
+		var curl = plus.webview.currentWebview().getURL();
+		if(curl.match("my-send-order-content.html") || curl.match("my-get-order-content.html") || curl.match("order-content.html")){
+			fixedtop = 0;
+		}
+	}
+	console.log(show)
+	
+	if(show == "block"){
+		callback();
+		return;
+	}
+	
+	if(!preload && show == "none"){
 		var div = document.createElement('div');
 		div.id = 'openwindowloading'
 		var loading = document.createElement('div');
@@ -195,9 +215,9 @@ function openwindowloading(callback){
 		div.appendChild(loading);
 		loading.appendChild(img);
 		img.src = './loading2.gif'
-		div.style.backgroundColor = "rgba(255,255,255,0.4)";
-		div.style.position = 'absolute';
-		div.style.top = '0px';
+		div.style.backgroundColor = "rgba(255,255,255,1)";
+		div.style.position = 'fixed';
+		div.style.top = fixedtop + 'px';
 		div.style.left = '0px';
 		div.style.right = '0px';
 		div.style.bottom = '0px';
@@ -210,9 +230,11 @@ function openwindowloading(callback){
 }
 function removeloading(){
 	var loading = document.getElementById('openwindowloading');
-	setTimeout(function(){
-		document.getElementsByTagName('body')[0].removeChild(loading)
-	},500)
+	if(loading){
+		setTimeout(function(){
+			document.getElementsByTagName('body')[0].removeChild(loading)
+		},500)
+	}
 }
 function openNewWindow(url, param, ani, time) {
 	var snum, id;

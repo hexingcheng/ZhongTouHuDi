@@ -8,9 +8,6 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/mygetorder/common.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/mygetorder/my-get-order.css" />
-		<style type="text/css">
-			.data-wait {font-weight: bold;color: green;width: 100%;text-align: center;height: 200px;line-height: 200px;}
-		</style>
 	</head>
 
 	<body>
@@ -61,7 +58,7 @@
 		<div id="pullrefresh" class="mui-scroll-wrapper">
 			<div id="link-detail" class="mui-scroll">
 				<div id="pullrefreshs">
-					<div style="position: relative;" class="waiting">
+					<div style="position: relative;" class="waiting" id="loading-mask">
 						<div class="waiting-box"></div>
 					</div>
 					<!--<ul class="mui-table-view" data-id="{{$value.orderId}}">
