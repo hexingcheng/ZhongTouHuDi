@@ -298,7 +298,7 @@ mui.plusReady(function() {
 					mcl.add("fade-out");
 					bcl.add("fade-out");
 					// 过渡动画结束的时候执行该事件
-					lmask.addEventListener("webkitTransitionEnd", function() {
+					lmask.addEventListener("webkitTransitionEnd", function() {  
 						document.getElementById("loading-mask").style.display = "none";
 						document.getElementById("loading-box").style.display = "none";
 						mcl.remove("fade-out");

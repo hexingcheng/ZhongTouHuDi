@@ -80,7 +80,7 @@
 				background-color: #FFF;
 				display: none;
 			}
-			.select_sex {
+			/*.select_sex {
 				width: 100%;
 				height: 50px;
 				overflow: hidden;
@@ -89,7 +89,7 @@
 				height: auto;
 				font-size: 14px;
 				width: 14px;
-			}
+			}*/
 			.li_input_s img {
 				width: 34px;
 				height: 34px;
@@ -163,6 +163,29 @@
 				top: 50%;
 				margin-top: -40px;
 			}
+			.select_sex{
+				position: absolute;
+				z-index: 999;
+				height: 9.7em;
+				width: 80%;
+				top: 50%;
+				margin-top: -5em;  
+				left: 50%;
+				margin-left: -40%;
+				line-height:3em;
+				color: #5f5d5d;
+				background-color: #fff; 
+			}
+			.select_sex ul,.select_sex li{
+				background-color: #fff;
+			}
+			.select_sex ul:after{
+				width: 0;
+			}
+			.select_sex ul .mui-table-view-cell:after{
+				width: 0;
+				
+			}
 		</style>
 	</head>
  
@@ -174,10 +197,10 @@
 			<img src="../../img/save.png" class="header_right_img center_save" alt="" style="display: none;" id="center_save"/>
 		</header>
 		<!-- 加载中的蒙层 -->
-		<div id="loading-mask"></div>
+		<!--<div id="loading-mask"></div>
 		<div id="loading-box">
 			<img src="../../img/loading2.gif" alt="loading" width="100%" />
-		</div>
+		</div>-->
 		<div class="main_mask mui-hidden" id="main_mark"> 
 			<div class="loading-box"> 
 			<img src="../../img/loading2.gif" alt="loading" width="100%" />
@@ -185,6 +208,19 @@
 		</div>  
 		<!--蒙版-->
 		<div class="content_mask mui-hidden"></div>
+		<div class="select_sex mui-popover" id="select_sex">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell"> <strong style="color: black;">请选择性别</strong></li> 
+					<li class="mui-table-view-cell">
+						<img src="../../img/male2.png" alt="" class="li_left_img" />
+						<span>男</span>
+					</li>
+					<li class="mui-table-view-cell">
+						<img src="../../img/female2.png" alt="" class="li_left_img"/>
+						<span>女</span>
+					</li>
+				</ul>
+			</div>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
@@ -221,20 +257,21 @@
 								<input type="text" id="firstName" disabled="disabled" class=" edit_input two " />
 							</div>
 						</li>
-						<li class="mui-table-view-cell">
+						<li class="mui-table-view-cell" >
 							<div class="li_left_title">
 								<span>sex</span>
 							</div>
 							<img src="../../img/edit.png" alt="" class="li_right_img edit_hide" name="two" />
-							<div class="li_input_s">
+							<div class="li_input_s" >
 								<span class="edit_show male sex mui-hidden"><span class="mui-pull-left">male</span><img src="../../img/male2.png" alt="" /></span>
 								<span class="edit_show female sex mui-hidden"><span class="mui-pull-left">female</span><img src="../../img/female2.png" alt="" /></span>
-								<div class="select_sex edit_hide">
+								<!--<div class="select_sex edit_hide">
 									<lable>male </lable>
 									<input type="radio" name="sex" checked="checked" value="man" id="person_sex" />
 									<lable>female </lable>
 									<input type="radio" name="sex" />
-								</div>
+								</div>-->
+									<input type="text" readonly="readonly" class="edit_hide"  placeholder="请选择性别" id="input_select_sex"/>
 							</div>
 						</li>
 					</ul>
@@ -631,6 +668,10 @@
 				$('.mui-table-view-cell').on('tap', '.nation_', function() {
 					$('#nation_select_').css('display', 'block');
 					$('.content_mask').removeClass('mui-hidden');
+				})
+				//选择性别
+				document.querySelector('#input_select_sex').addEventListener('tap',function(){alert(2)
+					mui('#select_sex').popover('toggle');
 				})
 				$('.nation_select ul li').on('tap', function() {
 						var nation_name = $(this).text();
