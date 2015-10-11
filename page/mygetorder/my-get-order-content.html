@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -8,6 +9,36 @@
 		<link href="../../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../../css/mygetorder/common.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/mygetorder/my-get-order.css" />
+		<style>
+			#loading-mask{
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				left: 0;
+				background-color: rgba(255,255,255,1);
+				z-index: 998;
+			}
+			#loading-box{
+				position: absolute;
+				width: 80px;
+				height: 80px;
+				left: 50%;
+				top: 50%;
+				margin-left: -40px;
+				margin-top: -40px;
+				z-index: 999;
+			}
+			#loading-box img{
+				height: 80px;
+				width: 80px;
+				display: block;
+			}
+			.fade-out {
+				opacity: 0;
+				-webkit-transition: all 500ms ease-out;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -15,7 +46,52 @@
 			<span class="goods-from font-color">Weight</span>
 			<span class="goods-msg">{{$value.gWeight}}</span>
 		</div>-->
-		
+		<!-- 加载中的蒙层 -->
+		<div id="loading-mask"></div>
+		<div id="loading-box">
+			<img src="../../img/loading2.gif" alt="loading" width="100%" />
+		</div>
+		<div id="pullrefresh" class="mui-scroll-wrapper">
+			<div id="link-detail" class="mui-scroll">
+				<div id="pullrefreshs">
+					<!--<div class="waiting" id="loading-mask">
+						<div class="waiting-box"></div>
+					</div>-->
+					<!--<ul class="mui-table-view" data-id="{{$value.orderId}}">
+				<li class="mui-table-view-cell">
+					<a href="javascript:void(0)" class="detail-page">
+						<div class="goods-name-bar">
+							<span class="goods-name mui-pull-left mui-ellipsis">gName</span>
+						</div>
+						<div class="goods-content">
+							<div class="goods-direction mui-pull-left">
+								<div class="goods-bar goods-from-bar mui-ellipsis">
+									<span class="goods-from font-color">From</span>
+									<span class="goods-msg mui-ellipsis">sendAddr</span>
+								</div>
+								<div class="goods-bar goods-to-bar mui-ellipsis">
+									<span class="goods-to font-color">To</span>
+									<span class="goods-msg mui-ellipsis">receiveAddr</span>
+								</div>
+								<div class="goods-bar goods-comment-bar mui-ellipsis">
+									<span class="goods-comment font-color">
+										发布时间
+									</span>
+									<span class="goods-msg red">{{$value.time}}</span>
+								</div>
+							</div>
+							<div class="goods-rewards-bar mui-pull-right mui-text-center">
+								<div>未取货</div>
+								<div class="goods-rewards">Reward</div>
+								<div class="goods-value mui-ellipsis">money</div>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>-->
+				</div>
+			</div>
+		</div>
 		<script src="../../js/template.js"></script>
 		<script type="text/html" id="template">
 			{{each list}}
@@ -55,47 +131,6 @@
 			<div class="content-padded"></div>
 			{{/each}}
 		</script>
-		<div id="pullrefresh" class="mui-scroll-wrapper">
-			<div id="link-detail" class="mui-scroll">
-				<div id="pullrefreshs">
-					<div style="position: relative;" class="waiting" id="loading-mask">
-						<div class="waiting-box"></div>
-					</div>
-					<!--<ul class="mui-table-view" data-id="{{$value.orderId}}">
-				<li class="mui-table-view-cell">
-					<a href="javascript:void(0)" class="detail-page">
-						<div class="goods-name-bar">
-							<span class="goods-name mui-pull-left mui-ellipsis">gName</span>
-						</div>
-						<div class="goods-content">
-							<div class="goods-direction mui-pull-left">
-								<div class="goods-bar goods-from-bar mui-ellipsis">
-									<span class="goods-from font-color">From</span>
-									<span class="goods-msg mui-ellipsis">sendAddr</span>
-								</div>
-								<div class="goods-bar goods-to-bar mui-ellipsis">
-									<span class="goods-to font-color">To</span>
-									<span class="goods-msg mui-ellipsis">receiveAddr</span>
-								</div>
-								<div class="goods-bar goods-comment-bar mui-ellipsis">
-									<span class="goods-comment font-color">
-										发布时间
-									</span>
-									<span class="goods-msg red">{{$value.time}}</span>
-								</div>
-							</div>
-							<div class="goods-rewards-bar mui-pull-right mui-text-center">
-								<div>未取货</div>
-								<div class="goods-rewards">Reward</div>
-								<div class="goods-value mui-ellipsis">money</div>
-							</div>
-						</div>
-					</a>
-				</li>
-			</ul>-->
-				</div>
-			</div>
-		</div>
 		<script type="text/javascript" src="../../js/jquery.min.js"></script>
 		<script src="../../js/utils.js"></script>
 		<script src="../../js/mygetorder/my-get-order.js"></script>
