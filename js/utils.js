@@ -87,8 +87,8 @@ function innerAjax(options, successcb, errorcb) {
 					plus.nativeUI.closeWaiting();
 				}
 				if (data.ret == 1) {
-					successcb(data);
 					removeloading()
+					successcb(data);
 				} else if (data.ret == -101) {
 					if (getstorage('token')) {
 						var token = getstorage('token');
@@ -105,31 +105,31 @@ function innerAjax(options, successcb, errorcb) {
 									mui.ajax(BASEURL + 'auth/out', {
 										type: 'get',
 										success: function() {
-											openWindow('./page/logupin/login.html')
 											removeloading()
+											openWindow('./page/logupin/login.html')
 										}
 									})
 								}
 							}
 						})
 					} else {
-						openWindow('./page/logupin/login.html');
 						removeloading()
+						openWindow('./page/logupin/login.html');
 					}
 				} else {
 					if (op.wait) {
 						plus.nativeUI.closeWaiting()
 					}
-					successcb(data);
 					removeloading()
+					successcb(data);
 				}
 			},
 			error: function(xhr, type) {
 				if (op.wait) {
 					plus.nativeUI.closeWaiting();
 				}
-				errorcb(xhr,type)
 				removeloading()
+				errorcb(xhr,type)
 			}
 		})
 	});
@@ -187,7 +187,6 @@ function openwindowloading(callback){
 	var otherload = document.getElementById("loading-mask");
 	var preload = document.getElementById("openwindowloading");
 	var show = otherload ? getComputedStyle(otherload, 0)["display"] : "none";
-	
 	if(show == "block" || !loadingmask){
 		callback();
 		return;
@@ -236,9 +235,7 @@ function openwindowloading(callback){
 function removeloading() {
 	var loading = document.getElementById('openwindowloading');
 	if(loading){
-		setTimeout(function(){
-			document.getElementsByTagName('body')[0].removeChild(loading)
-		},500)
+		loading.parentNode.removeChild(loading);
 	}
 }
 

@@ -58,10 +58,10 @@
 				mui('#segmentedControl').on('tap', '.mui-control-item', function() {
 					if (mui.os.ios) {
 						embed.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100);")
-//						mui.fire(embed, "waiting")
+							//						mui.fire(embed, "waiting")
 					} else {
 						embed.evalJS('mui.scrollTo(0, 100);')
-//						mui.fire(embed, "waiting")
+							//						mui.fire(embed, "waiting")
 					}
 					var status = Number($(this).attr('data-num'));
 					var num = ++status;
@@ -94,18 +94,18 @@
 				param.sortVal = $('.mui-control-item').filter('.mui-active').attr('data-desc');
 				mui.fire(embed, 'renderdata', param)
 			})
-			 window.addEventListener('tap', function(e) {
-				var action = $.targets.action;
-		 				console.log(action.classList.contains('mui-action-back'));
-	});
-			 mui.back = function() {
+//			 window.addEventListener('tap', function(e) {
+//				var action = $.targets.action;
+//				console.log(action.classList.contains('mui-action-back'));
+//			});
+			mui.back = function() {
 				var index = plus.webview.getLaunchWebview();
-				index.show("slide-in-left",300);
-				setTimeout(function(){
+				index.show("slide-in-left", 300);
+				setTimeout(function() {
 					getAllwebview()
-					var web = ['get-detail',,'order-content','getorder/get-order'];
+					var web = ['get-detail', , 'order-content', 'getorder/get-order'];
 					closeweb(web)
-				},1000)
+				}, 1000)
 			}
 		</script>
 	</body>

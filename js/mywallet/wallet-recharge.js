@@ -1,4 +1,5 @@
 mui.init();
+var ifset;
 mui.plusReady(function() {
 	mui(".mui-scroll-wrapper").scroll();
 	// 当前余额
@@ -13,8 +14,10 @@ mui.plusReady(function() {
 
 	// 解析当前用户信息
 	var info = JSON.parse(plus.storage.getItem("personinfo"));
+	console.log(plus.storage.getItem("personinfo"))
 	if (info) {
 		document.getElementById("account-num").innerHTML = info.phone;
+		ifset = info.setpay;
 	} else {
 		mui.toast("当前未登陆");
 	}
@@ -50,37 +53,38 @@ mui.plusReady(function() {
 						buttons: [{
 							name: "确定",
 							click: function() {
-								
+
 								var value = document.getElementById('paypwd').value;
 								myAjax({
 									url: 'account/checkPayPwd',
-									data:{
-										payPwd:value
+									data: {
+										payPwd: value
 									}
 								}, function(data) {
-									plus.nativeUI.closeWaiting()
 									if (data.ret == 1) {
+										mui.toast('验证成功')
 										myAjax({
-											url: "wallet/recharge",
-											data: {
-												money: amout,
-												pcId: "paypal"
-											}
-										}, function(data) {
-											plus.nativeUI.closeWaiting()
-											console.log(JSON.stringify(data))
-											mui.toast('验证成功，跳转中');
-											var rid = data.res.rechargeId;
-											openWindow('./rechargedetail.html',{orderid:rid})
-										})
+												url: "wallet/recharge",
+												data: {
+													money: amout,
+													pcId: "paypal"
+												}
+											}, function(data) {
+												console.log(JSON.stringify(data))
+												mui.toast('验证成功，跳转中');
+												var rid = data.res.rechargeId;
+												openWindow('./rechargedetail.html', {
+													orderid: rid
+												})
+											}, function(xhr, type) {
+												console.log(xhr.status + ':' + type)
+											})
 									} else if (data.ret == 2) {
 										mui.toast('验证失败')
 									}
 								}, function(xhr, type) {
-									plus.nativeUI.closeWaiting()
 									mui.toast(xhr.status + "验证失败")
 								})
-								plus.nativeUI.showWaiting('验证中',{background:'#d1d1d1'})
 							}
 						}, {
 							name: "取消",
