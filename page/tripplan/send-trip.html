@@ -160,7 +160,7 @@
 			var tripline = document.getElementById("trip-line");
 	  		document.getElementById("add-wayline").addEventListener("tap", function(){
 	  			var oli = document.createElement("li");
-	  			oli.className = "mui-table-view-cell line-way-cell";
+	  			oli.className = "mui-table-view-cell";
 	  			oli.innerHTML = template;
 	  			tripline.appendChild(oli);
 	  		})
@@ -173,9 +173,9 @@
 	  		
 	  		// 选择途径地
 	  		var index;
-	  		mui("#trip-line").on("tap", ".line-way-cell", function(){
+	  		mui("#trip-line").on("tap", ".add-line", function(){
 	  			this.classList.add("has");
-		  		var all = document.querySelectorAll(".line-way-cell");
+		  		var all = document.querySelectorAll(".add-line");
 	  			for(var i = 0; i < all.length; i++){
 	  				if(all[i].classList.contains("has")){
 	  					index = i;
@@ -190,7 +190,7 @@
 	  		
 	  		// 触发显示途径地地址路径经纬度
 	  		window.addEventListener("show:address", function(eve){
-	  			var line = document.querySelectorAll(".line-way-cell");
+	  			var line = document.querySelectorAll(".add-line");
 	  			if(eve.detail.address){
 		  			line[index].setAttribute("data-address", eve.detail.address);
 		  			line[index].querySelector(".add-line").innerHTML = eve.detail.address;

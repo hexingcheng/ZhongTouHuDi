@@ -1,6 +1,15 @@
 mui.init();
 var money;
+
 mui.plusReady(function() {
+	myAjax({
+	url: 'wallet/money',
+	wait: false
+}, function(data) {
+	if (data.ret == 1) {
+		money = data.res.money;
+	}
+})
 	mui(".mui-scroll-wrapper").scroll();
 	var mp, reword, value;
 
@@ -35,38 +44,38 @@ mui.plusReady(function() {
 		options.height = 220;
 		options.title.content = "please input the reword";
 		options.main.content = '<div class="mak-worn">please input the reword you want to be paid on the order.</div>' +
-								'<div class="borporal">' +
-								'<div class="inner">' +
-								'<input id="mar-i" placeholder="0.00" type="number">' +
-								'</div>' +
-								'</div>' +
-								'<div class="cacu">' +
-								'<div class="origin">' +
-								'<span>oringin</span>' +
-								'<span class="rewrod">' + reword + '</span>' +
-								'</div>' +
-								'<div class="now">' +
-								'<span>real</span>' +
-								'<span class="rel"></span>' +
-								'</div>' +
-								'</div>';
+			'<div class="borporal">' +
+			'<div class="inner">' +
+			'<input id="mar-i" placeholder="0.00" type="number">' +
+			'</div>' +
+			'</div>' +
+			'<div class="cacu">' +
+			'<div class="origin">' +
+			'<span>oringin</span>' +
+			'<span class="rewrod">' + reword + '</span>' +
+			'</div>' +
+			'<div class="now">' +
+			'<span>real</span>' +
+			'<span class="rel"></span>' +
+			'</div>' +
+			'</div>';
 		options.buttons[0].click = function() {
 			if (parseInt(money) < parseInt($('.rel').text())) {
 				pop = null;
-				setTimeout(function(){
+				setTimeout(function() {
 					options.height = 155;
 					options.title.content = "充值提示";
 					options.main.content = "当前用户余额不足，是否对当先用户进行充值？";
-					options.buttons[0].click = function(){
+					options.buttons[0].click = function() {
 						openWindow('../wallet/my-recharge.html')
 					}
 					pop = new Popup(options);
 					pop.show();
 				}, 400)
 			} else {
-//				plus.nativeUI.showWaiting("议价中...", {
-//					background: "#ddd"
-//				});
+				//				plus.nativeUI.showWaiting("议价中...", {
+				//					background: "#ddd"
+				//				});
 				myAjax({
 					url: "deliver/bargain",
 					data: {
@@ -77,7 +86,7 @@ mui.plusReady(function() {
 					if (data.ret == 1) {
 						openWindow('./get-result.html', {
 							orderId: order.orderid,
-							'types':'议价'
+							'types': '议价'
 						});
 					} else if (data.ret == 2) {
 						plus.nativeUI.closeWaiting();
@@ -86,17 +95,17 @@ mui.plusReady(function() {
 						panel.style.display = "none";
 					} else if (data.ret == 4) {
 						pop = null;
-						setTimeout(function(){
+						setTimeout(function() {
 							options.height = 155;
 							options.title.content = "申请提示";
 							options.main.content = "您还未申请递送人身份，是否需要进行申请？";
-							options.buttons[0].click = function(){
+							options.buttons[0].click = function() {
 								openWindow('../applyfor/applyPerson.html')
 							}
 							pop = new Popup(options);
 							pop.show();
 						}, 400)
-						
+
 					} else if (data.ret == 5) {
 						mui.toast('不能接自己的单')
 					} else if (data.ret == 6) {
@@ -160,16 +169,16 @@ mui.plusReady(function() {
 		options.buttons[0].click = function() {
 			if (parseInt(money) < parseInt(value)) {
 				pop = null;
-				setTimeout(function(){
+				setTimeout(function() {
 					options.height = 155;
 					options.title.content = "充值提示";
 					options.main.content = "当前用户余额不足，是否对当先用户进行充值？";
-					options.buttons[0].click = function(){
+					options.buttons[0].click = function() {
 						openWindow('../wallet/my-recharge.html')
 					}
 					pop = new Popup(options);
 					pop.show();
-					
+
 					setTimeout(function() {
 						if (open) {
 							plus.webview.close(open, "none", 0)
@@ -193,7 +202,7 @@ mui.plusReady(function() {
 					if (data.ret == 1) {
 						openWindow("./get-result.html", {
 							orderId: order.orderid,
-							types:'接单'
+							types: '接单'
 						});
 					} else if (data.ret == 2) {
 						mui.toast("此单已不存在");
@@ -201,16 +210,16 @@ mui.plusReady(function() {
 						mui.toast("其他人已接单");
 					} else if (data.ret == 4) {
 						pop = null;
-						setTimeout(function(){
+						setTimeout(function() {
 							options.height = 155;
 							options.title.content = "申请提示";
 							options.main.content = "您还未申请递送人身份，是否需要进行申请？";
-							options.buttons[0].click = function(){
+							options.buttons[0].click = function() {
 								openWindow('../applyfor/applyPerson.html')
 							}
 							pop = new Popup(options);
 							pop.show();
-							
+
 							setTimeout(function() {
 								if (open) {
 									plus.webview.close(open, "none", 0)
@@ -240,14 +249,6 @@ mui.plusReady(function() {
 
 
 	//获取用户余额
-	myAjax({
-		url: 'wallet/money',
-		wait: false
-	}, function(data) {
-		if (data.ret == 1) {
-			money = data.res.money;
-		}
-	})
 
 	// 定义刷新页面数据显示
 	window.addEventListener("refresh:data", function() {
@@ -274,7 +275,7 @@ mui.plusReady(function() {
 				$("#sendaddr").html(data.res.sendAddr.name); // 发送地
 				$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
 				$("#gvalue").html(data.res.gValue); // value
-				value = data.res.gValue;
+				value = data.res.money;
 				$("#info").html(data.res.info); // 信息描述
 				var pic = data.res.pics;
 				reword = data.res.money;
@@ -308,7 +309,7 @@ mui.plusReady(function() {
 			} else if (data.ret == 2) {
 				mui.toast('该单以被接');
 				var list = plus.webview.getWebviewById('getorder/get-order');
-				mui.fire(list,'fresh');
+				mui.fire(list, 'fresh');
 				mui.back();
 			}
 

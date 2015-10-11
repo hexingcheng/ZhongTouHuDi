@@ -508,11 +508,11 @@
 							</div>
 						</div>
 						<div class="gap"></div>
-						<div class="gWeight clear">
+						<div class="gWeight clear"> 
 							<div class="wid30 fl hei110 linehei110 colorg">
-								<span class="colorgray myicon"><img src="../../img/weight.png"></span>
+								<span class="colorgray myicon"><img src="../../img/weight1.png"></span>
 							</div>
-							<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
+							<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
 								<span class="kg-g font-14">Kg</span>
 							</div>
 							<div class="wid50 hei110">
@@ -525,7 +525,7 @@
 							<div class="wid30 fl hei110 linehei110 colorg">
 								<span class="colorgray myicon"><img src="../../img/value.png"></span>
 							</div>
-							<div class="fr hei110 linehei110 wid20 mui-text-center borleft" id="change-w">
+							<div class="fr hei110 linehei110 wid20 mui-text-center" id="change-w">
 								<span class="kg-g font-14">$</span>
 							</div>
 							<div class="wid50 hei110">
@@ -626,6 +626,7 @@
 				return false;
 			})
 			document.getElementById('info').addEventListener('tap', function() {
+				$('input').blur()
 				var param = {};
 				if ($(this).text() != 'Comment') {
 					var texts = $(this).text();

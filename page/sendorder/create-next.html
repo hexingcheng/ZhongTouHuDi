@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="common.css" />
 		<link rel="stylesheet" href="../../css/mui.listpicker.css" />
 		<link rel="stylesheet" href="../../css/mui.dtpicker.css" />
-		<link rel="stylesheet" href="../../css/animation/animation.css"/>
+		<link rel="stylesheet" href="../../css/animation/animation.css" />
 		<script src="../../js/mui.min.js"></script>
 		<style>
 			* {
@@ -126,7 +126,6 @@
 				position: relative;
 				border-bottom: 1px solid #e8e8e8;
 			}
-
 			.insurea {
 				color: #5F5D5D;
 			}
@@ -236,28 +235,91 @@
 				top: 52px;
 				bottom: 60px;
 			}
-			#address-mask {display: none; position: absolute;top: 0;bottom: 0;left: 0;right: 0;background: rgba(0,0,0,0.5);z-index: 998;transition: all 500ms ease-in-out;}
-			#address-content {display: none;opacity: 0;position: fixed;top: 50%;bottom: 0;left: 0;right: 0;background: #fff;z-index: 999;}
-			#address-content .address-pre {position: relative;width: 100%;height: 100%;color: #444;}
-			#address-content .show-addr {height: 100%;line-height: 2.5;}
-			#address-content .mui-media-body {position: absolute;left: 3em;right: 1em;}
-			#address-content .mui-table-view-cell {padding: 0 15px;}
-			#address-content .content-scroll {position: absolute;z-index: 1;width: 100%;-webkit-transform: translateZ(0);transform: translateZ(0);-webkit-backface-visibility: hidden;}
-			#address-content .mui-content-padded {padding: 10px;border-bottom: 1px solid #ccc;margin: 0;}
-			#address-content .mui-table-view-cell:after {left: 0;}
-			#address-content .img-box {width: 80px;height: 80px;position: absolute;left: 50%;top: 50%;margin-left: -40px;margin-top: -82px;}
-			#address-content .img-box img {width: 100%;height: 100%;}
-			#addr-list {height: 100%;}
+			#address-mask {
+				display: none;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background: rgba(0, 0, 0, 0.5);
+				z-index: 998;
+				transition: all 500ms ease-in-out;
+			}
+			#address-content {
+				display: none;
+				opacity: 0;
+				position: fixed;
+				top: 50%;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background: #fff;
+				z-index: 999;
+			}
+			#address-content .address-pre {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				color: #444;
+			}
+			#address-content .show-addr {
+				height: 100%;
+				line-height: 2.5;
+			}
+			#address-content .mui-media-body {
+				position: absolute;
+				left: 3em;
+				right: 1em;
+			}
+			#address-content .mui-table-view-cell {
+				padding: 0 15px;
+			}
+			#address-content .content-scroll {
+				position: absolute;
+				z-index: 1;
+				width: 100%;
+				-webkit-transform: translateZ(0);
+				transform: translateZ(0);
+				-webkit-backface-visibility: hidden;
+			}
+			#address-content .mui-content-padded {
+				padding: 10px;
+				border-bottom: 1px solid #ccc;
+				margin: 0;
+			}
+			#address-content .mui-table-view-cell:after {
+				left: 0;
+			}
+			#address-content .img-box {
+				width: 80px;
+				height: 80px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -40px;
+				margin-top: -82px;
+			}
+			#address-content .img-box img {
+				width: 100%;
+				height: 100%;
+			}
+			#addr-list {
+				height: 100%;
+			}
+			.mar_b0 {
+				margin-bottom: 10px;
+			}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav nav_header">
-			<img src="../../img/left.png" alt=""  class="header_left_img mui-action-back"/>
-			<img src="../../img/draft.png" alt="" class="header_right_img draft"  id="drafticon"/>
+			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
+			<img src="../../img/draft.png" alt="" class="header_right_img draft" id="drafticon" />
 			<span>create order</span>
 		</header>
-		<footer class="mui-bar mui-bar-footer" >
+		<footer class="mui-bar mui-bar-footer">
 			<button class="nav_footer mui-btn" id="next">Send</button>
 		</footer>
 		<!--<div class="mask mui-hidden"></div>
@@ -270,7 +332,7 @@
 							<div class="fl widhe">
 								<span class="rewords">
 									Reward
-								</span> 
+								</span>
 							</div>
 							<div class="fr wid10e hei80 linehei tet">
 								<span class="myicon">
@@ -292,17 +354,17 @@
 									<span class="myicon">
 										<img src="../../img/right.png"/>
 									</span>
-						</div>
-						<div class="hei80 linehei addborb hidden pd0">
-							<div id="gettime" class="gettimes font-14 pd0" data-type="start" data-time="">Pickup Time</div>
-						</div>
-					</div>
-					<div class="arrtime clear">
-						<div class="fl wid10">
-							<span class="myicon"><img src="../../img/time5.png"></span>
-						</div>
-						<div class="fr wid10e hei80 linehei tet">
-							<span class="myicon">
+								</div>
+								<div class="hei80 linehei addborb hidden pd0">
+									<div id="gettime" class="gettimes font-14 pd0" data-type="start" data-time="">Pickup Time</div>
+								</div>
+							</div>
+							<div class="arrtime clear">
+								<div class="fl wid10">
+									<span class="myicon"><img src="../../img/time5.png"></span>
+								</div>
+								<div class="fr wid10e hei80 linehei tet">
+									<span class="myicon">
 										<img src="../../img/right.png"/>
 									</span>
 								</div>
@@ -318,11 +380,11 @@
 						<div class="address bgf">
 							<div class="clear" id="pict">
 								<div class="fl wid10">
-									<span class="myicon"><img src="../../img/location.png"></span>
+									<span class="myicon"><img src="../../img/order22.png"></span>
 								</div>
 								<div class="fr wid10e hei80 linehei tet addborb" id="send-address">
 									<span class="myicon">
-										<img src="../../img/deliverorder.png"/>
+										<img src="../../img/deliverorder2.png"/>
 									</span>
 								</div>
 								<div class="hei80 linehei hidden addborb">
@@ -331,11 +393,11 @@
 							</div>
 							<div class="clear">
 								<div class="fl wid10">
-									<span class="myicon"><img src="../../img/address.png"></span>
+									<span class="myicon"><img src="../../img/address2.png"></span>
 								</div>
 								<div class="fr wid10e hei80 linehei tet" id="receive-address">
 									<span class="myicon">
-										<img src="../../img/deliverorder.png"/>
+										<img src="../../img/deliverorder2.png"/>
 									</span>
 								</div>
 								<div class="hei80 linehei hidden">
@@ -353,7 +415,7 @@
 							</div>
 							<div class="fr wid10e hei80 linehei tet" id="sender-contact">
 								<span class="myicon">
-										<img src="../../img/contacts.png"/>
+										<img src="../../img/contact2.png"/>
 								</span>
 							</div>
 							<div class="hei80 linehei hidden">
@@ -375,14 +437,14 @@
 							</div>
 							<div class="fr wid10e hei80 linehei tet" id="receiver-contact">
 								<span class="myicon">
-							<img src="../../img/contacts.png"/>
+							<img src="../../img/contact2.png"/>
 						</span>
 							</div>
 							<div class="hei80 linehei hidden">
 								<input type="text" class="mui-input-clear removebor font-14 pd0" placeholder="receiver" id="receiver" />
 							</div>
 						</div>
-						<div class="phone clear bgf">
+						<div class="phone clear bgf mar_b0">
 							<div class="fl wid10">
 								<span class="myicon"><img src="../../img/phones.png"></span>
 							</div>
@@ -402,14 +464,14 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div id="address-mask"></div>
 		<div id="address-content">
 			<div class="address-pre">
 				<div class="mui-content-padded">Commonly used address</div>
 				<ul class="mui-table-view" id="addr-list">
 					<div class="img-box">
-						<img src="../../img/loading2.gif"/>
+						<img src="../../img/loading2.gif" />
 					</div>
 					<!--<li class="mui-table-view-cell mui-media">
 						<div class="mui-pull-left mui-media-object">
@@ -423,7 +485,7 @@
 			</div>
 		</div>
 		<script type="text/html" id="template">
-		{{each list}}
+			{{each list}}
 			<li class="mui-table-view-cell mui-media">
 				<div class="mui-pull-left mui-media-object">
 					<span class="mui-icon mui-icon-location"></span>
@@ -432,7 +494,7 @@
 					<div class="show-addr mui-ellipsis">{{$value.name}}</div>
 				</div>
 			</li>
-		{{/each}}
+			{{/each}}
 		</script>
 		<script src="../../js/template.js"></script>
 		<script type="text/javascript" src="../../js/mui.listpicker.js"></script>
@@ -443,7 +505,6 @@
 			mui.init();
 			mui.plusReady(function() {
 				mui('.mui-scroll-wrapper').scroll()
-							
 				var getdata = {};
 				getdata.gName = "";
 				getdata.gValue = "";
@@ -469,128 +530,119 @@
 				c.setStyle({
 					scrollIndicator: 'none'
 				})
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(function(pos) {
-						lot = pos.coords.longitude;
-						lat = pos.coords.latitude;
-						$('#getaddr').attr('data-Jd', lot)
-						$('#getaddr').attr('data-Wd', lat)
-						$('#sendaddr').attr('data-Jd', lot)
-						$('#sendaddr').attr('data-Wd', lat)
-						var c = plus.webview.currentWebview();
-						var onOff = true;
-						
-						$('#next').on('tap', function() {
-							var $this = $(this);
-							var data = JSON.parse(plus.storage.getItem("draft-datas"))
-							if (data && data.res && data.res.orderId) {
-								getdata.orderId = data.res.orderId;
-							}
-							getdata.gName = c.gName;
-							getdata.gValue = c.gValue;
-							getdata.gWeight = c.gWeight;
-							getdata.pics = c.pics;
-							getdata.info = c.info;
-							getdata.money = parseInt($('#pay').val());
-							getdata.getTime = $('#gettime').attr('data-time');
-							getdata.finTime = $('#respecttime').attr('data-time');
-							getdata.senderAddress = $('#getaddr').attr('data-addr');
-							getdata.receiverAddress = $('#sendaddr').attr('data-addr');
-							getdata.sender = $('#sender').val();
-							getdata.senderPhone = $('#contact').val();
-							getdata.sendJd = $('#getaddr').attr('data-Jd');
-							getdata.sendWd = $('#getaddr').attr('data-Wd');
-							getdata.receiver = $('#receiver').val();
-							getdata.receiverPhone = $('#tel').val();
-							getdata.receiverJd = $('#sendaddr').attr('data-Jd');
-							getdata.receiverWd = $('#sendaddr').attr('data-Wd');
-							getdata.insType = parseInt($('#comer').attr('data-sure'));
-							getdata.status = 1;
-							if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
-								if (onOff) {
-									onOff = false;
-									// 当信息验证成功后，禁止按钮再次提交
-									$this.attr("disabled", true);
-									$this.html("submit...")
-									showobj(getdata);
-									myAjax({
-										url: 'order/resOrderByGood',
-										data: getdata
-									}, function(data) {
-										if (data.ret == 1) {
-											plus.storage.removeItem("draft-datas"); // 返回时清楚storage中储存的数据
-											mui.toast('发单成功');
-//											setstorage('my-send-order', data.res.orderId);
-											openWindow('./result.html', {
-												orderid : data.res.orderId
-											})
-										}
-										if (data.ret == 2) {
-											mui.toast('发单被限制');
-										}
-									}, function(xhr, type) {
-										onOff = true;
-										$this.html("Send");
-										$this.attr("disabled", false);
-										console.log(type)
+				if (!plus.storage.getItem('longitude') && plus.storage.getItem('latitude')) {
+					getlatlng();
+				}
+				lot = plus.storage.getItem('longitude') - 0;
+				lat = plus.storage.getItem('latitude') - 0;
+				$('#getaddr').attr('data-Jd', lot)
+				$('#getaddr').attr('data-Wd', lat)
+				$('#sendaddr').attr('data-Jd', lot)
+				$('#sendaddr').attr('data-Wd', lat)
+				var c = plus.webview.currentWebview();
+				var onOff = true;
+				$('#next').on('tap', function() {
+					var $this = $(this);
+					var data = JSON.parse(plus.storage.getItem("draft-datas"))
+					if (data && data.res && data.res.orderId) {
+						getdata.orderId = data.res.orderId;
+					}
+					getdata.gName = c.gName;
+					getdata.gValue = c.gValue;
+					getdata.gWeight = c.gWeight;
+					getdata.pics = c.pics;
+					getdata.info = c.info;
+					getdata.money = parseInt($('#pay').val());
+					getdata.getTime = $('#gettime').attr('data-time');
+					getdata.finTime = $('#respecttime').attr('data-time');
+					getdata.senderAddress = $('#getaddr').attr('data-addr');
+					getdata.receiverAddress = $('#sendaddr').attr('data-addr');
+					getdata.sender = $('#sender').val();
+					getdata.senderPhone = $('#contact').val();
+					getdata.sendJd = $('#getaddr').attr('data-Jd');
+					getdata.sendWd = $('#getaddr').attr('data-Wd');
+					getdata.receiver = $('#receiver').val();
+					getdata.receiverPhone = $('#tel').val();
+					getdata.receiverJd = $('#sendaddr').attr('data-Jd');
+					getdata.receiverWd = $('#sendaddr').attr('data-Wd');
+					getdata.insType = parseInt($('#comer').attr('data-sure'));
+					getdata.status = 1;
+					if (getdata.money && getdata.getTime && getdata.senderAddress && getdata.receiverAddress && getdata.sender && getdata.senderPhone) {
+						if (onOff) {
+							onOff = false;
+							// 当信息验证成功后，禁止按钮再次提交
+							$this.attr("disabled", true);
+							$this.html("submit...")
+							showobj(getdata);
+							myAjax({
+								url: 'order/resOrderByGood',
+								data: getdata
+							}, function(data) {
+								if (data.ret == 1) {
+									plus.storage.removeItem("draft-datas"); // 返回时清楚storage中储存的数据
+									mui.toast('发单成功');
+									//											setstorage('my-send-order', data.res.orderId);
+									openWindow('./result.html', {
+										orderid: data.res.orderId
 									})
 								}
-							} else {
-								mui.toast('信息未填完全')
-							}
-						})
-					}, function() {
-						mui.toast('获取位置信息失败')
-					}, {
-						enableHighAcuracy: true
-					})
-				} else {
-					mui.toast('获取位置信息失败')
-				}
-				
+								if (data.ret == 2) {
+									mui.toast('发单被限制');
+								}
+							}, function(xhr, type) {
+								onOff = true;
+								$this.html("Send");
+								$this.attr("disabled", false);
+								console.log(type)
+							})
+						}
+					} else {
+						mui.toast('信息未填完全')
+					}
+				})
 				var year = new Date().getFullYear();
 				var options = {
-					"type": "hour",
-					"beginYear": year,
-					"endYear": year + 3,
-					"customData": {
-						"h": [{
-							"text": "上午",
-							"value": "上午"
-						}, {
-							"text": "下午",
-							"value": "下午"
-						}, {
-							"text": "晚上",
-							"value": "晚上"
-						}]
-					},
-					"labels": ["年", "月", "日", "时段"]
-				}
-				// 
+						"type": "hour",
+						"beginYear": year,
+						"endYear": year + 3,
+						"customData": {
+							"h": [{
+								"text": "上午",
+								"value": "上午"
+							}, {
+								"text": "下午",
+								"value": "下午"
+							}, {
+								"text": "晚上",
+								"value": "晚上"
+							}]
+						},
+						"labels": ["年", "月", "日", "时段"]
+					}
+					// 
 				var startdate, enddate;
-				mui("#dalegate").on("tap", ".gettimes", function(){
+				mui("#dalegate").on("tap", ".gettimes", function() {
 					$('input').blur();
 					var that = this;
 					var type = that.getAttribute("data-type");
-					if(type == "end"){
+					if (type == "end") {
 						var text = document.getElementById("gettime").innerHTML;
-						if(text == "Pickup Time"){
+						if (text == "Pickup Time") {
 							mui.toast("请先选择起始时间")
 							return false;
 						}
 					}
 					var picker = new mui.DtPicker(options);
 					picker.show(function(rs) {
-						if(type == "start"){
+						if (type == "start") {
 							that.setAttribute("data-time", rs.value)
 							that.innerHTML = rs.value;
 							that.style.color = "#5d5d5d";
 							startdate = parseInt(rs.value.replace(/-/ig, ''));
 							picker.dispose();
-						} else if(type == "end"){
+						} else if (type == "end") {
 							var end = parseInt(rs.value.replace(/-/ig, ''));
-							if(end >= startdate){
+							if (end >= startdate) {
 								enddate = end;
 								that.setAttribute("data-time", rs.value)
 								that.innerHTML = rs.value;
@@ -601,10 +653,6 @@
 						}
 					});
 				})
-				
-				
-				
-				
 				$('#drafticon').on('tap', function() {
 					openWindow('./draft.html')
 				})
@@ -645,16 +693,16 @@
 					$('#tel').val(datas.res.receiverPhone);
 				}
 				// 返回按钮时进行数据存储
-				var openned = false; 		// 选择常用地址的蒙层是否打开
+				var openned = false; // 选择常用地址的蒙层是否打开
 				var back = mui.back;
 				mui.back = function() {
-					if(openned){		// 如果常用地址打开，返回按钮的时候先关闭
-						hide();
-						return;
+						if (openned) { // 如果常用地址打开，返回按钮的时候先关闭
+							hide();
+							return;
+						}
+						draftdata();
+						back();
 					}
-					draftdata();
-					back();
-				}
 					// 获取草稿信息
 				$('.insure').on('tap', function() {
 					if ($('.sure').attr('src') == '../../img/ok.png') {
@@ -695,13 +743,13 @@
 					}
 					// 选择发送者联系方式
 				document.getElementById("sender-contact").addEventListener("tap", function() {
-					findContact(function(){
+					findContact(function() {
 						openWindow("./choose-contact.html");
 					});
 					setstorage("order-type", "sender");
 				}, false)
 				document.getElementById("receiver-contact").addEventListener("tap", function() {
-						findContact(function(){
+						findContact(function() {
 							openWindow("./choose-contact.html");
 						});
 						setstorage("order-type", "receiver");
@@ -727,9 +775,8 @@
 								}
 							}
 							//							console.log(JSON.stringify(lists))
-							
 							plus.storage.setItem("contacts", JSON.stringify(lists));
-							cb&&cb();
+							cb && cb();
 						}, function(err) {
 							console.log("查找错误 :" + err.message);
 						}, {
@@ -745,110 +792,109 @@
 					$("#contact").val(eve.detail.tel);
 				})
 				window.addEventListener("order:receiver", function(eve) {
-					$("#receiver").val(eve.detail.name);
-					$("#tel").val(eve.detail.tel);
-				})
-				
-				
-				// 获取蒙层节点与内容节点
+						$("#receiver").val(eve.detail.name);
+						$("#tel").val(eve.detail.tel);
+					})
+					// 获取蒙层节点与内容节点
 				var addrmask = document.getElementById("address-mask");
 				var content = document.getElementById("address-content");
 				// 控制节点显示
-				function show(){
-					openned = true;
-					addrmask.style.display = "block";
-					content.style.display = "block";
-					content.classList.add("slidein");
-					content.addEventListener("webkitAnimationEnd", innershow);
-					function innershow(){
-						content.style.top = "50%";
-						content.style.opacity = "1";
-						addrmask.style.opacity = "1";
-						if(content.classList.contains("slideout")){
-							content.classList.remove("slideout");
+				function show() {
+						openned = true;
+						addrmask.style.display = "block";
+						content.style.display = "block";
+						content.classList.add("slidein");
+						content.addEventListener("webkitAnimationEnd", innershow);
+
+						function innershow() {
+							content.style.top = "50%";
+							content.style.opacity = "1";
+							addrmask.style.opacity = "1";
+							if (content.classList.contains("slideout")) {
+								content.classList.remove("slideout");
+							}
+							content.removeEventListener("webkitAnimationEnd", innershow);
 						}
-						content.removeEventListener("webkitAnimationEnd", innershow);
 					}
-				}
-				// 控制节点隐藏
-				function hide(){
-					openned = false;
-					content.classList.add("slideout");
-					content.addEventListener("webkitAnimationEnd", innerhide)
-					function innerhide(){
-						content.style.top = "100%";
-						content.style.opacity = "0";
-						content.style.display = "none";
-						addrmask.style.display = "none";
-						if(content.classList.contains("slidein")){
-							content.classList.remove("slidein");
+					// 控制节点隐藏
+
+				function hide() {
+						openned = false;
+						content.classList.add("slideout");
+						content.addEventListener("webkitAnimationEnd", innerhide)
+
+						function innerhide() {
+							content.style.top = "100%";
+							content.style.opacity = "0";
+							content.style.display = "none";
+							addrmask.style.display = "none";
+							if (content.classList.contains("slidein")) {
+								content.classList.remove("slidein");
+							}
+							content.removeEventListener("webkitAnimationEnd", innerhide);
 						}
-						content.removeEventListener("webkitAnimationEnd", innerhide);
 					}
-				}
-				
-				// 数据节点渲染
+					// 数据节点渲染
 				var addresslist = null;
 				var addr = document.getElementById("addr-list");
-				function renderDom(){
-					if(!addresslist){
-						myAjax({
-		      				url : "account/addressList",
-			      			wait : false
-			      		}, function(data){
-			      			if(data.ret == 1){
-			      				addresslist = data.res.addressList;
-				      			var obj = {
-				      				"list" : addresslist
-				      			}
-				      			addr.innerHTML = template("template",obj)
-			      			}
-			      		})
-					} else {
-						var obj = {
-		      				"list" : addresslist
-		      			}
-		      			addr.innerHTML = template("template",obj)
+
+				function renderDom() {
+						if (!addresslist) {
+							myAjax({
+								url: "account/addressList",
+								wait: false
+							}, function(data) {
+								if (data.ret == 1) {
+									addresslist = data.res.addressList;
+									var obj = {
+										"list": addresslist
+									}
+									addr.innerHTML = template("template", obj)
+								}
+							})
+						} else {
+							var obj = {
+								"list": addresslist
+							}
+							addr.innerHTML = template("template", obj)
+						}
 					}
-				}
-				// 选择常用地址
-				// 显示常用地址的两种情况
+					// 选择常用地址
+					// 显示常用地址的两种情况
 				var type = null;
-				document.getElementById("send-address").addEventListener("tap", function(){
+				document.getElementById("send-address").addEventListener("tap", function() {
 					show();
 					renderDom();
 					type = "send";
 				})
-				document.getElementById("receive-address").addEventListener("tap", function(){
-					show();
-					renderDom();
-					type = "reveive";
-				})
-				
-				// 隐藏常用地址的情况
-				// 一，点击蒙层
-				addrmask.addEventListener("tap", function(){
-					hide();
-				})
-				// android点击返回按钮的时候
-				/* 查找 mui.back */
-					
-				// 选择选项后
-				mui("#addr-list").on('tap', ".addr-item", function(){
+				document.getElementById("receive-address").addEventListener("tap", function() {
+						show();
+						renderDom();
+						type = "reveive";
+					})
+					// 隐藏常用地址的情况
+					// 一，点击蒙层
+				addrmask.addEventListener("tap", function() {
+						hide();
+					})
+					// android点击返回按钮的时候
+					/* 查找 mui.back */
+					// 选择选项后
+				mui("#addr-list").on('tap', ".addr-item", function() {
 					var addrs = this.getAttribute("data-addr");
-	      			var jds = this.getAttribute("data-jd");
-	      			var wds = this.getAttribute("data-wd");
-					if(type == "send"){
+					var jds = this.getAttribute("data-jd");
+					var wds = this.getAttribute("data-wd");
+					if (type == "send") {
 						$("#getaddr").attr("data-addr", addrs);
 						$("#getaddr").html(addrs).css("color", "#5d5d5d");
 						$("#getaddr").attr("data-Jd", jds);
 						$("#getaddr").attr("data-Wd", wds);
-					} else if (type == "reveive"){
+					} else if (type == "reveive") {
 						$("#sendaddr").attr("data-addr", addrs);
 						$("#sendaddr").html(addrs).css("color", "#5d5d5d");
 						$("#sendaddr").attr("data-Jd", jds);
 						$("#sendaddr").attr("data-Wd", wds);
-	      			}
+					}
 					hide();
 				})
 			})

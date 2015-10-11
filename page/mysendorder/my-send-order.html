@@ -6,18 +6,19 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="../../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="../../css/header-footer.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/header-footer.css" />
 		<link rel="stylesheet" href="../../css/mysendorder/my-send-order.css" />
 		<script src="../../js/mui.min.js"></script>
 	</head>
-
-	<body style="background: #fff;font-size: 14px;">
-		<header class="mui-bar mui-bar-nav">
-			<span class="left-back mui-pull-left">
+	<header class="mui-bar mui-bar-nav">
+		<span class="left-back mui-pull-left">
 				<img src="../../img/left.png" class="mui-action-back"></img>
 			</span>
-			<h1 class="mui-title mui-text-left">My Order</h1>
-		</header>
+		<h1 class="mui-title mui-text-left">My Order</h1>
+	</header>
+
+	<body style="background: #fff;font-size: 14px;">
+
 		<div class="mui-content">
 			<div id="segmentedControl" class="mui-segmented-control">
 				<a class="mui-control-item mui-active item-first" data-status="1">publish</a>
@@ -40,40 +41,36 @@
 				});
 				plus.webview.currentWebview().append(embed);
 				mui('#segmentedControl').on('tap', '.mui-control-item', function() {
-					if (mui.os.ios) {
-						embed.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
-					} else {
-						embed.evalJS('mui.scrollTo(0, 100)');
-					}
-					var param = {};
-					param.status = this.getAttribute('data-status');
-					mui.fire(embed, 'renderdata', param);
-				})
-				
-				// 刷新数据显示
+						if (mui.os.ios) {
+							embed.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+						} else {
+							embed.evalJS('mui.scrollTo(0, 100)');
+						}
+						var param = {};
+						param.status = this.getAttribute('data-status');
+						mui.fire(embed, 'renderdata', param);
+					})
+					// 刷新数据显示
 				window.addEventListener("refresh:alldata", function(eve) {
-					mui.trigger(document.querySelector(".item-first") , "tap");
-					$(".item-first").addClass("mui-active")
-					$(".mui-control-item").not(".item-first").removeClass("mui-active")
-				})
-			
-				// 刷新数据显示
+						mui.trigger(document.querySelector(".item-first"), "tap");
+						$(".item-first").addClass("mui-active")
+						$(".mui-control-item").not(".item-first").removeClass("mui-active")
+					})
+					// 刷新数据显示
 				window.addEventListener("refresh:comment", function() {
-					mui.trigger(document.querySelector(".item-third") , "tap");
-					$(".item-third").addClass("mui-active")
-					$(".mui-control-item").not(".item-third").removeClass("mui-active")
-				})
-				
-				// 
+						mui.trigger(document.querySelector(".item-third"), "tap");
+						$(".item-third").addClass("mui-active")
+						$(".mui-control-item").not(".item-third").removeClass("mui-active")
+					})
+					// 
 				window.addEventListener("refresh:second", function() {
-					mui.trigger(document.querySelector(".item-second") , "tap");
-					$(".item-second").addClass("mui-active")
-					$(".mui-control-item").not(".item-second").removeClass("mui-active")
-				})
-				
-				// 自定义事件刷新列表信息
+						mui.trigger(document.querySelector(".item-second"), "tap");
+						$(".item-second").addClass("mui-active")
+						$(".mui-control-item").not(".item-second").removeClass("mui-active")
+					})
+					// 自定义事件刷新列表信息
 				window.addEventListener("refresh:data", function() {
-					mui.trigger(document.querySelector(".item-four") , "tap");
+					mui.trigger(document.querySelector(".item-four"), "tap");
 					$(".item-four").addClass("mui-active")
 					$(".mui-control-item").not(".item-four").removeClass("mui-active")
 				})

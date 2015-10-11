@@ -1,7 +1,7 @@
 var BASEURL = "http://202.202.43.107:8080/api/";
 var BASEIMGURL = "http://202.202.43.107:8080";
 //		var BASEURL = "http://192.168.0.100:8080/api/"
-var google = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDbxX3v0OCgYabsgQcUjrQlF4rGhlL7-2Y&v=3.exp&language=zh-CN&signed_in=true&libraries=places'
+//var google = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDbxX3v0OCgYabsgQcUjrQlF4rGhlL7-2Y&v=3.exp&language=zh-CN&signed_in=true&libraries=places'
 function getcamera(successcb, errorcb, option) {
 	var cmr = plus.camera.getCamera();
 	cmr.captureImage(successcb, errorcb)
