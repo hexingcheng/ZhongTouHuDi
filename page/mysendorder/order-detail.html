@@ -363,7 +363,8 @@
 				mui(".mui-scroll-wrapper").scroll();
 				var cpage = plus.webview.currentWebview();
 				var orderid = cpage.orderId; // 当前订单号
-				alert(orderid)
+				var index = plus.webview.getLaunchWebview();
+//				alert(orderid)
 				var sta;
 				var cancelstatus; // 点击取消按钮时处理的三个状态 议价中，接单中，未取货
 				var type = cpage.type; // 从哪里跳转过来的，进行返回键的设置
@@ -374,7 +375,9 @@
 				var back = mui.back;
 				mui.back = function() { // 1,2 refresh:alldata  3,4 refresh:second  5,6 refresh:comment -1 refresh:data
 					if (type = "createorder") {
-						plus.webview.getLaunchWebview().show("slide-in-left", 300);
+						console.log(type)
+						index.show('slide-in-left',300)
+						
 					}
 					if (sta == 1 || sta == 2) {
 						refreshData("refresh:alldata")
@@ -387,11 +390,13 @@
 					}
 					setTimeout(function() {
 						closeweb();
-						cpage.close("none", 0);
+//						if(cpage){
+//							cpage.close("none", 0);
+//						}
 					}, 1000)
 				}
 				function closeweb(){
-					var web = ['message/message','ordermsg']
+					var web = ['message/message','ordermsg','order-detail']
 					for(var i = 0;i<web.length;i++){
 						if(plus.webview.getWebviewById(web[i])){
 							plus.webview.getWebviewById(web[i]).close();
