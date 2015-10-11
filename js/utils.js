@@ -81,6 +81,7 @@ function innerAjax(options, successcb, errorcb) {
 		mui.ajax(BASEURL + op.url, {
 			type: op.type,
 			data: op.data,
+			timeout : 20000,
 			success: function(data) {
 				if (op.wait) {
 					plus.nativeUI.closeWaiting();
