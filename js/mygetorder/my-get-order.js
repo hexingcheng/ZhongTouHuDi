@@ -31,7 +31,8 @@ function pulldownRefresh(){
 		myAjax({
 			url: 'order/myGoodList',
 			data: getorderdata,
-			wait: wait
+			wait: wait,
+			loadingMask : false 
 		}, function(data) {
 			var orderdata = {
 				"list": data.res.orderList
@@ -65,7 +66,8 @@ function pullupRefresh(){
 		myAjax({
 			url: 'order/myGoodList',
 			data: getorderdata,
-			wait: wait
+			wait: wait,
+			loadingMask : false 
 		}, function(data) {
 			console.log(JSON.stringify(data))
 			var orderdata = {
@@ -142,11 +144,5 @@ mui.plusReady(function() {
 		};
 
 		openWindow('./mygetorderdtl.html', datas)
-	})
-	
-	// 点击页面切换的时候，进行切换页面等待窗口
-	window.addEventListener("waiting", function(){
-		var waithtml = '<div class="data-wait">数据加载中...</div>';
-		$('#pullrefreshs').html(waithtml);
 	})
 })

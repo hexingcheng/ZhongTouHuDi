@@ -108,14 +108,14 @@
 			}
 			.mui-scroll-wrapper .info_edit{
 				margin: 0 2%;
-			}   
+			}    
 			.mui-table-view .mui-table-view-cell:after{
 				left: 5px;
 				right: 5px;
 			}
 		</style>
 	</head>
-
+  
 	<body>
 		<!--国籍列表-->
 		<div class="nation_mark"></div>
@@ -175,7 +175,7 @@
 			</div>
 		<header class="mui-bar mui-bar-nav nav_header ">
 			<img src="../../img/left.png" alt="" class="header_left_img mui-action-back" />
-			<span>Application For Deliverer</span>
+			<span>递送人申请</span>
 		</header>
 		<footer class="mui-bar mui-bar-footer content_chan" id="footer" >  
 			<button class="mui-btn nav_footer" id="apply_submit"><span>Next Step</span></button>
@@ -211,9 +211,9 @@
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll" >
 					<ul class="mui-table-view ">
-						<li class="mui-table-view-divider  title_  mui-text-center info " id="title_apply">
+						<li class="mui-table-view-divider  title_  mui-text-center info mui-hidden" id="title_apply">
 							<div class="bell_title"> 
-								<span><img src="../../img/title_bell.png" alt="" /></span>
+								<span><img src="../../img/title_bell.png" alt="" style="vertical-align: middle;"/></span>
 								<span id="status_info" style="color: #FC9B29;"></span> 
 							</div>
 						</li>
@@ -237,14 +237,7 @@
 							<img src="../../img/gender.png" class="li_left_img " alt="" />
 							<span class="mui-hidden two"><span class="mui-pull-left" >女</span></span>
 							<span class="mui-hidden  one"><span class="mui-pull-left" >男</span></span>
-							<div class="li_input_l "> 
-								<!--<span class="content_chan">
-									<lable >男 </lable>
-									<input type="radio" name="sex" value="man" checked="checked" id="person_sex" />
-									&nbsp;&nbsp;<lable >女 </lable>
-									<input  type="radio" name="sex" />
-									
-								</span>-->
+							<div class="li_input_l ">  
 								<input type="text" placeholder="性别" class="content_chan" id="person_sex" readonly="readonly"/> 
 							</div>
 						</li>
@@ -280,7 +273,7 @@
 							</div>
 						</li>
 						</ul>
-						<ul class="mui-table-view">
+						<ul class="mui-table-view info_edit" >
 							<li class="mui-table-view-divider"> <span>认证信息</span></li>
 						<li class="mui-table-view-cell" >
 							<img src="../../img/id2.png" class=" li_left_img" alt="" />
@@ -324,7 +317,7 @@
 			}) 
 			function check_info() { //检测填写情况
 				var v_fam = $('#firsetName').val().trim();
-				var v_fir = $('#familyName').val().trim();
+				var v_fir = $('#familyName').val().trim();  
 				var v_nation = $('#nation').val();
 				var v_address = $('#apply_place').val().trim();
 				var v_emer = $('#apply_emergencyC').val().trim();
@@ -334,14 +327,14 @@
 				var v_identity = $('#identity').val().trim();
 				var check = $('#person_sex').val();
 				var sex = (check == "男") ? '1' : '2';
-				var id_nu = $('#id_number').val().trim();  
+				var id_nu = $('#id_number').val().trim();    
 				var car_info_status = plus.storage.getItem('carInfoSta'); //得到carInfo的资料填写情况
 				if (true) {
 					if (!v_fam) {
 						mui.toast('请填写你的名');
 						flag = false;
 						return;
-					}
+					} 
 					if (!v_fir) {
 						mui.toast('请填写你的姓');
 						flag = false;
@@ -451,6 +444,7 @@
 		   	  		$('#loading-mask').css('display','none');
 		   	  		$('#loading-box').css('display','none');
 		   	  	}else{
+		   	  		
 		   	  		$('.info').removeClass('mui-hidden');
 		   	  		$('.edit').attr('readonly','readonly');
 		   	  		$('.content_chan').css('display','none');  
@@ -464,8 +458,7 @@
 		   	  			$(".mui-scroll-wrapper").css("bottom",0)
 		   	  			$('#status_info').text('你的资料还在审核中');
 		   	  		}else if(status==13){
-		   	  			$('#status_info').text('审核失败,请点击重新申请');
-		   	  			$('#title_apply').addClass('applyPerson');
+		   	  			$('#status_info').text('审核失败,请重新申请');
 		   	  		}
 		   	  		$("#footer").css("display", "none");
 		   	  		$('#loading-mask').css('display','none');

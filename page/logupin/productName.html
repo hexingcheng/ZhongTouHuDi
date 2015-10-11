@@ -41,8 +41,8 @@
 								<div id="get-code">
 									<span style="color: #808080;">get code</span>
 								</div>
-								<div id="get-time" class="mui-text-center">
-									<span style="color: #26a65b;"></span>
+								<div id="get-time" class="mui-text-center" > 
+									<span id="code" style="color: #26a65b;"></span>
 								</div>
 							</div>
 							<div class="li_input_sx">
@@ -254,14 +254,14 @@
 					var a = 60;
 					b = function() {
 						a--;
-						$('#get-time').html(a);
-						if (a == 0) {
+						$('#code').text(a); 
+						if (a == 0) { 
 							$('#get-code').css('display', 'block');
 							$('#get-time').css('display', 'none');
 						}
 					}
 					set = setInterval('b()', 1000);
-					setTimeout("clearInterval(set)", 60000);
+					setTimeout("clearInterval(set)", 61000);  
 				}
 			})
 		</script>
