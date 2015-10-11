@@ -254,8 +254,9 @@ $('.infowrap').on('tap', function() {
 	})
 })
 window.addEventListener('removehref', function() {
+	$('#applydeliver').removeClass('mui-hidden')
 	$('.pho').attr('src', 'img/defualt.png')
-	$('.myname').text("");
+	$('.myname').text("未登录");
 	$('.admira').text("头衔")
 })
 window.addEventListener('closeMenu', function() {
@@ -280,6 +281,9 @@ window.addEventListener('setaccount', function(eve) {
 	}
 	if (eve.detail.firstName && eve.detail.familyName) {
 		var name = eve.detail.familyName + " " + eve.detail.firstName
+		$('.myname').text(name);
+	}else{
+		var phone = eve.detail.phone
 		$('.myname').text(name);
 	}
 })

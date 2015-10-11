@@ -108,12 +108,12 @@
 						},function(){
 							plus.storage.removeItem('token');
 							var i = plus.webview.getLaunchWebview();
-							mui.fire(i, 'removehref')
+							mui.fire(i, 'removehref');
 							var i = plus.webview.getLaunchWebview();
 							i.show('slide-in-left',300);
 							setTimeout(function(){
 								plus.webview.currentWebview().close("none", 0);
-							}, 330)
+							}, 1000)
 						},function(xhr,type){
 							$("#close").attr("disabled", false)
 							$("#close").html("logout");

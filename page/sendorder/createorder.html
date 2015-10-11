@@ -508,7 +508,7 @@
 							</div>
 						</div>
 						<div class="gap"></div>
-						<div class="gWeight clear"> 
+						<div class="gWeight clear">
 							<div class="wid30 fl hei110 linehei110 colorg">
 								<span class="colorgray myicon"><img src="../../img/weight1.png"></span>
 							</div>
@@ -765,19 +765,19 @@
 									if (data.ret == 1) {
 										back()
 										mui.toast('保存草稿成功！');
-									}else{
-										mui.toast(data.ret+":保存草稿失败")
+									} else {
+										mui.toast(data.ret + ":保存草稿失败")
 									}
 								}, function(xhr, type) {
 									mui.toast('出错了' + type)
 								})
 							}
 							options.buttons[1].click = function() {
-//								plus.webview.getLaunchWebview().show('slide-in-left', 300);
-//								var webs = ['draft', 'create-next', 'pickaddr', 'chooseaddr', 'sendorder/createorder']
-//								setTimeout(function() {
-//									closeweb(webs)
-//								}, 1000)
+								//								plus.webview.getLaunchWebview().show('slide-in-left', 300);
+								//								var webs = ['draft', 'create-next', 'pickaddr', 'chooseaddr', 'sendorder/createorder']
+								//								setTimeout(function() {
+								//									closeweb(webs)
+								//								}, 1000)
 								back();
 							}
 							pop = new Popup(options);
@@ -786,11 +786,11 @@
 							pop.hide(document.getElementById("lee-mask"), document.getElementById("lee-content"));
 						}
 					} else {
-//						plus.webview.getLaunchWebview().show('slide-in-left', 300)
-//						var webs = ['draft', 'create-next', 'pickaddr', 'chooseaddr']
-//						setTimeout(function() {
-//							closeweb(webs)
-//						}, 1000)
+						//						plus.webview.getLaunchWebview().show('slide-in-left', 300)
+						//						var webs = ['draft', 'create-next', 'pickaddr', 'chooseaddr']
+						//						setTimeout(function() {
+						//							closeweb(webs)
+						//						}, 1000)
 						back()
 					}
 				} else {
