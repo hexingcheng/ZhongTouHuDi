@@ -51,10 +51,13 @@
 				})
 				var back = mui.back
 				mui.back = function(){
-//					plus.webview.getLaunchWebview().show('slide-in-left',300,function(){
-//						closewebview();
-//					});
-					back()
+					plus.webview.getLaunchWebview().show('slide-in-left',300,function(){
+						setTimeout(function(){
+							closewebview();
+						},1000)
+//						back()
+					});
+					
 				}
 				function closewebview(){
 					var views = ['message/message','mygetorder/mygetorderdtl','ordermsg','mygetorder/my-get-order'];

@@ -134,6 +134,7 @@
 											payPwd: $('#pwd').val()
 										}
 									}, function(data) {
+										alert(111) 
 										if (data.ret == 1) {
 											mui.toast('check success');
 											document.getElementById("next-step").innerHTML = 'sure';
