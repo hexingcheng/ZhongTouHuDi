@@ -10,13 +10,13 @@ document.getElementById("trip-plan").addEventListener("tap", function() {
 	openWindow("./page/tripplan/send-trip.html");
 })
 mui.plusReady(function() {
-		//		plus.storage.removeItem('systemmes14714714774')
-		//		plus.storage.removeItem('systemmes25825825885')
+		getlatlng(function() {
+			plus.navigator.closeSplashscreen();
+		});	
 		mui('.mui-slider').slider({
 			interval: '2000'
 		})
 		setstorage('getsystemmsgtime', (new Date()).getTime());
-		plus.navigator.closeSplashscreen();
 		var net = plus.networkinfo.getCurrentType();
 		if (net != 0 && net != 1) {
 			if (getstorage('personinfo')) {
@@ -165,15 +165,14 @@ mui.plusReady(function() {
 				getsystemmsg();
 			}
 		}, 60000)
-		getlatlng();
 	})
 	//处理返回键
 
 function getsystemmsg() {
 	mui.ajax(BASEURL + 'message/getMsg', {
-		data : {},
-		timeout : 20000,
-		success :　function(data) {
+		data: {},
+		timeout: 20000,
+		success: 　 function(data) {
 			if (data.ret == 1) {
 				if (data.res.msgList.length) {
 					$('#msgtips').attr('src', './img/tips.png');
@@ -189,7 +188,7 @@ function getsystemmsg() {
 				return;
 			}
 		},
-		error : function(xhr, type) {
+		error: function(xhr, type) {
 			mui.toast(xhr.status + ":" + type)
 		}
 	})

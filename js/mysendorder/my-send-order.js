@@ -64,7 +64,7 @@ function pullupRefresh() {
 		"page": 1,
 		"pageSize": 10,
 		"type": "send",
-		"status": status
+		"status": whichstatus
 	}
 	data.page = ++whichpage[whichstatus]
 	console.log(JSON.stringify(data))
@@ -81,8 +81,10 @@ function pullupRefresh() {
 			var orderdata = {
 					"list": data.res.orderList
 				}
+			if(!data.res.orderList.length){
+				whichpage[whichstatus]--
+			}
 				// 模板渲染
-			plus.nativeUI.closeWaiting();
 			var html = template("template", orderdata);
 			if (!html) {
 				mui.toast('no more')

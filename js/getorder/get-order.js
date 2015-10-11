@@ -10,7 +10,6 @@ mui.init({
 		}
 	}
 });
-var geocoder = new google.maps.Geocoder();
 var whichitem = "time";
 var whichval = "asc";
 var allpage = {
@@ -19,20 +18,18 @@ var allpage = {
 	"price": 1,
 	"weight": 1
 }
-var currentaddr = ''
-var currentjd = '';
-var currentwd = '';
+var currentaddr  = ''
+var currentjd  = ''
+var currentwd = ''
 var opener;
-var dom = document.querySelector(".load-data");
 
 function pulldownRefresh() {
-	dom.style.display = "block";
 	var getorderdata = {
 		"page": 1,
 		"pageSize": 10,
-		"curAddr": currentaddr,
-		"curJd": currentjd,
-		"curWd": currentwd,
+		"curAddr": plus.storage.getItem('currentaddr')||'',
+		"curJd": plus.storage.getItem('longitude')||'',
+		"curWd": plus.storage.getItem('latitude')||'',
 		"sendAddr": "",
 		"receiveAddr": "",
 		"finTime": "",
@@ -45,12 +42,18 @@ function pulldownRefresh() {
 
 	getorderdata.sortType = whichitem;
 	getorderdata.sortVal = whichval;
+	if(!plus.storage.getItem('longitude') && plus.storage.getItem('latitude')) {
+		getlatlng();
+	}
+	getorderdata.curJd = plus.storage.getItem('longitude') - 0;
+	getorderdata.curWd = plus.storage.getItem('latitude') - 0;
+	console.log(JSON.stringify(getorderdata))
 	myAjax({
 		url: 'deliver/goodList',
 		data: getorderdata,
 		wait: false
 	}, function(data) {
-		dom.style.display = "none";
+		console.log(JSON.stringify(data))
 		mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 		var orderdata = {
 				"list": data.res.orderList
@@ -70,9 +73,9 @@ function pullupRefresh() {
 	var getorderdata = {
 		"page": 1,
 		"pageSize": 10,
-		"curAddr": currentaddr,
-		"curJd": currentjd,
-		"curWd": currentwd,
+		"curAddr": plus.storage.getItem('currentaddr')||'',
+		"curJd": plus.storage.getItem('longitude')||'',
+		"curWd": plus.storage.getItem('latitude')||'',
 		"sendAddr": "",
 		"receiveAddr": "",
 		"finTime": "",
@@ -85,16 +88,26 @@ function pullupRefresh() {
 	getorderdata.sortType = whichitem;
 	getorderdata.sortVal = whichval;
 	getorderdata.page = ++allpage[whichitem];
+	if (!plus.storage.getItem('longitude') && plus.storage.getItem('latitude')) {
+		getlatlng();
+	}
+	getorderdata.curJd = plus.storage.getItem('longitude') - 0;
+	getorderdata.curWd = plus.storage.getItem('latitude') - 0;
 	var old = $('#ordercontent').html();
+	console.log(JSON.stringify(getorderdata))
 	myAjax({
 		url: 'deliver/goodList',
 		data: getorderdata,
 		wait: false
 	}, function(data) {
+		console.log(JSON.stringify(data))
 		mui('#pullrefresh').pullRefresh().endPullupToRefresh()
 		var orderdata = {
 				"list": data.res.orderList
 			}
+		if(!data.res.orderList.length){
+			allpage[whichitem]--
+		}
 			// 模板渲染
 		var html = template("template", orderdata);
 		if (!html) {
@@ -110,10 +123,13 @@ function pullupRefresh() {
 }
 
 mui.plusReady(function() {
+	currentaddr = plus.storage.getItem('currentaddr')
+	currentjd = plus.storage.getItem('longitude') - 0;
+	currentwd =  plus.storage.getItem('latitude') - 0;
 	var getorderdata = {
 		"page": 1,
 		"pageSize": 10,
-		"curAddr": "",
+		"curAddr": currentaddr,
 		"curJd": "",
 		"curWd": "",
 		"sendAddr": "",
@@ -133,52 +149,27 @@ mui.plusReady(function() {
 	}
 	getorderdata.curJd = plus.storage.getItem('longitude') - 0;
 	getorderdata.curWd = plus.storage.getItem('latitude') - 0;
-	var center = {
-		lat: getorderdata.curWd,
-		lng: getorderdata.curJd
-	}
-	console.log(JSON.stringify(center))
-	geocoder.geocode({
-		'location': center
-	}, function(results, status) {
-		if (status === google.maps.GeocoderStatus.OK) {
-			if (results[1]) {
-				currentaddr = getorderdata.curAddr = results[1].formatted_address;
-				console.log()
-				if (results[0].geometry.location) {
-					currentjd = getorderdata.curJd = results[0].geometry.location[Object.keys(results[0].geometry.location)[1]]
-					currentwd = getorderdata.curWd = results[0].geometry.location[Object.keys(results[0].geometry.location)[0]];
-				} else {
-					currentjd = getorderdata.curJd;
-					currentwd = getorderdata.curWd;
+	console.log( 'init:'+JSON.stringify(getorderdata))
+	myAjax({
+			url: 'deliver/goodList',
+			data: getorderdata,
+			wait: false
+		}, function(data) {
+			console.log(JSON.stringify(data))
+			var orderdata = {
+					"list": data.res.orderList
 				}
-				console.log(JSON.stringify(getorderdata))
-				myAjax({
-					url: 'deliver/goodList', 
-					data: getorderdata,
-					wait: false
-				}, function(data) {
-					var orderdata = {
-							"list": data.res.orderList 
-						}
-						// 模板渲染
-					var html = template("template", orderdata);
-					if (!html) {
-						html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
-					}
-					$('#ordercontent').html(html);
-					$('.masks').addClass('mui-hidden')
-				}, function(xhr, type, errorThrown) {
-					console.log(type)
-				})
-			} else {
-				alert('No results found');
+				// 模板渲染
+			var html = template("template", orderdata);
+			if (!html) {
+				html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
 			}
-		} else {
-			window.alert('Geocoder failed due to: ' + status);
-		}
-	});
-	//修改结束
+			$('#ordercontent').html(html);
+			$('.masks').addClass('mui-hidden')
+		}, function(xhr, type, errorThrown) {
+			console.log(type)
+		})
+		//修改结束
 	window.addEventListener('renderdata', function(eve) {
 			var getorderdata = {
 				"page": 1,
