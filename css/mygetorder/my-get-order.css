@@ -122,8 +122,10 @@ body {
 .goods-value {
 	font-size: 18px;
 }
+
 .waiting{
-	top: 101px;
+	position: absolute;
+	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;

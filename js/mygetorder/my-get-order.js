@@ -31,11 +31,13 @@ function pulldownRefresh(){
 		myAjax({
 			url: 'order/myGoodList',
 			data: getorderdata,
-			wait: wait
+			wait: wait,
+			loadingMask : false 
 		}, function(data) {
 			var orderdata = {
 				"list": data.res.orderList
 			}
+			closeMask();
 			var html = template("template", orderdata);
 			if (!html) {
 				mui.toast('没有新数据')
@@ -64,7 +66,8 @@ function pullupRefresh(){
 		myAjax({
 			url: 'order/myGoodList',
 			data: getorderdata,
-			wait: wait
+			wait: wait,
+			loadingMask : false 
 		}, function(data) {
 			console.log(JSON.stringify(data))
 			var orderdata = {
@@ -73,6 +76,7 @@ function pullupRefresh(){
 			if(!data.res.orderList.length){
 				whichpage[status]--
 			}
+			closeMask();
 			var html = template("template", orderdata);
 			if (!html) {
 				mui.toast('没有更多数据')
@@ -124,6 +128,7 @@ mui.plusReady(function() {
 				html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
 			}
 			$('#pullrefreshs').html(html);
+			closeMask();
 		}, function(xhr, type, errorThrown) {
 			console.log(type);
 		})
@@ -139,11 +144,5 @@ mui.plusReady(function() {
 		};
 
 		openWindow('./mygetorderdtl.html', datas)
-	})
-	
-	// 点击页面切换的时候，进行切换页面等待窗口
-	window.addEventListener("waiting", function(){
-		var waithtml = '<div class="data-wait">数据加载中...</div>';
-		$('#pullrefreshs').html(waithtml);
 	})
 })

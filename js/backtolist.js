@@ -4,7 +4,9 @@ mui.plusReady(function() {
 		if(msorder){
 			msorder.show('slide-in-left',300);
 		}else{
-			plus.webview.getLaunchWebview().show('slide-in-left',300)
+//			plus.webview.getLaunchWebview().show('slide-in-left',300)
+			var wallet = plus.webview.getWebviewById('wallet/my-wallet');
+			wallet.show('slide-in-left',300);
 		}
 		setTimeout(function(){
 			var arrs = ['order-detail','pay/pay','paypal']

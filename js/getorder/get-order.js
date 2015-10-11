@@ -51,7 +51,8 @@ function pulldownRefresh() {
 	myAjax({
 		url: 'deliver/goodList',
 		data: getorderdata,
-		wait: false
+		wait: false,
+		loadingMask : false 
 	}, function(data) {
 		console.log(JSON.stringify(data))
 		mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
@@ -98,7 +99,8 @@ function pullupRefresh() {
 	myAjax({
 		url: 'deliver/goodList',
 		data: getorderdata,
-		wait: false
+		wait: false,
+		loadingMask : false 
 	}, function(data) {
 		console.log(JSON.stringify(data))
 		mui('#pullrefresh').pullRefresh().endPullupToRefresh()
@@ -241,11 +243,5 @@ mui.plusReady(function() {
 	})
 	window.addEventListener('fresh', function() {
 		pulldownRefresh();
-	})
-
-	// 点击页面切换的时候，进行切换页面等待窗口
-	window.addEventListener("waiting", function() {
-		var waithtml = '<div class="data-wait">数据加载中...</div>';
-		$('#ordercontent').html(waithtml);
 	})
 })
