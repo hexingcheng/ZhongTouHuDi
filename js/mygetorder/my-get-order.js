@@ -36,6 +36,7 @@ function pulldownRefresh(){
 			var orderdata = {
 				"list": data.res.orderList
 			}
+			closeMask();
 			var html = template("template", orderdata);
 			if (!html) {
 				mui.toast('没有新数据')
@@ -73,6 +74,7 @@ function pullupRefresh(){
 			if(!data.res.orderList.length){
 				whichpage[status]--
 			}
+			closeMask();
 			var html = template("template", orderdata);
 			if (!html) {
 				mui.toast('没有更多数据')
@@ -124,6 +126,7 @@ mui.plusReady(function() {
 				html = '<div class="mui-text-center data-null"><img src="../../img/none.png" width="25%" height="26%"/><div class="mui-h4">not more things</div></div>'
 			}
 			$('#pullrefreshs').html(html);
+			closeMask();
 		}, function(xhr, type, errorThrown) {
 			console.log(type);
 		})
