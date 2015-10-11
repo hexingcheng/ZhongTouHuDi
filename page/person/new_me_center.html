@@ -493,7 +493,7 @@
 					//编辑信息
 				var token = '';
 
-				function update() {
+				function update(callback) {
 					var pwd = $('#pop_password').val();
 					if (pwd) {
 						data = {
@@ -520,6 +520,7 @@
 								$('#nation_select_').css('display', 'none');
 							}
 							token = obj.res.token;
+							callback && callback();
 						}, function(xhr, type) {
 							alert(xhr.status);
 						})
@@ -607,6 +608,7 @@
 				$('.center_edit').on('tap', function() {
 						$(this).css('display', 'none');
 						$('.center_save').css('display', 'block');
+						options.height = 180;
 						options.title.content = "更改提示";
 						options.main.content = '<span id="nav_title"><b>Please input your password</b>' +
 							'</span><div class="input_div">' +
@@ -644,7 +646,21 @@
 					})
 					//修改支付密码
 				$('#wallet_pwd').on('tap', function() {
-					openWindow('../wallet/set_wallet_pwd.html');
+					
+					options.height = 180;
+					options.title.content = "输入提示";
+					options.main.content = '<span id="nav_title"><b>请输入你的登录密码</b>' +
+						'</span><div class="input_div">' +
+						'<input type="password" placeholder="请输入密码" id="pop_password" maxlength="20" />' +
+						'</div>';
+					options.buttons[0].click = function() {
+						update(function(){
+							openWindow('../wallet/set_wallet_pwd.html');
+						});
+					}
+					
+					var pop = new Popup(options);
+					pop.show();
 				})
 				mui.back = function() {
 //					alert($('.center_save').css('display'))
