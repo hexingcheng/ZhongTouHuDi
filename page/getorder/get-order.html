@@ -98,14 +98,15 @@
 				var action = $.targets.action;
 		 				console.log(action.classList.contains('mui-action-back'));
 	});
-//			 mui.back = function() {
-//				var index = plus.webview.getLaunchWebview();
-//				index.show("slide-in-left",300, function() {
-//					setTimeout(function() {
-//						plus.webview.currentWebview().close();
-//					}, 1000)
-//				})
-//			}
+			 mui.back = function() {
+				var index = plus.webview.getLaunchWebview();
+				index.show("slide-in-left",300);
+				setTimeout(function(){
+					getAllwebview()
+					var web = ['get-detail',,'order-content','getorder/get-order'];
+					closeweb(web)
+				},1000)
+			}
 		</script>
 	</body>
 

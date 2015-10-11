@@ -275,7 +275,7 @@ mui.plusReady(function() {
 				$("#sendaddr").html(data.res.sendAddr.name); // 发送地
 				$("#receiveaddr").html(data.res.receiveAddr.name) // 接收地
 				$("#gvalue").html(data.res.gValue); // value
-				value = data.res.gValue;
+				value = data.res.money;
 				$("#info").html(data.res.info); // 信息描述
 				var pic = data.res.pics;
 				reword = data.res.money;
