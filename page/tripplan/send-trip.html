@@ -42,6 +42,9 @@
     	#remain-text {padding: 0 5px;}
     	.date-box, .address-box {padding: 10px 15px;color: #aaa;}
     	#info {color: #666;}
+    	
+    	/* footer按钮 */
+    	#ok-btn {width: 80%;height: 100%;background: #06495a;color: #fff;}
     </style>
 </head>
 <body>
@@ -55,8 +58,7 @@
 	
 	<footer class="mui-bar mui-bar-footer mui-text-center">
 		<div class="button-row">
-			<button id="ok-btn" class="mui-btn first-button">Ok</button>
-			<button id="cancel-btn" class="mui-btn second-button">cancel</button>
+			<button id="ok-btn" class="mui-btn">提交</button>
 		</div>
 	</footer>
 	
@@ -89,13 +91,15 @@
 									<div class="title-plain" id="add-wayline">添加途径地</div>
 								</div>
 							</li>
-							<!--<li class="mui-table-view-cell">
-								<div class="add-address">
-									<div class="icon-item icon-line"><img src="../../img/by-the-way.png" width="100%" height="100%"/></div>
-									<div class="remove-button mui-pull-right"><button class="mui-btn mui-btn-link delete-btn">删除</button></div>
-									<div class="add-line">添加路径添加路径添加路径添加路径添加路径添加路径添加路径添加路径添加路径添加路径添加路径</div>
-								</div>
-							</li>-->
+							<div id="line-way">
+								<!--<li class="mui-table-view-cell">
+									<div class="add-address">
+										<div class="icon-item icon-line"><img src="../../img/by-the-way.png" width="100%" height="100%"/></div>
+										<div class="remove-button mui-pull-right"><button class="mui-btn mui-btn-link delete-btn">删除</button></div>
+										<div class="add-line">添加路径添</div>
+									</div>
+								</li>-->
+							</div>
 						</div>
 						
 						<!-- 选择日期 -->
@@ -129,6 +133,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/mui.listpicker.js"></script>
 	<script src="../../js/mui.dtpicker.js"></script>
@@ -149,8 +154,6 @@
 	  			});
 	  		})
 	  		
-	  		
-	  		
 	  		// 添加路线
 	  		var template = '<div class="add-address">'+
 									'<div class="icon-item icon-line"><img src="../../img/by-the-way.png" width="100%" height="100%"/></div>'+
@@ -158,11 +161,12 @@
 									'<div class="add-line">添加路径</div>'+
 								'</div>';
 			var tripline = document.getElementById("trip-line");
+			var lineway = document.getElementById("line-way");
 	  		document.getElementById("add-wayline").addEventListener("tap", function(){
 	  			var oli = document.createElement("li");
-	  			oli.className = "mui-table-view-cell";
+	  			oli.className = "mui-table-view-cell line-way-cell";
 	  			oli.innerHTML = template;
-	  			tripline.appendChild(oli);
+	  			lineway.appendChild(oli);
 	  		})
 	  		
 	  		// 删除途径地
@@ -192,8 +196,8 @@
 	  		window.addEventListener("show:address", function(eve){
 	  			var line = document.querySelectorAll(".add-line");
 	  			if(eve.detail.address){
-		  			line[index].setAttribute("data-address", eve.detail.address);
-		  			line[index].querySelector(".add-line").innerHTML = eve.detail.address;
+//		  			line[index].setAttribute("data-address", eve.detail.address);
+		  			line[index].innerHTML = eve.detail.address;
 	  			}
 	  			if(eve.detail.jd){
 		  			line[index].setAttribute("data-jd", eve.detail.jd);

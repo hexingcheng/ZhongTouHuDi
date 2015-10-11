@@ -258,7 +258,13 @@
 					closeweb()
 				}, 1000);
 			}
-
+			
+			// 点击cancel按钮时处理
+			$("#back").on("tap", function(){
+				back();
+			})
+			
+			// 关闭相关界面
 			function closeweb() {
 				var web = ['chooseaddr', 'pickaddr'];
 				for (var i = 0; i < web.length; i++) {
