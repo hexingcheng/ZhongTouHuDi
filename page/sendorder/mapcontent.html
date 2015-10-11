@@ -90,22 +90,22 @@
 					var G = center.G;
 					var K = center.K;
 					geocoder.geocode({
-					'location': center
-				}, function(results, status) { 
-					if (status === google.maps.GeocoderStatus.OK) {
-						if (results[0]) {
-							var data = {
-								addr: results[0].formatted_address, 
-								location: results[0].geometry.location
+						'location': center
+					}, function(results, status) { 
+						if (status === google.maps.GeocoderStatus.OK) {
+							if (results[0]) {
+								var data = {
+									addr: results[0].formatted_address, 
+									location: results[0].geometry.location
+								}
+								getAddr(data);
+							} else {
+								alert('No results found');
 							}
-							getAddr(data);
 						} else {
-							alert('No results found');
+							window.alert('Geocoder failed due to: ' + status);
 						}
-					} else {
-						window.alert('Geocoder failed due to: ' + status);
-					}
-				});
+					});
 				})
 			}
 
@@ -154,8 +154,9 @@
 				return addr.join('');				
 			}
 			function getAddr(data) { 
-				var addr = plus.webview.getWebviewById('pickaddr');
-				mui.fire(addr, 'getaddr', data); 
+				var addr = plus.webview.getWebviewById('pickaddr') || plus.webview.getWebviewById('sendorder/pickaddr');
+				console.log(addr);
+				mui.fire(addr, 'getaddr', data);
 			}
 			mui.plusReady(function() {
 				if(!plus.storage.getItem('longitude')&&plus.storage.getItem('latitude')){

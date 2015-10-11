@@ -164,7 +164,9 @@
 		mui.plusReady(function() {
 			var c = plus.webview.currentWebview();
 			var from = c.type;
-			alert(from);
+			
+			var wd, jd, addr; 		  // 经纬度，地址变量
+			
 			embed = plus.webview.create("./mapcontent.html", "mapcontent", {
 				top: "144px",
 				bottom: "60px"
@@ -182,8 +184,20 @@
 			})
 			document.getElementById('ok').addEventListener('tap', function() {
 				var myaddr = $('#chooseaddr').text() + $("#detail").val();
-				if (from) {
-					alert(1)
+				if (from == "tripline") {
+					
+					var tripplan = plus.webview.getWebviewById("tripplan/send-trip");
+					console.log(tripplan);
+					mui.fire(tripplan, "show:address", {
+						address : addr,
+						wd : wd,
+						jd : jd
+					})
+					
+					tripplan.show("slide-in-bottom", 300, function(){
+						c.close("none", 0)
+					})
+					
 				} else {
 					var nextcreate = plus.webview.getWebviewById('create-next');
 					mui.fire(nextcreate, 'getaddrs', {
@@ -196,8 +210,12 @@
 					plus.webview.currentWebview().close();
 				}, 2000)
 			})
+			
+			
+			// 地图部分触发自定以事件到父页面显示地址及经纬度
 			window.addEventListener('getaddr', function(eve) {
-				var addr = eve.detail.addr;
+				addr = eve.detail.addr;
+				console.log(addr);
 				var w = $(window).width() - 50;
 				var textlen = addr.length * 12;
 				if (textlen > w) {
@@ -211,6 +229,18 @@
 				}
 				$('#chooseaddr').text(addr)
 				clocation = eve.detail.location;
+				var index = 0;
+				for(var key in clocation){
+					if(index == 0){
+						wd = clocation[key];
+					} else if(index == 1){
+						jd = clocation[key];
+					} else {
+						break;
+					}
+					index++;
+				}
+				console.log("jd:"+jd+"   wd:"+wd);
 				var param = {
 					location: eve.detail.clocation
 				}
