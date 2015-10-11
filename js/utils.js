@@ -61,13 +61,14 @@ function myAjax(options, successcb, errorcb, nonetworkcb) {
 		}
 	}
 }
-
+var loadingmask = true;
 function innerAjax(options, successcb, errorcb) {
 	var op = {
 		type: 'post',
 		url: '',
 		data: {},
-		wait: false
+		wait: false,
+		loadingMask : true
 	};
 	copyobj(options, op);
 	if (op.wait) {
@@ -75,6 +76,7 @@ function innerAjax(options, successcb, errorcb) {
 			background: "#d1d1d1"
 		})
 	}
+	loadingmask = op.loadingMask;
 	openwindowloading(function(){
 		mui.ajax(BASEURL + op.url, {
 			type: op.type,
@@ -185,19 +187,17 @@ function openwindowloading(callback){
 	var preload = document.getElementById("openwindowloading");
 	var show = otherload ? getComputedStyle(otherload, 0)["display"] : "none";
 	
-	var fixedtop = 52;
+	if(show == "block" || !loadingmask){
+		callback();
+		return;
+	}
 	
+	var fixedtop = 52;
 	if(window.plus){
 		var curl = plus.webview.currentWebview().getURL();
 		if(curl.match("my-send-order-content.html") || curl.match("my-get-order-content.html") || curl.match("order-content.html")){
 			fixedtop = 0;
 		}
-	}
-	console.log(show)
-	
-	if(show == "block"){
-		callback();
-		return;
 	}
 	
 	if(!preload && show == "none"){

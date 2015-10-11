@@ -35,7 +35,8 @@ function pulldownRefresh() {
 		myAjax({
 			url: 'order/myGoodList',
 			data: data,
-			wait: false
+			wait: false,
+			loadingMask : false 
 		}, function(data) {
 //			plus.nativeUI.closeWaiting();
 			mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
@@ -74,7 +75,8 @@ function pullupRefresh() {
 		myAjax({
 			url: 'order/myGoodList',
 			data: datas,
-			wait: false
+			wait: false,
+			loadingMask : false 
 		}, function(data) {
 			console.log(JSON.stringify(data))
 			mui('#pullrefresh').pullRefresh().endPullupToRefresh()

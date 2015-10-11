@@ -8,6 +8,7 @@ mui.plusReady(function() {
 		data: {}
 	}, function(data) {
 		cash.innerHTML = data.res.money;
+		closeMask();
 	})
 
 	// 解析当前用户信息
