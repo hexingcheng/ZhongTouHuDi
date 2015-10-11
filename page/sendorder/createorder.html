@@ -626,6 +626,7 @@
 				return false;
 			})
 			document.getElementById('info').addEventListener('tap', function() {
+				$('input').blur()
 				var param = {};
 				if ($(this).text() != 'Comment') {
 					var texts = $(this).text();
