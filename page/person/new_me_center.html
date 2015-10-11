@@ -25,14 +25,17 @@
 				position: absolute;
 				bottom: 0;
 				left: 50%;
-				z-index: 100;
+				z-index: 900;
 				border-radius: 50%;
 				margin-left: -40px;
 				margin-bottom: -20px;
+				border: 2px solid transparent;
 			}
 			.center_headpic .heade_pic {
 				height: 100%;
 				width: 100%;
+				max-width: 100%;
+				min-height: 100%;
 				overflow: hidden;
 				border-radius: 50%;
 				display: inline-block;
@@ -51,8 +54,8 @@
 				border-radius: 18px;
 				position: absolute;
 				background-color: #fff;
-				bottom: 5px;
-				right: 0;
+				bottom: 0px;
+				right: -.5em;
 			}
 			.center_bg_edit {
 				width: 34px;
@@ -124,6 +127,7 @@
 			.gitpic {
 				height: 80px;
 				width: 80px;
+				z-index: 500;
 				display: inline-block;
 				border: 2px solid #fff;
 				border-radius: 50%;

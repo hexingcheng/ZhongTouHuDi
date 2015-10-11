@@ -94,6 +94,10 @@
 				param.sortVal = $('.mui-control-item').filter('.mui-active').attr('data-desc');
 				mui.fire(embed, 'renderdata', param)
 			})
+			 window.addEventListener('tap', function(e) {
+				var action = $.targets.action;
+		 				console.log(action.classList.contains('mui-action-back'));
+	});
 //			 mui.back = function() {
 //				var index = plus.webview.getLaunchWebview();
 //				index.show("slide-in-left",300, function() {
